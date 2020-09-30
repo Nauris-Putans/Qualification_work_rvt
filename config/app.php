@@ -166,6 +166,8 @@ return [
          * Package Service Providers...
          */
 
+        Becker\Zabbix\ZabbixServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
