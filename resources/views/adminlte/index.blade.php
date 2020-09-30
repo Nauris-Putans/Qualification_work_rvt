@@ -11,12 +11,11 @@
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fa fa-area-chart"></i>
-                Blog Posting Trend
+                NBA team win rate(%)
             </div>
             <div class="card-body">
-                <canvas id="myAreaChart" width="100%" height="30"></canvas>
+                <canvas id="myAreaChart" width="100%" height="40"></canvas>
             </div>
-            <div class="car-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
     </div>
 @stop
@@ -34,6 +33,17 @@
     <script>
         let myAreaChart = document.getElementById('myAreaChart').getContext('2d');
 
+        // Global Options
+        Chart.defaults.global.defaultFontFamily = 'Source Sans Pro';
+        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.defaultFontColor = '#777';
+
+        // Colors
+        $green = '#008000';
+        $yellow = '#ffff00';
+        $red = '#ff0000';
+        $white = '#ffffff';
+
         let massPopChart = new Chart(myAreaChart, {
             type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
             data:{
@@ -45,10 +55,36 @@
                         60,
                         55,
                         40
-                    ]
+                    ],
+                    backgroundColor: [
+                        $green,
+                        $yellow,
+                        $red,
+                        $white
+                    ],
+                    borderWidth:1,
+                    borderColor: '#777',
+                    hoverBorderWidth:3,
+                    hoverBorderColor: 'black'
                 }]
             },
-            options:{},
+            options:{
+                legend:{
+                    display:false,
+                    position:'right',
+                    labels:{
+                        fontColor:'black'
+                    }
+                },
+                layout:{
+                    padding:{
+                        left:50,
+                        right:0,
+                        bottom:0,
+                        top:0
+                    }
+                }
+            },
         });
     </script>
 @stop
