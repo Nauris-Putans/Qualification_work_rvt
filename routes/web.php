@@ -23,4 +23,5 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/zabbix', 'TestController@itemGet')->name('zabbix');
 Route::get('/home', 'HomeController@index')->name('home');
