@@ -1,14 +1,28 @@
 # Website monitoring service
+WEBcheck - We check you relax
 
 ## Description of the project
 PIKC “Riga State Technical School” Qualification Work Repository.
 
 ## Table of content
-- [Docker container images](#docker-container-images)
+ - [Versions](#versions)
+ - [Technologies used](#technologies-used)
  - [Requirements](#requirements)
  - [Installation](#installation)
    - [Clone](#clone)
    - [Setup](#setup)
+ - [Sources used](#sources-used)
+
+## Versions
+A website is created with:
+ - Apache
+ - Php: **7.2.5**
+ - Phpmyadmin 
+ - Mysql
+ - Zabbix: **5**
+ - Laravel **7.24**
+ - Adminlte **^3.5**
+ - npm **6.14.8**
 
 ## Technologies used
 The project uses:
@@ -27,30 +41,66 @@ Languages:
 - Markdown
 
 Frameworks:
-- Laravel 7
-- Node.js
+- Laravel
 
 Servers:
 - Zabbix
 
-## Izmantotie avoti
-[W3School](https://www.w3schools.com/html/default.asp) - tika ņemts example html kods.
+Others:
+- Apache
+- Phpmyadmin
+- Mysql
+- Adminlte
+- npm
 
-[The 2019 Frontend Developer Crash Course - HTML & CSS Tutorial for Beginners](https://www.youtube.com/watch?v=8gNrZ4lAnAw) - kā pamats HTML, CSS apguvei skatījos videoklipu un apguvu kā pievienot CSS pie HTML.
-  
-:information_source: :exclamation: *Obligāti jānorāda visi avoti, kas ir izmantoti, kas ir skatīts, kāds kods ir kopēts, ja tas netiks norādīts un tiks identificēts, ka kods ir kopēts darbs netiks ieskaitīts.* :exclamation:
+## Requirements
 
-## Uzstādīšanas instrukcijas
-1. Lai lietotu git lejupielādējam [Git for windows](https://git-scm.com/download/win)
-2. Instalējam git.
-3. [Lejupielādējam WAMP](http://www.wampserver.com/en/), lai varētu izveidot webserveri.
-4. Instalējam WAMP.
-5. Pārliecinamies par WAMP darbību atverot adresi http://127.0.0.1
-6. Dodamies uz WAMP atrašanās vietu parasti c:\wamp\www un izdzēšam tā saturu.
-7. Veicam labo klikšķi un izvēlamies opciju "git bash here" un izpildam zemāk raksīto komandu.
+To run this website, you must have:
+
+1. WampServer can be downloaded [here](https://www.wampserver.com/en/#download-wrapper)
+2. Composer can be downloaded [here](https://getcomposer.org/download/)
+3. npm can be downloaded [here](https://www.npmjs.com/get-npm)
+3. Git Bash can be downloaded [here](https://git-scm.com/downloads)
+
+## Installation
+
+### Clone
+
+> Clone this repo to your local machine using `https://git01.obvius.lv:10143/mon/monitoring_project.git`
+
+```bash
+git clone https://git01.obvius.lv:10143/mon/monitoring_project.git
+cd monitoring-project
 ```
-git clone https://github.com/rvtprog-kvalifikacija-20/d43-MarisDanne-paraugaProjekts.git
+
+### Setup
+
+> Install composer to project
+```bash
+composer install 
 ```
-8. Atveram adresi http://127.0.0.1/d43-MarisDanne-paraugaProjekts/ 
-  
-:information_source: *Norādām veidu, kā izmantojot repozitoriju var tikt pie strādājoša projekta uz citas ierīces, ja nepieciešams pievieno arī datubāzes dump file un arī default user/password*
+
+> Install node.js to project
+```bash
+npm install
+```
+
+> Compile files
+```bash
+npm run dev
+```
+
+> Run project on local machine
+```bash
+php artisan serve
+```
+
+Should show this message after running 'php artisan serve' if all is successfully done
+```bash
+Laravel development server started: http://127.0.0.1:8000
+[Mon Oct  5 14:46:45 2020] PHP 7.4.3 Development Server (http://127.0.0.1:8000) started
+```
+
+## Sources used
+
+N/A
