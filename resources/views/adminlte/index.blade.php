@@ -6,17 +6,15 @@
 @stop
 
 @section('content')
-    <br>
-    <div class="container">
-        <div class="card mb-3">
-            <div class="card-header">
-                <i class="fa fa-area-chart"></i>
-                NBA team win rate(%)
-            </div>
-            <div class="card-body">
-                <canvas id="myAreaChart" width="100%" height="40"></canvas>
-            </div>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-area-chart"></i>
+            Google ping ms
         </div>
+        <div class="card-body">
+            <canvas id="myAreaChart" width="800" height="450"></canvas>
+        </div>
+    </div>
     </div>
 @stop
 
@@ -33,6 +31,20 @@
     <script>
         let myAreaChart = document.getElementById('myAreaChart').getContext('2d');
 
+        <?php
+            $pingMS = array();
+            $pingTime = array();
+
+            foreach ($histories as $history)
+            {
+                array_push($pingMS, $history->value);
+                array_push($pingTime, date('d/m/Y H:i:s', $history->clock));
+            }
+        ?>
+
+        let responseSpeed = <?php echo json_encode($pingMS); ?>;
+        let responseTime = <?php echo json_encode($pingTime); ?>;
+
         // Global Options
         Chart.defaults.global.defaultFontFamily = 'Source Sans Pro';
         Chart.defaults.global.defaultFontSize = 18;
@@ -45,27 +57,13 @@
         $white = '#ffffff';
 
         let massPopChart = new Chart(myAreaChart, {
-            type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-            data:{
-                labels:['Celtics', 'Lakers', 'Heat', 'Clippers'],
-                datasets:[{
-                    label: 'Win rate %',
-                    data:[
-                        56,
-                        60,
-                        55,
-                        40
-                    ],
-                    backgroundColor: [
-                        $green,
-                        $yellow,
-                        $red,
-                        $white
-                    ],
-                    borderWidth:1,
-                    borderColor: '#777',
-                    hoverBorderWidth:3,
-                    hoverBorderColor: 'black'
+            type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: responseTime,
+                datasets: [{
+                    data: responseSpeed,
+                    borderColor: "#3e95cd",
+                    fill: false
                 }]
             },
             options:{

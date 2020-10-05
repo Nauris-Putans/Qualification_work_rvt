@@ -38,6 +38,22 @@ class TestController extends Controller
         });
     }
 
+    public function historyGet()
+    {
+        date_default_timezone_set("Europe/Riga");
+        $yesterday  = mktime(0, 0, 0, date("m"), date("d")-1, date("Y"));
+
+        $histories = $this->zabbix->historyGet([
+            'output' => 'extend',
+            'history' => '0',
+            'time_from' => $yesterday,
+            'sortorder' => 'DESC',
+            'itemids' => '31534',
+        ]);
+
+        return view('adminlte/index', compact('histories'));
+    }
+
     /**
      * Get item from zabbix
      *
@@ -45,7 +61,10 @@ class TestController extends Controller
      */
     public function itemGet()
     {
-        $items = $this->zabbix->itemGet(['output' => 'extend','graphids' => ['1260']]);
+        $items = $this->zabbix->itemGet([
+            'output' => 'extend',
+            'graphids' => '1260'
+            ]);
 
         foreach ($items as $item)
         {

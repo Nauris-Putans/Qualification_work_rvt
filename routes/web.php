@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin', function () {
-   return view('adminlte/index');
-});
+Route::get('/admin', 'TestController@historyGet')->name('admin.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +21,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/zabbix', 'TestController@itemGet')->name('zabbix');
+Route::get('/zabbix/item', 'TestController@itemGet')->name('zabbix.item');
+
+
 Route::get('/home', 'HomeController@index')->name('home');
