@@ -26,7 +26,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be5266db-3046-4b6b-84d0-4938fcf17558" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/sections/faq.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sections/faq.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
