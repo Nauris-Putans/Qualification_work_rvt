@@ -13,8 +13,8 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -33,7 +33,25 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                    </ul>
 
+                    <!-- Middle Of Navbar -->
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home">{{ __('Home') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/features">{{ __('Features') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pricing">{{ __('Pricing') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/faq">{{ __('FAQ') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contacts">{{ __('Contacts') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -75,6 +93,38 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <div class="mt-5 pt-5 pb-5 footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-xs-12 about-company">
+                        <h2>WEBcheck</h2>
+                        <p class="pr-5 text-white-50">We help you gain instant insights into your website’s availability and performance so that you can outsmart competition with an amazing end-user experience.</p>
+                    </div>
+                    <div class="col-lg-3 col-xs-12 links">
+                        <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+                        <ul class="m-0 p-0">
+                            <li>- <a href="/">Home</a></li>
+                            <li>- <a href="/features">Features</a></li>
+                            <li>- <a href="/pricing">Pricing</a></li>
+                            <li>- <a href="/faq">FAQ</a></li>
+                            <li>- <a href="/contacts">Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-xs-12 location">
+                        <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+                        <p>Krišjāņa Valdemāra iela 1C, Centra rajons, Rīga, LV-1010</p>
+                        <p class="mb-0"><i class="fa fa-phone mr-3"></i>+371 22222222</p>
+                        <p><i class="fa fa-envelope-o mr-3"></i>webcheck@gmail.com</p>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col copyright">
+                        <p class=""><small class="text-white-50">© 2020. All Rights Reserved.</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
