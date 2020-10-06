@@ -10894,6 +10894,24 @@ a.text-dark:focus {
   }
 }
 
+.navbar li a {
+  color: #fff !important;
+}
+
+.bg-darkblue {
+  background-color: rgba(19, 26, 38, 0.9) !important;
+}
+
+.footer-color {
+  background-color: #2B2E34 !important;
+}
+
+.btn-orange {
+  color: #fff;
+  background-color: #CA6D00;
+  border-color: #CA6D00;
+}
+
 .footer {
   background: #152F4F;
   color: white;
