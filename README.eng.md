@@ -1,6 +1,6 @@
 # Website monitoring service "WEBcheck"
 
-*Read this in other languages: [Latvian](README.lv.md)*
+*Read this in other languages: [🇱🇻](README.md)*
 
 ## Description of the project
 PIKC “Riga State Technical School” Qualification Work Repository. Monitoring services that allows you to check about
