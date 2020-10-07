@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-darkblue shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'WEBcheck') }}
+                    <img src="{{URL::asset('/images/Logo.png')}}" alt="Logo" class="img-responsive">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -99,7 +99,9 @@
                 <div class="row">
                     <div class="col-lg-5 col-xs-12 about-company">
                         <h2>WEBcheck</h2>
-                        <p class="pr-5 text-white-50">We help you gain instant insights into your website’s availability and performance so that you can outsmart competition with an amazing end-user experience.</p>
+                        <p class="pr-5 text-white-50">Monitoring services that allows you to check about
+                            your website statistics - Ping, Port, Response time, SSL Certification Check and much more
+                        </p>
                     </div>
                     <div class="col-lg-3 col-xs-12 links">
                         <h4 class="mt-lg-0 mt-sm-3">Links</h4>
