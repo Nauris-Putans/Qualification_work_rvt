@@ -1,5 +1,6 @@
 # Tīmekļa vietnes uzraudzības pakalpojums “WEBcheck”
-*Lasīt šo informāciju citās valodās: [Angļu](README.eng.md)*
+*Lasīt šo informāciju citās valodās: [🇬🇧](README.eng.md)* 
+
 
 ## Projekta apraksts
 PIKC “Rīgas Valsts tehnikums” Kvalifikācijas darba repozitorijs. Uzraudzības pakalpojums, kas ļauj pārbaudīt
