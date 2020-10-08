@@ -1,20 +1,23 @@
+<x-alert />
 <div class="boxed">
     <div class="input-info text-white">
         <div spellcheck="false" class="form justify-content-center">
-            <form class="" method="get" action="/">
+            <form method="post" action="/contacts/create">
                 @csrf
 
+                {{-- Full name input--}}
                 <div class="col-md-12 mt-3">
                     <div class="form-group">
                         <input
-                            name="name"
+                            name="fullname"
                             type="text"
-                            class="form-control @error('name') is-invalid @enderror"
+                            class="form-control @error('fullname') is-invalid @enderror"
                             placeholder="{{__('Full name')}}"
-                            value="{{old('name')}}"  />
+                            value="{{old('fullname')}}"  />
                     </div>
                 </div>
 
+                {{-- Email input--}}
                 <div class="col-md-12 mt-3">
                     <div class="form-group">
                         <input
@@ -27,6 +30,7 @@
                     </div>
                 </div>
 
+                {{-- Message input--}}
                 <div class="col-md-12 mt-3">
                     <div class="form-group">
                         <textarea
@@ -39,6 +43,7 @@
                     </div>
                 </div>
 
+                {{-- Contact us button--}}
                 <div class="col-md-12">
                     <input
                         name="Contact us"

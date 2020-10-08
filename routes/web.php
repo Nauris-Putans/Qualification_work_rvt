@@ -21,5 +21,7 @@ Route::get('/', 'Pages\HomeController@index');
 Route::get('/features', 'Pages\FeaturesController@index');
 Route::get('/pricing', 'Pages\PricingController@index');
 Route::get('/faq', 'Pages\FAQController@index');
-Route::get('/contacts', 'Pages\ContactsController@index');
+
+Route::get('/contacts', 'Pages\ContactController@index');
+Route::post('/contacts/create', 'Pages\ContactController@store');
 
