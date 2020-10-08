@@ -6,7 +6,7 @@ use Becker\Zabbix\ZabbixApi;
 use Becker\Zabbix\ZabbixException;
 use Illuminate\Support\Facades\Request;
 
-class TestController extends Controller
+class ZabbixController extends Controller
 {
     /**
      * The ZabbixApi instance.
