@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin', 'TestController@historyGet')->name('admin.index');
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,34 +13,13 @@ Route::get('/admin', 'TestController@historyGet')->name('admin.index');
 |
 */
 
-Route::get('/', function () {
-    return view('sections/home');
-});
-
 Auth::routes();
 
-Route::get('/zabbix/item', 'TestController@itemGet')->name('zabbix.item');
+Route::get('/admin', 'ZabbixController@historyGet')->name('admin.index');
 
-
-//Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/home', function () {
-    return view('sections/home');
-});
-
-Route::get('/features', function () {
-    return view('sections/features');
-});
-
-Route::get('/pricing', function () {
-    return view('sections/pricing');
-});
-
-Route::get('/faq', function () {
-    return view('sections/faq');
-});
-
-Route::get('/contacts', function () {
-    return view('sections/contacts');
-});
+Route::get('/', 'Pages\HomeController@index');
+Route::get('/features', 'Pages\FeaturesController@index');
+Route::get('/pricing', 'Pages\PricingController@index');
+Route::get('/faq', 'Pages\FAQController@index');
+Route::get('/contacts', 'Pages\ContactsController@index');
 

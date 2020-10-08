@@ -17,9 +17,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be5266db-3046-4b6b-84d0-4938fcf17558" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.eng.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.eng.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.lv.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +44,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="contacts" />
+                    <option name="lastUsedInstant" value="1602074407" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="footer-nav-bar" />
                     <option name="lastUsedInstant" value="1601985108" />
@@ -167,6 +173,7 @@
       <path value="$PROJECT_DIR$/vendor/almasaeed2010/adminlte" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
       <path value="$PROJECT_DIR$/vendor/jeroennoten/laravel-adminlte" />
+      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
     </include_path>
   </component>
   <component name="ProjectId" id="1iE9T02Kj0r45VLKYV8YoxxrjTn" />
@@ -189,6 +196,11 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/app/Http/Controllers/Pages" />
+      <recent name="$PROJECT_DIR$/public" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -210,7 +222,8 @@
       <workItem from="1601892671355" duration="2302000" />
       <workItem from="1601897867532" duration="87000" />
       <workItem from="1601898374324" duration="3875000" />
-      <workItem from="1602056814854" duration="9166000" />
+      <workItem from="1602056814854" duration="17001000" />
+      <workItem from="1602141231011" duration="6550000" />
     </task>
     <servers />
   </component>
@@ -242,6 +255,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="693" y="286" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602147623768">
+      <screen x="0" y="27" width="1920" height="1003" />
+    </state>
+    <state x="693" y="286" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1003@0.27.1920.1003" timestamp="1602147623768" />
     <state x="743" y="286" width="424" height="491" key="FileChooserDialogImpl" timestamp="1601898363401">
       <screen x="0" y="27" width="1920" height="1003" />
     </state>
@@ -254,13 +271,17 @@
       <screen x="0" y="27" width="1920" height="1003" />
     </state>
     <state x="652" y="251" width="616" height="554" key="find.popup/0.27.1920.1003@0.27.1920.1003" timestamp="1601468764804" />
-    <state x="624" y="239" key="run.anything.popup" timestamp="1601901293590">
+    <state x="624" y="239" key="run.anything.popup" timestamp="1602075209468">
       <screen x="0" y="27" width="1920" height="1003" />
     </state>
-    <state x="624" y="239" key="run.anything.popup/0.27.1920.1003@0.27.1920.1003" timestamp="1601901293590" />
-    <state x="623" y="246" width="672" height="678" key="search.everywhere.popup" timestamp="1601989950256">
+    <state x="624" y="239" key="run.anything.popup/0.27.1920.1003@0.27.1920.1003" timestamp="1602075209468" />
+    <state x="623" y="246" width="672" height="678" key="search.everywhere.popup" timestamp="1602147398590">
       <screen x="0" y="27" width="1920" height="1003" />
     </state>
-    <state x="623" y="246" width="672" height="678" key="search.everywhere.popup/0.27.1920.1003@0.27.1920.1003" timestamp="1601989950256" />
+    <state x="623" y="246" width="672" height="678" key="search.everywhere.popup/0.27.1920.1003@0.27.1920.1003" timestamp="1602147398590" />
+    <state x="685" y="424" width="540" height="215" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1602075950903">
+      <screen x="0" y="27" width="1920" height="1003" />
+    </state>
+    <state x="685" y="424" width="540" height="215" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.27.1920.1003@0.27.1920.1003" timestamp="1602075950903" />
   </component>
 </project>

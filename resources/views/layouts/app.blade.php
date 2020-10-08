@@ -12,6 +12,9 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <!-- Place your kit's code here -->
+    <script src="https://kit.fontawesome.com/f53cf4b771.js" crossorigin="anonymous"></script>
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,7 +27,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-darkblue shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'WEBcheck') }}
+                    <img src="{{URL::asset('/images/Logo.png')}}" alt="Logo" class="img-responsive">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -38,7 +41,7 @@
                     <!-- Middle Of Navbar -->
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/home">{{ __('Home') }}</a>
+                            <a class="nav-link" href="/">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/features">{{ __('Features') }}</a>
@@ -90,16 +93,18 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
 
-        <div class="mt-5 pt-5 pb-5 footer footer-color">
+        <div class="pt-5 pb-5 footer footer-color">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-xs-12 about-company">
                         <h2>WEBcheck</h2>
-                        <p class="pr-5 text-white-50">We help you gain instant insights into your website’s availability and performance so that you can outsmart competition with an amazing end-user experience.</p>
+                        <p class="pr-5 text-white-50">Monitoring services that allows you to check about
+                            your website statistics - Ping, Port, Response time, SSL Certification Check and much more
+                        </p>
                     </div>
                     <div class="col-lg-3 col-xs-12 links">
                         <h4 class="mt-lg-0 mt-sm-3">Links</h4>
