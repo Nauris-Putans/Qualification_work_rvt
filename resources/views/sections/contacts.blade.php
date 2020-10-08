@@ -2,25 +2,25 @@
 
 @section('content')
     <!-- Section - Kontakti -->
-    <section class="Kontakti">
+    <section class="Kontakti py-4 pb-5" style="background-image: url({{ URL::asset('/images/ContactBackground.jpg') }}); background-repeat: no-repeat; background-size: cover;">
         <div class="box">
             <div class="container">
                 <div class="info-text">
-                    <h1 class="fade-in align-self-center text-center text-md-center">Any questions?</h1><hr class="fade-in">
+                    <h1 class="fade-in align-self-center text-center text-md-center text-white">Any questions?</h1><hr class="fade-in">
 
                     <div class="contacts-info">
-                        <i class="fa fa-phone mt-3"></i>
+                        <i class="fas fa-phone-alt mt-3"></i>
                         <a>(+371) 22222222</a>
 
-                        <i class="fa fa-envelope mt-3"></i>
+                        <i class="fas fa-envelope mt-3"></i>
                         <a>webcheck@gmail.com</a>
 
-                        <i class="fa fa-map-marker mt-3"></i>
+                        <i class="fas fa-map-marker-alt mt-3"></i>
                         <a>Krišjāņa Valdemāra iela 1C, Centra rajons, Rīga, LV-1010</a>
                     </div>
 
                     {{ Form::component('contact', 'components.form.contact', ['name', 'value' => null, 'attributes' => []]) }}
-                    {{ Form::contact('first_name') }}
+                    {{ Form::contact() }}
                 </div>
 
                 <div class="map-responsive">

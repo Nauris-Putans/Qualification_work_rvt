@@ -12,6 +12,9 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <!-- Place your kit's code here -->
+    <script src="https://kit.fontawesome.com/f53cf4b771.js" crossorigin="anonymous"></script>
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -90,11 +93,11 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
 
-        <div class="mt-5 pt-5 pb-5 footer footer-color">
+        <div class="pt-5 pb-5 footer footer-color">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-xs-12 about-company">
