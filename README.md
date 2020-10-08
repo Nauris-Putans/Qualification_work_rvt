@@ -108,6 +108,27 @@ Vai
 npm run watch
 ```
 
+> Kopē .env.example failu un ievieto ar jaunu nosaukumu - .env un ielieciet savā vidē mainīgos.
+```bash
+cp .env.example .env
+```
+
+> Pievienot datu bāzi ar nosaukumu - monitoring_project un izmantojiet šo komandu
+```bash
+php artisan migrate
+```
+
+> Komentēt arā 288,289,290 rindas no vendor/becker/laravel-zabbix-api/src/ZabbixApiAbstract.php faila
+```bash
+284             // validate response
+285             if (!is_object($this->responseDecoded) && !is_array($this->responseDecoded)) {
+286                 throw new Exception('Could not decode JSON response.');
+287             }
+288     //        if (array_key_exists('error', $this->responseDecoded)) {
+289     //            throw new Exception('API error '.$this->responseDecoded->error->code.': '.$this->responseDecoded->error->data);
+290     //        }
+```
+
 > Palaist projektu lokālajā datorā
 ```bash
 php artisan serve
