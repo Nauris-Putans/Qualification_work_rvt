@@ -1,11 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;
 
-/*!
- * Bootstrap v4.5.2 (https://getbootstrap.com/)
- * Copyright 2011-2020 The Bootstrap Authors
- * Copyright 2011-2020 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+0,600;0,700;1,400;1,600&display=swap);@charset "UTF-8";
 
 :root {
   --blue: #3490dc;
@@ -34,7 +29,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Nunito", sans-serif;
+  --font-family-sans-serif: "Open Sans", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -66,7 +61,7 @@ section {
 
 body {
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
@@ -6370,7 +6365,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -6495,7 +6490,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -10897,5 +10892,220 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+.navbar li a {
+  color: #fff !important;
+}
+
+.bg-darkblue {
+  background-color: rgba(19, 26, 38, 0.9) !important;
+}
+
+.footer-color {
+  background-color: #2B2E34 !important;
+}
+
+.btn-orange {
+  color: #fff;
+  background-color: #CA6D00;
+  border-color: #CA6D00;
+}
+
+/* ------------ Kontakti ------------ */
+
+.alert {
+  margin-top: 85px;
+  margin-bottom: 0 !important;
+}
+
+.Kontakti .contacts-info {
+  color: white !important;
+  cursor: default;
+  display: block;
+  text-align: center;
+}
+
+.Kontakti .contacts-info i {
+  padding-right: 5px;
+}
+
+.Kontakti .contacts-info i:nth-child(1) {
+  padding-left: 30px;
+}
+
+.Kontakti .contacts-info a {
+  text-decoration: none;
+  padding-right: 30px;
+}
+
+.Kontakti .boxed {
+  padding: 3em;
+}
+
+.Kontakti h3 {
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.Kontakti .form {
+  font-weight: bold;
+}
+
+.Kontakti span {
+  margin: 0 5px 0 15px;
+}
+
+.Kontakti .form {
+  text-align: center;
+}
+
+.Kontakti label {
+  font-size: 20px;
+}
+
+.Kontakti input[type=submit] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.Kontakti .btn {
+  margin-top: 20px;
+}
+
+.Kontakti .form input[type=text],
+.Kontakti .form input[type=email] {
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 1px solid #e3e3e3;
+  border-radius: 40px;
+  margin: 8px 0 20px;
+  outline: 0 none;
+}
+
+.Kontakti .form label[for=contact_name],
+.Kontakti .form label[for=contact_email],
+.Kontakti .form label[for=contact_message] {
+  display: none;
+}
+
+.Kontakti .form textarea {
+  height: 200px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #e3e3e3;
+  border-radius: 20px;
+  resize: none;
+  outline: 0 none;
+}
+
+@media screen and (max-width: 567px) {
+  .Kontakti .form textarea {
+    width: 400px !important;
+  }
+}
+
+@media screen and (max-width: 463px) {
+  .Kontakti .form textarea {
+    width: 300px !important;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .Kontakti .box {
+    padding: 128px 0 64px 0 !important;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .Kontakti input[type=submit] {
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width: 1006px) {
+  .contacts-info {
+    padding-right: 3px !important;
+  }
+
+  .contacts-info i:nth-child(1) {
+    padding-left: 0 !important;
+  }
+
+  .contacts-info a {
+    padding-right: 0 !important;
+  }
+
+  .contacts-info a:after {
+    content: "\A" !important;
+    white-space: pre !important;
+  }
+}
+
+/* ------------ Google maps ------------ */
+
+.map-responsive {
+  border: 3px solid #ca6d00;
+  border-radius: 25px;
+  margin-top: 15px;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.map-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.footer {
+  background: #152F4F;
+  color: white;
+}
+
+.footer .links ul {
+  list-style-type: none;
+}
+
+.footer .links li a {
+  color: white;
+  transition: color 0.2s;
+}
+
+.footer .links li a:hover {
+  text-decoration: none;
+  color: #4180CB;
+}
+
+.footer .about-company i {
+  font-size: 25px;
+}
+
+.footer .about-company a {
+  color: white;
+  transition: color 0.2s;
+}
+
+.footer .about-company a:hover {
+  color: #4180CB;
+}
+
+.footer .location i {
+  font-size: 18px;
+}
+
+.footer .copyright p {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 

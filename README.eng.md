@@ -1,22 +1,23 @@
-# Tīmekļa vietnes uzraudzības pakalpojums “WEBcheck”
-*Lasīt šo informāciju citās valodās: [🇬🇧](README.eng.md)* 
+# Website monitoring service "WEBcheck"
 
+*Read this in other languages: [🇱🇻](README.md)*
 
-## Projekta apraksts
-PIKC “Rīgas Valsts tehnikums” Kvalifikācijas darba repozitorijs. Uzraudzības pakalpojums, kas ļauj pārbaudīt
-jūsu tīmekļa vietnes statistiku - pingu, portu, atbildes laiku, SSL sertifikācijas pārbaudi un daudz ko citu. 
-Lietotāja/administratora/viesa autentifikācija un pārvaldības sistēma. Ir 2 veidu konti - bezmaksas un pro.
+## Description of the project
+PIKC “Riga State Technical School” Qualification Work Repository. Monitoring services that allows you to check about
+your website statistics - Ping, Port, Response time, SSL Certification Check and much more. User/Admin/Guest authentication 
+and management system. There are 2 types of accounts - Free and Pro.
 
-## Saturs
- - [Versijas](#versijas)
- - [Izmantotās tehnoloģijas](#izmantotās-tehnoloģijas)
- - [Prasības](#prasības)
- - [Instalācija](#instalācija)
-   - [Klonešana](#klonešana)
-   - [Uzstādīšana](#uzstādīšana)
- - [Izmantotie avoti](#izmantotie-avoti)
+## Table of content
+ - [Versions](#versions)
+ - [Technologies used](#technologies-used)
+ - [Requirements](#requirements)
+ - [Installation](#installation)
+   - [Clone](#clone)
+   - [Setup](#setup)
+ - [Sources used](#sources-used)
 
-## Versijas
+## Versions
+A website is created with:
  - Php: **7.2.5**
  - Apache
  - Phpmyadmin 
@@ -27,8 +28,9 @@ Lietotāja/administratora/viesa autentifikācija un pārvaldības sistēma. Ir 2
  - npm **6.14.8**
  - CentOS **8**
 
-## Izmantotās tehnoloģijas
-Valodas:
+## Technologies used
+
+Languages:
 - [HTML](https://en.wikipedia.org/wiki/HTML)
 - [PHP](https://en.wikipedia.org/wiki/PHP)
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
@@ -39,13 +41,13 @@ Valodas:
 - [SCSS](https://en.wikipedia.org/wiki/Sass_(stylesheet_language))
 - [Markdown](https://en.wikipedia.org/wiki/Markdown)
 
-Ietvari:
+Frameworks:
 - [Laravel](https://en.wikipedia.org/wiki/Laravel)
 
-Serveri:
-- [Zabbix](https://en.wikipedia.org/wiki/Zabbix) ir uzstadīts uz [CentOS](https://en.wikipedia.org/wiki/CentOS) virtuālās kastes
+Servers:
+- [Zabbix](https://en.wikipedia.org/wiki/Zabbix) is on [CentOS](https://en.wikipedia.org/wiki/CentOS) virtual box
 
-Citi:
+Others:
 - [Apache](https://en.wikipedia.org/wiki/Apache_HTTP_Server)
 - [Phpmyadmin](https://en.wikipedia.org/wiki/PhpMyAdmin)
 - [Mysql](https://en.wikipedia.org/wiki/MySQL)
@@ -53,72 +55,72 @@ Citi:
 - [npm](https://en.wikipedia.org/wiki/Npm_(software))
 - [Chart.js](https://www.chartjs.org/)
 
-## Prasības
+## Requirements
 
-Lai palaistu šo kvalifikācijas darbu, ir jābūt:
+To run this website, you must have:
 
-1. WampServer var lejupielādēt [šeit](https://www.wampserver.com/en/#download-wrapper)
-2. Composer var lejupielādēt [šeit](https://getcomposer.org/download/)
-3. npm var lejupielādēt [šeit](https://www.npmjs.com/get-npm)
-3. Git Bash var lejupielādēt [šeit](https://git-scm.com/downloads)
+1. WampServer can be downloaded [here](https://www.wampserver.com/en/#download-wrapper)
+2. Composer can be downloaded [here](https://getcomposer.org/download/)
+3. npm can be downloaded [here](https://www.npmjs.com/get-npm)
+3. Git Bash can be downloaded [here](https://git-scm.com/downloads)
 
-## Instalācija
+## Installation
 
-### Klonešana
+### Clone
 
-> Klonēt šo repozitoriju uz vietējo datoru, izmantojot `https://git01.obvius.lv:10143/mon/monitoring_project.git`
+> Clone this repository to your local machine using `https://git01.obvius.lv:10143/mon/monitoring_project.git`
 
 ```bash
 git clone https://git01.obvius.lv:10143/mon/monitoring_project.git
 cd monitoring-project
 ```
 
-### Uzstādīšana
+### Setup
 
-> Instalēt composer priekš projekta
+> Install a composer to project
 ```bash
 composer install 
 ```
 
-> Ja rodas problēma, lejupielādējot composer, izmantojiet šīs komandas
+> If there is a problem downloading composer use this commands
 ```bash
 composer dump-autoload
 ```
 
-Vai
+Or
 
 ```bash
 COMPOSER_MEMORY_LIMIT=-1 composer install
 ```
 
-> Instalēt npm priekš projekta
+> Install npm to project
 ```bash
 npm install
 ```
 
-> Kompilēt failus
+> Compile files
 ```bash
 npm run dev
 ```
 
-Vai
+Or
 
-> Kompilēt failus automātiski
+> Compile files automaticly
 ```bash
 npm run watch
 ```
 
-> Kopē .env.example failu un ievieto ar jaunu nosaukumu - .env un ielieciet savā vidē mainīgos.
+> Copy .env.example file and paste in with a name - .env and put in your environment variables.
 ```bash
 cp .env.example .env
 ```
 
-> Pievienot datu bāzi ar nosaukumu - monitoring_project un izmantojiet šo komandu
+> Add a database with name - monitoring_project and use this command
 ```bash
 php artisan migrate
 ```
 
-> Komentēt arā 288,289,290 rindas no vendor/becker/laravel-zabbix-api/src/ZabbixApiAbstract.php faila
+> Comment out 288,289,290 line from vendor/becker/laravel-zabbix-api/src/ZabbixApiAbstract.php
 ```bash
 284             // validate response
 285             if (!is_object($this->responseDecoded) && !is_array($this->responseDecoded)) {
@@ -129,19 +131,20 @@ php artisan migrate
 290     //        }
 ```
 
-> Palaist projektu lokālajā datorā
+> Run project on local machine
 ```bash
 php artisan serve
 ```
 
-Vajadzētu parādīt šo ziņojumu pēc darbības **'php artisan serve'** ja viss ir veiksmīgi izdarīts
+Should show this message after running **'php artisan serve'** if all is successfully done
 
 ```bash
 Laravel development server started: http://127.0.0.1:8000
 [Mon Oct  5 14:46:45 2020] PHP 7.4.3 Development Server (http://127.0.0.1:8000) started
 ```
 
-## Izmantotie avoti
+## Sources used
+
 - HTML
     - https://www.w3schools.com/html/
     - https://html.com/
