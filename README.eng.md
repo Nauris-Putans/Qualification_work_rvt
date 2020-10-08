@@ -110,6 +110,27 @@ Or
 npm run watch
 ```
 
+> Copy .env.example file and paste in with a name - .env and put in your environment variables.
+```bash
+cp .env.example .env
+```
+
+> Add a database with name - monitoring_project and use this command
+```bash
+php artisan migrate
+```
+
+> Comment out 288,289,290 line from vendor/becker/laravel-zabbix-api/src/ZabbixApiAbstract.php
+```bash
+284             // validate response
+285             if (!is_object($this->responseDecoded) && !is_array($this->responseDecoded)) {
+286                 throw new Exception('Could not decode JSON response.');
+287             }
+288     //        if (array_key_exists('error', $this->responseDecoded)) {
+289     //            throw new Exception('API error '.$this->responseDecoded->error->code.': '.$this->responseDecoded->error->data);
+290     //        }
+```
+
 > Run project on local machine
 ```bash
 php artisan serve
