@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'WEBcheck',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => null,
+    'logo_img' => 'vendor/adminlte/dist/img/Logo.png',
+    'logo_img_class' => 'navbar-brand',
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_xl_class' => 'navbar-brand',
+    'logo_img_alt' => 'WEBcheck logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -126,9 +126,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_sidebar' => 'sidebar-dark-info elevation-4',
+    'classes_sidebar_nav' => 'nav-child-indent nav-legacy',
+    'classes_topnav' => 'navbar-orange navbar-light elevation-1',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -232,87 +232,139 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
+            'text' => 'Search',
             'search' => true,
             'topnav' => true,
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Dashboard' ,
+            'icon' => 'fas fa-tachometer-alt',
+            'classes' => 'text-bold',
+            'url' => '/admin',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text' => 'Monitoring',
+            'icon' => 'fas fa-chart-line',
+            'classes' => 'text-bold',
+            'submenu' => [
+                [
+                    'text' => 'Monitors',
+                    'icon' => 'fas fa-desktop',
+                    'submenu' => [
+                        [
+                            'text' => 'Add',
+                            'icon' => 'fas fa-plus',
+                            'url' => '',
+                        ],
+                        [
+                            'text' => 'History',
+                            'icon' => 'fas fa-history',
+                            'url' => '',
+                        ],
+                    ]
+                ],
+                [
+                    'text' => 'Uptime',
+                    'icon' => 'fas fa-eye',
+                    'url' => '',
+                ],
+                [
+                    'text' => 'Page Speed',
+                    'icon' => 'fas fa-stopwatch',
+                    'url' => '',
+                ],
+                [
+                    'text' => 'Transaction',
+                    'icon' => 'fas fa-credit-card',
+                    'url' => ''
+                ],
+                [
+                    'text' => 'Real User Monitoring',
+                    'icon' => 'fas fa-users',
+                    'url' => ''
+                ],
+            ]
         ],
-        ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Reports',
+            'icon' => 'fas fa-flag',
+            'classes' => 'text-bold',
+            'submenu' => [
+                [
+                    'text' => 'Uptime',
+                    'icon' => 'fas fa-eye',
+                    'url' => '',
+                ],
+                [
+                    'text' => 'Page Speed',
+                    'icon' => 'fas fa-stopwatch',
+                    'url' => '',
+                ],
+                [
+                    'text' => 'Transaction',
+                    'icon' => 'fas fa-credit-card',
+                    'url' => ''
+                ],
+                [
+                    'text' => 'Real User Monitoring',
+                    'icon' => 'fas fa-users',
+                    'url' => ''
+                ],
+            ]
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Alerts',
+            'icon' => 'fas fa-bell',
+            'classes' => 'text-bold',
+            'submenu' => [
+                [
+                    'text' => 'List',
+                    'icon' => 'fas fa-clipboard-list',
+                    'url' => '',
+                ],
+                [
+                    'text' => 'On Call',
+                    'icon' => 'fas fa-phone-alt',
+                    'url' => '',
+                ],
+            ]
         ],
-//        [
-//            'text'    => 'multilevel',
-//            'icon'    => 'fas fa-fw fa-share',
-//            'submenu' => [
-//                [
-//                    'text' => 'level_one',
-//                    'url'  => '#',
-//                ],
-//                [
-//                    'text'    => 'level_one',
-//                    'url'     => '#',
-//                    'submenu' => [
-//                        [
-//                            'text' => 'level_two',
-//                            'url'  => '#',
-//                        ],
-//                        [
-//                            'text'    => 'level_two',
-//                            'url'     => '#',
-//                            'submenu' => [
-//                                [
-//                                    'text' => 'level_three',
-//                                    'url'  => '#',
-//                                ],
-//                                [
-//                                    'text' => 'level_three',
-//                                    'url'  => '#',
-//                                ],
-//                            ],
-//                        ],
-//                    ],
-//                ],
-//                [
-//                    'text' => 'level_one',
-//                    'url'  => '#',
-//                ],
-//            ],
-//        ],
-//        ['header' => 'labels'],
-//        [
-//            'text'       => 'important',
-//            'icon_color' => 'red',
-//            'url'        => '#',
-//        ],
-//        [
-//            'text'       => 'warning',
-//            'icon_color' => 'yellow',
-//            'url'        => '#',
-//        ],
-//        [
-//            'text'       => 'information',
-//            'icon_color' => 'cyan',
-//            'url'        => '#',
-//        ],
+        [
+            'text' => 'Tickets',
+            'icon' => 'fas fa-ticket-alt',
+            'classes' => 'text-bold',
+            'submenu' => [
+                [
+                    'text' => 'Ticket list',
+                    'icon' => 'fas fa-clipboard-list',
+                    'url' => '',
+                ],
+            ]
+        ],
+        [
+            'text' => 'Settings',
+            'icon' => 'fas fa-cog',
+            'classes' => 'text-bold',
+            'submenu' => [
+                [
+                    'text' => 'Account',
+                    'icon' => 'fas fa-user-circle',
+                    'url' => '',
+                ],
+            ]
+        ],
+        [
+            'text' => 'Support',
+            'icon' => 'fas fa-question-circle',
+            'classes' => 'text-bold',
+            'submenu' => [
+                [
+                    'text' => 'Contact Us',
+                    'icon' => 'fas fa-address-card',
+                    'url' => '',
+                ],
+            ]
+        ],
     ],
 
     /*
