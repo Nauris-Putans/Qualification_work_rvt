@@ -47,9 +47,9 @@ return [
 
     'logo' => null,
     'logo_img' => 'vendor/adminlte/dist/img/Logo.png',
-    'logo_img_class' => 'navbar-brand',
+    'logo_img_class' => 'navbar-brand LogoPadding LogoCenter',
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'navbar-brand',
+    'logo_img_xl_class' => 'navbar-brand LogoPadding LogoCenter',
     'logo_img_alt' => 'WEBcheck logo',
 
     /*
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'layout_topnav' => null,
+    'layout_topnav' => false,
     'layout_boxed' => null,
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
@@ -126,9 +126,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-info elevation-4',
+    'classes_sidebar' => 'sidebar-dark-info navbar-navy elevation-4',
     'classes_sidebar_nav' => 'nav-child-indent nav-legacy',
-    'classes_topnav' => 'navbar-orange navbar-light elevation-1',
+    'classes_topnav' => 'navbar-navy navbar-dark elevation-1',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -144,7 +144,7 @@ return [
     |
     */
 
-    'sidebar_mini' => true,
+    'sidebar_mini' => false,
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
@@ -188,7 +188,7 @@ return [
 
     'use_route_url' => false,
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/admin',
 
     'logout_url' => 'logout',
 
@@ -232,11 +232,6 @@ return [
 
     'menu' => [
         [
-            'text' => 'Search',
-            'search' => true,
-            'topnav' => true,
-        ],
-        [
             'text' => 'Dashboard' ,
             'icon' => 'fas fa-tachometer-alt',
             'classes' => 'text-bold',
@@ -254,34 +249,34 @@ return [
                         [
                             'text' => 'Add',
                             'icon' => 'fas fa-plus',
-                            'url' => '',
+                            'url' => '/monitoring/monitors/add',
                         ],
                         [
                             'text' => 'History',
                             'icon' => 'fas fa-history',
-                            'url' => '',
+                            'url' => '/monitoring/monitors/history',
                         ],
                     ]
                 ],
                 [
                     'text' => 'Uptime',
                     'icon' => 'fas fa-eye',
-                    'url' => '',
+                    'url' => '/monitoring/uptime',
                 ],
                 [
                     'text' => 'Page Speed',
                     'icon' => 'fas fa-stopwatch',
-                    'url' => '',
+                    'url' => '/monitoring/page-speed',
                 ],
                 [
                     'text' => 'Transaction',
                     'icon' => 'fas fa-credit-card',
-                    'url' => ''
+                    'url' => '/monitoring/transaction'
                 ],
                 [
                     'text' => 'Real User Monitoring',
                     'icon' => 'fas fa-users',
-                    'url' => ''
+                    'url' => '/monitoring/real-user-monitoring'
                 ],
             ]
         ],
@@ -293,22 +288,22 @@ return [
                 [
                     'text' => 'Uptime',
                     'icon' => 'fas fa-eye',
-                    'url' => '',
+                    'url' => '/reports/uptime',
                 ],
                 [
                     'text' => 'Page Speed',
                     'icon' => 'fas fa-stopwatch',
-                    'url' => '',
+                    'url' => '/reports/page-speed',
                 ],
                 [
                     'text' => 'Transaction',
                     'icon' => 'fas fa-credit-card',
-                    'url' => ''
+                    'url' => '/reports/transaction'
                 ],
                 [
                     'text' => 'Real User Monitoring',
                     'icon' => 'fas fa-users',
-                    'url' => ''
+                    'url' => '/reports/real-user-monitoring'
                 ],
             ]
         ],
@@ -320,24 +315,12 @@ return [
                 [
                     'text' => 'List',
                     'icon' => 'fas fa-clipboard-list',
-                    'url' => '',
+                    'url' => '/alerts/list',
                 ],
                 [
                     'text' => 'On Call',
                     'icon' => 'fas fa-phone-alt',
-                    'url' => '',
-                ],
-            ]
-        ],
-        [
-            'text' => 'Tickets',
-            'icon' => 'fas fa-ticket-alt',
-            'classes' => 'text-bold',
-            'submenu' => [
-                [
-                    'text' => 'Ticket list',
-                    'icon' => 'fas fa-clipboard-list',
-                    'url' => '',
+                    'url' => '/alerts/on-call',
                 ],
             ]
         ],
@@ -345,25 +328,13 @@ return [
             'text' => 'Settings',
             'icon' => 'fas fa-cog',
             'classes' => 'text-bold',
-            'submenu' => [
-                [
-                    'text' => 'Account',
-                    'icon' => 'fas fa-user-circle',
-                    'url' => '',
-                ],
-            ]
+            'url' => '/settings',
         ],
         [
             'text' => 'Support',
             'icon' => 'fas fa-question-circle',
             'classes' => 'text-bold',
-            'submenu' => [
-                [
-                    'text' => 'Contact Us',
-                    'icon' => 'fas fa-address-card',
-                    'url' => '',
-                ],
-            ]
+            'url' => '/support',
         ],
     ],
 

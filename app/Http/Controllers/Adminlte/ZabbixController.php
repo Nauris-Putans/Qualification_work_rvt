@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Adminlte;
 
+use App\Http\Controllers\Controller;
 use Becker\Zabbix\ZabbixApi;
 use Becker\Zabbix\ZabbixException;
 use Illuminate\Support\Facades\Request;
