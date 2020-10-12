@@ -11026,6 +11026,17 @@ a.text-dark:focus {
   position: absolute;
 }
 
+/* ------------ Faq ------------ */
+
+hr {
+  background-color: #FF8A00;
+}
+
+.Faq .button {
+  text-align: center;
+  color: white;
+}
+
 .footer {
   background: #152F4F;
   color: white;
