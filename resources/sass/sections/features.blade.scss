@@ -1,0 +1,121 @@
+ .mainFeatures{   
+    text-align: center;
+    background-color: white;
+    min-height: 500px;
+    padding: 50px 0;
+    align-items: center;
+    
+    h2{
+        color: black;
+        font-size: 30px;
+    }
+
+    .mainFeatures_line{
+        margin: 20px auto 0 auto;
+        height: 3px;
+        width: 30%;
+        background-color: #CA6D00;
+    }
+
+    .mainFeatures_box{
+        display: flex;
+        margin-top: 30px;
+        height: 150px;
+        border-color:#CA6D00;
+        border-width: 3px;
+        border-style:solid;
+        border-radius: 20px;
+        justify-content: left;
+        align-items: center;
+
+        .mainFeaturesBox_img{
+            display: flex;
+            width: 20%;
+            height: 150px;
+            align-items: center;
+            justify-content: center;
+            img{
+                height: 75px;
+                width: 75px;
+            }
+        }
+
+        .mainFeaturesBox_line{
+            
+            height: 150px;
+            width: 3px;
+            height: 50%;
+            border-radius: 2px;
+            background-color: #CA6D00;
+        }
+
+        .mainFeaturesBox_decr{
+            padding-left: 10px;
+            display: flex;
+            height: 150px;
+            width: 75%;
+            align-items: center;
+        }
+    }
+
+    button{
+        margin-top: 50px;
+        background-color:#CA6D00;
+        width: 200px;
+        height: 50px;
+        color: #f3f3f3;
+    }
+}
+
+.advancedFeatures{
+    text-align: center;
+    background-color: #131A26;
+    min-height: 500px;
+    padding: 50px 0;
+    align-items: center;
+
+    h2{
+        color: #c5c5c5;
+        font-size: 30px;
+    }
+
+    .advancedFeatures_line{
+        margin: 20px auto 0 auto;
+        height: 3px;
+        width: 30%;
+        background-color: white;
+    }
+
+    .advancedFeatures_box{
+        display: flex;
+        margin-top: 30px;
+        height: 150px;
+        border-color:#acacac;
+        border-width: 3px;
+        border-style:solid;
+        border-radius: 20px;
+        justify-content: left;
+        align-items: center;
+
+        .advancedFeatures_img{
+            display: flex;
+            width: 20%;
+            height: 150px;
+            align-items: center;
+            justify-content: center;
+            img{
+                height: 75px;
+                width: 75px;
+            }
+        }
+
+        .advancedFeatures_decr{
+            padding-left: 10px;
+            display: flex;
+            height: 150px;
+            width: 75%;
+            align-items: center;
+            color: #acacac;
+        }
+    }
+}
