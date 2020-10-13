@@ -188,7 +188,7 @@ return [
 
     'use_route_url' => false,
 
-    'dashboard_url' => '/admin',
+    'dashboard_url' => '/dashboard',
 
     'logout_url' => 'logout',
 
@@ -235,7 +235,7 @@ return [
             'text' => 'Dashboard' ,
             'icon' => 'fas fa-tachometer-alt',
             'classes' => 'text-bold',
-            'url' => '/admin',
+            'url' => '/dashboard',
         ],
         [
             'text' => 'Monitoring',
