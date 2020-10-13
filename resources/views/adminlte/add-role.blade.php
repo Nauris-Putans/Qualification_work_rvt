@@ -6,7 +6,8 @@
 @stop
 
 @section('content')
-
+    {{ Form::component('addRoleForm', 'components.form.adminlte.add-role-form', ['name', 'value' => null, 'attributes' => []]) }}
+    {{ Form::addRoleForm() }}
 @stop
 
 @section('css')

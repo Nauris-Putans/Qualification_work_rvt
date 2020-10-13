@@ -26,14 +26,15 @@ Route::post('/contacts/create', 'Pages\ContactController@store');
 // Adminlte
 Route::group(['middleware' => 'auth'], function ()
 {
-    Route::get('/admin/add-role', 'RoleController@index');
-    Route::get('/admin/add-permission', 'PermissionController@index');
-
+    // Role - Admin
     Route::group(['middleware' => ['role:admin']], function ()
     {
-
+        Route::get('/admin/add-role', 'RoleController@index');
+        Route::post('/admin/add-role', 'RoleController@store');
+        Route::get('/admin/add-permission', 'PermissionController@index');
     });
 
+    // Role - User Admin (free)
     Route::group(['middleware' => ['role:user-admin']], function ()
     {
         Route::get('/dashboard', 'Adminlte\ZabbixController@historyGet')->name('admin.index');
@@ -56,4 +57,6 @@ Route::group(['middleware' => 'auth'], function ()
         Route::get('/settings', 'Adminlte\SettingController@index');
         Route::get('/support', 'Adminlte\SupportController@index');
     });
+
+    // Role - User Admin (pro)
 });
