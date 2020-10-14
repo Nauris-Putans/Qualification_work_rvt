@@ -231,16 +231,21 @@ return [
     */
 
     'menu' => [
+        //
+        // User admin free
+        //
         [
             'text' => 'Dashboard' ,
             'icon' => 'fas fa-tachometer-alt',
             'classes' => 'text-bold',
             'url' => '/dashboard',
+            'role' => 'userFree',
         ],
         [
             'text' => 'Monitoring',
             'icon' => 'fas fa-chart-line',
             'classes' => 'text-bold',
+            'role' => 'userFree',
             'submenu' => [
                 [
                     'text' => 'Monitors',
@@ -250,11 +255,13 @@ return [
                             'text' => 'Add',
                             'icon' => 'fas fa-plus',
                             'url' => '/monitoring/monitors/add',
+                            'role' => 'userFree',
                         ],
                         [
                             'text' => 'History',
                             'icon' => 'fas fa-history',
                             'url' => '/monitoring/monitors/history',
+                            'role' => 'userFree',
                         ],
                     ]
                 ],
@@ -262,21 +269,25 @@ return [
                     'text' => 'Uptime',
                     'icon' => 'fas fa-eye',
                     'url' => '/monitoring/uptime',
+                    'role' => 'userFree',
                 ],
                 [
                     'text' => 'Page Speed',
                     'icon' => 'fas fa-stopwatch',
                     'url' => '/monitoring/page-speed',
+                    'role' => 'userFree',
                 ],
                 [
                     'text' => 'Transaction',
                     'icon' => 'fas fa-credit-card',
-                    'url' => '/monitoring/transaction'
+                    'url' => '/monitoring/transaction',
+                    'role' => 'userFree',
                 ],
                 [
                     'text' => 'Real User Monitoring',
                     'icon' => 'fas fa-users',
-                    'url' => '/monitoring/real-user-monitoring'
+                    'url' => '/monitoring/real-user-monitoring',
+                    'role' => 'userFree',
                 ],
             ]
         ],
@@ -284,26 +295,31 @@ return [
             'text' => 'Reports',
             'icon' => 'fas fa-flag',
             'classes' => 'text-bold',
+            'role' => 'userFree',
             'submenu' => [
                 [
                     'text' => 'Uptime',
                     'icon' => 'fas fa-eye',
                     'url' => '/reports/uptime',
+                    'role' => 'userFree',
                 ],
                 [
                     'text' => 'Page Speed',
                     'icon' => 'fas fa-stopwatch',
                     'url' => '/reports/page-speed',
+                    'role' => 'userFree',
                 ],
                 [
                     'text' => 'Transaction',
                     'icon' => 'fas fa-credit-card',
-                    'url' => '/reports/transaction'
+                    'url' => '/reports/transaction',
+                    'role' => 'userFree',
                 ],
                 [
                     'text' => 'Real User Monitoring',
                     'icon' => 'fas fa-users',
-                    'url' => '/reports/real-user-monitoring'
+                    'url' => '/reports/real-user-monitoring',
+                    'role' => 'userFree',
                 ],
             ]
         ],
@@ -311,16 +327,19 @@ return [
             'text' => 'Alerts',
             'icon' => 'fas fa-bell',
             'classes' => 'text-bold',
+            'role' => 'userFree',
             'submenu' => [
                 [
                     'text' => 'List',
                     'icon' => 'fas fa-clipboard-list',
                     'url' => '/alerts/list',
+                    'role' => 'userFree',
                 ],
                 [
                     'text' => 'On Call',
                     'icon' => 'fas fa-phone-alt',
                     'url' => '/alerts/on-call',
+                    'role' => 'userFree',
                 ],
             ]
         ],
@@ -329,12 +348,50 @@ return [
             'icon' => 'fas fa-cog',
             'classes' => 'text-bold',
             'url' => '/settings',
+            'role' => 'userFree',
         ],
         [
             'text' => 'Support',
             'icon' => 'fas fa-question-circle',
             'classes' => 'text-bold',
             'url' => '/support',
+            'role' => 'userFree',
+        ],
+
+        //
+        // User Admin Pro
+        //
+        [
+            'text' => 'Pro settings',
+            'icon' => 'fas fa-cog',
+            'classes' => 'text-bold',
+            'url' => '/settings',
+            'role' => 'userPro',
+        ],
+
+        //
+        // Admin
+        //
+        [
+            'text' => 'Users',
+            'icon' => 'fas fa-users',
+            'classes' => 'text-bold',
+            'url' => '/dashboard',
+            'role' => 'admin',
+        ],
+        [
+            'text' => 'Ticket',
+            'icon' => 'fas fa-ticket-alt',
+            'classes' => 'text-bold',
+            'url' => '/dashboard',
+            'role' => 'admin',
+        ],
+        [
+            'text' => 'Settings',
+            'icon' => 'fas fa-cog',
+            'classes' => 'text-bold',
+            'url' => '/dashboard',
+            'role' => 'admin',
         ],
     ],
 
@@ -351,13 +408,14 @@ return [
     */
 
     'filters' => [
-        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
+//        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
+        App\RoleMenuFilter::class,
     ],
 
     /*
