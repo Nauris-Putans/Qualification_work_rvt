@@ -1,0 +1,177 @@
+.homeIntroduce
+{
+    min-height: 700px;
+    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), URL('/images/homePage/bg/homebgimg.jpg') center (center/cover) no-repeat;
+    text-align: center;
+    padding: 215px 0 60px 0;
+    color: rgb(230, 230, 230);
+
+    h1
+    {
+        font-size: 50px;
+    }
+
+    .titleDecr
+    {
+        font-size: 21px;
+        color: rgb(190, 190, 190);
+    }
+
+    button
+    {
+        height: 40px;
+        width: 150px;
+        margin-top: 90px;
+        border-color: #CA6D00;
+        background-color:#CA6D00;
+        color: white;
+    }
+}
+
+.features
+{
+    padding: 50px 0;
+    min-height: 690px;
+    background-color: #DEDEDE;
+    text-align: center;
+
+    h2
+    {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+
+    .featureBox
+    {
+        position: relative;
+        padding: 20px;
+        min-height: 380px;
+        background-color: #131A26;
+        margin-bottom: 10px;
+        border-radius: 20px;
+
+        .featureBox_header{
+            display: flex;
+            text-align: center;
+            align-items: center;
+            color: rgb(189, 189, 189);
+            justify-content: center;
+            min-height: 70px;
+            width: 100%;
+            font-size: 20px;
+           
+            img{
+                margin-right: 10px;
+                height: 50px;
+                width: 50px;
+            }
+
+        }
+        
+        .featureBox_line{
+            margin: 0 auto;
+            margin-top: 20px;
+            border-radius: 2px;
+            background-color: white;
+            height: 4px;
+            width: 50%;
+        }
+    
+        .featureBox_decr
+        {
+            margin-top: 20px;
+            width: 100%;
+            min-height: 200px;
+            font-size: 18px;
+            color: rgb(173, 173, 173);
+        }   
+        
+        .featureBox_link
+        {
+            text-align: center;
+            position: relative;
+            margin-top: 10px;
+            height: 10px;
+            width: 100%;
+            
+
+            a{
+                color: rgb(197, 197, 197);
+            }
+            
+        }    
+
+    }
+
+    
+}
+
+.advantages{
+    background-color: #CA6D00;
+    min-height: 340px;
+    color: white;
+    padding: 50px;
+
+    h2{
+        text-align: center;
+        margin-bottom: 50px;
+    }
+}
+
+.pricing{
+    text-align: center;
+    background-color: #182232;
+    min-height: 800px;
+    color: white;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    .package{
+        margin-top: 30px;
+        min-height: 570px;
+        .package_title{
+            text-align: left;
+            font-size: 24px;
+        }
+        .package_line{
+            background-color: #CA6D00;
+            width: 50%;
+            height: 3px;
+            border-radius: 2px;
+        }
+        .package_decr{
+            display: flex;
+            justify-items:left ;
+            margin-top: 20px;
+            .package_decr_checkmarkicon{
+                width: 20px;
+                height: 30px;
+                margin-right: 3px;
+            }
+
+            .package_decr_text{
+                font-size: 20px;
+                min-width: 20px;
+            }
+
+            .package_decr_helpicon{
+                width: 15px;
+                height: 15px;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .package_btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        height: 50px;
+        margin-top: 30px;
+        background-color: #CA6D00;
+        border-radius: 40px;
+        text-align: center;
+    }
+}
+    

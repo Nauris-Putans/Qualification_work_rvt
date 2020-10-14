@@ -11006,49 +11006,6 @@ a.text-dark:focus {
   outline: 0 none;
 }
 
-@media screen and (max-width: 567px) {
-  .Kontakti .form textarea {
-    width: 400px !important;
-  }
-}
-
-@media screen and (max-width: 463px) {
-  .Kontakti .form textarea {
-    width: 300px !important;
-  }
-}
-
-@media screen and (max-width: 420px) {
-  .Kontakti .box {
-    padding: 128px 0 64px 0 !important;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .Kontakti input[type=submit] {
-    width: 80% !important;
-  }
-}
-
-@media screen and (max-width: 1006px) {
-  .contacts-info {
-    padding-right: 3px !important;
-  }
-
-  .contacts-info i:nth-child(1) {
-    padding-left: 0 !important;
-  }
-
-  .contacts-info a {
-    padding-right: 0 !important;
-  }
-
-  .contacts-info a:after {
-    content: "\A" !important;
-    white-space: pre !important;
-  }
-}
-
 /* ------------ Google maps ------------ */
 
 .map-responsive {
@@ -11149,5 +11106,294 @@ section {
 
 .footer .copyright p {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.homeIntroduce {
+  min-height: 700px;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), URL("/images/homePage/bg/homebgimg.jpg") center center/cover no-repeat;
+  text-align: center;
+  padding: 215px 0 60px 0;
+  color: #e6e6e6;
+}
+
+.homeIntroduce h1 {
+  font-size: 50px;
+}
+
+.homeIntroduce .titleDecr {
+  font-size: 21px;
+  color: #bebebe;
+}
+
+.homeIntroduce button {
+  height: 40px;
+  width: 150px;
+  margin-top: 90px;
+  border-color: #CA6D00;
+  background-color: #CA6D00;
+  color: white;
+}
+
+.features {
+  padding: 50px 0;
+  min-height: 690px;
+  background-color: #DEDEDE;
+  text-align: center;
+}
+
+.features h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.features .featureBox {
+  position: relative;
+  padding: 20px;
+  min-height: 380px;
+  background-color: #131A26;
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+
+.features .featureBox .featureBox_header {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  color: #bdbdbd;
+  justify-content: center;
+  min-height: 70px;
+  width: 100%;
+  font-size: 20px;
+}
+
+.features .featureBox .featureBox_header img {
+  margin-right: 10px;
+  height: 50px;
+  width: 50px;
+}
+
+.features .featureBox .featureBox_line {
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 2px;
+  background-color: white;
+  height: 4px;
+  width: 50%;
+}
+
+.features .featureBox .featureBox_decr {
+  margin-top: 20px;
+  width: 100%;
+  min-height: 200px;
+  font-size: 18px;
+  color: #adadad;
+}
+
+.features .featureBox .featureBox_link {
+  text-align: center;
+  position: relative;
+  margin-top: 10px;
+  height: 10px;
+  width: 100%;
+}
+
+.features .featureBox .featureBox_link a {
+  color: #c5c5c5;
+}
+
+.advantages {
+  background-color: #CA6D00;
+  min-height: 340px;
+  color: white;
+  padding: 50px;
+}
+
+.advantages h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.pricing {
+  text-align: center;
+  background-color: #182232;
+  min-height: 800px;
+  color: white;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.pricing .package {
+  margin-top: 30px;
+  min-height: 570px;
+}
+
+.pricing .package .package_title {
+  text-align: left;
+  font-size: 24px;
+}
+
+.pricing .package .package_line {
+  background-color: #CA6D00;
+  width: 50%;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.pricing .package .package_decr {
+  display: flex;
+  justify-items: left;
+  margin-top: 20px;
+}
+
+.pricing .package .package_decr .package_decr_checkmarkicon {
+  width: 20px;
+  height: 30px;
+  margin-right: 3px;
+}
+
+.pricing .package .package_decr .package_decr_text {
+  font-size: 20px;
+  min-width: 20px;
+}
+
+.pricing .package .package_decr .package_decr_helpicon {
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+}
+
+.pricing .package_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  margin-top: 30px;
+  background-color: #CA6D00;
+  border-radius: 40px;
+  text-align: center;
+}
+
+.mainFeatures {
+  text-align: center;
+  background-color: white;
+  min-height: 500px;
+  padding: 50px 0;
+  align-items: center;
+}
+
+.mainFeatures h2 {
+  color: black;
+  font-size: 30px;
+}
+
+.mainFeatures .mainFeatures_line {
+  margin: 20px auto 0 auto;
+  height: 3px;
+  width: 30%;
+  background-color: #CA6D00;
+}
+
+.mainFeatures .mainFeatures_box {
+  display: flex;
+  margin-top: 30px;
+  height: 150px;
+  border-color: #CA6D00;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 20px;
+  justify-content: left;
+  align-items: center;
+}
+
+.mainFeatures .mainFeatures_box .mainFeaturesBox_img {
+  display: flex;
+  width: 20%;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainFeatures .mainFeatures_box .mainFeaturesBox_img img {
+  height: 75px;
+  width: 75px;
+}
+
+.mainFeatures .mainFeatures_box .mainFeaturesBox_line {
+  height: 150px;
+  width: 3px;
+  height: 50%;
+  border-radius: 2px;
+  background-color: #CA6D00;
+}
+
+.mainFeatures .mainFeatures_box .mainFeaturesBox_decr {
+  padding-left: 10px;
+  display: flex;
+  height: 150px;
+  width: 75%;
+  align-items: center;
+}
+
+.mainFeatures button {
+  margin-top: 50px;
+  background-color: #CA6D00;
+  width: 200px;
+  height: 50px;
+  color: #f3f3f3;
+}
+
+.advancedFeatures {
+  text-align: center;
+  background-color: #131A26;
+  min-height: 500px;
+  padding: 50px 0;
+  align-items: center;
+}
+
+.advancedFeatures h2 {
+  color: #c5c5c5;
+  font-size: 30px;
+}
+
+.advancedFeatures .advancedFeatures_line {
+  margin: 20px auto 0 auto;
+  height: 3px;
+  width: 30%;
+  background-color: white;
+}
+
+.advancedFeatures .advancedFeatures_box {
+  display: flex;
+  margin-top: 30px;
+  height: 150px;
+  border-color: #acacac;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 20px;
+  justify-content: left;
+  align-items: center;
+}
+
+.advancedFeatures .advancedFeatures_box .advancedFeatures_img {
+  display: flex;
+  width: 20%;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+}
+
+.advancedFeatures .advancedFeatures_box .advancedFeatures_img img {
+  height: 75px;
+  width: 75px;
+}
+
+.advancedFeatures .advancedFeatures_box .advancedFeatures_decr {
+  padding-left: 10px;
+  display: flex;
+  height: 150px;
+  width: 75%;
+  align-items: center;
+  color: #acacac;
 }
 

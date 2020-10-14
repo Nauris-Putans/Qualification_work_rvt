@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'WEBcheck',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => null,
+    'logo_img' => 'vendor/adminlte/dist/img/Logo.png',
+    'logo_img_class' => 'navbar-brand LogoPadding LogoCenter',
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_xl_class' => 'navbar-brand LogoPadding LogoCenter',
+    'logo_img_alt' => 'WEBcheck logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'layout_topnav' => null,
+    'layout_topnav' => false,
     'layout_boxed' => null,
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
@@ -126,9 +126,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_sidebar' => 'sidebar-dark-info navbar-navy elevation-4',
+    'classes_sidebar_nav' => 'nav-child-indent nav-legacy',
+    'classes_topnav' => 'navbar-navy navbar-dark elevation-1',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -144,7 +144,7 @@ return [
     |
     */
 
-    'sidebar_mini' => true,
+    'sidebar_mini' => false,
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
@@ -188,7 +188,7 @@ return [
 
     'use_route_url' => false,
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/admin',
 
     'logout_url' => 'logout',
 
@@ -232,87 +232,110 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
+            'text' => 'Dashboard' ,
+            'icon' => 'fas fa-tachometer-alt',
+            'classes' => 'text-bold',
+            'url' => '/admin',
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Monitoring',
+            'icon' => 'fas fa-chart-line',
+            'classes' => 'text-bold',
+            'submenu' => [
+                [
+                    'text' => 'Monitors',
+                    'icon' => 'fas fa-desktop',
+                    'submenu' => [
+                        [
+                            'text' => 'Add',
+                            'icon' => 'fas fa-plus',
+                            'url' => '/monitoring/monitors/add',
+                        ],
+                        [
+                            'text' => 'History',
+                            'icon' => 'fas fa-history',
+                            'url' => '/monitoring/monitors/history',
+                        ],
+                    ]
+                ],
+                [
+                    'text' => 'Uptime',
+                    'icon' => 'fas fa-eye',
+                    'url' => '/monitoring/uptime',
+                ],
+                [
+                    'text' => 'Page Speed',
+                    'icon' => 'fas fa-stopwatch',
+                    'url' => '/monitoring/page-speed',
+                ],
+                [
+                    'text' => 'Transaction',
+                    'icon' => 'fas fa-credit-card',
+                    'url' => '/monitoring/transaction'
+                ],
+                [
+                    'text' => 'Real User Monitoring',
+                    'icon' => 'fas fa-users',
+                    'url' => '/monitoring/real-user-monitoring'
+                ],
+            ]
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text' => 'Reports',
+            'icon' => 'fas fa-flag',
+            'classes' => 'text-bold',
+            'submenu' => [
+                [
+                    'text' => 'Uptime',
+                    'icon' => 'fas fa-eye',
+                    'url' => '/reports/uptime',
+                ],
+                [
+                    'text' => 'Page Speed',
+                    'icon' => 'fas fa-stopwatch',
+                    'url' => '/reports/page-speed',
+                ],
+                [
+                    'text' => 'Transaction',
+                    'icon' => 'fas fa-credit-card',
+                    'url' => '/reports/transaction'
+                ],
+                [
+                    'text' => 'Real User Monitoring',
+                    'icon' => 'fas fa-users',
+                    'url' => '/reports/real-user-monitoring'
+                ],
+            ]
         ],
-        ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Alerts',
+            'icon' => 'fas fa-bell',
+            'classes' => 'text-bold',
+            'submenu' => [
+                [
+                    'text' => 'List',
+                    'icon' => 'fas fa-clipboard-list',
+                    'url' => '/alerts/list',
+                ],
+                [
+                    'text' => 'On Call',
+                    'icon' => 'fas fa-phone-alt',
+                    'url' => '/alerts/on-call',
+                ],
+            ]
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Settings',
+            'icon' => 'fas fa-cog',
+            'classes' => 'text-bold',
+            'url' => '/settings',
         ],
-//        [
-//            'text'    => 'multilevel',
-//            'icon'    => 'fas fa-fw fa-share',
-//            'submenu' => [
-//                [
-//                    'text' => 'level_one',
-//                    'url'  => '#',
-//                ],
-//                [
-//                    'text'    => 'level_one',
-//                    'url'     => '#',
-//                    'submenu' => [
-//                        [
-//                            'text' => 'level_two',
-//                            'url'  => '#',
-//                        ],
-//                        [
-//                            'text'    => 'level_two',
-//                            'url'     => '#',
-//                            'submenu' => [
-//                                [
-//                                    'text' => 'level_three',
-//                                    'url'  => '#',
-//                                ],
-//                                [
-//                                    'text' => 'level_three',
-//                                    'url'  => '#',
-//                                ],
-//                            ],
-//                        ],
-//                    ],
-//                ],
-//                [
-//                    'text' => 'level_one',
-//                    'url'  => '#',
-//                ],
-//            ],
-//        ],
-//        ['header' => 'labels'],
-//        [
-//            'text'       => 'important',
-//            'icon_color' => 'red',
-//            'url'        => '#',
-//        ],
-//        [
-//            'text'       => 'warning',
-//            'icon_color' => 'yellow',
-//            'url'        => '#',
-//        ],
-//        [
-//            'text'       => 'information',
-//            'icon_color' => 'cyan',
-//            'url'        => '#',
-//        ],
+        [
+            'text' => 'Support',
+            'icon' => 'fas fa-question-circle',
+            'classes' => 'text-bold',
+            'url' => '/support',
+        ],
     ],
 
     /*
