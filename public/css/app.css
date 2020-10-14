@@ -11069,15 +11069,46 @@ a.text-dark:focus {
   position: absolute;
 }
 
-/* ------------ Faq ------------ */
-
-hr {
-  background-color: #FF8A00;
+section {
+  background-color: #eeeeee;
 }
 
-.Faq .button {
-  text-align: center;
-  color: white;
+.accordion-item {
+  font-size: 24px;
+  text-align: left;
+}
+
+.answer {
+  overflow: hidden;
+  font-size: 20px;
+  text-align: left;
+  max-height: 0px;
+}
+
+.accordian-link {
+  color: black;
+}
+
+.accordian-link:hover {
+  color: #FF8A00;
+  text-decoration: none;
+}
+
+.phrase {
+  font-size: 20px;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #FF8A00;
+  border-color: #FF8A00;
+  margin-bottom: 15px;
+  font-size: 20px;
 }
 
 .footer {
