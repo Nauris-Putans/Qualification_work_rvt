@@ -373,14 +373,97 @@ return [
         // Admin
         //
         [
-            'text' => 'Users',
-            'icon' => 'fas fa-users',
+            'text' => 'Dashboard' ,
+            'icon' => 'fas fa-tachometer-alt',
             'classes' => 'text-bold',
             'url' => '/dashboard',
             'role' => 'admin',
         ],
         [
-            'text' => 'Ticket',
+            'text' => 'Users',
+            'icon' => 'fas fa-users',
+            'classes' => 'text-bold',
+            'url' => '/dashboard',
+            'role' => 'admin',
+            'submenu' => [
+                [
+                    'text' => 'List',
+                    'icon' => 'fas fa-clipboard-list',
+                    'url' => '/alerts/list',
+                    'role' => 'admin',
+                ],
+                [
+                    'text' => 'Payments',
+                    'icon' => 'fas fa-money-bill',
+                    'classes' => 'text-bold',
+                    'url' => '/dashboard',
+                    'role' => 'admin',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Team Members',
+            'icon' => 'fas fa-users',
+            'classes' => 'text-bold',
+            'role' => 'admin',
+            'submenu' => [
+                [
+                    'text' => 'List',
+                    'icon' => 'fas fa-clipboard-list',
+                    'url' => '/alerts/list',
+                    'role' => 'admin',
+                ],
+                [
+                    'text' => 'Privileges',
+                    'icon' => 'fas fa-key',
+                    'role' => 'admin',
+                    'submenu' => [
+                        [
+                            'text' => 'Roles',
+                            'icon' => 'fas ',
+                            'url' => '/alerts/list',
+                            'role' => 'admin',
+                            'submenu' => [
+                                [
+                                    'text' => 'Add Role',
+                                    'icon' => 'fas fa-plus',
+                                    'url' => '/admin/add-role',
+                                    'role' => 'admin',
+                                ],
+                                [
+                                    'text' => 'Assign Role',
+                                    'icon' => 'fas fa-wrench',
+                                    'url' => '/dashboard',
+                                    'role' => 'admin',
+                                ],
+                            ],
+                        ],
+                        [
+                            'text' => 'Permissions',
+                            'icon' => 'fas ',
+                            'url' => '/alerts/on-call',
+                            'role' => 'admin',
+                            'submenu' => [
+                                [
+                                    'text' => 'Add Permission',
+                                    'icon' => 'fas fa-plus',
+                                    'url' => '/admin/add-permission',
+                                    'role' => 'admin',
+                                ],
+                                [
+                                    'text' => 'Assign Permission',
+                                    'icon' => 'fas fa-wrench',
+                                    'url' => '/dashboard',
+                                    'role' => 'admin',
+                                ],
+                            ],
+                        ],
+                    ]
+                ],
+            ]
+        ],
+        [
+            'text' => 'Tickets',
             'icon' => 'fas fa-ticket-alt',
             'classes' => 'text-bold',
             'url' => '/dashboard',

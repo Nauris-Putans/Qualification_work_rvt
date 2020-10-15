@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Permission;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -14,6 +15,17 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return view('adminlte.add-permission');
+        return view('adminlte.admin.add-permission');
+    }
+
+    public function store(Request $request)
+    {
+        Permission::create([
+            'name' => $request->permissionName,
+            'display_name' => $request->permissionDisplayName,
+            'description' => $request->permissionDesc,
+        ]);
+
+        return redirect()->back()->with('message', 'Permission has been added!');
     }
 }

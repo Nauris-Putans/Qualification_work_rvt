@@ -18,6 +18,6 @@ class SupportController extends Controller
      */
     public function index()
     {
-        return view('adminlte.support');
+        return view('adminlte.user_admin.support');
     }
 }

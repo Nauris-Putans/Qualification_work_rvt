@@ -18,7 +18,7 @@ class MonitorController extends Controller
 
     public function history()
     {
-        return view('adminlte.monitoring.monitors.history');
+        return view('adminlte.user_admin.monitoring.monitors.history');
     }
 
     /**
@@ -26,7 +26,7 @@ class MonitorController extends Controller
      */
     public function pageSpeed()
     {
-        return view('adminlte.monitoring.page-speed');
+        return view('adminlte.user_admin.monitoring.page-speed');
     }
 
     /**
@@ -34,7 +34,7 @@ class MonitorController extends Controller
      */
     public function realUserMonitoring()
     {
-        return view('adminlte.monitoring.real-user-monitoring');
+        return view('adminlte.user_admin.monitoring.real-user-monitoring');
     }
 
     /**
@@ -42,7 +42,7 @@ class MonitorController extends Controller
      */
     public function transaction()
     {
-        return view('adminlte.monitoring.transaction');
+        return view('adminlte.user_admin.monitoring.transaction');
     }
 
     /**
@@ -50,6 +50,6 @@ class MonitorController extends Controller
      */
     public function uptime()
     {
-        return view('adminlte.monitoring.uptime');
+        return view('adminlte.user_admin.monitoring.uptime');
     }
 }

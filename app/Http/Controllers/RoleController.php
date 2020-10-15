@@ -15,12 +15,12 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('adminlte.add-role');
+        return view('adminlte.admin.add-role');
     }
 
     public function store(Request $request)
     {
-        $admin = Role::create([
+        Role::create([
             'name' => $request->roleName,
             'display_name' => $request->roleDisplayName,
             'description' => $request->roleDesc,

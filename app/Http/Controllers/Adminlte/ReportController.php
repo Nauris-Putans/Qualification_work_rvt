@@ -16,7 +16,7 @@ class ReportController extends Controller
      */
     public function pageSpeed()
     {
-        return view('adminlte.reports.page-speed');
+        return view('adminlte.user_admin.reports.page-speed');
     }
 
     /**
@@ -24,7 +24,7 @@ class ReportController extends Controller
      */
     public function realUserMonitoring()
     {
-        return view('adminlte.reports.real-user-monitoring');
+        return view('adminlte.user_admin.reports.real-user-monitoring');
     }
 
     /**
@@ -32,7 +32,7 @@ class ReportController extends Controller
      */
     public function transaction()
     {
-        return view('adminlte.reports.transaction');
+        return view('adminlte.user_admin.reports.transaction');
     }
 
     /**
@@ -40,6 +40,6 @@ class ReportController extends Controller
      */
     public function uptime()
     {
-        return view('adminlte.reports.uptime');
+        return view('adminlte.user_admin.reports.uptime');
     }
 }

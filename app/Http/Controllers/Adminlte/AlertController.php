@@ -16,7 +16,7 @@ class AlertController extends Controller
      */
     public function list()
     {
-        return view('adminlte.alerts.list');
+        return view('adminlte.user_admin.alerts.list');
     }
 
     /**
@@ -24,6 +24,6 @@ class AlertController extends Controller
      */
     public function onCall()
     {
-        return view('adminlte.alerts.on-call');
+        return view('adminlte.user_admin.alerts.on-call');
     }
 }

@@ -52,7 +52,7 @@ class ZabbixController extends Controller
             'itemids' => '31534',
         ]);
 
-        return view('adminlte/index', compact('histories'));
+        return view('adminlte/user_admin/index', compact('histories'));
     }
 
     /**

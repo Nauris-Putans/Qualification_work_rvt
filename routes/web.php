@@ -33,13 +33,15 @@ Route::group(['middleware' => ['role:admin']], function()
 {
     Route::get('/admin/add-role', 'RoleController@index');
     Route::post('/admin/add-role', 'RoleController@store');
+
     Route::get('/admin/add-permission', 'PermissionController@index');
+    Route::post('/admin/add-permission', 'PermissionController@store');
 });
 
 // Role - User Admin (free)
 Route::group(['middleware' => ['role:userFree|userPro']], function()
 {
-    Route::get('/dashboard', 'Adminlte\ZabbixController@historyGet')->name('admin.index');
+    Route::get('/dashboard', 'Adminlte\ZabbixController@historyGet')->name('admin.user_admin.index');
 
     Route::get('/monitoring/monitors/add', 'Adminlte\MonitorController@store');
     Route::get('/monitoring/monitors/history', 'Adminlte\MonitorController@history');
