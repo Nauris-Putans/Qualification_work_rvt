@@ -420,7 +420,7 @@ return [
                     'submenu' => [
                         [
                             'text' => 'Roles',
-                            'icon' => 'fas ',
+                            'icon' => 'fas fa-user-cog',
                             'url' => '/alerts/list',
                             'role' => 'admin',
                             'submenu' => [
@@ -433,14 +433,14 @@ return [
                                 [
                                     'text' => 'Assign Role',
                                     'icon' => 'fas fa-wrench',
-                                    'url' => '/dashboard',
+                                    'url' => '/admin/assign-role',
                                     'role' => 'admin',
                                 ],
                             ],
                         ],
                         [
                             'text' => 'Permissions',
-                            'icon' => 'fas ',
+                            'icon' => 'fas fa-user-cog',
                             'url' => '/alerts/on-call',
                             'role' => 'admin',
                             'submenu' => [
@@ -453,7 +453,7 @@ return [
                                 [
                                     'text' => 'Assign Permission',
                                     'icon' => 'fas fa-wrench',
-                                    'url' => '/dashboard',
+                                    'url' => '/admin/assign-permission',
                                     'role' => 'admin',
                                 ],
                             ],
