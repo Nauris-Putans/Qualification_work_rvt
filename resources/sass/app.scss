@@ -7,9 +7,27 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Footer
+@import "footer";
+
+// Sections
 @import "sections/app.blade";
 @import "sections/contacts.blade";
 @import "sections/faq.blade";
-@import "footer";
 @import "sections/home.blade";
 @import "sections/features.blade";
+
+// Adminlte - User Admin
+@import "adminlte/user_admin/dashboard";
+@import "adminlte/user_admin/monitoring";
+@import "adminlte/user_admin/reports";
+@import "adminlte/user_admin/alerts";
+@import "adminlte/user_admin/settings";
+@import "adminlte/user_admin/support";
+
+// Adminlte - Admin
+@import "adminlte/admin/dashboard-admin";
+@import "adminlte/admin/users";
+@import "adminlte/admin/team-members";
+@import "adminlte/admin/tickets";
+@import "adminlte/admin/settings-admin";
