@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Adminlte\admin;
 
+use App\Http\Requests\PermissionAddRequest;
 use App\Permission;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
@@ -19,7 +20,7 @@ class PermissionController extends Controller
         return view('adminlte.admin.add-permission');
     }
 
-    public function store(Request $request)
+    public function store(PermissionAddRequest $request)
     {
         Permission::create([
             'name' => $request->permissionName,
@@ -27,6 +28,6 @@ class PermissionController extends Controller
             'description' => $request->permissionDesc,
         ]);
 
-        return redirect()->back()->with('message', 'Permission has been added!');
+        return redirect()->back()->with('message', 'Permission - '.$request->permissionName.' has been added!');
     }
 }

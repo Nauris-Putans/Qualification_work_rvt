@@ -1,4 +1,4 @@
-<x-alert />
+<x-alertAdmin />
 <div class="boxed">
     <div class="input-info text-white">
         <div spellcheck="false" class="form justify-content-center">

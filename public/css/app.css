@@ -11066,7 +11066,7 @@ a.text-dark:focus {
   position: absolute;
 }
 
-.phrase {
+.Faq .phrase {
   font-size: 34px;
   text-align: center;
   margin-top: 15px;
@@ -11074,45 +11074,45 @@ a.text-dark:focus {
   color: lightgrey;
 }
 
-.answer {
+.Faq .answer {
   font-size: 20px;
   text-align: center;
   color: lightgrey;
 }
 
-.show {
+.Faq .show {
   color: lightgrey;
   display: none;
 }
 
-.show:hover {
+.Faq .show:hover {
   color: lightgrey;
   text-decoration: none;
 }
 
-.accordion-item {
+.Faq .accordion-item {
   font-size: 24px;
   text-align: center;
   color: lightgrey;
   margin-top: 30px;
 }
 
-.accordian-link {
+.Faq .accordian-link {
   color: lightgrey;
   font-weight: bold;
 }
 
-.accordian-link:hover {
+.Faq .accordian-link:hover {
   color: #FF8A00;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
 }
 
-.btn-primary,
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary:visited {
+.Faq .btn-primary,
+.Faq .btn-primary:hover,
+.Faq .btn-primary:active,
+.Faq .btn-primary:visited {
   background-color: #FF8A00;
   border-color: #FF8A00;
   margin-bottom: 15px;
@@ -11120,7 +11120,7 @@ a.text-dark:focus {
   font-size: 20px;
 }
 
-hr {
+.Faq hr {
   background-color: #FF8A00;
 }
 

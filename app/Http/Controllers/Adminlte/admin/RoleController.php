@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Adminlte\admin;
 
+use App\Http\Requests\RoleAddRequest;
 use \App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
@@ -19,7 +20,7 @@ class RoleController extends Controller
         return view('adminlte.admin.add-role');
     }
 
-    public function store(Request $request)
+    public function store(RoleAddRequest $request)
     {
         Role::create([
             'name' => $request->roleName,
@@ -27,6 +28,6 @@ class RoleController extends Controller
             'description' => $request->roleDesc,
         ]);
 
-        return redirect()->back()->with('message', 'Role has been added!');
+        return redirect()->back()->with('message', 'Role - ' .$request->roleName. ' has been added!');
     }
 }

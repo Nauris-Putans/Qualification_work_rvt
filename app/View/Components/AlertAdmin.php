@@ -5,7 +5,7 @@ namespace App\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Alert extends Component
+class AlertAdmin extends Component
 {
     /**
      * Create a new component instance.
@@ -24,6 +24,6 @@ class Alert extends Component
      */
     public function render()
     {
-        return view('components.alert');
+        return view('components.alert-admin');
     }
 }
