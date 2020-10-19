@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Adminlte\admin;
+namespace App\Http\Controllers\Adminlte\admin\team_members\privileges\permissions;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
@@ -15,6 +15,6 @@ class PermissionAssignmentController extends Controller
      */
     public function index()
     {
-        return view('adminlte.admin.assign-permission');
+        return view('adminlte.admin.team_members.privileges.permissions.assign-permission');
     }
 }

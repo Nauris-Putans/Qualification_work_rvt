@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Adminlte\admin;
+namespace App\Http\Controllers\Adminlte\admin\team_members\privileges\roles;
 
 use App\Http\Requests\RoleAddRequest;
 use \App\Role;
@@ -17,7 +17,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('adminlte.admin.add-role');
+        return view('adminlte.admin.team_members.privileges.roles.add-role');
     }
 
     public function store(RoleAddRequest $request)

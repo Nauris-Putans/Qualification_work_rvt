@@ -376,27 +376,26 @@ return [
             'text' => 'Dashboard' ,
             'icon' => 'fas fa-tachometer-alt',
             'classes' => 'text-bold',
-            'url' => '/dashboard',
+            'url' => '/admin/dashboard',
             'role' => 'admin',
         ],
         [
             'text' => 'Users',
             'icon' => 'fas fa-users',
             'classes' => 'text-bold',
-            'url' => '/dashboard',
             'role' => 'admin',
             'submenu' => [
                 [
                     'text' => 'List',
                     'icon' => 'fas fa-clipboard-list',
-                    'url' => '/alerts/list',
+                    'url' => '/admin/users/list',
                     'role' => 'admin',
                 ],
                 [
                     'text' => 'Payments',
                     'icon' => 'fas fa-money-bill',
                     'classes' => 'text-bold',
-                    'url' => '/dashboard',
+                    'url' => '/admin/users/payments',
                     'role' => 'admin',
                 ],
             ],
@@ -410,7 +409,7 @@ return [
                 [
                     'text' => 'List',
                     'icon' => 'fas fa-clipboard-list',
-                    'url' => '/alerts/list',
+                    'url' => '/admin/team/list',
                     'role' => 'admin',
                 ],
                 [
@@ -421,7 +420,6 @@ return [
                         [
                             'text' => 'Roles',
                             'icon' => 'fas fa-user-cog',
-                            'url' => '/alerts/list',
                             'role' => 'admin',
                             'submenu' => [
                                 [
@@ -441,7 +439,6 @@ return [
                         [
                             'text' => 'Permissions',
                             'icon' => 'fas fa-user-cog',
-                            'url' => '/alerts/on-call',
                             'role' => 'admin',
                             'submenu' => [
                                 [
@@ -466,14 +463,14 @@ return [
             'text' => 'Tickets',
             'icon' => 'fas fa-ticket-alt',
             'classes' => 'text-bold',
-            'url' => '/dashboard',
+            'url' => '/admin/tickets',
             'role' => 'admin',
         ],
         [
             'text' => 'Settings',
             'icon' => 'fas fa-cog',
             'classes' => 'text-bold',
-            'url' => '/dashboard',
+            'url' => '/admin/settings',
             'role' => 'admin',
         ],
     ],

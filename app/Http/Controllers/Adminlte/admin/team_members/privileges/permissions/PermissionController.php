@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Adminlte\admin;
+namespace App\Http\Controllers\Adminlte\admin\team_members\privileges\permissions;
 
 use App\Http\Requests\PermissionAddRequest;
 use App\Permission;
@@ -17,7 +17,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return view('adminlte.admin.add-permission');
+        return view('adminlte.admin.team_members.privileges.permissions.add-permission');
     }
 
     public function store(PermissionAddRequest $request)

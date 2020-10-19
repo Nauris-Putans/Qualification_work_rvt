@@ -40,19 +40,29 @@ Route::post('/contacts/create', 'Pages\ContactController@store');
 // Role - Admin
 Route::group(['middleware' => ['role:admin']], function()
 {
-    // Roles sections
-    Route::get('/admin/add-role', 'Adminlte\admin\RoleController@index');
-    Route::post('/admin/add-role', 'Adminlte\admin\RoleController@store');
+    // Dashboard section
+    Route::get('/admin/dashboard', 'Adminlte\admin\DashboardController@index');
 
-    Route::get('/admin/assign-role', 'Adminlte\admin\RoleAssignmentController@index');
-    Route::post('/admin/assign-role', 'Adminlte\admin\RoleAssignmentController@store');
+    // Users sections
+    Route::get('/admin/users/list', 'Adminlte\admin\users\UsersListController@index');
+    Route::get('/admin/users/payments', 'Adminlte\admin\users\PaymentController@index');
 
-    // Permission sections
-    Route::get('/admin/add-permission', 'Adminlte\admin\PermissionController@index');
-    Route::post('/admin/add-permission', 'Adminlte\admin\PermissionController@store');
+    // Team Members sections
+    Route::get('/admin/team/list', 'Adminlte\admin\team_members\TeamListController@index');
+    Route::get('/admin/add-role', 'Adminlte\admin\team_members\privileges\roles\RoleController@index');
+    Route::post('/admin/add-role', 'Adminlte\admin\team_members\privileges\roles\RoleController@store');
+    Route::get('/admin/assign-role', 'Adminlte\admin\team_members\privileges\roles\RoleAssignmentController@index');
+    Route::post('/admin/assign-role', 'Adminlte\admin\team_members\privileges\roles\RoleAssignmentController@store');
+    Route::get('/admin/add-permission', 'Adminlte\admin\team_members\privileges\permissions\PermissionController@index');
+    Route::post('/admin/add-permission', 'Adminlte\admin\team_members\privileges\permissions\PermissionController@store');
+    Route::get('/admin/assign-permission', 'Adminlte\admin\team_members\privileges\permissions\PermissionAssignmentController@index');
+    Route::post('/admin/assign-permission', 'Adminlte\admin\team_members\privileges\permissions\PermissionAssignmentController@store');
 
-    Route::get('/admin/assign-permission', 'Adminlte\admin\PermissionAssignmentController@index');
-    Route::post('/admin/assign-permission', 'Adminlte\admin\PermissionAssignmentController@store');
+    // Tickets section
+    Route::get('/admin/tickets', 'Adminlte\admin\TicketController@index');
+
+    // Settings section
+    Route::get('/admin/settings', 'Adminlte\admin\SettingsAdminController@index');
 });
 
 // Role - User Admin (free)

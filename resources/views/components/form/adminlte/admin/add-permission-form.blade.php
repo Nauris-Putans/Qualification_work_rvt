@@ -6,35 +6,41 @@
                 @csrf
 
                 {{-- Permission name input--}}
-                <div class="col-md-8 mt-3">
+                <div class="col-md-2 mt-3">
                     <div class="form-group">
+                        <label for="name" class="text-dark">
+                            {{__('Permission name *')}}
+                        </label>
                         <input
                             name="permissionName"
                             type="text"
-                            class="form-control @error('permissionName') is-invalid @enderror"
-                            placeholder="{{__('Permission name')}}"/>
+                            class="form-control @error('permissionName') is-invalid @enderror">
                     </div>
                 </div>
 
                 {{-- Permission display name input--}}
-                <div class="col-md-8 mt-3">
+                <div class="col-md-4 mt-3">
                     <div class="form-group">
+                        <label for="name" class="text-dark">
+                            {{__('Permission display name (optional)')}}
+                        </label>
                         <input
                             name="permissionDisplayName"
                             type="text"
-                            class="form-control @error('permissionDisplayName') is-invalid @enderror"
-                            placeholder="{{__('Permission display name (optional)')}}"/>
+                            class="form-control @error('permissionDisplayName') is-invalid @enderror">
                     </div>
                 </div>
 
                 {{-- Role desc input--}}
-                <div class="col-md-8 mt-3">
+                <div class="col-md-4 mt-3">
                     <div class="form-group">
+                        <label for="name" class="text-dark">
+                            {{__('Permission description (optional)')}}
+                        </label>
                         <input
                             name="permissionDesc"
                             type="text"
-                            class="form-control @error('Permission') is-invalid @enderror"
-                            placeholder="{{__('Permission description (optional)')}}"/>
+                            class="form-control @error('Permission') is-invalid @enderror">
                     </div>
                 </div>
 

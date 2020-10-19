@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Adminlte\admin;
+namespace App\Http\Controllers\Adminlte\admin\team_members\privileges\roles;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -15,6 +15,6 @@ class RoleAssignmentController extends Controller
      */
     public function index()
     {
-        return view('adminlte.admin.assign-role');
+        return view('adminlte.admin.team_members.privileges.roles.assign-role');
     }
 }
