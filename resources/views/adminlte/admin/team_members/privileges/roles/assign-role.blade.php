@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-    {{ Form::component('assignRoleForm', 'components.form.adminlte.admin.assign-role-form', ['name', 'value' => null, 'attributes' => []]) }}
+    {{ Form::component('assignRoleForm', 'components.form.adminlte.admin.assign-role-form', ['roles' => $roles, 'users' => $users]) }}
     {{ Form::assignRoleForm() }}
 @stop
 

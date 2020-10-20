@@ -1,6 +1,6 @@
 <x-alertAdmin />
 <div class="boxed">
-    <div class="input-info text-white">
+    <div class="input-info text-dark">
         <div spellcheck="false" class="form justify-content-center">
             <form method="post" action="/admin/add-permission">
                 @csrf
@@ -8,7 +8,7 @@
                 {{-- Permission name input--}}
                 <div class="col-md-2 mt-3">
                     <div class="form-group">
-                        <label for="name" class="text-dark">
+                        <label>
                             {{__('Permission name *')}}
                         </label>
                         <input
@@ -21,7 +21,7 @@
                 {{-- Permission display name input--}}
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
-                        <label for="name" class="text-dark">
+                        <label>
                             {{__('Permission display name (optional)')}}
                         </label>
                         <input
@@ -34,7 +34,7 @@
                 {{-- Role desc input--}}
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
-                        <label for="name" class="text-dark">
+                        <label>
                             {{__('Permission description (optional)')}}
                         </label>
                         <input
