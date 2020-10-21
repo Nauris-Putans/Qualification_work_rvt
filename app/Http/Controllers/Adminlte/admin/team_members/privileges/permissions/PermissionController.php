@@ -7,6 +7,7 @@ use App\Permission;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -20,8 +21,13 @@ class PermissionController extends Controller
         return view('adminlte.admin.team_members.privileges.permissions.add-permission');
     }
 
+    /**
+     * @param PermissionAddRequest $request
+     * @return RedirectResponse
+     */
     public function store(PermissionAddRequest $request)
     {
+        // Creates new permisson and stores it in database
         Permission::create([
             'name' => $request->permissionName,
             'display_name' => $request->permissionDisplayName,

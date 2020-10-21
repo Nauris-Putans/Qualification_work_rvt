@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-    {{ Form::component('assignPermissionForm', 'components.form.adminlte.admin.assign-permission-form', ['name', 'value' => null, 'attributes' => []]) }}
+    {{ Form::component('assignPermissionForm', 'components.form.adminlte.admin.assign-permission-form', ['permissions' => $permissions, 'users' => $users]) }}
     {{ Form::assignPermissionForm() }}
 @stop
 

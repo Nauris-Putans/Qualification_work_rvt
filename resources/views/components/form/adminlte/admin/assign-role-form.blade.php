@@ -16,7 +16,7 @@
                                 -
                             </option>
                             @foreach($roles as $role)
-                                <option value="{{ $role->id }}" {!! $role->assigned ? 'checked' : '' !!}>
+                                <option value="{{ $role->id }}">
                                     {{ $role->name }}
                                 </option>
                             @endforeach
