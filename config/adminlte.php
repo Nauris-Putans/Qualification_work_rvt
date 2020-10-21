@@ -252,15 +252,15 @@ return [
                     'icon' => 'fas fa-desktop',
                     'submenu' => [
                         [
-                            'text' => 'Add',
-                            'icon' => 'fas fa-plus',
-                            'url' => '/monitoring/monitors/add',
+                            'text' => 'Monitor List',
+                            'icon' => 'fas fa-history',
+                            'url' => '/monitoring/monitors/list',
                             'role' => 'userFree',
                         ],
                         [
-                            'text' => 'History',
-                            'icon' => 'fas fa-history',
-                            'url' => '/monitoring/monitors/history',
+                            'text' => 'Add Monitor',
+                            'icon' => 'fas fa-plus',
+                            'url' => '/monitoring/monitors/add',
                             'role' => 'userFree',
                         ],
                     ]
@@ -278,12 +278,6 @@ return [
                     'role' => 'userFree',
                 ],
                 [
-                    'text' => 'Transaction',
-                    'icon' => 'fas fa-credit-card',
-                    'url' => '/monitoring/transaction',
-                    'role' => 'userFree',
-                ],
-                [
                     'text' => 'Real User Monitoring',
                     'icon' => 'fas fa-users',
                     'url' => '/monitoring/real-user-monitoring',
@@ -292,56 +286,11 @@ return [
             ]
         ],
         [
-            'text' => 'Reports',
-            'icon' => 'fas fa-flag',
-            'classes' => 'text-bold',
-            'role' => 'userFree',
-            'submenu' => [
-                [
-                    'text' => 'Uptime',
-                    'icon' => 'fas fa-eye',
-                    'url' => '/reports/uptime',
-                    'role' => 'userFree',
-                ],
-                [
-                    'text' => 'Page Speed',
-                    'icon' => 'fas fa-stopwatch',
-                    'url' => '/reports/page-speed',
-                    'role' => 'userFree',
-                ],
-                [
-                    'text' => 'Transaction',
-                    'icon' => 'fas fa-credit-card',
-                    'url' => '/reports/transaction',
-                    'role' => 'userFree',
-                ],
-                [
-                    'text' => 'Real User Monitoring',
-                    'icon' => 'fas fa-users',
-                    'url' => '/reports/real-user-monitoring',
-                    'role' => 'userFree',
-                ],
-            ]
-        ],
-        [
             'text' => 'Alerts',
             'icon' => 'fas fa-bell',
             'classes' => 'text-bold',
+            'url' => '/alerts',
             'role' => 'userFree',
-            'submenu' => [
-                [
-                    'text' => 'List',
-                    'icon' => 'fas fa-clipboard-list',
-                    'url' => '/alerts/list',
-                    'role' => 'userFree',
-                ],
-                [
-                    'text' => 'On Call',
-                    'icon' => 'fas fa-phone-alt',
-                    'url' => '/alerts/on-call',
-                    'role' => 'userFree',
-                ],
-            ]
         ],
         [
             'text' => 'Settings',
@@ -383,33 +332,19 @@ return [
             'text' => 'Users',
             'icon' => 'fas fa-users',
             'classes' => 'text-bold',
+            'url' => '/admin/users',
             'role' => 'admin',
-            'submenu' => [
-                [
-                    'text' => 'List',
-                    'icon' => 'fas fa-clipboard-list',
-                    'url' => '/admin/users/list',
-                    'role' => 'admin',
-                ],
-                [
-                    'text' => 'Payments',
-                    'icon' => 'fas fa-money-bill',
-                    'classes' => 'text-bold',
-                    'url' => '/admin/users/payments',
-                    'role' => 'admin',
-                ],
-            ],
         ],
         [
-            'text' => 'Team Members',
+            'text' => 'Team',
             'icon' => 'fas fa-users',
             'classes' => 'text-bold',
             'role' => 'admin',
             'submenu' => [
                 [
-                    'text' => 'List',
+                    'text' => 'Members',
                     'icon' => 'fas fa-clipboard-list',
-                    'url' => '/admin/team/list',
+                    'url' => '/admin/team/members',
                     'role' => 'admin',
                 ],
                 [
