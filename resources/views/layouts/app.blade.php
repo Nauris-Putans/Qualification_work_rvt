@@ -24,36 +24,37 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-darkblue shadow-sm">
+        {{-- Navigation bar --}}
+        <nav class="navbar navbar-expand-lg sticky-top bg-darkblue shadow-sm">
             <div class="container">
+
+                <!-- Navbar brand logo -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{URL::asset('/images/Logo.png')}}" alt="Logo" class="img-responsive">
+                    <img src="{{URL::asset('/images/Logo.png')}}" alt="Logo" style="margin-right: 4rem !important;">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+
+                <!-- Hamburger aka navbar toggler -->
+                <button class="navbar-toggler navbar-dark ml-auto toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                    </ul>
-
                     <!-- Middle Of Navbar -->
-                    <ul class="navbar-nav m-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">{{ __('Home') }}</a>
+                    <ul class="navbar-nav Sections mx-auto justify-content-center">
+                        <li class="nav-item {{ Request::path() == '/' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/features">{{ __('Features') }}</a>
+                        <li class="nav-item {{ Request::path() == 'features' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('/features') }}">{{ __('Features') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/pricing">{{ __('Pricing') }}</a>
+                        <li class="nav-item {{ Request::path() == 'pricing' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('/pricing') }}">{{ __('Pricing') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/faq">{{ __('FAQ') }}</a>
+                        <li class="nav-item {{ Request::path() == 'faq' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('/faq') }}">{{ __('FAQ') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contacts">{{ __('Contacts') }}</a>
+                        <li class="nav-item {{ Request::path() == 'contacts' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('/contacts') }}">{{ __('Contacts') }}</a>
                         </li>
                     </ul>
 
@@ -61,11 +62,11 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
+                            <li class="nav-item Login">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Log in') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                <li class="nav-item Register">
                                     <a class="nav-link btn btn-orange" href="{{ route('register') }}">{{ __('Sign up') }}</a>
                                 </li>
                             @endif
@@ -93,10 +94,12 @@
             </div>
         </nav>
 
+        {{-- Content--}}
         <main>
             @yield('content')
         </main>
 
+        {{-- Footer --}}
         <div class="pt-5 pb-5 footer footer-color">
             <div class="container">
                 <div class="row">
