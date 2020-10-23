@@ -11,6 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="{{ asset('js/arrow.js') }}"></script>
 
     <!-- Place your kit's code here -->
     <script src="https://kit.fontawesome.com/f53cf4b771.js" crossorigin="anonymous"></script>
@@ -26,6 +28,7 @@
     <div id="app">
         {{-- Navigation bar --}}
         <nav class="navbar navbar-expand-lg sticky-top bg-darkblue shadow-sm">
+
             <div class="container">
 
                 <!-- Navbar brand logo -->
@@ -133,6 +136,10 @@
                 </div>
             </div>
         </div>
+
+        <!-- Arrow who sends back to the top-->
+        <a id="back2Top" title="Back to top" href="#">&#10148;</a>
+
     </div>
 </body>
 </html>
