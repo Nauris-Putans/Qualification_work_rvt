@@ -79,6 +79,20 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    {{-- Admin dashboard--}}
+                                    @if (Laratrust::hasRole('admin'))
+                                        <a class="dropdown-item" href="{{ url('/admin/dashboard') }}">
+                                            {{ __('Dashboard') }}
+                                        </a>
+                                    @endif
+
+                                    {{-- User Free dashboard--}}
+                                    @if (Laratrust::hasRole('userFree'))
+                                        <a class="dropdown-item" href="{{ url('/dashboard') }}">
+                                            {{ __('Dashboard') }}
+                                        </a>
+                                    @endif
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
