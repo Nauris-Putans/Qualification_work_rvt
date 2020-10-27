@@ -71,21 +71,21 @@ Lai palaistu šo kvalifikācijas darbu, ir jābūt:
 
 ### Klonešana
 
-> Klonēt šo repozitoriju uz vietējo datoru, izmantojot `https://git01.obvius.lv:10143/mon/monitoring_project.git`
+Klonēt šo repozitoriju uz vietējo datoru, izmantojot `https://github.com/rvtprog-kval-21/...`
 
 ```bash
-git clone https://git01.obvius.lv:10143/mon/monitoring_project.git
+git clone https://github.com/rvtprog-kval-21/...
 cd monitoring-project
 ```
 
 ### Uzstādīšana
 
-> Instalēt composer priekš projekta
+Instalēt composer priekš projekta
 ```bash
 composer install 
 ```
 
-> Ja rodas problēma, lejupielādējot composer, izmantojiet šīs komandas
+Ja rodas problēma, lejupielādējot composer, izmantojiet šīs komandas
 ```bash
 composer dump-autoload
 ```
@@ -96,34 +96,34 @@ Vai
 COMPOSER_MEMORY_LIMIT=-1 composer install
 ```
 
-> Instalēt npm priekš projekta
+Instalēt npm priekš projekta
 ```bash
 npm install
 ```
 
-> Kompilēt failus
+Kompilēt failus
+> Katru reizi kad kautkas mainas, jaievada šī komanda lai kompilētos faili
 ```bash
 npm run dev
 ```
+vai 
 
-Vai
-
-> Kompilēt failus automātiski
+> Automātiski kompilē failus
 ```bash
 npm run watch
 ```
 
-> Kopē .env.example failu un ievieto ar jaunu nosaukumu - .env un ielieciet savā vidē mainīgos.
+Kopē .env.example failu un ievieto ar jaunu nosaukumu - .env un ielieciet savā vidē mainīgos.
 ```bash
 cp .env.example .env
 ```
 
-> Pievienot datu bāzi ar nosaukumu - monitoring_project un izmantojiet šo komandu
+Pievienot datu bāzi ar nosaukumu - monitoring_project un izmantojiet šo komandu
 ```bash
 php artisan migrate
 ```
 
-> Komentēt arā 288,289,290 rindas no vendor/becker/laravel-zabbix-api/src/ZabbixApiAbstract.php faila
+Komentēt arā 288,289,290 rindas no vendor/becker/laravel-zabbix-api/src/ZabbixApiAbstract.php faila
 ```bash
 284             // validate response
 285             if (!is_object($this->responseDecoded) && !is_array($this->responseDecoded)) {
@@ -134,7 +134,7 @@ php artisan migrate
 290     //        }
 ```
 
-> Palaist projektu lokālajā datorā
+Palaist projektu lokālajā datorā
 ```bash
 php artisan serve
 ```

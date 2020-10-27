@@ -1,9 +1,3 @@
-// Navbar text
-.navbar-nav li a {
-    color: white;
-    font-weight: 600;
-}
-
 // Active section text
 .active a {
     color: orange !important;
@@ -11,33 +5,77 @@
     border-bottom: 2px solid orange;
 }
 
+// Navbar color
 .bg-darkblue {
     background-color: rgb(19, 26, 38, 0.9) !important;
 }
 
-.footer-color {
-    background-color: #2B2E34 !important;
-}
-
+// Button color
 .btn-orange {
     color: #fff;
     background-color: #CA6D00;
     border-color: #CA6D00;
 }
 
-// Hovers
-.Sections li a:hover {
-    color: #CA6D00 !important;
-    text-decoration: none;
-    border-bottom: 2px solid #CA6D00;
+.Sections {
+    li a {
+        color: white;
+        font-weight: 600;
+    }
+
+    li a:hover {
+        color: #CA6D00 !important;
+        text-decoration: none;
+        border-bottom: 2px solid #CA6D00;
+    }
 }
 
-.Login a:hover {
-    color: #CA6D00 !important;
-}
+.Authentication {
+    .Login {
+        a {
+            color: white;
+            font-weight: 600;
+        }
+        a:hover {
+            color: #CA6D00 !important;
+        }
+    }
 
-.Register a:hover {
-    color: white;
-    background-color: #a75900;
-    border-color: #a75900;
+    .Register {
+        a {
+            color: white;
+            font-weight: 600;
+        }
+
+        a:hover {
+            color: white;
+            background-color: #a75900;
+            border-color: #a75900;
+        }
+    }
+
+    .dropdown {
+        .dropdown-toggle {
+            color: white;
+            font-weight: 600;
+        }
+
+        .dropdown-toggle:hover {
+            color: #CA6D00 !important;
+        }
+
+        .dropdown-item {
+            font-weight: 600;
+        }
+
+        .dropdown-item:hover {
+            background-color: #bdbdbd6e;
+            font-weight: 600;
+        }
+
+        .dropdown-item:active {
+            color: black;
+            font-weight: 600;
+        }
+    }
 }

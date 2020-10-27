@@ -24,6 +24,8 @@
   background: #555;
 }
 
+/* Arrow */
+
 #back2Top {
   width: 40px;
   line-height: 40px;
@@ -41,6 +43,8 @@
   font-size: 30px;
   text-decoration: none;
 }
+
+/* Arrow hover*/
 
 #back2Top:hover {
   background-color: #DDF;
@@ -10947,7 +10951,7 @@ a.text-dark:focus {
 }
 
 .footer {
-  background: #152F4F;
+  background: #2B2E34;
   color: white;
 }
 
@@ -10986,11 +10990,6 @@ a.text-dark:focus {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.navbar-nav li a {
-  color: white;
-  font-weight: 600;
-}
-
 .active a {
   color: orange !important;
   text-decoration: none;
@@ -11001,14 +11000,15 @@ a.text-dark:focus {
   background-color: rgba(19, 26, 38, 0.9) !important;
 }
 
-.footer-color {
-  background-color: #2B2E34 !important;
-}
-
 .btn-orange {
   color: #fff;
   background-color: #CA6D00;
   border-color: #CA6D00;
+}
+
+.Sections li a {
+  color: white;
+  font-weight: 600;
 }
 
 .Sections li a:hover {
@@ -11017,14 +11017,47 @@ a.text-dark:focus {
   border-bottom: 2px solid #CA6D00;
 }
 
-.Login a:hover {
+.Authentication .Login a {
+  color: white;
+  font-weight: 600;
+}
+
+.Authentication .Login a:hover {
   color: #CA6D00 !important;
 }
 
-.Register a:hover {
+.Authentication .Register a {
+  color: white;
+  font-weight: 600;
+}
+
+.Authentication .Register a:hover {
   color: white;
   background-color: #a75900;
   border-color: #a75900;
+}
+
+.Authentication .dropdown .dropdown-toggle {
+  color: white;
+  font-weight: 600;
+}
+
+.Authentication .dropdown .dropdown-toggle:hover {
+  color: #CA6D00 !important;
+}
+
+.Authentication .dropdown .dropdown-item {
+  font-weight: 600;
+}
+
+.Authentication .dropdown .dropdown-item:hover {
+  background-color: #bdbdbd6e;
+  font-weight: 600;
+}
+
+.Authentication .dropdown .dropdown-item:active {
+  color: black;
+  font-weight: 600;
 }
 
 /* ------------ Kontakti ------------ */
