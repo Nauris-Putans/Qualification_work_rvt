@@ -306,6 +306,17 @@ return [
             'url' => '/support',
             'role' => 'userFree',
         ],
+        [
+            'header' => '',
+            'role' => 'userFree',
+        ],
+        [
+            'text' => 'Back',
+            'icon' => 'fas fa-arrow-left',
+            'classes' => 'text-bold',
+            'url' => '/',
+            'role' => 'userFree',
+        ],
 
         //
         // User Admin Pro
@@ -315,6 +326,17 @@ return [
             'icon' => 'fas fa-cog',
             'classes' => 'text-bold',
             'url' => '/settings',
+            'role' => 'userPro',
+        ],
+        [
+            'header' => '',
+            'role' => 'userPro',
+        ],
+        [
+            'text' => 'Back',
+            'icon' => 'fas fa-arrow-left',
+            'classes' => 'text-bold',
+            'url' => '/',
             'role' => 'userPro',
         ],
 
@@ -406,6 +428,17 @@ return [
             'icon' => 'fas fa-cog',
             'classes' => 'text-bold',
             'url' => '/admin/settings',
+            'role' => 'admin',
+        ],
+        [
+            'header' => '',
+            'role' => 'admin',
+        ],
+        [
+            'text' => 'Back',
+            'icon' => 'fas fa-arrow-left',
+            'classes' => 'text-bold',
+            'url' => '/',
             'role' => 'admin',
         ],
     ],

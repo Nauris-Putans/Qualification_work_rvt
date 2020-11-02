@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="{{ asset('js/arrow.js') }}"></script>
 
     <!-- Place your kit's code here -->
@@ -28,7 +28,6 @@
     <div id="app">
         {{-- Navigation bar --}}
         <nav class="navbar navbar-expand-lg sticky-top bg-darkblue shadow-sm">
-
             <div class="container">
 
                 <!-- Navbar brand logo -->
@@ -62,7 +61,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav Authentication ml-auto">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item Login">
@@ -80,6 +79,20 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    {{-- Admin dashboard--}}
+                                    @if (Laratrust::hasRole('admin'))
+                                        <a class="dropdown-item" href="{{ url('/admin/dashboard') }}">
+                                            {{ __('Dashboard') }}
+                                        </a>
+                                    @endif
+
+                                    {{-- User Free dashboard--}}
+                                    @if (Laratrust::hasRole('userFree'))
+                                        <a class="dropdown-item" href="{{ url('/dashboard') }}">
+                                            {{ __('Dashboard') }}
+                                        </a>
+                                    @endif
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -139,7 +152,6 @@
 
         <!-- Arrow who sends back to the top-->
         <a id="back2Top" title="Back to top" href="#">&#10148;</a>
-
     </div>
 </body>
 </html>
