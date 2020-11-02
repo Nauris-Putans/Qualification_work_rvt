@@ -53,7 +53,7 @@
                                     
                                 </div>
                             </div>
-                            host name
+                            host namee
                         </div>
                     </div>
                 </div>
