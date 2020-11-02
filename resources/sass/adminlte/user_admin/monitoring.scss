@@ -1,0 +1,107 @@
+.modal-content
+{
+            display: flex;
+            flex-direction: row;
+            background: none;
+            border: none;
+            box-shadow: none;
+        
+
+        .monitoringAddMenu{
+            display: block;
+            width: 30%;
+            background-color:#1b1c29;
+            height: 600px;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .monitoringAddMenu_Header
+        {
+            margin: 20px 0 0 10px;
+            min-height: 60px;
+            width: 90%;
+
+            .monitoringAddMenu_title{
+                display: block;
+                font-size: 24px;
+                color: white;
+                text-align: center;
+            }
+    
+            .monitoringAddMenu_line{
+                margin: 0 auto;
+                margin-top: 5px;
+                display: block;
+                align-items: center;
+                background-color:white;
+                height: 2px;
+                width: 90%;
+            }
+        }
+
+        .monitoringAddMenuItemWrapper
+        {
+            min-height: 250px;
+            width: 95%;
+            margin: 20px 5% 0 0;
+            padding-left: 10%;
+            color: white;
+            margin-top: 15px;
+            .monitoringAddMenu_Item
+            {
+                margin-top: 5px;
+                cursor: pointer;
+                font-size: 20px;
+            }
+        }
+
+        .monitoringAddSettings{
+            display: block;
+            width: 70%;
+            background-color:#FFFFFF;
+            height: 1700px;
+            border-radius: 0 4px 4px 0;
+
+
+            &_header
+            {
+                margin-top: 20px;
+                min-height: 80px;
+                width: 100%;
+                .monitoringAddMenu_title
+                {
+                    display: block;
+                    font-size: 24px;
+                    color: black;
+                    text-align: center;
+                }
+        
+                .monitoringAddMenu_line
+                {
+                    display:block;
+                    margin: 0 auto;
+                    margin-top: 5px;
+                    display: block;
+                    background-color:black;
+                    height: 2px;
+                    width: 90%;
+                }
+            }
+
+            &_items{
+                width: 100%;
+                padding-left: 5%;
+                padding-right: 5%;
+
+                .checkTypes{
+                    height: 40px;
+                    display: flex;
+                    .checkType{
+                        width: 15%;
+                        border: 1px solid black;
+                    }
+                }
+            }
+            
+        }
+}
