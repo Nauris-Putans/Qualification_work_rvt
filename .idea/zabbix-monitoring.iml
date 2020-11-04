@@ -29,6 +29,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jeroennoten/laravel-adminlte" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kkszymanowski/traitor" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/lang" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/framework" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/tinker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/ui" />
