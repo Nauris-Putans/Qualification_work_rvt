@@ -154,21 +154,21 @@
 
                             @if (Session::get('locale') == '')
                                 <a href="locale/us" class="dropdown-item {{ Session::get('locale') == '' ? 'active' : '' }}">
-                                    <i class="flag-icon flag-icon-us mr-2"></i> English
+                                    <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
                                 </a>
-                                
+
                             @else
                                 <a href="locale/us" class="dropdown-item {{ Session::get('locale') == 'us' ? 'active' : '' }}">
-                                    <i class="flag-icon flag-icon-us mr-2"></i> English
+                                    <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
                                 </a>
                             @endif
 
                             <a href="locale/lv" class="dropdown-item {{ Session::get('locale') == 'lv' ? 'active' : '' }}">
-                                <i class="flag-icon flag-icon-lv mr-2"></i> Latvian
+                                <i class="flag-icon flag-icon-lv mr-2"></i> @lang('Latvian')
                             </a>
 
                             <a href="locale/ru" class="dropdown-item {{ Session::get('locale') == 'ru' ? 'active' : '' }}">
-                                <i class="flag-icon flag-icon-ru mr-2"></i> Russian
+                                <i class="flag-icon flag-icon-ru mr-2"></i> @lang('Russian')
                             </a>
                         </div>
                     </li>
