@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+// This link will add session of language when they click to change language
+Route::get('locale/{locale}', function ($locale) {
+   Session::put('locale', $locale);
+   return redirect()->back();
+});
+
 // Home section
 Route::get('/', 'Pages\HomeController@index');
 

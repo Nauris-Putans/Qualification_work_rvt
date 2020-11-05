@@ -125,6 +125,54 @@
                             </li>
                         @endguest
                     </ul>
+
+                    <!-- Language Dropdown Menu -->
+                    <li class="nav-item dropdown Language">
+                        @if (Session::get('locale') == 'us')
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <span class="flag-icon flag-icon-us"></span>
+                            </a>
+
+                        @elseif (Session::get('locale') == 'lv')
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <span class="flag-icon flag-icon-lv"></span>
+                            </a>
+
+                        @elseif (Session::get('locale') == 'ru')
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <span class="flag-icon flag-icon-ru"></span>
+                            </a>
+
+                        @else
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <span class="flag-icon flag-icon-us"></span>
+                            </a>
+                        @endif
+
+                        {{-- Languages --}}
+                        <div class="dropdown-menu dropdown-menu-right p-0">
+
+                            @if (Session::get('locale') == '')
+                                <a href="locale/us" class="dropdown-item {{ Session::get('locale') == '' ? 'active' : '' }}">
+                                    <i class="flag-icon flag-icon-us mr-2"></i> English
+                                </a>
+                                
+                            @else
+                                <a href="locale/us" class="dropdown-item {{ Session::get('locale') == 'us' ? 'active' : '' }}">
+                                    <i class="flag-icon flag-icon-us mr-2"></i> English
+                                </a>
+                            @endif
+
+                            <a href="locale/lv" class="dropdown-item {{ Session::get('locale') == 'lv' ? 'active' : '' }}">
+                                <i class="flag-icon flag-icon-lv mr-2"></i> Latvian
+                            </a>
+
+                            <a href="locale/ru" class="dropdown-item {{ Session::get('locale') == 'ru' ? 'active' : '' }}">
+                                <i class="flag-icon flag-icon-ru mr-2"></i> Russian
+                            </a>
+                        </div>
+                    </li>
+
                 </div>
             </div>
         </nav>
