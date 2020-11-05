@@ -43,30 +43,35 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Middle Of Navbar -->
                     <ul class="navbar-nav Sections mx-auto justify-content-center">
+                        {{-- Home --}}
                         <li class="nav-item {{ Request::path() == '/' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('/') }}">
                                 @lang('Home')
                             </a>
                         </li>
 
+                        {{-- Features --}}
                         <li class="nav-item {{ Request::path() == 'features' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('/features') }}">
                                 @lang('Features')
                             </a>
                         </li>
 
+                        {{-- Pricing --}}
                         <li class="nav-item {{ Request::path() == 'pricing' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('/pricing') }}">
                                 @lang('Pricing')
                             </a>
                         </li>
 
+                        {{-- FAQ --}}
                         <li class="nav-item {{ Request::path() == 'faq' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('/faq') }}">
                                 @lang('FAQ')
                             </a>
                         </li>
 
+                        {{-- Contacts --}}
                         <li class="nav-item {{ Request::path() == 'contacts' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('/contacts') }}">
                                 @lang('Contacts')
@@ -151,7 +156,6 @@
 
                         {{-- Languages --}}
                         <div class="dropdown-menu dropdown-menu-right p-0">
-
                             @if (Session::get('locale') == '')
                                 <a href="locale/us" class="dropdown-item {{ Session::get('locale') == '' ? 'active' : '' }}">
                                     <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
