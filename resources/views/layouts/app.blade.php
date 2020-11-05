@@ -44,19 +44,33 @@
                     <!-- Middle Of Navbar -->
                     <ul class="navbar-nav Sections mx-auto justify-content-center">
                         <li class="nav-item {{ Request::path() == '/' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
+                            <a class="nav-link" href="{{ url('/') }}">
+                                @lang('Home')
+                            </a>
                         </li>
+
                         <li class="nav-item {{ Request::path() == 'features' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/features') }}">{{ __('Features') }}</a>
+                            <a class="nav-link" href="{{ url('/features') }}">
+                                @lang('Features')
+                            </a>
                         </li>
+
                         <li class="nav-item {{ Request::path() == 'pricing' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/pricing') }}">{{ __('Pricing') }}</a>
+                            <a class="nav-link" href="{{ url('/pricing') }}">
+                                @lang('Pricing')
+                            </a>
                         </li>
+
                         <li class="nav-item {{ Request::path() == 'faq' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/faq') }}">{{ __('FAQ') }}</a>
+                            <a class="nav-link" href="{{ url('/faq') }}">
+                                @lang('FAQ')
+                            </a>
                         </li>
+
                         <li class="nav-item {{ Request::path() == 'contacts' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/contacts') }}">{{ __('Contacts') }}</a>
+                            <a class="nav-link" href="{{ url('/contacts') }}">
+                                @lang('Contacts')
+                            </a>
                         </li>
                     </ul>
 
@@ -65,11 +79,16 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item Login">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Log in') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">
+                                    @lang('Log in')
+                                </a>
                             </li>
+
                             @if (Route::has('register'))
                                 <li class="nav-item Register">
-                                    <a class="nav-link btn btn-orange" href="{{ route('register') }}">{{ __('Sign up') }}</a>
+                                    <a class="nav-link btn btn-orange" href="{{ route('register') }}">
+                                        @lang('Sign up')
+                                    </a>
                                 </li>
                             @endif
                         @else
@@ -82,21 +101,21 @@
                                     {{-- Admin dashboard--}}
                                     @if (Laratrust::hasRole('admin'))
                                         <a class="dropdown-item" href="{{ url('/admin/dashboard') }}">
-                                            {{ __('Dashboard') }}
+                                            @lang('Dashboard')
                                         </a>
                                     @endif
 
                                     {{-- User Free dashboard--}}
                                     @if (Laratrust::hasRole('userFree'))
                                         <a class="dropdown-item" href="{{ url('/dashboard') }}">
-                                            {{ __('Dashboard') }}
+                                            @lang('Dashboard')
                                         </a>
                                     @endif
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        @lang('Logout')
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -121,22 +140,23 @@
                 <div class="row">
                     <div class="col-lg-5 col-xs-12 about-company">
                         <h2>WEBcheck</h2>
-                        <p class="pr-5 text-white-50">Monitoring services that allows you to check about
-                            your website statistics - Ping, Port, Response time, SSL Certification Check and much more
+                        <p class="pr-5 text-white-50">@lang('Monitoring services that allows you to check about your website statistics - Ping, Port, Response time, SSL Certification Check and much more')
                         </p>
                     </div>
                     <div class="col-lg-3 col-xs-12 links">
-                        <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+                        <h4 class="mt-lg-0 mt-sm-3">
+                            @lang('Links')
+                        </h4>
                         <ul class="m-0 p-0">
-                            <li>- <a href="/">Home</a></li>
-                            <li>- <a href="/features">Features</a></li>
-                            <li>- <a href="/pricing">Pricing</a></li>
-                            <li>- <a href="/faq">FAQ</a></li>
-                            <li>- <a href="/contacts">Contacts</a></li>
+                            <li>- <a href="/">@lang('Home')</a></li>
+                            <li>- <a href="/features">@lang('Features')</a></li>
+                            <li>- <a href="/pricing">@lang('Pricing')</a></li>
+                            <li>- <a href="/faq">@lang('FAQ')</a></li>
+                            <li>- <a href="/contacts">@lang('Contacts')</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-xs-12 location">
-                        <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+                        <h4 class="mt-lg-0 mt-sm-4">@lang('Location')</h4>
                         <p>Krišjāņa Valdemāra iela 1C, Centra rajons, Rīga, LV-1010</p>
                         <p class="mb-0"><i class="fa fa-phone mr-3"></i>+371 22222222</p>
                         <p><i class="fa fa-envelope-o mr-3"></i>webcheck@gmail.com</p>
@@ -144,7 +164,7 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col copyright">
-                        <p class=""><small class="text-white-50">© 2020. All Rights Reserved.</small></p>
+                        <p class=""><small class="text-white-50">@lang('© 2020. All Rights Reserved.')</small></p>
                     </div>
                 </div>
             </div>

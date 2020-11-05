@@ -34,7 +34,7 @@
     "Create": "Izveidot",
     "Created.": "Izveidots.",
     "Current Password": "Pašreizējā parole",
-    "Dashboard": "Mērinstrumentu panelis",
+    "Dashboard": "Panelis",
     "Delete Account": "Dzēst kontu",
     "Delete API Token": "Dzēst API tokenu",
     "Delete Team": "Dzēst komandu",
@@ -171,5 +171,21 @@
     "You may delete any of your existing tokens if they are no longer needed.": "Jūs varat izdzēst jebkuru no esošajiem marķieriem, ja tie vairs nav vajadzīgi.",
     "You may not delete your personal team.": "Jūs nedrīkstat izdzēst savu personīgo komandu.",
     "You may not leave a team that you created.": "Jūs nevarat pamest izveidoto komandu.",
-    "Your email address is not verified.": "Jūsu e-pasta adrese nav pārbaudīta."
+    "Your email address is not verified.": "Jūsu e-pasta adrese nav pārbaudīta.",
+
+    "Home": "Sākums",
+    "Features": "Funkcijas",
+    "Pricing": "Cenas",
+    "FAQ": "Jautājumi",
+    "Contacts": "Kontakti",
+    "Log in": "Pieslēgties",
+    "Sign up": "Pierakstīties",
+
+    "Links": "Saites",
+    "Location": "Atrašanās vieta",
+    "© 2020. All Rights Reserved.": "© 2020. Visas tiesības aizsargātas.",
+
+    "BE UPTIME WITH WEBCHECK": "PAVADĪT LAIKU AR WEBCHECK",
+    "Monitoring services that allows you to check about your website statistics - Ping, Port, Response time, SSL Certification Check and much more": "Monitoringa pakalpojumi, kas ļauj pārbaudīt jūsu vietnes statistika - ping, ports, atbildes laiks, SSL sertifikācijas pārbaude un daudz kas cits",
+    "Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more": "Monitoringa pakalpojumi, kas ļauj <br> pārbaudīt jūsu vietnes statistiku - <br> Ping, ports, atbildes laiks, SSL <br> sertifikāta pārbaude un vēl daudz vairāk"
 }

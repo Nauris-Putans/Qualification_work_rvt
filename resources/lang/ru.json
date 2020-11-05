@@ -181,5 +181,21 @@
     "You may delete any of your existing tokens if they are no longer needed.": "Вы можете удалить любой из имеющихся у Вас токенов, если они больше не нужны.",
     "You may not delete your personal team.": "Вы не можете удалить свою команду.",
     "You may not leave a team that you created.": "Вы не можете покидать созданную Вами команду.",
-    "Your email address is not verified.": "Ваш email адрес не подтвержден."
+    "Your email address is not verified.": "Ваш email адрес не подтвержден.",
+
+    "Home": "Дом",
+    "Features": "Характеристики",
+    "Pricing": "Цены",
+    "FAQ": "Вопросы",
+    "Contacts": "Kонтакты",
+    "Log in": "Aвторизоваться",
+    "Sign up": "Подписаться",
+
+    "Links": "Ссылки",
+    "Location": "Место расположения",
+    "© 2020. All Rights Reserved.": "© 2020. Все права защищены.",
+
+    "BE UPTIME WITH WEBCHECK": "ПОЛУЧИТЕ ВРЕМЯ С WEBCHECK",
+    "Monitoring services that allows you to check about your website statistics - Ping, Port, Response time, SSL Certification Check and much more": "Сервисы мониторинга, позволяющие узнать о статистика вашего сайта - пинг, порт, время отклика, проверка сертификата SSL и многое другое",
+    "Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more": "Службы мониторинга, которые позволяют вам <br> проверять статистику вашего веб-сайта - <br> Ping, порт, время отклика, SSL <br> Проверка сертификата и многое другое."
 }
