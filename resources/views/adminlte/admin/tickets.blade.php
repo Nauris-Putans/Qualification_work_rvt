@@ -2,7 +2,7 @@
 @section('title', 'Tickets')
 
 @section('content_header')
-    <h1>Tickets</h1>
+    <h1>@lang('Tickets')</h1>
 @stop
 
 @section('content')

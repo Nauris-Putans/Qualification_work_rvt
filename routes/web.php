@@ -15,27 +15,27 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-// This link will add session of language when they click to change language
-Route::get('locale/{locale}', function ($locale) {
-   Session::put('locale', $locale);
-   return redirect()->back();
-});
-
 // Home section
-Route::get('/', 'Pages\HomeController@index');
+Route::get('/', 'Pages\HomeController@index')->name('home');
 
 // Features section
-Route::get('/features', 'Pages\FeaturesController@index');
+Route::get('/features', 'Pages\FeaturesController@index')->name('features');
 
 // Pricing section
-Route::get('/pricing', 'Pages\PricingController@index');
+Route::get('/pricing', 'Pages\PricingController@index')->name('pricing');
 
 // FAQ section
-Route::get('/faq', 'Pages\FAQController@index');
+Route::get('/faq', 'Pages\FAQController@index')->name('faq');
 
 // Contacts sections
-Route::get('/contacts', 'Pages\ContactController@index');
-Route::post('/contacts/create', 'Pages\ContactController@store');
+Route::get('/contacts', 'Pages\ContactController@index')->name('contacts');
+Route::post('/contacts/create', 'Pages\ContactController@store')->name('contacts.create');
+
+// This link will add session of language when they click to change language
+Route::get('/{locale}', function ($locale) {
+    App::setLocale(Session::put('locale', $locale));
+    return redirect()->back();
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +82,6 @@ Route::group(['middleware' => ['role:userFree|userPro']], function()
     Route::get('/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@history');
     Route::get('/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@index');
     Route::get('/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@index');
-    Route::get('/monitoring/transaction', 'Adminlte\user_admin\monitoring\MonitoringTransactionController@index');
     Route::get('/monitoring/real-user-monitoring', 'Adminlte\user_admin\monitoring\MonitoringRealUserMonitoringController@index');
 
     // Alerts sections

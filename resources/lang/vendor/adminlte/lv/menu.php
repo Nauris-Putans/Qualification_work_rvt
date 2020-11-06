@@ -16,4 +16,18 @@ return [
     'important'                     => 'Svarīgs',
     'warning'                       => 'Brīdinājums',
     'information'                   => 'Informācija',
+
+    'Dashboard'                     => 'Panelis',
+    'Users'                         => 'Lietotāji',
+    'Team'                          => 'Komanda',
+    'Members'                       => 'Dalībnieki',
+    'Privileges'                    => 'Privilēģijas',
+    'Roles'                         => 'Lomas',
+    'Add Role'                      => 'Pievienot lomu',
+    'Assign Role'                   => 'Piešķirt lomu',
+    'Permissions'                   => 'Atļaujas',
+    'Assign Permission'             => 'Piešķirt atļauju',
+    'Tickets'                       => 'Biļetes',
+    'Settings'                      => 'Iestatījumi',
+    'Back'                          => 'Atgriezties',
 ];

@@ -16,4 +16,18 @@ return [
     'important'                     => 'Important',
     'warning'                       => 'Warning',
     'information'                   => 'Information',
+
+    'Dashboard'                     => 'Dashboard',
+    'Users'                         => 'Users',
+    'Team'                          => 'Team',
+    'Members'                       => 'Members',
+    'Privileges'                    => 'Privileges',
+    'Roles'                         => 'Roles',
+    'Add Role'                      => 'Add Role',
+    'Assign Role'                   => 'Assign Role',
+    'Permissions'                   => 'Permissions',
+    'Assign Permission'             => 'Assign Permission',
+    'Tickets'                       => 'Tickets',
+    'Settings'                      => 'Settings',
+    'Back'                          => 'Back',
 ];

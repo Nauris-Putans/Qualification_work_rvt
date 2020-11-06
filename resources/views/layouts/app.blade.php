@@ -45,35 +45,35 @@
                     <ul class="navbar-nav Sections mx-auto justify-content-center">
                         {{-- Home --}}
                         <li class="nav-item {{ Request::path() == '/' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/') }}">
+                            <a class="nav-link" href="{{ route('home') }}">
                                 @lang('Home')
                             </a>
                         </li>
 
                         {{-- Features --}}
                         <li class="nav-item {{ Request::path() == 'features' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/features') }}">
+                            <a class="nav-link" href="{{ route('features') }}">
                                 @lang('Features')
                             </a>
                         </li>
 
                         {{-- Pricing --}}
                         <li class="nav-item {{ Request::path() == 'pricing' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/pricing') }}">
+                            <a class="nav-link" href="{{ route('pricing') }}">
                                 @lang('Pricing')
                             </a>
                         </li>
 
                         {{-- FAQ --}}
                         <li class="nav-item {{ Request::path() == 'faq' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/faq') }}">
+                            <a class="nav-link" href="{{ route('faq') }}">
                                 @lang('FAQ')
                             </a>
                         </li>
 
                         {{-- Contacts --}}
                         <li class="nav-item {{ Request::path() == 'contacts' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/contacts') }}">
+                            <a class="nav-link" href="{{ route('contacts') }}">
                                 @lang('Contacts')
                             </a>
                         </li>
@@ -133,17 +133,17 @@
 
                     <!-- Language Dropdown Menu -->
                     <li class="nav-item dropdown Language">
-                        @if (Session::get('locale') == 'us')
+                        @if (App::getLocale() == 'en')
                             <a class="nav-link" data-toggle="dropdown" href="#">
                                 <span class="flag-icon flag-icon-us"></span>
                             </a>
 
-                        @elseif (Session::get('locale') == 'lv')
+                        @elseif (App::getLocale() == 'lv')
                             <a class="nav-link" data-toggle="dropdown" href="#">
                                 <span class="flag-icon flag-icon-lv"></span>
                             </a>
 
-                        @elseif (Session::get('locale') == 'ru')
+                        @elseif (App::getLocale() == 'ru')
                             <a class="nav-link" data-toggle="dropdown" href="#">
                                 <span class="flag-icon flag-icon-ru"></span>
                             </a>
@@ -156,22 +156,22 @@
 
                         {{-- Languages --}}
                         <div class="dropdown-menu dropdown-menu-right p-0">
-                            @if (Session::get('locale') == '')
-                                <a href="locale/us" class="dropdown-item {{ Session::get('locale') == '' ? 'active' : '' }}">
+                            @if (App::getLocale() == '')
+                                <a href="en" class="dropdown-item {{ App::getLocale() == '' ? 'active' : '' }}">
                                     <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
                                 </a>
 
                             @else
-                                <a href="locale/us" class="dropdown-item {{ Session::get('locale') == 'us' ? 'active' : '' }}">
+                                <a href="en" class="dropdown-item {{ App::getLocale() == 'en' ? 'active' : '' }}">
                                     <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
                                 </a>
                             @endif
 
-                            <a href="locale/lv" class="dropdown-item {{ Session::get('locale') == 'lv' ? 'active' : '' }}">
+                            <a href="lv" class="dropdown-item {{ App::getLocale() == 'lv' ? 'active' : '' }}">
                                 <i class="flag-icon flag-icon-lv mr-2"></i> @lang('Latvian')
                             </a>
 
-                            <a href="locale/ru" class="dropdown-item {{ Session::get('locale') == 'ru' ? 'active' : '' }}">
+                            <a href="ru" class="dropdown-item {{ App::getLocale() == 'ru' ? 'active' : '' }}">
                                 <i class="flag-icon flag-icon-ru mr-2"></i> @lang('Russian')
                             </a>
                         </div>

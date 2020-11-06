@@ -235,7 +235,7 @@ return [
         // User admin free
         //
         [
-            'text' => 'Dashboard' ,
+            'text' => 'Dashboard',
             'icon' => 'fas fa-tachometer-alt',
             'classes' => 'text-bold',
             'url' => '/dashboard',
@@ -344,7 +344,7 @@ return [
         // Admin
         //
         [
-            'text' => 'Dashboard' ,
+            'text' => 'Dashboard',
             'icon' => 'fas fa-tachometer-alt',
             'classes' => 'text-bold',
             'url' => '/admin/dashboard',

@@ -16,4 +16,18 @@ return [
     'important'                     => 'Важно',
     'warning'                       => 'Внимание',
     'information'                   => 'Информация',
+
+    'Dashboard'                     => 'Щиток приборов',
+    'Users'                         => 'Пользователи',
+    'Team'                          => 'Команда',
+    'Members'                       => 'Члены',
+    'Privileges'                    => 'Привилегии',
+    'Roles'                         => 'Роли',
+    'Add Role'                      => 'Добавить роль',
+    'Assign Role'                   => 'Назначить роль',
+    'Permissions'                   => 'Разрешения',
+    'Assign Permission'             => 'Назначить разрешение',
+    'Tickets'                       => 'Билеты',
+    'Settings'                      => 'Настройки',
+    'Back'                          => 'Назад',
 ];
