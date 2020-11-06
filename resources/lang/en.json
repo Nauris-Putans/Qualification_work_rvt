@@ -191,5 +191,17 @@
 
     "BE UPTIME WITH WEBCHECK": "BE UPTIME WITH WEBCHECK",
     "Monitoring services that allows you to check about your website statistics - Ping, Port, Response time, SSL Certification Check and much more": "Monitoring services that allows you to check about your website statistics - Ping, Port, Response time, SSL Certification Check and much more",
-    "Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more": "Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more"
+    "Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more": "Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more",
+
+    "Users":                          "Users",
+    "Team":                           "Team",
+    "Members":                        "Members",
+    "Privileges":                     "Privileges",
+    "Roles":                          "Roles",
+    "Add Role":                       "Add Role",
+    "Assign Role":                    "Assign Role",
+    "Assign Permission":              "Assign Permission",
+    "Tickets":                        "Tickets",
+    "Settings":                       "Settings",
+    "Back":                           "Back"
 }

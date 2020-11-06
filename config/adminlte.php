@@ -188,7 +188,7 @@ return [
 
     'use_route_url' => false,
 
-    'dashboard_url' => '/dashboard',
+    'dashboard_url' => false,
 
     'logout_url' => 'logout',
 
@@ -238,7 +238,7 @@ return [
             'text' => 'Dashboard',
             'icon' => 'fas fa-tachometer-alt',
             'classes' => 'text-bold',
-            'url' => '/dashboard',
+            'url' => '/user/dashboard',
             'role' => 'userFree',
         ],
         [
@@ -254,13 +254,13 @@ return [
                         [
                             'text' => 'Monitor List',
                             'icon' => 'fas fa-history',
-                            'url' => '/monitoring/monitors/list',
+                            'url' => '/user/monitoring/monitors/list',
                             'role' => 'userFree',
                         ],
                         [
                             'text' => 'Add Monitor',
                             'icon' => 'fas fa-plus',
-                            'url' => '/monitoring/monitors/add',
+                            'url' => '/user/monitoring/monitors/add',
                             'role' => 'userFree',
                         ],
                     ]
@@ -268,19 +268,19 @@ return [
                 [
                     'text' => 'Uptime',
                     'icon' => 'fas fa-eye',
-                    'url' => '/monitoring/uptime',
+                    'url' => '/user/monitoring/uptime',
                     'role' => 'userFree',
                 ],
                 [
                     'text' => 'Page Speed',
                     'icon' => 'fas fa-stopwatch',
-                    'url' => '/monitoring/page-speed',
+                    'url' => '/user/monitoring/page-speed',
                     'role' => 'userFree',
                 ],
                 [
                     'text' => 'Real User Monitoring',
                     'icon' => 'fas fa-users',
-                    'url' => '/monitoring/real-user-monitoring',
+                    'url' => '/user/monitoring/real-user-monitoring',
                     'role' => 'userFree',
                 ],
             ]
@@ -289,21 +289,21 @@ return [
             'text' => 'Alerts',
             'icon' => 'fas fa-bell',
             'classes' => 'text-bold',
-            'url' => '/alerts',
+            'url' => '/user/alerts',
             'role' => 'userFree',
         ],
         [
             'text' => 'Settings',
             'icon' => 'fas fa-cog',
             'classes' => 'text-bold',
-            'url' => '/settings',
+            'url' => '/user/settings',
             'role' => 'userFree',
         ],
         [
             'text' => 'Support',
             'icon' => 'fas fa-question-circle',
             'classes' => 'text-bold',
-            'url' => '/support',
+            'url' => '/user/support',
             'role' => 'userFree',
         ],
         [

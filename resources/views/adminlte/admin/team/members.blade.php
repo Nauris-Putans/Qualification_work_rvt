@@ -2,7 +2,15 @@
 @section('title', 'Members')
 
 @section('content_header')
-    <h1>Team > Members</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>@lang('Team')</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@lang('Members')</li>
+        </ol>
+    </nav>
+
+    <br>
+    <h1>@lang('Members')</h1>
 @stop
 
 @section('content')

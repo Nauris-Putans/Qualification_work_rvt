@@ -68,28 +68,38 @@ Route::group(['middleware' => ['role:admin']], function()
 
     // Settings section
     Route::get('/admin/settings', 'Adminlte\admin\SettingsAdminController@index');
+
+    Route::get('/admin/{locale}', function ($locale) {
+        App::setLocale(Session::put('locale', $locale));
+        return redirect()->back();
+    });
 });
 
 // Role - User Admin (free)
 Route::group(['middleware' => ['role:userFree|userPro']], function()
 {
     // Dashboard section
-    Route::get('/dashboard', 'Adminlte\ZabbixController@historyGet')->name('admin.user_admin.index');
+    Route::get('/user/dashboard', 'Adminlte\ZabbixController@historyGet')->name('admin.user_admin.index');
 
     // Monitoring sections
-    Route::get('/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@create');
-    Route::post('/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@store');
-    Route::get('/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@history');
-    Route::get('/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@index');
-    Route::get('/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@index');
-    Route::get('/monitoring/real-user-monitoring', 'Adminlte\user_admin\monitoring\MonitoringRealUserMonitoringController@index');
+    Route::get('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@create');
+    Route::post('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@store');
+    Route::get('/user/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@history');
+    Route::get('/user/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@index');
+    Route::get('/user/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@index');
+    Route::get('/user/monitoring/real-user-monitoring', 'Adminlte\user_admin\monitoring\MonitoringRealUserMonitoringController@index');
 
     // Alerts sections
-    Route::get('/alerts', 'Adminlte\user_admin\AlertsController@index');
+    Route::get('/user/alerts', 'Adminlte\user_admin\AlertsController@index');
 
     // Settings section
-    Route::get('/settings', 'Adminlte\user_admin\SettingController@index');
+    Route::get('/user/settings', 'Adminlte\user_admin\SettingController@index');
 
     // Support section
-    Route::get('/support', 'Adminlte\user_admin\SupportController@index');
+    Route::get('/user/support', 'Adminlte\user_admin\SupportController@index');
+
+    Route::get('/user/{locale}', function ($locale) {
+        App::setLocale(Session::put('locale', $locale));
+        return redirect()->back();
+    });
 });

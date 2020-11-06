@@ -24,35 +24,48 @@
 
         <!-- Language Dropdown Menu -->
         <li class="nav-item dropdown Language">
-            @if (Session::get('locale') == 'us')
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <span class="flag-icon flag-icon-us"></span>
-                </a>
-            @endif
+                @if (App::getLocale() == 'en')
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <span class="flag-icon flag-icon-us"></span>
+                    </a>
 
-            @if (Session::get('locale') == 'lv')
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <span class="flag-icon flag-icon-lv"></span>
-                </a>
-            @endif
+                @elseif (App::getLocale() == 'lv')
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <span class="flag-icon flag-icon-lv"></span>
+                    </a>
 
-            @if (Session::get('locale') == 'ru')
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <span class="flag-icon flag-icon-ru"></span>
-                </a>
-            @endif
+                @elseif (App::getLocale() == 'ru')
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <span class="flag-icon flag-icon-ru"></span>
+                    </a>
 
-            <div class="dropdown-menu dropdown-menu-right p-0">
-                <a href="locale/us" class="dropdown-item {{ Session::get('locale') == 'us' ? 'active' : '' }}">
-                    <i class="flag-icon flag-icon-us mr-2"></i> English
-                </a>
-                <a href="locale/lv" class="dropdown-item {{ Session::get('locale') == 'lv' ? 'active' : '' }}">
-                    <i class="flag-icon flag-icon-lv mr-2"></i> Latvian
-                </a>
-                <a href="locale/ru" class="dropdown-item {{ Session::get('locale') == 'ru' ? 'active' : '' }}">
-                    <i class="flag-icon flag-icon-ru mr-2"></i> Russian
-                </a>
-            </div>
+                @else
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <span class="flag-icon flag-icon-us"></span>
+                    </a>
+                @endif
+
+                {{-- Languages --}}
+                <div class="dropdown-menu dropdown-menu-right p-0">
+                    @if (App::getLocale() == '')
+                        <a href="en" class="dropdown-item {{ App::getLocale() == '' ? 'active' : '' }}">
+                            <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
+                        </a>
+
+                    @else
+                        <a href="en" class="dropdown-item {{ App::getLocale() == 'en' ? 'active' : '' }}">
+                            <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
+                        </a>
+                    @endif
+
+                    <a href="lv" class="dropdown-item {{ App::getLocale() == 'lv' ? 'active' : '' }}">
+                        <i class="flag-icon flag-icon-lv mr-2"></i> @lang('Latvian')
+                    </a>
+
+                    <a href="ru" class="dropdown-item {{ App::getLocale() == 'ru' ? 'active' : '' }}">
+                        <i class="flag-icon flag-icon-ru mr-2"></i> @lang('Russian')
+                    </a>
+                </div>
         </li>
 
         {{-- User menu link --}}

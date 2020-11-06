@@ -112,7 +112,7 @@
 
                                     {{-- User Free dashboard--}}
                                     @if (Laratrust::hasRole('userFree'))
-                                        <a class="dropdown-item" href="{{ url('/dashboard') }}">
+                                        <a class="dropdown-item" href="{{ url('/user/dashboard') }}">
                                             @lang('Dashboard')
                                         </a>
                                     @endif

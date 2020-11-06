@@ -191,5 +191,17 @@
 
     "BE UPTIME WITH WEBCHECK": "PAVADĪT LAIKU AR WEBCHECK",
     "Monitoring services that allows you to check about your website statistics - Ping, Port, Response time, SSL Certification Check and much more": "Monitoringa pakalpojumi, kas ļauj pārbaudīt jūsu vietnes statistika - ping, ports, atbildes laiks, SSL sertifikācijas pārbaude un daudz kas cits",
-    "Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more": "Monitoringa pakalpojumi, kas ļauj <br> pārbaudīt jūsu vietnes statistiku - <br> Ping, ports, atbildes laiks, SSL <br> sertifikāta pārbaude un vēl daudz vairāk"
+    "Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more": "Monitoringa pakalpojumi, kas ļauj <br> pārbaudīt jūsu vietnes statistiku - <br> Ping, ports, atbildes laiks, SSL <br> sertifikāta pārbaude un vēl daudz vairāk",
+
+    "Users":                          "Lietotāji",
+    "Team":                           "Komanda",
+    "Members":                        "Dalībnieki",
+    "Privileges":                     "Privilēģijas",
+    "Roles":                          "Lomas",
+    "Add Role":                       "Pievienot lomu",
+    "Assign Role":                    "Piešķirt lomu",
+    "Assign Permission":              "Piešķirt atļauju",
+    "Tickets":                        "Biļetes",
+    "Settings":                       "Iestatījumi",
+    "Back":                           "Atgriezties"
 }
