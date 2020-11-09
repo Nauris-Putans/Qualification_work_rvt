@@ -203,5 +203,9 @@
     "Assign Permission":              "Assign Permission",
     "Tickets":                        "Tickets",
     "Settings":                       "Settings",
-    "Back":                           "Back"
+    "Back":                           "Back",
+
+    "Role name *":                    "Role name *",
+    "Role display name (optional)":   "Role display name (optional)",
+    "Role description (optional)":    "Role description (optional)"
 }

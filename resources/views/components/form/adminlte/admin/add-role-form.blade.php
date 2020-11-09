@@ -1,4 +1,3 @@
-<x-alertAdmin />
 <div class="boxed">
     <div class="input-info text-dark">
         <div spellcheck="false" class="form justify-content-center">
@@ -6,10 +5,10 @@
                 @csrf
 
                 {{-- Role name input--}}
-                <div class="col-md-2 mt-3">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>
-                            {{__('Role name *')}}
+                            @lang('Role name *')
                         </label>
                         <input
                             name="roleName"
@@ -19,10 +18,10 @@
                 </div>
 
                 {{-- Role display name input--}}
-                <div class="col-md-4 mt-3">
+                <div class="col-md-12 mt-3">
                     <div class="form-group">
                         <label>
-                            {{__('Role display name (optional)')}}
+                            @lang('Role display name (optional)')
                         </label>
                         <input
                             name="roleDisplayName"
@@ -32,10 +31,10 @@
                 </div>
 
                 {{-- Role desc input--}}
-                <div class="col-md-4 mt-3">
+                <div class="col-md-12 mt-3">
                     <div class="form-group">
                         <label>
-                            {{__('Role description (optional)')}}
+                            @lang('Role description (optional)')
                         </label>
                         <input
                             name="roleDesc"
@@ -49,8 +48,8 @@
                     <input
                         name="addRole"
                         type="submit"
-                        class="btn btn-primary mt-2"
-                        value="{{__('Add role')}}"
+                        class="btn btn-success mt-2"
+                        value="@lang('Add Role')"
                     />
                 </div>
             </form>

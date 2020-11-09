@@ -203,5 +203,9 @@
     "Assign Permission":              "Piešķirt atļauju",
     "Tickets":                        "Biļetes",
     "Settings":                       "Iestatījumi",
-    "Back":                           "Atgriezties"
+    "Back":                           "Atgriezties",
+
+    "Role name *":                    "Lomas nosaukums *",
+    "Role display name (optional)":   "Lomas parādāmais nosaukums (neobligāti)",
+    "Role description (optional)":    "Lomas apraksts (neobligāti)"
 }

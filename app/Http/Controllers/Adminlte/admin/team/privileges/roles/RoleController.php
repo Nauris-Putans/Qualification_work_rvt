@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Adminlte\admin\team\privileges\roles;
 
 use App\Http\Requests\RoleAddRequest;
+use App\Permission;
 use \App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
@@ -18,7 +19,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('adminlte.admin.team.privileges.roles.add-role');
+        $permissions = Permission::all();
+
+        return view('adminlte.admin.team.privileges.roles.add-role', compact( 'permissions'));
     }
 
     /**

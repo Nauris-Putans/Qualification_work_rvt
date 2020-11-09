@@ -213,5 +213,9 @@
     "Assign Permission":              "Назначить разрешение",
     "Tickets":                        "Билеты",
     "Settings":                       "Настройки",
-    "Back":                           "Назад"
+    "Back":                           "Назад",
+
+    "Role name *":                    "Название роли *",
+    "Role display name (optional)":   "Отображаемое имя роли (необязательно)",
+    "Role description (optional)":    "Описание роли (необязательно)"
 }
