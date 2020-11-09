@@ -33,7 +33,7 @@ Route::post('/contacts/create', 'Pages\ContactController@store')->name('contacts
 
 // This link will add session of language when they click to change language
 Route::get('/{locale}', function ($locale) {
-    App::setLocale(Session::put('locale', $locale));
+    Session::put('locale', $locale);
     return redirect()->back();
 });
 
