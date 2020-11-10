@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -108,10 +109,9 @@
                                         <a class="dropdown-item" href="{{ url('/admin/dashboard') }}">
                                             @lang('Dashboard')
                                         </a>
-                                    @endif
 
                                     {{-- User Free dashboard--}}
-                                    @if (Laratrust::hasRole('userFree'))
+                                    @elseif (Laratrust::hasRole('userFree'))
                                         <a class="dropdown-item" href="{{ url('/user/dashboard') }}">
                                             @lang('Dashboard')
                                         </a>

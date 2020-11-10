@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// This link will add session of language when they click to change language
 Auth::routes();
 
 // Home section
@@ -30,12 +30,6 @@ Route::get('/faq', 'Pages\FAQController@index')->name('faq');
 // Contacts sections
 Route::get('/contacts', 'Pages\ContactController@index')->name('contacts');
 Route::post('/contacts/create', 'Pages\ContactController@store')->name('contacts.create');
-
-// This link will add session of language when they click to change language
-Route::get('/{locale}', function ($locale) {
-    Session::put('locale', $locale);
-    return redirect()->back();
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -102,4 +96,9 @@ Route::group(['middleware' => ['role:userFree|userPro']], function()
         App::setLocale(Session::put('locale', $locale));
         return redirect()->back();
     });
+});
+
+Route::get('/{locale}', function ($locale) {
+    App::setLocale(Session::put('locale', $locale));
+    return redirect()->back();
 });

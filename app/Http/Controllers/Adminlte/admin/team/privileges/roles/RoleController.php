@@ -31,11 +31,14 @@ class RoleController extends Controller
     public function store(RoleAddRequest $request)
     {
         // Creates new role and stores it in database
-        Role::create([
+        $role = Role::create([
             'name' => $request->roleName,
             'display_name' => $request->roleDisplayName,
             'description' => $request->roleDesc,
         ]);
+
+        // Adds selected permissions to role
+        $role->syncPermissions($request->permissions ?? []);
 
         return redirect()->back()->with('message', 'Role - ' .$request->roleName. ' has been added!');
     }
