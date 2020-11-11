@@ -40,6 +40,6 @@ class RoleController extends Controller
         // Adds selected permissions to role
         $role->syncPermissions($request->permissions ?? []);
 
-        return redirect()->back()->with('message', 'Role - ' .$request->roleName. ' has been added!');
+        return redirect()->back()->with('message', __('Role - ') .$request->roleName. __(' has been added!'));
     }
 }

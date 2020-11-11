@@ -123,3 +123,7 @@
         --s: 0.5;
     }
 }
+
+.TableStyle {
+    width:100% !important;
+}
