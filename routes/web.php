@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// This link will add session of language when they click to change language
 Auth::routes();
 
 // Home section
@@ -30,7 +29,6 @@ Route::get('/faq', 'Pages\FAQController@index')->name('faq');
 // Contacts sections
 Route::get('/contacts', 'Pages\ContactController@index')->name('contacts');
 Route::post('/contacts/create', 'Pages\ContactController@store')->name('contacts.create');
-
 /*
 |--------------------------------------------------------------------------
 | Adminlte
@@ -63,10 +61,8 @@ Route::group(['middleware' => ['role:admin']], function()
     // Settings section
     Route::get('/admin/settings', 'Adminlte\admin\SettingsAdminController@index');
 
-    Route::get('/admin/{locale}', function ($locale) {
-        App::setLocale(Session::put('locale', $locale));
-        return redirect()->back();
-    });
+    // This link will add session of language when they click to change language
+    Route::get('admin/lang/{locale}', 'LocalizationController@index');
 });
 
 // Role - User Admin (free)
@@ -92,13 +88,9 @@ Route::group(['middleware' => ['role:userFree|userPro']], function()
     // Support section
     Route::get('/user/support', 'Adminlte\user_admin\SupportController@index');
 
-    Route::get('/user/{locale}', function ($locale) {
-        App::setLocale(Session::put('locale', $locale));
-        return redirect()->back();
-    });
+    // This link will add session of language when they click to change language
+    Route::get('user/lang/{locale}', 'LocalizationController@index');
 });
 
-Route::get('/{locale}', function ($locale) {
-    App::setLocale(Session::put('locale', $locale));
-    return redirect()->back();
-});
+// This link will add session of language when they click to change language
+Route::get('lang/{locale}', 'LocalizationController@index');

@@ -24,48 +24,48 @@
 
         <!-- Language Dropdown Menu -->
         <li class="nav-item dropdown Language">
-                @if (App::getLocale() == 'en')
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <span class="flag-icon flag-icon-us"></span>
-                    </a>
+            @if (App::isLocale('en'))
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <span class="flag-icon flag-icon-us"></span>
+                </a>
 
-                @elseif (App::getLocale() == 'lv')
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <span class="flag-icon flag-icon-lv"></span>
-                    </a>
+            @elseif (App::isLocale('lv'))
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <span class="flag-icon flag-icon-lv"></span>
+                </a>
 
-                @elseif (App::getLocale() == 'ru')
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <span class="flag-icon flag-icon-ru"></span>
+            @elseif (App::isLocale('ru'))
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <span class="flag-icon flag-icon-ru"></span>
+                </a>
+
+            @else
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <span class="flag-icon flag-icon-us"></span>
+                </a>
+            @endif
+
+            {{-- Languages --}}
+            <div class="dropdown-menu dropdown-menu-right p-0">
+                @if (App::isLocale(''))
+                    <a href="lang/en" class="dropdown-item {{ App::isLocale('') ? 'active' : '' }}">
+                        <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
                     </a>
 
                 @else
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <span class="flag-icon flag-icon-us"></span>
+                    <a href="lang/en" class="dropdown-item {{ App::isLocale('en') ? 'active' : '' }}">
+                        <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
                     </a>
                 @endif
 
-                {{-- Languages --}}
-                <div class="dropdown-menu dropdown-menu-right p-0">
-                    @if (App::getLocale() == '')
-                        <a href="en" class="dropdown-item {{ App::getLocale() == '' ? 'active' : '' }}">
-                            <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
-                        </a>
+                <a href="lang/lv" class="dropdown-item {{ App::isLocale('lv') ? 'active' : '' }}">
+                    <i class="flag-icon flag-icon-lv mr-2"></i> @lang('Latvian')
+                </a>
 
-                    @else
-                        <a href="en" class="dropdown-item {{ App::getLocale() == 'en' ? 'active' : '' }}">
-                            <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
-                        </a>
-                    @endif
-
-                    <a href="lv" class="dropdown-item {{ App::getLocale() == 'lv' ? 'active' : '' }}">
-                        <i class="flag-icon flag-icon-lv mr-2"></i> @lang('Latvian')
-                    </a>
-
-                    <a href="ru" class="dropdown-item {{ App::getLocale() == 'ru' ? 'active' : '' }}">
-                        <i class="flag-icon flag-icon-ru mr-2"></i> @lang('Russian')
-                    </a>
-                </div>
+                <a href="lang/ru" class="dropdown-item {{ App::isLocale('ru') ? 'active' : '' }}">
+                    <i class="flag-icon flag-icon-ru mr-2"></i> @lang('Russian')
+                </a>
+            </div>
         </li>
 
         {{-- User menu link --}}

@@ -133,17 +133,17 @@
 
                     <!-- Language Dropdown Menu -->
                     <li class="nav-item dropdown Language">
-                        @if (App::getLocale() == 'en')
+                        @if (App::isLocale('en'))
                             <a class="nav-link" data-toggle="dropdown" href="#">
                                 <span class="flag-icon flag-icon-us"></span>
                             </a>
 
-                        @elseif (App::getLocale() == 'lv')
+                        @elseif (App::isLocale('lv'))
                             <a class="nav-link" data-toggle="dropdown" href="#">
                                 <span class="flag-icon flag-icon-lv"></span>
                             </a>
 
-                        @elseif (App::getLocale() == 'ru')
+                        @elseif (App::isLocale('ru'))
                             <a class="nav-link" data-toggle="dropdown" href="#">
                                 <span class="flag-icon flag-icon-ru"></span>
                             </a>
@@ -156,22 +156,22 @@
 
                         {{-- Languages --}}
                         <div class="dropdown-menu dropdown-menu-right p-0">
-                            @if (App::getLocale() == '')
-                                <a href="en" class="dropdown-item {{ App::getLocale() == '' ? 'active' : '' }}">
+                            @if (App::isLocale(''))
+                                <a href="lang/en" class="dropdown-item {{ App::isLocale('') ? 'active' : '' }}">
                                     <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
                                 </a>
 
                             @else
-                                <a href="en" class="dropdown-item {{ App::getLocale() == 'en' ? 'active' : '' }}">
+                                <a href="lang/en" class="dropdown-item {{ App::isLocale('en') ? 'active' : '' }}">
                                     <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
                                 </a>
                             @endif
 
-                            <a href="lv" class="dropdown-item {{ App::getLocale() == 'lv' ? 'active' : '' }}">
+                            <a href="lang/lv" class="dropdown-item {{ App::isLocale('lv') ? 'active' : '' }}">
                                 <i class="flag-icon flag-icon-lv mr-2"></i> @lang('Latvian')
                             </a>
 
-                            <a href="ru" class="dropdown-item {{ App::getLocale() == 'ru' ? 'active' : '' }}">
+                            <a href="lang/ru" class="dropdown-item {{ App::isLocale('ru') ? 'active' : '' }}">
                                 <i class="flag-icon flag-icon-ru mr-2"></i> @lang('Russian')
                             </a>
                         </div>
