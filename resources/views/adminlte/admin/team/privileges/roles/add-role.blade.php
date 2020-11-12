@@ -155,8 +155,7 @@
 @section('js')
     <script>
         // Check all checkboxes script
-        jQuery("#checkall").click(function ()
-        {
+        jQuery("#checkall").click(function () {
             if (jQuery("#checkall").is(':checked'))
             {
                 jQuery(".permissions").each(function ()
@@ -177,14 +176,12 @@
         //// Permissions table ////
 
         // Filter function
-        function filterColumn ( i )
-        {
+        function filterColumn ( i ) {
             jQuery('#permissions-table').DataTable().column( i ).search(jQuery('#col'+i+'_filter').val()).draw();
         }
 
         // Table
-        jQuery(document).ready(function()
-        {
+        jQuery(document).ready(function() {
             const table = jQuery('#permissions-table').DataTable(
             {
                 // Specific columns
@@ -409,8 +406,7 @@
         });
 
         // Filter script
-        jQuery('input.column_filter').on( 'keyup click', function ()
-        {
+        jQuery('input.column_filter').on( 'keyup click', function () {
             filterColumn( jQuery(this).parents('tr').attr('data-column') );
         });
     </script>

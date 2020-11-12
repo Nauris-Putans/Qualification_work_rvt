@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Adminlte\admin\team;
 
 use App\Models\Adminlte\admin\team\Member;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class MembersController extends Controller
@@ -19,7 +21,20 @@ class MembersController extends Controller
      */
     public function index()
     {
-        return view('adminlte.admin.team.members');
+        // Finds roles that are not equale to UserFree and UserPro
+        $tests = DB::table('role_user')->where([
+            ['role_id', '!=' , 2],
+            ['role_id', '!=' , 3],
+            ['role_id', '!=' , 4],
+        ])->get();
+
+        // Retrieves all of the values for a given key
+        $tests = $tests->pluck('user_id');
+
+        // Finds users that have role_id not equale to UserFree and UserPro
+        $users = User::find($tests);
+
+        return view('adminlte.admin.team.members', compact(  'users'));
     }
 
     /**
