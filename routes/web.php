@@ -63,10 +63,11 @@ Route::group(['middleware' => ['role:admin']], function()
 
     // This link will add session of language when they click to change language
     Route::get('admin/lang/{locale}', 'LocalizationController@index');
+    Route::get('admin/team/lang/{locale}', 'LocalizationController@index');
 });
 
 // Role - User Admin (free)
-Route::group(['middleware' => ['role:userFree|userPro']], function()
+Route::group(['middleware' => ['role:userFree|userPro|userWebmaster']], function()
 {
     // Dashboard section
     Route::get('/user/dashboard', 'Adminlte\ZabbixController@historyGet')->name('admin.user_admin.index');

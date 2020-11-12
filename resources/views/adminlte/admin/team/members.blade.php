@@ -25,6 +25,7 @@
                     {{-- Filter table --}}
                     <table class="table table-striped table-bordered dt-responsive nowrap filter-table mb-3 col-lg-6 col-md-6 col-sm-12" style="display: none">
                         <tbody>
+                        {{-- Column - ID --}}
                         <tr id="filter_col0" data-column="0">
                             <td>{{ __('Column - ID') }}</td>
                             <td align="center">
@@ -40,6 +41,7 @@
                                 </div>
                             </td>
                         </tr>
+                        {{-- Column - NAME --}}
                         <tr id="filter_col1" data-column="1">
                             <td>{{ __('Column - NAME') }}</td>
                             <td align="center">
@@ -55,6 +57,7 @@
                                 </div>
                             </td>
                         </tr>
+                        {{-- Column - E-MAIL --}}
                         <tr id="filter_col2" data-column="2">
                             <td>{{ __('Column - E-MAIL') }}</td>
                             <td align="center">

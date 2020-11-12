@@ -208,6 +208,7 @@
     "Role display name (optional)":   "Role display name (optional)",
     "Role description (optional)":    "Role description (optional)",
     "Assign Permissions to Role":     "Assign Permissions to Role",
+    "Members list":                   "Members list",
 
     "Display": "Display",
     "records per page": "records per page",
@@ -233,10 +234,12 @@
     "NAME": "NAME",
     "DISPLAY NAME": "DISPLAY NAME",
     "DESCRIPTION": "DESCRIPTION",
+    "E-MAIL": "E-MAIL",
     "Column - ID": "Column - ID",
     "Column - NAME": "Column - NAME",
     "Column - DISPLAY NAME": "Column - DISPLAY NAME",
     "Column - DESCRIPTION": "Column - DESCRIPTION",
+    "Column - E-MAIL": "Column - E-MAIL",
 
     "Role - ": "Role - ",
     " has been added!": " has been added!",
