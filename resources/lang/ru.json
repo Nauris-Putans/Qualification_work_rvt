@@ -219,6 +219,7 @@
     "Role description (optional)":    "Описание роли (необязательно)",
     "Assign Permissions to Role":     "Назначьте разрешения для роли",
     "Members list":                   "Список участников",
+    "Users list":                     "Список пользователей",
 
     "Display": "Показывать",
     "records per page": "записи на одной странице",
@@ -245,11 +246,13 @@
     "DISPLAY NAME": "ПОКАЗАТЬ ИМЯ",
     "DESCRIPTION": "ОПИСАНИЕ",
     "E-MAIL": "ЭЛ. ПОЧТА",
+    "PROFILE": "ПРОФИЛЬ",
     "Column - ID": "Столбец - ID",
     "Column - NAME": "Столбец - НАЗВАНИЕ",
     "Column - DISPLAY NAME": "Столбец - НАЗВАНИЕ ДИСПЛЕЯ",
     "Column - DESCRIPTION": "Колонка - ОПИСАНИЕ",
     "Column - E-MAIL": "Столбец - ЭЛ. ПОЧТА",
+    "View": "Посмотреть",
 
     "Role - ": "Праздничный день - ",
     " has been added!": " был добавлен!",

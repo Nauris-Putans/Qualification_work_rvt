@@ -83,6 +83,7 @@
                             <th scope="col">{{ __('ID') }}</th>
                             <th scope="col">{{ __('NAME') }}</th>
                             <th scope="col">{{ __('E-MAIL') }}</th>
+                            <th scope="col">{{ __('PROFILE') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -91,6 +92,9 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-info">{{ __('View') }}</button>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -120,7 +124,8 @@
                 {
                     // Specific columns
                     columnDefs: [
-                        { "width": "8%", "targets": 0 },
+                        { "orderable": false, "targets": 3 },
+                        { "width": "5%", "targets": [0, 3] },
                     ],
 
                     // Order by asc/desc

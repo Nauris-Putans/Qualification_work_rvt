@@ -21,17 +21,15 @@ class MembersController extends Controller
      */
     public function index()
     {
-        // Finds roles that are not equale to UserFree and UserPro
-        $tests = DB::table('role_user')->where([
-            ['role_id', '!=' , 2],
-            ['role_id', '!=' , 3],
-            ['role_id', '!=' , 4],
-        ])->get();
+        // Finds roles that are meant for admin side
+        $tests = DB::table('role_user')
+            ->where('role_id', '>' , 3)
+            ->get();
 
         // Retrieves all of the values for a given key
         $tests = $tests->pluck('user_id');
 
-        // Finds users that have role_id not equale to UserFree and UserPro
+        // Finds users that have role_id meant for admin side
         $users = User::find($tests);
 
         return view('adminlte.admin.team.members', compact(  'users'));

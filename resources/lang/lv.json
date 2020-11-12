@@ -209,6 +209,7 @@
     "Role description (optional)":    "Lomas apraksts (neobligāti)",
     "Assign Permissions to Role":     "Piešķirt atļaujas lomai",
     "Members list":                   "Dalībnieku saraksts",
+    "Users list":                     "Lietotāju saraksts",
 
     "Display": "Parādīt",
     "records per page": "ierakstus vienā lapā",
@@ -235,11 +236,13 @@
     "DISPLAY NAME": "PARĀDĀMAIS NOSAUKUMS",
     "DESCRIPTION": "APRAKSTS",
     "E-MAIL": "E-PASTS",
+    "PROFILE": "PROFILS",
     "Column - ID": "Kolonna - ID",
     "Column - NAME": "Kolonna - NOSAUKUMS",
     "Column - DISPLAY NAME": "Kolonna - PARĀDĀMAIS NOSAUKUMS",
     "Column - DESCRIPTION": "Kolonna - APRAKSTS",
     "Column - E-MAIL": "Kolonna - E-PASTS",
+    "View": "Apskatīt",
 
     "Role - ": "Loma - ",
     " has been added!": " ir pievienota!",

@@ -188,6 +188,7 @@
                 columnDefs: [
                     { "orderable": false, "targets": 0 },
                     { "width": "8%", "targets": 0 },
+                    { "width": "7%", "targets": 1 },
                 ],
 
                 // Order by asc/desc
