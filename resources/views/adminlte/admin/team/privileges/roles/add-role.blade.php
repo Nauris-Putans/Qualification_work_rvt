@@ -45,57 +45,65 @@
                     </div>
                     <div class="card-body">
                         {{-- Filter table --}}
-                        <table class="table table-striped table-bordered dt-responsive nowrap filter-table mb-3" style="width:50%; display: none">
+                        <table class="table table-striped table-bordered dt-responsive nowrap filter-table mb-3 col-lg-6 col-md-6 col-sm-12" style="display: none">
                             <tbody>
                                 <tr id="filter_col1" data-column="1">
                                     <td>{{ __('Column - ID') }}</td>
                                     <td align="center">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-search"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="column_filter form-control col-md-12" id="col1_filter">
                                             </div>
-                                            <input type="text" class="column_filter form-control form-control-sm" id="col1_filter">
                                         </div>
                                     </td>
                                 </tr>
                                 <tr id="filter_col2" data-column="2">
                                     <td>{{ __('Column - NAME') }}</td>
                                     <td align="center">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-search"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="column_filter form-control col-md-12" id="col2_filter">
                                             </div>
-                                            <input type="text" class="column_filter form-control form-control-sm" id="col2_filter">
                                         </div>
                                     </td>
                                 </tr>
                                 <tr id="filter_col3" data-column="3">
                                     <td>{{ __('Column - DISPLAY NAME') }}</td>
                                     <td align="center">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-search"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="column_filter form-control" id="col3_filter">
                                             </div>
-                                            <input type="text" class="column_filter form-control form-control-sm" id="col3_filter">
                                         </div>
                                     </td>
                                 </tr>
                                 <tr id="filter_col4" data-column="4">
                                     <td>{{ __('Column - DESCRIPTION') }}</td>
                                     <td align="center">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-search"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="column_filter form-control" id="col4_filter">
                                             </div>
-                                            <input type="text" class="column_filter form-control form-control-sm" id="col4_filter">
                                         </div>
                                     </td>
                                 </tr>
@@ -177,32 +185,32 @@
         // Table
         jQuery(document).ready(function()
         {
-            jQuery('#permissions-table').DataTable(
+            const table = jQuery('#permissions-table').DataTable(
             {
                 // Specific columns
-                "columnDefs":
-                [
+                columnDefs: [
                     { "orderable": false, "targets": 0 },
                     { "width": "8%", "targets": 0 },
                 ],
 
                 // Order by asc/desc
-                "order": [
+                order: [
                     [ 1, "asc" ]
                 ],
 
                 // Show entries length
-                "lengthMenu": [
+                lengthMenu: [
                     [10, 20, 30, -1],
                     [10, 20, 30, "All"]
                 ],
 
                 // Position of control elements
-                "dom":
+                dom:
+                    '<"col-lg-6 col-md-6 col-sm-12 mb-3 AdvanceFilter"Q>' +
+                    '<"col-lg-6 col-md-6 col-sm-12 mb-3"B>' +
                     '<"row"' +
-                    '<"col-sm-12 col-md-6"l>' +
-                    '<"col-sm-12 col-md-5"f>' +
-                    '<"col-sm-auto col-md-auto"B>' +
+                    '<"col-lg-6 col-md-6 col-sm-12"l>' +
+                    '<"col-lg-6 col-md-6 col-sm-12"f>' +
                     '>' +
                     't' +
                     '<"row"' +
@@ -212,8 +220,7 @@
                 ,
 
                 // Button - controler element
-                buttons:
-                [
+                buttons: [
                     {
                         text: '<?php echo __('Filter')?>',
                         className: 'btn btn-primary',
@@ -223,12 +230,150 @@
                         {
                             jQuery('.filter-table').fadeToggle();
                         }
+                    },
+                    {
+                        text: '<?php echo __('Advanced Filter')?>',
+                        className: 'btn btn-info',
+
+                        // Show/Hide toggle
+                        action: function ( e, dt, node, config )
+                        {
+                            jQuery('.AdvanceFilter').fadeToggle();
+                        }
                     }
                 ],
 
+                searchBuilder: {
+                    columns: [1,2,3,4],
+                    conditions: {
+                        "date":{
+                            '!=': {
+                                conditionName: "<?php echo __('Not')?>",
+                            },
+                            '!between': {
+                                conditionName: "<?php echo __('Not Between')?>",
+                            },
+                            '!null': {
+                                conditionName: "<?php echo __('Not Empty')?>",
+                            },
+                            '<': {
+                                conditionName: "<?php echo __('Before')?>",
+                            },
+                            '=': {
+                                conditionName: "<?php echo __('Equals')?>",
+                            },
+                            '>': {
+                                conditionName: "<?php echo __('After')?>",
+                            },
+                            'between': {
+                                conditionName: "<?php echo __('Between')?>",
+                            },
+                            'null': {
+                                conditionName: "<?php echo __('Empty')?>",
+                            },
+                        },
+                        "num":{
+                            '!=': {
+                                conditionName: "<?php echo __('Not')?>",
+                            },
+                            '!between': {
+                                conditionName: "<?php echo __('Not Between')?>",
+                            },
+                            '!null': {
+                                conditionName: "<?php echo __('Not Empty')?>",
+                            },
+                            '<': {
+                                conditionName: "<?php echo __('Less Than')?>",
+                            },
+                            '<=': {
+                                conditionName: "<?php echo __('Less Than Equal To')?>",
+                            },
+                            '=': {
+                                conditionName: "<?php echo __('Equals')?>",
+                            },
+                            '>': {
+                                conditionName: "<?php echo __('Greater Than')?>",
+                            },
+                            '>=': {
+                                conditionName: "<?php echo __('Greater Than Equal To')?>",
+                            },
+                            'multipleOf': {
+                                conditionName: "<?php echo __('Value + ')?>", // String value that will be displayed in the condition select element
+                                init: function (that, fn, preDefined = null) {
+                                    // Declare the input element and set the listener to trigger searching
+                                    const el =  jQuery('<input/>').on('input', function() { fn(that, this) });
+
+                                    // Add mechanism to apply preDefined values that may be passed in
+                                    if (preDefined !== null) {
+                                        jQuery(el).val(preDefined[0]);
+                                    }
+
+                                    return el;
+                                },
+                                inputValue: function (el) {
+                                    // Return the value within the input element
+                                    return jQuery(el[0]).val();
+                                },
+                                isInputValid: function (el, that) {
+                                    // If there is text in the input element then it is valid for searching
+                                    return jQuery(el[0]).val().length !== 0;
+                                },
+                                search: function (value, comparison) {
+                                    // Use the modulo (%) operator to check that there is no remainder
+                                    return value%comparison === 0;
+                                }
+                            },
+                            'between': {
+                                conditionName: "<?php echo __('Between')?>",
+                            },
+                            'null': {
+                                conditionName: "<?php echo __('Empty')?>",
+                            },
+                        },
+                        "string":{
+                            '!=': {
+                                conditionName: "<?php echo __('Not')?>",
+                            },
+                            '!null': {
+                                conditionName: "<?php echo __('Not Empty')?>",
+                            },
+                            '=': {
+                                conditionName: "<?php echo __('Equals')?>",
+                            },
+                            'contains': {
+                                conditionName: "<?php echo __('Contains')?>",
+                            },
+                            'ends': {
+                                conditionName: "<?php echo __('Ends With')?>",
+                            },
+                            'null': {
+                                conditionName: "<?php echo __('Empty')?>",
+                            },
+                            'starts': {
+                                conditionName: "<?php echo __('Starts With')?>",
+                            },
+                        },
+                    },
+                },
+
                 // Language
-                "language":
-                {
+                language: {
+                    searchBuilder: {
+                        add: "<?php echo __('Add Condition')?>",
+                        condition: "<?php echo __('Condition')?>",
+                        clearAll: "<?php echo __('Clear All')?>",
+                        deleteTitle: "<?php echo __('Delete')?>",
+                        data: "<?php echo __('Column')?>",
+                        leftTitle: "<?php echo __('Left')?>",
+                        logicAnd: "<?php echo __('AND')?>",
+                        logicOr: "<?php echo __('OR')?>",
+                        rightTitle: "<?php echo __('Right')?>",
+                        title: {
+                            0: "<?php echo __('Advanced Filter')?>",
+                            _: "<?php echo __('Advanced Filter (%d)')?>",
+                        },
+                        value: "<?php echo __('Value')?>",
+                    },
                     "decimal":              "",
                     "emptyTable":           "<?php echo __('No data available in table')?>",
                     "info":                 "<?php echo __('Showing')?> _START_ <?php echo __('to')?> _END_ <?php echo __('of')?> _TOTAL_ <?php echo __('entries')?>",

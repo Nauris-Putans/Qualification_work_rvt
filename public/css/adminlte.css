@@ -127,3 +127,11 @@
 .TableStyle {
     width:100% !important;
 }
+
+.AdvanceFilter {
+    display: none;
+    color: white !important;
+    background-color: #17a2b8 !important;
+    border: 1px solid #17a2b8 !important;
+    padding: 20px !important;
+}
