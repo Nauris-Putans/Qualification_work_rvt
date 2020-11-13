@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Adminlte\admin;
 
 use App\User;
+use Hashids\Hashids;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
@@ -20,8 +22,15 @@ class ProfileAdminController extends Controller
      */
     public function index($id)
     {
+        // Hash key for id security
+        $hashids = new Hashids('WEBcheck', 10);
+
+        // Decodes id
+        $id = $hashids->decode( $id );
+
         // Finds user by user id
-        $user = User::find($id);
+        $user = User::find($id)
+            ->first();
 
         // Finds user_id from table 'role_user' by user id
         $roleID = DB::table('role_user')
@@ -34,7 +43,6 @@ class ProfileAdminController extends Controller
         // Finds id from table 'roles' by $roleID variable
         $role = DB::table('roles')
             ->where('id', $roleID)
-            ->get()
             ->first();
 
         return view('adminlte.admin.profile-admin', compact('user', 'role'));

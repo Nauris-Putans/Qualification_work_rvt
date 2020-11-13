@@ -19,7 +19,11 @@
         <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="card card-outline card-primary">
                 <div class="card-body text-center">
-                    <img src="{{URL::asset('images/img_profile.png')}}" class="mb-3" style="border-radius: 50%;" height="150" width="150" alt="Profile_pic">
+                    @if ($role->id >= '4')
+                        <img src="{{URL::asset('images/256x256/256_3.png')}}" class="mb-3" style="border-radius: 50%;" height="150" width="150" alt="Profile_pic">
+                    @else
+                        <img src="{{URL::asset('images/256x256/256_1.png')}}" class="mb-3" style="border-radius: 50%;" height="150" width="150" alt="Profile_pic">
+                    @endif
                     <h3>{{ $user->name }}</h3>
                     <h5 class="text-gray">{{ ucfirst($role->name) }}</h5>
                 </div>

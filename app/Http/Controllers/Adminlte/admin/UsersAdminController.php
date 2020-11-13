@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Adminlte\admin;
 use App\Models\Adminlte\admin\team\UserAdmin;
 use App\Http\Controllers\Controller;
 use App\User;
+use Hashids\Hashids;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -21,6 +22,9 @@ class UsersAdminController extends Controller
      */
     public function index()
     {
+        // Hash key for id security
+        $hashids = new Hashids('WEBcheck', 10);
+
         // Finds roles that are meant for user side
         $roles = DB::table('role_user')
             ->where('role_id', '<=' , 3)
@@ -32,7 +36,7 @@ class UsersAdminController extends Controller
         // Finds users that have role_id meant for user side
         $users = User::find($roles);
 
-        return view('adminlte.admin.users', compact(  'users'));
+        return view('adminlte.admin.users', compact(  'users', 'hashids'));
     }
 
     /**

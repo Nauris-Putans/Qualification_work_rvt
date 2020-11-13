@@ -13,6 +13,7 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
+        "hashids/hashids": "^4.0",
         "jeroennoten/laravel-adminlte": "^3.5",
         "laravel-lang/lang": "~7.0",
         "laravel/framework": "^7.24",
