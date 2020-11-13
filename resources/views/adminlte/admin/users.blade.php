@@ -92,7 +92,7 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info">{{ __('View') }}</button>
+                                    <a class="btn btn-info" href="{{ 'users/'. $user->id }}" role="button">{{ __('View') }}</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -2,37 +2,42 @@
 
 namespace App\Http\Controllers\Adminlte\admin;
 
-use App\Models\Adminlte\admin\team\UserAdmin;
-use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class UsersAdminController extends Controller
+class ProfileAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return Application|Factory|Response|View
      */
-    public function index()
+    public function index($id)
     {
-        // Finds roles that are meant for user side
-        $roles = DB::table('role_user')
-            ->where('role_id', '<=' , 3)
+        // Finds user by user id
+        $user = User::find($id);
+
+        // Finds user_id from table 'role_user' by user id
+        $roleID = DB::table('role_user')
+            ->where('user_id', $id)
             ->get();
 
         // Retrieves all of the values for a given key
-        $roles = $roles->pluck('user_id');
+        $roleID = $roleID->pluck('role_id');
 
-        // Finds users that have role_id meant for user side
-        $users = User::find($roles);
+        // Finds id from table 'roles' by $roleID variable
+        $role = DB::table('roles')
+            ->where('id', $roleID)
+            ->get()
+            ->first();
 
-        return view('adminlte.admin.users', compact(  'users'));
+        return view('adminlte.admin.profile-admin', compact('user', 'role'));
     }
 
     /**
@@ -59,10 +64,10 @@ class UsersAdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  UserAdmin $userAdmin
+     * @param  User  $id
      * @return Response
      */
-    public function show(UserAdmin $userAdmin)
+    public function show(User $id)
     {
         //
     }
@@ -70,10 +75,10 @@ class UsersAdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  UserAdmin $userAdmin
+     * @param  User  $id
      * @return Response
      */
-    public function edit(UserAdmin $userAdmin)
+    public function edit(User $id)
     {
         //
     }
@@ -82,10 +87,10 @@ class UsersAdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  UserAdmin $userAdmin
+     * @param  User  $id
      * @return Response
      */
-    public function update(Request $request, UserAdmin $userAdmin)
+    public function update(Request $request, User $id)
     {
         //
     }
@@ -93,10 +98,10 @@ class UsersAdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  UserAdmin $userAdmin
+     * @param  User  $id
      * @return Response
      */
-    public function destroy(UserAdmin $userAdmin)
+    public function destroy(User $id)
     {
         //
     }

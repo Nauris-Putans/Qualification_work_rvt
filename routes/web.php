@@ -44,6 +44,10 @@ Route::group(['middleware' => ['role:admin']], function()
     // Users sections
     Route::get('/admin/users', 'Adminlte\admin\UsersAdminController@index');
 
+    // Profile section
+    Route::get('/admin/users/{id}', 'Adminlte\admin\ProfileAdminController@index');
+    Route::get('/admin/team/members/{id}', 'Adminlte\admin\ProfileAdminController@index');
+
     // Team Members sections
     Route::get('/admin/team/members', 'Adminlte\admin\team\MembersController@index');
     Route::get('/admin/add-role', 'Adminlte\admin\team\privileges\roles\RoleController@index');
@@ -63,6 +67,7 @@ Route::group(['middleware' => ['role:admin']], function()
 
     // This link will add session of language when they click to change language
     Route::get('admin/lang/{locale}', 'LocalizationController@index');
+    Route::get('admin/users/lang/{locale}', 'LocalizationController@index');
     Route::get('admin/team/lang/{locale}', 'LocalizationController@index');
 });
 

@@ -22,15 +22,15 @@ class MembersController extends Controller
     public function index()
     {
         // Finds roles that are meant for admin side
-        $tests = DB::table('role_user')
+        $roles = DB::table('role_user')
             ->where('role_id', '>' , 3)
             ->get();
 
         // Retrieves all of the values for a given key
-        $tests = $tests->pluck('user_id');
+        $roles = $roles->pluck('user_id');
 
         // Finds users that have role_id meant for admin side
-        $users = User::find($tests);
+        $users = User::find($roles);
 
         return view('adminlte.admin.team.members', compact(  'users'));
     }
