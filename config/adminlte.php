@@ -380,9 +380,15 @@ return [
                             'role' => 'admin',
                             'submenu' => [
                                 [
+                                    'text' => 'List',
+                                    'icon' => 'fas fa-clipboard-list',
+                                    'url' => '/admin/roles',
+                                    'role' => 'admin',
+                                ],
+                                [
                                     'text' => 'Add Role',
                                     'icon' => 'fas fa-plus',
-                                    'url' => '/admin/add-role',
+                                    'url' => '/admin/roles/create',
                                     'role' => 'admin',
                                 ],
                                 [

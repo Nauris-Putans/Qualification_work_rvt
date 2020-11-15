@@ -13,7 +13,7 @@
 @stop
 
 @section('content')
-    <form method="post" action="/admin/add-role">
+    <form method="post" action="/admin/roles">
         @csrf
 
         <div class="row">

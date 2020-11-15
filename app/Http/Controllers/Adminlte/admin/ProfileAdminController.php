@@ -35,14 +35,11 @@ class ProfileAdminController extends Controller
         // Finds user_id from table 'role_user' by user id
         $roleID = DB::table('role_user')
             ->where('user_id', $id)
-            ->get();
-
-        // Retrieves all of the values for a given key
-        $roleID = $roleID->pluck('role_id');
+            ->first();
 
         // Finds id from table 'roles' by $roleID variable
         $role = DB::table('roles')
-            ->where('id', $roleID)
+            ->where('id', $roleID->role_id)
             ->first();
 
         return view('adminlte.admin.profile-admin', compact('user', 'role'));

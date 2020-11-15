@@ -4,7 +4,6 @@
 @section('content_header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a>{{ __('Users') }}</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a>{{ __('Profile') }}</a></li>
         </ol>
     </nav>
