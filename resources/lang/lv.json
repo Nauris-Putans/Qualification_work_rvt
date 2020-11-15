@@ -215,6 +215,8 @@
     "Info":                           "Informācija",
     "Mobile Phone":                   "Mobilais telefons",
     "Roles list":                     "Lomu saraksts",
+    "Edit Role":                      "Rediģēt lomu",
+    "Assigned Permissions to Role - ": "Piešķirtās atļaujas lomai - ",
 
     "Display": "Parādīt",
     "records per page": "ierakstus vienā lapā",
@@ -257,6 +259,7 @@
     "Role name should not be greater than 50 chars.": "Lomas nosaukums nedrīkst būt lielāks par 50 rakstzīmēm.",
     "Role display name should not be greater than 50 chars.": "Lomas parādītā nosaukuma lielums nedrīkst pārsniegt 50 rakstzīmes.",
     "Role description should not be greater than 100 chars.": "Lomu aprakstam nedrīkst būt lielāks par 100 rakstzīmēm.",
+    "Are you sure to delete this role - ": "Vai tiešām izdzēsīsit šo lomu - ",
 
     "Not": "Nav",
     "Not Empty": "Nav tukšs",

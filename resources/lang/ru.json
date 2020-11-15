@@ -225,6 +225,8 @@
     "Info":                           "Информация",
     "Mobile Phone":                   "Mобильный телефон",
     "Roles list":                     "Список ролей",
+    "Edit Role":                      "Изменить роль",
+    "Assigned Permissions to Role - ": "Назначенные разрешения для роли - ",
 
     "Display": "Показывать",
     "records per page": "записи на одной странице",
@@ -267,6 +269,7 @@
     "Role name should not be greater than 50 chars.": "Имя роли не может быть длиннее 50 символов.",
     "Role display name should not be greater than 50 chars.": "Отображаемое имя роли не может превышать 50 символов.",
     "Role description should not be greater than 100 chars.": "Описание ролей не может превышать 100 символов.",
+    "Are you sure to delete this role - ": "Вы уверены, что удалите эту роль - ",
 
     "Not": "Hет",
     "Not Empty": "Не пусто",

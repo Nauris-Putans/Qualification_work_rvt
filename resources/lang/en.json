@@ -215,6 +215,8 @@
     "Info":                           "Info",
     "Mobile Phone":                   "Mobile Phone",
     "Roles list":                     "Roles list",
+    "Edit Role":                      "Edit Role",
+    "Assigned Permissions to Role - ": "Assigned Permissions to Role - ",
 
     "Display": "Display",
     "records per page": "records per page",
@@ -257,6 +259,7 @@
     "Role name should not be greater than 50 chars.": "Role name should not be greater than 50 chars.",
     "Role display name should not be greater than 50 chars.": "Role display name should not be greater than 50 chars.",
     "Role description should not be greater than 100 chars.": "Role description should not be greater than 100 chars.",
+    "Are you sure to delete this role - ": "Are you sure to delete this role - ",
 
     "Not": "Not",
     "Not Empty": "Not Empty",

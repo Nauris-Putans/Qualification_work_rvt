@@ -76,6 +76,9 @@ Route::group(['middleware' => ['role:admin']], function()
     Route::get('admin/lang/{locale}', 'LocalizationController@index');
     Route::get('admin/users/lang/{locale}', 'LocalizationController@index');
     Route::get('admin/team/lang/{locale}', 'LocalizationController@index');
+    Route::get('/admin/roles/lang/{locale}', 'LocalizationController@index');
+    Route::get('/admin/roles/*/lang/{locale}', 'LocalizationController@index');
+
 });
 
 // Role - User Admin (free)

@@ -6,133 +6,150 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a>{{ __('Team') }}</a></li>
             <li class="breadcrumb-item"><a>{{ __('Privileges') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ __('Roles') }}</li>
+            <li class="breadcrumb-item"><a>{{ __('Roles') }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ __('Edit Role') }}</li>
         </ol>
     </nav>
 @stop
 
 @section('content')
-    <div class="row">
-        {{-- Roles list --}}
-        <div class="col-lg-12 col-md-12 col-sm-12">
-            <x-alertAdmin />
-            <div class="card card-outline card-primary">
-                <div class="card-header">
-                    <h1 class="card-title">{{ __('Roles list') }}</h1>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+    {{-- Back button --}}
+    <a class="btn btn-primary mb-3" href="{{ URL::to('/admin/roles') }}" role="button">{{ __('Back') }}</a>
+
+    <form method="POST" action="{{ URL::to('/admin/roles/'. $hashids->encode($role->id)) }}">
+        @method('PATCH')
+        @csrf
+
+        <div class="row">
+            {{-- Edit Role box--}}
+            <div class="col-md-3">
+                <x-alertAdmin />
+                <div class="card card-outline card-primary">
+                    <div class="card-header">
+                        <h1 class="card-title">{{ __('Edit Role') }}</h1>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {{ Form::component('editRoleForm', 'components.form.adminlte.admin.edit-role-form', ['permissions' => $permissions, 'role' => $role]) }}
+                        {{ Form::editRoleForm() }}
                     </div>
                 </div>
-                <div class="card-body">
-                    {{-- Filter table --}}
-                    <table class="table table-striped table-bordered dt-responsive nowrap filter-table mb-3 col-lg-6 col-md-6 col-sm-12" style="display: none">
-                        <tbody>
-                        {{-- Column - ID --}}
-                        <tr id="filter_col0" data-column="0">
-                            <td>{{ __('Column - ID') }}</td>
-                            <td align="center">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="column_filter form-control col-md-12" id="col0_filter">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        {{-- Column - NAME --}}
-                        <tr id="filter_col1" data-column="1">
-                            <td>{{ __('Column - NAME') }}</td>
-                            <td align="center">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="column_filter form-control col-md-12" id="col1_filter">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        {{-- Column - DISPLAY_NAME --}}
-                        <tr id="filter_col2" data-column="2">
-                            <td>{{ __('Column - DISPLAY NAME') }}</td>
-                            <td align="center">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="column_filter form-control" id="col2_filter">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        {{-- Column - DESCRIPTION --}}
-                        <tr id="filter_col3" data-column="3">
-                            <td>{{ __('Column - DESCRIPTION') }}</td>
-                            <td align="center">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="column_filter form-control" id="col3_filter">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+            </div>
 
-                    {{-- Data table --}}
-                    <table class="table table-striped table-bordered dt-responsive nowrap TableStyle" id="roles-table">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">{{ __('ID') }}</th>
-                            <th scope="col">{{ __('NAME') }}</th>
-                            <th scope="col">{{ __('DISPLAY NAME') }}</th>
-                            <th scope="col">{{ __('DESCRIPTION') }}</th>
-                            <th scope="col">{{ __('ACTIONS') }}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($roles as $role)
-                            <tr>
-                                <td>{{ $role->id }}</td>
-                                <td>{{ $role->name }}</td>
-                                <td>{{ $role->display_name }}</td>
-                                <td>{{ $role->description }}</td>
-                                <td class="text-center">
-                                    <a class="btn btn-info mr-1" href="{{ URL::to('/admin/roles/'. $hashids->encode($role->id)) }}" role="button">
-                                        {{ __('View') }}</a>
-                                    <a class="btn btn-warning mr-1" href="{{ URL::to('/admin/roles/'. $hashids->encode($role->id) . '/edit') }}" role="button">
-                                        {{ __('Edit') }}</a>
-                                    <a class="btn btn-danger delete" data-confirm="{{ __('Are you sure to delete this role - ') }} '{{ $role->name }}'?" data-toggle='confirmation' href="{{ URL::to('/admin/roles/'. $hashids->encode($role->id)) }}" role="button">
-                                        {{ __('Delete') }}
-                                    </a>
+            {{-- Assigned Permissions to Role box--}}
+            <div class="col-md-9">
+                <div class="card card-outline card-primary">
+                    <div class="card-header">
+                        <h1 class="card-title">{{ __('Assigned Permissions to Role - ') }} {{ ucfirst($role->name) }}</h1>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {{-- Filter table --}}
+                        <table class="table table-striped table-bordered dt-responsive nowrap filter-table mb-3 col-lg-6 col-md-6 col-sm-12" style="display: none">
+                            <tbody>
+                            <tr id="filter_col1" data-column="1">
+                                <td>{{ __('Column - ID') }}</td>
+                                <td align="center">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-search"></i>
+                                                    </span>
+                                            </div>
+                                            <input type="text" class="column_filter form-control col-md-12" id="col1_filter">
+                                        </div>
+                                    </div>
                                 </td>
-                                <form id="delete-form-{{$role->id}}" action="{{ URL::to('/admin/roles/'. $hashids->encode($role->id)) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                </form>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            <tr id="filter_col2" data-column="2">
+                                <td>{{ __('Column - NAME') }}</td>
+                                <td align="center">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-search"></i>
+                                                    </span>
+                                            </div>
+                                            <input type="text" class="column_filter form-control col-md-12" id="col2_filter">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="filter_col3" data-column="3">
+                                <td>{{ __('Column - DISPLAY NAME') }}</td>
+                                <td align="center">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-search"></i>
+                                                    </span>
+                                            </div>
+                                            <input type="text" class="column_filter form-control" id="col3_filter">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="filter_col4" data-column="4">
+                                <td>{{ __('Column - DESCRIPTION') }}</td>
+                                <td align="center">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-search"></i>
+                                                    </span>
+                                            </div>
+                                            <input type="text" class="column_filter form-control" id="col4_filter">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        {{-- Data table --}}
+                        <table class="table table-striped table-bordered dt-responsive nowrap TableStyle" id="permissions-table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" id="checkall" class="permissions">
+                                    </div>
+                                </th>
+                                <th scope="col">{{ __('ID') }}</th>
+                                <th scope="col">{{ __('NAME') }}</th>
+                                <th scope="col">{{ __('DISPLAY NAME') }}</th>
+                                <th scope="col">{{ __('DESCRIPTION') }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($permissions as $permission)
+                                <tr>
+                                    <th scope="row">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" name="permissions[]" class="permissions" checked value={{ $permission->id }}>
+                                        </div>
+                                    </th>
+                                    <td class="Text">{{ $permission->id }}</td>
+                                    <td>{{ $permission->name }}</td>
+                                    <td>{{ $permission->display_name }}</td>
+                                    <td>{{ $permission->description }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 @stop
 
 @section('css')
@@ -141,49 +158,52 @@
 
 @section('js')
     <script>
+        // Check all checkboxes script
+        jQuery("#checkall").click(function () {
+            if (jQuery("#checkall").is(':checked'))
+            {
+                jQuery(".permissions").each(function ()
+                {
+                    jQuery(this).prop("checked", true);
+                });
+            }
 
-        // Delete script
-        const deleteLinks = document.querySelectorAll('.delete');
+            else
+            {
+                jQuery(".permissions").each(function ()
+                {
+                    jQuery(this).prop("checked", false);
+                });
+            }
+        });
 
-        for (let i = 0; i < deleteLinks.length; i++) {
-            deleteLinks[i].addEventListener('click', function(event) {
-                event.preventDefault();
-
-                const choice = confirm(this.getAttribute('data-confirm'));
-
-                if (choice) {
-                    document.getElementById('delete-form-{{ $role->id }}').submit();
-                }
-            });
-        }
-
-        //// Roles table ////
+        //// Permissions table ////
 
         // Filter function
         function filterColumn ( i ) {
-            jQuery('#roles-table').DataTable().column( i ).search(jQuery('#col'+i+'_filter').val()).draw();
+            jQuery('#permissions-table').DataTable().column( i ).search(jQuery('#col'+i+'_filter').val()).draw();
         }
 
         // Table
         jQuery(document).ready(function() {
-            const table = jQuery('#roles-table').DataTable(
+            const table = jQuery('#permissions-table').DataTable(
                 {
                     // Specific columns
                     columnDefs: [
-                        { "orderable": false, "targets": 4 },
-                        { "width": "5%", "targets": [0] },
-                        { "width": "10%", "targets": [4] },
+                        { "orderable": false, "targets": 0 },
+                        { "width": "8%", "targets": 0 },
+                        { "width": "7%", "targets": 1 },
                     ],
 
                     // Order by asc/desc
                     order: [
-                        [ 0, "asc" ]
+                        [ 1, "asc" ]
                     ],
 
                     // Show entries length
                     lengthMenu: [
                         [10, 20, 30, -1],
-                        [10, 20, 30, "All"]
+                        [10, 20, 30, 'All' ]
                     ],
 
                     // Position of control elements
@@ -226,7 +246,7 @@
                     ],
 
                     searchBuilder: {
-                        columns: [0,1,2,3],
+                        columns: [1,2,3,4],
                         conditions: {
                             "date":{
                                 '!=': {

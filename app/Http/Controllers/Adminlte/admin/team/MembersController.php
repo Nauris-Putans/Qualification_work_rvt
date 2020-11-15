@@ -18,7 +18,7 @@ class MembersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Application|Factory|Response|View
+     * @return Factory|View
      */
     public function index()
     {
