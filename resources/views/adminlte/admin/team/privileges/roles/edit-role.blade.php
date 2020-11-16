@@ -134,7 +134,7 @@
                                 <tr>
                                     <th scope="row">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="permissions[]" class="permissions" checked value={{ $permission->id }}>
+                                            <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" class="permissions" {!! $role->hasPermission($permission->name) ? "checked" : '' !!}>
                                         </div>
                                     </th>
                                     <td class="Text">{{ $permission->id }}</td>

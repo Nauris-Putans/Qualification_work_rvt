@@ -7,6 +7,7 @@ use App\Http\Requests\RoleEditRequest;
 use App\Permission;
 use \App\Role;
 use App\Http\Controllers\Controller;
+use App\User;
 use Hashids\Hashids;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -71,7 +72,17 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        // Hash key for id security
+        $hashids = new Hashids('WEBcheck', 10);
+
+        // Decodes id
+        $id = $hashids->decode( $id );
+
+        // Finds role by user id
+        $role = Role::find($id)
+            ->first();
+
+        return view('adminlte.admin.team.privileges.roles.view-role', compact( 'role', 'hashids'));
     }
 
     /**
@@ -92,16 +103,8 @@ class RoleController extends Controller
         $role = Role::find($id)
             ->first();
 
-        // Finds permissionID by user id
-        $permissionsID = DB::table('permission_role')
-            ->where('role_id', $id)
-            ->get();
-
-        // Retrieves all of the values for a given key
-        $permissionsID = $permissionsID->pluck('permission_id');
-
         // Finds permissions by permission id
-        $permissions = Permission::find($permissionsID);
+        $permissions = Permission::all();
 
         return view('adminlte.admin.team.privileges.roles.edit-role', compact( 'role', 'permissions', 'hashids'));
     }
@@ -113,7 +116,7 @@ class RoleController extends Controller
      * @param $id
      * @return RedirectResponse
      */
-    public function update(RoleEditRequest $request,$id)
+    public function update(RoleEditRequest $request, $id)
     {
         // Hash key for id security
         $hashids = new Hashids('WEBcheck', 10);
@@ -125,14 +128,18 @@ class RoleController extends Controller
         $role = Role::find($id)
             ->first();
 
-        // Inputed values inserts in role values
-        $role->name = $request->roleName;
-        $role->display_name = $request->roleDisplayName;
-        $role->description = $request->roleDesc;
+        // Data from request
+        $data = [
+            'name' => $request->roleName,
+            'display_name' => $request->roleDisplayName,
+            'description' => $request->roleDesc,
+        ];
 
-        // Saves inserted values
-        $role->save();
+        // Updates values
+        $role->update($data);
 
+        // Syncs permission to role
+        $role->syncPermissions($request->get('permissions') ?? []);
 
         return redirect()->back()->with('message', __('Role - ') . $role->name . __(' has been edited!'));
     }
