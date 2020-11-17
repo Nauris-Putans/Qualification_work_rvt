@@ -50,14 +50,14 @@ Route::group(['middleware' => ['role:admin']], function()
 
     // Team Members sections
     Route::get('/admin/team/members', 'Adminlte\admin\team\MembersController@index');
-
-    Route::get('/admin/roles', 'Adminlte\admin\team\privileges\roles\RoleController@index');
-    Route::get('/admin/roles/create', 'Adminlte\admin\team\privileges\roles\RoleController@create');
-    Route::post('/admin/roles', 'Adminlte\admin\team\privileges\roles\RoleController@store');
-    Route::get('/admin/roles/{role}', 'Adminlte\admin\team\privileges\roles\RoleController@show');
-    Route::get('/admin/roles/{role}/edit', 'Adminlte\admin\team\privileges\roles\RoleController@edit');
-    Route::patch('/admin/roles/{role}', 'Adminlte\admin\team\privileges\roles\RoleController@update');
-    Route::delete('/admin/roles/{role}', 'Adminlte\admin\team\privileges\roles\RoleController@destroy');
+    
+    Route::get('/admin/roles', ['as' => 'admin.roles.index', 'uses' => 'Adminlte\admin\team\privileges\roles\RoleController@index']);
+    Route::get('/admin/roles/create', ['as' => 'admin.roles.create', 'uses' => 'Adminlte\admin\team\privileges\roles\RoleController@create']);
+    Route::post('/admin/roles', ['as' => 'admin.roles.store', 'uses' => 'Adminlte\admin\team\privileges\roles\RoleController@store']);
+    Route::get('/admin/roles/{role}', ['as' => 'admin.roles.show', 'uses' => 'Adminlte\admin\team\privileges\roles\RoleController@show']);
+    Route::get('/admin/roles/{role}/edit', ['as' => 'admin.roles.edit', 'uses' => 'Adminlte\admin\team\privileges\roles\RoleController@edit']);
+    Route::patch('/admin/roles/{role}', ['as' => 'admin.roles.update', 'uses' => 'Adminlte\admin\team\privileges\roles\RoleController@update']);
+    Route::delete('/admin/roles/{role}', ['as' => 'admin.roles.destroy', 'uses' => 'Adminlte\admin\team\privileges\roles\RoleController@destroy']);
 
     Route::get('/admin/assign-role', 'Adminlte\admin\team\privileges\roles\RoleAssignmentController@index');
     Route::post('/admin/assign-role', 'Adminlte\admin\team\privileges\roles\RoleAssignmentController@store');

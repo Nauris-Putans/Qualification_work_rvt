@@ -4,12 +4,9 @@
 @section('content_header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page"><a>@lang('Tickets')</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a>{{ __('Tickets') }}</a></li>
         </ol>
     </nav>
-
-    <br>
-    <h1>@lang('Tickets')</h1>
 @stop
 
 @section('content')

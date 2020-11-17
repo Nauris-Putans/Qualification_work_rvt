@@ -9,6 +9,7 @@ use \App\Role;
 use App\Http\Controllers\Controller;
 use App\User;
 use Hashids\Hashids;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -16,11 +17,10 @@ use Illuminate\View\View;
 
 class RoleController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
-     * @return Factory|View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -36,7 +36,7 @@ class RoleController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Factory|View
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -54,12 +54,15 @@ class RoleController extends Controller
      */
     public function store(RoleAddRequest $request)
     {
-        // Creates new role and stores it in database
-        $role = Role::create([
+        // Data from request
+        $data = [
             'name' => $request->roleName,
             'display_name' => $request->roleDisplayName,
             'description' => $request->roleDesc,
-        ]);
+        ];
+
+        // Creates new role and stores it in database
+        $role = Role::create($data);
 
         // Adds selected permissions to role
         $role->syncPermissions($request->permissions ?? []);
@@ -69,6 +72,9 @@ class RoleController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param $id
+     * @return Application|Factory|View
      */
     public function show($id)
     {

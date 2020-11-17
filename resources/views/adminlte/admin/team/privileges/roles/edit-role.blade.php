@@ -14,9 +14,9 @@
 
 @section('content')
     {{-- Back button --}}
-    <a class="btn btn-primary mb-3" href="{{ URL::to('/admin/roles') }}" role="button">{{ __('Back') }}</a>
+    <a class="btn btn-primary mb-3" href="{{ URL::route('admin.roles.index') }}" role="button">{{ __('Back') }}</a>
 
-    <form method="POST" action="{{ URL::to('/admin/roles/'. $hashids->encode($role->id)) }}">
+    <form method="POST" action="{{ URL::route('admin.roles.update', [$hashids->encode($role->id)]) }}">
         @method('PATCH')
         @csrf
 
@@ -57,9 +57,9 @@
                                     <div class="col-md-12">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="fas fa-search"></i>
-                                                    </span>
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-search"></i>
+                                                </span>
                                             </div>
                                             <input type="text" class="column_filter form-control col-md-12" id="col1_filter">
                                         </div>
@@ -72,9 +72,9 @@
                                     <div class="col-md-12">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="fas fa-search"></i>
-                                                    </span>
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-search"></i>
+                                                </span>
                                             </div>
                                             <input type="text" class="column_filter form-control col-md-12" id="col2_filter">
                                         </div>
@@ -87,9 +87,9 @@
                                     <div class="col-md-12">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="fas fa-search"></i>
-                                                    </span>
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-search"></i>
+                                                </span>
                                             </div>
                                             <input type="text" class="column_filter form-control" id="col3_filter">
                                         </div>
@@ -102,9 +102,9 @@
                                     <div class="col-md-12">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="fas fa-search"></i>
-                                                    </span>
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-search"></i>
+                                                </span>
                                             </div>
                                             <input type="text" class="column_filter form-control" id="col4_filter">
                                         </div>

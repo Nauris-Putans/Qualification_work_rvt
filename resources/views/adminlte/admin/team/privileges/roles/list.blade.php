@@ -113,18 +113,23 @@
                                 <td>{{ $role->display_name }}</td>
                                 <td>{{ $role->description }}</td>
                                 <td class="text-center">
-                                    <a class="btn btn-info mr-1" href="{{ URL::to('/admin/roles/'. $hashids->encode($role->id)) }}" role="button">
-                                        {{ __('View') }}</a>
-                                    <a class="btn btn-warning mr-1" href="{{ URL::to('/admin/roles/'. $hashids->encode($role->id) . '/edit') }}" role="button">
-                                        {{ __('Edit') }}</a>
-                                    <a class="btn btn-danger delete" data-confirm="{{ __('Are you sure to delete this role - ') }} '{{ $role->name }}'?" data-toggle='confirmation' href="{{ URL::to('/admin/roles/'. $hashids->encode($role->id)) }}" role="button">
-                                        {{ __('Delete') }}
-                                    </a>
+                                    <div class="container">
+                                        <div class="row">
+                                            <a class="btn btn-info mr-1" href="{{ URL::route('admin.roles.show', [$hashids->encode($role->id)]) }}" role="button">
+                                                {{ __('View') }}</a>
+                                            <a class="btn btn-warning mr-1" href="{{ URL::route('admin.roles.edit', [$hashids->encode($role->id)]) }}" role="button">
+                                                {{ __('Edit') }}</a>
+                                            <form action="{{ URL::route('admin.roles.destroy', [$hashids->encode($role->id)]) }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-danger" onclick="return confirm('{{ __('Are you sure to delete this role - ' . $role->name . '?') }}')" type="submit">
+                                                    {{ __('Delete') }}
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+
                                 </td>
-                                <form id="delete-form-{{$role->id}}" action="{{ URL::to('/admin/roles/'. $hashids->encode($role->id)) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                </form>
                             </tr>
                         @endforeach
                         </tbody>
@@ -142,21 +147,6 @@
 @section('js')
     <script>
 
-        // Delete script
-        const deleteLinks = document.querySelectorAll('.delete');
-
-        for (let i = 0; i < deleteLinks.length; i++) {
-            deleteLinks[i].addEventListener('click', function(event) {
-                event.preventDefault();
-
-                const choice = confirm(this.getAttribute('data-confirm'));
-
-                if (choice) {
-                    document.getElementById('delete-form-{{ $role->id }}').submit();
-                }
-            });
-        }
-
         //// Roles table ////
 
         // Filter function
@@ -172,7 +162,7 @@
                     columnDefs: [
                         { "orderable": false, "targets": 4 },
                         { "width": "5%", "targets": [0] },
-                        { "width": "10%", "targets": [4] },
+                        { "width": "20%", "targets": [4] },
                     ],
 
                     // Order by asc/desc

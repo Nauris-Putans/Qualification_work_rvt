@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Adminlte\admin;
 
 use App\Models\Adminlte\admin\DashboardAdmin;
 use App\Http\Controllers\Controller;
+use App\Models\Adminlte\admin\Ticket;
+use App\User;
+use Hashids\Hashids;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class DashboardAdminController extends Controller
@@ -19,7 +23,23 @@ class DashboardAdminController extends Controller
      */
     public function index()
     {
-        return view('adminlte.admin.index-admin');
+        // Hash key for id security
+        $hashids = new Hashids('WEBcheck', 10);
+
+        // Finds roles that are meant for user side
+        $roles = DB::table('role_user')
+            ->where('role_id', '<=' , 3)
+            ->get();
+
+        // Retrieves all of the values for a given key
+        $roles = $roles->pluck('user_id');
+
+        // Finds users that have role_id meant for user side
+        $users = User::find($roles)->count();
+
+        $tickets = Ticket::all()->count();
+
+        return view('adminlte.admin.index-admin', compact(  'users', 'tickets', 'hashids'));
     }
 
     /**
