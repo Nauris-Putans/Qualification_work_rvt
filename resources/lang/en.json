@@ -194,6 +194,7 @@
     "Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more": "Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more",
 
     "Users":                          "Users",
+    "User":                           "User",
     "Team":                           "Team",
     "Members":                        "Members",
     "Privileges":                     "Privileges",
@@ -203,6 +204,7 @@
     "Assign Role":                    "Assign Role",
     "Assign Permission":              "Assign Permission",
     "Tickets":                        "Tickets",
+    "Ticket":                         "Ticket",
     "Settings":                       "Settings",
     "Back":                           "Back",
 
@@ -217,6 +219,8 @@
     "Roles list":                     "Roles list",
     "Edit Role":                      "Edit Role",
     "Assigned Permissions to Role - ": "Assigned Permissions to Role - ",
+    "Member":                         "Member",
+    "Assign Role to Member":          "Assign Role to Member",
 
     "Display": "Display",
     "records per page": "records per page",
@@ -260,6 +264,17 @@
     "Role display name should not be greater than 50 chars.": "Role display name should not be greater than 50 chars.",
     "Role description should not be greater than 100 chars.": "Role description should not be greater than 100 chars.",
     "Are you sure to delete this role - ": "Are you sure to delete this role - ",
+    "Select minimum 1 role.": "Select minimum 1 role.",
+    "Successfully assigned member - ": "Successfully assigned member - ",
+    " to role - ": " to role - ",
+    "Fullname should not be greater than 100 chars.": "Fullname should not be greater than 100 chars.",
+    "Email should not be greater than 100 chars.": "Email should not be greater than 100 chars.",
+    "Message should not be greater than 255 chars.": "Message should not be greater than 255 chars.",
+    "Permission name is required.": "Permission name is required.",
+    "This permission name already exist": "This permission name already exist",
+    "Permission name should not be greater than 50 chars.": "Permission name should not be greater than 50 chars.",
+    "Permission display name should not be greater than 50 chars.": "Permission display name should not be greater than 50 chars.",
+    "Permission description should not be greater than 100 chars.": "Permission description should not be greater than 100 chars.",
 
     "Not": "Not",
     "Not Empty": "Not Empty",

@@ -194,6 +194,7 @@
     "Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more": "Monitoringa pakalpojumi, kas ļauj <br> pārbaudīt jūsu vietnes statistiku - <br> Ping, ports, atbildes laiks, SSL <br> sertifikāta pārbaude un vēl daudz vairāk",
 
     "Users":                          "Lietotāji",
+    "User":                           "Lietotājs",
     "Team":                           "Komanda",
     "Members":                        "Dalībnieki",
     "Privileges":                     "Privilēģijas",
@@ -203,6 +204,7 @@
     "Assign Role":                    "Piešķirt lomu",
     "Assign Permission":              "Piešķirt atļauju",
     "Tickets":                        "Biļetes",
+    "Ticket":                         "Biļete",
     "Settings":                       "Iestatījumi",
     "Back":                           "Atgriezties",
 
@@ -217,6 +219,8 @@
     "Roles list":                     "Lomu saraksts",
     "Edit Role":                      "Rediģēt lomu",
     "Assigned Permissions to Role - ": "Piešķirtās atļaujas lomai - ",
+    "Member":                         "Dalībnieks",
+    "Assign Role to Member":          "Piešķirt dalībniekam lomu",
 
     "Display": "Parādīt",
     "records per page": "ierakstus vienā lapā",
@@ -260,6 +264,17 @@
     "Role display name should not be greater than 50 chars.": "Lomas parādītā nosaukuma lielums nedrīkst pārsniegt 50 rakstzīmes.",
     "Role description should not be greater than 100 chars.": "Lomu aprakstam nedrīkst būt lielāks par 100 rakstzīmēm.",
     "Are you sure to delete this role - ": "Vai tiešām izdzēsīsit šo lomu - ",
+    "Select minimum 1 role.": "Atlasiet vismaz 1 lomu.",
+    "Successfully assigned member - ": "Veiksmīgi piešķirts dalībnieks - ",
+    " to role - ": " uz lomu - ",
+    "Fullname should not be greater than 100 chars.": "Pilns vārds nedrīkst būt lielāks par 100 rakstzīmēm.",
+    "Email should not be greater than 100 chars.": "E-pasts nedrīkst būt lielāks par 100 rakstzīmēm.",
+    "Message should not be greater than 255 chars.": "Ziņojums nedrīkst būt lielāks par 255 rakstzīmēm.",
+    "Permission name is required.": "Nepieciešams atļaujas nosaukums.",
+    "This permission name already exist": "Šis atļaujas nosaukums jau pastāv",
+    "Permission name should not be greater than 50 chars.": "Atļaujas nosaukums nedrīkst būt lielāks par 50 rakstzīmēm.",
+    "Permission display name should not be greater than 50 chars.": "Atļaujas parādāmā vārda lielums nedrīkst pārsniegt 50 rakstzīmes.",
+    "Permission description should not be greater than 100 chars.": "Atļaujas aprakstā nedrīkst būt lielāks par 100 rakstzīmēm.",
 
     "Not": "Nav",
     "Not Empty": "Nav tukšs",

@@ -23,6 +23,7 @@ return [
     'Members'                       => 'Members',
     'Privileges'                    => 'Privileges',
     'Roles'                         => 'Roles',
+    'List'                          => 'List',
     'Add Role'                      => 'Add Role',
     'Assign Role'                   => 'Assign Role',
     'Permissions'                   => 'Permissions',

@@ -128,7 +128,7 @@ return [
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-info navbar-navy elevation-4',
     'classes_sidebar_nav' => 'nav-child-indent nav-legacy',
-    'classes_topnav' => 'navbar-navy navbar-dark elevation-1',
+    'classes_topnav' => 'navbar-navy navbar-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -346,21 +346,18 @@ return [
         [
             'text' => 'Dashboard',
             'icon' => 'fas fa-tachometer-alt',
-            'classes' => 'text-bold',
             'url' => '/admin/dashboard',
             'role' => 'admin',
         ],
         [
             'text' => 'Users',
             'icon' => 'fas fa-users',
-            'classes' => 'text-bold',
             'url' => '/admin/users',
             'role' => 'admin',
         ],
         [
             'text' => 'Team',
             'icon' => 'fas fa-users',
-            'classes' => 'text-bold',
             'role' => 'admin',
             'submenu' => [
                 [
@@ -425,14 +422,12 @@ return [
         [
             'text' => 'Tickets',
             'icon' => 'fas fa-ticket-alt',
-            'classes' => 'text-bold',
             'url' => '/admin/tickets',
             'role' => 'admin',
         ],
         [
             'text' => 'Settings',
             'icon' => 'fas fa-cog',
-            'classes' => 'text-bold',
             'url' => '/admin/settings',
             'role' => 'admin',
         ],
@@ -443,7 +438,6 @@ return [
         [
             'text' => 'Back',
             'icon' => 'fas fa-arrow-left',
-            'classes' => 'text-bold',
             'url' => '/',
             'role' => 'admin',
         ],

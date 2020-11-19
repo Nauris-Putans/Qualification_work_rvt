@@ -204,6 +204,7 @@
     "Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more": "Службы мониторинга, которые позволяют вам <br> проверять статистику вашего веб-сайта - <br> Ping, порт, время отклика, SSL <br> Проверка сертификата и многое другое.",
 
     "Users":                          "Пользователи",
+    "User":                           "Пользователь",
     "Team":                           "Команда",
     "Members":                        "Члены",
     "Privileges":                     "Привилегии",
@@ -213,6 +214,7 @@
     "Assign Role":                    "Назначить роль",
     "Assign Permission":              "Назначить разрешение",
     "Tickets":                        "Билеты",
+    "Ticket":                         "Билет",
     "Settings":                       "Настройки",
     "Back":                           "Назад",
 
@@ -227,6 +229,8 @@
     "Roles list":                     "Список ролей",
     "Edit Role":                      "Изменить роль",
     "Assigned Permissions to Role - ": "Назначенные разрешения для роли - ",
+    "Member":                         "Участник",
+    "Assign Role to Member":          "Назначить роль участнику",
 
     "Display": "Показывать",
     "records per page": "записи на одной странице",
@@ -270,6 +274,17 @@
     "Role display name should not be greater than 50 chars.": "Отображаемое имя роли не может превышать 50 символов.",
     "Role description should not be greater than 100 chars.": "Описание ролей не может превышать 100 символов.",
     "Are you sure to delete this role - ": "Вы уверены, что удалите эту роль - ",
+    "Select minimum 1 role.": "Выберите хотя бы 1 роль.",
+    "Successfully assigned member - ": "Успешно назначенный участник - ",
+    " to role - ": " на роль - ",
+    "Fullname should not be greater than 100 chars.": "Полное имя не может превышать 100 символов.",
+    "Email should not be greater than 100 chars.": "Электронная почта не может быть длиннее 100 символов.",
+    "Message should not be greater than 255 chars.": "Сообщение не может быть длиннее 255 символов.",
+    "Permission name is required.": "Требуется имя разрешения.",
+    "This permission name already exist": "Это разрешение уже существует",
+    "Permission name should not be greater than 50 chars.": "Имя авторизации не может превышать 50 символов.",
+    "Permission display name should not be greater than 50 chars.": "Отображаемое имя разрешения не может превышать 50 символов.",
+    "Permission description should not be greater than 100 chars.": "Описание разрешения не может превышать 100 символов.",
 
     "Not": "Hет",
     "Not Empty": "Не пусто",

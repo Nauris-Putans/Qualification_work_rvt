@@ -23,6 +23,7 @@ return [
     'Members'                       => 'Члены',
     'Privileges'                    => 'Привилегии',
     'Roles'                         => 'Роли',
+    'List'                          => 'Список',
     'Add Role'                      => 'Добавить роль',
     'Assign Role'                   => 'Назначить роль',
     'Permissions'                   => 'Разрешения',

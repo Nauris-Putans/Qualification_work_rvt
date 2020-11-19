@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ContactCreateRequest extends FormRequest
+class RoleAssignRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class ContactCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'fullname' => 'required|max:100',
-            'email' => 'required|max:100',
-            'message' => 'required|max:255',
+            'role' => 'required'
         ];
     }
 
@@ -38,9 +36,7 @@ class ContactCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'fullname.max' => __('Fullname should not be greater than 100 chars.'),
-            'email.max' => __('Email should not be greater than 100 chars.'),
-            'message.max' => __('Message should not be greater than 255 chars.'),
+            'role.required' => __('Select minimum 1 role.'),
         ];
     }
 }

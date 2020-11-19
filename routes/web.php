@@ -50,7 +50,7 @@ Route::group(['middleware' => ['role:admin']], function()
 
     // Team Members sections
     Route::get('/admin/team/members', 'Adminlte\admin\team\MembersController@index');
-    
+
     Route::get('/admin/roles', ['as' => 'admin.roles.index', 'uses' => 'Adminlte\admin\team\privileges\roles\RoleController@index']);
     Route::get('/admin/roles/create', ['as' => 'admin.roles.create', 'uses' => 'Adminlte\admin\team\privileges\roles\RoleController@create']);
     Route::post('/admin/roles', ['as' => 'admin.roles.store', 'uses' => 'Adminlte\admin\team\privileges\roles\RoleController@store']);
@@ -60,7 +60,7 @@ Route::group(['middleware' => ['role:admin']], function()
     Route::delete('/admin/roles/{role}', ['as' => 'admin.roles.destroy', 'uses' => 'Adminlte\admin\team\privileges\roles\RoleController@destroy']);
 
     Route::get('/admin/assign-role', 'Adminlte\admin\team\privileges\roles\RoleAssignmentController@index');
-    Route::post('/admin/assign-role', 'Adminlte\admin\team\privileges\roles\RoleAssignmentController@store');
+    Route::post('/admin/assign-role', ['as' => 'admin.assign-role.store', 'uses' => 'Adminlte\admin\team\privileges\roles\RoleAssignmentController@store']);
     Route::get('/admin/add-permission', 'Adminlte\admin\team\privileges\permissions\PermissionController@index');
     Route::post('/admin/add-permission', 'Adminlte\admin\team\privileges\permissions\PermissionController@store');
     Route::get('/admin/assign-permission', 'Adminlte\admin\team\privileges\permissions\PermissionAssignmentController@index');

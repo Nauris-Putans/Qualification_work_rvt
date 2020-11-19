@@ -23,6 +23,7 @@ return [
     'Members'                       => 'Dalībnieki',
     'Privileges'                    => 'Privilēģijas',
     'Roles'                         => 'Lomas',
+    'List'                          => 'Saraksts',
     'Add Role'                      => 'Pievienot lomu',
     'Assign Role'                   => 'Piešķirt lomu',
     'Permissions'                   => 'Atļaujas',
