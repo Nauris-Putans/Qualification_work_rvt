@@ -266,8 +266,9 @@
     "Column - E-MAIL": "Колонка - ПОЧТА",
     "View": "Посмотреть",
 
-    "Role - ": "Праздничный день - ",
+    "Role - ": "Роль - ",
     " has been added!": " был добавлен!",
+    " has been edited!": " был отредактирован!",
     "Role name is required.": "Требуется название роли.",
     "This role name already exist": "Это название роли уже существует",
     "Role name should not be greater than 50 chars.": "Имя роли не может быть длиннее 50 символов.",

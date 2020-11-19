@@ -22,7 +22,7 @@
                 name="assignRole"
                 type="submit"
                 class="btn btn-warning mt-2"
-                value="{{__('Assign role')}}"
+                value="{{__('Assign Role')}}"
             />
         </div>
     </div>

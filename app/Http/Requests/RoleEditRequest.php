@@ -24,7 +24,7 @@ class RoleEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'roleName' => 'required|unique:roles,name|max:50',
+            'roleName' => 'required|max:50',
             'roleDisplayName' => 'max:50',
             'roleDesc' => 'max:100',
         ];
@@ -39,7 +39,6 @@ class RoleEditRequest extends FormRequest
     {
         return [
             'roleName.required' => __('Role name is required.'),
-            'roleName.unique' => __('This role name already exist'),
             'roleName.max' => __('Role name should not be greater than 50 chars.'),
             'roleDisplayName.max' => __('Role display name should not be greater than 50 chars.'),
             'roleDesc.max' => __('Role description should not be greater than 100 chars.'),

@@ -54,8 +54,7 @@ class RoleAssignmentController extends Controller
         $user = User::find($request->member);
 
         // Finds role by request role id
-        $role = Role::find($request->role)
-            ->first();
+        $role = Role::find($request->role);
 
         // Retrieves all of the values for a given key
         $roleID = $role->pluck('id');
@@ -63,6 +62,6 @@ class RoleAssignmentController extends Controller
         // Syncs role to member
         $user->syncRoles($roleID);
 
-        return redirect()->back()->with('message', __('Successfully assigned member - ') . $user->name . __(' to role - ') . $role->name);
+        return redirect()->back()->with('message', __('Successfully assigned member - ') . $user->name . __(' to role - ') . $request->roleName);
     }
 }

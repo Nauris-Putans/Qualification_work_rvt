@@ -258,6 +258,7 @@
 
     "Role - ": "Loma - ",
     " has been added!": " ir pievienota!",
+    " has been edited!": " ir rediģēts!",
     "Role name is required.": "Obligāti jānorāda lomas nosaukums.",
     "This role name already exist": "Šis lomas nosaukums jau pastāv",
     "Role name should not be greater than 50 chars.": "Lomas nosaukums nedrīkst būt lielāks par 50 rakstzīmēm.",

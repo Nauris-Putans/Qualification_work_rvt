@@ -130,7 +130,7 @@
                                         </div>
                                     </th>
                                     <td class="Text">{{ $role->id }}</td>
-                                    <td>{{ $role->name }}</td>
+                                    <td>{{ $role->name }}</td><input type="text" name="roleName" value="{{ $role->name }}" style="display: none;">
                                     <td>{{ $role->display_name }}</td>
                                     <td>{{ $role->description }}</td>
                                 </tr>

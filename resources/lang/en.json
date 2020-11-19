@@ -258,6 +258,7 @@
 
     "Role - ": "Role - ",
     " has been added!": " has been added!",
+    " has been edited!": " has been edited!",
     "Role name is required.": "Role name is required.",
     "This role name already exist": "This role name already exist",
     "Role name should not be greater than 50 chars.": "Role name should not be greater than 50 chars.",
