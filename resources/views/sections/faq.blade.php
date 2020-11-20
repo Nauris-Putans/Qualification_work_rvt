@@ -9,20 +9,20 @@
                     <div class = "phrase">Frequently asked questions</div>
 
                     <div class="accordion-item">
-                        <a class="accordian-link" onclick="myFunction1()">
+                        <a class="accordian-link" onclick="toggle_visibility('answer1')">
                             1. What is monitoring?
                         </a>
                             <hr class="fade-in">
-                        <div class ="answer">
-                            <a class = "show" id="answer1">
+                        <div class ="answer"> 
+                            <a class="show" id="answer1">
                                 Website monitoring is the process of testing and verifying that end-users can interact with a website or web application as expected. 
                                 Website monitoring is often used by businesses to ensure website uptime, performance, and functionality is as expected.
-                            </a>
+                        </a>
                         </div>
                     </div>
 
                     <div class="accordion-item">
-                        <a class="accordian-link" onclick="myFunction2()">
+                        <a class="accordian-link" onclick="toggle_visibility('answer2')">
                             2. Why do you need to use it?
                         </a>
                             <hr class="fade-in">
@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="accordion-item">
-                        <a class="accordian-link" onclick="myFunction3()">
+                        <a class="accordian-link" onclick="toggle_visibility('answer3')">
                             3. Why our monitoring is the best?
                         </a>
                             <hr class="fade-in">
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="accordion-item">
-                        <a class="accordian-link" onclick="myFunction4()">
+                        <a class="accordian-link" onclick="toggle_visibility('answer4')">
                             4. What you can get from pro version?
                         </a>
                             <hr class="fade-in">
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="accordion-item">
-                        <a class="accordian-link" onclick="myFunction5()">
+                        <a class="accordian-link" onclick="toggle_visibility('answer5')">
                             5. What should I do if my website goes down?
                         </a>
                             <hr class="fade-in">
@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="accordion-item">
-                        <a class="accordian-link" onclick="myFunction6()">
+                        <a class="accordian-link" onclick="toggle_visibility('answer6')">
                             6. Do I need to download any programms to check my website?
                         </a>
                             <hr class="fade-in">
@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="accordion-item">
-                        <a class="accordian-link" onclick="myFunction7()">
+                        <a class="accordian-link" onclick="toggle_visibility('answer7')">
                             7. Why do I need to have e-mail or sms alerts?
                         </a>
                             <hr class="fade-in">
@@ -112,109 +112,18 @@
         </div>
     </section>
 
-    <script>
-        function myFunction1() 
-        {
-            var x = document.getElementById("answer1");
-            if (x.style.display === "none") 
-            {
-                x.style.display = "block";
-            } 
-            else 
-            {
-                x.style.display = "none";
-            }
-        }
-    </script>
+<script type="text/javascript">
+    <!--
+    function toggle_visibility(id) {
+        var e = document.getElementById(id);
+        if(e.style.display == 'block')
+            e.style.display = 'none';
+        else
+            e.style.display = 'block';
+    }
+    //-->
+</script>
 
-    <script>
-        function myFunction2() 
-        {
-            var x = document.getElementById("answer2");
-            if (x.style.display === "none") 
-            {
-                x.style.display = "block";
-            } 
-            else 
-            {
-                x.style.display = "none";
-            }
-        }
-    </script>
 
-    <script>
-        function myFunction3() 
-        {
-            var x = document.getElementById("answer3");
-            if (x.style.display === "none") 
-            {
-                x.style.display = "block";
-            } 
-            else 
-            {
-                x.style.display = "none";
-            }
-        }
-    </script>
-
-    <script>
-        function myFunction4() 
-        {
-            var x = document.getElementById("answer4");
-            if (x.style.display === "none") 
-            {
-                x.style.display = "block";
-            } 
-            else 
-            {
-                x.style.display = "none";
-            }
-        }
-    </script>
-
-    <script>
-        function myFunction5() 
-        {
-            var x = document.getElementById("answer5");
-            if (x.style.display === "none") 
-            {
-                x.style.display = "block";
-            } 
-            else 
-            {
-                x.style.display = "none";
-            }
-        }
-    </script>
-
-    <script>
-        function myFunction6() 
-        {
-            var x = document.getElementById("answer6");
-            if (x.style.display === "none") 
-            {
-                x.style.display = "block";
-            } 
-            else 
-            {
-                x.style.display = "none";
-            }
-        }
-    </script>
-
-    <script>
-        function myFunction7() 
-        {
-            var x = document.getElementById("answer7");
-            if (x.style.display === "none") 
-            {
-                x.style.display = "block";
-            } 
-            else 
-            {
-                x.style.display = "none";
-            }
-        }
-    </script>
 
 @endsection
