@@ -104,7 +104,7 @@
                     </div>
 
                     <div class = "row justify-content-center"> 
-                        <a href="/contacts" class="btn btn-primary">Contact us</a> 
+                        <a href="/contacts" class="btn btn-orange">Contact us</a> 
                     </div>
 
                 </div>

@@ -13,6 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="{{ asset('js/arrow.js') }}"></script>
+    <script src="{{ asset('js/switch.js')}}"></script>
 
     <!-- Place your kit's code here -->
     <script src="https://kit.fontawesome.com/f53cf4b771.js" crossorigin="anonymous"></script>
