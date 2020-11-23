@@ -128,7 +128,7 @@ return [
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-info navbar-navy elevation-4',
     'classes_sidebar_nav' => 'nav-child-indent nav-legacy',
-    'classes_topnav' => 'navbar-navy navbar-dark elevation-1',
+    'classes_topnav' => 'navbar-navy navbar-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -188,7 +188,7 @@ return [
 
     'use_route_url' => false,
 
-    'dashboard_url' => '/dashboard',
+    'dashboard_url' => false,
 
     'logout_url' => 'logout',
 
@@ -235,10 +235,10 @@ return [
         // User admin free
         //
         [
-            'text' => 'Dashboard' ,
+            'text' => 'Dashboard',
             'icon' => 'fas fa-tachometer-alt',
             'classes' => 'text-bold',
-            'url' => '/dashboard',
+            'url' => '/user/dashboard',
             'role' => 'userFree',
         ],
         [
@@ -254,13 +254,13 @@ return [
                         [
                             'text' => 'Monitor List',
                             'icon' => 'fas fa-history',
-                            'url' => '/monitoring/monitors/list',
+                            'url' => '/user/monitoring/monitors/list',
                             'role' => 'userFree',
                         ],
                         [
                             'text' => 'Add Monitor',
                             'icon' => 'fas fa-plus',
-                            'url' => '/monitoring/monitors/add',
+                            'url' => '/user/monitoring/monitors/add',
                             'role' => 'userFree',
                         ],
                     ]
@@ -268,19 +268,19 @@ return [
                 [
                     'text' => 'Uptime',
                     'icon' => 'fas fa-eye',
-                    'url' => '/monitoring/uptime',
+                    'url' => '/user/monitoring/uptime',
                     'role' => 'userFree',
                 ],
                 [
                     'text' => 'Page Speed',
                     'icon' => 'fas fa-stopwatch',
-                    'url' => '/monitoring/page-speed',
+                    'url' => '/user/monitoring/page-speed',
                     'role' => 'userFree',
                 ],
                 [
                     'text' => 'Real User Monitoring',
                     'icon' => 'fas fa-users',
-                    'url' => '/monitoring/real-user-monitoring',
+                    'url' => '/user/monitoring/real-user-monitoring',
                     'role' => 'userFree',
                 ],
             ]
@@ -289,21 +289,21 @@ return [
             'text' => 'Alerts',
             'icon' => 'fas fa-bell',
             'classes' => 'text-bold',
-            'url' => '/alerts',
+            'url' => '/user/alerts',
             'role' => 'userFree',
         ],
         [
             'text' => 'Settings',
             'icon' => 'fas fa-cog',
             'classes' => 'text-bold',
-            'url' => '/settings',
+            'url' => '/user/settings',
             'role' => 'userFree',
         ],
         [
             'text' => 'Support',
             'icon' => 'fas fa-question-circle',
             'classes' => 'text-bold',
-            'url' => '/support',
+            'url' => '/user/support',
             'role' => 'userFree',
         ],
         [
@@ -344,23 +344,20 @@ return [
         // Admin
         //
         [
-            'text' => 'Dashboard' ,
+            'text' => 'Dashboard',
             'icon' => 'fas fa-tachometer-alt',
-            'classes' => 'text-bold',
             'url' => '/admin/dashboard',
             'role' => 'admin',
         ],
         [
             'text' => 'Users',
             'icon' => 'fas fa-users',
-            'classes' => 'text-bold',
             'url' => '/admin/users',
             'role' => 'admin',
         ],
         [
             'text' => 'Team',
             'icon' => 'fas fa-users',
-            'classes' => 'text-bold',
             'role' => 'admin',
             'submenu' => [
                 [
@@ -380,9 +377,15 @@ return [
                             'role' => 'admin',
                             'submenu' => [
                                 [
+                                    'text' => 'List',
+                                    'icon' => 'fas fa-clipboard-list',
+                                    'url' => '/admin/roles',
+                                    'role' => 'admin',
+                                ],
+                                [
                                     'text' => 'Add Role',
                                     'icon' => 'fas fa-plus',
-                                    'url' => '/admin/add-role',
+                                    'url' => '/admin/roles/create',
                                     'role' => 'admin',
                                 ],
                                 [
@@ -419,14 +422,12 @@ return [
         [
             'text' => 'Tickets',
             'icon' => 'fas fa-ticket-alt',
-            'classes' => 'text-bold',
             'url' => '/admin/tickets',
             'role' => 'admin',
         ],
         [
             'text' => 'Settings',
             'icon' => 'fas fa-cog',
-            'classes' => 'text-bold',
             'url' => '/admin/settings',
             'role' => 'admin',
         ],
@@ -437,7 +438,6 @@ return [
         [
             'text' => 'Back',
             'icon' => 'fas fa-arrow-left',
-            'classes' => 'text-bold',
             'url' => '/',
             'role' => 'admin',
         ],
