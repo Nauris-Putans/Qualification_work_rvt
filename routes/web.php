@@ -72,7 +72,7 @@ Route::group(['middleware' => ['role:userFree|userPro']], function()
 
     // Monitoring sections
     Route::get('/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@create');
-    Route::post('/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@store');
+    Route::post('/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@store')->name('add.store');
     Route::get('/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@history');
     Route::get('/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@index');
     Route::get('/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@index');
