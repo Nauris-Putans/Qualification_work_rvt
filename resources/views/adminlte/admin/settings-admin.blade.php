@@ -2,7 +2,11 @@
 @section('title', 'Settings')
 
 @section('content_header')
-    <h1>Settings</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page"><a>{{ __('Settings') }}</a></li>
+        </ol>
+    </nav>
 @stop
 
 @section('content')
