@@ -2,6 +2,15 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/becker/laravel-zabbix-api",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
     "keywords": [
         "framework",
         "laravel"
@@ -9,7 +18,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
-        "becker/laravel-zabbix-api": "^0.3.0",
+        "becker/laravel-zabbix-api": "@dev",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -65,6 +74,12 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "clear-cache": [
+            "@php artisan cache:clear",
+            "@php artisan route:clear",
+            "@php artisan config:clear",
+            "@php artisan view:clear"
         ]
     }
 }
