@@ -10973,27 +10973,27 @@ a.text-dark:focus {
 }
 
 .flag-icon-lv {
-  background-image: url(/images/vendor/flag-icon-css/flags/4x3/lv.svg?8b293d984cea7db72e62598083dc759d);
+  background-image: url(/images/lv.svg?8b293d984cea7db72e62598083dc759d);
 }
 
 .flag-icon-lv.flag-icon-squared {
-  background-image: url(/images/vendor/flag-icon-css/flags/1x1/lv.svg?f3c1274d166407a222fa7326129821b7);
+  background-image: url(/images/lv.svg?f3c1274d166407a222fa7326129821b7);
 }
 
 .flag-icon-ru {
-  background-image: url(/images/vendor/flag-icon-css/flags/4x3/ru.svg?0cacf46e6f473fa88781120f370d6107);
+  background-image: url(/images/ru.svg?0cacf46e6f473fa88781120f370d6107);
 }
 
 .flag-icon-ru.flag-icon-squared {
-  background-image: url(/images/vendor/flag-icon-css/flags/1x1/ru.svg?e3ee3b099783ef393f2f4dabdc75d5bc);
+  background-image: url(/images/ru.svg?e3ee3b099783ef393f2f4dabdc75d5bc);
 }
 
 .flag-icon-us {
-  background-image: url(/images/vendor/flag-icon-css/flags/4x3/us.svg?ae65659236a7e348402799477237e6fa);
+  background-image: url(/images/us.svg?ae65659236a7e348402799477237e6fa);
 }
 
 .flag-icon-us.flag-icon-squared {
-  background-image: url(/images/vendor/flag-icon-css/flags/1x1/us.svg?8ec583188aba7e9426580350312d97a5);
+  background-image: url(/images/us.svg?8ec583188aba7e9426580350312d97a5);
 }
 
 .footer {
