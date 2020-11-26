@@ -10996,6 +10996,78 @@ a.text-dark:focus {
   background-image: url(/images/us.svg?8ec583188aba7e9426580350312d97a5);
 }
 
+.flag-icon-es-ca {
+  background-image: url(/images/es-ca.svg?e9062265c973b4ab42aa70eb66ea8957);
+}
+
+.flag-icon-es-ca.flag-icon-squared {
+  background-image: url(/images/es-ca.svg?a35e6a4a92e9aa04f11de348ac82f284);
+}
+
+.flag-icon-es-ga {
+  background-image: url(/images/es-ga.svg?2618e21f1cd5dcbd95d7b119f7b4e33a);
+}
+
+.flag-icon-es-ga.flag-icon-squared {
+  background-image: url(/images/es-ga.svg?151714df0fea994ff25db833a9e9fea1);
+}
+
+.flag-icon-eu {
+  background-image: url(/images/eu.svg?ee7f4712ac4553621d85503cb9a130e5);
+}
+
+.flag-icon-eu.flag-icon-squared {
+  background-image: url(/images/eu.svg?4c73f57cb89b48ebae5e4d8be33e83b8);
+}
+
+.flag-icon-gb-eng {
+  background-image: url(/images/gb-eng.svg?14167f77f128b0f57a6263843017fc0f);
+}
+
+.flag-icon-gb-eng.flag-icon-squared {
+  background-image: url(/images/gb-eng.svg?eabfeadc28e73c627eb8c65999d93aae);
+}
+
+.flag-icon-gb-nir {
+  background-image: url(/images/gb-nir.svg?43b61feaa71fe3689833cb76851718a7);
+}
+
+.flag-icon-gb-nir.flag-icon-squared {
+  background-image: url(/images/gb-nir.svg?9cad35c46f775585c615fb8a5b1dc354);
+}
+
+.flag-icon-gb-sct {
+  background-image: url(/images/gb-sct.svg?4c2c379f607fe46e0cec999154ea0ba8);
+}
+
+.flag-icon-gb-sct.flag-icon-squared {
+  background-image: url(/images/gb-sct.svg?31ef8bcf9416bbd5b8c6ef29d1411e5f);
+}
+
+.flag-icon-gb-wls {
+  background-image: url(/images/gb-wls.svg?2d554424b763bed9142fba7aaf41d8fc);
+}
+
+.flag-icon-gb-wls.flag-icon-squared {
+  background-image: url(/images/gb-wls.svg?85f8b84246b2d0b3b65de2d5d34f5ffe);
+}
+
+.flag-icon-un {
+  background-image: url(/images/un.svg?bdaf37f920eb89f19bf840be77b1f359);
+}
+
+.flag-icon-un.flag-icon-squared {
+  background-image: url(/images/un.svg?e6aabbd55ef6e4b38398d11e86733867);
+}
+
+.flag-icon-xk {
+  background-image: url(/images/xk.svg?62bc9bcf96e7abb6e21278b2e9714817);
+}
+
+.flag-icon-xk.flag-icon-squared {
+  background-image: url(/images/xk.svg?bd62029ec779b30b2ac80989dc285ae9);
+}
+
 .footer {
   background: #2B2E34;
   color: white;

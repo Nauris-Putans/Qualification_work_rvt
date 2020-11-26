@@ -6,4 +6,15 @@
   @include flag-icon(lv);
   @include flag-icon(ru);
   @include flag-icon(us);
+
+  // Other flags
+  @include flag-icon(es-ca);
+  @include flag-icon(es-ga);
+  @include flag-icon(eu);
+  @include flag-icon(gb-eng);
+  @include flag-icon(gb-nir);
+  @include flag-icon(gb-sct);
+  @include flag-icon(gb-wls);
+  @include flag-icon(un);
+  @include flag-icon(xk);
 }

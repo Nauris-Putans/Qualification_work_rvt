@@ -2,7 +2,7 @@
   "_args": [
     [
       "flag-icon-css@3.5.0",
-      "/home/nauris24/PhpStorm/monitoring_project"
+      "/home/nauris24/PhpStorm/zabbix-monitoring"
     ]
   ],
   "_from": "flag-icon-css@3.5.0",
@@ -26,7 +26,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/flag-icon-css/-/flag-icon-css-3.5.0.tgz",
   "_spec": "3.5.0",
-  "_where": "/home/nauris24/PhpStorm/monitoring_project",
+  "_where": "/home/nauris24/PhpStorm/zabbix-monitoring",
   "author": {
     "name": "Panayiotis Lipiridis",
     "email": "lipiridis@gmail.com"

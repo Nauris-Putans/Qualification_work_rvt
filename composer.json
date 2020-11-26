@@ -85,6 +85,7 @@
             "composer install || COMPOSER_MEMORY_LIMIT=-1 composer install",
             "npm install",
             "npm link flag-icon-css",
+            "npm run dev",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
             "@php artisan cache:clear",

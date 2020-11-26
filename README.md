@@ -4,7 +4,8 @@
 ## Projekta apraksts
 PIKC “Rīgas Valsts tehnikums” Kvalifikācijas darba repozitorijs. Uzraudzības pakalpojums, kas ļauj pārbaudīt
 jūsu tīmekļa vietnes statistiku - pingu, portu, atbildes laiku, SSL sertifikācijas pārbaudi un daudz ko citu. 
-Lietotāja/administratora/viesa autentifikācija un pārvaldības sistēma. Ir 2 veidu konti - bezmaksas un pro.
+Lietotāja/administratora/viesa autentifikācija un pārvaldības sistēma. Ir 4 veidu plāni - free, pro, webmaster 
+un enterprise.
 
 ## Ko esmu paveicis šaja projektā
  - ...
@@ -79,59 +80,16 @@ cd monitoring-project
 ```
 
 ### Uzstādīšana
-
-Instalēt composer priekš projekta
+Skripts, kas palaiž visas nepieciešāmās komandas
 ```bash
-composer install 
+composer run-script start-project
 ```
 
-Ja rodas problēma, lejupielādējot composer, izmantojiet šīs komandas
-```bash
-composer dump-autoload
-```
+Pievienot datu bāzi ar nosaukumu - monitoring_project
 
-Vai
-
+Pēc datubāzes pievienošanas, izmantojiet šo komandu, kas izveidos tabulas ar pirmtam izveidotiem datiem
 ```bash
-COMPOSER_MEMORY_LIMIT=-1 composer install
-```
-
-Instalēt npm priekš projekta
-```bash
-npm install
-```
-
-Kompilēt failus
-> Katru reizi kad kautkas mainas, jaievada šī komanda lai kompilētos faili
-```bash
-npm run dev
-```
-vai 
-
-> Automātiski kompilē failus
-```bash
-npm run watch
-```
-
-Kopē .env.example failu un ievieto ar jaunu nosaukumu - .env un ielieciet savā vidē mainīgos.
-```bash
-cp .env.example .env
-```
-
-Pievienot datu bāzi ar nosaukumu - monitoring_project un izmantojiet šo komandu
-```bash
-php artisan migrate
-```
-
-Komentēt arā 288,289,290 rindas no vendor/becker/laravel-zabbix-api/src/ZabbixApiAbstract.php faila
-```bash
-284             // validate response
-285             if (!is_object($this->responseDecoded) && !is_array($this->responseDecoded)) {
-286                 throw new Exception('Could not decode JSON response.');
-287             }
-288     //        if (array_key_exists('error', $this->responseDecoded)) {
-289     //            throw new Exception('API error '.$this->responseDecoded->error->code.': '.$this->responseDecoded->error->data);
-290     //        }
+php artisan migrate:fresh --seed
 ```
 
 Palaist projektu lokālajā datorā
