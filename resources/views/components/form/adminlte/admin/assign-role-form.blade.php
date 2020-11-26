@@ -18,12 +18,10 @@
 
         {{-- Assign Role button--}}
         <div class="col-md-12">
-            <input
-                name="assignRole"
-                type="submit"
-                class="btn btn-warning mt-2"
-                value="{{__('Assign Role')}}"
-            />
+            <button type="submit" class="btn btn-info mt-2 text-white">
+                <i class="fas fa-pencil-alt mr-1"></i>
+                {{ __('Assign Role') }}
+            </button>
         </div>
     </div>
 </div>

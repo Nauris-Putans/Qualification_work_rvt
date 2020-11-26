@@ -44,12 +44,10 @@
 
         {{-- Edit Role button--}}
         <div class="col-md-8">
-            <input
-                name="addRole"
-                type="submit"
-                class="btn btn-warning mt-2"
-                value="{{ __('Edit Role') }}"
-            />
+            <button type="submit" class="btn btn-info mt-2 text-white">
+                <i class="fas fa-pencil-alt mr-1"></i>
+                {{ __('Edit Role') }}
+            </button>
         </div>
     </div>
 </div>
