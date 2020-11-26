@@ -6,9 +6,11 @@
         <div class="box">
             <div class="container">
                 <div class="info-text">
-                    <h1 class="fade-in align-self-center text-center text-md-center text-white">Any questions?</h1><hr class="fade-in">
+                    <h1 class="fade-in align-self-center text-center text-md-center text-white font-weight-bold" style="text-shadow: 1px 1px 1px #000000;">
+                        Any questions?
+                    </h1>
 
-                    <div class="contacts-info">
+                    <div class="contacts-info font-weight-bold" style="text-shadow: 1px 1px 1px #000000;">
                         <i class="fas fa-phone-alt mt-3"></i>
                         <a>(+371) 22222222</a>
 
@@ -19,7 +21,7 @@
                         <a>Krišjāņa Valdemāra iela 1C, Centra rajons, Rīga, LV-1010</a>
                     </div>
 
-                    {{ Form::component('contact', 'components.form.contact', ['name', 'value' => null, 'attributes' => []]) }}
+                    {{ Form::component('contact', 'components.form.ticket-form', ['name', 'value' => null, 'attributes' => []]) }}
                     {{ Form::contact() }}
                 </div>
 
