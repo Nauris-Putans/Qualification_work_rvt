@@ -278,6 +278,7 @@
     "Select minimum 1 role.": "Выберите хотя бы 1 роль.",
     "Successfully assigned member - ": "Успешно назначенный участник - ",
     " to role - ": " на роль - ",
+    "Title should not be greater than 50 chars.": "Название не может быть длиннее 50 символов.",
     "Fullname should not be greater than 100 chars.": "Полное имя не может превышать 100 символов.",
     "Email should not be greater than 100 chars.": "Электронная почта не может быть длиннее 100 символов.",
     "Message should not be greater than 255 chars.": "Сообщение не может быть длиннее 255 символов.",
@@ -314,5 +315,23 @@
     "Right": "Направо",
     "Advanced Filter": "Дополнительный фильтр",
     "Advanced Filter (%d)": "Дополнительный фильтр (%d)",
-    "Value": "Значение"
+    "Value": "Значение",
+
+    "Any questions?": "Любые вопросы?",
+    "Title": "Заглавие",
+    "Please choose message type": "Пожалуйста, выберите тип сообщения",
+    "Type": "Тип",
+    "Question": "Вопрос",
+    "Problem": "Проблема",
+    "Job vacancie": "Вакансия на работу",
+    "Other": "Другие",
+    "Full Name": "Имя и фамилия",
+    "Message": "Сообщение",
+    "Send message": "Отправить сообщение",
+    "Title is required!": "Необходимо ввести заголовок!",
+    "Type is required!": "Необходимо указать тип сообщения!",
+    "Fullname is required!": "Необходимо ввести имя, фамилию!",
+    "Email is required!": "Электронная почта обязательна!",
+    "Message is required!": "Вы должны ввести сообщение!",
+    "Message has been sent!": "Сообщение отправлено!"
 }

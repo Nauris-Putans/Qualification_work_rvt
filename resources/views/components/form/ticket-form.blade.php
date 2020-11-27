@@ -13,21 +13,23 @@
                                 name="title"
                                 type="text"
                                 class="form-control @error('title') is-invalid @enderror"
-                                placeholder="{{ __('Title') }}"
+                                placeholder="{{ __('Title') }}*"
                                 value="{{ old('title') }}"
                             />
                         </div>
 
                         {{-- Type input--}}
-                        <select class="col-md-6 form-group form-control @error('type') is-invalid @enderror" name="type" form="ticket">
-                                <option>Please choose message type</option>
-                            <optgroup label="{{ __('Type') }}">
-                                <option value="question">Question</option>
-                                <option value="problem">Problem</option>
-                                <option value="job-vacancie">Job vacancie</option>
-                                <option value="other">Other</option>
-                            </optgroup>
-                        </select>
+                        <div class="col-md-6 form-group">
+                            <select class="form-control @error('type') is-invalid @enderror" name="type" form="ticket">
+                                <option hidden disabled selected value>{{ __('Please choose message type') }}*</option>
+                                <optgroup label="{{ __('Type') }}">
+                                    <option value="question">{{ __('Question') }}</option>
+                                    <option value="problem">{{ __('Problem') }}</option>
+                                    <option value="job-vacancie">{{ __('Job vacancie') }}</option>
+                                    <option value="other">{{ __('Other') }}</option>
+                                </optgroup>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -39,7 +41,7 @@
                                 name="fullname"
                                 type="text"
                                 class="form-control @error('fullname') is-invalid @enderror"
-                                placeholder="{{ __('Full Name') }}"
+                                placeholder="{{ __('Full Name') }}*"
                                 value="{{ old('fullname') }}"
                             />
                         </div>
@@ -50,7 +52,7 @@
                                 name="email"
                                 type="email"
                                 class="form-control @error('email') is-invalid @enderror"
-                                placeholder="{{ __('Email') }}"
+                                placeholder="{{ __('Email') }}*"
                                 value="{{ old('email') }}"
                             />
                         </div>
@@ -63,7 +65,7 @@
                         <textarea
                             name="message"
                             class="form-control @error('message') is-invalid @enderror"
-                            placeholder="{{ __('Feel free to leave a message') }}"
+                            placeholder="{{ __('Message') }}*"
                         >{{ old('message') }}
                         </textarea>
                     </div>
@@ -75,9 +77,9 @@
                 </div>
 
                 {{-- Contact us button--}}
-                <div class="col-md-12 justify-content-center">
-                    <button type="submit" class="btn btn-primary mt-2">
-                        {{ __('Contact us') }}
+                <div class="col-md-12 justify-content-center mt-2 mb-5">
+                    <button type="submit" class="btn btn-orange orange-hover">
+                        {{ __('Send message') }}
                     </button>
                 </div>
             </form>
