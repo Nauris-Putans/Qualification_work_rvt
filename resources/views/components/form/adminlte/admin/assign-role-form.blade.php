@@ -6,7 +6,9 @@
                 <label>
                     {{__('Member')}}
                 </label>
-                <select name="member" class="form-control">
+                <select name="member" class="form-control @error('type') is-invalid @enderror">
+                    <option hidden disabled selected value>{{ __('Please choose member') }}*</option>
+                    <optgroup label="{{ __('Members') }}">
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">
                             {{ $user->name }}
