@@ -40,60 +40,67 @@
 <body>
     <div id="app">
         {{-- Navigation bar --}}
-        <nav class="navbar navbar-expand-lg sticky-top bg-darkblue shadow-sm">
+        <nav class="navbar navbar-expand-lg sticky-top bg-darkblue shadow-sm d-flex justify-content-between">
             <div class="container">
 
                 <!-- Navbar brand logo -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{URL::asset('/images/Logo.png')}}" alt="Logo" style="margin-right: 4rem !important;">
-                </a>
+                <div class="navbar-nav col-4 align-items-start ">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="{{URL::asset('/images/Logo.png')}}" alt="Logo" style="margin-right: 4rem !important;">
+                    </a>
+                </div>
 
                 <!-- Hamburger aka navbar toggler -->
-                <button class="navbar-toggler navbar-dark ml-auto toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler navbar-dark ml-auto toggler-example align-items-end" type="button" data-toggle="collapse"
+                        data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse col-lg-8 col-md-12 col-sm-12" id="navbarNavDropdown">
+
                     <!-- Middle Of Navbar -->
-                    <ul class="navbar-nav Sections mx-auto justify-content-center">
-                        {{-- Home --}}
-                        <li class="nav-item {{ Request::path() == '/' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('home') }}">
-                                @lang('Home')
-                            </a>
-                        </li>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <ul class="navbar-nav Sections mx-auto justify-content-center">
+                            {{-- Home --}}
+                            <li class="nav-item {{ Request::path() == '/' ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('home') }}">
+                                    @lang('Home')
+                                </a>
+                            </li>
 
-                        {{-- Features --}}
-                        <li class="nav-item {{ Request::path() == 'features' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('features') }}">
-                                @lang('Features')
-                            </a>
-                        </li>
+                            {{-- Features --}}
+                            <li class="nav-item {{ Request::path() == 'features' ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('features') }}">
+                                    @lang('Features')
+                                </a>
+                            </li>
 
-                        {{-- Pricing --}}
-                        <li class="nav-item {{ Request::path() == 'pricing' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('pricing') }}">
-                                @lang('Pricing')
-                            </a>
-                        </li>
+                            {{-- Pricing --}}
+                            <li class="nav-item {{ Request::path() == 'pricing' ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('pricing') }}">
+                                    @lang('Pricing')
+                                </a>
+                            </li>
 
-                        {{-- FAQ --}}
-                        <li class="nav-item {{ Request::path() == 'faq' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('faq') }}">
-                                @lang('FAQ')
-                            </a>
-                        </li>
+                            {{-- FAQ --}}
+                            <li class="nav-item {{ Request::path() == 'faq' ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('faq') }}">
+                                    @lang('FAQ')
+                                </a>
+                            </li>
 
-                        {{-- Contacts --}}
-                        <li class="nav-item {{ Request::path() == 'contacts' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('contacts') }}">
-                                @lang('Contacts')
-                            </a>
-                        </li>
-                    </ul>
+                            {{-- Contacts --}}
+                            <li class="nav-item {{ Request::path() == 'contacts' ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('contacts') }}">
+                                    @lang('Contacts')
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav Authentication ml-auto">
+                    <ul class="navbar-nav Authentication ml-auto justify-content-center">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item Login">
@@ -122,7 +129,7 @@
                                             @lang('Dashboard')
                                         </a>
 
-                                    {{-- User Free dashboard--}}
+                                        {{-- User Free dashboard--}}
                                     @elseif (Laratrust::hasRole('userFree'))
                                         <a class="dropdown-item" href="{{ url('/user/dashboard') }}">
                                             @lang('Dashboard')
@@ -188,7 +195,6 @@
                             </a>
                         </div>
                     </li>
-
                 </div>
             </div>
         </nav>
