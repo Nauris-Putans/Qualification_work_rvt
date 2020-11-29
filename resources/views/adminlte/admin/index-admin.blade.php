@@ -21,7 +21,6 @@
                     @else
                         <p>{{ __('Users') }}</p>
                     @endif
-
                 </div>
                 <div class="icon">
                     <i class="fas fa-user-plus"></i>

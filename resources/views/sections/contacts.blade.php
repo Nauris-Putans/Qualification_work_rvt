@@ -17,7 +17,7 @@
                         <i class="fas fa-envelope mr-1"></i>
                         <a>{{ __('webcheck@gmail.com') }}</a>
 
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fas fa-map-marker-alt mr-1"></i>
                         <a>{{ __('Krišjāņa Valdemāra iela 1C, Centra rajons, Rīga, LV-1010') }}</a>
                     </div>
 
