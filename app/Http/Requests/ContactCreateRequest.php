@@ -51,7 +51,7 @@ class ContactCreateRequest extends FormRequest
             'email.required' => __('Email is required!'),
             'message.required' => __('Message is required!'),
 
-            'email.email' => __('E-pasts ir nederīgs'),
+            'email.email' => __('Email is invalid'),
         ];
     }
 }

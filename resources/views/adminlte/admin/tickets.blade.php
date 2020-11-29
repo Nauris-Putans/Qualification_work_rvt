@@ -107,8 +107,8 @@
                             <tr>
                                 <td>{{ $ticket->id }}</td>
                                 <td>{{ $ticket->title }}</td>
-                                <td>{{ $ticket->type }}</td>
-                                <td>{{ $ticket->status }}</td>
+                                <td>{{ __($ticket->type) }}</td>
+                                <td>{{ __($ticket->status) }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" role="button">
                                         <i class="fas fa-eye mr-1"></i>

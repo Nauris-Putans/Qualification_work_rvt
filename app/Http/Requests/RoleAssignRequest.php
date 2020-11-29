@@ -24,7 +24,8 @@ class RoleAssignRequest extends FormRequest
     public function rules()
     {
         return [
-            'role' => 'required'
+            'role' => 'required',
+            'member' => 'required'
         ];
     }
 
@@ -37,6 +38,7 @@ class RoleAssignRequest extends FormRequest
     {
         return [
             'role.required' => __('Select minimum 1 role.'),
+            'member.required' => __('Member is required!'),
         ];
     }
 }

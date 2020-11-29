@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Profile')
+@section('title', 'Ticket')
 
 @section('content_header')
     <nav aria-label="breadcrumb">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="Type">
                         <b>{{ __('Type') }}</b>
-                        <p class="text-gray">{{ $ticket->type }}</p>
+                        <p class="text-gray">{{ __($ticket->type) }}</p>
                         <hr>
                     </div>
                     <div class="Full-name">
@@ -55,7 +55,7 @@
                     </div>
                     <div class="Status">
                         <b>{{ __('Status') }}</b>
-                        <p class="text-gray">{{ $ticket->status }}</p>
+                        <p class="text-gray">{{ __($ticket->status) }}</p>
                         <hr>
                     </div>
                 </div>
