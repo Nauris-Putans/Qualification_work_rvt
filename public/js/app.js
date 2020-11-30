@@ -49879,12 +49879,17 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 __webpack_require__(/*! F:\MAIN\monitoring_project (main)\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! F:\MAIN\monitoring_project (main)\resources\sass\app.scss */"./resources/sass/app.scss");
 =======
 __webpack_require__(/*! C:\Users\user\PhpstormProjects\monitoring_project\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\user\PhpstormProjects\monitoring_project\resources\sass\app.scss */"./resources/sass/app.scss");
 >>>>>>> 0504ba6c6a5005b50d0e987555ebdf4e65891feb
+=======
+__webpack_require__(/*! /home/nauris24/PhpStorm/zabbix-monitoring/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/nauris24/PhpStorm/zabbix-monitoring/resources/sass/app.scss */"./resources/sass/app.scss");
+>>>>>>> 212caf384d312b92aecb791f457b4c214b986c23
 
 
 /***/ })
