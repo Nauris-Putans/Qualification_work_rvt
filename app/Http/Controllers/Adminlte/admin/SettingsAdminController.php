@@ -19,7 +19,7 @@ class SettingsAdminController extends Controller
      */
     public function index()
     {
-        return view('adminlte.admin.settings-admin');
+        return view('adminlte.admin.account-settings-admin');
     }
 
     /**
