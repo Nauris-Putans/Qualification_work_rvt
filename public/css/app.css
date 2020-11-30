@@ -11521,9 +11521,20 @@ a.text-dark:focus {
   color: #acacac;
 }
 
+.LoginForm * {
+  box-sizing: border-box;
+}
+
+.LoginForm body {
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .LoginForm h1 {
   font-weight: bold;
-  margin: 0;
+  margin: 0px;
 }
 
 .LoginForm h2 {
@@ -11538,8 +11549,15 @@ a.text-dark:focus {
   margin: 20px 0 30px;
 }
 
-.LoginForm a {
-  color: #333;
+.LoginForm span {
+  font-size: 12px;
+}
+
+.LoginForm a,
+.LoginForm a:hover,
+.LoginForm a:focus,
+.LoginForm a:active {
+  color: #FF8A00;
   font-size: 14px;
   text-decoration: none;
   margin: 15px 0;
@@ -11547,8 +11565,8 @@ a.text-dark:focus {
 
 .LoginForm button {
   border-radius: 20px;
-  border: 1px solid #FF4B2B;
-  background-color: #FF4B2B;
+  border: 1px solid #FF8A00;
+  background-color: #FF8A00;
   color: #FFFFFF;
   font-size: 12px;
   font-weight: bold;
@@ -11559,7 +11577,7 @@ a.text-dark:focus {
 }
 
 .LoginForm button:active {
-  transform: scale(0.95);
+  transform: scale(0.9);
 }
 
 .LoginForm button:focus {
@@ -11591,7 +11609,7 @@ a.text-dark:focus {
 }
 
 .LoginForm .container {
-  background-color: #fff;
+  background-color: #182232;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
@@ -11673,8 +11691,8 @@ a.text-dark:focus {
 }
 
 .LoginForm .overlay {
-  background: #FF416C;
-  background: linear-gradient(to right, #FF4B2B, #FF416C);
+  background-color: #d63230;
+  background: linear-gradient(319deg, #d63230 0%, #f39237 100%);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -11721,45 +11739,5 @@ a.text-dark:focus {
 
 .LoginForm .container.right-panel-active .overlay-right {
   transform: translateX(20%);
-}
-
-.LoginForm .social-container {
-  margin: 20px 0;
-}
-
-.LoginForm .social-container a {
-  border: 1px solid #DDDDDD;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 5px;
-  height: 40px;
-  width: 40px;
-}
-
-.LoginForm footer {
-  background-color: #222;
-  color: #fff;
-  font-size: 14px;
-  bottom: 0;
-  position: fixed;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 999;
-}
-
-.LoginForm footer p {
-  margin: 10px 0;
-}
-
-.LoginForm footer i {
-  color: red;
-}
-
-.LoginForm footer a {
-  color: #3c97bf;
-  text-decoration: none;
 }
 
