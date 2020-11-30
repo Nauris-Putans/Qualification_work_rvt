@@ -38,9 +38,9 @@ class ContactCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'fullname.max' => 'Fullname should not be greater than 100 chars.',
-            'email.max' => 'Email should not be greater than 100 chars.',
-            'message.max' => 'Message should not be greater than 255 chars.',
+            'fullname.max' => __('Fullname should not be greater than 100 chars.'),
+            'email.max' => __('Email should not be greater than 100 chars.'),
+            'message.max' => __('Message should not be greater than 255 chars.'),
         ];
     }
 }

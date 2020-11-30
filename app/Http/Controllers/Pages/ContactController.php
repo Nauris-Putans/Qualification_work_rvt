@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
-use \App\Contact;
 use App\Http\Requests\ContactCreateRequest;
+use App\Models\Adminlte\admin\Ticket;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -28,7 +28,8 @@ class ContactController extends Controller
      */
     public function store(ContactCreateRequest $request)
     {
-        Contact::create($request->all());
+        Ticket::create($request->all());
+
         return redirect()->back()->with('message', 'Message has been sent!');
     }
 }

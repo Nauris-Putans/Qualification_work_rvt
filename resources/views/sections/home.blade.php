@@ -8,7 +8,7 @@
             <div class="titleDecr">
                 Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more
             </div>
-            <button type="button" href="#" class="btn btn-warning">TRY IT FREE</button>
+            <button type="button" class="btn btn-warning">TRY IT FREE</button>
         </div>
     </section>
 

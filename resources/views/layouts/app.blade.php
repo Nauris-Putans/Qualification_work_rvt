@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -44,20 +45,39 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Middle Of Navbar -->
                     <ul class="navbar-nav Sections mx-auto justify-content-center">
+                        {{-- Home --}}
                         <li class="nav-item {{ Request::path() == '/' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
+                            <a class="nav-link" href="{{ route('home') }}">
+                                @lang('Home')
+                            </a>
                         </li>
+
+                        {{-- Features --}}
                         <li class="nav-item {{ Request::path() == 'features' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/features') }}">{{ __('Features') }}</a>
+                            <a class="nav-link" href="{{ route('features') }}">
+                                @lang('Features')
+                            </a>
                         </li>
+
+                        {{-- Pricing --}}
                         <li class="nav-item {{ Request::path() == 'pricing' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/pricing') }}">{{ __('Pricing') }}</a>
+                            <a class="nav-link" href="{{ route('pricing') }}">
+                                @lang('Pricing')
+                            </a>
                         </li>
+
+                        {{-- FAQ --}}
                         <li class="nav-item {{ Request::path() == 'faq' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/faq') }}">{{ __('FAQ') }}</a>
+                            <a class="nav-link" href="{{ route('faq') }}">
+                                @lang('FAQ')
+                            </a>
                         </li>
+
+                        {{-- Contacts --}}
                         <li class="nav-item {{ Request::path() == 'contacts' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('/contacts') }}">{{ __('Contacts') }}</a>
+                            <a class="nav-link" href="{{ route('contacts') }}">
+                                @lang('Contacts')
+                            </a>
                         </li>
                     </ul>
 
@@ -66,8 +86,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item Login">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Log in') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">
+                                    @lang('Log in')
+                                </a>
                             </li>
+
                             @if (Route::has('register'))
                                 <li class="nav-item Register">
                                     <a class="nav-link btn btn-orange" href="{{ route('login') }}">{{ __('Sign up') }}</a>
@@ -83,21 +106,20 @@
                                     {{-- Admin dashboard--}}
                                     @if (Laratrust::hasRole('admin'))
                                         <a class="dropdown-item" href="{{ url('/admin/dashboard') }}">
-                                            {{ __('Dashboard') }}
+                                            @lang('Dashboard')
                                         </a>
-                                    @endif
 
                                     {{-- User Free dashboard--}}
-                                    @if (Laratrust::hasRole('userFree'))
-                                        <a class="dropdown-item" href="{{ url('/dashboard') }}">
-                                            {{ __('Dashboard') }}
+                                    @elseif (Laratrust::hasRole('userFree'))
+                                        <a class="dropdown-item" href="{{ url('/user/dashboard') }}">
+                                            @lang('Dashboard')
                                         </a>
                                     @endif
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        @lang('Logout')
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -107,6 +129,53 @@
                             </li>
                         @endguest
                     </ul>
+
+                    <!-- Language Dropdown Menu -->
+                    <li class="nav-item dropdown Language">
+                        @if (App::isLocale('en'))
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <span class="flag-icon flag-icon-us"></span>
+                            </a>
+
+                        @elseif (App::isLocale('lv'))
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <span class="flag-icon flag-icon-lv"></span>
+                            </a>
+
+                        @elseif (App::isLocale('ru'))
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <span class="flag-icon flag-icon-ru"></span>
+                            </a>
+
+                        @else
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <span class="flag-icon flag-icon-us"></span>
+                            </a>
+                        @endif
+
+                        {{-- Languages --}}
+                        <div class="dropdown-menu dropdown-menu-right p-0">
+                            @if (App::isLocale(''))
+                                <a href="lang/en" class="dropdown-item {{ App::isLocale('') ? 'active' : '' }}">
+                                    <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
+                                </a>
+
+                            @else
+                                <a href="lang/en" class="dropdown-item {{ App::isLocale('en') ? 'active' : '' }}">
+                                    <i class="flag-icon flag-icon-us mr-2"></i> @lang('English')
+                                </a>
+                            @endif
+
+                            <a href="lang/lv" class="dropdown-item {{ App::isLocale('lv') ? 'active' : '' }}">
+                                <i class="flag-icon flag-icon-lv mr-2"></i> @lang('Latvian')
+                            </a>
+
+                            <a href="lang/ru" class="dropdown-item {{ App::isLocale('ru') ? 'active' : '' }}">
+                                <i class="flag-icon flag-icon-ru mr-2"></i> @lang('Russian')
+                            </a>
+                        </div>
+                    </li>
+
                 </div>
             </div>
         </nav>
@@ -122,22 +191,23 @@
                 <div class="row">
                     <div class="col-lg-5 col-xs-12 about-company">
                         <h2>WEBcheck</h2>
-                        <p class="pr-5 text-white-50">Monitoring services that allows you to check about
-                            your website statistics - Ping, Port, Response time, SSL Certification Check and much more
+                        <p class="pr-5 text-white-50">@lang('Monitoring services that allows you to check about your website statistics - Ping, Port, Response time, SSL Certification Check and much more')
                         </p>
                     </div>
                     <div class="col-lg-3 col-xs-12 links">
-                        <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+                        <h4 class="mt-lg-0 mt-sm-3">
+                            @lang('Links')
+                        </h4>
                         <ul class="m-0 p-0">
-                            <li>- <a href="/">Home</a></li>
-                            <li>- <a href="/features">Features</a></li>
-                            <li>- <a href="/pricing">Pricing</a></li>
-                            <li>- <a href="/faq">FAQ</a></li>
-                            <li>- <a href="/contacts">Contacts</a></li>
+                            <li>- <a href="/">@lang('Home')</a></li>
+                            <li>- <a href="/features">@lang('Features')</a></li>
+                            <li>- <a href="/pricing">@lang('Pricing')</a></li>
+                            <li>- <a href="/faq">@lang('FAQ')</a></li>
+                            <li>- <a href="/contacts">@lang('Contacts')</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-xs-12 location">
-                        <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+                        <h4 class="mt-lg-0 mt-sm-4">@lang('Location')</h4>
                         <p>Krišjāņa Valdemāra iela 1C, Centra rajons, Rīga, LV-1010</p>
                         <p class="mb-0"><i class="fa fa-phone mr-3"></i>+371 22222222</p>
                         <p><i class="fa fa-envelope-o mr-3"></i>webcheck@gmail.com</p>
@@ -145,7 +215,7 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col copyright">
-                        <p class=""><small class="text-white-50">© 2020. All Rights Reserved.</small></p>
+                        <p class=""><small class="text-white-50">@lang('© 2020. All Rights Reserved.')</small></p>
                     </div>
                 </div>
             </div>

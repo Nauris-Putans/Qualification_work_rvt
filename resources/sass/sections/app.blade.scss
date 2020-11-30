@@ -79,3 +79,38 @@
         }
     }
 }
+
+.Language {
+    list-style: none;
+
+    .dropdown-menu {
+        margin-top: 14px;
+    }
+
+    .dropdown-item.active, .dropdown-item:active {
+        color: white;
+        text-decoration: none;
+        background-color: #ca6d00;
+    }
+
+    .dropdown-toggle:hover {
+        color: #a75900 !important;
+    }
+
+    .dropdown-item {
+        font-weight: 600;
+    }
+
+    .dropdown-item:hover {
+        background-color: #a75900;
+        color: white;
+        font-weight: 600;
+    }
+
+    .dropdown-item:active {
+        color: white;
+        font-weight: 600;
+    }
+}
+
+

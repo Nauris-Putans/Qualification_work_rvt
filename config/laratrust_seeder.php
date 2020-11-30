@@ -12,17 +12,19 @@ return [
     'truncate_tables' => true,
 
     'roles_structure' => [
-        'admin' => [
-            'users' => 'c,r,u,d',
-            'payments' => 'c,r,u,d',
-            'profile' => 'r,u'
-        ],
         'userFree' => [
-            'users' => 'c,r,u,d',
             'profile' => 'r,u'
         ],
         'userPro' => [
             'profile' => 'r,u',
+        ],
+        'userWebmaster' => [
+            'profile' => 'r,u',
+        ],
+        'admin' => [
+            'users' => 'c,r,u,d',
+            'payments' => 'c,r,u,d',
+            'profile' => 'c,r,u,d'
         ],
     ],
 
