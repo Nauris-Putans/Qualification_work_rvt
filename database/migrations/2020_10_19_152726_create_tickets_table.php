@@ -15,9 +15,12 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('type');
             $table->string('fullname');
             $table->string('email');
             $table->string('message');
+            $table->string('status');
             $table->timestamps();
         });
     }

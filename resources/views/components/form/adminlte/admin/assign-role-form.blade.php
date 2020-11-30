@@ -6,7 +6,9 @@
                 <label>
                     {{__('Member')}}
                 </label>
-                <select name="member" class="form-control">
+                <select name="member" class="form-control @error('type') is-invalid @enderror">
+                    <option hidden disabled selected value>{{ __('Please choose member') }}*</option>
+                    <optgroup label="{{ __('Members') }}">
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">
                             {{ $user->name }}
@@ -18,12 +20,10 @@
 
         {{-- Assign Role button--}}
         <div class="col-md-12">
-            <input
-                name="assignRole"
-                type="submit"
-                class="btn btn-warning mt-2"
-                value="{{__('Assign Role')}}"
-            />
+            <button type="submit" class="btn btn-info mt-2 text-white">
+                <i class="fas fa-pencil-alt mr-1"></i>
+                {{ __('Assign Role') }}
+            </button>
         </div>
     </div>
 </div>

@@ -93,7 +93,10 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <a class="btn btn-info" href="{{ 'members/'. $hashids->encode($user->id) }}" role="button">{{ __('View') }}</a>
+                                    <a class="btn btn-primary" href="{{ 'members/'. $hashids->encode($user->id) }}" role="button">
+                                        <i class="fas fa-eye mr-1"></i>
+                                        {{ __('View') }}
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

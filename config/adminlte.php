@@ -426,7 +426,7 @@ return [
             'role' => 'admin',
         ],
         [
-            'text' => 'Settings',
+            'text' => 'Account Settings',
             'icon' => 'fas fa-cog',
             'url' => '/admin/settings',
             'role' => 'admin',

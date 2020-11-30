@@ -68,6 +68,7 @@ Route::group(['middleware' => ['role:admin']], function()
 
     // Tickets section
     Route::get('/admin/tickets', 'Adminlte\admin\TicketController@index');
+    Route::get('/admin/tickets/{id}', 'Adminlte\admin\TicketController@profile');
 
     // Settings section
     Route::get('/admin/settings', 'Adminlte\admin\SettingsAdminController@index');
