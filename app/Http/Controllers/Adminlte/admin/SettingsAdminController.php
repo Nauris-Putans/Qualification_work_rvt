@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Adminlte\admin;
 
+use App\Country;
 use App\Models\Adminlte\admin\SettingsAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
@@ -19,7 +20,8 @@ class SettingsAdminController extends Controller
      */
     public function index()
     {
-        return view('adminlte.admin.account-settings-admin');
+        $countries = Country::all();
+        return view('adminlte.admin.account-settings-admin', compact('countries'));
     }
 
     /**

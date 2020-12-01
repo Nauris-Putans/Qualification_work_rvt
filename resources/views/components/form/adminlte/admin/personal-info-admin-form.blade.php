@@ -46,20 +46,8 @@
 
                         {{-- Phone Number input--}}
                         <div class="col-md-4 form-group">
-                            @if(App::isLocale('en'))
-                                <label for="phone">Phone number (England)</label>
-                                <input type="text" class="form-control" id="phone" name="phone" data-inputmask="'mask': '+44 999 99 999'">
-                            @endif
-
-                            @if(App::isLocale('lv'))
-                                <label for="phone">Phone number (Latvian)</label>
-                                <input type="text" class="form-control" id="phone" name="phone" data-inputmask="'mask': '+371 999 99 999'">
-                            @endif
-
-                            @if(App::isLocale('ru'))
-                                <label for="phone">Phone number (Russian)</label>
-                                <input type="text" class="form-control" id="phone" name="phone" data-inputmask="'mask': '+7 999 99 999'">
-                            @endif
+                            <label for="phone">Phone number</label>
+                            <input type="text" class="form-control" id="phonecode" name="phone">
                         </div>
 
                         {{-- Gender input --}}
@@ -94,10 +82,14 @@
                             <label for="country">
                                 {{ __('Country') }}
                             </label>
-                            <select class="form-control @error('country') is-invalid @enderror" name="country" form="personal_info">
+                            <select class="form-control @error('type') is-invalid @enderror" id="countryList" name="country_id" form="personal_info" required>
                                 <option hidden disabled selected value></option>
-                                <option value="male">{{ __('Male') }}</option>
-                                <option value="female">{{ __('Female') }}</option>
+                                @foreach ($countries as $country)
+                                    <option phonecode="{{ $country->dial_code }}"
+                                            value="{{ $country->id }}"
+                                            id="shop-country">{{ $country->name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
