@@ -1,7 +1,8 @@
 <div class="boxed">
     <div class="input-info">
         <div spellcheck="false" class="form justify-content-center">
-            <form method="post" action="/contacts/create" id="personal_info">
+            <form method="POST" action="{{ URL::route('admin.settings.personal_info.update', [$hashids->encode($user->id)]) }}" id="personal_info">
+                @method('PATCH')
                 <x-alertAdmin />
                 @csrf
 
@@ -23,22 +24,24 @@
                                 name="fullname"
                                 type="text"
                                 class="form-control @error('fullname') is-invalid @enderror"
-                                value="{{ old('fullname') }}"
+                                value="{{ $user->name }}"
                             />
                         </div>
 
                         {{-- Email Address input--}}
                         <div class="col-md-4 form-group">
-                            <label for="email-address">
+                            <label for="email_address">
                                 {{ __('Email Address') }}*
                             </label>
                             <input
-                                name="email-address"
+                                name="email_address"
+                                id="email_address"
                                 type="text"
-                                class="form-control @error('email-address') is-invalid @enderror"
-                                value="{{ old('email-address') }}"
+                                class="form-control @error('email_address') is-invalid @enderror"
+                                value="{{ $user->email }}"
                             />
                         </div>
+
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -46,8 +49,8 @@
 
                         {{-- Phone Number input--}}
                         <div class="col-md-4 form-group">
-                            <label for="phone">Phone number</label>
-                            <input type="text" class="form-control" id="phonecode" name="phone">
+                            <label for="phone">Phone number: <span id="descr"></span></label>
+                            <input type="text" class="form-control" name="phone" id="phonecode" value="{{ $user->phone_number }}">
                         </div>
 
                         {{-- Gender input --}}
@@ -56,11 +59,12 @@
                                 {{ __('Gender') }}
                             </label>
                             <select class="form-control @error('type') is-invalid @enderror" name="gender" form="personal_info">
-                                <option hidden disabled selected value></option>
+                                <option hidden disabled selected value="{{ $user->gender }}">{{ $user->gender }}</option>
                                 <option value="male">{{ __('Male') }}</option>
                                 <option value="female">{{ __('Female') }}</option>
                             </select>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -71,7 +75,7 @@
                             <label for="birthday">
                                 {{ __('Birthday') }}
                             </label>
-                            <input name="birthday" type="text" class="form-control">
+                            <input name="birthday" type="text" class="form-control" value="{{ date('m/d/Y', strtotime($user->birthday)) }}">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
@@ -82,32 +86,37 @@
                             <label for="country">
                                 {{ __('Country') }}
                             </label>
-                            <select class="form-control @error('type') is-invalid @enderror" id="countryList" name="country_id" form="personal_info" required>
-                                <option hidden disabled selected value></option>
+                            <select class="form-control @error('type') is-invalid @enderror" id="countryList" name="country" form="personal_info">
+                                <option hidden disabled selected value="{{ $user->country }}">{{ $user->country }}</option>
                                 @foreach ($countries as $country)
                                     <option phonecode="{{ $country->dial_code }}"
-                                            value="{{ $country->id }}"
-                                            id="shop-country">{{ $country->name }}
+                                        value="{{ $country->name }}"
+                                        id="shop-country">{{ $country->name }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="row">
+
                         {{-- City input --}}
                         <div class="col-md-4 form-group">
                             <label for="city">
                                 {{ __('City') }}
                             </label>
-                            <select class="form-control @error('city') is-invalid @enderror" name="city" form="personal_info">
-                                <option hidden disabled selected value></option>
-                                <option value="male">{{ __('Male') }}</option>
-                                <option value="female">{{ __('Female') }}</option>
-                            </select>
+                            <input
+                                name="city"
+                                id="city"
+                                type="text"
+                                class="form-control @error('city') is-invalid @enderror"
+                                value="{{ $user->city }}"
+                            />
                         </div>
+
                     </div>
                 </div>
 

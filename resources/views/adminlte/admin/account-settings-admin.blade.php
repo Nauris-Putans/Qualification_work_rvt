@@ -49,7 +49,7 @@
                 <div class="card-body">
                     <div class="tab-content" id="custom-tabs-one-tabContent">
                         <div class="tab-pane fade active show" id="custom-tabs-one-personal-info" role="tabpanel" aria-labelledby="custom-tabs-one-personal-info-tab">
-                            {{ Form::component('personalInfoForm', 'components.form.adminlte.admin.personal-info-admin-form', ['countries' => $countries]) }}
+                            {{ Form::component('personalInfoForm', 'components.form.adminlte.admin.personal-info-admin-form', ['countries' => $countries, 'hashids' => $hashids, 'user' => $user]) }}
                             {{ Form::personalInfoForm() }}
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-notification" role="tabpanel" aria-labelledby="custom-tabs-one-notification-tab">
@@ -75,55 +75,59 @@
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask-multi/1.2.0/js/jquery.inputmask-multi.min.js" integrity="sha512-uc/k0URVEJ6zKAoRrwd74AENBzCIG7TEeUaTZg76wnjubn22rx/1WTNCeXWbVVUxhKKGHA7XGTtXhhoA2Y4UTQ==" crossorigin="anonymous"></script>
 
     <script>
-        jQuery(document).ready(function(){
-            //email mask
-            // Inputmask("*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[.*{2,6}]", {
-            //     greedy: false,
-            //     onBeforePaste: function (pastedValue, opts) {
-            //         pastedValue = pastedValue.toLowerCase();
-            //         return pastedValue.replace("mailto:", "");
-            //     },
-            //     definitions: {
-            //         '*': {
-            //             validator: "[0-9A-Za-z!#$%&'*+/=?^_`{|}~\-]",
-            //             casing: "lower"
-            //         }
-            //     }
-            // }).mask(document.querySelectorAll("input#email-address"));
-
-
-            // Inputmask("(.999){+|1},00", {
-            //     positionCaretOnClick: "radixFocus",
-            //     radixPoint: ",",
-            //     _radixDance: true,
-            //     numericInput: true,
-            //     placeholder: "0",
-            //     definitions: {
-            //         "0": {
-            //             validator: "[0-9\uFF11-\uFF19]"
-            //         }
-            //     }
-            // }).mask(document.querySelectorAll("input#phonecode"));
-
-            Inputmask("+([9][9][9][9]) 999 99 999").mask(document.querySelectorAll("input#phonecode"));
-
-            Inputmask().mask(document.querySelectorAll("input"));
+        jQuery(document).ready(function()
+        {
+            // Datepicker for birthday
             jQuery('.datepicker').datepicker({
                 format: 'dd/mm/yyyy',
             });
 
-            let countryList = document.getElementById("countryList") //select list with id countryList
-            let phoneCode = document.getElementById('phonecode') //span with id phonecode
-
-            console.log(countryList);
-            console.log(phoneCode);
+            // Adds country phone starting numbers in input
+            let countryList = document.getElementById("countryList");
+            let phoneCode = document.getElementById('phonecode');
 
             countryList.addEventListener('change', function(){
                 $('#phonecode').val(this.options[this.selectedIndex].getAttribute("phonecode"));
                 phoneCode.textContent = this.options[this.selectedIndex].getAttribute("phonecode");
             });
         });
+
+        ///////////////////////// Phone Mask using andr-04/inputmask-multi plugin (jQuery) /////////////////////////
+        var maskList = $.masksSort($.masksLoad("https://cdn.rawgit.com/andr-04/inputmask-multi/master/data/phone-codes.json"), ['#'], /[0-9]|#/, "mask");
+        var maskOpts = {
+            inputmask: {
+                definitions: {
+                    '#': {
+                        validator: "[0-9]",
+                        cardinality: 1
+                    }
+                },
+                showMaskOnHover: false,
+                autoUnmask: true,
+                clearMaskOnLostFocus: false
+            },
+            match: /[0-9]/,
+            replace: '#',
+            list: maskList,
+            listKey: "mask",
+            onMaskChange: function(maskObj, determined) {
+                if (determined) {
+                    var hint = maskObj.name_en;
+                    if (maskObj.desc_en && maskObj.desc_en != "") {
+                        hint += " (" + maskObj.desc_en + ")";
+                    }
+                    $("#descr").html(hint);
+                } else {
+                    $("#descr").html("");
+                }
+            }
+        };
+
+        $('#phone_mask').is(':checked');
+        $('#phonecode').inputmask("remove");
+        $('#phonecode').inputmasks(maskOpts);
     </script>
 @stop
