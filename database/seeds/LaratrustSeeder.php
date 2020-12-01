@@ -56,12 +56,25 @@ class LaratrustSeeder extends Seeder
 
             if(Config::get('laratrust_seeder.create_users')) {
                 $this->command->info("Creating '{$key}' user");
+
+                // Random gender
+                $genders = array("Male", "Female");
+                $random_genders = array_rand($genders);
+
+                $fakerLV = Faker\Factory::create('lv_LV');
+                $faker = Faker\Factory::create();
+
                 // Create default user for each role
                 $user = User::create([
                     'name' => ucwords(str_replace('_', ' ', $key)),
                     'email' => $key.'@inbox.lv',
                     'email_verified_at' => now(),
                     'password' => Hash::make('1'),
+                    'phone_number' => $fakerLV->phoneNumber,
+                    'country' => $faker->country,
+                    'city' => $faker->city,
+                    'gender' => $genders[$random_genders],
+                    'birthday' => $faker->date('y-m-d'),
                     'remember_token' => Str::random(10),
                 ]);
                 $user->attachRole($role);
