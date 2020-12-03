@@ -50,6 +50,7 @@
                         {{-- Phone Number input--}}
                         <div class="col-md-4 form-group">
                             <label for="phone">{{ __('Phone number') }}<span id="descr"></span></label>
+                            <input style="display: none" type="text" class="form-control" name="phone_without_mask" id="customer_phone" value="{{ $user->phone_number }}" size="25">
                             <input type="text" class="form-control" name="phone" id="phonecode" value="{{ $user->phone_number }}">
                         </div>
 
@@ -122,7 +123,7 @@
 
                 {{-- Save Changes button--}}
                 <div class="col-md-12 justify-content-center mt-2 mb-5">
-                    <button type="submit" class="btn btn-info">
+                    <button type="submit" id="bnt_save" class="btn btn-info">
                         {{ __('Save Changes') }}
                     </button>
                 </div>

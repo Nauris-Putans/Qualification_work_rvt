@@ -47,7 +47,7 @@
                     </div>
                     <div class="Gender">
                         <b>{{ __('Gender') }}</b>
-                        <p class="text-gray">{{ $user->gender }}</p>
+                        <p class="text-gray">{{ __($user->gender) }}</p>
                         <hr>
                     </div>
                     <div class="Birthday">
@@ -62,7 +62,7 @@
                     </div>
                     <div class="Location">
                         <b>{{ __('Location') }}</b>
-                        <p class="text-gray">{{ $user->country . ', ' . $user->city }}</p>
+                        <p class="text-gray">{{ __($user->country) . ', ' . $user->city }}</p>
                         <hr>
                     </div>
                 </div>

@@ -80,9 +80,18 @@
     <script>
         jQuery(document).ready(function()
         {
+            // Adds masked input value to unmasket input (hidden input)
+            document.getElementById('bnt_save').onclick = function(){
+                document.getElementById('customer_phone').value = document.getElementById('phonecode').value;
+            };
+
             // Datepicker for birthday
             jQuery('.datepicker').datepicker({
                 format: 'dd/mm/yyyy',
+            });
+
+            $('#phonecode').change(function() {
+                $('#customer_phone').val($('#phonecode').val());
             });
 
             // Adds country phone starting numbers in input
@@ -107,7 +116,8 @@
                 },
                 showMaskOnHover: false,
                 autoUnmask: true,
-                clearMaskOnLostFocus: false
+                clearMaskOnLostFocus: true
+
             },
             match: /[0-9]/,
             replace: '#',
@@ -126,7 +136,14 @@
             // }
         };
 
+        $('#phone_mask').change();
         $('#phone_mask').is(':checked');
+
+        // Phone number without mask
+        $('#customer_phone').inputmasks("remove");
+        $('#customer_phone').inputmask("+#{*}", maskOpts.inputmask);
+
+        // Phone number with mask
         $('#phonecode').inputmask("remove");
         $('#phonecode').inputmasks(maskOpts);
     </script>

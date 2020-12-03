@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Adminlte\admin;
 
 use App\Country;
+use App\Http\Requests\PersonalInfoRequest;
 use App\Models\Adminlte\admin\SettingsAdmin;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -13,13 +14,12 @@ use Illuminate\Support\Facades\Auth;
 
 class SettingsAdminController extends Controller
 {
-
     /**
-     * @param Request $request
+     * @param PersonalInfoRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function personal_info_update(Request $request, $id)
+    public function personal_info_update(PersonalInfoRequest $request, $id)
     {
         // Hash key for id security
         $hashids = new Hashids('WEBcheck', 10);
@@ -38,7 +38,7 @@ class SettingsAdminController extends Controller
         $data = [
             'name' => ucwords($request->fullname),
             'email' => $request->email_address,
-            'phone_number' => $request->phone,
+            'phone_number' => $request->phone_without_mask,
             'country' => $request->country,
             'city' => ucfirst($request->city),
             'gender' => ucfirst($request->gender),
