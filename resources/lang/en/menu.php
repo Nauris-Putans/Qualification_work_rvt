@@ -32,5 +32,6 @@ return [
     'Profile'                       => 'Profile',
     'Tickets'                       => 'Tickets',
     'Settings'                      => 'Settings',
+    'Account Settings'              => 'Account Settings',
     'Back'                          => 'Back',
 ];

@@ -8,7 +8,7 @@
 
                 <div class="col-12 mb-4">
                     <h5>
-                        Change Personal Information here
+                        {{ __('Change Personal Information here') }}
                     </h5>
                 </div>
 
@@ -31,7 +31,7 @@
                         {{-- Email Address input--}}
                         <div class="col-md-4 form-group">
                             <label for="email_address">
-                                {{ __('Email Address') }}*
+                                {{ __('Email') }}*
                             </label>
                             <input
                                 name="email_address"
@@ -49,7 +49,7 @@
 
                         {{-- Phone Number input--}}
                         <div class="col-md-4 form-group">
-                            <label for="phone">Phone number: <span id="descr"></span></label>
+                            <label for="phone">{{ __('Phone number') }}<span id="descr"></span></label>
                             <input type="text" class="form-control" name="phone" id="phonecode" value="{{ $user->phone_number }}">
                         </div>
 
@@ -87,11 +87,11 @@
                                 {{ __('Country') }}
                             </label>
                             <select class="form-control @error('type') is-invalid @enderror" id="countryList" name="country" form="personal_info">
-                                <option hidden disabled selected value="{{ $user->country }}">{{ $user->country }}</option>
+                                <option hidden disabled selected value="{{ $user->country }}">{{ __($user->country) }}</option>
                                 @foreach ($countries as $country)
                                     <option phonecode="{{ $country->dial_code }}"
                                         value="{{ $country->name }}"
-                                        id="shop-country">{{ $country->name }}
+                                        id="shop-country">{{ __($country->name) }}
                                     </option>
                                 @endforeach
                             </select>

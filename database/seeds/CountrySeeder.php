@@ -35,7 +35,7 @@ class CountrySeeder extends Seeder
             "code"=> "DZ"
         ],
         [
-            "name"=> "AmericanSamoa",
+            "name"=> "American Samoa",
             "dial_code"=> "+1 684",
             "code"=> "AS"
         ],
@@ -145,7 +145,7 @@ class CountrySeeder extends Seeder
             "code"=> "BT"
         ],
         [
-            "name"=> "Bolivia, Plurinational State of",
+            "name"=> "Bolivia",
             "dial_code"=> "+591",
             "code"=> "BO"
         ],
@@ -510,7 +510,7 @@ class CountrySeeder extends Seeder
             "code"=> "ID"
         ],
         [
-            "name"=> "Iran, Islamic Republic of Persian Gulf",
+            "name"=> "Iran",
             "dial_code"=> "+98",
             "code"=> "IR"
         ],
@@ -575,12 +575,12 @@ class CountrySeeder extends Seeder
             "code"=> "KI"
         ],
         [
-            "name"=> "Korea, Democratic People's Republic of Korea",
+            "name"=> "North Korea",
             "dial_code"=> "+850",
             "code"=> "KP"
         ],
         [
-            "name"=> "Korea, Republic of South Korea",
+            "name"=> "South Korea",
             "dial_code"=> "+82",
             "code"=> "KR"
         ],
@@ -620,7 +620,7 @@ class CountrySeeder extends Seeder
             "code"=> "LR"
         ],
         [
-            "name"=> "Libyan Arab Jamahiriya",
+            "name"=> "Libya",
             "dial_code"=> "+218",
             "code"=> "LY"
         ],
@@ -840,7 +840,7 @@ class CountrySeeder extends Seeder
             "code"=> "PW"
         ],
         [
-            "name"=> "Palestinian Territory, Occupied",
+            "name"=> "Palestine",
             "dial_code"=> "+970",
             "code"=> "PS"
         ],

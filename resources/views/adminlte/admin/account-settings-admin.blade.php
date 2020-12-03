@@ -15,8 +15,8 @@
             <div class="card" style="background-color: #fd7e14">
                 <div class="card-body text-center">
                     <img src="{{ URL::asset('images/256x256/256_1.png') }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="Profile_pic">
-                    <h3 class="m-3 text-white">Upload a New Photo</h3>
-                    <button class="btn btn-light">Update Profile Photo</button>
+                    <h3 class="m-3 text-white">{{ __('Upload a New Photo') }}</h3>
+                    <button class="btn btn-light">{{ __('Update Profile Photo') }}</button>
                 </div>
             </div>
         </div>
@@ -26,22 +26,22 @@
                     <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="custom-tabs-one-personal-info-tab" data-toggle="pill" href="#custom-tabs-one-personal-info" role="tab" aria-controls="custom-tabs-one-personal-info" aria-selected="true">
-                                Personal Info
+                                {{ __('Personal Info') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-one-notification-tab" data-toggle="pill" href="#custom-tabs-one-notification" role="tab" aria-controls="custom-tabs-one-notification" aria-selected="false">
-                                Notification
+                                {{ __('Notification') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-one-subcription-plan-tab" data-toggle="pill" href="#custom-tabs-one-subcription-plan" role="tab" aria-controls="custom-tabs-one-subcription-plan" aria-selected="false">
-                                Subcription Plan
+                                {{ __('Subscription Plan') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-one-password-and-security-tab" data-toggle="pill" href="#custom-tabs-one-password-and-security" role="tab" aria-controls="custom-tabs-one-password-and-security" aria-selected="false">
-                                Password & Security
+                                {{ __('Password & Security') }}
                             </a>
                         </li>
                     </ul>
@@ -53,13 +53,13 @@
                             {{ Form::personalInfoForm() }}
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-notification" role="tabpanel" aria-labelledby="custom-tabs-one-notification-tab">
-                            Notification
+                            {{ __('Notification') }}
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-subcription-plan" role="tabpanel" aria-labelledby="custom-tabs-one-subcription-plan-tab">
-                            Subcription Plan
+                            {{ __('Subscription Plan') }}
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-password-and-security" role="tabpanel" aria-labelledby="custom-tabs-one-password-and-security-tab">
-                            Password & Security
+                            {{ __('Password & Security') }}
                         </div>
                     </div>
                 </div>
@@ -113,17 +113,17 @@
             replace: '#',
             list: maskList,
             listKey: "mask",
-            onMaskChange: function(maskObj, determined) {
-                if (determined) {
-                    var hint = maskObj.name_en;
-                    if (maskObj.desc_en && maskObj.desc_en != "") {
-                        hint += " (" + maskObj.desc_en + ")";
-                    }
-                    $("#descr").html(hint);
-                } else {
-                    $("#descr").html("");
-                }
-            }
+            // onMaskChange: function(maskObj, determined) {
+            //     if (determined) {
+            //         var hint = maskObj.name_en;
+            //         if (maskObj.desc_en && maskObj.desc_en != "") {
+            //             hint += " (" + maskObj.desc_en + ")";
+            //         }
+            //         $("#descr").html(hint);
+            //     } else {
+            //         $("#descr").html("");
+            //     }
+            // }
         };
 
         $('#phone_mask').is(':checked');
