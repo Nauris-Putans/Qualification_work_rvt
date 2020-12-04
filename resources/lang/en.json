@@ -372,6 +372,11 @@
     "Birthday date should be m/d/Y format": "Birthday date should be m/d/Y format",
     "Birthday must be a date before today": "Birthday must be a date before today",
     "Cities name should not be greater than 50 chars": "Cities name should not be greater than 50 chars",
+    "No file Chosen": "No file Chosen",
+    "Profile Image is required": "Profile Image is required",
+    "Profile Image must be an image": "Profile Image must be an image",
+    "Profile Image must be a file of type: .jpeg, .png, .jpg": "Profile Image must be a file of type: .jpeg, .png, .jpg",
+    "Profile Image may not be greater than 2048 kilobytes": "Profile Image may not be greater than 2048 kilobytes",
 
     "Afghanistan": "Afghanistan",
     "Aland Islands": "Aland Islands",

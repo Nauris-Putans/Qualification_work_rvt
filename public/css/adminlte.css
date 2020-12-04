@@ -1,3 +1,15 @@
+.custom-file-input:lang(us) ~ .custom-file-label::after {
+    content: "Browse";
+}
+
+.custom-file-input:lang(lv) ~ .custom-file-label::after {
+    content: "P\101rl\16Bkot";
+}
+
+.custom-file-input:lang(ru) ~ .custom-file-label::after {
+    content: "\41F\440\43E\441\43C\430\442\440\438\432\430\442\44C";
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 15px;

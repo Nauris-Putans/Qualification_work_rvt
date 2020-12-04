@@ -14,9 +14,20 @@
         <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="card" style="background-color: #fd7e14">
                 <div class="card-body text-center">
-                    <img src="{{ URL::asset('images/256x256/256_1.png') }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="Profile_pic">
-                    <h3 class="m-3 text-white">{{ __('Upload a New Photo') }}</h3>
-                    <button class="btn btn-light">{{ __('Update Profile Photo') }}</button>
+                    <x-alertAdminProfileImage />
+
+                    @if(file_exists(public_path() . $user->profile_image) && $user->profile_image != '')
+                        <img src="{{ asset(auth()->user()->image)  }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="profile_pic">
+                    @else
+                        @if($user->gender == 'Male')
+                            <img src="{{ asset('images/256x256/256_1.png') }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="profile_pic_default">
+                        @else
+                            <img src="{{ asset('images/256x256/256_12.png') }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="profile_pic_default">
+                        @endif
+                    @endif
+
+                    {{ Form::component('pictureUploadForm', 'components.form.adminlte.admin.upload_form', ['countries' => $countries]) }}
+                    {{ Form::pictureUploadForm() }}
                 </div>
             </div>
         </div>
@@ -69,6 +80,7 @@
 @stop
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/adminlte.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" />
 @stop
 
@@ -80,6 +92,11 @@
     <script>
         jQuery(document).ready(function()
         {
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+
             // Adds masked input value to unmasket input (hidden input)
             document.getElementById('bnt_save').onclick = function(){
                 document.getElementById('customer_phone').value = document.getElementById('phonecode').value;

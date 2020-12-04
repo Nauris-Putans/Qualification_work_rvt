@@ -73,6 +73,7 @@ Route::group(['middleware' => ['role:admin']], function()
     // Settings section
     Route::get('/admin/settings', 'Adminlte\admin\SettingsAdminController@show');
     Route::patch('/admin/settings/personal_info/{id}', ['as' => 'admin.settings.personal_info.update', 'uses' => 'Adminlte\admin\SettingsAdminController@personal_info_update']);
+    Route::post('/admin/settings/profile_image/update', 'Adminlte\admin\SettingsAdminController@updateProfile');
 
     // This link will add session of language when they click to change language
     Route::get('admin/lang/{locale}', 'LocalizationController@index');

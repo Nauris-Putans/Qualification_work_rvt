@@ -21,11 +21,17 @@
         <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="card card-outline card-primary">
                 <div class="card-body text-center">
-                    @if ($role->id >= '4')
-                        <img src="{{URL::asset('images/256x256/256_3.png')}}" class="mb-3" style="border-radius: 50%;" height="150" width="150" alt="Profile_pic">
+
+                    @if(file_exists(public_path() . $user->profile_image) && $user->profile_image != '')
+                        <img src="{{ asset(auth()->user()->image)  }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="profile_pic">
                     @else
-                        <img src="{{URL::asset('images/256x256/256_1.png')}}" class="mb-3" style="border-radius: 50%;" height="150" width="150" alt="Profile_pic">
+                        @if($user->gender == 'Male')
+                            <img src="{{ asset('images/256x256/256_1.png') }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="profile_pic_default">
+                        @else
+                            <img src="{{ asset('images/256x256/256_12.png') }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="profile_pic_default">
+                        @endif
                     @endif
+
                     <h3>{{ $user->name }}</h3>
                     <h5 class="text-gray">{{ ucfirst($role->name) }}</h5>
                 </div>

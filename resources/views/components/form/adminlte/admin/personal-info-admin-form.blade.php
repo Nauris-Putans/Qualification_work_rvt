@@ -49,9 +49,24 @@
 
                         {{-- Phone Number input--}}
                         <div class="col-md-4 form-group">
-                            <label for="phone">{{ __('Phone number') }}<span id="descr"></span></label>
-                            <input style="display: none" type="text" class="form-control" name="phone_without_mask" id="customer_phone" value="{{ $user->phone_number }}" size="25">
-                            <input type="text" class="form-control" name="phone" id="phonecode" value="{{ $user->phone_number }}">
+                            <label for="phone">
+                                {{ __('Phone number') }}<span id="descr"></span>
+                            </label>
+
+                            <input style="display: none"
+                                   type="text"
+                                   class="form-control"
+                                   name="phone_without_mask"
+                                   id="customer_phone"
+                                   value="{{ $user->phone_number }}"
+                                   size="25"
+                            >
+                            <input type="text"
+                                   class="form-control"
+                                   name="phone"
+                                   id="phonecode"
+                                   value="{{ $user->phone_number }}"
+                            >
                         </div>
 
                         {{-- Gender input --}}
@@ -60,7 +75,7 @@
                                 {{ __('Gender') }}
                             </label>
                             <select class="form-control @error('type') is-invalid @enderror" name="gender" form="personal_info">
-                                <option hidden disabled selected value="{{ $user->gender }}">{{ $user->gender }}</option>
+                                <option hidden disabled selected value="{{ $user->gender }}">{{ __($user->gender) }}</option>
                                 <option value="male">{{ __('Male') }}</option>
                                 <option value="female">{{ __('Female') }}</option>
                             </select>

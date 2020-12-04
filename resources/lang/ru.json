@@ -382,6 +382,11 @@
     "Birthday date should be m/d/Y format": "Дата рождения должна быть в формате m/d/Y",
     "Birthday must be a date before today": "День рождения должен быть до сегодняшнего дня",
     "Cities name should not be greater than 50 chars": "Название городов не должно превышать 50 символов.",
+    "No file Chosen": "Файл не выбран",
+    "Profile Image is required": "Требуется изображение профиля",
+    "Profile Image must be an image": "Изображение профиля должно быть изображением",
+    "Profile Image must be a file of type: .jpeg, .png, .jpg": "Изображение профиля должно быть файлом типа: .jpeg, .png, .jpg.",
+    "Profile Image may not be greater than 2048 kilobytes": "Размер изображения профиля не должен превышать 2048 килобайт.",
 
     "Afghanistan": "Афганистан",
     "Aland Islands": "Аландские острова",

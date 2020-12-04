@@ -372,6 +372,11 @@
     "Birthday date should be m/d/Y format": "Dzimšanas dienas datumam jābūt formātā m/d/Y",
     "Birthday must be a date before today": "Dzimšanas dienai jābūt datumam pirms šodienas",
     "Cities name should not be greater than 50 chars": "Pilsētas nosaukums nedrīkst būt lielāka par 50 rakstzīmēm",
+    "No file Chosen": "Nav izvēlēts fails",
+    "Profile Image is required": "Nepieciešams profila attēls",
+    "Profile Image must be an image": "Profila attēlam jābūt attēlam",
+    "Profile Image must be a file of type: .jpeg, .png, .jpg": "Profila attēlam jābūt faila tipam: .jpeg, .png, .jpg",
+    "Profile Image may not be greater than 2048 kilobytes": "Profila attēls nedrīkst būt lielāks par 2048 kilobaitiem",
 
     "Afghanistan": "Afganistāna",
     "Aland Islands": "Olande",

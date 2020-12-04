@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone_number', 'country', 'city', 'gender', 'birthday',
+        'name', 'email', 'password', 'profile_image', 'phone_number', 'country', 'city', 'gender', 'birthday',
     ];
 
     /**
@@ -38,4 +38,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getImageAttribute()
+    {
+        return $this->profile_image;
+    }
 }
