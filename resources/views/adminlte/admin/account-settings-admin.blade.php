@@ -17,12 +17,12 @@
                     <x-alertAdminProfileImage />
 
                     @if(file_exists(public_path() . $user->profile_image) && $user->profile_image != '')
-                        <img src="{{ asset(auth()->user()->image)  }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="profile_pic">
+                        <img src="{{ asset(auth()->user()->image) }}" class="mb-2 ProfileImage" alt="profile_pic">
                     @else
                         @if($user->gender == 'Male')
-                            <img src="{{ asset('images/256x256/256_1.png') }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="profile_pic_default">
+                            <img src="{{ asset('images/256x256/256_1.png') }}" class="mb-2 ProfileImage" alt="profile_pic_default">
                         @else
-                            <img src="{{ asset('images/256x256/256_12.png') }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="profile_pic_default">
+                            <img src="{{ asset('images/256x256/256_12.png') }}" class="mb-2 ProfileImage" alt="profile_pic_default">
                         @endif
                     @endif
 
@@ -81,6 +81,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/adminlte.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" />
 @stop
 
@@ -88,10 +89,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask-multi/1.2.0/js/jquery.inputmask-multi.min.js" integrity="sha512-uc/k0URVEJ6zKAoRrwd74AENBzCIG7TEeUaTZg76wnjubn22rx/1WTNCeXWbVVUxhKKGHA7XGTtXhhoA2Y4UTQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous"></script>
 
     <script>
         jQuery(document).ready(function()
         {
+            $(function() {
+                $('.selectpicker').selectpicker();
+            });
+
             $(".custom-file-input").on("change", function() {
                 var fileName = $(this).val().split("\\").pop();
                 $(this).siblings(".custom-file-label").addClass("selected").html(fileName);

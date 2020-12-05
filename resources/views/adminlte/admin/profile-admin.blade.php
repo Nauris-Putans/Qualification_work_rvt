@@ -23,12 +23,12 @@
                 <div class="card-body text-center">
 
                     @if(file_exists(public_path() . $user->profile_image) && $user->profile_image != '')
-                        <img src="{{ asset(auth()->user()->image)  }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="profile_pic">
+                        <img src="{{ asset(auth()->user()->image) }}" class="mb-2 ProfileImage" alt="profile_pic">
                     @else
                         @if($user->gender == 'Male')
-                            <img src="{{ asset('images/256x256/256_1.png') }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="profile_pic_default">
+                            <img src="{{ asset('images/256x256/256_1.png') }}" class="mb-2 ProfileImage" alt="profile_pic_default">
                         @else
-                            <img src="{{ asset('images/256x256/256_12.png') }}" class="mb-2" style="border-radius: 50%; border: 5px solid white;" height="70%" width="70%" alt="profile_pic_default">
+                            <img src="{{ asset('images/256x256/256_12.png') }}" class="mb-2 ProfileImage" alt="profile_pic_default">
                         @endif
                     @endif
 
@@ -45,7 +45,7 @@
                 <div class="card-header bg-info">
                     <h1 class="card-title">{{ __('Info') }}</h1>
                 </div>
-                <div class="card-body">
+                <div class="card-body col-lg-3 col-md-12 col-sm-12">
                     <div class="Email">
                         <b>{{ __('Email') }}</b>
                         <p class="text-gray">{{ $user->email }}</p>

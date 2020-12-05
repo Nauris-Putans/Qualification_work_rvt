@@ -74,10 +74,10 @@
                             <label for="gender">
                                 {{ __('Gender') }}
                             </label>
-                            <select class="form-control @error('type') is-invalid @enderror" name="gender" form="personal_info">
-                                <option hidden disabled selected value="{{ $user->gender }}">{{ __($user->gender) }}</option>
-                                <option value="male">{{ __('Male') }}</option>
-                                <option value="female">{{ __('Female') }}</option>
+                            <select class="form-control selectpicker @error('type') is-invalid @enderror" data-live-search="true" data-style="CountrySelect" name="gender" form="personal_info">
+                                <option disabled selected data-tokens="{{ $user->gender }}" value="{{ $user->gender }}">{{ __($user->gender) }}</option>
+                                <option data-tokens="{{ __('Male') }}" value="male">{{ __('Male') }}</option>
+                                <option data-tokens="{{ __('Female') }}" value="female">{{ __('Female') }}</option>
                             </select>
                         </div>
 
@@ -102,11 +102,12 @@
                             <label for="country">
                                 {{ __('Country') }}
                             </label>
-                            <select class="form-control @error('type') is-invalid @enderror" id="countryList" name="country" form="personal_info">
-                                <option hidden disabled selected value="{{ $user->country }}">{{ __($user->country) }}</option>
+                            <select class="form-control selectpicker @error('type') is-invalid @enderror" data-live-search="true" data-style="CountrySelect" id="countryList" name="country" form="personal_info">
+                                <option disabled selected data-tokens="{{ __($user->country) }}" value="{{ $user->country }}">{{ __($user->country) }}</option>
                                 @foreach ($countries as $country)
                                     <option phonecode="{{ $country->dial_code }}"
                                         value="{{ $country->name }}"
+                                        data-tokens="{{ __($country->name) }}"
                                         id="shop-country">{{ __($country->name) }}
                                     </option>
                                 @endforeach
@@ -139,6 +140,7 @@
                 {{-- Save Changes button--}}
                 <div class="col-md-12 justify-content-center mt-2 mb-5">
                     <button type="submit" id="bnt_save" class="btn btn-info">
+                        <i class="fas fa-pencil-alt mr-1"></i>
                         {{ __('Save Changes') }}
                     </button>
                 </div>

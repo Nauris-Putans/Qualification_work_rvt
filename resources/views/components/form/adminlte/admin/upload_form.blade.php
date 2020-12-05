@@ -14,7 +14,7 @@
                     <div class="custom-file">
 
                         @if (App::isLocale('us'))
-                            <input class="custom-file-input"
+                            <input class="custom-file-input CursorPointer"
                                    name="profile_image"
                                    type="file"
                                    id="profile_image"
@@ -22,7 +22,7 @@
                                    lang="us"
                             >
                         @elseif (App::isLocale('lv'))
-                            <input class="custom-file-input"
+                            <input class="custom-file-input CursorPointer"
                                    name="profile_image"
                                    type="file"
                                    id="profile_image"
@@ -30,7 +30,7 @@
                                    lang="lv"
                             >
                         @elseif (App::isLocale('ru'))
-                            <input class="custom-file-input"
+                            <input class="custom-file-input CursorPointer"
                                    name="profile_image"
                                    type="file"
                                    id="profile_image"
@@ -38,7 +38,7 @@
                                    lang="ru"
                             >
                         @else
-                            <input class="custom-file-input"
+                            <input class="custom-file-input CursorPointer"
                                    name="profile_image"
                                    type="file"
                                    id="profile_image"
@@ -48,6 +48,7 @@
                         @endif
 
                         <label class="custom-file-label text-left" for="profile_image">
+                            <i class="fas fa-file-image mr-1"></i>
                             {{ __('No file Chosen') }}
                         </label>
                     </div>
@@ -55,7 +56,8 @@
 
                 <div class="col-12 mb-4">
                     <div class="col-md-12 justify-content-center">
-                        <button type="submit" class="btn btn-light">
+                        <button type="submit" class="btn btn-info">
+                            <i class="fas fa-pencil-alt mr-1"></i>
                             {{ __('Update Profile Photo') }}
                         </button>
                     </div>

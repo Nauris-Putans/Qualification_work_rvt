@@ -167,3 +167,22 @@
     border: 1px solid #17a2b8 !important;
     padding: 20px !important;
 }
+
+.ProfileImage {
+    border-radius: 50%;
+    border: 5px solid white;
+    width: 250px;
+    height: 250px;
+    max-width: 100%;
+}
+
+.CursorPointer {
+    cursor: pointer;
+}
+
+.CountrySelect {
+    color:  #495057 !important;
+    background-color: #fff !important;
+    border: 1px solid #ced4da !important;
+    box-shadow: none !important;
+}
