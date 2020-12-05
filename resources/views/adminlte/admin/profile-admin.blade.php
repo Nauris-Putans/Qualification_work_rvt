@@ -45,7 +45,7 @@
                 <div class="card-header bg-info">
                     <h1 class="card-title">{{ __('Info') }}</h1>
                 </div>
-                <div class="card-body col-lg-3 col-md-12 col-sm-12">
+                <div class="card-body">
                     <div class="Email">
                         <b>{{ __('Email') }}</b>
                         <p class="text-gray">{{ $user->email }}</p>

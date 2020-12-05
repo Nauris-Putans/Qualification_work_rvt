@@ -14,7 +14,7 @@
         <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="card" style="background-color: #fd7e14">
                 <div class="card-body text-center">
-                    <x-alertAdminProfileImage />
+                    <x-alertAdminPersonalInfo />
 
                     @if(file_exists(public_path() . $user->profile_image) && $user->profile_image != '')
                         <img src="{{ asset(auth()->user()->image) }}" class="mb-2 ProfileImage" alt="profile_pic">
@@ -70,7 +70,8 @@
                             {{ __('Subscription Plan') }}
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-password-and-security" role="tabpanel" aria-labelledby="custom-tabs-one-password-and-security-tab">
-                            {{ __('Password & Security') }}
+                            {{ Form::component('passwordSecurityForm', 'components.form.adminlte.admin.password-security-form', ['countries' => $countries, 'hashids' => $hashids, 'user' => $user]) }}
+                            {{ Form::passwordSecurityForm() }}
                         </div>
                     </div>
                 </div>

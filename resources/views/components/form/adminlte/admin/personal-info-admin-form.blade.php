@@ -138,7 +138,7 @@
                 </div>
 
                 {{-- Save Changes button--}}
-                <div class="col-md-12 justify-content-center mt-2 mb-5">
+                <div class="col-md-12 justify-content-center mt-2 mb-2">
                     <button type="submit" id="bnt_save" class="btn btn-info">
                         <i class="fas fa-pencil-alt mr-1"></i>
                         {{ __('Save Changes') }}

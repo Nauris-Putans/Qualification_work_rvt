@@ -377,6 +377,13 @@
     "Profile Image must be an image": "Profila attēlam jābūt attēlam",
     "Profile Image must be a file of type: .jpeg, .png, .jpg": "Profila attēlam jābūt faila tipam: .jpeg, .png, .jpg",
     "Profile Image may not be greater than 2048 kilobytes": "Profila attēls nedrīkst būt lielāks par 2048 kilobaitiem",
+    "Password & Security has been updated!": "Parole un drošība ir atjaunināta!",
+    "Current password is required!": "Nepieciešama pašreizējā parole!",
+    "New password is required!": "Nepieciešama jauna parole!",
+    "New confirm password and new password must match": "Jaunajai apstiprināšanas parolei un jaunajai parolei ir jāsakrīt",
+    "New Confirm Password": "Jauna apstiprinātā parole",
+    "Current password is match with old password": "Pašreizējā parole atbilst vecajai parolei",
+    "Change Password & Security here": "Mainiet paroli un drošību šeit",
 
     "Afghanistan": "Afganistāna",
     "Aland Islands": "Olande",

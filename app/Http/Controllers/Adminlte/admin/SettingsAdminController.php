@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Adminlte\admin;
 
 use App\Country;
+use App\Http\Requests\PasswordSecurityRequest;
 use App\Http\Requests\PersonalInfoRequest;
 use App\Http\Requests\ProfileImageRequest;
 use App\Models\Adminlte\admin\SettingsAdmin;
@@ -14,6 +15,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
@@ -59,6 +61,37 @@ class SettingsAdminController extends Controller
         return redirect()->back()->with('message', __('Personal info has been updated!'));
     }
 
+    /**
+     * @param PasswordSecurityRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function password_security_update(PasswordSecurityRequest $request,$id)
+    {
+        // Hash key for id security
+        $hashids = new Hashids('WEBcheck', 10);
+
+        // Decodes id
+        $id = $hashids->decode( $id );
+
+        // Finds user by $id
+        $user = User::find($id)->first();
+
+        // Storing new info in $data
+        $data = [
+            'password'=> Hash::make($request->new_password),
+        ];
+
+        // Updates user with $data values
+        $user->update($data);
+
+        return redirect()->back()->with('password_security_message', __('Password & Security has been updated!'));
+    }
+
+    /**
+     * @param ProfileImageRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateProfile(ProfileImageRequest $request)
     {
         // Get current user

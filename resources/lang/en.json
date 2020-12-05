@@ -377,6 +377,13 @@
     "Profile Image must be an image": "Profile Image must be an image",
     "Profile Image must be a file of type: .jpeg, .png, .jpg": "Profile Image must be a file of type: .jpeg, .png, .jpg",
     "Profile Image may not be greater than 2048 kilobytes": "Profile Image may not be greater than 2048 kilobytes",
+    "Password & Security has been updated!": "Password & Security has been updated!",
+    "Current password is required!": "Current password is required!",
+    "New password is required!": "New password is required!",
+    "New confirm password and new password must match": "New confirm password and new password must match",
+    "New Confirm Password": "New Confirm Password",
+    "Current password is match with old password": "Current password is match with old password",
+    "Change Password & Security here": "Change Password & Security here",
 
     "Afghanistan": "Afghanistan",
     "Aland Islands": "Aland Islands",

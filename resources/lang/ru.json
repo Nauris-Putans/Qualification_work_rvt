@@ -387,6 +387,13 @@
     "Profile Image must be an image": "Изображение профиля должно быть изображением",
     "Profile Image must be a file of type: .jpeg, .png, .jpg": "Изображение профиля должно быть файлом типа: .jpeg, .png, .jpg.",
     "Profile Image may not be greater than 2048 kilobytes": "Размер изображения профиля не должен превышать 2048 килобайт.",
+    "Password & Security has been updated!": "Пароль и безопасность обновлены!",
+    "Current password is required!": "Требуется текущий пароль!",
+    "New password is required!": "Требуется новый пароль!",
+    "New confirm password and new password must match": "Новый пароль подтверждения и новый пароль должны совпадать",
+    "New Confirm Password": "Новый Подтвердите Пароль",
+    "Current password is match with old password": "Текущий пароль совпадает со старым паролем",
+    "Change Password & Security here": "Измените пароль и безопасность здесь",
 
     "Afghanistan": "Афганистан",
     "Aland Islands": "Аландские острова",

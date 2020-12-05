@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class AlertAdminProfileImage extends Component
+class AlertAdminPasswordSecurity extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class AlertAdminProfileImage extends Component
      */
     public function render()
     {
-        return view('components.alert-admin-profile-image');
+        return view('components.alert-admin-password-security');
     }
 }
