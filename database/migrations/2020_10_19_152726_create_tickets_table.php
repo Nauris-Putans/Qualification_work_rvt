@@ -20,6 +20,7 @@ class CreateTicketsTable extends Migration
             $table->string('fullname');
             $table->string('email');
             $table->string('message');
+            $table->string('action');
             $table->string('status');
             $table->timestamps();
         });

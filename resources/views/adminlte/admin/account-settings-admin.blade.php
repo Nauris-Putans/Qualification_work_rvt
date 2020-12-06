@@ -10,11 +10,14 @@
 @stop
 
 @section('content')
+    <x-alertAdminPersonalInfo />
+    <x-alertAdmin />
+    <x-alertAdminPasswordSecurity />
+
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="card" style="background-color: #fd7e14">
                 <div class="card-body text-center">
-                    <x-alertAdminPersonalInfo />
 
                     @if(file_exists(public_path() . $user->profile_image) && $user->profile_image != '')
                         <img src="{{ asset(auth()->user()->image) }}" class="mb-2 ProfileImage" alt="profile_pic">

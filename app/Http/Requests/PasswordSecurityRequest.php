@@ -29,7 +29,7 @@ class PasswordSecurityRequest extends FormRequest
         return [
             'current_password' => ['required', new MatchOldPassword()],
             'new_password' => ['required'],
-            'new_confirm_password' => ['same:new_password'],
+            'new_confirm_password' => ['same:new_password', 'different:current_password'],
         ];
     }
 
@@ -44,6 +44,7 @@ class PasswordSecurityRequest extends FormRequest
             'current_password.required' => __('Current password is required!'),
             'new_password.required' => __('New password is required!'),
             'new_confirm_password.same' => __('New confirm password and new password must match'),
+            'new_confirm_password.different' => __('New confirm password and current password must be different'),
         ];
     }
 }

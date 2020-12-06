@@ -66,7 +66,7 @@ class SettingsAdminController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function password_security_update(PasswordSecurityRequest $request,$id)
+    public function password_security_update(PasswordSecurityRequest $request, $id)
     {
         // Hash key for id security
         $hashids = new Hashids('WEBcheck', 10);

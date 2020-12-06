@@ -186,3 +186,62 @@
     border: 1px solid #ced4da !important;
     box-shadow: none !important;
 }
+
+.Solved {
+    color: white;
+    font-weight: bold;
+    cursor: default;
+    border-radius: 20px;
+    background: #28a745;
+    height: auto;
+}
+
+.Answered {
+    color: white;
+    font-weight: bold;
+    cursor: default;
+    border-radius: 20px;
+    background: #17a2b8;
+    height: auto;
+}
+
+.UnAnswered {
+    color: white;
+    font-weight: bold;
+    cursor: default;
+    border-radius: 20px;
+    background: #eca607;
+    height: auto;
+}
+
+.NewTicket {
+    color: white;
+    font-weight: bold;
+    cursor: default;
+    border-radius: 20px;
+    background: #c82333;
+    height: auto;
+}
+
+.Opened {
+    color: white;
+    font-weight: bold;
+    cursor: default;
+    border-radius: 20px;
+    background: #28a745;
+    height: auto;
+}
+
+.Closed {
+    color: white;
+    font-weight: bold;
+    cursor: default;
+    border-radius: 20px;
+    background: #c82333;
+    height: auto;
+}
+
+.TextMiddle {
+    text-align: center !important;
+    vertical-align: middle !important;
+}

@@ -3,7 +3,6 @@
         <div spellcheck="false" class="form justify-content-center">
             <form method="POST" action="{{ URL::route('admin.settings.password_security.update', [$hashids->encode($user->id)]) }}" id="password_secuirty">
                 @method('PATCH')
-                <x-alertAdminPasswordSecurity />
                 @csrf
 
                 <div class="col-12 mb-4">

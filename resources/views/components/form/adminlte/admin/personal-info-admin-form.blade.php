@@ -3,7 +3,6 @@
         <div spellcheck="false" class="form justify-content-center">
             <form method="POST" action="{{ URL::route('admin.settings.personal_info.update', [$hashids->encode($user->id)]) }}" id="personal_info">
                 @method('PATCH')
-                <x-alertAdmin />
                 @csrf
 
                 <div class="col-12 mb-4">

@@ -71,9 +71,14 @@
                     </div>
                 </div>
 
+                {{-- Hidden action input--}}
+                <div style="display: none">
+                    <input name="action" value="new_ticket"/>
+                </div>
+
                 {{-- Hidden status input--}}
                 <div style="display: none">
-                    <input name="status" value="unsolved"/>
+                    <input name="status" value="opened"/>
                 </div>
 
                 {{-- Contact us button--}}

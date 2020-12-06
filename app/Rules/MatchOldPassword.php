@@ -26,6 +26,6 @@ class MatchOldPassword implements Rule
      */
     public function message()
     {
-        return __('Current password is match with old password');
+        return __('Current password is incorrect');
     }
 }

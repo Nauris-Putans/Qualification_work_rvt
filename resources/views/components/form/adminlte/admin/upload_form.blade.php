@@ -1,4 +1,4 @@
-<div class="boxed">
+    <div class="boxed">
     <div class="input-info">
         <div spellcheck="false" class="form justify-content-center">
             <form method="POST" action="/admin/settings/profile_image/update" enctype="multipart/form-data">
