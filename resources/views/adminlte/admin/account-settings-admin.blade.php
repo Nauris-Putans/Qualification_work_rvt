@@ -20,12 +20,12 @@
                 <div class="card-body text-center">
 
                     @if(file_exists(public_path() . $user->profile_image) && $user->profile_image != '')
-                        <img src="{{ asset(auth()->user()->image) }}" class="mb-2 ProfileImage" alt="profile_pic">
+                        <img src="{{ asset(auth()->user()->getUser()->profile_image) }}" class="mb-2 ProfileImage" alt="profile_pic" style="border-radius: 50%; border: 5px solid white; width: 250px; height: 250px; max-width: 100%;">
                     @else
                         @if($user->gender == 'Male')
-                            <img src="{{ asset('images/256x256/256_1.png') }}" class="mb-2 ProfileImage" alt="profile_pic_default">
+                            <img src="{{ asset('images/256x256/256_1.png') }}" class="mb-2 ProfileImage" alt="profile_pic_default" style="border-radius: 50%; border: 5px solid white; width: 250px; height: 250px; max-width: 100%;">
                         @else
-                            <img src="{{ asset('images/256x256/256_12.png') }}" class="mb-2 ProfileImage" alt="profile_pic_default">
+                            <img src="{{ asset('images/256x256/256_12.png') }}" class="mb-2 ProfileImage" alt="profile_pic_default" style="border-radius: 50%; border: 5px solid white; width: 250px; height: 250px; max-width: 100%;">
                         @endif
                     @endif
 

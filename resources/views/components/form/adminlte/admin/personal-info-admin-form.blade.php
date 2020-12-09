@@ -74,7 +74,7 @@
                                 {{ __('Gender') }}
                             </label>
                             <select class="form-control selectpicker @error('type') is-invalid @enderror" data-live-search="true" data-style="CountrySelect" name="gender" form="personal_info">
-                                <option disabled selected data-tokens="{{ $user->gender }}" value="{{ $user->gender }}" @if (old('gender') == $user->gender) {{ 'selected' }} @endif>{{ __($user->gender) }}</option>
+                                <option disabled selected data-tokens="{{ $user->gender }}" value="{{ $user->gender }}">{{ __($user->gender) }}</option>
                                 <option data-tokens="{{ __('Male') }}" value="male">{{ __('Male') }}</option>
                                 <option data-tokens="{{ __('Female') }}" value="female">{{ __('Female') }}</option>
                             </select>
@@ -90,7 +90,7 @@
                             <label for="birthday">
                                 {{ __('Birthday') }}
                             </label>
-                            <input name="birthday" type="text" class="form-control" value="{{ date('m/d/Y', strtotime($user->birthday)) }}">
+                            <input name="birthday" type="text" class="form-control" value="{{ date('m.d.Y', strtotime($user->birthday)) }}">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>

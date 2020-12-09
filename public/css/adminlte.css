@@ -168,14 +168,6 @@
     padding: 20px !important;
 }
 
-.ProfileImage {
-    border-radius: 50%;
-    border: 5px solid white;
-    width: 250px;
-    height: 250px;
-    max-width: 100%;
-}
-
 .CursorPointer {
     cursor: pointer;
 }
@@ -189,56 +181,38 @@
 
 .Solved {
     color: white;
-    font-weight: bold;
-    cursor: default;
-    border-radius: 20px;
     background: #28a745;
-    height: auto;
+    font-size: 100% !important;
 }
 
 .Answered {
     color: white;
-    font-weight: bold;
-    cursor: default;
-    border-radius: 20px;
     background: #17a2b8;
-    height: auto;
+    font-size: 100% !important;
 }
 
 .UnAnswered {
     color: white;
-    font-weight: bold;
-    cursor: default;
-    border-radius: 20px;
     background: #eca607;
-    height: auto;
+    font-size: 100% !important;
 }
 
 .NewTicket {
     color: white;
-    font-weight: bold;
-    cursor: default;
-    border-radius: 20px;
     background: #c82333;
-    height: auto;
+    font-size: 100% !important;
 }
 
 .Opened {
     color: white;
-    font-weight: bold;
-    cursor: default;
-    border-radius: 20px;
     background: #28a745;
-    height: auto;
+    font-size: 100% !important;
 }
 
 .Closed {
     color: white;
-    font-weight: bold;
-    cursor: default;
-    border-radius: 20px;
     background: #c82333;
-    height: auto;
+    font-size: 100% !important;
 }
 
 .TextMiddle {

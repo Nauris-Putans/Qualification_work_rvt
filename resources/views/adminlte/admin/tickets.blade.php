@@ -110,29 +110,29 @@
 
                                 @if ($ticket->action == 'Solved')
                                     <td class="TextMiddle">
-                                        <p class="TextMiddle Solved mb-0">{{ __($ticket->action) }}</p>
+                                        <span class="badge Solved mb-0">{{ __($ticket->action) }}</span>
                                     </td>
                                 @elseif ($ticket->action == 'Answered')
                                     <td class="TextMiddle">
-                                        <p class="TextMiddle Answered mb-0">{{ __($ticket->action) }}</p>
+                                        <span class="badge Answered mb-0">{{ __($ticket->action) }}</span>
                                     </td>
                                 @elseif ($ticket->action == 'Un-Answered')
                                     <td class="TextMiddle">
-                                        <p class="TextMiddle UnAnswered mb-0">{{ __($ticket->action) }}</p>
+                                        <span class="badge UnAnswered mb-0">{{ __($ticket->action) }}</span>
                                     </td>
                                 @elseif ($ticket->action == 'New Ticket')
                                     <td class="TextMiddle">
-                                        <p class="TextMiddle NewTicket mb-0">{{ __($ticket->action) }}</p>
+                                        <span class="badge NewTicket mb-0">{{ __($ticket->action) }}</span>
                                     </td>
                                 @endif
 
                                 @if ($ticket->status == 'Opened')
                                     <td class="TextMiddle">
-                                        <p class="TextMiddle Opened mb-0">{{ __($ticket->status) }}</p>
+                                        <span class="badge Opened mb-0">{{ __($ticket->status) }}</span>
                                     </td>
                                 @elseif ($ticket->status == 'Closed')
                                     <td class="TextMiddle">
-                                        <p class="TextMiddle Closed mb-0">{{ __($ticket->status) }}</p>
+                                        <span class="badge Closed mb-0">{{ __($ticket->status) }}</span>
                                     </td>
                                 @endif
 
@@ -173,6 +173,7 @@
                     columnDefs: [
                         { "orderable": false, "targets": 4 },
                         { "width": "5%", "targets": [0, 4] },
+                        { "width": "10%", "targets": [2, 3] },
                     ],
 
                     // Order by asc/desc

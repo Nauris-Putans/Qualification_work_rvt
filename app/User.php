@@ -39,8 +39,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getImageAttribute()
+    /**
+     * Gets user information with roles table information
+     *
+     * @return $this
+     */
+    public function getUser()
     {
-        return $this->profile_image;
+        $this->load('roles');
+        return $this;
     }
 }

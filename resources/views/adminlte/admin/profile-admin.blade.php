@@ -18,17 +18,17 @@
 
     {{-- Profile info --}}
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="col-lg-5 col-md-6 col-sm-12">
             <div class="card card-outline card-primary">
                 <div class="card-body text-center">
 
                     @if(file_exists(public_path() . $user->profile_image) && $user->profile_image != '')
-                        <img src="{{ asset(auth()->user()->image) }}" class="mb-2 ProfileImage" alt="profile_pic">
+                        <img src="{{ asset($user->profile_image) }}" class="mb-2" alt="profile_pic" style="border-radius: 50%; width: 250px; height: 250px; max-width: 100%;">
                     @else
                         @if($user->gender == 'Male')
-                            <img src="{{ asset('images/256x256/256_1.png') }}" class="mb-2 ProfileImage" alt="profile_pic_default">
+                            <img src="{{ asset('images/256x256/256_1.png') }}" class="mb-2" alt="profile_pic_default" style="border-radius: 50%; width: 250px; height: 250px; max-width: 100%;">
                         @else
-                            <img src="{{ asset('images/256x256/256_12.png') }}" class="mb-2 ProfileImage" alt="profile_pic_default">
+                            <img src="{{ asset('images/256x256/256_12.png') }}" class="mb-2" alt="profile_pic_default" style="border-radius: 50%; width: 250px; height: 250px; max-width: 100%;">
                         @endif
                     @endif
 
@@ -40,7 +40,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="col-lg-5 col-md-6 col-sm-12">
             <div class="card card-outline">
                 <div class="card-header bg-info">
                     <h1 class="card-title">{{ __('Info') }}</h1>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="Birthday">
                         <b>{{ __('Birthday') }}</b>
-                        <p class="text-gray">{{ date('d/m/Y', strtotime($user->birthday)) }}</p>
+                        <p class="text-gray">{{ date('d.m.Y', strtotime($user->birthday)) }}</p>
                         <hr>
                     </div>
                     <div class="Mobile Phone">

@@ -405,6 +405,17 @@
     "Change Password & Security here": "Измените пароль и безопасность здесь",
     "New confirm password and current password must be different": "Новый пароль подтверждения и текущий пароль должны отличаться",
 
+    "Member since ": "Член с ",
+    "Sign out": "Выход",
+    "Notifications": "Уведомление",
+    "new messages": "новые письма",
+    "mins": "минут",
+    "friend requests": "запросы друга",
+    "hours": "часы",
+    "new reports": "новые отчеты",
+    "days": "дней",
+    "See All Notifications": "Посмотреть все сообщения",
+
     "Afghanistan": "Афганистан",
     "Aland Islands": "Аландские острова",
     "Albania": "Албания",
