@@ -10,7 +10,7 @@
                     <option hidden disabled selected value>{{ __('Please choose member') }}*</option>
                     <optgroup label="{{ __('Members') }}">
                     @foreach($users as $user)
-                        <option value="{{ $user->id }}">
+                        <option value="{{ $user->id }}" @if (old('member') == $user->id) {{ 'selected' }} @endif>
                             {{ $user->name }}
                         </option>
                     @endforeach

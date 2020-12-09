@@ -396,25 +396,25 @@ return [
                                 ],
                             ],
                         ],
-                        [
-                            'text' => 'Permissions',
-                            'icon' => 'fas fa-user-cog',
-                            'role' => 'admin',
-                            'submenu' => [
-                                [
-                                    'text' => 'Add Permission',
-                                    'icon' => 'fas fa-plus',
-                                    'url' => '/admin/add-permission',
-                                    'role' => 'admin',
-                                ],
-                                [
-                                    'text' => 'Assign Permission',
-                                    'icon' => 'fas fa-wrench',
-                                    'url' => '/admin/assign-permission',
-                                    'role' => 'admin',
-                                ],
-                            ],
-                        ],
+//                        [
+//                            'text' => 'Permissions',
+//                            'icon' => 'fas fa-user-cog',
+//                            'role' => 'admin',
+//                            'submenu' => [
+//                                [
+//                                    'text' => 'Add Permission',
+//                                    'icon' => 'fas fa-plus',
+//                                    'url' => '/admin/add-permission',
+//                                    'role' => 'admin',
+//                                ],
+//                                [
+//                                    'text' => 'Assign Permission',
+//                                    'icon' => 'fas fa-wrench',
+//                                    'url' => '/admin/assign-permission',
+//                                    'role' => 'admin',
+//                                ],
+//                            ],
+//                        ],
                     ]
                 ],
             ]

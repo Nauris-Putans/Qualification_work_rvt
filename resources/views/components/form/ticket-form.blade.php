@@ -23,10 +23,23 @@
                             <select class="form-control @error('type') is-invalid @enderror" name="type" form="ticket">
                                 <option hidden disabled selected value>{{ __('Please choose message type') }}*</option>
                                 <optgroup label="{{ __('Type') }}">
-                                    <option value="question">{{ __('Question') }}</option>
-                                    <option value="problem">{{ __('Problem') }}</option>
-                                    <option value="job-vacancie">{{ __('Job vacancie') }}</option>
-                                    <option value="other">{{ __('Other') }}</option>
+
+                                    <option value="question" @if (old('type') == "question") {{ 'selected' }} @endif>
+                                        {{ __('Question') }}
+                                    </option>
+
+                                    <option value="problem" @if (old('type') == "problem") {{ 'selected' }} @endif>
+                                        {{ __('Problem') }}
+                                    </option>
+
+                                    <option value="job-vacancie" @if (old('type') == "job-vacancie") {{ 'selected' }} @endif>
+                                        {{ __('Job vacancie') }}
+                                    </option>
+
+                                    <option value="other" @if (old('type') == "other") {{ 'selected' }} @endif>
+                                        {{ __('Other') }}
+                                    </option>
+
                                 </optgroup>
                             </select>
                         </div>

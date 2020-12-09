@@ -110,29 +110,29 @@
 
                                 @if ($ticket->action == 'Solved')
                                     <td class="TextMiddle">
-                                        <p class="Solved mb-0">{{ __($ticket->action) }}</p>
+                                        <p class="TextMiddle Solved mb-0">{{ __($ticket->action) }}</p>
                                     </td>
                                 @elseif ($ticket->action == 'Answered')
                                     <td class="TextMiddle">
-                                        <p class="Answered mb-0">{{ __($ticket->action) }}</p>
+                                        <p class="TextMiddle Answered mb-0">{{ __($ticket->action) }}</p>
                                     </td>
                                 @elseif ($ticket->action == 'Un-Answered')
                                     <td class="TextMiddle">
-                                        <p class="UnAnswered mb-0">{{ __($ticket->action) }}</p>
+                                        <p class="TextMiddle UnAnswered mb-0">{{ __($ticket->action) }}</p>
                                     </td>
                                 @elseif ($ticket->action == 'New Ticket')
                                     <td class="TextMiddle">
-                                        <p class="NewTicket mb-0">{{ __($ticket->action) }}</p>
+                                        <p class="TextMiddle NewTicket mb-0">{{ __($ticket->action) }}</p>
                                     </td>
                                 @endif
 
                                 @if ($ticket->status == 'Opened')
                                     <td class="TextMiddle">
-                                        <p class="Opened mb-0">{{ __($ticket->status) }}</p>
+                                        <p class="TextMiddle Opened mb-0">{{ __($ticket->status) }}</p>
                                     </td>
                                 @elseif ($ticket->status == 'Closed')
                                     <td class="TextMiddle">
-                                        <p class="Closed mb-0">{{ __($ticket->status) }}</p>
+                                        <p class="TextMiddle Closed mb-0">{{ __($ticket->status) }}</p>
                                     </td>
                                 @endif
 
