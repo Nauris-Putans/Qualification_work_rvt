@@ -27,7 +27,8 @@
 </head>
 <body>
     <div style="background-image: url({{ URL::asset('/images/background.jpg') }}); background-repeat: no-repeat; background-size: cover; position: relative; overflow: auto; height: 100vh; display: flex; justify-content: center; align-items: center;">
-        <section class="LoginForm col-md-8">
+
+        <section class="LoginForm col-lg-8 col-md-12 col-sm-12">
             <div class="container" id="container">
                 <div class="form-container sign-up-container">
                     <form method="POST" action="{{ route('register') }}">
@@ -63,19 +64,20 @@
                     </form>
                 </div>
         
-        
                 <div class="form-container sign-in-container">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         
-                        <h1>Sign in</h1>
-                        <input id="login_email" type="email" class="form-control @error('login_email') is-invalid @enderror" name="login_email" value="{{ old('login_email') }}" required autocomplete="login_email" autofocus placeholder="{{ __('E-Mail Address') }}">
-        
-                        @error('login_email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        
+                            <h1>Sign in</h1>
+                            <input id="login_email" type="email" class="form-control @error('login_email') is-invalid @enderror" name="login_email" value="{{ old('login_email') }}" required autocomplete="login_email" autofocus placeholder="{{ __('E-Mail Address') }}">
+            
+                            @error('login_email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        
         
                         <input id="login_password" type="password" class="form-control @error('login_password') is-invalid @enderror" name="login_password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
                         @error('login_password')
@@ -84,27 +86,31 @@
                             </span>
                         @enderror
 
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input style="margin: 0; margin-top:8px" class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
-                            </div>
-                        </div>
-        
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Log in') }}
-                        </button>
-        
                         @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
                             </a>
                         @endif
+                        
+                    <div class="LoginCheckBox">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <label class="form-check-label" for="remember">
+                                    {{ __('Remember Me') }}
+                                </label>
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                            </div>
+                        </div>
+                    </div>
+        
+                        <button type="submit" class="btn btn-primary">
+                            {{ __('Log in') }}
+                        </button>
+        
+                        
                     </form>
                 </div>
+
                 <div class="overlay-container">
                     <div class="overlay">
                         <div class="overlay-panel overlay-left">
