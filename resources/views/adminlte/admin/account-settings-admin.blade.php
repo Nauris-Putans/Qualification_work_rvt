@@ -58,12 +58,64 @@
                                 {{ __('Password & Security') }}
                             </a>
                         </li>
+
+                        <!-- Language Dropdown Menu -->
+
+                        <li class="row nav-item dropdown Language" style="margin-right: 0; margin-left: 0;">
+
+                            @if (App::isLocale('en'))
+                                <a class="nav-link" data-toggle="dropdown" href="#">
+                                    {{ __('Language: ') }}
+                                    <span class="ml-2 flag-icon flag-icon-us" style="vertical-align: middle;"></span>
+                                </a>
+
+                            @elseif (App::isLocale('lv'))
+                                <a class="nav-link" data-toggle="dropdown" href="#">
+                                    {{ __('Language: ') }}
+                                    <span class="ml-2 flag-icon flag-icon-lv" style="vertical-align: middle;"></span>
+                                </a>
+
+                            @elseif (App::isLocale('ru'))
+                                <a class="nav-link" data-toggle="dropdown" href="#">
+                                    {{ __('Language: ') }}
+                                    <span class="ml-2 flag-icon flag-icon-ru" style="vertical-align: middle;"></span>
+                                </a>
+
+                            @else
+                                <a class="nav-link" data-toggle="dropdown" href="#">
+                                    {{ __('Language: ') }}
+                                    <span class="ml-2 flag-icon flag-icon-us" style="vertical-align: middle;"></span>
+                                </a>
+                            @endif
+
+                            {{-- Languages --}}
+                            <div class="dropdown-menu dropdown-menu-right p-0">
+                                @if (App::isLocale(''))
+                                    <a href="lang/en" class="dropdown-item {{ App::isLocale('') ? 'active' : '' }}">
+                                        <i class="flag-icon flag-icon-us mr-2"></i> {{ __('English') }}
+                                    </a>
+
+                                @else
+                                    <a href="lang/en" class="dropdown-item {{ App::isLocale('en') ? 'active' : '' }}">
+                                        <i class="flag-icon flag-icon-us mr-2"></i> {{ __('English') }}
+                                    </a>
+                                @endif
+
+                                <a href="lang/lv" class="dropdown-item {{ App::isLocale('lv') ? 'active' : '' }}">
+                                    <i class="flag-icon flag-icon-lv mr-2"></i> {{ __('Latvian') }}
+                                </a>
+
+                                <a href="lang/ru" class="dropdown-item {{ App::isLocale('ru') ? 'active' : '' }}">
+                                    <i class="flag-icon flag-icon-ru mr-2"></i> {{ __('Russian') }}
+                                </a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="custom-tabs-one-tabContent">
                         <div class="tab-pane fade active show" id="custom-tabs-one-personal-info" role="tabpanel" aria-labelledby="custom-tabs-one-personal-info-tab">
-                            {{ Form::component('personalInfoForm', 'components.form.adminlte.admin.personal-info-admin-form', ['countries' => $countries, 'hashids' => $hashids, 'user' => $user]) }}
+                            {{ Form::component('personalInfoForm', 'components.form.adminlte.admin.personal-info-admin-form', ['countries' => $countries, 'hashids' => $hashids, 'user' => $user, 'countryName' => $countryName]) }}
                             {{ Form::personalInfoForm() }}
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-notification" role="tabpanel" aria-labelledby="custom-tabs-one-notification-tab">

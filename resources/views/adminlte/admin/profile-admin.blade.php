@@ -68,7 +68,7 @@
                     </div>
                     <div class="Location">
                         <b>{{ __('Location') }}</b>
-                        <p class="text-gray">{{ __($user->country) . ', ' . $user->city }}</p>
+                        <p class="text-gray">{{ __($countryName[$user->id]->name) . ', ' . $user->city }}</p>
                         <hr>
                     </div>
                 </div>

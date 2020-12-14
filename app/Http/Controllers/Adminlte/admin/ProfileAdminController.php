@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Adminlte\admin;
 
+use App\Country;
 use App\User;
 use Hashids\Hashids;
 use Illuminate\Http\Request;
@@ -29,8 +30,13 @@ class ProfileAdminController extends Controller
         $id = $hashids->decode( $id );
 
         // Finds user by user id
-        $user = User::find($id)
-            ->first();
+        $user = User::find($id)->first();
+
+        // Get country id from $user
+        $countryID = $user->pluck('country');
+
+        // Finds country by $countryID
+        $countryName = Country::find($countryID);
 
         // Finds user_id from table 'role_user' by user id
         $roleID = DB::table('role_user')
@@ -42,7 +48,7 @@ class ProfileAdminController extends Controller
             ->where('id', $roleID->role_id)
             ->first();
 
-        return view('adminlte.admin.profile-admin', compact('user', 'role'));
+        return view('adminlte.admin.profile-admin', compact('user', 'role', 'countryName'));
     }
 
     /**
