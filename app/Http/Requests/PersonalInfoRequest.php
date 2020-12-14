@@ -26,7 +26,7 @@ class PersonalInfoRequest extends FormRequest
     {
         return [
             'fullname' => ['required', new FullnameRule()],
-            'email_address' => 'required|email:rfc,dns|unique:users,email',
+            'email_address' => 'exclude_if:email,null|required|email:rfc,dns|unique:users,email',
             'phone_without_mask' => 'nullable|min:6|max:13',
             'gender' => 'nullable',
             'birthday' => 'nullable|date_format:m/d/Y|before:today',

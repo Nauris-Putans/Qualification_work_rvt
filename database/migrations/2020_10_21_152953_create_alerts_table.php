@@ -14,7 +14,7 @@ class CreateAlertsTable extends Migration
     public function up()
     {
         Schema::create('alerts', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->timestamps();
         });
     }

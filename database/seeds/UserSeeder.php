@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $users = factory(\App\User::class, 25)
+        $users = factory(\App\User::class, 11)
             ->create()
             ->each(function ($user) {
                 $role = DB::table('roles')
@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
                 $user->syncRoles($role);
             });
 
-        $members = factory(\App\User::class, 10)
+        $members = factory(\App\User::class, 11)
             ->create()
             ->each(function ($member) {
                 $role = DB::table('roles')
