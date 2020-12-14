@@ -18,14 +18,20 @@
 
     {{-- Profile info --}}
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="col-lg-5 col-md-6 col-sm-12">
             <div class="card card-outline card-primary">
                 <div class="card-body text-center">
-                    @if ($role->id >= '4')
-                        <img src="{{URL::asset('images/256x256/256_3.png')}}" class="mb-3" style="border-radius: 50%;" height="150" width="150" alt="Profile_pic">
+
+                    @if(file_exists(public_path() . $user->profile_image) && $user->profile_image != '')
+                        <img src="{{ asset($user->profile_image) }}" class="mb-2" alt="profile_pic" style="border-radius: 50%; width: 250px; height: 250px; max-width: 100%;">
                     @else
-                        <img src="{{URL::asset('images/256x256/256_1.png')}}" class="mb-3" style="border-radius: 50%;" height="150" width="150" alt="Profile_pic">
+                        @if($user->gender == 'Male')
+                            <img src="{{ asset('images/256x256/256_1.png') }}" class="mb-2" alt="profile_pic_default" style="border-radius: 50%; width: 250px; height: 250px; max-width: 100%;">
+                        @else
+                            <img src="{{ asset('images/256x256/256_12.png') }}" class="mb-2" alt="profile_pic_default" style="border-radius: 50%; width: 250px; height: 250px; max-width: 100%;">
+                        @endif
                     @endif
+
                     <h3>{{ $user->name }}</h3>
                     <h5 class="text-gray">{{ ucfirst($role->name) }}</h5>
                 </div>
@@ -34,7 +40,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="col-lg-5 col-md-6 col-sm-12">
             <div class="card card-outline">
                 <div class="card-header bg-info">
                     <h1 class="card-title">{{ __('Info') }}</h1>
@@ -45,14 +51,24 @@
                         <p class="text-gray">{{ $user->email }}</p>
                         <hr>
                     </div>
+                    <div class="Gender">
+                        <b>{{ __('Gender') }}</b>
+                        <p class="text-gray">{{ __($user->gender) }}</p>
+                        <hr>
+                    </div>
+                    <div class="Birthday">
+                        <b>{{ __('Birthday') }}</b>
+                        <p class="text-gray">{{ date('d.m.Y', strtotime($user->birthday)) }}</p>
+                        <hr>
+                    </div>
                     <div class="Mobile Phone">
                         <b>{{ __('Mobile Phone') }}</b>
-                        <p class="text-gray">...</p>
+                        <p class="text-gray">{{ $user->phone_number }}</p>
                         <hr>
                     </div>
                     <div class="Location">
                         <b>{{ __('Location') }}</b>
-                        <p class="text-gray">...</p>
+                        <p class="text-gray">{{ __($user->country) . ', ' . $user->city }}</p>
                         <hr>
                     </div>
                 </div>

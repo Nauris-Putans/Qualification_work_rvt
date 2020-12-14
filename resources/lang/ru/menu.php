@@ -32,5 +32,6 @@ return [
     'Profile'                       => 'Профиль',
     'Tickets'                       => 'Билеты',
     'Settings'                      => 'Настройки',
+    'Account Settings'              => 'Настройки учетной записи',
     'Back'                          => 'Назад',
 ];

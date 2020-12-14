@@ -21,6 +21,13 @@ $cyan: #6cb2eb;
 // Flag icon path
 $flag-icon-css-path: '~flag-icon-css/flags';
 
+// Custom file text
+$custom-file-text: (
+    us: "Browse",
+    lv: "Pārlūkot",
+    ru: "Просматривать"
+);
+
 /* width */
 ::-webkit-scrollbar {
     width: 15px;

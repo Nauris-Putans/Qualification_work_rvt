@@ -28,6 +28,9 @@ class ContactController extends Controller
      */
     public function store(ContactCreateRequest $request)
     {
+        // Removes _ from string
+        $action = str_replace('_', ' ', $request->action);
+
         // Data from $request variable
         $data = [
             'title' => ucfirst($request->title),
@@ -35,6 +38,7 @@ class ContactController extends Controller
             'fullname' => ucwords($request->fullname),
             'email' => $request->email,
             'message' => ucfirst($request->message),
+            'action' => ucwords($action),
             'status' => ucfirst($request->status),
         ];
 

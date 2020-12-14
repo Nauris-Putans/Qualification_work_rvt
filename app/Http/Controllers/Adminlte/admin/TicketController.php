@@ -40,7 +40,7 @@ class TicketController extends Controller
         $ticket = Ticket::find($id)
             ->first();
 
-        return view('adminlte.admin.view-tickets', compact('ticket'));
+        return view('adminlte.admin.view-tickets', compact('ticket', 'hashids'));
     }
 
     /**

@@ -4232,8 +4232,16 @@ input[type=button].btn-block {
   background-color: #e9ecef;
 }
 
-.custom-file-input:lang(en) ~ .custom-file-label::after {
+.custom-file-input:lang(us) ~ .custom-file-label::after {
   content: "Browse";
+}
+
+.custom-file-input:lang(lv) ~ .custom-file-label::after {
+  content: "P\101rl\16Bkot";
+}
+
+.custom-file-input:lang(ru) ~ .custom-file-label::after {
+  content: "\41F\440\43E\441\43C\430\442\440\438\432\430\442\44C";
 }
 
 .custom-file-input ~ .custom-file-label[data-browse]::after {
@@ -13220,7 +13228,7 @@ a.text-dark:focus {
 }
 
 .Kontakti .form select {
-  color: #495057c7;
+  color: rgba(53, 60, 67, 0.78);
   height: 40px;
   border-radius: 4px;
   padding-right: 15px;

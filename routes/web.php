@@ -71,15 +71,19 @@ Route::group(['middleware' => ['role:admin']], function()
     Route::get('/admin/tickets/{id}', 'Adminlte\admin\TicketController@profile');
 
     // Settings section
-    Route::get('/admin/settings', 'Adminlte\admin\SettingsAdminController@index');
+    Route::get('/admin/settings', 'Adminlte\admin\SettingsAdminController@show');
+    Route::patch('/admin/settings/personal_info/{id}', ['as' => 'admin.settings.personal_info.update', 'uses' => 'Adminlte\admin\SettingsAdminController@personal_info_update']);
+    Route::patch('/admin/settings/password_security/{id}', ['as' => 'admin.settings.password_security.update', 'uses' => 'Adminlte\admin\SettingsAdminController@password_security_update']);
+    Route::post('/admin/settings/profile_image/update', 'Adminlte\admin\SettingsAdminController@updateProfile');
 
     // This link will add session of language when they click to change language
     Route::get('admin/lang/{locale}', 'LocalizationController@index');
     Route::get('admin/users/lang/{locale}', 'LocalizationController@index');
     Route::get('admin/team/lang/{locale}', 'LocalizationController@index');
+    Route::get('admin/team/members/lang/{locale}', 'LocalizationController@index');
     Route::get('/admin/roles/lang/{locale}', 'LocalizationController@index');
-    Route::get('/admin/roles/*/lang/{locale}', 'LocalizationController@index');
-
+    Route::get('/admin/roles/../lang/{locale}', 'LocalizationController@index');
+    Route::get('/admin/tickets/lang/{locale}', 'LocalizationController@index');
 });
 
 // Role - User Admin (free)
