@@ -30,7 +30,7 @@ $factory->define(User::class, function (\Faker\Generator $faker) use ($fakerLV) 
         'email_verified_at' => now(),
         'password' => Hash::make('1'), // password
         'phone_number' => $fakerLV->phoneNumber,
-        'country' => $faker->country,
+        'country' => $faker->numberBetween(0, 241),
         'city' => $faker->city,
         'gender' => $genders[$random_genders],
         'birthday' => $faker->date('y-m-d'),
