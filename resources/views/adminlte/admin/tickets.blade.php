@@ -56,9 +56,9 @@
                                 </div>
                             </td>
                         </tr>
-                        {{-- Column - TYPE --}}
+                        {{-- Column - ACTION --}}
                         <tr id="filter_col2" data-column="2">
-                            <td>{{ __('Column - TYPE') }}</td>
+                            <td>{{ __('Column - ACTION') }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -97,7 +97,7 @@
                         <tr>
                             <th scope="col">{{ __('ID') }}</th>
                             <th scope="col">{{ __('TITLE') }}</th>
-                            <th scope="col">{{ __('TYPE') }}</th>
+                            <th scope="col">{{ __('ACTION') }}</th>
                             <th scope="col">{{ __('STATUS') }}</th>
                             <th scope="col">{{ __('ACTIONS') }}</th>
                         </tr>
@@ -107,9 +107,36 @@
                             <tr>
                                 <td>{{ $ticket->id }}</td>
                                 <td>{{ $ticket->title }}</td>
-                                <td>{{ __($ticket->type) }}</td>
-                                <td>{{ __($ticket->status) }}</td>
-                                <td>
+
+                                @if ($ticket->action == 'Solved')
+                                    <td class="TextMiddle">
+                                        <span class="badge Solved mb-0">{{ __($ticket->action) }}</span>
+                                    </td>
+                                @elseif ($ticket->action == 'Answered')
+                                    <td class="TextMiddle">
+                                        <span class="badge Answered mb-0">{{ __($ticket->action) }}</span>
+                                    </td>
+                                @elseif ($ticket->action == 'Un-Answered')
+                                    <td class="TextMiddle">
+                                        <span class="badge UnAnswered mb-0">{{ __($ticket->action) }}</span>
+                                    </td>
+                                @elseif ($ticket->action == 'New Ticket')
+                                    <td class="TextMiddle">
+                                        <span class="badge NewTicket mb-0">{{ __($ticket->action) }}</span>
+                                    </td>
+                                @endif
+
+                                @if ($ticket->status == 'Opened')
+                                    <td class="TextMiddle">
+                                        <span class="badge Opened mb-0">{{ __($ticket->status) }}</span>
+                                    </td>
+                                @elseif ($ticket->status == 'Closed')
+                                    <td class="TextMiddle">
+                                        <span class="badge Closed mb-0">{{ __($ticket->status) }}</span>
+                                    </td>
+                                @endif
+
+                                <td class="TextMiddle">
                                     <a class="btn btn-primary" href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" role="button">
                                         <i class="fas fa-eye mr-1"></i>
                                         {{ __('View') }}
@@ -146,6 +173,7 @@
                     columnDefs: [
                         { "orderable": false, "targets": 4 },
                         { "width": "5%", "targets": [0, 4] },
+                        { "width": "10%", "targets": [2, 3] },
                     ],
 
                     // Order by asc/desc

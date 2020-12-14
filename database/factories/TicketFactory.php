@@ -13,8 +13,12 @@ $factory->define(Ticket::class, function (Faker\Generator $faker) use ($fakerEN)
     $types = array("Question", "Problem", "Job vacancie", "Other");
     $random_types = array_rand($types);
 
+    // Random actions
+    $actions = array("Solved", "New Ticket", "Answered", "Un-Answered");
+    $random_types = array_rand($actions);
+
     // Random statuses
-    $statuses = array("Solved", "Unsolved");
+    $statuses = array("Opened", "Closed");
     $random_statuses = array_rand($statuses);
 
     return [
@@ -23,6 +27,7 @@ $factory->define(Ticket::class, function (Faker\Generator $faker) use ($fakerEN)
         'fullname' => $fakerEN->name,
         'email' => $fakerEN->unique()->safeEmail,
         'message' => $fakerEN->paragraph(2, true),
+        'action' => $actions[$random_types],
         'status' => $statuses[$random_statuses],
         'created_at' => now(),
         'updated_at' => now(),

@@ -32,5 +32,6 @@ return [
     'Profile'                       => 'Profils',
     'Tickets'                       => 'Biļetes',
     'Settings'                      => 'Iestatījumi',
+    'Account Settings'              => 'Konta iestatījumi',
     'Back'                          => 'Atgriezties',
 ];

@@ -1,3 +1,15 @@
+.custom-file-input:lang(us) ~ .custom-file-label::after {
+    content: "Browse";
+}
+
+.custom-file-input:lang(lv) ~ .custom-file-label::after {
+    content: "P\101rl\16Bkot";
+}
+
+.custom-file-input:lang(ru) ~ .custom-file-label::after {
+    content: "\41F\440\43E\441\43C\430\442\440\438\432\430\442\44C";
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 15px;
@@ -154,4 +166,56 @@
     background-color: #17a2b8 !important;
     border: 1px solid #17a2b8 !important;
     padding: 20px !important;
+}
+
+.CursorPointer {
+    cursor: pointer;
+}
+
+.CountrySelect {
+    color:  #495057 !important;
+    background-color: #fff !important;
+    border: 1px solid #ced4da !important;
+    box-shadow: none !important;
+}
+
+.Solved {
+    color: white;
+    background: #28a745;
+    font-size: 100% !important;
+}
+
+.Answered {
+    color: white;
+    background: #17a2b8;
+    font-size: 100% !important;
+}
+
+.UnAnswered {
+    color: white;
+    background: #eca607;
+    font-size: 100% !important;
+}
+
+.NewTicket {
+    color: white;
+    background: #c82333;
+    font-size: 100% !important;
+}
+
+.Opened {
+    color: white;
+    background: #28a745;
+    font-size: 100% !important;
+}
+
+.Closed {
+    color: white;
+    background: #c82333;
+    font-size: 100% !important;
+}
+
+.TextMiddle {
+    text-align: center !important;
+    vertical-align: middle !important;
 }
