@@ -6,9 +6,11 @@ use App\Http\Requests\UserTicketCreateRequest;
 use App\Mailers\AppMailer;
 use App\Models\Category;
 use App\Models\Ticket;
+use App\Role;
 use Hashids\Hashids;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -33,8 +35,12 @@ class TicketController extends Controller
         return view('adminlte.admin.tickets', compact('tickets', 'hashids'));
     }
 
+
     /**
      * Display the specified resource.
+     *
+     * @param $id
+     * @return Factory|View
      */
     public function show($id)
     {
@@ -45,8 +51,7 @@ class TicketController extends Controller
         $id = $hashids->decode( $id );
 
         // Finds user by user id
-        $ticket = Ticket::find($id)
-            ->first();
+        $ticket = Ticket::find($id)->first();
 
         return view('adminlte.admin.view-tickets', compact('ticket', 'hashids'));
     }
@@ -78,7 +83,7 @@ class TicketController extends Controller
      * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function userStoreTicket(UserTicketCreateRequest $request,AppMailer $mailer)
+    public function userStoreTicket(UserTicketCreateRequest $request, AppMailer $mailer)
     {
         // Removes _ from string
         $action = str_replace('_', ' ', $request->action);
@@ -104,7 +109,7 @@ class TicketController extends Controller
         // Sends ticket information
         $mailer->sendTicketInformation(Auth::user(), $ticket);
 
-        return redirect()->back()->with('message', "A ticket with ID: #$ticketID has been created.");
+        return redirect()->back()->with('message', __("A ticket with ID: #") . $ticketID . __(" has been created."));
     }
 
     /**
@@ -144,13 +149,14 @@ class TicketController extends Controller
      * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function close($ticket_id,AppMailer $mailer)
+    public function close($ticket_id, AppMailer $mailer)
     {
         // Finds ticket by $ticket_id
         $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
 
-        // Sets tickets status to 'closed'
+        // Sets tickets status and action values
         $ticket->status = "Closed";
+        $ticket->action = "Solved";
 
         // Saves changes to ticket
         $ticket->save();
@@ -161,7 +167,7 @@ class TicketController extends Controller
         // Sends ticket status notification
         $mailer->sendTicketStatusNotification($ticketOwner, $ticket);
 
-        return redirect()->back()->with('message', "The ticket has been closed.");
+        return redirect()->back()->with('message', __("The ticket #") . $ticket->ticket_id - $ticket->title . __("has been closed."));
     }
 
     /**
@@ -190,11 +196,23 @@ class TicketController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Ticket $ticket
-     * @return Response
+     * @param $id
+     * @return RedirectResponse
      */
-    public function destroy(Ticket $ticket)
+    public function destroy($id)
     {
-        //
+        // Hash key for id security
+        $hashids = new Hashids('WEBcheck', 10);
+
+        // Decodes id
+        $id = $hashids->decode( $id );
+
+        // Finds role by user id
+        $ticket = Ticket::find($id)->first();
+
+        // Deletes role
+        $ticket->delete();
+
+        return redirect()->back()->with('message', __('Ticket - #') . $ticket->ticket_id . __(' has been deleted!'));
     }
 }

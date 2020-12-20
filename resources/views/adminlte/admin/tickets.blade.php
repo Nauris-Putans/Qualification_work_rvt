@@ -146,7 +146,7 @@
                                 </td>
 
                                 <td>
-                                    {{ $ticket->category->name }}
+                                    {{ __($ticket->category->name) }}
                                 </td>
 
                                 <td>
@@ -178,10 +178,6 @@
                                 <td class="TextMiddle">
                                     <div class="container">
                                         <div class="row">
-                                            <a class="btn btn-primary mr-1" href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" role="button">
-                                                <i class="fas fa-eye mr-1"></i>
-                                                {{ __('View') }}
-                                            </a>
                                             @if($ticket->status === 'Opened')
                                                 <a href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" class="btn btn-info mr-1">
                                                     <i class="fas fa-comment mr-1"></i>
@@ -190,9 +186,22 @@
                                                 <form action="{{ url('/admin/tickets/close_ticket/' . $ticket->ticket_id) }}" method="POST">
                                                     @csrf
 
-                                                    <button class="btn btn-danger" onclick="return confirm('{{ __('Are you sure to close this ticket - #' . $ticket->ticket_id . ' - ' . $ticket->title . '?') }}')" type="submit">
+                                                    <button class="btn btn-warning" onclick="return confirm('{{ __('Are you sure to close this ticket - #') . $ticket->ticket_id . ' - ' . $ticket->title . '?' }}')" type="submit">
                                                         <i class="fas fa-times mr-1"></i>
                                                         {{ __('Close') }}
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <a class="btn btn-primary mr-1" href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" role="button">
+                                                    <i class="fas fa-eye mr-1"></i>
+                                                    {{ __('View') }}
+                                                </a>
+                                                <form action="{{ URL::route('admin.tickets.destroy', [$hashids->encode($ticket->id)]) }}" method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn btn-danger" onclick="return confirm('{{ __('Are you sure to delete this ticket - #') . $ticket->ticket_id . ' - ' . $ticket->title . '?' }}')" type="submit">
+                                                        <i class="fas fa-trash mr-1"></i>
+                                                        {{ __('Delete') }}
                                                     </button>
                                                 </form>
                                             @endif
@@ -231,7 +240,7 @@
                         { "orderable": false, "targets": 6 },
                         { "width": "5%", "targets": [0, 1] },
                         { "width": "10%", "targets": [3, 4, 5] },
-                        { "width": "20%", "targets": [6] },
+                        { "width": "15%", "targets": [6] },
                     ],
 
                     // Order by asc/desc

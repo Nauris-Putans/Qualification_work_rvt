@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserCommentCreateRequest;
 use App\Mailers\AppMailer;
 use App\Models\Comment;
+use App\Models\Ticket;
 use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
@@ -14,7 +15,7 @@ class CommentsController extends Controller
      * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function userPostComment(UserCommentCreateRequest $request, AppMailer $mailer)
+    public function postComment(UserCommentCreateRequest $request, AppMailer $mailer)
     {
         // Data from $request variable
         $data = [
@@ -23,12 +24,25 @@ class CommentsController extends Controller
             'comment' => $request->input('comment')
         ];
 
+        // Creates comment with $data
         $comment = Comment::create($data);
 
-        // send mail if the user commenting is not the ticket owner
-        if($comment->ticket->user->id !== Auth::user()->id) {
+        // Finds ticket by $comment->ticket->id
+        $ticket = Ticket::where('id', $comment->ticket->id)->firstOrFail();
+
+        // Changes tickets action
+        $ticket->action = "Un-Answered";
+
+        // Sends mail if the user commenting is not the ticket owner and changes ticket action
+        if ($comment->ticket->user->id !== Auth::user()->id)
+        {
+            $ticket->action = "Answered";
+
             $mailer->sendTicketComments($comment->ticket->user, Auth::user(), $comment->ticket, $comment);
         }
+
+        // Saves changes
+        $ticket->save();
 
         return redirect()->back()->with('message', "Your comment has be submitted.");
     }

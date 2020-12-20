@@ -133,7 +133,7 @@
                                 </td>
 
                                 <td>
-                                    {{ $ticket->category->name }}
+                                    {{ __($ticket->category->name) }}
                                 </td>
 
                                 <td>

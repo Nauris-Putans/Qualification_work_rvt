@@ -19,7 +19,7 @@ class DashboardAdminController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Application|Factory|Response|View
+     * @return Factory|View
      */
     public function index()
     {
@@ -37,6 +37,7 @@ class DashboardAdminController extends Controller
         // Finds users that have role_id meant for user side
         $users = User::find($roles)->count();
 
+        // Counts all tickets
         $tickets = Ticket::all()->count();
 
         return view('adminlte.admin.index-admin', compact(  'users', 'tickets', 'hashids'));

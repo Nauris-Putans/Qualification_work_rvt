@@ -11,7 +11,7 @@
 
 @section('content')
     {{-- Back button --}}
-    <a class="btn btn-primary mb-3" href="{{ url()->previous() }}" role="button">
+    <a class="btn btn-primary mb-3" href="/admin/tickets" role="button">
         <i class="fas fa-chevron-left mr-1"></i>
         {{ __('Back') }}
     </a>
@@ -32,30 +32,53 @@
 
                         <p>{{ $ticket->message }}</p>
 
-                        <p class="ml-2 mb-0">
-                            <strong>{{ __('Category: ') }}</strong>{{ $ticket->category->name }}
+                        <p class="ml-2 mb-1">
+                            <strong>{{ __('From: ') }}</strong>{{ $ticket->user->name }}
                         </p>
 
-                        <p class="ml-2 mb-0">
+                        <p class="ml-2 mb-1">
+                            <strong>{{ __('Category: ') }}</strong>{{ __($ticket->category->name) }}
+                        </p>
+
+                        <p class="ml-2 mb-1">
+                            @if ($ticket->priority === 'Low')
+                                <strong>{{ __('Priority: ') }}</strong>
+                                <span class="badge Low ml-1 mb-0">
+                                    {{ __($ticket->priority) }}
+                                </span>
+                            @elseif ($ticket->priority === 'Medium')
+                                <strong>{{ __('Priority: ') }}</strong>
+                                <span class="badge Medium ml-1 mb-0">
+                                    {{ __($ticket->priority) }}
+                                </span>
+                            @elseif ($ticket->priority === 'High')
+                                <strong>{{ __('Priority: ') }}</strong>
+                                <span class="badge High ml-1 mb-0">
+                                    {{ __($ticket->priority) }}
+                                </span>
+                            @endif
+                        </p>
+
+                        <p class="ml-2 mb-1">
                             @if ($ticket->status === 'Opened')
                                 <strong>{{ __('Status: ') }}</strong>
                                 <span class="badge Opened ml-1 mb-0">
-                                    {{ $ticket->status }}
+                                    {{ __($ticket->status) }}
                                 </span>
                             @elseif ($ticket->status === 'Closed')
                                 <strong>{{ __('Status: ') }}</strong>
                                 <span class="badge Closed ml-1 mb-0">
-                                    {{ $ticket->status }}
+                                    {{ __($ticket->status) }}
                                 </span>
                             @endif
                         </p>
 
                         <p class="ml-2 mb-4">
-                            <strong>{{ __('Created on: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
+                            <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
                         </p>
                     </div>
 
-                    <div class="card direct-chat direct-chat-primary direct-chat-contacts-open">
+                    <div class="card card-primary direct-chat direct-chat-primary direct-chat-contacts-open">
                         <div class="card-header ui-sortable-handle" style="cursor: default;">
                             <h3 class="card-title">
                                 {{ __('Support Chat') }}
@@ -83,7 +106,7 @@
                                                     {{ $comment->user->name }}
                                                 </span>
                                                 <span class="direct-chat-timestamp float-right">
-                                                    {{ $comment->created_at->format('d M h:m') }}
+                                                    {{ $comment->created_at->format('d M H:i') }}
                                                 </span>
                                             </div>
 
@@ -112,7 +135,7 @@
                                                     {{ $comment->user->name }}
                                                 </span>
                                                 <span class="direct-chat-timestamp float-left">
-                                                    {{ $comment->created_at->format('d M h:m') }}
+                                                    {{ $comment->created_at->format('d M H:i') }}
                                                 </span>
                                             </div>
 
@@ -137,18 +160,27 @@
                         </div>
 
                         <div class="card-footer">
-                            <form action="{{ url('/user/support/tickets/' . $ticket->ticket_id . '/comment') }}" method="POST" class="form">
+                            <form action="{{ url('/admin/tickets/' . $ticket->ticket_id . '/comment') }}" method="POST" class="form">
                                 @csrf
 
                                 <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
 
                                 <div class="input-group">
-                                    <input type="text" name="comment" placeholder="{{ __('Type Message ...') }}" class="form-control">
-                                    <span class="input-group-append">
-                                       <button type="submit" class="btn btn-primary">
-                                           {{ __('Reply') }}
-                                       </button>
-                                    </span>
+                                    @if($ticket->status == "Opened")
+                                        <input type="text" name="comment" placeholder="{{ __('Type Message ...') }}" class="form-control">
+                                        <span class="input-group-append">
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('Reply') }}
+                                            </button>
+                                        </span>
+                                    @elseif($ticket->status == "Closed")
+                                        <input disabled type="text" name="comment" placeholder="{{ __('Type Message ...') }}" class="form-control">
+                                        <span class="input-group-append">
+                                            <button disabled type="submit" class="btn btn-primary">
+                                                {{ __('Reply') }}
+                                            </button>
+                                        </span>
+                                    @endif
                                 </div>
                             </form>
                         </div>

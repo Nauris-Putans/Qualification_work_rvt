@@ -24,7 +24,7 @@
                 </option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">
-                        {{ $category->name }}
+                        {{ __($category->name) }}
                     </option>
                 @endforeach
             </select>

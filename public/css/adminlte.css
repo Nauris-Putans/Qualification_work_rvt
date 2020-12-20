@@ -215,6 +215,24 @@
     font-size: 100% !important;
 }
 
+.Low {
+    color: white;
+    background: #28a745;
+    font-size: 100% !important;
+}
+
+.Medium {
+    color: white;
+    background: #eca607;
+    font-size: 100% !important;
+}
+
+.High {
+    color: white;
+    background: #c82333;
+    font-size: 100% !important;
+}
+
 .TextMiddle {
     text-align: center !important;
     vertical-align: middle !important;

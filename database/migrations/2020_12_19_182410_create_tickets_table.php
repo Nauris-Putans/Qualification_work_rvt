@@ -24,6 +24,9 @@ class CreateTicketsTable extends Migration
             $table->string('action');
             $table->string('status');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
