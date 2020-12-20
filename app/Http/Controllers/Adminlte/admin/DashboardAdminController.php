@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Adminlte\admin;
 
 use App\Models\Adminlte\admin\DashboardAdmin;
 use App\Http\Controllers\Controller;
-use App\Models\Adminlte\admin\Ticket;
+use App\Models\Ticket;
 use App\User;
 use Hashids\Hashids;
 use Illuminate\Contracts\Foundation\Application;

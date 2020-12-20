@@ -303,7 +303,7 @@ return [
             'text' => 'Support',
             'icon' => 'fas fa-question-circle',
             'classes' => 'text-bold',
-            'url' => '/user/support',
+            'url' => '/user/support/tickets',
             'role' => 'userFree',
         ],
         [

@@ -1,23 +1,25 @@
 @extends('adminlte::page')
-@section('title', 'Ticket')
+
+@section('title', $ticket->title)
 
 @section('content_header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page"><a>{{ __('Ticket') }}</a></li>
+            <li class="breadcrumb-item"><a>{{ __('Support') }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a>{{ __('View Ticket') }}</a></li>
         </ol>
     </nav>
 @stop
 
 @section('content')
     {{-- Back button --}}
-    <a class="btn btn-primary mb-3" href="{{ url()->previous() }}" role="button">
+    <a class="btn btn-primary mb-3" href="/user/support/tickets" role="button">
         <i class="fas fa-chevron-left mr-1"></i>
         {{ __('Back') }}
     </a>
 
     <div class="row">
-        <div class="col-lg-5 col-md-5 col-sm-12">
+        <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="card card-outline card-primary">
 
                 <div class="card-header">
@@ -32,27 +34,23 @@
 
                         <p>{{ $ticket->message }}</p>
 
-                        <p class="ml-2 mb-0">
-                            <strong>{{ __('Category: ') }}</strong>{{ $ticket->category->name }}
-                        </p>
+                        <p>{{ __('Category: ') . $ticket->category->name }}</p>
 
-                        <p class="ml-2 mb-0">
+                        <p>
                             @if ($ticket->status === 'Opened')
-                                <strong>{{ __('Status: ') }}</strong>
+                                {{ __('Status: ') }}
                                 <span class="badge Opened ml-1 mb-0">
                                     {{ $ticket->status }}
                                 </span>
                             @elseif ($ticket->status === 'Closed')
-                                <strong>{{ __('Status: ') }}</strong>
+                                {{ __('Status: ') }}
                                 <span class="badge Closed ml-1 mb-0">
                                     {{ $ticket->status }}
                                 </span>
                             @endif
                         </p>
 
-                        <p class="ml-2 mb-4">
-                            <strong>{{ __('Created on: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
-                        </p>
+                        <p>{{ __('Created on: ') .  $ticket->created_at->diffForHumans() }}</p>
                     </div>
 
                     <div class="card direct-chat direct-chat-primary direct-chat-contacts-open">
@@ -71,12 +69,12 @@
                         <div class="card-body">
                             <div class="direct-chat-messages">
                                 <!-- Message. Default to the left -->
-                            @foreach($ticket->comments as $comment)
+                                @foreach($ticket->comments as $comment)
 
-                                {{-- Checks if comment user is who created comment --}}
-                                @if($comment->user->name == auth()->user()->getUser()->name)
+                                    {{-- Checks if comment user is who created comment --}}
+                                    @if($comment->user->name == auth()->user()->getUser()->name)
 
-                                    <!-- Message to the left -->
+                                        <!-- Message to the left -->
                                         <div class="direct-chat-msg">
                                             <div class="direct-chat-infos clearfix">
                                                 <span class="direct-chat-name float-left">
@@ -103,7 +101,7 @@
                                         </div>
 
                                     {{-- Checks if comment user is not who created comment --}}
-                                @elseif ($comment->user->name != auth()->user()->getUser()->name)
+                                    @elseif ($comment->user->name != auth()->user()->getUser()->name)
 
                                     <!-- Message to the right -->
                                         <div class="direct-chat-msg right">
@@ -157,7 +155,6 @@
             </div>
         </div>
     </div>
-
 @stop
 
 @section('css')
