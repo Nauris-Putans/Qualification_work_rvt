@@ -44,6 +44,6 @@ class CommentsController extends Controller
         // Saves changes
         $ticket->save();
 
-        return redirect()->back()->with('message', "Your comment has be submitted.");
+        return redirect()->back();
     }
 }

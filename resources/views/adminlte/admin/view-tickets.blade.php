@@ -33,7 +33,7 @@
                         <p>{{ $ticket->message }}</p>
 
                         <p class="ml-2 mb-1">
-                            <strong>{{ __('From: ') }}</strong>{{ $ticket->user->name }}
+                            <strong>{{ __('From: ') }}</strong>{{ $ticket->user->email }}
                         </p>
 
                         <p class="ml-2 mb-1">
