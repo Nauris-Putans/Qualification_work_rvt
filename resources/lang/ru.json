@@ -401,6 +401,8 @@
     "A ticket with ID: #": "Билет с ID: #",
     " has been created.": " был создан.",
     "Comment is required!": "Комментарий обязателен!",
+    "Latest Users": "Последние пользователи",
+    "View All Users": "Просмотреть всех пользователей",
 
     "Account Settings": "Настройки учетной записи",
     "Upload a New Photo": "Загрузить новое фото",

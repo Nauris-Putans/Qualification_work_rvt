@@ -173,7 +173,7 @@
                                     @endif
                                 </td>
 
-                                <td>{{ $ticket->updated_at }}</td>
+                                <td>{{ $ticket->updated_at->format('d.m.Y H:i') }}</td>
 
                                 <td class="TextMiddle">
                                     <div class="container">

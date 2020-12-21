@@ -27,20 +27,30 @@ class DashboardAdminController extends Controller
         $hashids = new Hashids('WEBcheck', 10);
 
         // Finds roles that are meant for user side
-        $roles = DB::table('role_user')
+        $userRoles = DB::table('role_user')
             ->where('role_id', '<=' , 3)
             ->get();
 
+        // Finds roles that are meant for admin side
+        $memberRoles = DB::table('role_user')
+            ->where('role_id', '>' , 3)
+            ->get();
+
         // Retrieves all of the values for a given key
-        $roles = $roles->pluck('user_id');
+        $userRoles = $userRoles->pluck('user_id');
+        $memberRoles = $memberRoles->pluck('user_id');
 
         // Finds users that have role_id meant for user side
-        $users = User::find($roles)->count();
+        $usersCount = User::find($userRoles)->count();
+        $memberCount = User::find($memberRoles)->count();
+
+        $users = User::whereIn('id', $userRoles)->orderBy('id', 'desc')->take(8)->get();
+        $members = User::whereIn('id', $memberRoles)->orderBy('id', 'desc')->take(8)->get();
 
         // Counts all tickets
-        $tickets = Ticket::all()->count();
+        $ticketsCount = Ticket::all()->count();
 
-        return view('adminlte.admin.index-admin', compact(  'users', 'tickets', 'hashids'));
+        return view('adminlte.admin.index-admin', compact(  'users', 'members', 'usersCount', 'memberCount', 'memberRoles', 'ticketsCount', 'hashids'));
     }
 
     /**
