@@ -26,19 +26,29 @@ class AppMailer
     }
 
     /**
+     * @param $data
+     */
+    public function sendTicketToEmail($data)
+    {
+        $this->to = 'info.webcheck@gmail.com';
+        $this->fromAddress = $data['email'];
+        $this->fromName = $data['fullname'];
+        $this->subject = $data['title'];
+        $this->view = 'emails.ticket_to_email';
+        $this->data = compact('data');
+        return $this->deliver();
+    }
+
+    /**
      * @param $user
      * @param Ticket $ticket
      */
     public function sendTicketInformation($user, Ticket $ticket)
     {
         $this->to = $user->email;
-
         $this->subject = "[Ticket ID: $ticket->ticket_id] $ticket->title";
-
         $this->view = 'emails.ticket_info';
-
         $this->data = compact('user', 'ticket');
-
         return $this->deliver();
     }
 
