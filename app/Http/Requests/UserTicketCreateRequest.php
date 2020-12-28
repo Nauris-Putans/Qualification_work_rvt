@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ContactCreateRequest extends FormRequest
+class UserTicketCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,10 @@ class ContactCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:50',
+            'title' => 'required|max:70',
             'category' => 'required',
-            'fullname' => 'required|max:100',
-            'email' => 'required|email:rfc,dns|max:100',
-            'message' => 'required|max:1000',
+            'priority' => 'required',
+            'message' => 'required|max:700'
         ];
     }
 
@@ -40,18 +39,13 @@ class ContactCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.max' => __('Title should not be greater than 50 chars.'),
-            'fullname.max' => __('Fullname should not be greater than 100 chars.'),
-            'email.max' => __('Email should not be greater than 100 chars.'),
-            'message.max' => __('Message should not be greater than 1000 chars.'),
+            'title.max' => __('Title should not be greater than 70 chars.'),
+            'message.max' => __('Message should not be greater than 700 chars.'),
 
             'title.required' => __('Title is required!'),
             'category.required' => __('Category is required!'),
-            'fullname.required' => __('Fullname is required!'),
-            'email.required' => __('Email is required!'),
+            'priority.required' => __('Priority is required!'),
             'message.required' => __('Message is required!'),
-
-            'email.email' => __('Email is invalid'),
         ];
     }
 }

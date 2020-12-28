@@ -49,4 +49,14 @@ class User extends Authenticatable
         $this->load('roles');
         return $this;
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

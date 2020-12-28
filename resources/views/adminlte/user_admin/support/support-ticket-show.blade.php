@@ -1,23 +1,25 @@
 @extends('adminlte::page')
-@section('title', 'Ticket')
+
+@section('title', $ticket->title)
 
 @section('content_header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page"><a>{{ __('Ticket') }}</a></li>
+            <li class="breadcrumb-item"><a>{{ __('Support') }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a>{{ __('View Ticket') }}</a></li>
         </ol>
     </nav>
 @stop
 
 @section('content')
     {{-- Back button --}}
-    <a class="btn btn-primary mb-3" href="/admin/tickets" role="button">
+    <a class="btn btn-primary mb-3" href="/user/support/tickets" role="button">
         <i class="fas fa-chevron-left mr-1"></i>
         {{ __('Back') }}
     </a>
 
     <div class="row">
-        <div class="col-lg-5 col-md-5 col-sm-12">
+        <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="card card-outline card-primary">
 
                 <div class="card-header">
@@ -32,34 +34,11 @@
 
                         <p>{{ $ticket->message }}</p>
 
-                        <p class="ml-2 mb-1">
-                            <strong>{{ __('From: ') }}</strong>{{ $ticket->user->email }}
-                        </p>
-
-                        <p class="ml-2 mb-1">
+                        <p class="ml-2 mb-0">
                             <strong>{{ __('Category: ') }}</strong>{{ __($ticket->category->name) }}
                         </p>
 
-                        <p class="ml-2 mb-1">
-                            @if ($ticket->priority === 'Low')
-                                <strong>{{ __('Priority: ') }}</strong>
-                                <span class="badge Low ml-1 mb-0">
-                                    {{ __($ticket->priority) }}
-                                </span>
-                            @elseif ($ticket->priority === 'Medium')
-                                <strong>{{ __('Priority: ') }}</strong>
-                                <span class="badge Medium ml-1 mb-0">
-                                    {{ __($ticket->priority) }}
-                                </span>
-                            @elseif ($ticket->priority === 'High')
-                                <strong>{{ __('Priority: ') }}</strong>
-                                <span class="badge High ml-1 mb-0">
-                                    {{ __($ticket->priority) }}
-                                </span>
-                            @endif
-                        </p>
-
-                        <p class="ml-2 mb-1">
+                        <p class="ml-2 mb-0">
                             @if ($ticket->status === 'Opened')
                                 <strong>{{ __('Status: ') }}</strong>
                                 <span class="badge Opened ml-1 mb-0">
@@ -94,12 +73,12 @@
                         <div class="card-body">
                             <div class="direct-chat-messages">
                                 <!-- Message. Default to the left -->
-                            @foreach($ticket->comments as $comment)
+                                @foreach($ticket->comments as $comment)
 
-                                {{-- Checks if comment user is who created comment --}}
-                                @if($comment->user->name == auth()->user()->getUser()->name)
+                                    {{-- Checks if comment user is who created comment --}}
+                                    @if($comment->user->name == auth()->user()->getUser()->name)
 
-                                    <!-- Message to the left -->
+                                        <!-- Message to the left -->
                                         <div class="direct-chat-msg">
                                             <div class="direct-chat-infos clearfix">
                                                 <span class="direct-chat-name float-left">
@@ -126,7 +105,7 @@
                                         </div>
 
                                     {{-- Checks if comment user is not who created comment --}}
-                                @elseif ($comment->user->name != auth()->user()->getUser()->name)
+                                    @elseif ($comment->user->name != auth()->user()->getUser()->name)
 
                                     <!-- Message to the right -->
                                         <div class="direct-chat-msg right">
@@ -160,7 +139,7 @@
                         </div>
 
                         <div class="card-footer">
-                            <form action="{{ url('/admin/tickets/' . $ticket->ticket_id . '/comment') }}" method="POST" class="form">
+                            <form action="{{ url('/user/support/tickets/' . $ticket->ticket_id . '/comment') }}" method="POST" class="form">
                                 @csrf
 
                                 <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
@@ -189,7 +168,6 @@
             </div>
         </div>
     </div>
-
 @stop
 
 @section('css')

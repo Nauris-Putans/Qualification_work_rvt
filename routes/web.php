@@ -67,8 +67,11 @@ Route::group(['middleware' => ['role:admin']], function()
     Route::post('/admin/assign-permission', 'Adminlte\admin\team\privileges\permissions\PermissionAssignmentController@store');
 
     // Tickets section
-    Route::get('/admin/tickets', 'Adminlte\admin\TicketController@index');
-    Route::get('/admin/tickets/{id}', 'Adminlte\admin\TicketController@profile');
+    Route::get('/admin/tickets', 'TicketController@index');
+    Route::get('/admin/tickets/{id}', 'TicketController@show');
+    Route::delete('/admin/tickets/{id}', ['as' => 'admin.tickets.destroy', 'uses' => 'TicketController@destroy']);
+    Route::post('/admin/tickets/close_ticket/{id}', 'TicketController@close');
+    Route::post('/admin/tickets/{ticket_id}/comment', 'CommentsController@postComment');
 
     // Settings section
     Route::get('/admin/settings', 'Adminlte\admin\SettingsAdminController@show');
@@ -78,12 +81,6 @@ Route::group(['middleware' => ['role:admin']], function()
 
     // This link will add session of language when they click to change language
     Route::get('admin/lang/{locale}', 'LocalizationController@index');
-    Route::get('admin/users/lang/{locale}', 'LocalizationController@index');
-    Route::get('admin/team/lang/{locale}', 'LocalizationController@index');
-    Route::get('admin/team/members/lang/{locale}', 'LocalizationController@index');
-    Route::get('/admin/roles/lang/{locale}', 'LocalizationController@index');
-    Route::get('/admin/roles/../lang/{locale}', 'LocalizationController@index');
-    Route::get('/admin/tickets/lang/{locale}', 'LocalizationController@index');
 });
 
 // Role - User Admin (free)
@@ -107,8 +104,12 @@ Route::group(['middleware' => ['role:userFree|userPro|userWebmaster']], function
     // Settings section
     Route::get('/user/settings', 'Adminlte\user_admin\SettingController@index');
 
-    // Support section
-    Route::get('/user/support', 'Adminlte\user_admin\SupportController@index');
+    // Tickets section
+    Route::get('/user/support/tickets', ['as' => 'user.support.tickets', 'uses' => 'TicketController@userTickets']);
+    Route::get('/user/support/tickets/create', ['as' => 'user.support.tickets.create', 'uses' => 'TicketController@userCreateTicket']);
+    Route::post('/user/support/tickets/create', ['as' => 'user.support.tickets.create', 'uses' => 'TicketController@userStoreTicket']);
+    Route::get('/user/support/tickets/{ticket_id}', ['as' => 'user.support.ticket', 'uses' => 'TicketController@userShowTicket']);
+    Route::post('/user/support/tickets/{ticket_id}/comment', 'CommentsController@postComment');
 
     // This link will add session of language when they click to change language
     Route::get('user/lang/{locale}', 'LocalizationController@index');

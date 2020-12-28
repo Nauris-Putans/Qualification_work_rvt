@@ -11,7 +11,7 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('countries')->truncate();
+        $this->truncateTicketTable();
 
         $countries = [
         [
@@ -1222,5 +1222,18 @@ class CountrySeeder extends Seeder
         ];
 
         DB::table('countries')->insert($countries);
+    }
+
+    /**
+     * Truncates ticket table
+     *
+     * @return    void
+     */
+    public function truncateTicketTable()
+    {
+        $this->command->info('Truncating Tickets table');
+        Schema::disableForeignKeyConstraints();
+        DB::table('countries')->truncate();
+        Schema::enableForeignKeyConstraints();
     }
 }

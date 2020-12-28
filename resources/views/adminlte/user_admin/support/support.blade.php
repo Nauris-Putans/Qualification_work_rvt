@@ -1,23 +1,27 @@
 @extends('adminlte::page')
 
-@section('title', 'All Tickets')
+@section('title', 'Support')
 
 @section('content_header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page"><a>{{ __('Tickets') }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a>{{ __('Support') }}</a></li>
         </ol>
     </nav>
 @stop
 
 @section('content')
+    <a class="btn btn-primary mb-3" href="/user/support/tickets/create" role="button">
+        <i class="fas fa-eye mr-1"></i>
+        {{ __('Create new ticket') }}
+    </a>
+
     <div class="row">
-        {{-- Tickets list --}}
+        {{-- My Tickets --}}
         <div class="col-lg-12 col-md-12 col-sm-12">
-            <x-alertAdmin />
             <div class="card card-outline card-primary">
                 <div class="card-header">
-                    <h1 class="card-title">{{ __('Tickets list') }}</h1>
+                    <h1 class="card-title">{{ __('My Tickets') }}</h1>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                     </div>
@@ -74,9 +78,9 @@
                                 </div>
                             </td>
                         </tr>
-                        {{-- Column - ACTION --}}
+                        {{-- Column - STATUS --}}
                         <tr id="filter_col3" data-column="3">
-                            <td>{{ __('Column - ACTION') }}</td>
+                            <td>{{ __('Column - STATUS') }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -90,24 +94,8 @@
                                 </div>
                             </td>
                         </tr>
-                        {{-- Column - STATUS --}}
-                        <tr id="filter_col4" data-column="4">
-                            <td>{{ __('Column - STATUS') }}</td>
-                            <td align="center">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="column_filter form-control" id="col4_filter">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
                         {{-- Column - LAST UPDATED --}}
-                        <tr id="filter_col5" data-column="5">
+                        <tr id="filter_col4" data-column="4">
                             <td>{{ __('Column - LAST UPDATED') }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -117,7 +105,7 @@
                                                 <i class="fas fa-search"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="column_filter form-control" id="col5_filter">
+                                        <input type="text" class="column_filter form-control" id="col4_filter">
                                     </div>
                                 </div>
                             </td>
@@ -132,7 +120,6 @@
                             <th scope="col">{{ __('ID') }}</th>
                             <th scope="col">{{ __('CATEGORY') }}</th>
                             <th scope="col">{{ __('TITLE') }}</th>
-                            <th scope="col">{{ __('ACTION') }}</th>
                             <th scope="col">{{ __('STATUS') }}</th>
                             <th scope="col">{{ __('LAST UPDATED') }}</th>
                             <th scope="col">{{ __('ACTIONS') }}</th>
@@ -154,18 +141,6 @@
                                 </td>
 
                                 <td class="TextMiddle">
-                                    @if ($ticket->action == 'Solved')
-                                        <span class="badge Solved mb-0">{{ __($ticket->action) }}</span>
-                                    @elseif ($ticket->action == 'Answered')
-                                        <span class="badge Answered mb-0">{{ __($ticket->action) }}</span>
-                                    @elseif ($ticket->action == 'Un-Answered')
-                                        <span class="badge UnAnswered mb-0">{{ __($ticket->action) }}</span>
-                                    @elseif ($ticket->action == 'New Ticket')
-                                        <span class="badge NewTicket mb-0">{{ __($ticket->action) }}</span>
-                                    @endif
-                                </td>
-
-                                <td class="TextMiddle">
                                     @if ($ticket->status === 'Opened')
                                         <span class="badge Opened mb-0">{{ __($ticket->status) }}</span>
                                     @elseif ($ticket->status === 'Closed')
@@ -178,33 +153,10 @@
                                 <td class="TextMiddle">
                                     <div class="container">
                                         <div class="row">
-                                            @if($ticket->status === 'Opened')
-                                                <a href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" class="btn btn-info mr-1">
-                                                    <i class="fas fa-comment mr-1"></i>
-                                                    {{ __('Comment') }}
-                                                </a>
-                                                <form action="{{ url('/admin/tickets/close_ticket/' . $ticket->ticket_id) }}" method="POST">
-                                                    @csrf
-
-                                                    <button class="btn btn-warning" onclick="return confirm('{{ __('Are you sure to close this ticket - #') . $ticket->ticket_id . ' - ' . $ticket->title . '?' }}')" type="submit">
-                                                        <i class="fas fa-times mr-1"></i>
-                                                        {{ __('Close') }}
-                                                    </button>
-                                                </form>
-                                            @else
-                                                <a class="btn btn-primary mr-1" href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" role="button">
-                                                    <i class="fas fa-eye mr-1"></i>
-                                                    {{ __('View') }}
-                                                </a>
-                                                <form action="{{ URL::route('admin.tickets.destroy', [$hashids->encode($ticket->id)]) }}" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="btn btn-danger" onclick="return confirm('{{ __('Are you sure to delete this ticket - #') . $ticket->ticket_id . ' - ' . $ticket->title . '?' }}')" type="submit">
-                                                        <i class="fas fa-trash mr-1"></i>
-                                                        {{ __('Delete') }}
-                                                    </button>
-                                                </form>
-                                            @endif
+                                            <a class="btn btn-primary mr-1" href="{{ '/user/support/tickets/'. $hashids->encode($ticket->id) }}" role="button">
+                                                <i class="fas fa-eye mr-1"></i>
+                                                {{ __('View') }}
+                                            </a>
                                         </div>
                                     </div>
                                 </td>
@@ -237,10 +189,9 @@
                 {
                     // Specific columns
                     columnDefs: [
-                        { "orderable": false, "targets": 6 },
-                        { "width": "5%", "targets": [0, 1] },
-                        { "width": "10%", "targets": [3, 4, 5] },
-                        { "width": "15%", "targets": [6] },
+                        { "orderable": false, "targets": 5 },
+                        { "width": "5%", "targets": [0] },
+                        { "width": "10%", "targets": [1, 3, 4, 5] },
                     ],
 
                     // Order by asc/desc
@@ -294,7 +245,7 @@
                     ],
 
                     searchBuilder: {
-                        columns: [0,1,2,3,4,5],
+                        columns: [0,1,2,3,4],
                         conditions: {
                             "date":{
                                 '!=': {
