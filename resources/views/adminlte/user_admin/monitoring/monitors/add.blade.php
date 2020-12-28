@@ -6,6 +6,7 @@
 @stop
 
 @section('content')
+@error('checkField') is-invalid @enderror
     <section class="add-monitor">
         <div class="column">
         <form method="POST" action="{{route('add.store')}}">
@@ -39,11 +40,9 @@
 
                             <div class="settings-wrapper">
                                 <div id="checkTypeWripper">
-                                    @error('checkField')
-                                        <div style = "color:red">{{ $message }}</div>
-                                    @enderror
+                                    
                                     <div class="item-title">Check URL<span>*</span></div>
-                                    <input class="input-large" type="text" id="URL" name="checkField" placeholder="https://">
+                                    <input class="input-large @error('checkField') is-invalid @enderror" type="text" id="URL" name="checkField" placeholder="https://">
                                 </div>
                             </div>
                             

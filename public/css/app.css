@@ -12020,3 +12020,226 @@ a.text-dark:focus {
   background-color: #CA6D00;
 }
 
+.upTimeMonitor {
+  /* Style the collapsible content. Note: hidden by default */
+}
+
+.upTimeMonitor .monthLable {
+  width: 100%;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.upTimeMonitor .monthWrapper {
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 182px;
+}
+
+.upTimeMonitor .weekWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.upTimeMonitor .dayBox {
+  position: relative;
+  background-color: #9c9c9c;
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  margin: 0 2px 2px 0;
+}
+
+.upTimeMonitor .content {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  z-index: 99;
+}
+
+.upTimeMonitor .content::hover {
+  display: block;
+}
+
+.upTimeMonitor .content .contentWrapper {
+  width: 125px;
+  background-color: whitesmoke;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1.5px solid green;
+}
+
+.upTimeMonitor .content .contentWrapper_label {
+  text-align: center;
+}
+
+.upTimeMonitor .content .contentWrapper .uptimeNumber {
+  margin-top: 10px;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+}
+
+.upTimeMonitor .content .contentWrapper button {
+  text-align: center;
+  height: 25px;
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  outline: none;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  border: 1px solid green;
+  font-size: 13px;
+}
+
+.settings_header_content {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  align-items: center;
+}
+
+.settings_header_content .user-img-box {
+  display: flex;
+  margin: 10px 0 0 40px;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 75px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 100%;
+}
+
+.settings_header_content .user-img-box__img {
+  width: 65px;
+  height: 65px;
+  background-color: red;
+  border-radius: 100%;
+}
+
+.settings_header_content .title_wrapper {
+  margin-left: 10px;
+}
+
+.settings_header_content .title_wrapper .title-user-name {
+  font-size: 18px;
+}
+
+.settings-menu-wrapper {
+  padding-top: 30px;
+  margin-top: 10px;
+  background-color: #E9E9E9;
+  min-height: 60px;
+}
+
+.settings-menu-wrapper .settings-links {
+  margin: 0;
+  display: flex;
+  justify-content: left;
+  list-style-type: none;
+}
+
+.settings-menu-wrapper .settings-links__item {
+  font-size: 16px;
+  position: relative;
+  margin-left: 40px;
+  cursor: pointer;
+}
+
+.settings-menu-wrapper .settings-links__item:before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  width: 0%;
+  height: 4px;
+  background-color: #C62;
+  transition: 0.5s all;
+  border-radius: 2px;
+}
+
+.settings-menu-wrapper .settings-links__item:hover:before {
+  width: 100%;
+}
+
+.settings-menu-wrapper__line {
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+  height: 1px;
+  background-color: gray;
+}
+
+.userProfileSettings {
+  padding: 55px 65px;
+  background-color: #E9E9E9;
+}
+
+.userProfileSettings__header {
+  display: flex;
+  justify-content: left;
+}
+
+.userProfileSettings__icon {
+  display: block;
+  color: black;
+  font-size: 30px;
+}
+
+.userProfileSettings__title {
+  position: relative;
+  margin-left: 10px;
+  width: 130px;
+}
+
+.userProfileSettings__title span {
+  position: absolute;
+  bottom: 0;
+}
+
+.userProfileSettings .user-info-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 100%;
+  height: 200px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.userProfileSettings .user-info-wrapper .user-img-box {
+  display: flex;
+  margin: 30px auto 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 100%;
+}
+
+.userProfileSettings .user-info-wrapper .user-img-box__img {
+  width: 85px;
+  height: 85px;
+  background-color: green;
+  border-radius: 100%;
+}
+
+.userProfileSettings .user-info-wrapper button {
+  display: block;
+  margin: 10px auto 0 auto;
+}
+
+.userProfileSettings .user-info-wrapper .user-info-box {
+  width: 42.5%;
+  height: 100%;
+  background-color: red;
+}
+
