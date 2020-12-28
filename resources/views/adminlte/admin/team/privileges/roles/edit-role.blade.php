@@ -14,7 +14,10 @@
 
 @section('content')
     {{-- Back button --}}
-    <a class="btn btn-primary mb-3" href="{{ URL::route('admin.roles.index') }}" role="button">{{ __('Back') }}</a>
+    <a class="btn btn-primary mb-3" href="{{ URL::route('admin.roles.index') }}" role="button">
+        <i class="fas fa-chevron-left mr-1"></i>
+        {{ __('Back') }}
+    </a>
 
     <form method="POST" action="{{ URL::route('admin.roles.update', [$hashids->encode($role->id)]) }}">
         @method('PATCH')

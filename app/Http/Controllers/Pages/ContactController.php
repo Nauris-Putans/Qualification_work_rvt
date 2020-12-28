@@ -28,8 +28,23 @@ class ContactController extends Controller
      */
     public function store(ContactCreateRequest $request)
     {
-        Ticket::create($request->all());
+        // Removes _ from string
+        $action = str_replace('_', ' ', $request->action);
 
-        return redirect()->back()->with('message', 'Message has been sent!');
+        // Data from $request variable
+        $data = [
+            'title' => ucfirst($request->title),
+            'type' => ucfirst($request->type),
+            'fullname' => ucwords($request->fullname),
+            'email' => $request->email,
+            'message' => ucfirst($request->message),
+            'action' => ucwords($action),
+            'status' => ucfirst($request->status),
+        ];
+
+        // Creates ticket with $data values
+        Ticket::create($data);
+
+        return redirect()->back()->with('message', __('Message has been sent!'));
     }
 }

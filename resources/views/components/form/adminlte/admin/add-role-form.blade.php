@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label>
-                    @lang('Role name *')
+                    {{ __('Role name *') }}
                 </label>
                 <input
                     name="roleName"
@@ -17,7 +17,7 @@
         <div class="col-md-12 mt-3">
             <div class="form-group">
                 <label>
-                    @lang('Role display name (optional)')
+                    {{ __('Role display name (optional)') }}
                 </label>
                 <input
                     name="roleDisplayName"
@@ -30,7 +30,7 @@
         <div class="col-md-12 mt-3">
             <div class="form-group">
                 <label>
-                    @lang('Role description (optional)')
+                    {{ __('Role description (optional)') }}
                 </label>
                 <input
                     name="roleDesc"
@@ -40,13 +40,11 @@
         </div>
 
         {{-- Add Role button--}}
-        <div class="col-md-8">
-            <input
-                name="addRole"
-                type="submit"
-                class="btn btn-success mt-2"
-                value="@lang('Add Role')"
-            />
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-success mt-2 text-white">
+                <i class="fas fa-plus mr-1"></i>
+                {{ __('Add Role') }}
+            </button>
         </div>
     </div>
 </div>

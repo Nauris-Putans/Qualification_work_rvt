@@ -14,7 +14,11 @@
 
 @section('content')
     {{-- Back button --}}
-    <a class="btn btn-primary mb-3" href="{{ url()->previous() }}" role="button">{{ __('Back') }}</a>
+    <a class="btn btn-primary mb-3" href="{{ url()->previous() }}" role="button">
+        <i class="fas fa-chevron-left mr-1"></i>
+        {{ __('Back') }}
+    </a>
+
 
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-12">

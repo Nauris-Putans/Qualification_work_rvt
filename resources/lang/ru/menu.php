@@ -27,8 +27,11 @@ return [
     'Add Role'                      => 'Добавить роль',
     'Assign Role'                   => 'Назначить роль',
     'Permissions'                   => 'Разрешения',
+    'Add Permission'                => 'Добавить разрешение',
     'Assign Permission'             => 'Назначить разрешение',
+    'Profile'                       => 'Профиль',
     'Tickets'                       => 'Билеты',
     'Settings'                      => 'Настройки',
+    'Account Settings'              => 'Настройки учетной записи',
     'Back'                          => 'Назад',
 ];

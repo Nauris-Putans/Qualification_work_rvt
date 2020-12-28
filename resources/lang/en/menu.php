@@ -27,8 +27,11 @@ return [
     'Add Role'                      => 'Add Role',
     'Assign Role'                   => 'Assign Role',
     'Permissions'                   => 'Permissions',
+    'Add Permission'                => 'Add Permission',
     'Assign Permission'             => 'Assign Permission',
+    'Profile'                       => 'Profile',
     'Tickets'                       => 'Tickets',
     'Settings'                      => 'Settings',
+    'Account Settings'              => 'Account Settings',
     'Back'                          => 'Back',
 ];

@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'profile_image', 'phone_number', 'country', 'city', 'gender', 'birthday',
     ];
 
     /**
@@ -38,4 +38,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Gets user information with roles table information
+     *
+     * @return $this
+     */
+    public function getUser()
+    {
+        $this->load('roles');
+        return $this;
+    }
 }

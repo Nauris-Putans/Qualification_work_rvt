@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Adminlte\admin;
 
 use App\Models\Adminlte\admin\Ticket;
 use App\Http\Controllers\Controller;
+use Hashids\Hashids;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -19,7 +20,27 @@ class TicketController extends Controller
      */
     public function index()
     {
-        return view('adminlte.admin.tickets');
+        // Hash key for id security
+        $hashids = new Hashids('WEBcheck', 10);
+
+        $tickets = Ticket::all();
+
+        return view('adminlte.admin.tickets', compact('tickets', 'hashids'));
+    }
+
+    public function profile($id)
+    {
+        // Hash key for id security
+        $hashids = new Hashids('WEBcheck', 10);
+
+        // Decodes id
+        $id = $hashids->decode( $id );
+
+        // Finds user by user id
+        $ticket = Ticket::find($id)
+            ->first();
+
+        return view('adminlte.admin.view-tickets', compact('ticket', 'hashids'));
     }
 
     /**
