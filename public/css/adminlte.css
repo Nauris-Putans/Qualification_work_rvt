@@ -237,3 +237,32 @@
     text-align: center !important;
     vertical-align: middle !important;
 }
+
+.Language {
+    list-style: none;
+}
+
+.Language .dropdown-item.active, .dropdown-item:active {
+    color: white !important;
+    text-decoration: none;
+    background-color: #ca6d00;
+}
+
+.Language .dropdown-toggle:hover {
+    color: #a75900 !important;
+}
+
+.Language .dropdown-item {
+    font-weight: 600;
+}
+
+.Language .dropdown-item:hover {
+    background-color: #a75900;
+    color: white !important;
+    font-weight: 600;
+}
+
+.Language .dropdown-item:active {
+    color: white !important;
+    font-weight: 600;
+}

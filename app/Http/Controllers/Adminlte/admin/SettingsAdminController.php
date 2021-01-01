@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Adminlte\admin;
 
 use App\Country;
+use App\Http\Requests\NotificationRequest;
 use App\Http\Requests\PasswordSecurityRequest;
 use App\Http\Requests\PersonalInfoRequest;
 use App\Http\Requests\ProfileImageRequest;
@@ -62,6 +63,19 @@ class SettingsAdminController extends Controller
         $user->update($data);
 
         return redirect()->back()->with('message', __('Personal info has been updated!'));
+    }
+
+    public function notification_update(NotificationRequest $request, $id)
+    {
+        // Hash key for id security
+        $hashids = new Hashids('WEBcheck', 10);
+
+        // Decodes id
+        $id = $hashids->decode( $id );
+
+        dd("Need to create notification section");
+
+        return redirect()->back()->with('message', __('Notifications has been updated!'));
     }
 
     /**

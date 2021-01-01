@@ -106,13 +106,14 @@
                         @guest
                             <li class="nav-item Login">
                                 <a class="nav-link" href="{{ route('login') }}">
-                                    @lang('Log in')
+                                    {{ __('Log in') }}
                                 </a>
                             </li>
 
                             @if (Route::has('register'))
                                 <li class="nav-item Register">
-                                    <a class="nav-link btn btn-orange" href="{{ route('login') }}">{{ __('Sign up') }}</a>
+                                    <a class="nav-link btn btn-orange" href="{{ route('login') }}">
+                                        {{ __('Sign up') }}</a>
                                 </li>
                             @endif
                         @else
