@@ -13,7 +13,7 @@
 
                 <div class="col-md-12 mt-3">
                     <p>
-                        You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.
+                        {{ __('You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.') }}
                     </p>
 
                     <div class="row">

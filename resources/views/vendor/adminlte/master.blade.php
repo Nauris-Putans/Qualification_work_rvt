@@ -28,6 +28,8 @@
         <link rel="stylesheet" href="{{ asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.css">
+
         {{-- Configured Stylesheets --}}
         @include('adminlte::plugins', ['type' => 'css'])
 
@@ -87,6 +89,102 @@
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/locales-all.min.js"></script>
+
+        {{-- Calendar--}}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                // Date variables
+                var date = new Date();
+                var d = date.getDate();
+                var m = date.getMonth();
+                var y = date.getFullYear();
+
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    themeSystem: 'bootstrap',
+                    selectable: true,
+                    editable: true,
+                    firstDay: 1,
+                    height: "auto",
+
+                    // HeaderToolbar elements
+                    headerToolbar: {
+                        left: 'prev',
+                        center: 'title',
+                        right: 'next today'
+                    },
+
+                    // Event days
+                    events: [
+                        {
+                            title: 'All Day Event',
+                            start: new Date(y, m, 1)
+                        },
+                        {
+                            title: 'Long Event',
+                            start: new Date(y, m, d-5),
+                            end: new Date(y, m, d-2)
+                        },
+                        {
+                            id: 999,
+                            title: 'Repeating Event',
+                            start: new Date(y, m, d-3, 16, 0),
+                            allDay: false
+                        },
+                        {
+                            id: 999,
+                            title: 'Repeating Event',
+                            start: new Date(y, m, d+4, 16, 0),
+                            allDay: false
+                        },
+                        {
+                            title: 'Meeting',
+                            start: new Date(y, m, d, 10, 30),
+                            allDay: false
+                        },
+                        {
+                            title: 'Lunch',
+                            start: new Date(y, m, d, 12, 0),
+                            end: new Date(y, m, d, 14, 0),
+                            allDay: false
+                        },
+                        {
+                            title: 'Birthday Party',
+                            start: new Date(y, m, d+1, 19, 0),
+                            end: new Date(y, m, d+1, 22, 30),
+                            allDay: false
+                        },
+                        {
+                            title: 'Click for Google',
+                            start: new Date(y, m, 28),
+                            end: new Date(y, m, 29),
+                            url: 'https://google.com/'
+                        }
+                    ],
+
+                    // Buttons text localize
+                    buttonText: {
+                        today:    "<?php echo __('today')?>",
+                        month:    "<?php echo __('month')?>",
+                        week:     "<?php echo __('week')?>",
+                        day:      "<?php echo __('day')?>",
+                        list:     "<?php echo __('list')?>",
+                    },
+                });
+
+                // Sets calendar locale
+                calendar.setOption('locale', '{{ \Illuminate\Support\Facades\Lang::locale() }}');
+
+                // Renders calendar
+                calendar.render();
+            });
+
+        </script>
 
         {{-- Configured Scripts --}}
         @include('adminlte::plugins', ['type' => 'js'])

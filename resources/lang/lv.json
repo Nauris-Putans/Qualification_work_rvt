@@ -398,6 +398,9 @@
     "Upload a New Photo": "Augšupielādējiet jaunu fotoattēlu",
     "Update Profile Photo": "Atjaunināt profila fotoattēlu",
     "Change Personal Information here": "Mainiet personisko informāciju šeit",
+    "Change Notifications here": "Mainīt paziņojumus šeit",
+    "Send Invoices and Notifications": "Sūtīt rēķinus un paziņojumus",
+    "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.": "Norēķinu e-pasta adresi varat iestatīt šeit. To izmantos rēķinu un citu rēķinu paziņojumu nosūtīšanai. Ja atstājat šo lauku tukšu, pēc noklusējuma tiks izmantota jūsu konta e-pasta adrese.",
     "Country": "Valsts",
     "City": "Pilsēta",
     "Personal Info": "Personiskā informācija",
@@ -454,6 +457,13 @@
     "Already have an account?": "Jau ir konts?",
     "You still don't have an account? Easily sign up and start your journey in monitoring world!": "Jums joprojām nav konta? Viegli reģistrējieties un sāciet ceļojumu uzraudzībās pasaulē!",
     "Easily sign in here and continue your monitoring's journey!": "Viegli pierakstieties šeit un turpiniet uzraudzībās ceļojumu!",
+
+    "Calendar": "Kalendārs",
+    "today": "šodien",
+    "month": "mēnesis",
+    "week": "nedēļa",
+    "day": "diena",
+    "list": "saraksts",
 
     "Afghanistan": "Afganistāna",
     "Aland Islands": "Olande",

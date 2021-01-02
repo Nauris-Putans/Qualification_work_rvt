@@ -74,11 +74,12 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="col-lg-4 col-md-5 col-sm-12">
             <div class="card card-outline card-primary">
-
                 <div class="card-header">
-                    <h1 class="card-title">{{ __("Latest Users") }}</h1>
+                    <h1 class="card-title">
+                        <i class="fas fa-user-clock mr-1"></i>
+                        {{ __("Latest Users") }}</h1>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                     </div>
@@ -115,7 +116,22 @@
 
             </div>
         </div>
+        <div class="col-lg-8 col-md-7 col-sm-12">
+            <div class="card card-outline card-primary">
+                <div class="card-header">
+                    <h1 class="card-title">
+                        <i class="fas fa-calendar-alt mr-1"></i>
+                        {{ __("Calendar") }}</h1>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
 
+                <div class="card-body pt-0 pb-0">
+                    <div id='calendar' class="calendar"></div>
+                </div>
+            </div>
+        </div>
     </div>
 @stop
 

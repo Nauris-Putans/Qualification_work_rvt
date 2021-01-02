@@ -400,6 +400,9 @@
     "Upload a New Photo": "Upload a New Photo",
     "Update Profile Photo": "Update Profile Photo",
     "Change Personal Information here": "Change Personal Information here",
+    "Change Notifications here": "Change Notifications here",
+    "Send Invoices and Notifications": "Send Invoices and Notifications",
+    "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.": "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.",
     "Country": "Country",
     "City": "City",
     "Personal Info": "Personal Info",
@@ -456,6 +459,13 @@
     "Already have an account?": "Already have an account?",
     "You still don't have an account? Easily sign up and start your journey in monitoring world!": "You still don't have an account? Easily sign up and start your journey in monitoring world!",
     "Easily sign in here and continue your monitoring's journey!": "Easily sign in here and continue your monitoring's journey!",
+
+    "Calendar": "Calendar",
+    "today": "today",
+    "month": "month",
+    "week": "week",
+    "day": "day",
+    "list": "list",
 
     "Afghanistan": "Afghanistan",
     "Aland Islands": "Aland Islands",

@@ -409,6 +409,9 @@
     "Upload a New Photo": "Загрузить новое фото",
     "Update Profile Photo": "Обновить фото профиля",
     "Change Personal Information here": "Измените личную информацию здесь",
+    "Change Notifications here": "Изменить уведомления здесь",
+    "Send Invoices and Notifications": "Отправлять счета и уведомления",
+    "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.": "Здесь вы можете указать свой платежный адрес электронной почты. Он будет использоваться для отправки счетов и других уведомлений о выставлении счетов. Если вы оставите это поле пустым, по умолчанию будет использоваться адрес электронной почты вашего аккаунта.",
     "Country": "Страна",
     "City": "Город",
     "Personal Info": "Личная информация",
@@ -465,6 +468,13 @@
     "Already have an account?": "Уже есть аккаунт?",
     "You still don't have an account? Easily sign up and start your journey in monitoring world!": "У вас все еще нет учетной записи? Зарегистрируйтесь и начните свое путешествие в мире мониторинга!",
     "Easily sign in here and continue your monitoring's journey!": "Просто войдите в систему и продолжите свой путь мониторинга!",
+
+    "Calendar": "Календарь",
+    "today": "cегодня",
+    "month": "месяц",
+    "week": "неделя",
+    "day": "день",
+    "list": "список",
 
     "Afghanistan": "Афганистан",
     "Aland Islands": "Аландские острова",
