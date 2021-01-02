@@ -100,7 +100,7 @@
                                 @endif
 
                                 <a href="{{ 'users/'. $hashids->encode($user->id) }}" class="users-list-name mt-1">{{ $user->name }}</a>
-                                <span class="users-list-date">{{ $user->updated_at->format('d.m.Y H:i') }}</span>
+                                <span class="users-list-date">{{ $user->updated_at->format('d/m/Y H:i') }}</span>
                             </li>
                         @endforeach
                     </ul>

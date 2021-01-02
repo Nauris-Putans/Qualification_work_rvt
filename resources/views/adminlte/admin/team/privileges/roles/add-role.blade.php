@@ -199,7 +199,7 @@
                 // Show entries length
                 lengthMenu: [
                     [10, 20, 30, -1],
-                    [10, 20, 30, "All"]
+                    [10, 20, 30, @json( __("All") )]
                 ],
 
                 // Position of control elements
@@ -229,16 +229,6 @@
                             jQuery('.filter-table').fadeToggle();
                         }
                     },
-                    {
-                        text: '<?php echo __('Advanced Filter')?>',
-                        className: 'btn btn-info',
-
-                        // Show/Hide toggle
-                        action: function ( e, dt, node, config )
-                        {
-                            jQuery('.AdvanceFilter').fadeToggle();
-                        }
-                    }
                 ],
 
                 searchBuilder: {

@@ -42,7 +42,7 @@ class SettingsAdminController extends Controller
         $user = User::find($id)->first();
 
         // Finds country name by $request->country
-        $countryName = Country::where('name', $request->country)->first();
+        $countryName = Country::where('name', !empty($request->country) ? $request->country : $request->country_old)->first();
 
         // Changing date format - from string to date
         $time = strtotime($request->birthday);
@@ -54,8 +54,8 @@ class SettingsAdminController extends Controller
             'email' => $request->email_address,
             'phone_number' => $request->phone_without_mask,
             'country' => $countryName->id,
-            'city' => ucfirst($request->city),
-            'gender' => ucfirst($request->gender),
+            'city' => !empty(ucfirst($request->city)) ? ucfirst($request->city) : $request->city_old,
+            'gender' => !empty(ucfirst($request->gender)) ? ucfirst($request->gender) : $request->gender_old,
             'birthday' => $birthday,
         ];
 
@@ -182,11 +182,8 @@ class SettingsAdminController extends Controller
         // Finds user by $id
         $user = User::find($id);
 
-        // Get country id from $user
-        $countryID = $user->pluck('country');
-
         // Finds country by $countryID
-        $countryName = Country::find($countryID);
+        $countryName = Country::find($user->country);
 
         return view('adminlte.admin.account-settings-admin', compact('countries', 'hashids', 'user', 'countryName'));
     }

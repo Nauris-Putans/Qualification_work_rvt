@@ -108,7 +108,7 @@
                                 {{ __('Country') }}
                             </label>
                             <select class="form-control selectpicker @error('type') is-invalid @enderror" data-live-search="true" data-style="CountrySelect" data-size="10" id="countryList" name="country" form="personal_info">
-                                <option disabled selected data-tokens="{{ __($countryName[$user->id]->name) }}" value="{{ $countryName[$user->id]->name }}">{{ __($countryName[$user->id]->name) }}</option>
+                                <option disabled selected data-tokens="{{ __($countryName->name) }}" value="{{ $countryName->name }}">{{ __($countryName->name) }}</option>
                                 @foreach ($countries as $country)
                                     <option phonecode="{{ $country->dial_code }}"
                                         value="{{ $country->name }}"
@@ -141,6 +141,22 @@
 
                     </div>
                 </div>
+
+                {{-- Hidden gender input--}}
+                <div style="display: none">
+                    <input name="gender_old" value="{{ $user->gender }}"/>
+                </div>
+
+                {{-- Hidden country input--}}
+                <div style="display: none">
+                    <input name="country_old" value="{{ $countryName->name }}"/>
+                </div>
+
+                {{-- Hidden city input--}}
+                <div style="display: none">
+                    <input name="city_old" value="{{ $user->city }}"/>
+                </div>
+
 
                 {{-- Save Changes button--}}
                 <div class="col-md-12 justify-content-center mt-2 mb-2">

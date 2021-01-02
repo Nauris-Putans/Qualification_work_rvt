@@ -58,7 +58,7 @@
                     </div>
                     <div class="Birthday">
                         <b>{{ __('Birthday') }}</b>
-                        <p class="text-gray">{{ date('d.m.Y', strtotime($user->birthday)) }}</p>
+                        <p class="text-gray">{{ date('d/m/Y', strtotime($user->birthday)) }}</p>
                         <hr>
                     </div>
                     <div class="Mobile Phone">
