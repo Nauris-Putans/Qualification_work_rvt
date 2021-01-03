@@ -6,20 +6,11 @@ use App\User;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Str;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
-
 $fakerLV = Faker\Factory::create('lv_LV');
 
-$factory->define(User::class, function (\Faker\Generator $faker) use ($fakerLV) {
+/** @var TYPE_NAME $factory */
+$factory->define(User::class, function (\Faker\Generator $faker) use ($fakerLV)
+{
     // Random gender
     $genders = array("Male", "Female");
     $random_genders = array_rand($genders);
@@ -28,9 +19,9 @@ $factory->define(User::class, function (\Faker\Generator $faker) use ($fakerLV) 
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => Hash::make('1'), // password
+        'password' => Hash::make('1'),
         'phone_number' => $fakerLV->phoneNumber,
-        'country' => $faker->numberBetween(0, 241),
+        'country' => $faker->numberBetween(0, 195),
         'city' => $faker->city,
         'gender' => $genders[$random_genders],
         'birthday' => $faker->date('y-m-d'),

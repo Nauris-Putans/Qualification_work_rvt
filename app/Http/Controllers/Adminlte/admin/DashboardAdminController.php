@@ -44,6 +44,7 @@ class DashboardAdminController extends Controller
         $usersCount = User::find($userRoles)->count();
         $memberCount = User::find($memberRoles)->count();
 
+        // Selects latest added users and members
         $users = User::whereIn('id', $userRoles)->orderBy('id', 'desc')->take(8)->get();
         $members = User::whereIn('id', $memberRoles)->orderBy('id', 'desc')->take(8)->get();
 

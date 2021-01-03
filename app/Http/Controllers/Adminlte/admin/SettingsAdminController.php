@@ -26,6 +26,8 @@ class SettingsAdminController extends Controller
     use UploadTrait;
 
     /**
+     * Updates personal info in account settings section
+     *
      * @param PersonalInfoRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
@@ -65,7 +67,14 @@ class SettingsAdminController extends Controller
         return redirect()->back()->with('message', __('Personal info has been updated!'));
     }
 
-    public function notification_update(NotificationRequest $request, $id)
+    /**
+     * Updates notification in account settings section
+     *
+     * @param NotificationRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function notification_update(NotificationRequest $request,$id)
     {
         // Hash key for id security
         $hashids = new Hashids('WEBcheck', 10);
@@ -79,6 +88,8 @@ class SettingsAdminController extends Controller
     }
 
     /**
+     * Updates password security in account settings section
+     *
      * @param PasswordSecurityRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
@@ -106,6 +117,8 @@ class SettingsAdminController extends Controller
     }
 
     /**
+     * Updates user profile image in account settings section
+     *
      * @param ProfileImageRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -120,6 +133,7 @@ class SettingsAdminController extends Controller
             // Previous profile image path
             $usersImage = public_path($user->profile_image);
 
+            // Checks if file exists
             if (File::exists($usersImage))
             {
                 // Deletes previous profile image

@@ -71,7 +71,7 @@ class LaratrustSeeder extends Seeder
                     'email_verified_at' => now(),
                     'password' => Hash::make('1'),
                     'phone_number' => $fakerLV->phoneNumber,
-                    'country' => $faker->numberBetween(0, 241),
+                    'country' => $faker->numberBetween(0, 195),
                     'city' => $faker->city,
                     'gender' => $genders[$random_genders],
                     'birthday' => $faker->date('y-m-d'),

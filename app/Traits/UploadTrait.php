@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Traits;
 
 use Illuminate\Support\Facades\File;
@@ -8,7 +9,16 @@ use Illuminate\Support\Facades\Storage;
 
 trait UploadTrait
 {
-    public function uploadOne(UploadedFile $uploadedFile, $folder = null, $disk = 'public', $filename = null)
+    /**
+     * Uploads file
+     *
+     * @param UploadedFile $uploadedFile
+     * @param null $folder
+     * @param string $disk
+     * @param null $filename
+     * @return false|string
+     */
+    public function uploadOne(UploadedFile $uploadedFile,$folder = null,$disk = 'public',$filename = null)
     {
         $name = !is_null($filename) ? $filename : Str::random(25);
 

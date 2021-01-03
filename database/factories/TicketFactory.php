@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 
 $fakerEN = Faker\Factory::create('en_US');
 
+/** @var TYPE_NAME $factory */
 $factory->define(Ticket::class, function (Faker\Generator $faker) use ($fakerEN)
 {
     // Random priorities

@@ -18,6 +18,8 @@ use Illuminate\View\View;
 class ContactController extends Controller
 {
     /**
+     * Returns view
+     *
      * @return Application|Factory|View
      */
     public function index()
@@ -26,13 +28,16 @@ class ContactController extends Controller
     }
 
     /**
+     * Sends ticket to info email
+     *
      * @param ContactCreateRequest $request
      * @return RedirectResponse
      */
     public function store(ContactCreateRequest $request, AppMailer $mailer)
     {
         // Priorities based on category
-        switch ($request->category) {
+        switch ($request->category)
+        {
             case "question":
                 $priority = 'Low';
                 break;

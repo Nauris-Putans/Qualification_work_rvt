@@ -57,6 +57,8 @@ class TicketController extends Controller
     }
 
     /**
+     * Returns user ticket create view
+     *
      * @return Factory|View
      */
     public function userCreateTicket()
@@ -79,6 +81,8 @@ class TicketController extends Controller
     }
 
     /**
+     * Stores users ticket from contacts page to database
+     *
      * @param UserTicketCreateRequest $request
      * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
@@ -113,6 +117,8 @@ class TicketController extends Controller
     }
 
     /**
+     * Returns user tickets view
+     *
      * @return Factory|View
      */
     public function userTickets()
@@ -127,6 +133,8 @@ class TicketController extends Controller
     }
 
     /**
+     * Shows user specific ticket
+     *
      * @param $id
      * @return Factory|View
      */
@@ -145,6 +153,8 @@ class TicketController extends Controller
     }
 
     /**
+     * Closes ticket
+     *
      * @param $ticket_id
      * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
@@ -167,7 +177,7 @@ class TicketController extends Controller
         // Sends ticket status notification
         $mailer->sendTicketStatusNotification($ticketOwner, $ticket);
 
-        return redirect()->back()->with('message', __("The ticket #") . $ticket->ticket_id - $ticket->title . __("has been closed."));
+        return redirect()->back()->with('message', __("The ticket #") . $ticket->ticket_id . " - " . $ticket->title . __("has been closed."));
     }
 
     /**
