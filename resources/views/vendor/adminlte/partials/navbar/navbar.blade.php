@@ -136,9 +136,15 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
 
-                    <a href="/admin/settings" class="btn btn-default">
-                        {{ __('Settings') }}
-                    </a>
+                    @if(auth()->user()->getUser()->roles[0]->name !== "admin")
+                        <a href="/user/settings" class="btn btn-default">
+                            {{ __('Settings') }}
+                        </a>
+                    @else
+                        <a href="/admin/settings" class="btn btn-default">
+                            {{ __('Settings') }}
+                        </a>
+                    @endif
 
                     <a href="{{ route('logout') }}" class="btn btn-danger float-right" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('Sign out') }}

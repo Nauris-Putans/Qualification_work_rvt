@@ -164,8 +164,28 @@ class RoleController extends Controller
         // Decodes id
         $id = $hashids->decode( $id );
 
+        // Finds default role
+        $defaultRole = Role::find(5);
+
         // Finds role by user id
         $role = Role::find($id)->first();
+
+        // Finds userRoles with $role->id
+        $userRoles = DB::table('role_user')
+            ->where('role_id', $role->id)
+            ->get();
+
+        // Retrieves all of the values for a given key
+        $userRoles = $userRoles->pluck('user_id');
+
+        // Finds users by $userRoles
+        $users = User::find($userRoles);
+
+        // Syncs default roles for each user that had deleted role
+        foreach ($users as $user)
+        {
+            $user->syncRoles([$defaultRole->id]);
+        }
 
         // Deletes role
         $role->delete();

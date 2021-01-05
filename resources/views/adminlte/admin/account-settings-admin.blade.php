@@ -49,11 +49,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-one-subcription-plan-tab" data-toggle="pill" href="#custom-tabs-one-subcription-plan" role="tab" aria-controls="custom-tabs-one-subcription-plan" aria-selected="false">
-                                {{ __('Subscription Plan') }}
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-one-password-and-security-tab" data-toggle="pill" href="#custom-tabs-one-password-and-security" role="tab" aria-controls="custom-tabs-one-password-and-security" aria-selected="false">
                                 {{ __('Password & Security') }}
                             </a>
@@ -121,9 +116,6 @@
                         <div class="tab-pane fade" id="custom-tabs-one-notification" role="tabpanel" aria-labelledby="custom-tabs-one-notification-tab">
                             {{ Form::component('notificationForm', 'components.form.adminlte.admin.notification-form', ['countries' => $countries, 'hashids' => $hashids, 'user' => $user, 'countryName' => $countryName]) }}
                             {{ Form::notificationForm() }}
-                        </div>
-                        <div class="tab-pane fade" id="custom-tabs-one-subcription-plan" role="tabpanel" aria-labelledby="custom-tabs-one-subcription-plan-tab">
-                            {{ __('Subscription Plan') }}
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-password-and-security" role="tabpanel" aria-labelledby="custom-tabs-one-password-and-security-tab">
                             {{ Form::component('passwordSecurityForm', 'components.form.adminlte.admin.password-security-form', ['countries' => $countries, 'hashids' => $hashids, 'user' => $user]) }}
