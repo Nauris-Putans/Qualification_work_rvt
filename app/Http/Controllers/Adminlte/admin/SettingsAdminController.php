@@ -162,7 +162,7 @@ class SettingsAdminController extends Controller
         // Persist user record to database
         $user->save();
 
-        return redirect()->back()->with('image_message', __('Profile image was updated!'));
+        return redirect()->back()->with('message', __('Profile image was updated!'));
     }
 
     /**

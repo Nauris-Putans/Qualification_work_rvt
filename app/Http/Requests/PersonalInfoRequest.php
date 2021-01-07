@@ -31,7 +31,7 @@ class PersonalInfoRequest extends FormRequest
             'email_address' => 'exclude_if:email,null|required|email:rfc,dns|unique:users,email',
             'phone_without_mask' => 'nullable|min:6|max:13',
             'gender' => 'nullable',
-            'birthday' => 'nullable|date_format:m/d/Y|before:today',
+            'birthday' => 'nullable|date_format:d/m/Y|before:today',
             'country' => 'nullable',
             'city' => 'nullable|max:50',
         ];
@@ -54,7 +54,7 @@ class PersonalInfoRequest extends FormRequest
             'phone_without_mask.min' => __('Phone number should not be less than 6 chars'),
             'phone_without_mask.max' => __('Phone number should not be greater than 13 chars'),
 
-            'birthday.date_format' => __('Birthday date should be m/d/Y format'),
+            'birthday.date_format' => __('Birthday date should be d/m/Y format'),
             'birthday.before' => __('Birthday must be a date before today'),
 
             'city.max' => __('Cities name should not be greater than 50 chars'),

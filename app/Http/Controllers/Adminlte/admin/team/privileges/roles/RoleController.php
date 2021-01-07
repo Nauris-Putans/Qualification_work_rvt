@@ -88,7 +88,10 @@ class RoleController extends Controller
         $role = Role::find($id)
             ->first();
 
-        return view('adminlte.admin.team.privileges.roles.view-role', compact( 'role', 'hashids'));
+        // Finds permissions by permission id
+        $permissions = Permission::all();
+
+        return view('adminlte.admin.team.privileges.roles.view-role', compact( 'role', 'hashids', 'permissions'));
     }
 
     /**

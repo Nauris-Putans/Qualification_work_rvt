@@ -92,14 +92,11 @@
                     <div class="row">
 
                         {{-- Birthday input --}}
-                        <div class="col-md-4 form-group date" data-provide="datepicker">
+                        <div class="col-md-4 form-group">
                             <label for="birthday">
                                 {{ __('Birthday') }}
                             </label>
-                            <input name="birthday" type="text" class="form-control" value="{{ date('m/d/Y', strtotime($user->birthday)) }}">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
+                            <input name="birthday" type="text" class="form-control datepicker" value="{{ date('d/m/Y', strtotime($user->birthday)) }}" style="padding: .375rem .75rem;">
                         </div>
 
                         {{-- Country input --}}
