@@ -10,9 +10,7 @@
 @stop
 
 @section('content')
-    <x-alertAdminPersonalInfo />
     <x-alertAdmin />
-    <x-alertAdminPasswordSecurity />
 
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-12">

@@ -7,6 +7,8 @@ use App\Rules\FullnameRule;
 
 class PersonalInfoRequest extends FormRequest
 {
+    // protected $errorBag = 'personal_info';
+
     /**
      * Determine if the user is authorized to make this request.
      *

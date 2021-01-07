@@ -19,14 +19,14 @@
                     <div class="row">
                         {{-- Email Address input--}}
                         <div class="col-md-4 form-group">
-                            <label for="email_address">
+                            <label for="email">
                                 {{ __('Email') }}*
                             </label>
                             <input
-                                name="email_address"
-                                id="email_address"
+                                name="email"
+                                id="email"
                                 type="text"
-                                class="form-control @error('email_address') is-invalid @enderror"
+                                class="form-control @error('email') is-invalid @enderror"
                                 value="{{ $user->email }}"
                             />
                         </div>

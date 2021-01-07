@@ -124,13 +124,14 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     {{-- Admin dashboard--}}
-                                    @if (Laratrust::hasRole('admin'))
+
+                                    @if (!(Laratrust::hasRole('userFree')) && !(Laratrust::hasRole('userPro')) && !(Laratrust::hasRole('userWebmaster')))
                                         <a class="dropdown-item" href="{{ url('/admin/dashboard') }}">
                                             @lang('Dashboard')
                                         </a>
 
-                                        {{-- User Free dashboard--}}
-                                    @elseif (Laratrust::hasRole('userFree'))
+                                    {{-- User dashboard--}}
+                                    @else
                                         <a class="dropdown-item" href="{{ url('/user/dashboard') }}">
                                             @lang('Dashboard')
                                         </a>

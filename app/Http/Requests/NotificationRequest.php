@@ -24,7 +24,7 @@ class NotificationRequest extends FormRequest
     public function rules()
     {
         return [
-            'email_address' => 'exclude_if:email,null|required|email:rfc,dns',
+            'email' => 'exclude_if:email,null|required|email:rfc,dns',
         ];
     }
 
@@ -36,8 +36,8 @@ class NotificationRequest extends FormRequest
     public function messages()
     {
         return [
-            'email_address.required' => __('Email address is required'),
-            'email_address.email' => __('Email address format is invalid'),
+            'email.required' => __('Email address is required'),
+            'email.email' => __('Email address format is invalid'),
         ];
     }
 }

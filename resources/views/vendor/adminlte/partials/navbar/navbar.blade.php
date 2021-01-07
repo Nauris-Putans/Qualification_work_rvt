@@ -136,12 +136,12 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
 
-                    @if(auth()->user()->getUser()->roles[0]->name !== "admin")
-                        <a href="/user/settings" class="btn btn-default">
+                    @if(!(Laratrust::hasRole('userFree')) && !(Laratrust::hasRole('userPro')) && !(Laratrust::hasRole('userWebmaster')))
+                        <a href="/admin/settings" class="btn btn-default">
                             {{ __('Settings') }}
                         </a>
                     @else
-                        <a href="/admin/settings" class="btn btn-default">
+                        <a href="/user/settings" class="btn btn-default">
                             {{ __('Settings') }}
                         </a>
                     @endif
