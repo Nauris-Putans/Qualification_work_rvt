@@ -11,10 +11,70 @@
                     </h5>
                 </div>
 
-                <div class="col-md-12 mt-3">
+                <div class="col-12 mt-3">
                     <p>
-                        {{ __('You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.') }}
+                        {{ __('Choose how you will receive notifications from us. WEBcheck will send you email or SMS notifications based on your notification settings.') }}
                     </p>
+
+                    {{-- Data table --}}
+                    <table class="table table-striped table-bordered dt-responsive nowrap TableStyle col-lg-8 col-md-8 col-sm-8" id="notification-table">
+                        <thead class="thead-light">
+                        <tr class="CenterTextTable">
+                            <th scope="col" style="width: 20%;">{{ __('NOTIFICATION') }}</th>
+                            <th scope="col" style="width: 15%;">{{ __('EMAIL') }}</th>
+                            <th scope="col" style="width: 15%;">{{ __('SMS') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="CenterTextTable">
+                                <td>{{ __("Problem") }}</td>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="notifications[]" class="notifications" value="problem_email">
+                                    </div>
+                                </th>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="notifications[]" class="notifications" value="problem_sms">
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="CenterTextTable">
+                                <td>{{ __("Update") }}</td>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="notifications[]" class="notifications" value="payment_email">
+                                    </div>
+                                </th>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="notifications[]" class="notifications" value="update_sms">
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="CenterTextTable">
+                                <td>{{ __("Payment") }}</td>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="notifications[]" class="notifications" value="payment_email">
+                                    </div>
+                                </th>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="notifications[]" class="notifications" value="payment_sms">
+                                    </div>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <hr>
+
+                    <div class="col-12 mb-4" style="padding-left: 0">
+                        <h5>
+                            {{ __('Change Notification Destinations here') }}
+                        </h5>
+                    </div>
 
                     <div class="row">
                         {{-- Email Address input--}}
@@ -29,6 +89,29 @@
                                 class="form-control @error('email') is-invalid @enderror"
                                 value="{{ $user->email }}"
                             />
+                        </div>
+
+                        {{-- Phone Number input--}}
+                        <div class="col-md-4 form-group">
+                            <label for="mobile_phone">
+                                {{ __('Mobile Phone') }}<span id="descr"></span>
+                            </label>
+
+                            <input style="display: none"
+                                   id="customer_mobile_phone"
+                                   type="text"
+                                   class="form-control @error('mobile_phone_without_mask') is-invalid @enderror"
+                                   name="mobile_phone_without_mask"
+                                   value="{{ $user->phone_number }}"
+                                   size="25"
+                            >
+
+                            <input type="text"
+                                   id="mobile_phonecode"
+                                   name="mobile_phone"
+                                   class="form-control @error('mobile_phone') is-invalid @enderror"
+                                   value="{{ $user->phone_number }}"
+                            >
                         </div>
                     </div>
 

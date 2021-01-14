@@ -266,3 +266,15 @@
     color: white !important;
     font-weight: 600;
 }
+
+.CenterTextTable th {
+    text-align: center;
+}
+
+.CenterTextTable th .custom-control {
+    padding-left: 0 !important;
+}
+
+.CenterTextTable td {
+    text-align: center;
+}
