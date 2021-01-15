@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\FullnameRule;
+use Illuminate\Support\Facades\Auth;
 
 class PersonalInfoRequest extends FormRequest
 {
@@ -28,7 +29,7 @@ class PersonalInfoRequest extends FormRequest
     {
         return [
             'fullname' => ['required', new FullnameRule()],
-            'email_address' => 'exclude_if:email,null|required|email:rfc,dns|unique:users,email',
+            'email_address' => 'required|email:rfc,dns|unique:users,email,' . Auth::id(),
             'phone_without_mask' => 'nullable|min:6|max:13',
             'gender' => 'nullable',
             'birthday' => 'nullable|date_format:d/m/Y|before:today',

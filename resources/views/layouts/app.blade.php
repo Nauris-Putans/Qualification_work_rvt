@@ -123,8 +123,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    
                                     {{-- Admin dashboard--}}
-
                                     @if (!(Laratrust::hasRole('userFree')) && !(Laratrust::hasRole('userPro')) && !(Laratrust::hasRole('userWebmaster')))
                                         <a class="dropdown-item" href="{{ url('/admin/dashboard') }}">
                                             @lang('Dashboard')

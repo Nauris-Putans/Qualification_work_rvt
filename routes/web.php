@@ -35,8 +35,11 @@ Route::post('/contacts/create', 'Pages\ContactController@store')->name('contacts
 |--------------------------------------------------------------------------
 */
 
+$adminSide = 'admin|member|developer|maintainer';
+$userAdminSide = 'userFree|userPro|userWebmaster';
+
 // Role - Admin
-Route::group(['middleware' => ['role:admin']], function()
+Route::middleware(['role:' . $adminSide])->group( function()
 {
     // Dashboard section
     Route::get('/admin/dashboard', 'Adminlte\admin\DashboardAdminController@index');
@@ -85,7 +88,7 @@ Route::group(['middleware' => ['role:admin']], function()
 });
 
 // Role - User Admin (free)
-Route::group(['middleware' => ['role:userFree|userPro|userWebmaster']], function()
+Route::middleware(['role:' . $userAdminSide])->group( function()
 {
     // Dashboard section
     Route::get('/user/dashboard', 'Adminlte\ZabbixController@historyGet')->name('admin.user_admin.index');

@@ -47,18 +47,28 @@ class SettingsAdminController extends Controller
         $countryName = Country::where('name', !empty($request->country) ? $request->country : $request->country_old)->first();
 
         // Changing date format - from string to date
-        $time = strtotime($request->birthday);
-        $birthday = date('Y-m-d',$time);
+        $time = strtotime(str_replace('/', '-', $request->birthday));
+
+        // Checks if $time is null
+        if ($time == null)
+        {
+            $birthday = null;
+        }
+
+        else
+        {
+            $birthday = date('Y-m-d', $time);
+        }
 
         // Storing new info in $data
         $data = [
             'name' => ucwords($request->fullname),
             'email' => $request->email_address,
             'phone_number' => $request->phone_without_mask,
-            'country' => $countryName->id,
-            'city' => !empty(ucfirst($request->city)) ? ucfirst($request->city) : $request->city_old,
+            'country' => !empty($countryName->id) ? $countryName->id : null,
+            'city' => !empty(ucfirst($request->city)) ? ucfirst($request->city) : null,
             'gender' => !empty(ucfirst($request->gender)) ? ucfirst($request->gender) : $request->gender_old,
-            'birthday' => $birthday,
+            'birthday' => !empty($birthday) ? $birthday : null,
         ];
 
         // Updates user with $data values
