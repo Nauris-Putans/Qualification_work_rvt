@@ -1,0 +1,25 @@
+.EmailForm{
+
+    .container {
+        width: 400px;
+        margin-right: auto;
+        margin-left: auto;
+        height: 400px;
+        background-color: saddlebrown;
+    }
+
+    a:hover,
+    a:active,
+    a:focus,
+    input:hover,
+    input:active,
+    input:focus,
+    textarea:focus,
+    select:focus,
+    button:hover,
+    button:active,
+    button:focus {
+    outline: 0;
+    }
+    
+}

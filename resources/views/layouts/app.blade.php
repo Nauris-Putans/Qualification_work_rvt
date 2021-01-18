@@ -26,6 +26,7 @@
             data-close-text="Got it!">
     </script>
     <script src="{{ asset('js/switch.js')}}"></script>
+    <script src="{{ asset('js/faq.js')}}"></script>
 
     <!-- Place your kit's code here -->
     <script src="https://kit.fontawesome.com/f53cf4b771.js" crossorigin="anonymous"></script>
