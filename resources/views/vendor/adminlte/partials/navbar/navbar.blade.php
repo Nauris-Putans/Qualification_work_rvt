@@ -50,51 +50,51 @@
             </div>
         </li>
 
-        <!-- Language Dropdown Menu -->
-        <li class="nav-item dropdown Language">
-            @if (App::isLocale('en'))
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <span class="flag-icon flag-icon-us"></span>
-                </a>
+{{--        <!-- Language Dropdown Menu -->--}}
+{{--        <li class="nav-item dropdown Language">--}}
+{{--            @if (App::isLocale('en'))--}}
+{{--                <a class="nav-link" data-toggle="dropdown" href="#">--}}
+{{--                    <span class="flag-icon flag-icon-us"></span>--}}
+{{--                </a>--}}
 
-            @elseif (App::isLocale('lv'))
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <span class="flag-icon flag-icon-lv"></span>
-                </a>
+{{--            @elseif (App::isLocale('lv'))--}}
+{{--                <a class="nav-link" data-toggle="dropdown" href="#">--}}
+{{--                    <span class="flag-icon flag-icon-lv"></span>--}}
+{{--                </a>--}}
 
-            @elseif (App::isLocale('ru'))
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <span class="flag-icon flag-icon-ru"></span>
-                </a>
+{{--            @elseif (App::isLocale('ru'))--}}
+{{--                <a class="nav-link" data-toggle="dropdown" href="#">--}}
+{{--                    <span class="flag-icon flag-icon-ru"></span>--}}
+{{--                </a>--}}
 
-            @else
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <span class="flag-icon flag-icon-us"></span>
-                </a>
-            @endif
+{{--            @else--}}
+{{--                <a class="nav-link" data-toggle="dropdown" href="#">--}}
+{{--                    <span class="flag-icon flag-icon-us"></span>--}}
+{{--                </a>--}}
+{{--            @endif--}}
 
-            {{-- Languages --}}
-            <div class="dropdown-menu dropdown-menu-right p-0">
-                @if (App::isLocale(''))
-                    <a href="lang/en" class="dropdown-item {{ App::isLocale('') ? 'active' : '' }}">
-                        <i class="flag-icon flag-icon-us mr-2"></i> {{ __('English') }}
-                    </a>
+{{--            --}}{{-- Languages --}}
+{{--            <div class="dropdown-menu dropdown-menu-right p-0">--}}
+{{--                @if (App::isLocale(''))--}}
+{{--                    <a href="lang/en" class="dropdown-item {{ App::isLocale('') ? 'active' : '' }}">--}}
+{{--                        <i class="flag-icon flag-icon-us mr-2"></i> {{ __('English') }}--}}
+{{--                    </a>--}}
 
-                @else
-                    <a href="lang/en" class="dropdown-item {{ App::isLocale('en') ? 'active' : '' }}">
-                        <i class="flag-icon flag-icon-us mr-2"></i> {{ __('English') }}
-                    </a>
-                @endif
+{{--                @else--}}
+{{--                    <a href="lang/en" class="dropdown-item {{ App::isLocale('en') ? 'active' : '' }}">--}}
+{{--                        <i class="flag-icon flag-icon-us mr-2"></i> {{ __('English') }}--}}
+{{--                    </a>--}}
+{{--                @endif--}}
 
-                <a href="lang/lv" class="dropdown-item {{ App::isLocale('lv') ? 'active' : '' }}">
-                    <i class="flag-icon flag-icon-lv mr-2"></i> {{ __('Latvian') }}
-                </a>
+{{--                <a href="lang/lv" class="dropdown-item {{ App::isLocale('lv') ? 'active' : '' }}">--}}
+{{--                    <i class="flag-icon flag-icon-lv mr-2"></i> {{ __('Latvian') }}--}}
+{{--                </a>--}}
 
-                <a href="lang/ru" class="dropdown-item {{ App::isLocale('ru') ? 'active' : '' }}">
-                    <i class="flag-icon flag-icon-ru mr-2"></i> {{ __('Russian') }}
-                </a>
-            </div>
-        </li>
+{{--                <a href="lang/ru" class="dropdown-item {{ App::isLocale('ru') ? 'active' : '' }}">--}}
+{{--                    <i class="flag-icon flag-icon-ru mr-2"></i> {{ __('Russian') }}--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--        </li>--}}
 
         <li class="nav-item dropdown user-menu show mr-3">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
@@ -136,9 +136,15 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
 
-                    <a href="/admin/settings" class="btn btn-default">
-                        {{ __('Settings') }}
-                    </a>
+                    @if(!(Laratrust::hasRole('userFree')) && !(Laratrust::hasRole('userPro')) && !(Laratrust::hasRole('userWebmaster')))
+                        <a href="/admin/settings" class="btn btn-default">
+                            {{ __('Settings') }}
+                        </a>
+                    @else
+                        <a href="/user/settings" class="btn btn-default">
+                            {{ __('Settings') }}
+                        </a>
+                    @endif
 
                     <a href="{{ route('logout') }}" class="btn btn-danger float-right" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('Sign out') }}

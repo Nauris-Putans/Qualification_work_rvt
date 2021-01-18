@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Adminlte\admin;
 
 use App\Country;
+use App\Http\Requests\NotificationRequest;
 use App\Http\Requests\PasswordSecurityRequest;
 use App\Http\Requests\PersonalInfoRequest;
 use App\Http\Requests\ProfileImageRequest;
@@ -25,6 +26,8 @@ class SettingsAdminController extends Controller
     use UploadTrait;
 
     /**
+     * Updates personal info in account settings section
+     *
      * @param PersonalInfoRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
@@ -40,19 +43,32 @@ class SettingsAdminController extends Controller
         // Finds user by $id
         $user = User::find($id)->first();
 
+        // Finds country name by $request->country
+        $countryName = Country::where('name', !empty($request->country) ? $request->country : $request->country_old)->first();
+
         // Changing date format - from string to date
-        $time = strtotime($request->birthday);
-        $birthday = date('Y-m-d',$time);
+        $time = strtotime(str_replace('/', '-', $request->birthday));
+
+        // Checks if $time is null
+        if ($time == null)
+        {
+            $birthday = null;
+        }
+
+        else
+        {
+            $birthday = date('Y-m-d', $time);
+        }
 
         // Storing new info in $data
         $data = [
             'name' => ucwords($request->fullname),
             'email' => $request->email_address,
             'phone_number' => $request->phone_without_mask,
-            'country' => $request->country,
-            'city' => ucfirst($request->city),
-            'gender' => ucfirst($request->gender),
-            'birthday' => $birthday,
+            'country' => !empty($countryName->id) ? $countryName->id : null,
+            'city' => !empty(ucfirst($request->city)) ? ucfirst($request->city) : null,
+            'gender' => !empty(ucfirst($request->gender)) ? ucfirst($request->gender) : $request->gender_old,
+            'birthday' => !empty($birthday) ? $birthday : null,
         ];
 
         // Updates user with $data values
@@ -62,6 +78,28 @@ class SettingsAdminController extends Controller
     }
 
     /**
+     * Updates notification in account settings section
+     *
+     * @param NotificationRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function notification_update(NotificationRequest $request,$id)
+    {
+        // Hash key for id security
+        $hashids = new Hashids('WEBcheck', 10);
+
+        // Decodes id
+        $id = $hashids->decode( $id );
+
+        dd("Need to create notification section");
+
+        return redirect()->back()->with('message', __('Notifications has been updated!'));
+    }
+
+    /**
+     * Updates password security in account settings section
+     *
      * @param PasswordSecurityRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
@@ -89,6 +127,8 @@ class SettingsAdminController extends Controller
     }
 
     /**
+     * Updates user profile image in account settings section
+     *
      * @param ProfileImageRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -103,6 +143,7 @@ class SettingsAdminController extends Controller
             // Previous profile image path
             $usersImage = public_path($user->profile_image);
 
+            // Checks if file exists
             if (File::exists($usersImage))
             {
                 // Deletes previous profile image
@@ -131,7 +172,7 @@ class SettingsAdminController extends Controller
         // Persist user record to database
         $user->save();
 
-        return redirect()->back()->with('image_message', __('Profile image was updated!'));
+        return redirect()->back()->with('message', __('Profile image was updated!'));
     }
 
     /**
@@ -165,7 +206,10 @@ class SettingsAdminController extends Controller
         // Finds user by $id
         $user = User::find($id);
 
-        return view('adminlte.admin.account-settings-admin', compact('countries', 'hashids', 'user'));
+        // Finds country by $countryID
+        $countryName = Country::find($user->country);
+
+        return view('adminlte.admin.account-settings-admin', compact('countries', 'hashids', 'user', 'countryName'));
     }
 
     /**

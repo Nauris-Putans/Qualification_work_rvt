@@ -1,5 +1,6 @@
 @extends('adminlte::page')
-@section('title', 'Tickets')
+
+@section('title', 'All Tickets')
 
 @section('content_header')
     <nav aria-label="breadcrumb">
@@ -13,6 +14,7 @@
     <div class="row">
         {{-- Tickets list --}}
         <div class="col-lg-12 col-md-12 col-sm-12">
+            <x-alertAdmin />
             <div class="card card-outline card-primary">
                 <div class="card-header">
                     <h1 class="card-title">{{ __('Tickets list') }}</h1>
@@ -40,9 +42,9 @@
                                 </div>
                             </td>
                         </tr>
-                        {{-- Column - TITLE --}}
+                        {{-- Column - CATEGORY --}}
                         <tr id="filter_col1" data-column="1">
-                            <td>{{ __('Column - TITLE') }}</td>
+                            <td>{{ __('Column - CATEGORY') }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -56,9 +58,9 @@
                                 </div>
                             </td>
                         </tr>
-                        {{-- Column - ACTION --}}
+                        {{-- Column - TITLE --}}
                         <tr id="filter_col2" data-column="2">
-                            <td>{{ __('Column - ACTION') }}</td>
+                            <td>{{ __('Column - TITLE') }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -67,14 +69,14 @@
                                                 <i class="fas fa-search"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="column_filter form-control" id="col2_filter">
+                                        <input type="text" class="column_filter form-control col-md-12" id="col2_filter">
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                        {{-- Column - STATUS --}}
+                        {{-- Column - ACTION --}}
                         <tr id="filter_col3" data-column="3">
-                            <td>{{ __('Column - STATUS') }}</td>
+                            <td>{{ __('Column - ACTION') }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -88,6 +90,38 @@
                                 </div>
                             </td>
                         </tr>
+                        {{-- Column - STATUS --}}
+                        <tr id="filter_col4" data-column="4">
+                            <td>{{ __('Column - STATUS') }}</td>
+                            <td align="center">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-search"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="column_filter form-control" id="col4_filter">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{-- Column - LAST UPDATED --}}
+                        <tr id="filter_col5" data-column="5">
+                            <td>{{ __('Column - LAST UPDATED') }}</td>
+                            <td align="center">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-search"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="column_filter form-control" id="col5_filter">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
 
@@ -96,51 +130,83 @@
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">{{ __('ID') }}</th>
+                            <th scope="col">{{ __('CATEGORY') }}</th>
                             <th scope="col">{{ __('TITLE') }}</th>
                             <th scope="col">{{ __('ACTION') }}</th>
                             <th scope="col">{{ __('STATUS') }}</th>
+                            <th scope="col">{{ __('LAST UPDATED') }}</th>
                             <th scope="col">{{ __('ACTIONS') }}</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($tickets as $ticket)
                             <tr>
-                                <td>{{ $ticket->id }}</td>
-                                <td>{{ $ticket->title }}</td>
+                                <td>
+                                    {{ $ticket->id }}
+                                </td>
 
-                                @if ($ticket->action == 'Solved')
-                                    <td class="TextMiddle">
-                                        <span class="badge Solved mb-0">{{ __($ticket->action) }}</span>
-                                    </td>
-                                @elseif ($ticket->action == 'Answered')
-                                    <td class="TextMiddle">
-                                        <span class="badge Answered mb-0">{{ __($ticket->action) }}</span>
-                                    </td>
-                                @elseif ($ticket->action == 'Un-Answered')
-                                    <td class="TextMiddle">
-                                        <span class="badge UnAnswered mb-0">{{ __($ticket->action) }}</span>
-                                    </td>
-                                @elseif ($ticket->action == 'New Ticket')
-                                    <td class="TextMiddle">
-                                        <span class="badge NewTicket mb-0">{{ __($ticket->action) }}</span>
-                                    </td>
-                                @endif
+                                <td>
+                                    {{ __($ticket->category->name) }}
+                                </td>
 
-                                @if ($ticket->status == 'Opened')
-                                    <td class="TextMiddle">
-                                        <span class="badge Opened mb-0">{{ __($ticket->status) }}</span>
-                                    </td>
-                                @elseif ($ticket->status == 'Closed')
-                                    <td class="TextMiddle">
-                                        <span class="badge Closed mb-0">{{ __($ticket->status) }}</span>
-                                    </td>
-                                @endif
+                                <td>
+                                    #{{ $ticket->ticket_id }} - {{ $ticket->title }}
+                                </td>
 
                                 <td class="TextMiddle">
-                                    <a class="btn btn-primary" href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" role="button">
-                                        <i class="fas fa-eye mr-1"></i>
-                                        {{ __('View') }}
-                                    </a>
+                                    @if ($ticket->action == 'Solved')
+                                        <span class="badge Solved mb-0">{{ __($ticket->action) }}</span>
+                                    @elseif ($ticket->action == 'Answered')
+                                        <span class="badge Answered mb-0">{{ __($ticket->action) }}</span>
+                                    @elseif ($ticket->action == 'Un-Answered')
+                                        <span class="badge UnAnswered mb-0">{{ __($ticket->action) }}</span>
+                                    @elseif ($ticket->action == 'New Ticket')
+                                        <span class="badge NewTicket mb-0">{{ __($ticket->action) }}</span>
+                                    @endif
+                                </td>
+
+                                <td class="TextMiddle">
+                                    @if ($ticket->status === 'Opened')
+                                        <span class="badge Opened mb-0">{{ __($ticket->status) }}</span>
+                                    @elseif ($ticket->status === 'Closed')
+                                        <span class="badge Closed mb-0">{{ __($ticket->status) }}</span>
+                                    @endif
+                                </td>
+
+                                <td>{{ $ticket->updated_at->format('d/m/Y H:i') }}</td>
+
+                                <td class="TextMiddle">
+                                    <div class="container">
+                                        <div class="row">
+                                            @if($ticket->status === 'Opened')
+                                                <a href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" class="btn btn-info mr-1">
+                                                    <i class="fas fa-comment mr-1"></i>
+                                                    {{ __('Comment') }}
+                                                </a>
+                                                <form action="{{ url('/admin/tickets/close_ticket/' . $ticket->ticket_id) }}" method="POST">
+                                                    @csrf
+
+                                                    <button class="btn btn-warning" onclick="return confirm('{{ __('Are you sure to close this ticket - #') . $ticket->ticket_id . ' - ' . $ticket->title . '?' }}')" type="submit">
+                                                        <i class="fas fa-times mr-1"></i>
+                                                        {{ __('Close') }}
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <a class="btn btn-primary mr-1" href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" role="button">
+                                                    <i class="fas fa-eye mr-1"></i>
+                                                    {{ __('View') }}
+                                                </a>
+                                                <form action="{{ URL::route('admin.tickets.destroy', [$hashids->encode($ticket->id)]) }}" method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn btn-danger" onclick="return confirm('{{ __('Are you sure to delete this ticket - #') . $ticket->ticket_id . ' - ' . $ticket->title . '?' }}')" type="submit">
+                                                        <i class="fas fa-trash mr-1"></i>
+                                                        {{ __('Delete') }}
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -171,20 +237,21 @@
                 {
                     // Specific columns
                     columnDefs: [
-                        { "orderable": false, "targets": 4 },
-                        { "width": "5%", "targets": [0, 4] },
-                        { "width": "10%", "targets": [2, 3] },
+                        { "orderable": false, "targets": 6 },
+                        { "width": "5%", "targets": [0, 1] },
+                        { "width": "10%", "targets": [3, 4, 5] },
+                        { "width": "15%", "targets": [6] },
                     ],
 
                     // Order by asc/desc
                     order: [
-                        [ 0, "asc" ]
+                        [ 0, "desc" ]
                     ],
 
                     // Show entries length
                     lengthMenu: [
                         [10, 20, 30, -1],
-                        [10, 20, 30, "All"]
+                        [10, 20, 30, @json( __("All") )]
                     ],
 
                     // Position of control elements
@@ -227,7 +294,7 @@
                     ],
 
                     searchBuilder: {
-                        columns: [0,1,2,3],
+                        columns: [0,1,2,3,4,5],
                         conditions: {
                             "date":{
                                 '!=': {

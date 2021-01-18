@@ -18,25 +18,25 @@
                             />
                         </div>
 
-                        {{-- Type input--}}
+                        {{-- Category input--}}
                         <div class="col-md-6 form-group">
-                            <select class="form-control @error('type') is-invalid @enderror" name="type" form="ticket">
-                                <option hidden disabled selected value>{{ __('Please choose message type') }}*</option>
-                                <optgroup label="{{ __('Type') }}">
+                            <select class="form-control @error('category') is-invalid @enderror" name="category" form="ticket">
+                                <option hidden disabled selected value>{{ __('Please choose message category') }}*</option>
+                                <optgroup label="{{ __('Category') }}">
 
-                                    <option value="question" @if (old('type') == "question") {{ 'selected' }} @endif>
+                                    <option value="question" @if (old('category') == "question") {{ 'selected' }} @endif>
                                         {{ __('Question') }}
                                     </option>
 
-                                    <option value="problem" @if (old('type') == "problem") {{ 'selected' }} @endif>
+                                    <option value="problem" @if (old('category') == "problem") {{ 'selected' }} @endif>
                                         {{ __('Problem') }}
                                     </option>
 
-                                    <option value="job-vacancie" @if (old('type') == "job-vacancie") {{ 'selected' }} @endif>
+                                    <option value="job-vacancie" @if (old('category') == "job-vacancie") {{ 'selected' }} @endif>
                                         {{ __('Job vacancie') }}
                                     </option>
 
-                                    <option value="other" @if (old('type') == "other") {{ 'selected' }} @endif>
+                                    <option value="other" @if (old('category') == "other") {{ 'selected' }} @endif>
                                         {{ __('Other') }}
                                     </option>
 

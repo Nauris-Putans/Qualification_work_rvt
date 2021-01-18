@@ -215,7 +215,66 @@
     font-size: 100% !important;
 }
 
+.Low {
+    color: white;
+    background: #28a745;
+    font-size: 100% !important;
+}
+
+.Medium {
+    color: white;
+    background: #eca607;
+    font-size: 100% !important;
+}
+
+.High {
+    color: white;
+    background: #c82333;
+    font-size: 100% !important;
+}
+
 .TextMiddle {
     text-align: center !important;
     vertical-align: middle !important;
+}
+
+.Language {
+    list-style: none;
+}
+
+.Language .dropdown-item.active, .dropdown-item:active {
+    color: white !important;
+    text-decoration: none;
+    background-color: #ca6d00;
+}
+
+.Language .dropdown-toggle:hover {
+    color: #a75900 !important;
+}
+
+.Language .dropdown-item {
+    font-weight: 600;
+}
+
+.Language .dropdown-item:hover {
+    background-color: #a75900;
+    color: white !important;
+    font-weight: 600;
+}
+
+.Language .dropdown-item:active {
+    color: white !important;
+    font-weight: 600;
+}
+
+.CenterTextTable th {
+    text-align: center;
+}
+
+.CenterTextTable th .custom-control {
+    padding-left: 0 !important;
+}
+
+.CenterTextTable td {
+    text-align: center;
 }

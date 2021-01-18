@@ -11,6 +11,8 @@ use Illuminate\View\View;
 class PricingController extends Controller
 {
     /**
+     * Returns view
+     *
      * @return Application|Factory|View
      */
     public function index()

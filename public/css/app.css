@@ -11964,6 +11964,14 @@ h3 {
 }
 
 /* ------------ Kontakti ------------ */
+<<<<<<< HEAD
+=======
+
+.Kontakti {
+  padding-top: 50px !important;
+}
+
+>>>>>>> bf59a7f07022b24001b7231d11ab97d5355b8202
 .Kontakti .text-shadow {
   text-shadow: 1px 1px 1px #000000;
 }
@@ -12523,9 +12531,655 @@ h3 {
 .LoginForm .container.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
+<<<<<<< HEAD
 .LoginForm .logbutton {
   background-color: #FF8A00;
 }
 .LoginForm .logbutton:hover {
   background-color: #FF8A00;
 }
+=======
+
+.add-monitor {
+  text-align: center;
+  align-items: center;
+  padding-bottom: 30px;
+  /* The toggle switch - the box around the slider */
+  /* Hide default HTML checkbox */
+  /* The slider */
+  /* Rounded sliders */
+}
+
+.add-monitor__header-title {
+  color: black;
+  text-align: center;
+}
+
+.add-monitor__items-wrapper {
+  margin-top: 30px;
+  min-height: 200px;
+  padding-left: 20px;
+  text-align: left;
+  background-color: #f4f6f9;
+}
+
+.add-monitor__items-wrapper .header {
+  text-align: center;
+}
+
+.add-monitor__items-wrapper .header__title {
+  font-size: 20px;
+  color: black;
+}
+
+.add-monitor__items-wrapper .header__line {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 15%;
+  height: 2px;
+  background-color: #CA6D00;
+  border-radius: 3px;
+}
+
+.add-monitor__items-wrapper .item-title {
+  text-align: left;
+  color: black;
+}
+
+.add-monitor__items-wrapper .item-title span {
+  color: red;
+}
+
+.add-monitor__items-wrapper .settings-wrapper {
+  margin-top: 3px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.add-monitor__items-wrapper .settings-wrapper__toggle-switch {
+  width: 10%;
+  min-height: 25px;
+}
+
+.add-monitor__items-wrapper .settings-wrapper__toggle-switch .switch {
+  position: relative;
+  display: inline-block;
+  height: 25px;
+  margin: 0 auto;
+}
+
+.add-monitor__items-wrapper .settings-wrapper__settings-decr {
+  font-size: 12px;
+  color: #4d4d4d;
+}
+
+.add-monitor__items-wrapper .settings-wrapper .userWripper {
+  display: flex;
+  position: relative;
+  width: 100px;
+  height: 25px;
+  margin-right: 10px;
+  margin-top: 5px;
+  background-color: gray;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: white;
+  border-radius: 15px;
+}
+
+.add-monitor__items-wrapper .settings-wrapper .userWripper__userType {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30%;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+  border-radius: 15px;
+  border: 1px solid gray;
+}
+
+.add-monitor__items-wrapper .settings-wrapper .userWripper__delete {
+  display: flex;
+  position: absolute;
+  right: -6px;
+  top: -4px;
+  width: 8%;
+  height: 10px;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  cursor: pointer;
+}
+
+.add-monitor__btn-add {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.add-monitor .box {
+  position: relative;
+}
+
+.add-monitor .box select {
+  outline: none;
+}
+
+.add-monitor .box select {
+  color: black;
+  padding: 2px;
+  width: 120px;
+  height: 25px;
+  border: 1px solid #CA6D00;
+  font-size: 13px;
+  -webkit-appearance: button;
+}
+
+.add-monitor .box:before {
+  content: "\F358";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  color: #ffffff;
+  font-size: 14px;
+  background: #e09900;
+  border: none;
+  pointer-events: none;
+}
+
+.add-monitor .input-large {
+  width: 180px;
+  font-size: 12px;
+  background-color: #f4f6f9;
+  border: none;
+  border-bottom: 1px solid #585858;
+  outline: none;
+}
+
+.add-monitor .input-large:focus {
+  border: 1px solid #CA6D00;
+}
+
+.add-monitor .input-small {
+  width: 25%;
+  font-size: 12px;
+  background-color: #f4f6f9;
+  border: none;
+  border-bottom: 1px solid #585858;
+  outline: none;
+}
+
+.add-monitor .input-small:focus {
+  border: 1px solid #CA6D00;
+}
+
+.add-monitor .input-small:last-child {
+  margin-left: 30px;
+}
+
+.add-monitor .input-small_margin30px {
+  margin-left: 30px;
+}
+
+.add-monitor .slidecontainer_interval {
+  margin: 0 15px;
+  width: 20%;
+}
+
+.add-monitor .slidecontainer_apdex {
+  margin: 0 15px 0 0;
+  width: 35%;
+}
+
+.add-monitor .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #CA6D00 0%, #d6d6d6 0%);
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.add-monitor .slider_apdex {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #CA6D00;
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.add-monitor .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f4f6f9;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.add-monitor .slider::-webkit-slider-thumb:hover {
+  width: 15px;
+  height: 15px;
+}
+
+.add-monitor .slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f4f6f9;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.add-monitor p {
+  width: 16%;
+  margin: 0;
+  margin-left: 10px;
+  min-height: 20px;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid #353535;
+  border-radius: 4px;
+  box-shadow: 1px 1px #353535;
+}
+
+.add-monitor .modal-content {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.add-monitor .modal-content .newPersonTitle {
+  text-align: center;
+  font-size: 20px;
+}
+
+.add-monitor .modal-content .modalSeperatorline {
+  display: block;
+  margin: 0 auto;
+  width: 60%;
+  background-color: #CA6D00;
+  height: 3px;
+  border-radius: 2px;
+  margin-top: 10px;
+}
+
+.add-monitor .modal-content .modal-form-wrapper {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.add-monitor .modal-content .btnNewPersonAdd {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 40%;
+  height: 30px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: #CA6D00;
+  outline: none;
+}
+
+.add-monitor .modal-content .ModalLable {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.add-monitor .modal-content .modal-input-form {
+  width: 90%;
+  height: 35px;
+  background-color: white;
+  border: none;
+  border-bottom: 1px solid grey;
+  outline: none;
+}
+
+.add-monitor .modal-content .modal-input-form:focus {
+  outline: 1px solid #CA6D00;
+  border: none;
+}
+
+.add-monitor .fa-trash {
+  margin-left: 10px;
+  transition: 0.4s;
+}
+
+.add-monitor .fa-trash:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.add-monitor #alertSettingsLink {
+  color: #142afd;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.add-monitor #addCustomHeader {
+  color: #142afd;
+  font-size: 12px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.add-monitor #addPersonToAlert {
+  color: #142afd;
+  font-size: 12px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.add-monitor .toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 37px;
+  height: 17px;
+  margin: 0;
+}
+
+.add-monitor .toggle-switch-container {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.add-monitor .toggle-switch .input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.add-monitor .toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.add-monitor .toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+.add-monitor .input:checked + .toggle-slider {
+  background-color: #CA6D00;
+}
+
+.add-monitor .input:focus + .toggle-slider {
+  box-shadow: 0 0 1px #CA6D00;
+}
+
+.add-monitor .input:checked + .toggle-slider:before {
+  transform: translateX(17px);
+}
+
+.add-monitor .toggle-slider.round {
+  border-radius: 34px;
+}
+
+.add-monitor .toggle-slider.round:before {
+  border-radius: 50%;
+}
+
+.add-monitor .popover-header {
+  background-color: #CA6D00;
+}
+
+.upTimeMonitor {
+  /* Style the collapsible content. Note: hidden by default */
+}
+
+.upTimeMonitor .monthLable {
+  width: 100%;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.upTimeMonitor .monthWrapper {
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 182px;
+}
+
+.upTimeMonitor .weekWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.upTimeMonitor .dayBox {
+  position: relative;
+  background-color: #9c9c9c;
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  margin: 0 2px 2px 0;
+}
+
+.upTimeMonitor .content {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  z-index: 99;
+}
+
+.upTimeMonitor .content::hover {
+  display: block;
+}
+
+.upTimeMonitor .content .contentWrapper {
+  width: 125px;
+  background-color: whitesmoke;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1.5px solid green;
+}
+
+.upTimeMonitor .content .contentWrapper_label {
+  text-align: center;
+}
+
+.upTimeMonitor .content .contentWrapper .uptimeNumber {
+  margin-top: 10px;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+}
+
+.upTimeMonitor .content .contentWrapper button {
+  text-align: center;
+  height: 25px;
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  outline: none;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  border: 1px solid green;
+  font-size: 13px;
+}
+
+.settings_header_content {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  align-items: center;
+}
+
+.settings_header_content .user-img-box {
+  display: flex;
+  margin: 10px 0 0 40px;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 75px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 100%;
+}
+
+.settings_header_content .user-img-box__img {
+  width: 65px;
+  height: 65px;
+  background-color: red;
+  border-radius: 100%;
+}
+
+.settings_header_content .title_wrapper {
+  margin-left: 10px;
+}
+
+.settings_header_content .title_wrapper .title-user-name {
+  font-size: 18px;
+}
+
+.settings-menu-wrapper {
+  padding-top: 30px;
+  margin-top: 10px;
+  background-color: #E9E9E9;
+  min-height: 60px;
+}
+
+.settings-menu-wrapper .settings-links {
+  margin: 0;
+  display: flex;
+  justify-content: left;
+  list-style-type: none;
+}
+
+.settings-menu-wrapper .settings-links__item {
+  font-size: 16px;
+  position: relative;
+  margin-left: 40px;
+  cursor: pointer;
+}
+
+.settings-menu-wrapper .settings-links__item:before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  width: 0%;
+  height: 4px;
+  background-color: #C62;
+  transition: 0.5s all;
+  border-radius: 2px;
+}
+
+.settings-menu-wrapper .settings-links__item:hover:before {
+  width: 100%;
+}
+
+.settings-menu-wrapper__line {
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+  height: 1px;
+  background-color: gray;
+}
+
+.userProfileSettings {
+  padding: 55px 65px;
+  background-color: #E9E9E9;
+}
+
+.userProfileSettings__header {
+  display: flex;
+  justify-content: left;
+}
+
+.userProfileSettings__icon {
+  display: block;
+  color: black;
+  font-size: 30px;
+}
+
+.userProfileSettings__title {
+  position: relative;
+  margin-left: 10px;
+  width: 130px;
+}
+
+.userProfileSettings__title span {
+  position: absolute;
+  bottom: 0;
+}
+
+.userProfileSettings .user-info-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 100%;
+  height: 200px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.userProfileSettings .user-info-wrapper .user-img-box {
+  display: flex;
+  margin: 30px auto 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 100%;
+}
+
+.userProfileSettings .user-info-wrapper .user-img-box__img {
+  width: 85px;
+  height: 85px;
+  background-color: green;
+  border-radius: 100%;
+}
+
+.userProfileSettings .user-info-wrapper button {
+  display: block;
+  margin: 10px auto 0 auto;
+}
+
+.userProfileSettings .user-info-wrapper .user-info-box {
+  width: 42.5%;
+  height: 100%;
+  background-color: red;
+}
+
+>>>>>>> bf59a7f07022b24001b7231d11ab97d5355b8202

@@ -25,7 +25,7 @@ class ContactCreateRequest extends FormRequest
     {
         return [
             'title' => 'required|max:50',
-            'type' => 'required',
+            'category' => 'required',
             'fullname' => 'required|max:100',
             'email' => 'required|email:rfc,dns|max:100',
             'message' => 'required|max:1000',
@@ -46,7 +46,7 @@ class ContactCreateRequest extends FormRequest
             'message.max' => __('Message should not be greater than 1000 chars.'),
 
             'title.required' => __('Title is required!'),
-            'type.required' => __('Type is required!'),
+            'category.required' => __('Category is required!'),
             'fullname.required' => __('Fullname is required!'),
             'email.required' => __('Email is required!'),
             'message.required' => __('Message is required!'),

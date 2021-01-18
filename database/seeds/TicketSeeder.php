@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Adminlte\admin\Ticket;
+use App\Models\Ticket;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 

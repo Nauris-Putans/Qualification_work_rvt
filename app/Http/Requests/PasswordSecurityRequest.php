@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PasswordSecurityRequest extends FormRequest
 {
-    protected $errorBag = 'password_security';
+    // protected $errorBag = 'password_security';
 
     /**
      * Determine if the user is authorized to make this request.

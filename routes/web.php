@@ -35,8 +35,11 @@ Route::post('/contacts/create', 'Pages\ContactController@store')->name('contacts
 |--------------------------------------------------------------------------
 */
 
+$adminSide = 'admin|member|developer|maintainer';
+$userAdminSide = 'userFree|userPro|userWebmaster';
+
 // Role - Admin
-Route::group(['middleware' => ['role:admin']], function()
+Route::middleware(['role:' . $adminSide])->group( function()
 {
     // Dashboard section
     Route::get('/admin/dashboard', 'Adminlte\admin\DashboardAdminController@index');
@@ -67,37 +70,36 @@ Route::group(['middleware' => ['role:admin']], function()
     Route::post('/admin/assign-permission', 'Adminlte\admin\team\privileges\permissions\PermissionAssignmentController@store');
 
     // Tickets section
-    Route::get('/admin/tickets', 'Adminlte\admin\TicketController@index');
-    Route::get('/admin/tickets/{id}', 'Adminlte\admin\TicketController@profile');
+    Route::get('/admin/tickets', 'TicketController@index');
+    Route::get('/admin/tickets/{id}', 'TicketController@show');
+    Route::delete('/admin/tickets/{id}', ['as' => 'admin.tickets.destroy', 'uses' => 'TicketController@destroy']);
+    Route::post('/admin/tickets/close_ticket/{id}', 'TicketController@close');
+    Route::post('/admin/tickets/{ticket_id}/comment', 'CommentsController@postComment');
 
     // Settings section
     Route::get('/admin/settings', 'Adminlte\admin\SettingsAdminController@show');
     Route::patch('/admin/settings/personal_info/{id}', ['as' => 'admin.settings.personal_info.update', 'uses' => 'Adminlte\admin\SettingsAdminController@personal_info_update']);
+    Route::patch('/admin/settings/notification/{id}', ['as' => 'admin.settings.notification.update', 'uses' => 'Adminlte\admin\SettingsAdminController@notification_update']);
     Route::patch('/admin/settings/password_security/{id}', ['as' => 'admin.settings.password_security.update', 'uses' => 'Adminlte\admin\SettingsAdminController@password_security_update']);
     Route::post('/admin/settings/profile_image/update', 'Adminlte\admin\SettingsAdminController@updateProfile');
 
     // This link will add session of language when they click to change language
     Route::get('admin/lang/{locale}', 'LocalizationController@index');
-    Route::get('admin/users/lang/{locale}', 'LocalizationController@index');
-    Route::get('admin/team/lang/{locale}', 'LocalizationController@index');
-    Route::get('admin/team/members/lang/{locale}', 'LocalizationController@index');
-    Route::get('/admin/roles/lang/{locale}', 'LocalizationController@index');
-    Route::get('/admin/roles/../lang/{locale}', 'LocalizationController@index');
-    Route::get('/admin/tickets/lang/{locale}', 'LocalizationController@index');
 });
 
 // Role - User Admin (free)
-Route::group(['middleware' => ['role:userFree|userPro|userWebmaster']], function()
+Route::middleware(['role:' . $userAdminSide])->group( function()
 {
     // Dashboard section
     Route::get('/user/dashboard', 'Adminlte\ZabbixController@historyGet')->name('admin.user_admin.index');
 
     // Monitoring sections
     Route::get('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@create');
-    Route::post('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@store');
+    Route::post('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@store')->name('add.store');
     Route::get('/user/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@history');
     Route::get('/user/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@index');
     Route::get('/user/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@index');
+    Route::post('/user/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@store');
     Route::get('/user/monitoring/real-user-monitoring', 'Adminlte\user_admin\monitoring\MonitoringRealUserMonitoringController@index');
 
     // Alerts sections
@@ -106,8 +108,12 @@ Route::group(['middleware' => ['role:userFree|userPro|userWebmaster']], function
     // Settings section
     Route::get('/user/settings', 'Adminlte\user_admin\SettingController@index');
 
-    // Support section
-    Route::get('/user/support', 'Adminlte\user_admin\SupportController@index');
+    // Tickets section
+    Route::get('/user/support/tickets', ['as' => 'user.support.tickets', 'uses' => 'TicketController@userTickets']);
+    Route::get('/user/support/tickets/create', ['as' => 'user.support.tickets.create', 'uses' => 'TicketController@userCreateTicket']);
+    Route::post('/user/support/tickets/create', ['as' => 'user.support.tickets.create', 'uses' => 'TicketController@userStoreTicket']);
+    Route::get('/user/support/tickets/{ticket_id}', ['as' => 'user.support.ticket', 'uses' => 'TicketController@userShowTicket']);
+    Route::post('/user/support/tickets/{ticket_id}/comment', 'CommentsController@postComment');
 
     // This link will add session of language when they click to change language
     Route::get('user/lang/{locale}', 'LocalizationController@index');

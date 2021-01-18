@@ -11,86 +11,189 @@
 
 @section('content')
     {{-- Back button --}}
-    <a class="btn btn-primary mb-3" href="{{ url()->previous() }}" role="button">
+    <a class="btn btn-primary mb-3" href="/admin/tickets" role="button">
         <i class="fas fa-chevron-left mr-1"></i>
         {{ __('Back') }}
     </a>
 
-    <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="card card-outline">
-            <div class="card-header bg-info">
-                <h1 class="card-title">{{ '[#' . $ticket->id . ']: ' . $ticket->title }}</h1>
-            </div>
-            <div class="card-body">
+    <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12">
+            <div class="card card-outline card-primary">
 
-                <h5 class="text-bold mb-0">{{ $ticket->fullname }}</h5>
+                <div class="card-header">
+                    <h1 class="card-title">#{{ $ticket->ticket_id }} - {{ $ticket->title }}</h1>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
 
-                <p class="text-gray mb-0">{{ $ticket->email }}</p>
+                <div class="card-body">
+                    <div class="ticket-info">
 
-                <p class="text-gray">{{ date('d/m/Y H:i', strtotime($ticket->created_at)) }}</p>
+                        <p>{{ $ticket->message }}</p>
 
-                <p>{{ $ticket->message }}</p>
+                        <p class="ml-2 mb-1">
+                            <strong>{{ __('From: ') }}</strong>{{ $ticket->user->email }}
+                        </p>
 
-                <p class="mt-5 ml-2 mb-0">
-                    <strong>{{ __('Tickets ID') . ': ' }}</strong>{{ __($ticket->id) }}
-                </p>
+                        <p class="ml-2 mb-1">
+                            <strong>{{ __('Category: ') }}</strong>{{ __($ticket->category->name) }}
+                        </p>
 
-                <p class="ml-2 mb-0">
-                    <strong>{{ __('Title') . ': ' }}</strong>{{ __($ticket->title) }}
-                </p>
+                        <p class="ml-2 mb-1">
+                            @if ($ticket->priority === 'Low')
+                                <strong>{{ __('Priority: ') }}</strong>
+                                <span class="badge Low ml-1 mb-0">
+                                    {{ __($ticket->priority) }}
+                                </span>
+                            @elseif ($ticket->priority === 'Medium')
+                                <strong>{{ __('Priority: ') }}</strong>
+                                <span class="badge Medium ml-1 mb-0">
+                                    {{ __($ticket->priority) }}
+                                </span>
+                            @elseif ($ticket->priority === 'High')
+                                <strong>{{ __('Priority: ') }}</strong>
+                                <span class="badge High ml-1 mb-0">
+                                    {{ __($ticket->priority) }}
+                                </span>
+                            @endif
+                        </p>
 
-                <p class="ml-2 mb-0">
-                    <strong>{{ __('Type') . ': ' }}</strong>{{ __($ticket->type) }}
-                </p>
+                        <p class="ml-2 mb-1">
+                            @if ($ticket->status === 'Opened')
+                                <strong>{{ __('Status: ') }}</strong>
+                                <span class="badge Opened ml-1 mb-0">
+                                    {{ __($ticket->status) }}
+                                </span>
+                            @elseif ($ticket->status === 'Closed')
+                                <strong>{{ __('Status: ') }}</strong>
+                                <span class="badge Closed ml-1 mb-0">
+                                    {{ __($ticket->status) }}
+                                </span>
+                            @endif
+                        </p>
 
-                <p class="ml-2 mb-0">
-                    <strong>{{ __('Action') . ': ' }}</strong>{{ __($ticket->action) }}
-                </p>
+                        <p class="ml-2 mb-4">
+                            <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
+                        </p>
+                    </div>
 
-                <p class="ml-2 mb-0">
-                    <strong>{{ __('Status') . ': ' }}</strong>{{ __($ticket->status) }}
-                </p>
+                    <div class="card card-primary direct-chat direct-chat-primary direct-chat-contacts-open">
+                        <div class="card-header ui-sortable-handle" style="cursor: default;">
+                            <h3 class="card-title">
+                                {{ __('Support Chat') }}
+                            </h3>
 
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="direct-chat-messages">
+                                <!-- Message. Default to the left -->
+                            @foreach($ticket->comments as $comment)
+
+                                {{-- Checks if comment user is who created comment --}}
+                                @if($comment->user->name == auth()->user()->getUser()->name)
+
+                                    <!-- Message to the left -->
+                                        <div class="direct-chat-msg">
+                                            <div class="direct-chat-infos clearfix">
+                                                <span class="direct-chat-name float-left">
+                                                    {{ $comment->user->name }}
+                                                </span>
+                                                <span class="direct-chat-timestamp float-right">
+                                                    {{ $comment->created_at->format('d M H:i') }}
+                                                </span>
+                                            </div>
+
+                                            @if(file_exists(public_path() . auth()->user()->getUser()->profile_image) && auth()->user()->getUser()->profile_image != '')
+                                                <img class="direct-chat-img" src="{{ asset(auth()->user()->getUser()->profile_image) }}" alt="message user image">
+                                            @else
+                                                @if(auth()->user()->getUser()->gender == 'Male')
+                                                    <img class="direct-chat-img" src="{{ asset('images/256x256/256_1.png') }}" alt="message user image">
+                                                @else
+                                                    <img class="direct-chat-img" src="{{ asset('images/256x256/256_12.png') }}" alt="message user image">
+                                                @endif
+                                            @endif
+
+                                            <div class="direct-chat-text">
+                                                {{ $comment->comment }}
+                                            </div>
+                                        </div>
+
+                                    {{-- Checks if comment user is not who created comment --}}
+                                @elseif ($comment->user->name != auth()->user()->getUser()->name)
+
+                                    <!-- Message to the right -->
+                                        <div class="direct-chat-msg right">
+                                            <div class="direct-chat-infos clearfix">
+                                                <span class="direct-chat-name float-right">
+                                                    {{ $comment->user->name }}
+                                                </span>
+                                                <span class="direct-chat-timestamp float-left">
+                                                    {{ $comment->created_at->format('d M H:i') }}
+                                                </span>
+                                            </div>
+
+                                            @if(file_exists(public_path() . $comment->user->profile_image) && $comment->user->profile_image != '')
+                                                <img class="direct-chat-img" src="{{ asset($comment->user->profile_image) }}" alt="message user image">
+                                            @else
+                                                @if($comment->user->gender == 'Male')
+                                                    <img class="direct-chat-img" src="{{ asset('images/256x256/256_1.png') }}" alt="message user image">
+                                                @else
+                                                    <img class="direct-chat-img" src="{{ asset('images/256x256/256_12.png') }}" alt="message user image">
+                                                @endif
+                                            @endif
+
+                                            <div class="direct-chat-text">
+                                                {{ $comment->comment }}
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <form action="{{ url('/admin/tickets/' . $ticket->ticket_id . '/comment') }}" method="POST" class="form">
+                                @csrf
+
+                                <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+
+                                <div class="input-group">
+                                    @if($ticket->status == "Opened")
+                                        <input type="text" name="comment" placeholder="{{ __('Type Message ...') }}" class="form-control">
+                                        <span class="input-group-append">
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('Reply') }}
+                                            </button>
+                                        </span>
+                                    @elseif($ticket->status == "Closed")
+                                        <input disabled type="text" name="comment" placeholder="{{ __('Type Message ...') }}" class="form-control">
+                                        <span class="input-group-append">
+                                            <button disabled type="submit" class="btn btn-primary">
+                                                {{ __('Reply') }}
+                                            </button>
+                                        </span>
+                                    @endif
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-{{--    <div class="col-lg-6 col-md-6 col-sm-12">--}}
-{{--        <div class="card card-outline">--}}
-{{--            <div class="card-header bg-info">--}}
-{{--                <h1 class="card-title">{{ __('Message') }}</h1>--}}
-{{--            </div>--}}
-{{--            <div class="card-body">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-lg-6 col-md-6 col-sm-12 Title">--}}
-{{--                        <p class="text-gray">{{ $ticket->title }}</p>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-lg-6 col-md-6 col-sm-12 text-right">--}}
-{{--                        <p class="text-gray">{{ date('d/m/Y H:i', strtotime($ticket->created_at)) }}</p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--                <div class="mt-2">--}}
-{{--                    <p class="text-gray">{{ $ticket->message }}</p>--}}
-{{--                </div>--}}
-
-{{--                <div class="Type">--}}
-{{--                    <b>{{ __('Type') }}</b>--}}
-{{--                    <p class="text-gray">{{ __($ticket->type) }}</p>--}}
-{{--                    <hr>--}}
-{{--                </div>--}}
-{{--                <div class="Status">--}}
-{{--                    <b>{{ __('Status') }}</b>--}}
-{{--                    <p class="text-gray">{{ __($ticket->status) }}</p>--}}
-{{--                    <hr>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
 @stop
 
 @section('css')
-
+    <link rel="stylesheet" href="{{ asset('css/adminlte.css') }}">
 @stop
 
 @section('js')

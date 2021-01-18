@@ -17,6 +17,8 @@ use Illuminate\View\View;
 class RoleAssignmentController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
      * @return Application|Factory|View
      */
     public function index()
@@ -45,6 +47,8 @@ class RoleAssignmentController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
      * @param RoleAssignRequest $request
      * @return RedirectResponse
      */

@@ -73,7 +73,7 @@
                             <label for="gender">
                                 {{ __('Gender') }}
                             </label>
-                            <select class="form-control selectpicker @error('type') is-invalid @enderror" data-style="CountrySelect" data-size="10" name="gender" form="personal_info">
+                            <select class="form-control selectpicker @error('gender') is-invalid @enderror" data-style="CountrySelect" data-size="10" name="gender" form="personal_info">
                                 <option disabled selected data-tokens="{{ $user->gender }}" value="{{ $user->gender }}">
                                     {{ __($user->gender) }}
                                 </option>
@@ -92,14 +92,20 @@
                     <div class="row">
 
                         {{-- Birthday input --}}
-                        <div class="col-md-4 form-group date" data-provide="datepicker">
+                        <div class="col-md-4 form-group">
                             <label for="birthday">
                                 {{ __('Birthday') }}
                             </label>
-                            <input name="birthday" type="text" class="form-control" value="{{ date('m/d/Y', strtotime($user->birthday)) }}">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
+                            <input name="birthday"
+                                    type="text"
+                                    class="form-control @error('birthday') is-invalid @enderror datepicker"
+                                    @if($user->birthday != null)
+                                        value="{{ date('d/m/Y', strtotime($user->birthday)) }}"
+                                    @else
+                                        value=""
+                                    @endif
+                                   style="padding: .375rem .75rem;"
+                            >
                         </div>
 
                         {{-- Country input --}}
@@ -107,8 +113,13 @@
                             <label for="country">
                                 {{ __('Country') }}
                             </label>
-                            <select class="form-control selectpicker @error('type') is-invalid @enderror" data-live-search="true" data-style="CountrySelect" data-size="10" id="countryList" name="country" form="personal_info">
-                                <option disabled selected data-tokens="{{ __($user->country) }}" value="{{ $user->country }}">{{ __($user->country) }}</option>
+                            <select class="form-control selectpicker @error('country') is-invalid @enderror" data-live-search="true" data-style="CountrySelect" data-size="10" id="countryList" name="country" form="personal_info">
+                                @if($countryName != null)
+                                    <option disabled selected data-tokens="{{ __($countryName->name) }}" value="{{ $countryName->name }}">{{ __($countryName->name) }}</option>
+                                @else
+                                    <option disabled selected data-tokens="" value=""></option>
+                                @endif
+
                                 @foreach ($countries as $country)
                                     <option phonecode="{{ $country->dial_code }}"
                                         value="{{ $country->name }}"
@@ -141,6 +152,26 @@
 
                     </div>
                 </div>
+
+                {{-- Hidden gender input--}}
+                <div style="display: none">
+                    <input name="gender_old" value="{{ $user->gender }}"/>
+                </div>
+
+                {{-- Hidden country input--}}
+                <div style="display: none">
+                    @if($countryName != null)
+                        <input name="country_old" value="{{ $countryName->name }}"/>
+                    @else
+                        <input name="country_old" value=""/>
+                    @endif
+                </div>
+
+                {{-- Hidden city input--}}
+                <div style="display: none">
+                    <input name="city_old" value="{{ $user->city }}"/>
+                </div>
+
 
                 {{-- Save Changes button--}}
                 <div class="col-md-12 justify-content-center mt-2 mb-2">
