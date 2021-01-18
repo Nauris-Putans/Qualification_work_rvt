@@ -26,6 +26,21 @@ return [
             'payments' => 'c,r,u,d',
             'profile' => 'c,r,u,d'
         ],
+        'member' => [
+            'users' => 'r',
+            'payments' => 'r',
+            'profile' => 'r'
+        ],
+        'developer' => [
+            'users' => 'r,u',
+            'payments' => 'r,u',
+            'profile' => 'r,u'
+        ],
+        'maintainer' => [
+            'users' => 'c,r,u',
+            'payments' => 'c,r,u',
+            'profile' => 'c,r,u'
+        ]
     ],
 
     'permissions_map' => [

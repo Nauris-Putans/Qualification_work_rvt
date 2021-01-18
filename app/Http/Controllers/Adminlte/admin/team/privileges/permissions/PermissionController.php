@@ -14,6 +14,8 @@ use Illuminate\View\View;
 class PermissionController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
      * @return Application|Factory|View
      */
     public function index()
@@ -22,6 +24,8 @@ class PermissionController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
      * @param PermissionAddRequest $request
      * @return RedirectResponse
      */

@@ -115,20 +115,28 @@
                                 <td class="text-center">
                                     <div class="container">
                                         <div class="row">
+
                                             <a class="btn btn-primary mr-1" href="{{ URL::route('admin.roles.show', [$hashids->encode($role->id)]) }}" role="button">
                                                 <i class="fas fa-eye mr-1"></i>
                                                 {{ __('View') }}</a>
-                                            <a class="btn btn-info mr-1" href="{{ URL::route('admin.roles.edit', [$hashids->encode($role->id)]) }}" role="button">
-                                                <i class="fas fa-pencil-alt mr-1"></i>
-                                                {{ __('Edit') }}</a>
-                                            <form action="{{ URL::route('admin.roles.destroy', [$hashids->encode($role->id)]) }}" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-danger" onclick="return confirm('{{ __('Are you sure to delete this role - ' . $role->name . '?') }}')" type="submit">
-                                                    <i class="fas fa-trash mr-1"></i>
-                                                    {{ __('Delete') }}
-                                                </button>
-                                            </form>
+
+                                            @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin')
+                                                <a class="btn btn-info mr-1" href="{{ URL::route('admin.roles.edit', [$hashids->encode($role->id)]) }}" role="button">
+                                                    <i class="fas fa-pencil-alt mr-1"></i>
+                                                    {{ __('Edit') }}</a>
+                                            @endif
+
+                                            @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin')
+                                                <form action="{{ URL::route('admin.roles.destroy', [$hashids->encode($role->id)]) }}" method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn btn-danger" onclick="return confirm('{{ __('Are you sure to delete this role - ' . $role->name . '?') }}')" type="submit">
+                                                        <i class="fas fa-trash mr-1"></i>
+                                                        {{ __('Delete') }}
+                                                    </button>
+                                                </form>
+                                            @endif
+
                                         </div>
                                     </div>
 
@@ -176,7 +184,7 @@
                     // Show entries length
                     lengthMenu: [
                         [10, 20, 30, -1],
-                        [10, 20, 30, "All"]
+                        [10, 20, 30, @json( __("All") )]
                     ],
 
                     // Position of control elements

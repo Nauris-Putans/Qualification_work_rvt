@@ -173,7 +173,7 @@
                                     @endif
                                 </td>
 
-                                <td>{{ $ticket->updated_at->format('d.m.Y H:i') }}</td>
+                                <td>{{ $ticket->updated_at->format('d/m/Y H:i') }}</td>
 
                                 <td class="TextMiddle">
                                     <div class="container">
@@ -245,13 +245,13 @@
 
                     // Order by asc/desc
                     order: [
-                        [ 0, "asc" ]
+                        [ 0, "desc" ]
                     ],
 
                     // Show entries length
                     lengthMenu: [
                         [10, 20, 30, -1],
-                        [10, 20, 30, "All"]
+                        [10, 20, 30, @json( __("All") )]
                     ],
 
                     // Position of control elements

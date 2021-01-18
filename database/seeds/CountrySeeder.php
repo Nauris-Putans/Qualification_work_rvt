@@ -20,11 +20,6 @@ class CountrySeeder extends Seeder
             "code"=> "AF"
         ],
         [
-            "name"=> "Aland Islands",
-            "dial_code"=> "+358",
-            "code"=> "AX"
-        ],
-        [
             "name"=> "Albania",
             "dial_code"=> "+355",
             "code"=> "AL"
@@ -35,11 +30,6 @@ class CountrySeeder extends Seeder
             "code"=> "DZ"
         ],
         [
-            "name"=> "American Samoa",
-            "dial_code"=> "+1 684",
-            "code"=> "AS"
-        ],
-        [
             "name"=> "Andorra",
             "dial_code"=> "+376",
             "code"=> "AD"
@@ -48,16 +38,6 @@ class CountrySeeder extends Seeder
             "name"=> "Angola",
             "dial_code"=> "+244",
             "code"=> "AO"
-        ],
-        [
-            "name"=> "Anguilla",
-            "dial_code"=> "+1 264",
-            "code"=> "AI"
-        ],
-        [
-            "name"=> "Antarctica",
-            "dial_code"=> "+672",
-            "code"=> "AQ"
         ],
         [
             "name"=> "Antigua and Barbuda",
@@ -73,11 +53,6 @@ class CountrySeeder extends Seeder
             "name"=> "Armenia",
             "dial_code"=> "+374",
             "code"=> "AM"
-        ],
-        [
-            "name"=> "Aruba",
-            "dial_code"=> "+297",
-            "code"=> "AW"
         ],
         [
             "name"=> "Australia",
@@ -135,11 +110,6 @@ class CountrySeeder extends Seeder
             "code"=> "BJ"
         ],
         [
-            "name"=> "Bermuda",
-            "dial_code"=> "+1 441",
-            "code"=> "BM"
-        ],
-        [
             "name"=> "Bhutan",
             "dial_code"=> "+975",
             "code"=> "BT"
@@ -165,11 +135,6 @@ class CountrySeeder extends Seeder
             "code"=> "BR"
         ],
         [
-            "name"=> "British Indian Ocean Territory",
-            "dial_code"=> "+246",
-            "code"=> "IO"
-        ],
-        [
             "name"=> "Brunei Darussalam",
             "dial_code"=> "+673",
             "code"=> "BN"
@@ -190,6 +155,16 @@ class CountrySeeder extends Seeder
             "code"=> "BI"
         ],
         [
+            "name"=> "Cote d'Ivoire",
+            "dial_code"=> "+225",
+            "code"=> "CI"
+        ],
+        [
+            "name"=> "Cabo Verde",
+            "dial_code"=> "+238",
+            "code"=> "CV"
+        ],
+        [
             "name"=> "Cambodia",
             "dial_code"=> "+855",
             "code"=> "KH"
@@ -203,16 +178,6 @@ class CountrySeeder extends Seeder
             "name"=> "Canada",
             "dial_code"=> "+1",
             "code"=> "CA"
-        ],
-        [
-            "name"=> "Cape Verde",
-            "dial_code"=> "+238",
-            "code"=> "CV"
-        ],
-        [
-            "name"=> "Cayman Islands",
-            "dial_code"=> "+345",
-            "code"=> "KY"
         ],
         [
             "name"=> "Central African Republic",
@@ -235,16 +200,6 @@ class CountrySeeder extends Seeder
             "code"=> "CN"
         ],
         [
-            "name"=> "Christmas Island",
-            "dial_code"=> "+61",
-            "code"=> "CX"
-        ],
-        [
-            "name"=> "Cocos (Keeling) Islands",
-            "dial_code"=> "+61",
-            "code"=> "CC"
-        ],
-        [
             "name"=> "Colombia",
             "dial_code"=> "+57",
             "code"=> "CO"
@@ -255,29 +210,14 @@ class CountrySeeder extends Seeder
             "code"=> "KM"
         ],
         [
-            "name"=> "Congo",
+            "name"=> "Congo (Congo-Brazzaville)",
             "dial_code"=> "+242",
             "code"=> "CG"
-        ],
-        [
-            "name"=> "Congo, The Democratic Republic of the Congo",
-            "dial_code"=> "+243",
-            "code"=> "CD"
-        ],
-        [
-            "name"=> "Cook Islands",
-            "dial_code"=> "+682",
-            "code"=> "CK"
         ],
         [
             "name"=> "Costa Rica",
             "dial_code"=> "+506",
             "code"=> "CR"
-        ],
-        [
-            "name"=> "Cote d'Ivoire",
-            "dial_code"=> "+225",
-            "code"=> "CI"
         ],
         [
             "name"=> "Croatia",
@@ -295,9 +235,14 @@ class CountrySeeder extends Seeder
             "code"=> "CY"
         ],
         [
-            "name"=> "Czech Republic",
+            "name"=> "Czechia (Czech Republic)",
             "dial_code"=> "+420",
             "code"=> "CZ"
+        ],
+        [
+            "name"=> "Democratic Republic of the Congo",
+            "dial_code"=> "+45",
+            "code"=> "DK"
         ],
         [
             "name"=> "Denmark",
@@ -350,19 +295,14 @@ class CountrySeeder extends Seeder
             "code"=> "EE"
         ],
         [
+            "name"=> "Eswatini",
+            "dial_code"=> "+268",
+            "code"=> "SZ"
+        ],
+        [
             "name"=> "Ethiopia",
             "dial_code"=> "+251",
             "code"=> "ET"
-        ],
-        [
-            "name"=> "Falkland Islands (Malvinas)",
-            "dial_code"=> "+500",
-            "code"=> "FK"
-        ],
-        [
-            "name"=> "Faroe Islands",
-            "dial_code"=> "+298",
-            "code"=> "FO"
         ],
         [
             "name"=> "Fiji",
@@ -378,16 +318,6 @@ class CountrySeeder extends Seeder
             "name"=> "France",
             "dial_code"=> "+33",
             "code"=> "FR"
-        ],
-        [
-            "name"=> "French Guiana",
-            "dial_code"=> "+594",
-            "code"=> "GF"
-        ],
-        [
-            "name"=> "French Polynesia",
-            "dial_code"=> "+689",
-            "code"=> "PF"
         ],
         [
             "name"=> "Gabon",
@@ -415,19 +345,9 @@ class CountrySeeder extends Seeder
             "code"=> "GH"
         ],
         [
-            "name"=> "Gibraltar",
-            "dial_code"=> "+350",
-            "code"=> "GI"
-        ],
-        [
             "name"=> "Greece",
             "dial_code"=> "+30",
             "code"=> "GR"
-        ],
-        [
-            "name"=> "Greenland",
-            "dial_code"=> "+299",
-            "code"=> "GL"
         ],
         [
             "name"=> "Grenada",
@@ -435,24 +355,9 @@ class CountrySeeder extends Seeder
             "code"=> "GD"
         ],
         [
-            "name"=> "Guadeloupe",
-            "dial_code"=> "+590",
-            "code"=> "GP"
-        ],
-        [
-            "name"=> "Guam",
-            "dial_code"=> "+1 671",
-            "code"=> "GU"
-        ],
-        [
             "name"=> "Guatemala",
             "dial_code"=> "+502",
             "code"=> "GT"
-        ],
-        [
-            "name"=> "Guernsey",
-            "dial_code"=> "+44",
-            "code"=> "GG"
         ],
         [
             "name"=> "Guinea",
@@ -483,11 +388,6 @@ class CountrySeeder extends Seeder
             "name"=> "Honduras",
             "dial_code"=> "+504",
             "code"=> "HN"
-        ],
-        [
-            "name"=> "Hong Kong",
-            "dial_code"=> "+852",
-            "code"=> "HK"
         ],
         [
             "name"=> "Hungary",
@@ -525,11 +425,6 @@ class CountrySeeder extends Seeder
             "code"=> "IE"
         ],
         [
-            "name"=> "Isle of Man",
-            "dial_code"=> "+44",
-            "code"=> "IM"
-        ],
-        [
             "name"=> "Israel",
             "dial_code"=> "+972",
             "code"=> "IL"
@@ -550,11 +445,6 @@ class CountrySeeder extends Seeder
             "code"=> "JP"
         ],
         [
-            "name"=> "Jersey",
-            "dial_code"=> "+44",
-            "code"=> "JE"
-        ],
-        [
             "name"=> "Jordan",
             "dial_code"=> "+962",
             "code"=> "JO"
@@ -573,16 +463,6 @@ class CountrySeeder extends Seeder
             "name"=> "Kiribati",
             "dial_code"=> "+686",
             "code"=> "KI"
-        ],
-        [
-            "name"=> "North Korea",
-            "dial_code"=> "+850",
-            "code"=> "KP"
-        ],
-        [
-            "name"=> "South Korea",
-            "dial_code"=> "+82",
-            "code"=> "KR"
         ],
         [
             "name"=> "Kuwait",
@@ -640,16 +520,6 @@ class CountrySeeder extends Seeder
             "code"=> "LU"
         ],
         [
-            "name"=> "Macao",
-            "dial_code"=> "+853",
-            "code"=> "MO"
-        ],
-        [
-            "name"=> "Macedonia",
-            "dial_code"=> "+389",
-            "code"=> "MK"
-        ],
-        [
             "name"=> "Madagascar",
             "dial_code"=> "+261",
             "code"=> "MG"
@@ -685,11 +555,6 @@ class CountrySeeder extends Seeder
             "code"=> "MH"
         ],
         [
-            "name"=> "Martinique",
-            "dial_code"=> "+596",
-            "code"=> "MQ"
-        ],
-        [
             "name"=> "Mauritania",
             "dial_code"=> "+222",
             "code"=> "MR"
@@ -700,17 +565,12 @@ class CountrySeeder extends Seeder
             "code"=> "MU"
         ],
         [
-            "name"=> "Mayotte",
-            "dial_code"=> "+262",
-            "code"=> "YT"
-        ],
-        [
             "name"=> "Mexico",
             "dial_code"=> "+52",
             "code"=> "MX"
         ],
         [
-            "name"=> "Micronesia, Federated States of Micronesia",
+            "name"=> "Micronesia",
             "dial_code"=> "+691",
             "code"=> "FM"
         ],
@@ -733,11 +593,6 @@ class CountrySeeder extends Seeder
             "name"=> "Montenegro",
             "dial_code"=> "+382",
             "code"=> "ME"
-        ],
-        [
-            "name"=> "Montserrat",
-            "dial_code"=> "+1 664",
-            "code"=> "MS"
         ],
         [
             "name"=> "Morocco",
@@ -775,16 +630,6 @@ class CountrySeeder extends Seeder
             "code"=> "NL"
         ],
         [
-            "name"=> "Netherlands Antilles",
-            "dial_code"=> "+599",
-            "code"=> "AN"
-        ],
-        [
-            "name"=> "New Caledonia",
-            "dial_code"=> "+687",
-            "code"=> "NC"
-        ],
-        [
             "name"=> "New Zealand",
             "dial_code"=> "+64",
             "code"=> "NZ"
@@ -805,19 +650,14 @@ class CountrySeeder extends Seeder
             "code"=> "NG"
         ],
         [
-            "name"=> "Niue",
-            "dial_code"=> "+683",
-            "code"=> "NU"
+            "name"=> "North Korea",
+            "dial_code"=> "+850",
+            "code"=> "KP"
         ],
         [
-            "name"=> "Norfolk Island",
-            "dial_code"=> "+672",
-            "code"=> "NF"
-        ],
-        [
-            "name"=> "Northern Mariana Islands",
-            "dial_code"=> "+1 670",
-            "code"=> "MP"
+            "name"=> "North Macedonia",
+            "dial_code"=> "+389",
+            "code"=> "MK"
         ],
         [
             "name"=> "Norway",
@@ -840,7 +680,7 @@ class CountrySeeder extends Seeder
             "code"=> "PW"
         ],
         [
-            "name"=> "Palestine",
+            "name"=> "Palestine State",
             "dial_code"=> "+970",
             "code"=> "PS"
         ],
@@ -870,11 +710,6 @@ class CountrySeeder extends Seeder
             "code"=> "PH"
         ],
         [
-            "name"=> "Pitcairn",
-            "dial_code"=> "+872",
-            "code"=> "PN"
-        ],
-        [
             "name"=> "Poland",
             "dial_code"=> "+48",
             "code"=> "PL"
@@ -883,11 +718,6 @@ class CountrySeeder extends Seeder
             "name"=> "Portugal",
             "dial_code"=> "+351",
             "code"=> "PT"
-        ],
-        [
-            "name"=> "Puerto Rico",
-            "dial_code"=> "+1 939",
-            "code"=> "PR"
         ],
         [
             "name"=> "Qatar",
@@ -910,21 +740,6 @@ class CountrySeeder extends Seeder
             "code"=> "RW"
         ],
         [
-            "name"=> "Reunion",
-            "dial_code"=> "+262",
-            "code"=> "RE"
-        ],
-        [
-            "name"=> "Saint Barthelemy",
-            "dial_code"=> "+590",
-            "code"=> "BL"
-        ],
-        [
-            "name"=> "Saint Helena, Ascension and Tristan Da Cunha",
-            "dial_code"=> "+290",
-            "code"=> "SH"
-        ],
-        [
             "name"=> "Saint Kitts and Nevis",
             "dial_code"=> "+1 869",
             "code"=> "KN"
@@ -933,16 +748,6 @@ class CountrySeeder extends Seeder
             "name"=> "Saint Lucia",
             "dial_code"=> "+1 758",
             "code"=> "LC"
-        ],
-        [
-            "name"=> "Saint Martin",
-            "dial_code"=> "+590",
-            "code"=> "MF"
-        ],
-        [
-            "name"=> "Saint Pierre and Miquelon",
-            "dial_code"=> "+508",
-            "code"=> "PM"
         ],
         [
             "name"=> "Saint Vincent and the Grenadines",
@@ -1020,9 +825,14 @@ class CountrySeeder extends Seeder
             "code"=> "ZA"
         ],
         [
-            "name"=> "South Georgia and the South Sandwich Islands",
-            "dial_code"=> "+500",
-            "code"=> "GS"
+            "name"=> "South Korea",
+            "dial_code"=> "+82",
+            "code"=> "KR"
+        ],
+        [
+            "name"=> "South Sudan",
+            "dial_code"=> "+211",
+            "code"=> "SS"
         ],
         [
             "name"=> "Spain",
@@ -1045,16 +855,6 @@ class CountrySeeder extends Seeder
             "code"=> "SR"
         ],
         [
-            "name"=> "Svalbard and Jan Mayen",
-            "dial_code"=> "+47",
-            "code"=> "SJ"
-        ],
-        [
-            "name"=> "Swaziland",
-            "dial_code"=> "+268",
-            "code"=> "SZ"
-        ],
-        [
             "name"=> "Sweden",
             "dial_code"=> "+46",
             "code"=> "SE"
@@ -1065,14 +865,9 @@ class CountrySeeder extends Seeder
             "code"=> "CH"
         ],
         [
-            "name"=> "Syrian Arab Republic",
+            "name"=> "Syria",
             "dial_code"=> "+963",
             "code"=> "SY"
-        ],
-        [
-            "name"=> "Taiwan",
-            "dial_code"=> "+886",
-            "code"=> "TW"
         ],
         [
             "name"=> "Tajikistan",
@@ -1080,7 +875,7 @@ class CountrySeeder extends Seeder
             "code"=> "TJ"
         ],
         [
-            "name"=> "Tanzania, United Republic of Tanzania",
+            "name"=> "Tanzania",
             "dial_code"=> "+255",
             "code"=> "TZ"
         ],
@@ -1098,11 +893,6 @@ class CountrySeeder extends Seeder
             "name"=> "Togo",
             "dial_code"=> "+228",
             "code"=> "TG"
-        ],
-        [
-            "name"=> "Tokelau",
-            "dial_code"=> "+690",
-            "code"=> "TK"
         ],
         [
             "name"=> "Tonga",
@@ -1130,11 +920,6 @@ class CountrySeeder extends Seeder
             "code"=> "TM"
         ],
         [
-            "name"=> "Turks and Caicos Islands",
-            "dial_code"=> "+1 649",
-            "code"=> "TC"
-        ],
-        [
             "name"=> "Tuvalu",
             "dial_code"=> "+688",
             "code"=> "TV"
@@ -1160,7 +945,7 @@ class CountrySeeder extends Seeder
             "code"=> "GB"
         ],
         [
-            "name"=> "United States",
+            "name"=> "United States of America",
             "dial_code"=> "+1",
             "code"=> "US"
         ],
@@ -1180,7 +965,7 @@ class CountrySeeder extends Seeder
             "code"=> "VU"
         ],
         [
-            "name"=> "Venezuela, Bolivarian Republic of Venezuela",
+            "name"=> "Venezuela",
             "dial_code"=> "+58",
             "code"=> "VE"
         ],
@@ -1188,21 +973,6 @@ class CountrySeeder extends Seeder
             "name"=> "Vietnam",
             "dial_code"=> "+84",
             "code"=> "VN"
-        ],
-        [
-            "name"=> "Virgin Islands, British",
-            "dial_code"=> "+1 284",
-            "code"=> "VG"
-        ],
-        [
-            "name"=> "Virgin Islands, U.S.",
-            "dial_code"=> "+1 340",
-            "code"=> "VI"
-        ],
-        [
-            "name"=> "Wallis and Futuna",
-            "dial_code"=> "+681",
-            "code"=> "WF"
         ],
         [
             "name"=> "Yemen",

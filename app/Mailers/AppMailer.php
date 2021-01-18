@@ -26,6 +26,8 @@ class AppMailer
     }
 
     /**
+     * Sends ticket from contacts page to info mail
+     *
      * @param $data
      */
     public function sendTicketToEmail($data)
@@ -40,6 +42,8 @@ class AppMailer
     }
 
     /**
+     * Sends ticket information to users email
+     *
      * @param $user
      * @param Ticket $ticket
      */
@@ -53,6 +57,8 @@ class AppMailer
     }
 
     /**
+     * Sends ticket comment to ticket owners email
+     *
      * @param $ticketOwner
      * @param $user
      * @param Ticket $ticket
@@ -68,6 +74,8 @@ class AppMailer
     }
 
     /**
+     * Sends ticket status notification to owners email
+     *
      * @param $ticketOwner
      * @param Ticket $ticket
      */
@@ -81,15 +89,14 @@ class AppMailer
     }
 
     /**
-     *
+     * Deliver function
      */
     public function deliver()
     {
-        $this->mailer->send($this->view, $this->data, function($message){
-
+        $this->mailer->send($this->view, $this->data, function($message)
+        {
             $message->from($this->fromAddress, $this->fromName)
                 ->to($this->to)->subject($this->subject);
-
         });
     }
 }

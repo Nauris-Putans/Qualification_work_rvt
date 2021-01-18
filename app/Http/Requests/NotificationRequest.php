@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileImageRequest extends FormRequest
+class NotificationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class ProfileImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'profile_image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            'email' => 'exclude_if:email,null|required|email:rfc,dns',
         ];
     }
 
@@ -36,10 +36,8 @@ class ProfileImageRequest extends FormRequest
     public function messages()
     {
         return [
-            'profile_image.required' => __('Profile Image is required'),
-            'profile_image.image' => __('Profile Image must be an image'),
-            'profile_image.mimes' => __('Profile Image must be a file of type: .jpeg, .png, .jpg'),
-            'profile_image.max' => __('Profile Image may not be greater than 2048 kilobytes'),
+            'email.required' => __('Email address is required'),
+            'email.email' => __('Email address format is invalid'),
         ];
     }
 }

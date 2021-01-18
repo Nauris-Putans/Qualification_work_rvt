@@ -4,9 +4,12 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\FullnameRule;
+use Illuminate\Support\Facades\Auth;
 
 class PersonalInfoRequest extends FormRequest
 {
+    // protected $errorBag = 'personal_info';
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,10 +29,10 @@ class PersonalInfoRequest extends FormRequest
     {
         return [
             'fullname' => ['required', new FullnameRule()],
-            'email_address' => 'exclude_if:email,null|required|email:rfc,dns|unique:users,email',
+            'email_address' => 'required|email:rfc,dns|unique:users,email,' . Auth::id(),
             'phone_without_mask' => 'nullable|min:6|max:13',
             'gender' => 'nullable',
-            'birthday' => 'nullable|date_format:m/d/Y|before:today',
+            'birthday' => 'nullable|date_format:d/m/Y|before:today',
             'country' => 'nullable',
             'city' => 'nullable|max:50',
         ];
@@ -52,7 +55,7 @@ class PersonalInfoRequest extends FormRequest
             'phone_without_mask.min' => __('Phone number should not be less than 6 chars'),
             'phone_without_mask.max' => __('Phone number should not be greater than 13 chars'),
 
-            'birthday.date_format' => __('Birthday date should be m/d/Y format'),
+            'birthday.date_format' => __('Birthday date should be d/m/Y format'),
             'birthday.before' => __('Birthday must be a date before today'),
 
             'city.max' => __('Cities name should not be greater than 50 chars'),

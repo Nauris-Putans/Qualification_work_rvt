@@ -136,9 +136,15 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
 
-                    <a href="/admin/settings" class="btn btn-default">
-                        {{ __('Settings') }}
-                    </a>
+                    @if(!(Laratrust::hasRole('userFree')) && !(Laratrust::hasRole('userPro')) && !(Laratrust::hasRole('userWebmaster')))
+                        <a href="/admin/settings" class="btn btn-default">
+                            {{ __('Settings') }}
+                        </a>
+                    @else
+                        <a href="/user/settings" class="btn btn-default">
+                            {{ __('Settings') }}
+                        </a>
+                    @endif
 
                     <a href="{{ route('logout') }}" class="btn btn-danger float-right" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('Sign out') }}

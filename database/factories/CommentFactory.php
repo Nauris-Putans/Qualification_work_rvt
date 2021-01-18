@@ -1,11 +1,13 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/** @var Factory $factory */
 
 use App\Models\Comment;
+use Illuminate\Database\Eloquent\Factory;
 
 $fakerEN = Faker\Factory::create('en_US');
 
+/** @var TYPE_NAME $factory */
 $factory->define(Comment::class, function (Faker\Generator $faker) use ($fakerEN)
 {
     return [
