@@ -27,7 +27,7 @@
                             At your users control panel you can choose how often your website will be checked. You have the ability to monitor any port or website every 1, 2, 3, 5, 10, 15, 30 and 60 minutes.
                         </div>
                         <div class="featureBox_link">
-                            <a href="#">more</a>
+                            <a href="{{ route('features') }}">more</a>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                             Never miss any problem on your website by our E-mail, SMS notifications.
                         </div>
                         <div class="featureBox_link">
-                            <a href="#">more</a>
+                            <a href="{{ route('features') }}">more</a>
                         </div>
 
                     </div>
@@ -58,7 +58,7 @@
                             When you have any questions we are always  happy to help.
                         </div>
                         <div class="featureBox_link">
-                            <a href="#">more</a>
+                            <a href="{{ route('features') }}">more</a>
                         </div>
 
                     </div>
@@ -107,162 +107,87 @@
 
     <section class="pricing">
         <div class="container">
-            <h2>WEBSITE MONITORING PACKAGES</h2>
             <div class="row">
-                <div class="col-md-4 offset-md-2">
-                    <div class="package">
-                        <div class="package_title">
-                            FREE
+                <div class="pricing__lable">
+                    Choose a plan
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="plan-wrapper">
+                        <div class="plan-lable">Free</div>
+                        <div class="price-box">0 /month</div>
+                        <div class="plan-decription-wrapper">
+                            <div class="plan-freature-box">2 monitors</div>
+                            <div class="plan-freature-box">30 min monitoring interval</div>
+                            <div class="plan-freature-box">No alerts</div>
+                            <div class="plan-freature-box">HTTP(S) monitoring</div>
+                            <div class="plan-freature-box">Response time monitoring</div>
+                            <div class="plan-freature-box">Ping monitoring</div>
+                            <div class="plan-freature-box">Port monitoring</div>
+                            <div class="plan-freature-box">No logging</div>
+                            <div class="plan-freature-box">No SSL check</div>
                         </div>
-                        <div class="package_line"></div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                5 min checks
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
+                        <div class="nav-item payBtn">
+                            <a class="nav-link btn btn-gray" href="{{ route('login') }}">{{ __('Start monitoring') }}</a>
                         </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                10 monitors
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                Email alerts
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                HTTP(S) monitoring
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                Response time monitoring
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                Ping monitoring
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                Port monitoring
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                History (1 month)
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                    </div>
-
-
-                    <div class="package_btn">
-                        Get it now
                     </div>
                 </div>
-
-
-
-                <div class="col-md-4 offset-md-1">
-                    <div class="package">
-                        <div class="package_title">
-                            Pro (10$/month)
+                <div class="col-md-3">
+                    <div class="plan-wrapper">
+                        <div class="plan-lable">PRO</div>
+                        <div class="price-box">5 /month</div>
+                        <div class="plan-decription-wrapper">
+                            <div class="plan-freature-box">5 monitors</div>
+                            <div class="plan-freature-box">5 min monitoring interval</div>
+                            <div class="plan-freature-box">Email alerts</div>
+                            <div class="plan-freature-box">HTTP(S) monitoring</div>
+                            <div class="plan-freature-box">Response time monitoring</div>
+                            <div class="plan-freature-box">Ping monitoring</div>
+                            <div class="plan-freature-box">Port monitoring</div>
+                            <div class="plan-freature-box">No logging file</div>
+                            <div class="plan-freature-box">No SSL check</div>
                         </div>
-                        <div class="package_line"></div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                1 min checks
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                50 monitors
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                SMS and Email alerts
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                HTTP(S) monitoring
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                Response time monitoring
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                Ping monitoring
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                Port monitoring
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                History (unlimited)
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                Status page
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                        </div>
-                        <div class="package_decr">
-                            <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                            <div class="package_decr_text">
-                                SSL Certification Check
-                            </div>
-                            <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
+                        <div class="nav-item payBtn">
+                            <a class="nav-link btn btn-orange" href="{{ route('login') }}">{{ __('Subscribe now') }}</a>
                         </div>
                     </div>
-                    <div class="package_btn">
-                        Get it now
+                </div>
+                <div class="col-md-3">
+                    <div class="plan-wrapper">
+                        <div class="plan-lable">WEBMASTER</div>
+                        <div class="price-box">10 /month</div>
+                        <div class="plan-decription-wrapper">
+                            <div class="plan-freature-box">10 monitors</div>
+                            <div class="plan-freature-box">1 min monitoring interval</div>
+                            <div class="plan-freature-box">Email and SMS alerts</div>
+                            <div class="plan-freature-box">HTTP(S) monitoring</div>
+                            <div class="plan-freature-box">Response time monitoring</div>
+                            <div class="plan-freature-box">Ping monitoring</div>
+                            <div class="plan-freature-box">Port monitoring</div>
+                            <div class="plan-freature-box">Logging file</div>
+                            <div class="plan-freature-box">SSL check</div>
+                        </div>
+                        <div class="nav-item payBtn">
+                            <a class="nav-link btn btn-orange" href="{{ route('login') }}">{{ __('Subscribe now') }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="plan-wrapper">
+                        <div class="plan-lable">ENTERPRISE</div>
+                        <div class="plan-enterprise-decription-wrapper">
+                            Need something special? No problem, we can handle a custom number of monitors and check-intervals.
+                        </div>
+                        <div class="nav-item payBtn">
+                            <a class="nav-link btn btn-gray" href="{{ route('login') }}">{{ __('Contact us') }}</a>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
+        <div class="plan-end-line"></div>
     </section>
 @endsection

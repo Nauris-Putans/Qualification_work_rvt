@@ -48,7 +48,7 @@ class MonitoringPageSpeedController extends Controller
         $itemid = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 1)->get('item');//Get items;
 
         $itemsFriendlyName = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 1)->get('friendly_name');//Get items friendly names;
-
+        $itemsIds = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 1)->get('item');//Get items id;
         if($itemid != null){
             $itemid = $itemid[0]->item;
         }else{
@@ -67,7 +67,7 @@ class MonitoringPageSpeedController extends Controller
             'itemids' => $itemid,
         ]);
 
-        return view('adminlte.user_admin.monitoring.page-speed', compact(['histories','itemsFriendlyName']));
+        return view('adminlte.user_admin.monitoring.page-speed', compact(['histories','itemsFriendlyName','itemsIds']));
     }
 
     /**
@@ -95,15 +95,9 @@ class MonitoringPageSpeedController extends Controller
         if($usergroupID != null){
             $usergroupID = $usergroupID->group_id;
         }
-        $itemid = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 1)->where('friendly_name', $request->item_name)->get('item');//Get items;
+        $itemid = $request->item_id;//Get items
         $itemsFriendlyName = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 1)->get('friendly_name');//Get items friendly names;
-        if($itemid != null){
-            foreach ($itemid as $value){
-                $itemid = $value->item;
-            }
-        }else{
-            dd('You dont have any item');
-        }
+        $itemsIds = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 1)->get('item');//Get items id;
 
         $histories = $this->zabbix->historyGet([
             'output' => 'extend',
@@ -114,7 +108,7 @@ class MonitoringPageSpeedController extends Controller
             'itemids' => $itemid,
         ]);
 
-        return compact(['histories','itemsFriendlyName']);
+        return compact(['histories','itemsFriendlyName','itemsIds']);
     }
 
     /**

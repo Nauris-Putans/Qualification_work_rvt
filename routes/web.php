@@ -94,15 +94,18 @@ Route::group(['middleware' => ['role:userFree|userPro|userWebmaster']], function
     Route::post('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@store')->name('add.store');
     Route::get('/user/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@history');
     Route::get('/user/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@index');
+    Route::post('/user/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@store');
     Route::get('/user/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@index');
     Route::post('/user/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@store');
     Route::get('/user/monitoring/real-user-monitoring', 'Adminlte\user_admin\monitoring\MonitoringRealUserMonitoringController@index');
-
+    Route::post('/user/monitoring/real-user-monitoring', 'Adminlte\user_admin\monitoring\MonitoringRealUserMonitoringController@store');
     // Alerts sections
     Route::get('/user/alerts', 'Adminlte\user_admin\AlertsController@index');
 
     // Settings section
     Route::get('/user/settings', 'Adminlte\user_admin\SettingController@index');
+    Route::post('/user/settings', 'Adminlte\user_admin\SettingController@personal_info');
+    // Route::post('/user/settings/password_security', 'Adminlte\user_admin\SettingController@password_security');
 
     // Tickets section
     Route::get('/user/support/tickets', ['as' => 'user.support.tickets', 'uses' => 'TicketController@userTickets']);

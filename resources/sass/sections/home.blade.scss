@@ -120,58 +120,98 @@
 }
 
 .pricing{
-    text-align: center;
-    background-color: #182232;
-    min-height: 800px;
-    color: white;
-    padding-top: 50px;
-    padding-bottom: 100px;
-    .package{
-        margin-top: 30px;
-        min-height: 570px;
-        .package_title{
-            text-align: left;
-            font-size: 24px;
+    background-color: #131A26;
+    width: 100%;
+    padding: 20px 5px;
+    .pricing__lable{
+        width: 100%;
+        height: 50px;
+        font-size: 24px;
+        text-align: center;
+        color: white;
+    }
+    .plan-wrapper{
+        background-color: white;
+        width: 100%;
+        min-height: 200px;
+        margin-top: 20px;
+        padding: 10px 5px;
+        border-radius: 5px;
+        .plan-lable{
+            width: 100%;
+            height: 25px;
+            font-size: 14px;
+            text-align: center;
+            color: black;
         }
-        .package_line{
-            background-color: #CA6D00;
-            width: 50%;
-            height: 3px;
-            border-radius: 2px;
-        }
-        .package_decr{
+
+        .price-box{
             display: flex;
-            justify-items:left ;
-            margin-top: 20px;
-            .package_decr_checkmarkicon{
-                width: 20px;
-                height: 30px;
-                margin-right: 3px;
-            }
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            margin: 10px auto 0 auto;
+            height: 75px;
+            padding: 10px 0;
+            border-top: 3px solid #CA6D00;
+            border-bottom: 3px solid #CA6D00;
+            font-size: 22px;
+            color: black;
+        }
 
-            .package_decr_text{
-                font-size: 20px;
-                min-width: 20px;
+        .plan-decription-wrapper{
+            width: 90%;
+            margin: 10px auto;
+            height: 240px;
+            color: black;
+            padding: 10px 0;
+            .plan-freature-box{
+                width: 100%;
+                height: 25px;
+                text-align: center;
+                font-size: 14px;
             }
+        }
 
-            .package_decr_helpicon{
-                width: 15px;
-                height: 15px;
-                margin-left: 5px;
+        .plan-enterprise-decription-wrapper{
+            display: flex;
+            width: 90%;
+            border-top: 3px solid #CA6D00;
+            align-items: center;
+            text-align: center;
+            margin: 10px auto;
+            height: 325px;
+            color: black;
+            padding: 10px 0;
+            .plan-freature-box{
+                width: 80%;
+                min-height: 25px;
+                text-align: center;
+                font-size: 14px;
+                margin: 0 auto;
             }
         }
     }
-
-    .package_btn{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 200px;
-        height: 50px;
+    .plan-end-line{
+        width: 100%;
+        height: 4px;
         margin-top: 30px;
-        background-color: #CA6D00;
-        border-radius: 40px;
-        text-align: center;
+        background-color: #B40707;
+    }
+
+    .btn-gray{
+        background-color: #687790;
+        color: white;
+    }
+
+    .payBtn{
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .enterprise-padding{
+        padding-left: 7px;
+        padding-right: 7px;
     }
 }
 
