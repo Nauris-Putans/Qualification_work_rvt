@@ -1,0 +1,47 @@
+.dashboard-header{
+    a{
+        display: inline-block;
+        float: right;
+        background-color: rgba(255, 166, 0, 0.726);
+        &:hover{
+            background-color: rgb(255, 166, 0);
+        }
+    }
+    
+}
+
+.dashboard-content{
+
+    .chart{
+        height: 130px;
+    }
+    .info-box-content{
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px 5px;
+        justify-content: center;
+        align-items: center;
+        .easy-pie-chart-box{
+            width: 150px;
+            padding: 0 10px;
+            text-align: center;
+            .box{
+                position: relative;
+                width: 130px;
+                margin: 0 auto;
+                text-align: center;
+                line-height: 115px;
+                font-size: 30px;
+                .percent{
+                    width: 130px;
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                }
+            }
+        }
+    
+    }
+}

@@ -6,83 +6,136 @@
 @stop
 
 @section('content')
-    <div class="card mb-3">
-        <div class="card-header">
-            <i class="fa fa-area-chart"></i>
-            Google ping ms
-        </div>
-        <div class="card-body">
-            <canvas id="myAreaChart" width="800" height="450"></canvas>
+
+<section class="dashboard-header">
+    <div class="column">
+        <div class="row">
+            <div class="col-1 offset-11">
+                <a class="btn ">
+                    <i class="fas fa-cog"></i>
+                </a>
+            </div>
         </div>
     </div>
+</section>
+
+<section class="dashboard-content">
+    <div class="column">
+        <div class="row">
+            <div class="col-5">
+                <div class="card">
+                    <div class="card-header" style="background-color: darkcyan; color: white;">
+                      <h3 class="card-title">Last check status</h3>
+      
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <div class="info-box-content">
+                            <div class="easy-pie-chart-box">
+                                <span style="margin: 0 auto;">Up</span>
+                                <div class="box">
+                                    <div class="chart" id="upChart" data-percent="25">
+                                        <span class="percent">12</span>
+                                    </div>
+                                </div>
+                            </div>                      
+                            <div class="easy-pie-chart-box">
+                                <span style="margin: 0 auto;">Down</span>
+                                <div class="box">
+                                    <div class="chart" id="downChart" data-percent="45">
+                                        <span class="percent">24</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="easy-pie-chart-box">
+                                <span style="margin: 0 auto;">Paused</span>
+                                <div class="box">
+                                    <div class="chart" id="pausedChart" data-percent="30">
+                                        <span class="percent">15</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+
+            <div class="col-7">
+                {{-- Will be something --}}
+            </div>
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header" style="background-color: darkcyan; color: white;">
+                      <h3 class="card-title">Current status</h3>
+      
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
     </div>
+</section>
+
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="/css/app.css">
 @stop
 
 @section('js')
+{{-- easy-pie-chart --}}
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>  
+<script type="text/javascript" src="{{ URL::asset('js/jquery.appear.min.js') }}">></script>
+<script type="text/javascript" src="{{ URL::asset('js/jquery.easypiechart.min.js') }}"></script>
+
     <script src="{{ url('vendor/jquery.min.js') }}"></script>
 
 {{--    <script src="node_modules/chart.js/dist/Chart.bundle.js"></script>--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
 
     <script>
-        let myAreaChart = document.getElementById('myAreaChart').getContext('2d');
+               jQuery('#upChart').easyPieChart({
+            barColor:'#55c911',
+            trackColor:'#d8d7d7f1',
+            scaleColor:'#55c911',
+            lineWidth: 15,
+        });
 
-        <?php
-            $pingMS = array();
-            $pingTime = array();
+        jQuery('#downChart').easyPieChart({
+            barColor:'#df0505',
+            trackColor:'#d8d7d7f1',
+            scaleColor:'#df0505',
+            lineWidth: 15,
+        });
 
-            foreach ($histories as $history)
-            {
-                array_push($pingMS, $history->value);
-                array_push($pingTime, date('d/m/Y H:i:s', $history->clock));
-            }
-        ?>
 
-        let responseSpeed = <?php echo json_encode($pingMS); ?>;
-        let responseTime = <?php echo json_encode($pingTime); ?>;
-
-        // Global Options
-        Chart.defaults.global.defaultFontFamily = 'Source Sans Pro';
-        Chart.defaults.global.defaultFontSize = 18;
-        Chart.defaults.global.defaultFontColor = '#777';
-
-        // Colors
-        $green = '#008000';
-        $yellow = '#ffff00';
-        $red = '#ff0000';
-        $white = '#ffffff';
-
-        let massPopChart = new Chart(myAreaChart, {
-            type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-            data: {
-                labels: responseTime,
-                datasets: [{
-                    data: responseSpeed,
-                    borderColor: "#3e95cd",
-                    fill: false
-                }]
-            },
-            options:{
-                legend:{
-                    display:false,
-                    position:'right',
-                    labels:{
-                        fontColor:'black'
-                    }
-                },
-                layout:{
-                    padding:{
-                        left:50,
-                        right:0,
-                        bottom:0,
-                        top:0
-                    }
-                }
-            },
+        jQuery('#pausedChart').easyPieChart({
+            barColor:'rgba(0, 0, 0, 0.849)',
+            trackColor:'#d8d7d7f1',
+            scaleColor:'rgba(0, 0, 0, 0.849)',
+            lineWidth: 15,
         });
     </script>
 @stop

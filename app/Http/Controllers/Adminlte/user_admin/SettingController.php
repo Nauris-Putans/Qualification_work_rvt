@@ -6,9 +6,11 @@ use App\Models\Adminlte\user_admin\Setting;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
@@ -19,7 +21,23 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('adminlte.user_admin.settings');
+        $currentUserID = $id = Auth::id();//Get current user ID;
+        $countries = DB::table('countries')->get();//Get current user Group;
+        $userName = DB::table('users')->where('id', $currentUserID)->get('name')->first();//Get user name;
+        $email = DB::table('users')->where('id', $currentUserID)->get('email')->first();//Get user email;
+        $phone = DB::table('users')->where('id', $currentUserID)->get('phone_number')->first();//Get user phone;
+        $birthDay = DB::table('users')->where('id', $currentUserID)->get('birthday')->first();//Get user birthday;
+        $city = DB::table('users')->where('id', $currentUserID)->get('city')->first();//Get user city;
+
+        return view('adminlte.user_admin.settings', compact(['countries','userName','email','phone','birthDay','city']));
+    }
+
+    /**
+     * @param Setting $setting
+     * @return Response
+     */
+    public function personal_info(Request $request){
+        dd($request->all());
     }
 
     /**
@@ -74,7 +92,7 @@ class SettingController extends Controller
      */
     public function update(Request $request, Setting $setting)
     {
-        //
+        
     }
 
     /**

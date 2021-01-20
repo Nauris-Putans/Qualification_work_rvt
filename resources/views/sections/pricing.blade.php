@@ -3,193 +3,92 @@
 @section('content')
 <section class="pricing">
     <div class="container">
-        <h2>WEBSITE MONITORING PACKAGES</h2>
         <div class="row">
-            <div class="col-md-4 offset-md-2">
-                <div class="package">
-                    <div class="package_title">
-                        FREE
+            <div class="pricing__lable">
+                Flawless plans that suit you
+            </div>
+        </div>
+        <div class="row justify-content-center" >
+            <div class="col-md-3 m-1">
+                <div class="plan-wrapper">
+                    <div class="plan-lable">Free</div>
+                    <div class="price-box">0 /month</div>
+                    <div class="plan-decription-wrapper">
+                        <div class="plan-freature-box">2 monitors</div>
+                        <div class="plan-freature-box">30 min monitoring interval</div>
+                        <div class="plan-freature-box">No alerts</div>
+                        <div class="plan-freature-box">HTTP(S) monitoring</div>
+                        <div class="plan-freature-box">Response time monitoring</div>
+                        <div class="plan-freature-box">Ping monitoring</div>
+                        <div class="plan-freature-box">Port monitoring</div>
+                        <div class="plan-freature-box">No logging</div>
+                        <div class="plan-freature-box">No SSL check</div>
                     </div>
-                    <div class="package_line"></div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            5 min checks
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
+                    <div class="nav-item payBtn">
+                        <a class="nav-link btn btn-gray" href="{{ route('login') }}">{{ __('Start monitoring') }}</a>
                     </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            10 monitors
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            Email alerts
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            HTTP(S) monitoring
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            Response time monitoring
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            Ping monitoring
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            Port monitoring
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            History (1 month)
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                </div>
-
-
-                <div class="package_btn">
-                    Get it now
                 </div>
             </div>
-
-
-
-            <div class="col-md-4 offset-md-1">
-                <div class="package">
-                    <div class="package_title">
-                        Pro (10$/month)
+            <div class="col-md-3 m-1">
+                <div class="plan-wrapper">
+                    <div class="plan-lable">PRO</div>
+                    <div class="price-box">5 /month</div>
+                    <div class="plan-decription-wrapper">
+                        <div class="plan-freature-box">5 monitors</div>
+                        <div class="plan-freature-box">5 min monitoring interval</div>
+                        <div class="plan-freature-box">Email alerts</div>
+                        <div class="plan-freature-box">HTTP(S) monitoring</div>
+                        <div class="plan-freature-box">Response time monitoring</div>
+                        <div class="plan-freature-box">Ping monitoring</div>
+                        <div class="plan-freature-box">Port monitoring</div>
+                        <div class="plan-freature-box">No logging file</div>
+                        <div class="plan-freature-box">No SSL check</div>
                     </div>
-                    <div class="package_line"></div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            1 min checks
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            50 monitors
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            SMS and Email alerts
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            HTTP(S) monitoring
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            Response time monitoring
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            Ping monitoring
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            Port monitoring
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            History (unlimited)
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            Status page
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
-                    </div>
-                    <div class="package_decr">
-                        <img src="{{ URL::asset('/images/homePage/icons/checkmark.png') }}" alt="check mark icon" class="package_decr_checkmarkicon">
-                        <div class="package_decr_text">
-                            SSL Certification Check
-                        </div>
-                        <img src="{{ URL::asset('/images/homePage/icons/help.png') }}" alt="help icon" class="package_decr_helpicon">
+                    <div class="nav-item payBtn">
+                        <a class="nav-link btn btn-orange" href="{{ route('login') }}">{{ __('Subscribe now') }}</a>
                     </div>
                 </div>
-                <div class="package_btn">
-                    Get it now
+            </div>
+            <div class="col-md-3 m-1">
+                <div class="plan-wrapper">
+                    <div class="plan-lable">WEBMASTER</div>
+                    <div class="price-box">10 /month</div>
+                    <div class="plan-decription-wrapper">
+                        <div class="plan-freature-box">10 monitors</div>
+                        <div class="plan-freature-box">1 min monitoring interval</div>
+                        <div class="plan-freature-box">Email and SMS alerts</div>
+                        <div class="plan-freature-box">HTTP(S) monitoring</div>
+                        <div class="plan-freature-box">Response time monitoring</div>
+                        <div class="plan-freature-box">Ping monitoring</div>
+                        <div class="plan-freature-box">Port monitoring</div>
+                        <div class="plan-freature-box">Logging file</div>
+                        <div class="plan-freature-box">SSL check</div>
+                    </div>
+                    <div class="nav-item payBtn">
+                        <a class="nav-link btn btn-orange" href="{{ route('login') }}">{{ __('Subscribe now') }}</a>
+                    </div>
                 </div>
-            </div>        
+            </div>
+            
         </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-9 m-1 enterprise-padding">
+                <div class="plan-wrapper">
+                    <div class="plan-lable">ENTERPRISE</div>
+                    <div class="plan-enterprise-decription-wrapper" style="height: 110px">
+                        <div class="plan-freature-box w-80">Need something special? No problem,
+                             we can handle a custom number of monitors and check-intervals.
+                        </div>
+                    </div>
+                    <div class="nav-item payBtn" style="width: 50%" >
+                        <a class="nav-link btn btn-gray" href="{{ route('login') }}">{{ __('Contact us') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
 </section>
-
-{{-- <section class="FQA">
-    <div class="container">
-        <h2>Frequently Asked Questions</h2>
-        <div class="FQA_line"></div>
-        <div class="row">
-            <div class="col-md-5 offset-md-1">
-                <div class="FQA_box">
-                    <div class="FQA_titlebox">
-                        Can I cancel my plan?
-                    </div>
-                    <div class="FQA_boxdecr">
-                        You can cancel your subscription any time from your account and let it expire back to the Free Plan.
-                    </div>
-                    <a href="/faq">more</a>
-                </div>
-            </div>
-            <div class="col-md-5 ">
-                <div class="FQA_box">
-                    <div class="FQA_titlebox">
-                        How can I pay?
-                    </div>
-                    <div class="FQA_boxdecr">
-                        We offer payments via Credit Card and PayPal.
-                    </div>
-                    <a href="/faq">more</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
 @endsection

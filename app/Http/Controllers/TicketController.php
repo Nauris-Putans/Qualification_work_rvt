@@ -177,6 +177,7 @@ class TicketController extends Controller
         // Sends ticket status notification
         $mailer->sendTicketStatusNotification($ticketOwner, $ticket);
 
+
         return redirect()->back()->with('message', __("The ticket #") . $ticket->ticket_id . " - " . $ticket->title . __("has been closed."));
     }
 
