@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class CommentsController extends Controller
 {
     /**
+     * Posts comment
+     *
      * @param UserCommentCreateRequest $request
      * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse

@@ -35,8 +35,11 @@ Route::post('/contacts/create', 'Pages\ContactController@store')->name('contacts
 |--------------------------------------------------------------------------
 */
 
+$adminSide = 'admin|member|developer|maintainer';
+$userAdminSide = 'userFree|userPro|userWebmaster';
+
 // Role - Admin
-Route::group(['middleware' => ['role:admin']], function()
+Route::middleware(['role:' . $adminSide])->group( function()
 {
     // Dashboard section
     Route::get('/admin/dashboard', 'Adminlte\admin\DashboardAdminController@index');
@@ -76,6 +79,7 @@ Route::group(['middleware' => ['role:admin']], function()
     // Settings section
     Route::get('/admin/settings', 'Adminlte\admin\SettingsAdminController@show');
     Route::patch('/admin/settings/personal_info/{id}', ['as' => 'admin.settings.personal_info.update', 'uses' => 'Adminlte\admin\SettingsAdminController@personal_info_update']);
+    Route::patch('/admin/settings/notification/{id}', ['as' => 'admin.settings.notification.update', 'uses' => 'Adminlte\admin\SettingsAdminController@notification_update']);
     Route::patch('/admin/settings/password_security/{id}', ['as' => 'admin.settings.password_security.update', 'uses' => 'Adminlte\admin\SettingsAdminController@password_security_update']);
     Route::post('/admin/settings/profile_image/update', 'Adminlte\admin\SettingsAdminController@updateProfile');
 
@@ -84,7 +88,7 @@ Route::group(['middleware' => ['role:admin']], function()
 });
 
 // Role - User Admin (free)
-Route::group(['middleware' => ['role:userFree|userPro|userWebmaster']], function()
+Route::middleware(['role:' . $userAdminSide])->group( function()
 {
     // Dashboard section
     Route::get('/user/dashboard', 'Adminlte\ZabbixController@historyGet')->name('admin.user_admin.index');

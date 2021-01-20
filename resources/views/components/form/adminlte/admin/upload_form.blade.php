@@ -14,7 +14,7 @@
                     <div class="custom-file">
 
                         @if (App::isLocale('us'))
-                            <input class="custom-file-input CursorPointer"
+                            <input class="custom-file-input CursorPointer @error('profile_image') is-invalid @enderror"
                                    name="profile_image"
                                    type="file"
                                    id="profile_image"
@@ -22,7 +22,7 @@
                                    lang="us"
                             >
                         @elseif (App::isLocale('lv'))
-                            <input class="custom-file-input CursorPointer"
+                            <input class="custom-file-input CursorPointer @error('profile_image') is-invalid @enderror"
                                    name="profile_image"
                                    type="file"
                                    id="profile_image"
@@ -30,7 +30,7 @@
                                    lang="lv"
                             >
                         @elseif (App::isLocale('ru'))
-                            <input class="custom-file-input CursorPointer"
+                            <input class="custom-file-input CursorPointer @error('profile_image') is-invalid @enderror"
                                    name="profile_image"
                                    type="file"
                                    id="profile_image"
@@ -38,7 +38,7 @@
                                    lang="ru"
                             >
                         @else
-                            <input class="custom-file-input CursorPointer"
+                            <input class="custom-file-input CursorPointer @error('profile_image') is-invalid @enderror"
                                    name="profile_image"
                                    type="file"
                                    id="profile_image"

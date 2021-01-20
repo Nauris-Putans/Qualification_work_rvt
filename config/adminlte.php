@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 return [
 
@@ -230,22 +230,27 @@ return [
     |
     */
 
+    $adminSide = 'admin|member|developer|maintainer',
+    $userFree = 'userFree',
+    $userPro = 'userPro',
+    $userWebmaster = 'userWebmaster',
+
     'menu' => [
         //
-        // User admin free
+        // UserFree
         //
         [
             'text' => 'Dashboard',
             'icon' => 'fas fa-tachometer-alt',
             'classes' => 'text-bold',
             'url' => '/user/dashboard',
-            'role' => 'userFree',
+            'role' => $userFree,
         ],
         [
             'text' => 'Monitoring',
             'icon' => 'fas fa-chart-line',
             'classes' => 'text-bold',
-            'role' => 'userFree',
+            'role' => $userFree,
             'submenu' => [
                 [
                     'text' => 'Monitors',
@@ -255,13 +260,13 @@ return [
                             'text' => 'Monitor List',
                             'icon' => 'fas fa-history',
                             'url' => '/user/monitoring/monitors/list',
-                            'role' => 'userFree',
+                            'role' => $userFree,
                         ],
                         [
                             'text' => 'Add Monitor',
                             'icon' => 'fas fa-plus',
                             'url' => '/user/monitoring/monitors/add',
-                            'role' => 'userFree',
+                            'role' => $userFree,
                         ],
                     ]
                 ],
@@ -269,19 +274,19 @@ return [
                     'text' => 'Uptime',
                     'icon' => 'fas fa-eye',
                     'url' => '/user/monitoring/uptime',
-                    'role' => 'userFree',
+                    'role' => $userFree,
                 ],
                 [
                     'text' => 'Page Speed',
                     'icon' => 'fas fa-stopwatch',
                     'url' => '/user/monitoring/page-speed',
-                    'role' => 'userFree',
+                    'role' => $userFree,
                 ],
                 [
                     'text' => 'Real User Monitoring',
                     'icon' => 'fas fa-users',
                     'url' => '/user/monitoring/real-user-monitoring',
-                    'role' => 'userFree',
+                    'role' => $userFree,
                 ],
             ]
         ],
@@ -290,54 +295,54 @@ return [
             'icon' => 'fas fa-bell',
             'classes' => 'text-bold',
             'url' => '/user/alerts',
-            'role' => 'userFree',
+            'role' => $userFree,
         ],
         [
             'text' => 'Settings',
             'icon' => 'fas fa-cog',
             'classes' => 'text-bold',
             'url' => '/user/settings',
-            'role' => 'userFree',
+            'role' => $userFree,
         ],
         [
             'text' => 'Support',
             'icon' => 'fas fa-question-circle',
             'classes' => 'text-bold',
             'url' => '/user/support/tickets',
-            'role' => 'userFree',
+            'role' => $userFree,
         ],
         [
             'header' => '',
-            'role' => 'userFree',
+            'role' => $userFree,
         ],
         [
             'text' => 'Back',
             'icon' => 'fas fa-arrow-left',
             'classes' => 'text-bold',
             'url' => '/',
-            'role' => 'userFree',
+            'role' => $userFree,
         ],
 
         //
-        // User Admin Pro
+        // UserPro
         //
         [
             'text' => 'Pro settings',
             'icon' => 'fas fa-cog',
             'classes' => 'text-bold',
             'url' => '/settings',
-            'role' => 'userPro',
+            'role' => $userPro,
         ],
         [
             'header' => '',
-            'role' => 'userPro',
+            'role' => $userPro,
         ],
         [
             'text' => 'Back',
             'icon' => 'fas fa-arrow-left',
             'classes' => 'text-bold',
             'url' => '/',
-            'role' => 'userPro',
+            'role' => $userPro,
         ],
 
         //
@@ -347,71 +352,71 @@ return [
             'text' => 'Dashboard',
             'icon' => 'fas fa-tachometer-alt',
             'url' => '/admin/dashboard',
-            'role' => 'admin',
+            'role' => $adminSide,
         ],
         [
             'text' => 'Users',
             'icon' => 'fas fa-users',
             'url' => '/admin/users',
-            'role' => 'admin',
+            'role' => $adminSide,
         ],
         [
             'text' => 'Team',
             'icon' => 'fas fa-users',
-            'role' => 'admin',
+            'role' => $adminSide,
             'submenu' => [
                 [
                     'text' => 'Members',
                     'icon' => 'fas fa-clipboard-list',
                     'url' => '/admin/team/members',
-                    'role' => 'admin',
+                    'role' => $adminSide,
                 ],
                 [
                     'text' => 'Privileges',
                     'icon' => 'fas fa-key',
-                    'role' => 'admin',
+                    'role' => $adminSide,
                     'submenu' => [
                         [
                             'text' => 'Roles',
                             'icon' => 'fas fa-user-cog',
-                            'role' => 'admin',
+                            'role' => $adminSide,
                             'submenu' => [
                                 [
                                     'text' => 'List',
                                     'icon' => 'fas fa-clipboard-list',
                                     'url' => '/admin/roles',
-                                    'role' => 'admin',
+                                    'role' => $adminSide,
                                 ],
                                 [
                                     'text' => 'Add Role',
                                     'icon' => 'fas fa-plus',
                                     'url' => '/admin/roles/create',
-                                    'role' => 'admin',
+                                    'role' => $adminSide,
                                 ],
                                 [
                                     'text' => 'Assign Role',
                                     'icon' => 'fas fa-wrench',
                                     'url' => '/admin/assign-role',
-                                    'role' => 'admin',
+                                    'role' => $adminSide,
                                 ],
                             ],
                         ],
 //                        [
 //                            'text' => 'Permissions',
 //                            'icon' => 'fas fa-user-cog',
-//                            'role' => 'admin',
+//                            'role' => $adminSide,
 //                            'submenu' => [
 //                                [
 //                                    'text' => 'Add Permission',
 //                                    'icon' => 'fas fa-plus',
 //                                    'url' => '/admin/add-permission',
-//                                    'role' => 'admin',
+//                                    'role' => $adminSide,
 //                                ],
 //                                [
 //                                    'text' => 'Assign Permission',
 //                                    'icon' => 'fas fa-wrench',
 //                                    'url' => '/admin/assign-permission',
-//                                    'role' => 'admin',
+//                                    'role' => $adminSide,
 //                                ],
 //                            ],
 //                        ],
@@ -423,23 +428,23 @@ return [
             'text' => 'Tickets',
             'icon' => 'fas fa-ticket-alt',
             'url' => '/admin/tickets',
-            'role' => 'admin',
+            'role' => $adminSide,
         ],
         [
             'text' => 'Account Settings',
             'icon' => 'fas fa-cog',
             'url' => '/admin/settings',
-            'role' => 'admin',
+            'role' => $adminSide,
         ],
         [
             'header' => '',
-            'role' => 'admin',
+            'role' => $adminSide,
         ],
         [
             'text' => 'Back',
             'icon' => 'fas fa-arrow-left',
             'url' => '/',
-            'role' => 'admin',
+            'role' => $adminSide,
         ],
     ],
 

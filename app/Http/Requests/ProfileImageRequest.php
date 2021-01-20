@@ -6,8 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileImageRequest extends FormRequest
 {
-    protected $errorBag = 'image';
-
     /**
      * Determine if the user is authorized to make this request.
      *

@@ -13,7 +13,7 @@
     <div class="row">
         {{-- Users box --}}
         <div class="col-lg-4 col-6">
-            <div class="small-box bg-warning">
+            <div class="small-box bg-success">
                 <div class="inner">
                     <h3>{{ $usersCount }}</h3>
                     @if($usersCount === 1)
@@ -74,11 +74,12 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="col-lg-4 col-md-5 col-sm-12">
             <div class="card card-outline card-primary">
-
                 <div class="card-header">
-                    <h1 class="card-title">{{ __("Latest Users") }}</h1>
+                    <h1 class="card-title">
+                        <i class="fas fa-user-clock mr-1"></i>
+                        {{ __("Latest Users") }}</h1>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                     </div>
@@ -100,7 +101,7 @@
                                 @endif
 
                                 <a href="{{ 'users/'. $hashids->encode($user->id) }}" class="users-list-name mt-1">{{ $user->name }}</a>
-                                <span class="users-list-date">{{ $user->updated_at->format('d.m.Y H:i') }}</span>
+                                <span class="users-list-date">{{ $user->updated_at->format('d/m/Y H:i') }}</span>
                             </li>
                         @endforeach
                     </ul>
@@ -115,7 +116,22 @@
 
             </div>
         </div>
+        <div class="col-lg-8 col-md-7 col-sm-12">
+            <div class="card card-outline card-primary">
+                <div class="card-header">
+                    <h1 class="card-title">
+                        <i class="fas fa-calendar-alt mr-1"></i>
+                        {{ __("Calendar") }}</h1>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
 
+                <div class="card-body pt-0 pb-0">
+                    <div id='calendar' class="calendar"></div>
+                </div>
+            </div>
+        </div>
     </div>
 @stop
 

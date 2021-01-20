@@ -58,17 +58,17 @@
                     </div>
                     <div class="Birthday">
                         <b>{{ __('Birthday') }}</b>
-                        <p class="text-gray">{{ date('d.m.Y', strtotime($user->birthday)) }}</p>
+                        <p class="text-gray">{{ date('d/m/Y', strtotime($user->birthday)) }}</p>
                         <hr>
                     </div>
                     <div class="Mobile Phone">
                         <b>{{ __('Mobile Phone') }}</b>
-                        <p class="text-gray">{{ $user->phone_number }}</p>
+                        <p class="text-gray">{{ !empty($user->phone_number) ? $user->phone_number : "" }}</p>
                         <hr>
                     </div>
                     <div class="Location">
                         <b>{{ __('Location') }}</b>
-                        <p class="text-gray">{{ __($countryName[$user->id]->name) . ', ' . $user->city }}</p>
+                        <p class="text-gray">{{ !empty($countryName[$user->id]->name) ? __($countryName[$user->id]->name) . ', ' . $user->city : "" }}</p>
                         <hr>
                     </div>
                 </div>

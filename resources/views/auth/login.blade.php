@@ -27,15 +27,17 @@
 </head>
 <body>
     <div style="background-image: url({{ URL::asset('/images/background.jpg') }}); background-repeat: no-repeat; background-size: cover; position: relative; overflow: auto; height: 100vh; display: flex; justify-content: center; align-items: center;">
-        <section class="LoginForm col-md-8">
+
+        <section class="LoginForm col-lg-8 col-md-12 col-sm-12">
             <div class="container" id="container">
+                
                 <div class="form-container sign-up-container">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
         
-                        <h1>Create Account</h1>
+                        <h1>{{ __('Sign up') }}</h1>
         
-                        <input id="signup_name" type="text" class="form-control @error('signup_name') is-invalid @enderror" name="signup_name" value="{{ old('signup_name') }}" required autocomplete="signup_name" autofocus placeholder="{{ __('Name') }}">
+                        <input id="signup_name" type="text" class="form-control mt-3 @error('signup_name') is-invalid @enderror" name="signup_name" value="{{ old('signup_name') }}" required autocomplete="signup_name" autofocus placeholder="{{ __('Name') }}">
                         @error('signup_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -56,26 +58,27 @@
                             </span>
                         @enderror
         
-                        <input id="signup_password-confirm" type="password" class="form-control" name="signup_password_confirmation" required autocomplete="signup_new-password" placeholder="{{ __('Confirm Password') }}">
-                        <button type="submit" class="btn btn-primary">
+                        <input id="signup_password-confirm" type="password" class="form-control mb-3" name="signup_password_confirmation" required autocomplete="signup_new-password" placeholder="{{ __('Confirm Password') }}">
+                        <button type="submit">
                             {{ __('Sign up') }}
                         </button>
                     </form>
                 </div>
         
-        
                 <div class="form-container sign-in-container">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         
-                        <h1>Sign in</h1>
-                        <input id="login_email" type="email" class="form-control @error('login_email') is-invalid @enderror" name="login_email" value="{{ old('login_email') }}" required autocomplete="login_email" autofocus placeholder="{{ __('E-Mail Address') }}">
+                        
+                        <h1>{{ __('Sign in') }}</h1>
+                        <input id="login_email" type="email" class="form-control @error('login_email') is-invalid @enderror mt-3" name="login_email" value="{{ old('login_email') }}" required autocomplete="login_email" autofocus placeholder="{{ __('E-Mail Address') }}">
         
                         @error('login_email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                        
         
                         <input id="login_password" type="password" class="form-control @error('login_password') is-invalid @enderror" name="login_password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
                         @error('login_password')
@@ -84,38 +87,48 @@
                             </span>
                         @enderror
 
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input style="margin: 0; margin-top:8px" class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <div class="remember me mt-3 mb-3">
 
-                                <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
+                            <div class="float-right col-lg-6">
+                                @if (Route::has('password.request'))
+                                    <a href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
+                            </div>    
+                            
+                            <div class="float-right col-lg-6 col-md-12 col-sm-12">
+                                <div class="form-group" style="display:flex; flex-direction: row; justify-content: right;float: left; align-items: center;">
+                                    <label class="form-check-label mr-5" for="remember" style="font-size: 11px;">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                    <input class="form-check-input RememberCheckbox" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                </div>
                             </div>
+
                         </div>
+                       
+                            <button type="submit">
+                                {{ __('Log in') }}
+                            </button>
+
+
         
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Log in') }}
-                        </button>
-        
-                        @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                        @endif
+                        
                     </form>
                 </div>
+
                 <div class="overlay-container">
                     <div class="overlay">
                         <div class="overlay-panel overlay-left">
-                            <h1>Alreay have an account?</h1>
-                            <p>Easily log in here and continue your monitoring's journey!</p>
-                            <button class="ghost" id="signIn">Sign In</button>
+                            <h1>{{ __('Alreay have an account?') }}</h1>
+                            <p>{{ __("Easily log in here and continue your monitoring's journey!") }}</p>
+                            <button class="ghost" id="signIn">{{ __('Sign In') }}</button>
                         </div>
                         <div class="overlay-panel overlay-right">
-                            <h1>Hello, Visitor!</h1>
-                            <p>You steal don't have an account? Easily register and start your jouney in monitoring!</p>
-                            <button class="ghost" id="signUp">Sign Up</button>
+                            <h1>{{ __('Hello, Visitor!') }}</h1>
+                            <p>{{ __("You steal don't have an account? Easily register and start your jouney in monitoring!") }}</p>
+                            <button class="ghost" id="signUp">{{ __('Sign Up') }}</button>
                         </div>
                     </div>
                 </div>

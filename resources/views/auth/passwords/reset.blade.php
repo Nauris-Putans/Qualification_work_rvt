@@ -1,7 +1,33 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-<div class="container">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'WEBcheck') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{{ asset('js/arrow.js') }}"></script>
+    <script src="{{ asset('js/switch.js')}}"></script>
+
+    <!-- Place your kit's code here -->
+    <script src="https://kit.fontawesome.com/f53cf4b771.js" crossorigin="anonymous"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+
+<body>
+<div class="container col-lg-8 col-md-12 col-sm-12 margin: auto; width: 60%; padding: 10px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -62,4 +88,4 @@
         </div>
     </div>
 </div>
-@endsection
+</body>
