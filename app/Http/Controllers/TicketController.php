@@ -7,6 +7,7 @@ use App\Mailers\AppMailer;
 use App\Models\Category;
 use App\Models\Ticket;
 use App\Role;
+use App\User;
 use Hashids\Hashids;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -32,7 +33,10 @@ class TicketController extends Controller
         // Finds all tickets
         $tickets = Ticket::all();
 
-        return view('adminlte.admin.tickets', compact('tickets', 'hashids'));
+        // Finds all users
+        $tickets_user = User::all();
+
+        return view('adminlte.admin.tickets', compact('tickets', 'tickets_user', 'hashids'));
     }
 
 

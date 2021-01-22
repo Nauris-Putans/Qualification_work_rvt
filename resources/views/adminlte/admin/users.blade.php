@@ -21,60 +21,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    {{-- Filter table --}}
-                    <table class="table table-striped table-bordered dt-responsive nowrap filter-table mb-3 col-lg-6 col-md-6 col-sm-12" style="display: none">
-                        <tbody>
-                        {{-- Column - ID --}}
-                        <tr id="filter_col0" data-column="0">
-                            <td>{{ __('Column - ID') }}</td>
-                            <td align="center">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="column_filter form-control col-md-12" id="col0_filter">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        {{-- Column - NAME --}}
-                        <tr id="filter_col1" data-column="1">
-                            <td>{{ __('Column - NAME') }}</td>
-                            <td align="center">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="column_filter form-control col-md-12" id="col1_filter">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        {{-- Column - E-MAIL --}}
-                        <tr id="filter_col2" data-column="2">
-                            <td>{{ __('Column - E-MAIL') }}</td>
-                            <td align="center">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="column_filter form-control" id="col2_filter">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
                     {{-- Data table --}}
                     <table class="table table-striped table-bordered dt-responsive nowrap TableStyle" id="users-table">
                         <thead class="thead-dark">
@@ -143,8 +89,6 @@
 
                     // Position of control elements
                     dom:
-                        '<"col-lg-6 col-md-6 col-sm-12 mb-3 AdvanceFilter"Q>' +
-                        '<"col-lg-6 col-md-6 col-sm-12 mb-3"B>' +
                         '<"row"' +
                         '<"col-lg-6 col-md-6 col-sm-12"l>' +
                         '<"col-lg-6 col-md-6 col-sm-12"f>' +

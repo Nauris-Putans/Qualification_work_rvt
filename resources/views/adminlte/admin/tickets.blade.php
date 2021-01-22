@@ -130,6 +130,7 @@
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">{{ __('ID') }}</th>
+                            <th scope="col">{{ __('TICKET USER') }}</th>
                             <th scope="col">{{ __('CATEGORY') }}</th>
                             <th scope="col">{{ __('TITLE') }}</th>
                             <th scope="col">{{ __('ACTION') }}</th>
@@ -143,6 +144,10 @@
                             <tr>
                                 <td>
                                     {{ $ticket->id }}
+                                </td>
+
+                                <td>
+                                    {{ $tickets_user[$ticket->user_id]->email }}
                                 </td>
 
                                 <td>
@@ -237,15 +242,15 @@
                 {
                     // Specific columns
                     columnDefs: [
-                        { "orderable": false, "targets": 6 },
-                        { "width": "5%", "targets": [0, 1] },
-                        { "width": "10%", "targets": [3, 4, 5] },
-                        { "width": "15%", "targets": [6] },
+                        { "orderable": false, "targets": 7 },
+                        { "width": "5%", "targets": [1, 2] },
+                        { "width": "10%", "targets": [4, 5, 6] },
+                        { "width": "15%", "targets": [7] },
                     ],
 
                     // Order by asc/desc
                     order: [
-                        [ 0, "desc" ]
+                        [ 5, "desc" ]
                     ],
 
                     // Show entries length
