@@ -13337,18 +13337,18 @@ a.text-dark:focus {
   color: #bebebe;
 }
 
-.homeIntroduce button {
-  height: 40px;
-  width: 150px;
-  margin-top: 90px;
-  border-color: #CA6D00;
-  background-color: #CA6D00;
+.homeIntroduce a {
   color: white;
+}
+
+.homeIntroduce a:hover {
+  color: white;
+  background-color: #a75900;
+  border-color: #a75900;
 }
 
 .features {
   padding: 50px 0;
-  min-height: 690px;
   background-color: #DEDEDE;
   text-align: center;
 }
@@ -13428,7 +13428,7 @@ a.text-dark:focus {
 .pricing {
   background-color: #131A26;
   width: 100%;
-  padding: 20px 5px;
+  padding: 50px 5px;
 }
 
 .pricing .pricing__lable {
@@ -13437,6 +13437,7 @@ a.text-dark:focus {
   font-size: 24px;
   text-align: center;
   color: white;
+  margin-bottom: 20px;
 }
 
 .pricing .plan-wrapper {
@@ -13449,6 +13450,7 @@ a.text-dark:focus {
 }
 
 .pricing .plan-wrapper .plan-lable {
+  font-weight: 600;
   width: 100%;
   height: 25px;
   font-size: 14px;
@@ -13522,30 +13524,43 @@ a.text-dark:focus {
   margin: 0 auto;
 }
 
+.pricing .OrangeButton a {
+  color: white;
+}
+
+.pricing .OrangeButton a:hover {
+  color: white;
+  background-color: #a75900;
+  border-color: #a75900;
+}
+
+.pricing .GreyButton a {
+  color: white;
+}
+
+.pricing .GreyButton a:hover {
+  color: white;
+  background-color: #545f74;
+  border-color: #545f74;
+}
+
 .pricing .enterprise-padding {
   padding-left: 7px;
   padding-right: 7px;
 }
 
 .FeaturesPageHeader {
-  width: 100%;
-  position: relative;
-}
-
-.FeaturesPageHeader .titleBox {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100px;
-  background: linear-gradient(145deg, #ca6c00d8 10%, #ca6c00f5 70%);
+  padding-bottom: 50px !important;
   color: white;
   text-align: center;
   font-size: 30px;
 }
 
 .AdvancedFeatures .features-wrapper {
-  padding: 70px 0;
+  padding: 50px 0;
   background: linear-gradient(145deg, #ca6c00d8 10%, #ca6c00f5 70%);
   width: 100%;
 }

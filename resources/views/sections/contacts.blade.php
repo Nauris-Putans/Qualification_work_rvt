@@ -12,13 +12,19 @@
 
                     <div class="col-md-12 contacts-info font-weight-bold text-shadow mt-3 mb-5">
                         <i class="fas fa-phone-alt mr-1"></i>
-                        <a>{{ __('(+371) 22222222') }}</a>
+                        <a>
+                            {{ __('(+371) 22222222') }}
+                        </a>
 
                         <i class="fas fa-envelope mr-1"></i>
-                        <a>{{ __('webcheck@gmail.com') }}</a>
+                        <a>
+                            {{ __('webcheck@gmail.com') }}
+                        </a>
 
                         <i class="fas fa-map-marker-alt mr-1"></i>
-                        <a>{{ __('Krišjāņa Valdemāra iela 1C, Centra rajons, Rīga, LV-1010') }}</a>
+                        <a>
+                            {{ __('Krišjāņa Valdemāra iela 1C, Centra rajons, Rīga, LV-1010') }}
+                        </a>
                     </div>
 
                     {{ Form::component('ticket', 'components.form.ticket-form', ['name', 'value' => null, 'attributes' => []]) }}
