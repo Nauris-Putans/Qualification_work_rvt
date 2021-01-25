@@ -34,9 +34,9 @@ class TicketController extends Controller
         $tickets = Ticket::all();
 
         // Finds all users
-        $tickets_user = User::all();
+        $tickets_users = User::all();
 
-        return view('adminlte.admin.tickets', compact('tickets', 'tickets_user', 'hashids'));
+        return view('adminlte.admin.tickets', compact('tickets', 'tickets_users', 'hashids'));
     }
 
 

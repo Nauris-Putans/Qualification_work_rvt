@@ -13100,6 +13100,46 @@ a.text-dark:focus {
   border-color: #CA6D00;
 }
 
+.OrangeButton a {
+  color: white;
+}
+
+.OrangeButton a:hover {
+  color: white;
+  background-color: #a75900;
+  border-color: #a75900;
+}
+
+.OrangeButton button {
+  color: white;
+}
+
+.OrangeButton button:hover {
+  color: white;
+  background-color: #a75900;
+  border-color: #a75900;
+}
+
+.GreyButton a {
+  color: white;
+}
+
+.GreyButton a:hover {
+  color: white;
+  background-color: #545f74;
+  border-color: #545f74;
+}
+
+.GreyButton button {
+  color: white;
+}
+
+.GreyButton button:hover {
+  color: white;
+  background-color: #545f74;
+  border-color: #545f74;
+}
+
 .Sections li a {
   color: white;
   font-weight: 600;
@@ -13534,11 +13574,31 @@ a.text-dark:focus {
   border-color: #a75900;
 }
 
+.pricing .OrangeButton button {
+  color: white;
+}
+
+.pricing .OrangeButton button:hover {
+  color: white;
+  background-color: #a75900;
+  border-color: #a75900;
+}
+
 .pricing .GreyButton a {
   color: white;
 }
 
 .pricing .GreyButton a:hover {
+  color: white;
+  background-color: #545f74;
+  border-color: #545f74;
+}
+
+.pricing .GreyButton button {
+  color: white;
+}
+
+.pricing .GreyButton button:hover {
   color: white;
   background-color: #545f74;
   border-color: #545f74;
@@ -13706,7 +13766,6 @@ a.text-dark:focus {
   width: 50px;
   align-items: center;
   width: auto;
-  float: left;
 }
 
 .LoginForm input {

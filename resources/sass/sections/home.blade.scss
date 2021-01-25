@@ -221,6 +221,16 @@
             background-color: #a75900;
             border-color: #a75900;
         }
+
+        button {
+            color: white;
+        }
+
+        button:hover {
+            color: white;
+            background-color: #a75900;
+            border-color: #a75900;
+        }
     }
 
     .GreyButton {
@@ -229,6 +239,16 @@
         }
 
         a:hover {
+            color: white;
+            background-color: #545f74;
+            border-color: #545f74;
+        }
+
+        button {
+            color: white;
+        }
+
+        button:hover {
             color: white;
             background-color: #545f74;
             border-color: #545f74;

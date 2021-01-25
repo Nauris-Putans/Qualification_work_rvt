@@ -147,7 +147,7 @@
                                 </td>
 
                                 <td>
-                                    {{ $tickets_user[$ticket->user_id]->email }}
+                                    {{ $ticket->user->email }}
                                 </td>
 
                                 <td>
