@@ -245,7 +245,7 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col copyright">
-                        <p class=""><small class="text-white-50">{{ __('© 2020. All Rights Reserved.') }}</small></p>
+                        <p class=""><small class="text-white-50">{{ __('© 2021. All Rights Reserved.') }}</small></p>
                     </div>
                 </div>
             </div>

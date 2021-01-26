@@ -189,13 +189,24 @@
     {},
     "Links": "Saites",
     "Location": "Atrašanās vieta",
-    "© 2020. All Rights Reserved.": "© 2020. Visas tiesības aizsargātas.",
+    "© 2021. All Rights Reserved.": "© 2021. Visas tiesības aizsargātas.",
 
     "//////Languages":
     {},
     "English": "Angļu",
     "Latvian": "Latviešu",
     "Russian": "Krievu",
+
+    "//////Mail":
+    {},
+    "Fullname: ": "Pilnais vārds/uzvārds: ",
+    "Email: ": "E-pasts: ",
+    "Date: ": "Datums: ",
+    "Hello ": "Sveiki ",
+    "Thank you for contacting our support team. A support ticket has been opened for you. You will be notified when a response is made by email or sms.": "Paldies, ka sazinājāties ar mūsu atbalsta komandu. Jums ir atvērta atbalsta biļete. Jums tiks paziņots, kad atbilde tiks sniegta pa e-pastu vai īsziņu.",
+    "Your Ticket": "Jūsu biļete",
+    "You can view the ticket at any time by pressing this button or accessing user support table.": "Biļeti var apskatīt jebkurā laikā, nospiežot šo pogu vai piekļūstot lietotāju atbalsta tabulai.",
+    "If you’re having trouble clicking the 'Your Ticket' button, copy and paste the URL below into your web browser: ": "Ja jums ir problēmas noklikšķināt uz pogas “Jūsu biļete”, kopējiet un ielīmējiet zemāk esošo URL savā tīmekļa pārlūkprogrammā: ",
 
     "//////Home section":
     {},

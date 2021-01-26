@@ -199,13 +199,24 @@
     {},
     "Links": "Ссылки",
     "Location": "Место расположения",
-    "© 2020. All Rights Reserved.": "© 2020. Все права защищены.",
+    "© 2021. All Rights Reserved.": "© 2021. Все права защищены.",
 
     "//////Languages":
     {},
     "English": "Aнглийский",
     "Latvian": "Латышский",
     "Russian": "Pусский",
+
+    "//////Mail":
+    {},
+    "Fullname: ": "Полное имя: ",
+    "Email: ": "Е-мейл: ",
+    "Date: ": "Дата: ",
+    "Hello ": "Здравствуйте ",
+    "Thank you for contacting our support team. A support ticket has been opened for you. You will be notified when a response is made by email or sms.": "Спасибо, что обратились в нашу службу поддержки. Для вас открыт запрос в службу поддержки. Вы получите уведомление об ответе по электронной почте или sms.",
+    "Your Ticket": "Ваш билет",
+    "You can view the ticket at any time by pressing this button or accessing user support table.": "Вы можете просмотреть заявку в любое время, нажав эту кнопку или обратившись к таблице поддержки пользователей.",
+    "If you’re having trouble clicking the 'Your Ticket' button, copy and paste the URL below into your web browser: ": "Если у вас возникли проблемы с нажатием кнопки 'Ваш билет', скопируйте и вставьте приведенный ниже URL-адрес в свой веб-браузер: ",
 
     "//////Home section":
     {},

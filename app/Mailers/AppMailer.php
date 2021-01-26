@@ -25,21 +25,21 @@ class AppMailer
         $this->mailer = $mailer;
     }
 
-    /**
-     * Sends ticket from contacts page to info mail
-     *
-     * @param $data
-     */
-    public function sendTicketToEmail($data)
-    {
-        $this->to = 'info.webcheck@gmail.com';
-        $this->fromAddress = $data['email'];
-        $this->fromName = $data['fullname'];
-        $this->subject = $data['title'];
-        $this->view = 'emails.ticket_to_email';
-        $this->data = compact('data');
-        return $this->deliver();
-    }
+    // /**
+    //  * Sends ticket from contacts page to info mail
+    //  *
+    //  * @param $data
+    //  */
+    // public function sendTicketToEmail($data)
+    // {
+    //     $this->to = 'info.webcheck@gmail.com';
+    //     $this->fromAddress = $data['email'];
+    //     $this->fromName = $data['fullname'];
+    //     $this->subject = $data['title'];
+    //     $this->view = 'emails.ticket_to_email';
+    //     $this->data = compact('data');
+    //     return $this->deliver();
+    // }
 
     /**
      * Sends ticket information to users email

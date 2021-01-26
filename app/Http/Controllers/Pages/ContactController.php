@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MailController;
 use App\Http\Requests\ContactCreateRequest;
 use App\Mailers\AppMailer;
 use App\Models\Adminlte\admin\Ticket;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+
 
 class ContactController extends Controller
 {
@@ -67,8 +69,13 @@ class ContactController extends Controller
             'status' => ucfirst($request->status)
         ];
 
+        // Mail info
+        $to = "info.webcheck@gmail.com";
+        $from = ['address' => $data['email'], 'name' => $data['fullname']];
+        $subject = __('Contact Ticket Information');
+
         // Sends ticket to support email
-        $mailer->sendTicketToEmail($data);
+        MailController::sendTicketToEmail($data, $subject, $from, $to);
 
         return redirect()->back()->with('message', __('Message has been sent!'));
     }

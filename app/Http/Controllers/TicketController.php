@@ -91,6 +91,13 @@ class TicketController extends Controller
      * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
      */
+    /**
+     * userStoreTicket
+     *
+     * @param  mixed $request
+     * @param  mixed $mailer
+     * @return void
+     */
     public function userStoreTicket(UserTicketCreateRequest $request, AppMailer $mailer)
     {
         // Removes _ from string
@@ -114,8 +121,13 @@ class TicketController extends Controller
         // Creates ticket with $data
         $ticket = Ticket::create($data);
 
+        // Mail info
+        $to = Auth::user()->email;
+        $from = ['address' => "info.webcheck@gmail.com", 'name' => "Admin"];
+        $subject = "[Ticket ID: $ticket->ticket_id] $ticket->title";
+
         // Sends ticket information
-        $mailer->sendTicketInformation(Auth::user(), $ticket);
+        MailController::sendTicketInformation($data, $subject, $from, $to, Auth::user(), $ticket);
 
         return redirect()->back()->with('message', __("A ticket with ID: #") . $ticketID . __(" has been created."));
     }

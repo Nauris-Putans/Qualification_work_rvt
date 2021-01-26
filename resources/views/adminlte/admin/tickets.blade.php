@@ -23,6 +23,11 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <div class="custom-control custom-checkbox mb-3" style="padding-left: 7.5px; float:right">
+                        <label class="mr-2" for="hide-ticket" style="font-weight: 500">{{ __("Hide closed tickets: ") }}</label>
+                        <input id="hide-ticket" type="checkbox" checked>
+                    </div>
+
                     {{-- Filter table --}}
                     <table class="table table-striped table-bordered dt-responsive nowrap filter-table mb-3 col-lg-6 col-md-6 col-sm-12" style="display: none">
                         <tbody>
@@ -141,7 +146,7 @@
                         </thead>
                         <tbody>
                         @foreach($tickets as $ticket)
-                            <tr>
+                            <tr id="{{ $ticket->status }}">
                                 <td>
                                     {{ $ticket->id }}
                                 </td>
@@ -229,6 +234,14 @@
 
 @section('js')
     <script>
+        // Hides all closed tickets when entered in this section
+        $('tbody tr').not('#Opened').toggle();
+
+        // Toggles (hide/show) all closed tickets when clicked on checkbox
+        $('#hide-ticket').click(function() {
+            $('tbody tr').not('#Opened').toggle(); // hide everything that isn't "#Opened"
+        });
+
         //// Tickets table ////
 
         // Filter function
@@ -250,7 +263,7 @@
 
                     // Order by asc/desc
                     order: [
-                        [ 5, "desc" ]
+                        [ 5, "asc" ]
                     ],
 
                     // Show entries length

@@ -189,13 +189,24 @@
     {},
     "Links": "Links",
     "Location": "Location",
-    "© 2020. All Rights Reserved.": "© 2020. All Rights Reserved.",
+    "© 2021. All Rights Reserved.": "© 2021. All Rights Reserved.",
 
     "//////Languages":
     {},
     "English": "English",
     "Latvian": "Latvian",
     "Russian": "Russian",
+
+    "//////Mail":
+    {},
+    "Fullname: ": "Fullname: ",
+    "Email: ": "Email: ",
+    "Date: ": "Date: ",
+    "Hello ": "Hello ",
+    "Thank you for contacting our support team. A support ticket has been opened for you. You will be notified when a response is made by email or sms.": "Thank you for contacting our support team. A support ticket has been opened for you. You will be notified when a response is made by email or sms.",
+    "Your Ticket": "Your Ticket",
+    "You can view the ticket at any time by pressing this button or accessing user support table.": "You can view the ticket at any time by pressing this button or accessing user support table.",
+    "If you’re having trouble clicking the 'Your Ticket' button, copy and paste the URL below into your web browser: ": "If you’re having trouble clicking the 'Your Ticket' button, copy and paste the URL below into your web browser: ",
 
     "//////Home section":
     {},
