@@ -123,8 +123,8 @@ class TicketController extends Controller
 
         // Mail info
         $to = Auth::user()->email;
-        $from = ['address' => "info.webcheck@gmail.com", 'name' => "Admin"];
-        $subject = "[Ticket ID: $ticket->ticket_id] $ticket->title";
+        $from = ['address' => "info.webcheck@gmail.com", 'name' => "Ticket Bot"];
+        $subject = __("[Ticket ID: :ticket_id] :ticket_title", ['ticket_id' => $ticket->ticket_id, 'ticket_title' => $ticket->title]);
 
         // Sends ticket information
         MailController::sendTicketInformation($data, $subject, $from, $to, Auth::user(), $ticket);
@@ -190,11 +190,15 @@ class TicketController extends Controller
         // Sets ticket owner from $ticket->user
         $ticketOwner = $ticket->user;
 
+        // Mail info
+        $to = $ticketOwner->email;
+        $from = ['address' => "info.webcheck@gmail.com", 'name' => "Ticket Bot"];
+        $subject = __("RE: :ticket_title [Ticket ID: :ticket_id]", ['ticket_title' => $ticket->title, 'ticket_id' => $ticket->ticket_id]);
+
         // Sends ticket status notification
-        $mailer->sendTicketStatusNotification($ticketOwner, $ticket);
+        MailController::sendTicketStatusNotification($subject, $from, $to, $ticketOwner, $ticket, Auth::user());
 
-
-        return redirect()->back()->with('message', __("The ticket #") . $ticket->ticket_id . " - " . $ticket->title . __("has been closed."));
+        return redirect()->back()->with('message', __("The ticket #") . $ticket->ticket_id . " - " . $ticket->title . __(" has been closed."));
     }
 
     /**

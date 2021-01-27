@@ -72,7 +72,7 @@ class ContactController extends Controller
         // Mail info
         $to = "info.webcheck@gmail.com";
         $from = ['address' => $data['email'], 'name' => $data['fullname']];
-        $subject = __('Contact Ticket Information');
+        $subject = __("Ticket from contact section - :ticket-title", ['ticket-title' => $data['title']]);
 
         // Sends ticket to support email
         MailController::sendTicketToEmail($data, $subject, $from, $to);

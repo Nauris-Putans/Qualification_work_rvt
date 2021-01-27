@@ -199,14 +199,22 @@
 
     "//////Mail":
     {},
-    "Fullname: ": "Pilnais vārds/uzvārds: ",
-    "Email: ": "E-pasts: ",
-    "Date: ": "Datums: ",
-    "Hello ": "Sveiki ",
+    "Fullname: :fullname": "Pilnais vārds/uzvārds: :fullname",
+    "Email: :email": "E-pasts: :email",
+    "Date: :date": "Datums: :date",
+    "Priority: :priority": "Prioritāte: :priority",
+    "Category: :category": "Kategorija: :category",
+    "Hello :ticket_owner!": "Sveiki :ticket_owner!",
+    "Hello :user!": "Sveiki :user!",
+    "Your ticket with ID #:ticket_id has been marked resolved and closed by: :role_display_name": "Jūsu biļete ar ID #:ticket_id ir atzīmēts kā atrisināts un slēgts: :role_display_name",
     "Thank you for contacting our support team. A support ticket has been opened for you. You will be notified when a response is made by email or sms.": "Paldies, ka sazinājāties ar mūsu atbalsta komandu. Jums ir atvērta atbalsta biļete. Jums tiks paziņots, kad atbilde tiks sniegta pa e-pastu vai īsziņu.",
     "Your Ticket": "Jūsu biļete",
     "You can view the ticket at any time by pressing this button or accessing user support table.": "Biļeti var apskatīt jebkurā laikā, nospiežot šo pogu vai piekļūstot lietotāju atbalsta tabulai.",
-    "If you’re having trouble clicking the 'Your Ticket' button, copy and paste the URL below into your web browser: ": "Ja jums ir problēmas noklikšķināt uz pogas “Jūsu biļete”, kopējiet un ielīmējiet zemāk esošo URL savā tīmekļa pārlūkprogrammā: ",
+    "If you’re having trouble clicking the ':button_text' button, copy and paste the URL below into your web browser:": "Ja jums ir problēmas noklikšķināt uz pogas ':button_text', kopējiet un ielīmējiet zemāk esošo URL savā tīmekļa pārlūkprogrammā:",
+    "You got replied by: :role_display_name": "Jums atbildēja: :role_display_name",
+    "RE: :ticket_title [Ticket ID: :ticket_id]": "RE: :ticket_title [Biļetes ID: :ticket_id]",
+    "[Ticket ID: :ticket_id] :ticket_title": "[Biļetes ID: :ticket_id] :ticket_title",
+    "Ticket from contact section - :ticket-title": "Biļete no kontaktu sadaļas - :ticket-title",
 
     "//////Home section":
     {},

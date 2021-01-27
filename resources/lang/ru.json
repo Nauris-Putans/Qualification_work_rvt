@@ -209,14 +209,22 @@
 
     "//////Mail":
     {},
-    "Fullname: ": "Полное имя: ",
-    "Email: ": "Е-мейл: ",
-    "Date: ": "Дата: ",
-    "Hello ": "Здравствуйте ",
+    "Fullname: :fullname": "Полное имя: :fullname",
+    "Email: :email": "Е-мейл: :email",
+    "Date: :date": "Дата: :date",
+    "Priority: :priority": "Приоритет: :priority",
+    "Category: :category": "Категория: :category",
+    "Hello :ticket_owner!": "Здравствуйте :ticket_owner!",
+    "Hello :user!": "Здравствуйте :user!",
+    "Your ticket with ID #:ticket_id has been marked resolved and closed by: :role_display_name": "Ваш билет с ID #:ticket_id был отмечен как решенный и закрыт: :role_display_name",
     "Thank you for contacting our support team. A support ticket has been opened for you. You will be notified when a response is made by email or sms.": "Спасибо, что обратились в нашу службу поддержки. Для вас открыт запрос в службу поддержки. Вы получите уведомление об ответе по электронной почте или sms.",
     "Your Ticket": "Ваш билет",
     "You can view the ticket at any time by pressing this button or accessing user support table.": "Вы можете просмотреть заявку в любое время, нажав эту кнопку или обратившись к таблице поддержки пользователей.",
-    "If you’re having trouble clicking the 'Your Ticket' button, copy and paste the URL below into your web browser: ": "Если у вас возникли проблемы с нажатием кнопки 'Ваш билет', скопируйте и вставьте приведенный ниже URL-адрес в свой веб-браузер: ",
+    "If you’re having trouble clicking the ':button_text' button, copy and paste the URL below into your web browser:": "Если у вас возникли проблемы с нажатием ':button_text' кнопку, скопируйте и вставьте URL-адрес ниже в свой веб-браузер:",
+    "You got replied by: :role_display_name": "Вам ответили: :role_display_name",
+    "RE: :ticket_title [Ticket ID: :ticket_id]": "RE: :ticket_title [ID билета: :ticket_id]",
+    "[Ticket ID: :ticket_id] :ticket_title": "[ID билета: :ticket_id] :ticket_title",
+    "Ticket from contact section - :ticket-title": "Билет из раздела контактов - :ticket-title",
 
     "//////Home section":
     {},

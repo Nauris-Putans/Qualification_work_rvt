@@ -1,7 +1,7 @@
 @component('mail::message')
-# {{ __("Hello :user!", ['user' => ucwords($user->name)]) }}
+# {{ __("Hello :ticket_owner!", ['ticket_owner' => ucwords($ticketOwner->name)]) }}
 
-{{ __('Thank you for contacting our support team. A support ticket has been opened for you. You will be notified when a response is made by email or sms.') }}<br>
+{{ __("Your ticket with ID #:ticket_id has been marked resolved and closed by: :role_display_name", ['ticket_id' => $ticket->ticket_id, 'role_display_name' => $user->roles[0]->display_name]) }}
 
 @component('mail::button', ['url' => url('user/support/tickets/'. $hashids->encode($ticket->id)), 'color' => 'orange'])
 {{ __('Your Ticket') }}

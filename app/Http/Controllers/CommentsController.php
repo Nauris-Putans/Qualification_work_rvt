@@ -40,7 +40,13 @@ class CommentsController extends Controller
         {
             $ticket->action = "Answered";
 
-            $mailer->sendTicketComments($comment->ticket->user, Auth::user(), $comment->ticket, $comment);
+            // Mail info
+            $to = $comment->ticket->user->email;
+            $from = ['address' => "info.webcheck@gmail.com", 'name' => "Ticket Bot"];
+            $subject = __("RE: :ticket_title [Ticket ID: :ticket_id]", ['ticket_title' => $ticket->title, 'ticket_id' => $ticket->ticket_id]);
+
+            // Sends ticket comment
+            MailController::sendTicketComment($data, $subject, $from, $to, $comment->ticket->user, Auth::user(), $comment->ticket);
         }
 
         // Saves changes
