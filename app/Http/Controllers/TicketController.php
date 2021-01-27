@@ -129,7 +129,7 @@ class TicketController extends Controller
         // Sends ticket information
         MailController::sendTicketInformation($data, $subject, $from, $to, Auth::user(), $ticket);
 
-        return redirect()->back()->with('message', __("A ticket with ID: #") . $ticketID . __(" has been created."));
+        return redirect()->back()->with('message', __("Ticket with ID: #:ticket_id - has been created.", ['ticket_id' => $ticketID]));
     }
 
     /**
@@ -198,7 +198,8 @@ class TicketController extends Controller
         // Sends ticket status notification
         MailController::sendTicketStatusNotification($subject, $from, $to, $ticketOwner, $ticket, Auth::user());
 
-        return redirect()->back()->with('message', __("The ticket #") . $ticket->ticket_id . " - " . $ticket->title . __(" has been closed."));
+        return redirect()->back()->with('message', __("The ticket #:ticket_id - has been resolved and closed.", ['ticket_id' => $ticket->ticket_id]));
+
     }
 
     /**

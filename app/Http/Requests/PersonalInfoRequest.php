@@ -46,19 +46,19 @@ class PersonalInfoRequest extends FormRequest
     public function messages()
     {
         return [
-            'fullname.required' => __('Full name is required'),
+            'fullname.required' => __(':name is required', ['name' => "Full name"]),
 
-            'email_address.required' => __('Email address is required'),
-            'email_address.email' => __('Email address format is invalid'),
-            'email_address.unique' => __('Email address already exists'),
+            'email_address.required' => __(':name is required', ['name' => "Email address"]),
+            'email_address.email' => __(':name format is invalid', ['name' => "Email address"]),
+            'email_address.unique' => __(':name already exists', ['name' => "Email address"]),
 
-            'phone_without_mask.min' => __('Phone number should not be less than 6 chars'),
-            'phone_without_mask.max' => __('Phone number should not be greater than 13 chars'),
+            'phone_without_mask.min' => __(':name should not be less than :amount chars', ['name' => "Phone number", 'amount' => "6"]),
+            'phone_without_mask.max' => __(':name should not be greater than :amount chars', ['name' => "Phone number", 'amount' => "13"]),
 
-            'birthday.date_format' => __('Birthday date should be d/m/Y format'),
-            'birthday.before' => __('Birthday must be a date before today'),
+            'birthday.date_format' => __(':name date should be :date_format format', ['name' => "Birthday", 'date_format' => "d/m/Y"]),
+            'birthday.before' => __(':name must be a date before :day', ['name' => "Birthday", 'day' => "today"]),
 
-            'city.max' => __('Cities name should not be greater than 50 chars'),
+            'city.max' => __(':name should not be greater than :amount chars', ['name' => "Cities name", 'amount' => "50"]),
         ];
     }
 }

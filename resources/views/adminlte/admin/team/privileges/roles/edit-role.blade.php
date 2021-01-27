@@ -54,8 +54,23 @@
                         {{-- Filter table --}}
                         <table class="table table-striped table-bordered dt-responsive nowrap filter-table mb-3 col-lg-6 col-md-6 col-sm-12" style="display: none">
                             <tbody>
+                            <tr id="filter_col0" data-column="0">
+                                <td>{{ __("Column - :name", ['name' => __("ID")]) }}</td>
+                                <td align="center">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-search"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="column_filter form-control col-md-12" id="col0_filter">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                             <tr id="filter_col1" data-column="1">
-                                <td>{{ __('Column - ID') }}</td>
+                                <td>{{ __("Column - :name", ['name' => __("NAME")]) }}</td>
                                 <td align="center">
                                     <div class="col-md-12">
                                         <div class="input-group">
@@ -70,7 +85,7 @@
                                 </td>
                             </tr>
                             <tr id="filter_col2" data-column="2">
-                                <td>{{ __('Column - NAME') }}</td>
+                                <td>{{ __("Column - :name", ['name' => __("DISPLAY NAME")]) }}</td>
                                 <td align="center">
                                     <div class="col-md-12">
                                         <div class="input-group">
@@ -79,13 +94,13 @@
                                                     <i class="fas fa-search"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" class="column_filter form-control col-md-12" id="col2_filter">
+                                            <input type="text" class="column_filter form-control" id="col2_filter">
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             <tr id="filter_col3" data-column="3">
-                                <td>{{ __('Column - DISPLAY NAME') }}</td>
+                                <td>{{ __("Column - :name", ['name' => __("DESCRIPTION")]) }}</td>
                                 <td align="center">
                                     <div class="col-md-12">
                                         <div class="input-group">
@@ -95,21 +110,6 @@
                                                 </span>
                                             </div>
                                             <input type="text" class="column_filter form-control" id="col3_filter">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr id="filter_col4" data-column="4">
-                                <td>{{ __('Column - DESCRIPTION') }}</td>
-                                <td align="center">
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" class="column_filter form-control" id="col4_filter">
                                         </div>
                                     </div>
                                 </td>

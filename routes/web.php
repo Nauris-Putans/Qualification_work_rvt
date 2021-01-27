@@ -73,7 +73,7 @@ Route::middleware(['role:' . $adminSide])->group( function()
     Route::get('/admin/tickets', 'TicketController@index');
     Route::get('/admin/tickets/{id}', 'TicketController@show');
     Route::delete('/admin/tickets/{id}', ['as' => 'admin.tickets.destroy', 'uses' => 'TicketController@destroy']);
-    Route::post('/admin/tickets/close_ticket/{id}', 'TicketController@close');
+    Route::post('/admin/tickets/close_ticket/{id}', ['as' => 'admin.tickets.close', 'uses' => 'TicketController@close']);
     Route::post('/admin/tickets/{ticket_id}/comment', 'CommentsController@postComment');
 
     // Settings section

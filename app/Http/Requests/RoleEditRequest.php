@@ -38,10 +38,10 @@ class RoleEditRequest extends FormRequest
     public function messages()
     {
         return [
-            'roleName.required' => __('Role name is required.'),
-            'roleName.max' => __('Role name should not be greater than 50 chars.'),
-            'roleDisplayName.max' => __('Role display name should not be greater than 50 chars.'),
-            'roleDesc.max' => __('Role description should not be greater than 100 chars.'),
+            'roleName.required' => __(':name is required.', ['name' => "Role name"]),
+            'roleName.max' => __(':name should not be greater than :amount chars.', ['name' => "Role name", 'amount' => "50"]),
+            'roleDisplayName.max' => __(':name should not be greater than :amount chars.', ['name' => "Role display name", 'amount' => "50"]),
+            'roleDesc.max' => __(':name should not be greater than :amount chars.', ['name' => "Role description", 'amount' => "100"]),
         ];
     }
 }

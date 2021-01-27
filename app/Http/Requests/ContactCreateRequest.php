@@ -40,18 +40,18 @@ class ContactCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.max' => __('Title should not be greater than 100 chars.'),
-            'fullname.max' => __('Fullname should not be greater than 100 chars.'),
-            'email.max' => __('Email should not be greater than 100 chars.'),
-            'message.max' => __('Message should not be greater than 1000 chars.'),
+            'title.max' => __(':name should not be greater than :amount chars.', ['name' => "Title", 'amount' => "100"]),
+            'fullname.max' => __(':name should not be greater than :amount chars.', ['name' => "Fullname", 'amount' => "100"]),
+            'email.max' => __(':name should not be greater than :amount chars.', ['name' => "Email", 'amount' => "100"]),
+            'message.max' => __(':name should not be greater than :amount chars.', ['name' => "Message", 'amount' => "1000"]),
 
-            'title.required' => __('Title is required!'),
-            'category.required' => __('Category is required!'),
-            'fullname.required' => __('Fullname is required!'),
-            'email.required' => __('Email is required!'),
-            'message.required' => __('Message is required!'),
+            'title.required' => __(':name is required!', ['name' => "Title"]),
+            'category.required' => __(':name is required!', ['name' => "Category"]),
+            'fullname.required' => __(':name is required!', ['name' => "Fullname"]),
+            'email.required' => __(':name is required!', ['name' => "Email"]),
+            'message.required' => __(':name is required!', ['name' => "Message"]),
 
-            'email.email' => __('Email is invalid'),
+            'email.email' => __(':name is invalid', ['name' => "Email"]),
         ];
     }
 }

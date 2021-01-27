@@ -36,10 +36,10 @@ class ProfileImageRequest extends FormRequest
     public function messages()
     {
         return [
-            'profile_image.required' => __('Profile Image is required'),
-            'profile_image.image' => __('Profile Image must be an image'),
-            'profile_image.mimes' => __('Profile Image must be a file of type: .jpeg, .png, .jpg'),
-            'profile_image.max' => __('Profile Image may not be greater than 2048 kilobytes'),
+            'profile_image.required' => __(':name is required', ['name' => "Profile Image"]),
+            'profile_image.image' => __(':name must be an image', ['name' => "Profile Image"]),
+            'profile_image.mimes' => __(':name must be a file of type: :image_types', ['name' => "Profile Image", 'image_types' => ".jpeg, .png, .jpg"]),
+            'profile_image.max' => __(':name may not be greater than :amount kilobytes', ['name' => "Profile Image", 'amount' => "2048"]),
         ];
     }
 }

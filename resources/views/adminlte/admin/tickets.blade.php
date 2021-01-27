@@ -33,7 +33,7 @@
                         <tbody>
                         {{-- Column - ID --}}
                         <tr id="filter_col0" data-column="0">
-                            <td>{{ __('Column - ID') }}</td>
+                            <td>{{ __("Column - :name", ['name' => __("ID")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -47,9 +47,9 @@
                                 </div>
                             </td>
                         </tr>
-                        {{-- Column - CATEGORY --}}
+                        {{-- Column - TICKET OWNER --}}
                         <tr id="filter_col1" data-column="1">
-                            <td>{{ __('Column - CATEGORY') }}</td>
+                            <td>{{ __("Column - :name", ['name' => __("TICKET OWNER")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -63,9 +63,9 @@
                                 </div>
                             </td>
                         </tr>
-                        {{-- Column - TITLE --}}
+                        {{-- Column - CATEGORY --}}
                         <tr id="filter_col2" data-column="2">
-                            <td>{{ __('Column - TITLE') }}</td>
+                            <td>{{ __("Column - :name", ['name' => __("CATEGORY")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -79,9 +79,9 @@
                                 </div>
                             </td>
                         </tr>
-                        {{-- Column - ACTION --}}
+                        {{-- Column - TITLE --}}
                         <tr id="filter_col3" data-column="3">
-                            <td>{{ __('Column - ACTION') }}</td>
+                            <td>{{ __("Column - :name", ['name' => __("TITLE")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -90,14 +90,14 @@
                                                 <i class="fas fa-search"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="column_filter form-control" id="col3_filter">
+                                        <input type="text" class="column_filter form-control col-md-12" id="col3_filter">
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                        {{-- Column - STATUS --}}
+                        {{-- Column - ACTION --}}
                         <tr id="filter_col4" data-column="4">
-                            <td>{{ __('Column - STATUS') }}</td>
+                            <td>{{ __("Column - :name", ['name' => __("ACTION")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -111,9 +111,9 @@
                                 </div>
                             </td>
                         </tr>
-                        {{-- Column - LAST UPDATED --}}
+                        {{-- Column - STATUS --}}
                         <tr id="filter_col5" data-column="5">
-                            <td>{{ __('Column - LAST UPDATED') }}</td>
+                            <td>{{ __("Column - :name", ['name' => __("STATUS")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -127,6 +127,22 @@
                                 </div>
                             </td>
                         </tr>
+                        {{-- Column - LAST UPDATED --}}
+                        <tr id="filter_col6" data-column="6">
+                            <td>{{ __('Column - :name', ['name' => __("LAST UPDATED")]) }}</td>
+                            <td align="center">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-search"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="column_filter form-control" id="col6_filter">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
 
@@ -135,7 +151,7 @@
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">{{ __('ID') }}</th>
-                            <th scope="col">{{ __('TICKET USER') }}</th>
+                            <th scope="col">{{ __('TICKET OWNER') }}</th>
                             <th scope="col">{{ __('CATEGORY') }}</th>
                             <th scope="col">{{ __('TITLE') }}</th>
                             <th scope="col">{{ __('ACTION') }}</th>
@@ -187,35 +203,31 @@
 
                                 <td class="TextMiddle">
                                     <div class="container">
-                                        <div class="row">
-                                            @if($ticket->status === 'Opened')
-                                                <a href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" class="btn btn-info mr-1">
-                                                    <i class="fas fa-comment mr-1"></i>
-                                                    {{ __('Comment') }}
-                                                </a>
-                                                <form action="{{ url('/admin/tickets/close_ticket/' . $ticket->ticket_id) }}" method="POST">
-                                                    @csrf
+                                        @if($ticket->status === 'Opened')
+                                            <a href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" class="btn btn-info mr-1">
+                                                <i class="fas fa-comment mr-1"></i>
+                                                {{ __('Comment') }}
+                                            </a>
 
-                                                    <button class="btn btn-warning" onclick="return confirm('{{ __('Are you sure to close this ticket - #') . $ticket->ticket_id . ' - ' . $ticket->title . '?' }}')" type="submit">
-                                                        <i class="fas fa-times mr-1"></i>
-                                                        {{ __('Close') }}
-                                                    </button>
-                                                </form>
-                                            @else
-                                                <a class="btn btn-primary mr-1" href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" role="button">
-                                                    <i class="fas fa-eye mr-1"></i>
-                                                    {{ __('View') }}
-                                                </a>
-                                                <form action="{{ URL::route('admin.tickets.destroy', [$hashids->encode($ticket->id)]) }}" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="btn btn-danger" onclick="return confirm('{{ __('Are you sure to delete this ticket - #') . $ticket->ticket_id . ' - ' . $ticket->title . '?' }}')" type="submit">
-                                                        <i class="fas fa-trash mr-1"></i>
-                                                        {{ __('Delete') }}
-                                                    </button>
-                                                </form>
-                                            @endif
-                                        </div>
+                                            <a href="#" class="btn btn-warning close-action">
+                                                <i class="fas fa-times mr-1"></i>
+                                                {{ __('Close') }}
+                                            </a>
+                                            {{ Form::open(['url' => route('admin.tickets.close', [$ticket->ticket_id]), 'method' => 'post']) }}
+                                            {{ Form::close() }}
+                                        @else
+                                            <a class="btn btn-primary mr-1" href="{{ 'tickets/'. $hashids->encode($ticket->id) }}" role="button">
+                                                <i class="fas fa-eye mr-1"></i>
+                                                {{ __('View') }}
+                                            </a>
+
+                                            <a href="#" class="btn btn-danger delete-action">
+                                                <i class="fas fa-trash mr-1"></i>
+                                                {{ __('Delete') }}
+                                            </a>
+                                            {{ Form::open(['url' => route('admin.tickets.destroy', [$hashids->encode($ticket->id)]), 'method' => 'delete']) }}
+                                            {{ Form::close() }}
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -234,12 +246,32 @@
 
 @section('js')
     <script>
+
+        // Close and delete action script for tickets
+        $(document).ready(function () {
+            $('.close-action').click(function (e) {
+                if (confirm("<?php echo __('Are you sure to close this ticket with ID: #:ticket_id - :ticket_title?', ['ticket_id' => $ticket->ticket_id, 'ticket_title' => $ticket->title])?>")) {
+                    $(this).siblings('form').submit();
+                }
+
+                return false;
+            });
+
+            $('.delete-action').click(function (e) {
+                if (confirm("<?php echo __('Are you sure to delete this ticket with ID: #:ticket_id - :ticket_title?', ['ticket_id' => $ticket->ticket_id, 'ticket_title' => $ticket->title])?>")) {
+                    $(this).siblings('form').submit();
+                }
+
+                return false;
+            });
+        });
+
         // Hides all closed tickets when entered in this section
-        $('tbody tr').not('#Opened').toggle();
+        $('#tickets-table tbody tr').not('#Opened').toggle();
 
         // Toggles (hide/show) all closed tickets when clicked on checkbox
         $('#hide-ticket').click(function() {
-            $('tbody tr').not('#Opened').toggle(); // hide everything that isn't "#Opened"
+            $('#tickets-table tbody tr').not('#Opened').toggle(); // hide everything that isn't "#Opened"
         });
 
         //// Tickets table ////
@@ -256,14 +288,19 @@
                     // Specific columns
                     columnDefs: [
                         { "orderable": false, "targets": 7 },
-                        { "width": "5%", "targets": [1, 2] },
-                        { "width": "10%", "targets": [4, 5, 6] },
-                        { "width": "15%", "targets": [7] },
+                        // { "width": "5px", "targets": [1, 2] },
+                        // { "width": "5px", "targets": [4, 5, 6] },
+                        // { "width": "15%", "targets": [7] },
                     ],
+
+                    // Allows you to scroll right and left if text is to long
+                    scrollX: "500px",
+                    scrollCollapse: true,
 
                     // Order by asc/desc
                     order: [
-                        [ 5, "desc" ]
+                        // [ 5, "desc" ],
+                        [ 0, "desc" ]
                     ],
 
                     // Show entries length
@@ -312,7 +349,7 @@
                     ],
 
                     searchBuilder: {
-                        columns: [0,1,2,3,4,5],
+                        columns: [0,1,2,3,4,5,6],
                         conditions: {
                             "date":{
                                 '!=': {

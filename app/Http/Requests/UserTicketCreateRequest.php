@@ -39,13 +39,13 @@ class UserTicketCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.max' => __('Title should not be greater than 70 chars.'),
-            'message.max' => __('Message should not be greater than 700 chars.'),
+            'title.max' => __(':name should not be greater than :amount chars.', ['name' => "Title", 'amount' => "70"]),
+            'message.max' => __(':name should not be greater than :amount chars.', ['name' => "Message", 'amount' => "700"]),
 
-            'title.required' => __('Title is required!'),
-            'category.required' => __('Category is required!'),
-            'priority.required' => __('Priority is required!'),
-            'message.required' => __('Message is required!'),
+            'title.required' => __(':name is required!', ['name' => "Title"]),
+            'category.required' => __(':name is required!', ['name' => "Category"]),
+            'priority.required' => __(':name is required!', ['name' => "Priority"]),
+            'message.required' => __(':name is required!', ['name' => "Message"]),
         ];
     }
 }

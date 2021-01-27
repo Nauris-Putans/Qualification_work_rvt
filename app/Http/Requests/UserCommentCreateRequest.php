@@ -36,7 +36,7 @@ class UserCommentCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'comment.required' => __('Comment is required!'),
+            'comment.required' => __(':name is required!', ['name' => "Comment"]),
         ];
     }
 }
