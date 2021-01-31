@@ -46,7 +46,6 @@ class MailController extends Controller
     /**
      * Sends ticket comment to ticket owners email
      *
-     *
      * @param  mixed $data
      * @param  mixed $subject
      * @param  mixed $from
@@ -62,7 +61,7 @@ class MailController extends Controller
 
     /**
      * Sends ticket status notification to owners email
-     * 
+     *
      * @param  mixed $subject
      * @param  mixed $from
      * @param  mixed $to

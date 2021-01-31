@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 class SendTicketComment extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $data;
     public $subject;
     public $fromAddress;
@@ -22,7 +23,7 @@ class SendTicketComment extends Mailable
 
     /**
      * Create a new message instance.
-     * 
+     *
      * @param  mixed $data
      * @param  mixed $subject
      * @param  mixed $from

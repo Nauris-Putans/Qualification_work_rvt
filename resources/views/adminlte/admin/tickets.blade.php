@@ -33,7 +33,7 @@
                         <tbody>
                         {{-- Column - ID --}}
                         <tr id="filter_col0" data-column="0">
-                            <td>{{ __("Column - :name", ['name' => __("ID")]) }}</td>
+                            <td>{{ __("Column - :attribute", ['attribute' => __("ID")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -49,7 +49,7 @@
                         </tr>
                         {{-- Column - TICKET OWNER --}}
                         <tr id="filter_col1" data-column="1">
-                            <td>{{ __("Column - :name", ['name' => __("TICKET OWNER")]) }}</td>
+                            <td>{{ __("Column - :attribute", ['attribute' => __("TICKET OWNER")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -65,7 +65,7 @@
                         </tr>
                         {{-- Column - CATEGORY --}}
                         <tr id="filter_col2" data-column="2">
-                            <td>{{ __("Column - :name", ['name' => __("CATEGORY")]) }}</td>
+                            <td>{{ __("Column - :attribute", ['attribute' => __("CATEGORY")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -81,7 +81,7 @@
                         </tr>
                         {{-- Column - TITLE --}}
                         <tr id="filter_col3" data-column="3">
-                            <td>{{ __("Column - :name", ['name' => __("TITLE")]) }}</td>
+                            <td>{{ __("Column - :attribute", ['attribute' => __("TITLE")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -97,7 +97,7 @@
                         </tr>
                         {{-- Column - ACTION --}}
                         <tr id="filter_col4" data-column="4">
-                            <td>{{ __("Column - :name", ['name' => __("ACTION")]) }}</td>
+                            <td>{{ __("Column - :attribute", ['attribute' => __("ACTION")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -113,7 +113,7 @@
                         </tr>
                         {{-- Column - STATUS --}}
                         <tr id="filter_col5" data-column="5">
-                            <td>{{ __("Column - :name", ['name' => __("STATUS")]) }}</td>
+                            <td>{{ __("Column - :attribute", ['attribute' => __("STATUS")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -129,7 +129,7 @@
                         </tr>
                         {{-- Column - LAST UPDATED --}}
                         <tr id="filter_col6" data-column="6">
-                            <td>{{ __('Column - :name', ['name' => __("LAST UPDATED")]) }}</td>
+                            <td>{{ __('Column - :attribute', ['attribute' => __("LAST UPDATED")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -320,7 +320,7 @@
                         't' +
                         '<"row"' +
                         '<"col-sm-12 col-md-6"i>' +
-                        '<"col-sm-12 col-md-6"p>' +
+                        '<"col-sm-12 col-md-6 mt-2"p>' +
                         '>'
                     ,
 

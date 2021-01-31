@@ -36,8 +36,8 @@ class NotificationRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => __(':name is required', ['name' => "Email address"]),
-            'email.email' => __(':name format is invalid', ['name' => "Email address"]),
+            'email.required' => __(':attribute - :action', ['attribute' => __("Email"), 'action' => __("is required!")]),
+            'email.email' => __(':attribute format :action', ['attribute' => __("Email"), 'action' => __("is invalid!")]),
         ];
     }
 }

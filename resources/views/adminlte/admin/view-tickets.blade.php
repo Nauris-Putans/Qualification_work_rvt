@@ -18,8 +18,8 @@
 
     <div class="row">
         <div class="col-lg-5 col-md-5 col-sm-12">
+            <x-alertAdmin />
             <div class="card card-outline card-primary">
-
                 <div class="card-header">
                     <h1 class="card-title">#{{ $ticket->ticket_id }} - {{ $ticket->title }}</h1>
                     <div class="card-tools">
@@ -95,7 +95,6 @@
                             <div class="direct-chat-messages">
                                 <!-- Message. Default to the left -->
                             @foreach($ticket->comments as $comment)
-
                                 {{-- Checks if comment user is who created comment --}}
                                 @if($comment->user->name == auth()->user()->getUser()->name)
 
@@ -106,7 +105,7 @@
                                                     {{ $comment->user->name }}
                                                 </span>
                                                 <span class="direct-chat-timestamp float-right">
-                                                    {{ $comment->created_at->format('d M H:i') }}
+                                                    {{ strftime("%d %b %H:%M", strtotime($comment->created_at)) }}
                                                 </span>
                                             </div>
 
@@ -135,7 +134,7 @@
                                                     {{ $comment->user->name }}
                                                 </span>
                                                 <span class="direct-chat-timestamp float-left">
-                                                    {{ $comment->created_at->format('d M H:i') }}
+                                                    {{ strftime ("%d %b %H:%M", strtotime($comment->created_at)) }}
                                                 </span>
                                             </div>
 

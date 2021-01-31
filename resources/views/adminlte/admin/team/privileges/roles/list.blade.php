@@ -44,32 +44,25 @@
                                 <td>{{ $role->description }}</td>
                                 <td class="text-center">
                                     <div class="container">
-                                        <div class="row">
+                                        <a class="btn btn-primary mr-1" href="{{ URL::route('admin.roles.show', [$hashids->encode($role->id)]) }}" role="button">
+                                            <i class="fas fa-eye mr-1"></i>
+                                            {{ __('View') }}</a>
 
-                                            <a class="btn btn-primary mr-1" href="{{ URL::route('admin.roles.show', [$hashids->encode($role->id)]) }}" role="button">
-                                                <i class="fas fa-eye mr-1"></i>
-                                                {{ __('View') }}</a>
+                                        @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin')
+                                            <a class="btn btn-info mr-1" href="{{ URL::route('admin.roles.edit', [$hashids->encode($role->id)]) }}" role="button">
+                                                <i class="fas fa-pencil-alt mr-1"></i>
+                                                {{ __('Edit') }}</a>
+                                        @endif
 
-                                            @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin')
-                                                <a class="btn btn-info mr-1" href="{{ URL::route('admin.roles.edit', [$hashids->encode($role->id)]) }}" role="button">
-                                                    <i class="fas fa-pencil-alt mr-1"></i>
-                                                    {{ __('Edit') }}</a>
-                                            @endif
-
-                                            @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin')
-                                                <form action="{{ URL::route('admin.roles.destroy', [$hashids->encode($role->id)]) }}" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="btn btn-danger" onclick="return confirm('{{ __('Are you sure to delete this role - ' . $role->name . '?') }}')" type="submit">
-                                                        <i class="fas fa-trash mr-1"></i>
-                                                        {{ __('Delete') }}
-                                                    </button>
-                                                </form>
-                                            @endif
-
-                                        </div>
+                                        @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin')
+                                            <a href="#" class="btn btn-danger delete-action">
+                                                <i class="fas fa-trash mr-1"></i>
+                                                {{ __('Delete') }}
+                                            </a>
+                                            {{ Form::open(['url' => route('admin.roles.destroy', [$hashids->encode($role->id)]), 'method' => 'delete']) }}
+                                            {{ Form::close() }}
+                                        @endif
                                     </div>
-
                                 </td>
                             </tr>
                         @endforeach
@@ -87,6 +80,17 @@
 
 @section('js')
     <script>
+
+        // Delete action script for tickets
+        $(document).ready(function () {
+            $('.delete-action').click(function (e) {
+                if (confirm("<?php echo __('Are you sure to delete this role - :role?', ['role' => $role->name])?>")) {
+                    $(this).siblings('form').submit();
+                }
+
+                return false;
+            });
+        });
 
         //// Roles table ////
 

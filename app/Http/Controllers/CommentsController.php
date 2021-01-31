@@ -14,10 +14,9 @@ class CommentsController extends Controller
      * Posts comment
      *
      * @param UserCommentCreateRequest $request
-     * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postComment(UserCommentCreateRequest $request, AppMailer $mailer)
+    public function postComment(UserCommentCreateRequest $request)
     {
         // Data from $request variable
         $data = [
@@ -42,8 +41,8 @@ class CommentsController extends Controller
 
             // Mail info
             $to = $comment->ticket->user->email;
-            $from = ['address' => "info.webcheck@gmail.com", 'name' => "Ticket Bot"];
-            $subject = __("RE: :ticket_title [Ticket ID: :ticket_id]", ['ticket_title' => $ticket->title, 'ticket_id' => $ticket->ticket_id]);
+            $from = ['address' => "info.webcheck@gmail.com", 'name' => __("Ticket Robot")];
+            $subject = __("RE: :ticket_title [Ticket ID: #:ticket_id]", ['ticket_title' => $ticket->title, 'ticket_id' => $ticket->ticket_id]);
 
             // Sends ticket comment
             MailController::sendTicketComment($data, $subject, $from, $to, $comment->ticket->user, Auth::user(), $comment->ticket);

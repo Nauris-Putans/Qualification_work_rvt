@@ -51,7 +51,7 @@ class DashboardAdminController extends Controller
         // Counts all tickets
         $ticketsCount = Ticket::all()->count();
 
-        return view('adminlte.admin.index-admin', compact(  'users', 'members', 'usersCount', 'memberCount', 'memberRoles', 'ticketsCount', 'hashids'));
+        return view('adminlte.admin.index-admin', compact('users', 'members', 'usersCount', 'memberCount', 'memberRoles', 'ticketsCount', 'hashids'));
     }
 
     /**

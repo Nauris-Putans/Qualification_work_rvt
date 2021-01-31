@@ -46,19 +46,19 @@ class PersonalInfoRequest extends FormRequest
     public function messages()
     {
         return [
-            'fullname.required' => __(':name is required', ['name' => "Full name"]),
+            'fullname.required' => __(':attribute - :action', ['attribute' => __("Full name"), 'action' => __("is required!")]),
 
-            'email_address.required' => __(':name is required', ['name' => "Email address"]),
-            'email_address.email' => __(':name format is invalid', ['name' => "Email address"]),
-            'email_address.unique' => __(':name already exists', ['name' => "Email address"]),
+            'email_address.required' => __(':attribute - :action', ['attribute' => __("Email"), 'action' => __("is required!")]),
+            'email_address.email' => __(':attribute format :action', ['attribute' => __("Email"), 'action' => __("is invalid!")]),
+            'email_address.unique' => __(':attribute - :action', ['attribute' => __("Email"), 'action' => __("already exists!")]),
 
-            'phone_without_mask.min' => __(':name should not be less than :amount chars', ['name' => "Phone number", 'amount' => "6"]),
-            'phone_without_mask.max' => __(':name should not be greater than :amount chars', ['name' => "Phone number", 'amount' => "13"]),
+            'phone_without_mask.min' => __(':attribute should not be less than :amount chars!', ['attribute' => __("Phone number"), 'amount' => "6"]),
+            'phone_without_mask.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Phone number"), 'amount' => "13"]),
 
-            'birthday.date_format' => __(':name date should be :date_format format', ['name' => "Birthday", 'date_format' => "d/m/Y"]),
-            'birthday.before' => __(':name must be a date before :day', ['name' => "Birthday", 'day' => "today"]),
+            'birthday.date_format' => __(':attribute date should be :date_format format!', ['attribute' => __("Birthday"), 'date_format' => "d/m/Y"]),
+            'birthday.before' => __(':attribute must be a date before :day', ['attribute' => __("Birthday"), 'day' => __("today") . "!"]),
 
-            'city.max' => __(':name should not be greater than :amount chars', ['name' => "Cities name", 'amount' => "50"]),
+            'city.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Cities name"), 'amount' => "50"]),
         ];
     }
 }

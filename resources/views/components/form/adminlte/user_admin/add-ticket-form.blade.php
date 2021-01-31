@@ -20,7 +20,7 @@
         <div class="col-12">
             <select id="category" type="category" class="form-control @error('category') is-invalid @enderror" name="category">
                 <option value="">
-                    {{ __('Select Category') }}
+                    {{ __('Select :attribute', ['attribute' => __("Category")]) }}
                 </option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">
@@ -38,7 +38,7 @@
         <div class="col-12">
             <select id="priority" type="priority" class="form-control @error('priority') is-invalid @enderror" name="priority">
                 <option value="">
-                    {{ __('Select Priority') }}
+                    {{ __('Select :attribute', ['attribute' => __("Priority")]) }}
                 </option>
                 <option value="low">
                     {{ __('Low') }}
@@ -62,7 +62,7 @@
                       id="message"
                       class="form-control @error('message') is-invalid @enderror"
                       name="message"
-            ></textarea>
+            >{{ old('message') }}</textarea>
         </div>
     </div>
 

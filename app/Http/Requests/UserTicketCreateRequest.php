@@ -39,13 +39,13 @@ class UserTicketCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.max' => __(':name should not be greater than :amount chars.', ['name' => "Title", 'amount' => "70"]),
-            'message.max' => __(':name should not be greater than :amount chars.', ['name' => "Message", 'amount' => "700"]),
+            'title.required' => __(':attribute - :action', ['attribute' => __("Title"), 'action' => __("is required!")]),
+            'category.required' => __(':attribute - :action', ['attribute' => __("Category"), 'action' => __("is required!")]),
+            'priority.required' => __(':attribute - :action', ['attribute' => __("Priority"), 'action' => __("is required!")]),
+            'message.required' => __(':attribute - :action', ['attribute' => __("Message"), 'action' => __("is required!")]),
 
-            'title.required' => __(':name is required!', ['name' => "Title"]),
-            'category.required' => __(':name is required!', ['name' => "Category"]),
-            'priority.required' => __(':name is required!', ['name' => "Priority"]),
-            'message.required' => __(':name is required!', ['name' => "Message"]),
+            'title.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Title"), 'amount' => "70"]),
+            'message.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Message"), 'amount' => "700"]),
         ];
     }
 }

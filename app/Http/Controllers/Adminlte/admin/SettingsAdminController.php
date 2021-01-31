@@ -74,7 +74,7 @@ class SettingsAdminController extends Controller
         // Updates user with $data values
         $user->update($data);
 
-        return redirect()->back()->with('message', __('Personal info has been updated!'));
+        return redirect()->back()->with('message', __(':attribute - :action', ['attribute' => __("Personal Information"), 'action' => __("has been updated!")]));
     }
 
     /**
@@ -94,7 +94,7 @@ class SettingsAdminController extends Controller
 
         dd("Need to create notification section");
 
-        return redirect()->back()->with('message', __('Notifications has been updated!'));
+        return redirect()->back()->with('message', __(':attribute - :action', ['attribute' => __("Notifications"), 'action' => __("has been updated!")]));
     }
 
     /**
@@ -123,7 +123,7 @@ class SettingsAdminController extends Controller
         // Updates user with $data values
         $user->update($data);
 
-        return redirect()->back()->with('password_security_message', __('Password & Security has been updated!'));
+        return redirect()->back()->with('message', __(':attribute - :action', ['attribute' => __("Password & Security"), 'action' => __("has been updated!")]));
     }
 
     /**
@@ -172,7 +172,7 @@ class SettingsAdminController extends Controller
         // Persist user record to database
         $user->save();
 
-        return redirect()->back()->with('message', __('Profile image was updated!'));
+        return redirect()->back()->with('message', __(':attribute - :action', ['attribute' => __("Profile image"), 'action' => __("has been updated!")]));
     }
 
     /**

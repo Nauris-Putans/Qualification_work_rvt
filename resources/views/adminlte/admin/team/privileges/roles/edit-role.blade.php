@@ -45,78 +45,13 @@
             <div class="col-md-9">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
-                        <h1 class="card-title">{{ __('Assigned Permissions to Role - ') }} {{ ucfirst($role->name) }}</h1>
+                        <h1 class="card-title">{{ __("Assigned Permissions to Role - :role!", ['role' => ucfirst($role->name)]) }}</h1>
+
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                         </div>
                     </div>
                     <div class="card-body">
-                        {{-- Filter table --}}
-                        <table class="table table-striped table-bordered dt-responsive nowrap filter-table mb-3 col-lg-6 col-md-6 col-sm-12" style="display: none">
-                            <tbody>
-                            <tr id="filter_col0" data-column="0">
-                                <td>{{ __("Column - :name", ['name' => __("ID")]) }}</td>
-                                <td align="center">
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" class="column_filter form-control col-md-12" id="col0_filter">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr id="filter_col1" data-column="1">
-                                <td>{{ __("Column - :name", ['name' => __("NAME")]) }}</td>
-                                <td align="center">
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" class="column_filter form-control col-md-12" id="col1_filter">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr id="filter_col2" data-column="2">
-                                <td>{{ __("Column - :name", ['name' => __("DISPLAY NAME")]) }}</td>
-                                <td align="center">
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" class="column_filter form-control" id="col2_filter">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr id="filter_col3" data-column="3">
-                                <td>{{ __("Column - :name", ['name' => __("DESCRIPTION")]) }}</td>
-                                <td align="center">
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" class="column_filter form-control" id="col3_filter">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-
                         {{-- Data table --}}
                         <table class="table table-striped table-bordered dt-responsive nowrap TableStyle" id="permissions-table">
                             <thead class="thead-dark">
@@ -211,8 +146,6 @@
 
                     // Position of control elements
                     dom:
-                        '<"col-lg-6 col-md-6 col-sm-12 mb-3 AdvanceFilter"Q>' +
-                        '<"col-lg-6 col-md-6 col-sm-12 mb-3"B>' +
                         '<"row"' +
                         '<"col-lg-6 col-md-6 col-sm-12"l>' +
                         '<"col-lg-6 col-md-6 col-sm-12"f>' +

@@ -3,7 +3,7 @@
 
 {{ __($data['message']) }}<br>
 
-@component('mail::button', ['url' => url("https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=" . $data['email'] . "&su=" . $data['title']), 'color' => 'orange'])
+@component('mail::button', ['url' => url("https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=" . $data['email'] . "&su=" . $data['title'] . "&body=" . $data['message']), 'color' => 'orange'])
 {{ __('Reply') }}
 @endcomponent
 
@@ -15,6 +15,6 @@
 {{ __("Category: :category", ['category' => __($data['category'])]) }}<br><br>
 
 {{ __("If you’re having trouble clicking the ':button_text' button, copy and paste the URL below into your web browser:", ['button_text' => __('Reply')]) }}
-<span class="break-all" style="word-break: break-all;"><a target="_blank" rel="noopener noreferrer" href="{{ url("https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=" . $data['email'] . "&su=" . $data['title']) }}">{{ url("https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=" . $data['email'] . "&su=" . $data['title']) }}</a></span>
+<span class="break-all" style="word-break: break-all;"><a target="_blank" rel="noopener noreferrer" href="{{ url("https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=" . $data['email'] . "&su=" . $data['title'] . "&body=" . $data['message']) }}">{{ url("https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=" . $data['email'] . "&su=" . $data['title'] . "&body=" . $data['message']) }}</a></span>
 @endcomponent
 @endcomponent

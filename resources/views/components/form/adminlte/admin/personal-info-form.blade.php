@@ -7,7 +7,7 @@
 
                 <div class="col-12 mb-4">
                     <h5>
-                        {{ __('Change Personal Information here') }}
+                        {{ __('Change :attribute here', ['attribute' => __("Personal Information")]) }}
                     </h5>
                 </div>
 

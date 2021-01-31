@@ -24,7 +24,7 @@ class RoleEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'roleName' => 'required|max:50',
+            'roleName' => 'required|unique:roles,name|max:50',
             'roleDisplayName' => 'max:50',
             'roleDesc' => 'max:100',
         ];
@@ -38,10 +38,11 @@ class RoleEditRequest extends FormRequest
     public function messages()
     {
         return [
-            'roleName.required' => __(':name is required.', ['name' => "Role name"]),
-            'roleName.max' => __(':name should not be greater than :amount chars.', ['name' => "Role name", 'amount' => "50"]),
-            'roleDisplayName.max' => __(':name should not be greater than :amount chars.', ['name' => "Role display name", 'amount' => "50"]),
-            'roleDesc.max' => __(':name should not be greater than :amount chars.', ['name' => "Role description", 'amount' => "100"]),
+            'roleName.required' => __(':attribute - :action', ['attribute' => __("Role name"), 'action' => __("is required!")]),
+            'roleName.unique' => __(':attribute - :action', ['attribute' => __("Role name"), 'action' => __("already exists!")]),
+            'roleName.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Role name"), 'amount' => "50"]),
+            'roleDisplayName.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Role display name"), 'amount' => "50"]),
+            'roleDesc.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Role description"), 'amount' => "100"]),
         ];
     }
 }

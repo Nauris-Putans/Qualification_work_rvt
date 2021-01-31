@@ -41,11 +41,13 @@
                                 {{ __('Personal Info') }}
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-one-notification-tab" data-toggle="pill" href="#custom-tabs-one-notification" role="tab" aria-controls="custom-tabs-one-notification" aria-selected="false">
                                 {{ __('Notification') }}
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-one-password-and-security-tab" data-toggle="pill" href="#custom-tabs-one-password-and-security" role="tab" aria-controls="custom-tabs-one-password-and-security" aria-selected="false">
                                 {{ __('Password & Security') }}
@@ -53,27 +55,22 @@
                         </li>
 
                         <!-- Language Dropdown Menu -->
-
                         <li class="row nav-item dropdown Language" style="margin-right: 0; margin-left: 0;">
-
                             @if (App::isLocale('en'))
                                 <a class="nav-link" data-toggle="dropdown" href="#">
                                     {{ __('Language: ') }}
                                     <span class="ml-2 flag-icon flag-icon-us" style="vertical-align: middle;"></span>
                                 </a>
-
                             @elseif (App::isLocale('lv'))
                                 <a class="nav-link" data-toggle="dropdown" href="#">
                                     {{ __('Language: ') }}
                                     <span class="ml-2 flag-icon flag-icon-lv" style="vertical-align: middle;"></span>
                                 </a>
-
                             @elseif (App::isLocale('ru'))
                                 <a class="nav-link" data-toggle="dropdown" href="#">
                                     {{ __('Language: ') }}
                                     <span class="ml-2 flag-icon flag-icon-ru" style="vertical-align: middle;"></span>
                                 </a>
-
                             @else
                                 <a class="nav-link" data-toggle="dropdown" href="#">
                                     {{ __('Language: ') }}

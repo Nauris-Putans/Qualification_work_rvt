@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 class SendTicketStatusNotification extends Mailable
 {
     use Queueable, SerializesModels;
+    
     public $subject;
     public $fromAddress;
     public $fromName;

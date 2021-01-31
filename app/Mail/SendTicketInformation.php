@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 class SendTicketInformation extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $data;
     public $subject;
     public $fromAddress;
@@ -48,8 +49,13 @@ class SendTicketInformation extends Mailable
     public function build()
     {
         return $this->markdown('emails.sendTicketInformation')
-            ->from($this->fromAddress, $this->fromName)
-            ->subject($this->subject)
-            ->with(['data' => $this->data],['user' => $this->user],['ticket' => $this->ticket],['hashids' => $this->hashids]);
+                    ->from($this->fromAddress, $this->fromName)
+                    ->subject($this->subject)
+                    ->with(
+                        ['data' => $this->data],
+                        ['user' => $this->user],
+                        ['ticket' => $this->ticket],
+                        ['hashids' => $this->hashids]
+                    );
     }
 }
