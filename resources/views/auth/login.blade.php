@@ -28,6 +28,10 @@
 <body>
     <div style="background-image: url({{ URL::asset('/images/background.jpg') }}); background-repeat: no-repeat; background-size: cover; position: relative; overflow: auto; height: 100vh; display: flex; justify-content: center; align-items: center;">
         <section class="LoginForm col-lg-8 col-md-12 col-sm-12">
+            <div>
+                <x-alertAdmin />
+            </div>
+
             <div class="container" id="container">
                 <div class="form-container sign-up-container">
                     <form method="POST" action="{{ route('register') }}">
@@ -37,28 +41,14 @@
                             {{ __('Sign up') }}
                         </h1>
 
-                        <input id="signup_name" type="text" class="form-control mt-3 @error('signup_name') is-invalid @enderror" name="signup_name" value="{{ old('signup_name') }}" required autocomplete="signup_name" autofocus placeholder="{{ __('Name') }}">
-                        @error('signup_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        <input id="signup_name" type="text" class="form-control mt-3 @error('signup_name') is-invalid @enderror" name="signup_name" value="{{ old('signup_name') }}" required autocomplete="signup_name" autofocus placeholder="{{ __('Full Name') }}">
 
                         <input id="signup_email" type="email" class="form-control @error('signup_email') is-invalid @enderror" name="signup_email" value="{{ old('signup_email') }}" required autocomplete="signup_email" placeholder="{{ __('E-Mail Address') }}">
-                        @error('signup_email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
 
                         <input id="signup_password" type="password" class="form-control @error('signup_password') is-invalid @enderror" name="signup_password" required autocomplete="signup_new-password" placeholder="{{ __('Password') }}">
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
 
                         <input id="signup_password-confirm" type="password" class="form-control mb-4" name="signup_password_confirmation" required autocomplete="signup_new-password" placeholder="{{ __('Confirm Password') }}">
+
                         <button type="submit">
                             {{ __('Sign up') }}
                         </button>
@@ -74,18 +64,8 @@
                         </h1>
 
                         <input id="login_email" type="email" class="form-control @error('login_email') is-invalid @enderror mt-3" name="login_email" value="{{ old('login_email') }}" required autocomplete="login_email" autofocus placeholder="{{ __('E-Mail Address') }}">
-                        @error('login_email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
 
                         <input id="login_password" type="password" class="form-control @error('login_password') is-invalid @enderror" name="login_password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
-                        @error('login_password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
 
                         <div class="row mt-1 mb-3" style="margin-right: 0; margin-left: 0">
                             <div class="col-6" style="padding: 0">

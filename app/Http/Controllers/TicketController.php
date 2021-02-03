@@ -180,7 +180,7 @@ class TicketController extends Controller
      * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function close($ticket_id, AppMailer $mailer)
+    public function close($ticket_id)
     {
         // Finds ticket by $ticket_id
         $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();

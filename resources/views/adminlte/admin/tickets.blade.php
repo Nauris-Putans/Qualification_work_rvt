@@ -147,7 +147,7 @@
                     </table>
 
                     {{-- Data table --}}
-                    <table class="table table-striped table-bordered dt-responsive nowrap TableStyle" id="tickets-table">
+                    <table class="table table-striped table-bordered nowrap TableStyle" id="tickets-table">
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">{{ __('ID') }}</th>
@@ -294,7 +294,7 @@
                     ],
 
                     // Allows you to scroll right and left if text is to long
-                    scrollX: "500px",
+                    scrollX: "700px",
                     scrollCollapse: true,
 
                     // Order by asc/desc
@@ -456,6 +456,87 @@
                                 },
                                 'starts': {
                                     conditionName: "<?php echo __('Starts With')?>",
+                                },
+                            },
+                            "html": {
+                                '!=': {
+                                    conditionName: "<?php echo __('Not')?>",
+                                },
+                                '!null': {
+                                    conditionName: "<?php echo __('Not Empty')?>",
+                                },
+                                '=': {
+                                    conditionName: "<?php echo __('Equals')?>",
+                                },
+                                'contains': {
+                                    conditionName: "<?php echo __('Contains')?>",
+                                },
+                                'ends': {
+                                    conditionName: "<?php echo __('Ends With')?>",
+                                },
+                                'null': {
+                                    conditionName: "<?php echo __('Empty')?>",
+                                },
+                                'starts': {
+                                    conditionName: "<?php echo __('Starts With')?>",
+                                },
+                            },
+                            "html-num": {
+                                '!=': {
+                                    conditionName: "<?php echo __('Not')?>",
+                                },
+                                '!between': {
+                                    conditionName: "<?php echo __('Not Between')?>",
+                                },
+                                '!null': {
+                                    conditionName: "<?php echo __('Not Empty')?>",
+                                },
+                                '<': {
+                                    conditionName: "<?php echo __('Less Than')?>",
+                                },
+                                '<=': {
+                                    conditionName: "<?php echo __('Less Than Equal To')?>",
+                                },
+                                '=': {
+                                    conditionName: "<?php echo __('Equals')?>",
+                                },
+                                '>': {
+                                    conditionName: "<?php echo __('Greater Than')?>",
+                                },
+                                '>=': {
+                                    conditionName: "<?php echo __('Greater Than Equal To')?>",
+                                },
+                                'multipleOf': {
+                                    conditionName: "<?php echo __('Value + ')?>", // String value that will be displayed in the condition select element
+                                    init: function (that, fn, preDefined = null) {
+                                        // Declare the input element and set the listener to trigger searching
+                                        const el =  jQuery('<input/>').on('input', function() { fn(that, this) });
+
+                                        // Add mechanism to apply preDefined values that may be passed in
+                                        if (preDefined !== null) {
+                                            jQuery(el).val(preDefined[0]);
+                                        }
+
+                                        return el;
+                                    },
+                                    inputValue: function (el) {
+                                        // Return the value within the input element
+                                        return jQuery(el[0]).val();
+                                    },
+                                    isInputValid: function (el, that) {
+                                        // If there is text in the input element then it is valid for searching
+                                        return jQuery(el[0]).val().length !== 0;
+                                    },
+                                    search: function (value, comparison) {
+                                        // Use the modulo (%) operator to check that there is no remainder
+                                        return value%comparison === 0;
+                                    }
+                                },
+                                'between': {
+                                    conditionName: "<?php echo __('Between')?>",
+                                },
+                                'null': {
+                                    conditionName: "<?php echo __('Empty')?>",
                                 },
                             },
                         },

@@ -45,7 +45,7 @@
                     </div>
                     <div class="card-body">
                         {{-- Data table --}}
-                        <table class="table table-striped table-bordered dt-responsive nowrap TableStyle" id="assignRole-table">
+                        <table class="table table-striped table-bordered nowrap TableStyle" id="assignRole-table">
                             <thead class="thead-dark">
                             <tr>
                                 <th scope="col"></th>
@@ -110,6 +110,10 @@
                         { "width": "8%", "targets": 0 },
                         { "width": "7%", "targets": 1 },
                     ],
+
+                    // Allows you to scroll right and left if text is to long
+                    scrollX: "700px",
+                    scrollCollapse: true,
 
                     // Order by asc/desc
                     order: [
