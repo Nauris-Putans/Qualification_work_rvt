@@ -19,6 +19,7 @@
     <div class="row">
         <div class="col-lg-5 col-md-5 col-sm-12">
             <x-alertAdmin />
+
             <div class="card card-outline card-primary">
                 <div class="card-header">
                     <h1 class="card-title">#{{ $ticket->ticket_id }} - {{ $ticket->title }}</h1>
@@ -73,9 +74,20 @@
                             @endif
                         </p>
 
-                        <p class="ml-2 mb-4">
-                            <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
-                        </p>
+                        @if ($ticket->status === 'Closed')
+                            <p class="ml-2 mb-1">
+                                <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
+                            </p>
+
+                            <p class="ml-2 mb-4">
+                                <strong>{{ __('Closed by: ') }}</strong> {{ __($user_closedBy[$ticket->closed_by - 1]->roles[0]->display_name) }}
+                            </p>
+                        @else
+                            <p class="ml-2 mb-4">
+                                <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
+                            </p>
+                        @endif
+
                     </div>
 
                     <div class="card card-primary direct-chat direct-chat-primary direct-chat-contacts-open">

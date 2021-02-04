@@ -19,6 +19,8 @@
     <div class="row">
         {{-- My Tickets --}}
         <div class="col-lg-12 col-md-12 col-sm-12">
+            <x-alertAdmin />
+
             <div class="card card-outline card-primary">
                 <div class="card-header">
                     <h1 class="card-title">{{ __('My Tickets') }}</h1>
@@ -152,12 +154,31 @@
 
                                 <td class="TextMiddle">
                                     <div class="container">
-                                        <div class="row">
+                                        @if($ticket->status === 'Opened')
+                                            <a class="btn btn-info mr-1" href="{{ '/user/support/tickets/'. $hashids->encode($ticket->id) }}" role="button">
+                                                <i class="fas fa-comment mr-1"></i>
+                                                {{ __('Comment') }}
+                                            </a>
+
+                                            <a href="#" class="btn btn-warning close-action">
+                                                <i class="fas fa-times mr-1"></i>
+                                                {{ __('Close') }}
+                                            </a>
+                                            {{ Form::open(['url' => route('user.support.ticket.close', [$ticket->ticket_id]), 'method' => 'post']) }}
+                                            {{ Form::close() }}
+                                        @else
                                             <a class="btn btn-primary mr-1" href="{{ '/user/support/tickets/'. $hashids->encode($ticket->id) }}" role="button">
                                                 <i class="fas fa-eye mr-1"></i>
                                                 {{ __('View') }}
                                             </a>
-                                        </div>
+
+                                            <a href="#" class="btn btn-danger delete-action">
+                                                <i class="fas fa-trash mr-1"></i>
+                                                {{ __('Delete') }}
+                                            </a>
+                                            {{ Form::open(['url' => route('user.support.ticket.destroy', [$hashids->encode($ticket->id)]), 'method' => 'delete']) }}
+                                            {{ Form::close() }}
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -176,6 +197,25 @@
 
 @section('js')
     <script>
+        // Close and delete action script for tickets
+        $(document).ready(function () {
+            $('.close-action').click(function (e) {
+                if (confirm("<?php echo __('Are you sure to close this ticket with ID: #:ticket_id - :ticket_title?', ['ticket_id' => $ticket->ticket_id, 'ticket_title' => $ticket->title])?>")) {
+                    $(this).siblings('form').submit();
+                }
+
+                return false;
+            });
+
+            $('.delete-action').click(function (e) {
+                if (confirm("<?php echo __('Are you sure to delete this ticket with ID: #:ticket_id - :ticket_title?', ['ticket_id' => $ticket->ticket_id, 'ticket_title' => $ticket->title])?>")) {
+                    $(this).siblings('form').submit();
+                }
+
+                return false;
+            });
+        });
+
         //// Tickets table ////
 
         // Filter function
@@ -191,11 +231,11 @@
                     columnDefs: [
                         { "orderable": false, "targets": 5 },
                         { "width": "5%", "targets": [0] },
-                        { "width": "10%", "targets": [1, 3, 4, 5] },
+                        { "width": "10%", "targets": [1, 2, 3, 4, 5] },
                     ],
 
                     // Allows you to scroll right and left if text is to long
-                    scrollX: "700px",
+                    scrollX: true,
                     scrollCollapse: true,
 
                     // Order by asc/desc
@@ -205,8 +245,8 @@
 
                     // Show entries length
                     lengthMenu: [
-                        [10, 20, 30, -1],
-                        [10, 20, 30, "All"]
+                        [10, 20, 30, 40, 50],
+                        [10, 20, 30, 40, 50]
                     ],
 
                     // Position of control elements

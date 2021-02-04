@@ -60,10 +60,12 @@ class TicketController extends Controller
         // Sets current language to $locale
         $locale = Config::get('app.locale');
 
+        $user_closedBy = User::all();
+
         // Sets locale for all data types (php)
         setlocale(LC_ALL, $locale . '_utf8');
 
-        return view('adminlte.admin.view-tickets', compact('ticket', 'hashids'));
+        return view('adminlte.admin.view-tickets', compact('ticket', 'hashids', 'user_closedBy'));
     }
 
     /**
@@ -97,8 +99,25 @@ class TicketController extends Controller
      * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function userStoreTicket(UserTicketCreateRequest $request, AppMailer $mailer)
+    public function userStoreTicket(UserTicketCreateRequest $request)
     {
+        // Priorities based on category
+        switch ($request->category)
+        {
+            case "1":
+                $priority = 'Low';
+                break;
+            case "2":
+                $priority = 'Medium';
+                break;
+            case "3":
+                $priority = 'High';
+                break;
+            case "4":
+                $priority = 'Low';
+                break;
+        }
+
         // Removes _ from string
         $action = str_replace('_', ' ', $request->action);
 
@@ -111,7 +130,7 @@ class TicketController extends Controller
             'user_id' => Auth::user()->id,
             'ticket_id' => $ticketID,
             'category_id' => ucfirst($request->category),
-            'priority' => ucfirst($request->priority),
+            'priority' => $priority,
             'message' => ucfirst($request->message),
             'action' => ucwords($action),
             'status' => ucfirst($request->status)
@@ -123,7 +142,7 @@ class TicketController extends Controller
         // Mail info
         $to = Auth::user()->email;
         $from = ['address' => "info.webcheck@gmail.com", 'name' => __("Ticket Robot")];
-        $subject = __("[Ticket ID: :ticket_id] :ticket_title", ['ticket_id' => $ticket->ticket_id, 'ticket_title' => $ticket->title]);
+        $subject = __("[Ticket ID: #:ticket_id] :ticket_title", ['ticket_id' => $ticket->ticket_id, 'ticket_title' => $ticket->title]);
 
         // Sends ticket information
         MailController::sendTicketInformation($data, $subject, $from, $to, Auth::user(), $ticket);
@@ -188,6 +207,7 @@ class TicketController extends Controller
         // Sets tickets status and action values
         $ticket->status = "Closed";
         $ticket->action = "Solved";
+        $ticket->closed_by = Auth::user()->id;
 
         // Saves changes to ticket
         $ticket->save();
@@ -198,7 +218,7 @@ class TicketController extends Controller
         // Mail info
         $to = $ticketOwner->email;
         $from = ['address' => "info.webcheck@gmail.com", 'name' => __("Ticket Robot")];
-        $subject = __("RE: :ticket_title [Ticket ID: :ticket_id]", ['ticket_title' => $ticket->title, 'ticket_id' => $ticket->ticket_id]);
+        $subject = __("RE: :ticket_title [Ticket ID: #:ticket_id]", ['ticket_title' => $ticket->title, 'ticket_id' => $ticket->ticket_id]);
 
         // Sends ticket status notification
         MailController::sendTicketStatusNotification($subject, $from, $to, $ticketOwner, $ticket, Auth::user());

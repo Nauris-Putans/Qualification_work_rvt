@@ -26,7 +26,6 @@ class UserTicketCreateRequest extends FormRequest
         return [
             'title' => 'required|max:70',
             'category' => 'required',
-            'priority' => 'required',
             'message' => 'required|max:700'
         ];
     }
@@ -41,7 +40,6 @@ class UserTicketCreateRequest extends FormRequest
         return [
             'title.required' => __(':attribute - :action', ['attribute' => __("Title"), 'action' => __("is required!")]),
             'category.required' => __(':attribute - :action', ['attribute' => __("Category"), 'action' => __("is required!")]),
-            'priority.required' => __(':attribute - :action', ['attribute' => __("Priority"), 'action' => __("is required!")]),
             'message.required' => __(':attribute - :action', ['attribute' => __("Message"), 'action' => __("is required!")]),
 
             'title.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Title"), 'amount' => "70"]),

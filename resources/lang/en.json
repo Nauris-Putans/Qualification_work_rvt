@@ -456,6 +456,12 @@
 
     "//////Adminlte admin side roles & permissions section":
     {},
+    "Admin": "Admin",
+    "Developer": "Developer",
+    "Maintainer": "Maintainer",
+    "UserFree": "Free",
+    "UserPro": "Pro",
+    "UserWebmaster": "Webmaster",
     "Add Role": "Add Role",
     "Are you sure to delete this role - :role?": "Are you sure to delete this role - :role?",
     "Assign Permissions to Role": "Assign Permissions to Role",
@@ -492,6 +498,7 @@
 
     "//////Adminlte admin side tickets section":
     {},
+    "Closed by: ": "Closed by: ",
     "Ticket": "Ticket",
     "Tickets": "Tickets",
     "Ticket Owner": "Ticket Owner",
@@ -516,8 +523,8 @@
     "My Tickets": "My Tickets",
     "View Ticket": "View Ticket",
     "Create New Ticket": "Create New Ticket",
-    "The ticket #:ticket_id - :action!": "The ticket #:ticket_id - :action!",
-    "Ticket with ID: #:ticket_id - :action!": "Ticket with ID: #:ticket_id - :action!",
+    "The ticket #:ticket_id - :action": "The ticket #:ticket_id - :action",
+    "Ticket with ID: #:ticket_id - :action": "Ticket with ID: #:ticket_id - :action",
 
     "//////Adminlte admin side account settings section":
     {},

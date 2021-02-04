@@ -1,7 +1,7 @@
 @component('mail::message')
 # {{ __("Hello :ticket_owner!", ['ticket_owner' => ucwords($ticketOwner->name)]) }}
 
-{{ __("Your ticket with ID #:ticket_id has been marked resolved and closed by: :role_display_name", ['ticket_id' => $ticket->ticket_id, 'role_display_name' => $user->roles[0]->display_name]) }}
+{{ __("Your ticket with ID #:ticket_id has been marked resolved and closed by: :role_display_name", ['ticket_id' => $ticket->ticket_id, 'role_display_name' => __($user->roles[0]->display_name)]) }}
 
 @component('mail::button', ['url' => url('user/support/tickets/'. $hashids->encode($ticket->id)), 'color' => 'orange'])
 {{ __('Your Ticket') }}

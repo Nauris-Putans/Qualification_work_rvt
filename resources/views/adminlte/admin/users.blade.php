@@ -77,18 +77,18 @@
                     ],
 
                     // Allows you to scroll right and left if text is to long
-                    scrollX: "700px",
+                    scrollX: true,
                     scrollCollapse: true,
 
                     // Order by asc/desc
                     order: [
-                        [ 0, "asc" ]
+                        [ 0, "desc" ]
                     ],
 
                     // Show entries length
                     lengthMenu: [
-                        [10, 20, 30, -1],
-                        [10, 20, 30, @json( __("All") )]
+                        [10, 20, 30, 40, 50],
+                        [10, 20, 30, 40, 50]
                     ],
 
                     // Position of control elements

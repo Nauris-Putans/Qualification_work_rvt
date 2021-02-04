@@ -1,7 +1,7 @@
 @component('mail::message')
 # {{ __("Hello :ticket_owner!", ['ticket_owner' => ucwords($ticketOwner->name)]) }}
 
-{{ __("You got replied by: :role_display_name", ['role_display_name' => $user->roles[0]->display_name]) }}<br>
+{{ __("You got replied by: :role_display_name", ['role_display_name' => __($user->roles[0]->display_name)]) }}<br>
 
 @component('mail::button', ['url' => url('user/support/tickets/'. $hashids->encode($ticket->id)), 'color' => 'orange'])
 {{ __('Your Ticket') }}

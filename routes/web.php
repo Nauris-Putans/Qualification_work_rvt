@@ -116,6 +116,8 @@ Route::middleware(['role:' . $userAdminSide])->group( function()
     Route::get('/user/support/tickets/create', ['as' => 'user.support.tickets.create', 'uses' => 'TicketController@userCreateTicket']);
     Route::post('/user/support/tickets/create', ['as' => 'user.support.tickets.create', 'uses' => 'TicketController@userStoreTicket']);
     Route::get('/user/support/tickets/{ticket_id}', ['as' => 'user.support.ticket', 'uses' => 'TicketController@userShowTicket']);
+    Route::post('/user/support/tickets/close_ticket/{id}', ['as' => 'user.support.ticket.close', 'uses' => 'TicketController@close']);
+    Route::delete('/user/support/tickets/{id}', ['as' => 'user.support.ticket.destroy', 'uses' => 'TicketController@destroy']);
     Route::post('/user/support/tickets/{ticket_id}/comment', 'CommentsController@postComment');
 
     // This link will add session of language when they click to change language

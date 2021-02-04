@@ -456,6 +456,12 @@
 
     "//////Adminlte admin side roles & permissions section":
     {},
+    "Admin": "Админ",
+    "Developer": "Разработчик",
+    "Maintainer": "Сопровождающий",
+    "UserFree": "Free",
+    "UserPro": "Pro",
+    "UserWebmaster": "Webmaster",
     "Add Role": "Добавить роль",
     "Are you sure to delete this role - :role?": "Вы уверены, что удалите эту роль - :role?",
     "Assign Permissions to Role": "Назначьте разрешения для роли",
@@ -492,6 +498,7 @@
 
     "//////Adminlte admin side tickets section":
     {},
+    "Closed by: ": "Закрыт: ",
     "Answered": "Ответил",
     "Are you sure to close this ticket with ID: #:ticket_id - :ticket_title?": "Вы уверены, что закроете этот тикет с ID: #:ticket_id - :ticket_title?",
     "Are you sure to delete this ticket with ID: #:ticket_id - :ticket_title?": "Вы уверены, что хотите удалить этот билет с ID: #:ticket_id - :ticket_title?",

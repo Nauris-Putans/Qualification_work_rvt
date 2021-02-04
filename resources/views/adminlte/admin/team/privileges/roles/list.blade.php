@@ -40,7 +40,7 @@
                             <tr>
                                 <td>{{ $role->id }}</td>
                                 <td>{{ $role->name }}</td>
-                                <td>{{ $role->display_name }}</td>
+                                <td>{{ __($role->display_name) }}</td>
                                 <td>{{ $role->description }}</td>
                                 <td class="text-center">
                                     <div class="container">
@@ -111,7 +111,7 @@
                     ],
 
                     // Allows you to scroll right and left if text is to long
-                    scrollX: "700px",
+                    scrollX: true,
                     scrollCollapse: true,
 
                     // Order by asc/desc
@@ -121,8 +121,8 @@
 
                     // Show entries length
                     lengthMenu: [
-                        [10, 20, 30, -1],
-                        [10, 20, 30, @json( __("All") )]
+                        [10, 20, 30, 40, 50],
+                        [10, 20, 30, 40, 50]
                     ],
 
                     // Position of control elements

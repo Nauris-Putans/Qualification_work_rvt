@@ -325,7 +325,7 @@
     ":price /month": ":price /mēnesī",
     ":time min monitoring interval": ":time minutes uzraudzības intervāls",
     "At your users control panel you can choose how often your website will be checked. You have the ability to monitor any port or website every 1, 2, 3, 5, 10, 15, 30 and 60 minutes.": "Lietotāju vadības panelī varat izvēlēties, cik bieži jūsu vietne tiks pārbaudīta. Jums ir iespēja uzraudzīt jebkuru portu vai vietni ik pēc 1, 2, 3, 5, 10, 15, 30 un 60 minūtēm.",
-    "BE UPTIME WITH WEBCHECK": "PAVADĪT LAIKU AR WEBCHECK",
+    "BE UPTIME WITH WEBCHECK": "ESI AUGŠUP AR WEBCHECK",
     "Choose a plan": "Izvēlieties plānu",
     "Contact us": "Sazinies ar mums",
     "Email alerts": "E-pasta brīdinājumi",
@@ -456,6 +456,12 @@
 
     "//////Adminlte admin side roles & permissions section":
     {},
+    "Admin": "Administrators",
+    "Developer": "Izstrādātājs",
+    "Maintainer": "Uzturētājs",
+    "UserFree": "Free",
+    "UserPro": "Pro",
+    "UserWebmaster": "Webmaster",
     "Add Role": "Pievienot lomu",
     "Are you sure to delete this role - :role?": "Vai tiešām izdzēsīsit šo lomu - :role?",
     "Assign Permissions to Role": "Piešķirt atļaujas lomai",
@@ -492,6 +498,7 @@
 
     "//////Adminlte admin side tickets section":
     {},
+    "Closed by: ": "Noslēdza: ",
     "Ticket": "Biļete",
     "Tickets": "Biļetes",
     "Ticket Owner": "Biļešu īpašnieks",
@@ -516,8 +523,8 @@
     "My Tickets": "Manas biļetes",
     "View Ticket": "Skatīt biļeti",
     "Create New Ticket": "Izveidot jaunu biļeti",
-    "The ticket #:ticket_id - :action!": "Biļetes Nr. #:ticket_id :action!",
-    "Ticket with ID: #:ticket_id - :action!": "Biļete ar ID: #:ticket_id :action!",
+    "The ticket #:ticket_id - :action": "Biļetes Nr. #:ticket_id :action",
+    "Ticket with ID: #:ticket_id - :action": "Biļete ar ID: #:ticket_id :action",
 
     "//////Adminlte admin side account settings section":
     {},
