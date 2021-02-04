@@ -8,7 +8,7 @@
             </h1>
 
             <div class="titleDecr">
-                {!! __("Monitoring services that allows you to <br> check about your website statistics -<br> Ping, Port, Response time, SSL<br> Certification Check and much more") !!}
+                {!! __("Monitoring services that allows you to <br> check about your website statistics -<br> Port, Response time, SSL<br> Certification check and much more") !!}
             </div>
 
             <a type="button" class="btn btn-orange" style="margin-top: 90px;">
