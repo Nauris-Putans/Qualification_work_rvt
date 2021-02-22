@@ -32,7 +32,7 @@ class PersonalInfoRequest extends FormRequest
             'email_address' => 'required|email:rfc,dns|unique:users,email,' . Auth::id(),
             'phone_without_mask' => 'nullable|min:6|max:13',
             'gender' => 'nullable',
-            'birthday' => 'nullable|date_format:d/m/Y|before:today',
+            'birthday' => 'nullable|date_format:d/m/Y|before:today|after:01/01/1940',
             'country' => 'nullable',
             'city' => 'nullable|max:50',
         ];
@@ -57,6 +57,7 @@ class PersonalInfoRequest extends FormRequest
 
             'birthday.date_format' => __(':attribute date should be :date_format format!', ['attribute' => __("Birthday"), 'date_format' => "d/m/Y"]),
             'birthday.before' => __(':attribute must be a date before :day', ['attribute' => __("Birthday"), 'day' => __("today") . "!"]),
+            'birthday.after' => __(':attribute must be a date after :day', ['attribute' => __("Birthday"), 'day' => __("01/01/1940") . "!"]),
 
             'city.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Cities name"), 'amount' => "50"]),
         ];

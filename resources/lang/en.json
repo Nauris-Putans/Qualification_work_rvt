@@ -286,7 +286,7 @@
     ":attribute date should be :date_format format!": ":attribute date should be :date_format format!",
     ":attribute format :action!": ":attribute format :action!",
     ":attribute may not be greater than :amount kilobytes!": ":attribute may not be greater than :amount kilobytes!",
-    ":attribute must be a date before :day!": ":attribute must be a date before :day!",
+    ":attribute must be a date before :day": ":attribute must be a date before :day",
     ":attribute must be a file of type: :image_types": ":attribute must be a file of type: :image_types",
     ":attribute must be an image!": ":attribute must be an image!",
     ":attribute should not be greater than :amount chars!": ":attribute should not be greater than :amount chars!",
@@ -296,6 +296,7 @@
     "Select :attribute": "Select :attribute",
     "Column - :attribute": "Column - :attribute",
     "Change :attribute here": "Change :attribute here",
+    ":attribute must be a date after :day": ":attribute must be a date after :day",
 
     "//////Navbar":
     {},

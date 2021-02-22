@@ -286,7 +286,7 @@
     ":attribute date should be :date_format format!": ":attribute datumam jābūt :date_format formātā!",
     ":attribute format :action!": ":attribute formāts :action!",
     ":attribute may not be greater than :amount kilobytes!": ":attribute nedrīkst būt lielāks par :amount kilobaitiem!",
-    ":attribute must be a date before :day!": ":attribute jābūt datumam pirms :day!",
+    ":attribute must be a date before :day": ":attribute jābūt datumam pirms :day",
     ":attribute must be a file of type: :image_types": ":attribute jābūt faila tipam: :image_types",
     ":attribute must be an image!": ":attribute jābūt attēlam!",
     ":attribute should not be greater than :amount chars!": ":attribute nedrīkst būt lielāks par :amount rakstzīmēm!",
@@ -296,6 +296,7 @@
     "Select :attribute": "Atlasiet :attribute",
     "Column - :attribute": "Kolonna - :attribute",
     "Change :attribute here": "Mainiet :attribute šeit",
+    ":attribute must be a date after :day": ":attribute jābūt datumam pēc :day",
 
     "//////Navbar":
     {},

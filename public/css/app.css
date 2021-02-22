@@ -13308,6 +13308,12 @@ a.text-dark:focus {
   position: absolute;
 }
 
+.Faq a:hover {
+  color: white;
+  background-color: #a75900;
+  border-color: #a75900;
+}
+
 .Faq .collapsible {
   background-color: #cb6b06;
   color: white;

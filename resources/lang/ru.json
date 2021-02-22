@@ -286,7 +286,7 @@
     ":attribute date should be :date_format format!": ":attribute дата должна быть в формате :date_format!",
     ":attribute format :action!": ":attribute формат :action!",
     ":attribute may not be greater than :amount kilobytes!": ":attribute не должно быть больше чем :amount килобайт!",
-    ":attribute must be a date before :day!": ":attribute должен быть датирован раньше :day!",
+    ":attribute must be a date before :day": ":attribute должен быть датирован раньше :day",
     ":attribute must be a file of type: :image_types": ":attribute jдолжен быть тип файла: :image_types",
     ":attribute must be an image!": ":attribute должно быть изображение!",
     ":attribute should not be greater than :amount chars!": ":attribute не должно быть больше чем :amount символов!",
@@ -296,6 +296,7 @@
     "Select :attribute": "Выбрать :attribute",
     "Column - :attribute": "Колонка - :attribute",
     "Change :attribute here": "Изменить :attribute здесь",
+    ":attribute must be a date after :day": ":attribute должна быть датой после :day",
 
     "//////Navbar":
     {},

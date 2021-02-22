@@ -157,7 +157,7 @@ class SettingsAdminController extends Controller
             $name = Str::slug($user->name).'_'.time();
 
             // Define folder path
-            $folder = '/uploads/profile_images/';
+            $folder = '/storage/uploads/profile_images/';
 
             // Make a file path where image will be stored [ folder path + file name + file extension]
             $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();

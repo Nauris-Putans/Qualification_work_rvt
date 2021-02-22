@@ -197,6 +197,7 @@
 
 @section('js')
     <script>
+
         // Close and delete action script for tickets
         $(document).ready(function () {
             $('.close-action').click(function (e) {
@@ -260,7 +261,7 @@
                         't' +
                         '<"row"' +
                         '<"col-sm-12 col-md-6"i>' +
-                        '<"col-sm-12 col-md-6"p>' +
+                        '<"col-sm-12 col-md-6 mt-2"p>' +
                         '>'
                     ,
 

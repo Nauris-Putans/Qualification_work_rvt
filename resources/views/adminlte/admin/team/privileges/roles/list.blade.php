@@ -48,13 +48,13 @@
                                             <i class="fas fa-eye mr-1"></i>
                                             {{ __('View') }}</a>
 
-                                        @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin')
+                                        @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin' && $role->name != 'member' && $role->name != 'developer' && $role->name != 'maintainer')
                                             <a class="btn btn-info mr-1" href="{{ URL::route('admin.roles.edit', [$hashids->encode($role->id)]) }}" role="button">
                                                 <i class="fas fa-pencil-alt mr-1"></i>
                                                 {{ __('Edit') }}</a>
                                         @endif
 
-                                        @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin')
+                                        @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin' && $role->name != 'member' && $role->name != 'developer' && $role->name != 'maintainer')
                                             <a href="#" class="btn btn-danger delete-action">
                                                 <i class="fas fa-trash mr-1"></i>
                                                 {{ __('Delete') }}
@@ -134,7 +134,7 @@
                         't' +
                         '<"row"' +
                         '<"col-sm-12 col-md-6"i>' +
-                        '<"col-sm-12 col-md-6"p>' +
+                        '<"col-sm-12 col-md-6 mt-2"p>' +
                         '>'
                     ,
 

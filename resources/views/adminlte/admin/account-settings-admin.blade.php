@@ -212,7 +212,7 @@
 
             // Datepicker for birthday
             $('.datepicker').datepicker({
-                language: locale
+                language: locale,
             });
         });
 

@@ -37,29 +37,6 @@
                 </p>
             </div>
 
-            {{-- <button type="button" class="collapsible">
-                {{ __("What can you get from pro version?") }}
-            </button>
-
-            <div class="content">
-                <p>
-                    {{ __("From 10€ per month you will be able to use a maximum offer of our website.
-                    If your accont goes down or there will be any errors on it, you will get notification  your phone and e-mail.
-                    You will have an opportunity to check 50 monitors at the same time. Checking time will be just 1 minute instead of 5.
-                    Also there will be available to see all your webstie history for unlimited time.  Finally your page will be checked for SSL certification and will have a status page option.") }}
-                </p>
-            </div> --}}
-
-            {{-- <button type="button" class="collapsible">
-                {{ __("What should I do if my website goes down?") }}
-            </button>
-
-            <div class="content">
-                <p>
-                    {{ __("If you will notice, that your website has error or it is not working correctly, you can contact us and we will help you to solve this problem.") }}
-                </p>
-            </div> --}}
-
             <button type="button" class="collapsible">
                 {{ __("Do I need to download any programs to check my website?") }}
             </button>
@@ -70,15 +47,15 @@
                 </p>
             </div>
 
-            {{-- <button type="button" class="collapsible">
-                {{ __("Do I need to have e-mail or sms alerts?") }}
-            </button>
+            <div class="container" style="text-align: center;">
+                <h2 class="mt-5 fade-in align-self-center text-center text-md-center text-white font-weight-bold text-shadow">
+                    {{ __("Have unanswered questions?") }}
+                </h2>
 
-            <div class="content">
-                <p>
-                    {{ __("If your monitors will have any alerts or errors, than you will receive notification on your email or mobile phone.") }}
-                </p>
-            </div> --}}
+                <a href="{{ route('contacts') }}" type="button" class="mt-2 btn btn-orange">
+                    {{ __("Contact us") }}
+                </a>
+            </div>
         </div>
     </section>
 

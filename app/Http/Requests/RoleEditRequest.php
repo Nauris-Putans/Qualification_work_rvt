@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RoleEditRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class RoleEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'roleName' => 'required|unique:roles,name|max:50',
+            'roleName' => 'required|max:50|unique:role_user,user_id',
             'roleDisplayName' => 'max:50',
             'roleDesc' => 'max:100',
         ];
