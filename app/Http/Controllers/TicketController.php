@@ -186,10 +186,12 @@ class TicketController extends Controller
         // Sets current language to $locale
         $locale = Config::get('app.locale');
 
+        $user_closedBy = User::all();
+
         // Sets locale for all data types (php)
         setlocale(LC_ALL, $locale . '_utf8');
 
-        return view('adminlte.user_admin.support.support-ticket-show', compact('ticket', 'hashids'));
+        return view('adminlte.user_admin.support.support-ticket-show', compact('ticket', 'hashids', 'user_closedBy'));
     }
 
     /**
@@ -215,13 +217,16 @@ class TicketController extends Controller
         // Sets ticket owner from $ticket->user
         $ticketOwner = $ticket->user;
 
-        // Mail info
-        $to = $ticketOwner->email;
-        $from = ['address' => "info.webcheck@gmail.com", 'name' => __("Ticket Robot")];
-        $subject = __("RE: :ticket_title [Ticket ID: #:ticket_id]", ['ticket_title' => $ticket->title, 'ticket_id' => $ticket->ticket_id]);
+        if ($ticketOwner->id !== Auth::user()->id)
+        {
+            // Mail info
+            $to = $ticketOwner->email;
+            $from = ['address' => "info.webcheck@gmail.com", 'name' => __("Ticket Robot")];
+            $subject = __("RE: :ticket_title [Ticket ID: #:ticket_id]", ['ticket_title' => $ticket->title, 'ticket_id' => $ticket->ticket_id]);
 
-        // Sends ticket status notification
-        MailController::sendTicketStatusNotification($subject, $from, $to, $ticketOwner, $ticket, Auth::user());
+            // Sends ticket status notification
+            MailController::sendTicketStatusNotification($subject, $from, $to, $ticketOwner, $ticket, Auth::user());
+        }
 
         return redirect()->back()->with('message', __("The ticket #:ticket_id - :action", ['ticket_id' => $ticket->ticket_id, 'action' => __("has been resolved and closed!")]));
     }

@@ -499,6 +499,7 @@
 
     "//////Adminlte admin side tickets section":
     {},
+    "You": "Ты",
     "Closed by: ": "Закрыт: ",
     "Answered": "Ответил",
     "Are you sure to close this ticket with ID: #:ticket_id - :ticket_title?": "Вы уверены, что закроете этот тикет с ID: #:ticket_id - :ticket_title?",

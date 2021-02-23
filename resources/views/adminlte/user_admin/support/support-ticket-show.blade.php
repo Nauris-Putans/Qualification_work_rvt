@@ -52,9 +52,26 @@
                             @endif
                         </p>
 
-                        <p class="ml-2 mb-4">
-                            <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
-                        </p>
+                        @if ($ticket->status === 'Closed')
+                            <p class="ml-2 mb-1">
+                                <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
+                            </p>
+
+                            @if ($user_closedBy[$ticket->closed_by - 1]->id === $ticket->user_id)
+                                <p class="ml-2 mb-4">
+                                    <strong>{{ __('Closed by: ') }}</strong> {{ __("You") }}
+                                </p>
+                            @else
+                                <p class="ml-2 mb-4">
+                                    <strong>{{ __('Closed by: ') }}</strong> {{ __($user_closedBy[$ticket->closed_by - 1]->roles[0]->display_name) }}
+                                </p>
+                            @endif
+                        @else
+                            <p class="ml-2 mb-4">
+                                <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
+                            </p>
+                        @endif
+
                     </div>
 
                     <div class="card card-primary direct-chat direct-chat-primary direct-chat-contacts-open">

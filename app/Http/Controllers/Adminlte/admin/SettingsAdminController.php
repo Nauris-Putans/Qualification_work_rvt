@@ -68,7 +68,7 @@ class SettingsAdminController extends Controller
             'country' => !empty($countryName->id) ? $countryName->id : null,
             'city' => !empty(ucfirst($request->city)) ? ucfirst($request->city) : null,
             'gender' => !empty(ucfirst($request->gender)) ? ucfirst($request->gender) : $request->gender_old,
-            'birthday' => !empty($birthday) ? $birthday : null,
+            'birthday' => !empty($birthday) ? $birthday : $request->birthday_old,
         ];
 
         // Updates user with $data values

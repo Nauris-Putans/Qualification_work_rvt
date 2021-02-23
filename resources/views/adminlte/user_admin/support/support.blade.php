@@ -197,11 +197,11 @@
 
 @section('js')
     <script>
-
+        
         // Close and delete action script for tickets
         $(document).ready(function () {
             $('.close-action').click(function (e) {
-                if (confirm("<?php echo __('Are you sure to close this ticket with ID: #:ticket_id - :ticket_title?', ['ticket_id' => $ticket->ticket_id, 'ticket_title' => $ticket->title])?>")) {
+                if (confirm("<?php echo __('Are you sure to close this ticket?') ?>")) {
                     $(this).siblings('form').submit();
                 }
 
@@ -209,7 +209,7 @@
             });
 
             $('.delete-action').click(function (e) {
-                if (confirm("<?php echo __('Are you sure to delete this ticket with ID: #:ticket_id - :ticket_title?', ['ticket_id' => $ticket->ticket_id, 'ticket_title' => $ticket->title])?>")) {
+                if (confirm("<?php echo __('Are you sure to delete this ticket?') ?>")) {
                     $(this).siblings('form').submit();
                 }
 

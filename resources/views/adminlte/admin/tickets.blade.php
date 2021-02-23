@@ -221,12 +221,12 @@
                                                 {{ __('View') }}
                                             </a>
 
-                                            <a href="#" class="btn btn-danger delete-action">
+                                            {{-- <a href="#" class="btn btn-danger delete-action">
                                                 <i class="fas fa-trash mr-1"></i>
                                                 {{ __('Delete') }}
                                             </a>
                                             {{ Form::open(['url' => route('admin.tickets.destroy', [$hashids->encode($ticket->id)]), 'method' => 'delete']) }}
-                                            {{ Form::close() }}
+                                            {{ Form::close() }} --}}
                                         @endif
                                     </div>
                                 </td>
@@ -250,7 +250,7 @@
         // Close and delete action script for tickets
         $(document).ready(function () {
             $('.close-action').click(function (e) {
-                if (confirm("<?php echo __('Are you sure to close this ticket with ID: #:ticket_id - :ticket_title?', ['ticket_id' => $ticket->ticket_id, 'ticket_title' => $ticket->title])?>")) {
+                if (confirm("<?php echo __('Are you sure to close this ticket?') ?>")) {
                     $(this).siblings('form').submit();
                 }
 
@@ -258,7 +258,7 @@
             });
 
             $('.delete-action').click(function (e) {
-                if (confirm("<?php echo __('Are you sure to delete this ticket with ID: #:ticket_id - :ticket_title?', ['ticket_id' => $ticket->ticket_id, 'ticket_title' => $ticket->title])?>")) {
+                if (confirm("<?php echo __('Are you sure to delete this ticket?') ?>")) {
                     $(this).siblings('form').submit();
                 }
 
