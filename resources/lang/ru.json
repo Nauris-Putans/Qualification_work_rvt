@@ -394,6 +394,12 @@
     "Why our monitoring service is the unique?": "Чем уникальна наша служба мониторинга?",
     "Why should I use monitoring service?": "Почему я должен использовать сервис мониторинга?",
     "You don’t have to download anything, because our monitoring service is working online on the web. There is two things, that you need - browser and internet.": "Вам не нужно ничего скачивать, потому что наша служба мониторинга работает онлайн в сети. Вам понадобятся две вещи - браузер и интернет.",
+    "How much do I need to pay?": "Сколько мне нужно заплатить?",
+    "A fixed price is set depending on your subscription plan. Each month you pay same price.": "Фиксированная цена устанавливается в зависимости от вашего плана подписки. Каждый месяц вы платите одинаковую цену.",
+    "How can I cancel my subscription plan?": "Как я могу отменить подписку?",
+    "You can cancel your subscription plan in account settings.": "Вы можете отказаться от подписки в настройках учетной записи.",
+    "How can I upgrade my subscription plan?": "Как я могу обновить свой план подписки?",
+    "You can upgrade your subscription plan in account settings.": "Вы можете обновить план подписки в настройках учетной записи.",
 
     "//////Authentication":
     {},

@@ -394,6 +394,12 @@
     "Why our monitoring service is the unique?": "Kāpēc mūsu uzraudzības pakalpojums ir unikāls?",
     "Why should I use monitoring service?": "Kāpēc man tas būtu jālieto?",
     "You don’t have to download anything, because our monitoring service is working online on the web. There is two things, that you need - browser and internet.": "Jums nekas nav jālejupielādē, jo mūsu uzraudzības pakalpojums darbojas tiešsaistē tīmeklī. Jums ir nepieciešamas divas lietas - pārlūks un internets.",
+    "How much do I need to pay?": "Cik man jāmaksā?",
+    "A fixed price is set depending on your subscription plan. Each month you pay same price.": "Fiksēta cena tiek noteikta atkarībā no jūsu abonēšanas plāna. Katru mēnesi jūs maksājat tādu pašu cenu.",
+    "How can I cancel my subscription plan?": "Kā es varu atcelt savu abonēšanas plānu?",
+    "You can cancel your subscription plan in account settings.": "Abonēšanas plānu varat atcelt konta iestatījumos.",
+    "How can I upgrade my subscription plan?": "Kā es varu uzlabot savu abonēšanas plānu?",
+    "You can upgrade your subscription plan in account settings.": "Abonēšanas plānu varat jaunināt konta iestatījumos.",
 
     "//////Authentication":
     {},

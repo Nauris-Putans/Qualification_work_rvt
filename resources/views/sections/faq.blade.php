@@ -47,6 +47,36 @@
                 </p>
             </div>
 
+            <button type="button" class="collapsible">
+                {{ __("How much do I need to pay?") }}
+            </button>
+
+            <div class="content">
+                <p>
+                    {{ __("A fixed price is set depending on your subscription plan. Each month you pay same price.") }}
+                </p>
+            </div>
+
+            <button type="button" class="collapsible">
+                {{ __("How can I cancel my subscription plan?") }}
+            </button>
+
+            <div class="content">
+                <p>
+                    {{ __("You can cancel your subscription plan in account settings.") }}
+                </p>
+            </div>
+
+            <button type="button" class="collapsible">
+                {{ __("How can I upgrade my subscription plan?") }}
+            </button>
+
+            <div class="content">
+                <p>
+                    {{ __("You can upgrade your subscription plan in account settings.") }}
+                </p>
+            </div>
+
             <div class="container" style="text-align: center;">
                 <h2 class="mt-5 fade-in align-self-center text-center text-md-center text-white font-weight-bold text-shadow">
                     {{ __("Have unanswered questions?") }}
