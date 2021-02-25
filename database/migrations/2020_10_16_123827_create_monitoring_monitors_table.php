@@ -25,15 +25,25 @@ class CreateMonitoringMonitorsTable extends Migration
             $table->primary("application_id");
         });
 
+        Schema::create('monitoring_monitor_type', function (Blueprint $table) {
+            $table->unsignedBigInteger('monitor_type_id');
+            $table->string("monitor_type");
+
+            $table->primary("monitor_type_id");
+        });
+
         Schema::create('monitoring_items', function (Blueprint $table) {
             $table->unsignedBigInteger('item_id');
             $table->string("check_address");
             $table->unsignedBigInteger("check_type");
+            $table->unsignedBigInteger("monitor_type");
             $table->unsignedBigInteger("application");
 
             $table->primary("item_id");
 
             $table->foreign('check_type')->references('id')->on('monitoring_check_types')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('monitor_type')->references('monitor_type_id')->on('monitoring_monitor_type')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('application')->references('application_id')->on('monitoring_applications')
                 ->onUpdate('cascade')->onDelete('cascade');
@@ -86,12 +96,20 @@ class CreateMonitoringMonitorsTable extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
+        Schema::create('monitoring_status', function (Blueprint $table) {
+            $table->unsignedBigInteger('status_id');
+            $table->string("status_name");
+
+            $table->primary("status_id");
+        });
+
         Schema::create('monitoring_monitors', function (Blueprint $table) {
             $table->id();
             $table->string('friendly_name');
             $table->string('user_group');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('item');
+            $table->unsignedBigInteger('status');
 
             $table->timestamps();
 
@@ -100,6 +118,8 @@ class CreateMonitoringMonitorsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('item')->references('item_id')->on('monitoring_items')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('status')->references('status_id')->on('monitoring_status')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 

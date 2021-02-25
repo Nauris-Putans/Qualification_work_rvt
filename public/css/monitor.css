@@ -1,0 +1,971 @@
+@charset "UTF-8";
+
+.add-monitor {
+  text-align: center;
+  align-items: center;
+  padding-bottom: 30px;
+  /* The toggle switch - the box around the slider */
+  /* Hide default HTML checkbox */
+  /* The slider */
+  /* Rounded sliders */
+}
+
+.add-monitor__header-title {
+  color: black;
+  text-align: center;
+}
+
+.add-monitor__items-wrapper {
+  margin-top: 30px;
+  min-height: 200px;
+  padding-left: 20px;
+  text-align: left;
+  background-color: #f4f6f9;
+}
+
+.add-monitor__items-wrapper .header {
+  text-align: center;
+}
+
+.add-monitor__items-wrapper .header__title {
+  font-size: 20px;
+  color: black;
+}
+
+.add-monitor__items-wrapper .header__line {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 15%;
+  height: 2px;
+  background-color: #CA6D00;
+  border-radius: 3px;
+}
+
+.add-monitor__items-wrapper .item-title {
+  text-align: left;
+  color: black;
+}
+
+.add-monitor__items-wrapper .item-title span {
+  color: red;
+}
+
+.add-monitor__items-wrapper .settings-wrapper {
+  margin-top: 3px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.add-monitor__items-wrapper .settings-wrapper__toggle-switch {
+  width: 10%;
+  min-height: 25px;
+}
+
+.add-monitor__items-wrapper .settings-wrapper__toggle-switch .switch {
+  position: relative;
+  display: inline-block;
+  height: 25px;
+  margin: 0 auto;
+}
+
+.add-monitor__items-wrapper .settings-wrapper__settings-decr {
+  font-size: 12px;
+  color: #4d4d4d;
+}
+
+.add-monitor__items-wrapper .settings-wrapper .userWripper {
+  display: flex;
+  position: relative;
+  width: 100px;
+  height: 25px;
+  margin-right: 10px;
+  margin-top: 5px;
+  background-color: gray;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: white;
+  border-radius: 15px;
+}
+
+.add-monitor__items-wrapper .settings-wrapper .userWripper__userType {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30%;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+  border-radius: 15px;
+  border: 1px solid gray;
+}
+
+.add-monitor__items-wrapper .settings-wrapper .userWripper__delete {
+  display: flex;
+  position: absolute;
+  right: -6px;
+  top: -4px;
+  width: 8%;
+  height: 10px;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  cursor: pointer;
+}
+
+.add-monitor__btn-add {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.add-monitor .box {
+  position: relative;
+}
+
+.add-monitor .box select {
+  outline: none;
+}
+
+.add-monitor .box select {
+  color: black;
+  padding: 2px;
+  width: 120px;
+  height: 25px;
+  border: 1px solid #CA6D00;
+  font-size: 13px;
+  -webkit-appearance: button;
+}
+
+.add-monitor .box:before {
+  content: "\F358";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  color: #ffffff;
+  font-size: 14px;
+  background: #e09900;
+  border: none;
+  pointer-events: none;
+}
+
+.add-monitor .input-large {
+  width: 180px;
+  font-size: 12px;
+  background-color: #f4f6f9;
+  border: none;
+  border-bottom: 1px solid #585858;
+  outline: none;
+}
+
+.add-monitor .input-large:focus {
+  border: 1px solid #CA6D00;
+}
+
+.add-monitor .input-small {
+  width: 25%;
+  font-size: 12px;
+  background-color: #f4f6f9;
+  border: none;
+  border-bottom: 1px solid #585858;
+  outline: none;
+}
+
+.add-monitor .input-small:focus {
+  border: 1px solid #CA6D00;
+}
+
+.add-monitor .input-small:last-child {
+  margin-left: 30px;
+}
+
+.add-monitor .input-small_margin30px {
+  margin-left: 30px;
+}
+
+.add-monitor .slidecontainer_interval {
+  margin: 0 15px;
+  width: 20%;
+}
+
+.add-monitor .slidecontainer_apdex {
+  margin: 0 15px 0 0;
+  width: 35%;
+}
+
+.add-monitor .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #CA6D00 0%, #d6d6d6 0%);
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.add-monitor .slider_apdex {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #CA6D00;
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.add-monitor .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f4f6f9;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.add-monitor .slider::-webkit-slider-thumb:hover {
+  width: 15px;
+  height: 15px;
+}
+
+.add-monitor .slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f4f6f9;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.add-monitor p {
+  width: 16%;
+  margin: 0;
+  margin-left: 10px;
+  min-height: 20px;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid #353535;
+  border-radius: 4px;
+  box-shadow: 1px 1px #353535;
+}
+
+.add-monitor .modal-content {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.add-monitor .modal-content .newPersonTitle {
+  text-align: center;
+  font-size: 20px;
+}
+
+.add-monitor .modal-content .modalSeperatorline {
+  display: block;
+  margin: 0 auto;
+  width: 60%;
+  background-color: #CA6D00;
+  height: 3px;
+  border-radius: 2px;
+  margin-top: 10px;
+}
+
+.add-monitor .modal-content .modal-form-wrapper {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.add-monitor .modal-content .btnNewPersonAdd {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 40%;
+  height: 30px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: #CA6D00;
+  outline: none;
+}
+
+.add-monitor .modal-content .ModalLable {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.add-monitor .modal-content .modal-input-form {
+  width: 90%;
+  height: 35px;
+  background-color: white;
+  border: none;
+  border-bottom: 1px solid grey;
+  outline: none;
+}
+
+.add-monitor .modal-content .modal-input-form:focus {
+  outline: 1px solid #CA6D00;
+  border: none;
+}
+
+.add-monitor .fa-trash {
+  margin-left: 10px;
+  transition: 0.4s;
+}
+
+.add-monitor .fa-trash:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.add-monitor #alertSettingsLink {
+  color: #142afd;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.add-monitor #addCustomHeader {
+  color: #142afd;
+  font-size: 12px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.add-monitor #addPersonToAlert {
+  color: #142afd;
+  font-size: 12px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.add-monitor .toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 37px;
+  height: 17px;
+  margin: 0;
+}
+
+.add-monitor .toggle-switch-container {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.add-monitor .toggle-switch .input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.add-monitor .toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.add-monitor .toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+.add-monitor .input:checked + .toggle-slider {
+  background-color: #CA6D00;
+}
+
+.add-monitor .input:focus + .toggle-slider {
+  box-shadow: 0 0 1px #CA6D00;
+}
+
+.add-monitor .input:checked + .toggle-slider:before {
+  transform: translateX(17px);
+}
+
+.add-monitor .toggle-slider.round {
+  border-radius: 34px;
+}
+
+.add-monitor .toggle-slider.round:before {
+  border-radius: 50%;
+}
+
+.add-monitor .popover-header {
+  background-color: #CA6D00;
+}
+
+.upTimeMonitor {
+  /* Style the collapsible content. Note: hidden by default */
+}
+
+.upTimeMonitor .monthLable {
+  width: 100%;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.upTimeMonitor .monthWrapper {
+  padding-bottom: 15px;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 182px;
+}
+
+.upTimeMonitor .weekWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.upTimeMonitor .dayBox {
+  position: relative;
+  background-color: #f8fafc;
+  border-radius: 5px;
+  width: 24px;
+  height: 24px;
+  margin: 0 2px 2px 0;
+}
+
+.upTimeMonitor .content {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  z-index: 99;
+}
+
+.upTimeMonitor .content::hover {
+  display: block;
+}
+
+.upTimeMonitor .content .contentWrapper {
+  width: 125px;
+  background-color: whitesmoke;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1.5px solid green;
+}
+
+.upTimeMonitor .content .contentWrapper_label {
+  text-align: center;
+}
+
+.upTimeMonitor .content .contentWrapper .uptimeNumber {
+  margin-top: 10px;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+}
+
+.upTimeMonitor .content .contentWrapper button {
+  text-align: center;
+  height: 25px;
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  outline: none;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  border: 1px solid green;
+  font-size: 13px;
+}
+
+.upTimeMonitor .allInfoWrapper {
+  border: 2px solid green;
+  border-radius: 5px;
+  min-height: 100px;
+  padding: 10px 0 10px 0;
+}
+
+.upTimeMonitor .chosenDayDateLable {
+  width: 100%;
+  height: 30px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.upTimeMonitor .info-box-content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.upTimeMonitor .info-box-content .easy-pie-chart-box {
+  width: 130px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.upTimeMonitor .info-box-content .easy-pie-chart-box .box {
+  width: 120px;
+}
+
+.response-time #responseTimeInfoBoxes {
+  margin-top: 10px;
+}
+
+.response-time .card-header {
+  background-color: white;
+  border: none;
+  border-top: 2px solid blue;
+}
+
+.response-time .card-header .card-title {
+  margin: 0;
+}
+
+.response-time .time-btn {
+  position: relative;
+  height: calc(1.6em + 0.75rem + 2px);
+  width: 80px;
+  margin: 0;
+  background-color: rgba(0, 0, 255, 0.719);
+  color: white;
+  z-index: 2;
+}
+
+.response-time .time-btn:hover {
+  background-color: blue;
+  color: white;
+}
+
+.response-time .time-content {
+  position: absolute;
+  width: auto;
+  height: 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: height 1s ease;
+  overflow: hidden;
+  top: 36px;
+  z-index: 1;
+}
+
+.response-time .select-time {
+  display: flex;
+  width: auto;
+  height: 122px;
+}
+
+.response-time .time_picker_box {
+  height: 120px;
+  padding: 10px;
+}
+
+.response-time .time_picker_box .label {
+  text-align: center;
+}
+
+.response-time input[type=number]::-webkit-outer-spin-button,
+.response-time input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.response-time input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.response-time .time-picker {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100px;
+  max-width: 200px;
+  height: 70px;
+  padding: 25px 15px;
+  background-color: #fbfbfb;
+  border-radius: 8px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+  color: #53565A;
+  font-size: 42px;
+  font-weight: 700;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.response-time .time-picker .hour,
+.response-time .time-picker .minute {
+  position: relative;
+  max-width: 60px;
+  text-align: center;
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.response-time .time-picker .hour .hr,
+.response-time .time-picker .minute .min {
+  background: none;
+  font-size: 20px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  outline: none;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.response-time .time-picker .hour .hr-up,
+.response-time .time-picker .hour .hr-down,
+.response-time .time-picker .minute .min-up,
+.response-time .time-picker .minute .min-down {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  cursor: pointer;
+}
+
+.response-time .time-picker .hour .hr-up,
+.response-time .time-picker .minute .min-up {
+  top: -10px;
+  border-bottom: 10px solid #AAA;
+}
+
+.response-time .time-picker .hour .hr-down,
+.response-time .time-picker .minute .min-down {
+  bottom: -10px;
+  border-top: 10px solid #AAA;
+}
+
+.response-time .time-picker .hour .hr-up:hover,
+.response-time .time-picker .hour .hr-down:hover,
+.response-time .time-picker .minute .min-up:hover,
+.response-time .time-picker .minute .min-down:hover {
+  border-bottom-color: #53565A;
+  border-top-color: #53565A;
+}
+
+.monitorAdd .monitorAddWrapper {
+  margin-top: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  height: auto;
+  padding: 5px 10px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-header {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-header-first-step:before {
+  border-radius: 0.25rem;
+  background: linear-gradient(90deg, #17a2b8 5%, #dee2e6 5%);
+  bottom: 0;
+  content: "";
+  left: 0;
+  margin: 0;
+  position: absolute;
+  top: 21px;
+  width: 100%;
+  height: 4px;
+  z-index: 1;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-header-secound-step:before {
+  background: linear-gradient(90deg, #17a2b8 27%, #dee2e6 27%);
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-header-third-step:before {
+  background: linear-gradient(90deg, #17a2b8 50%, #dee2e6 50%);
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-header-fourth-step:before {
+  background: linear-gradient(90deg, #17a2b8 75%, #dee2e6 75%);
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-header-last-step:before {
+  background: linear-gradient(90deg, #17a2b8 100%, #dee2e6 100%);
+}
+
+.monitorAdd .monitorAddWrapper .currentStepWrapper {
+  height: 100%;
+  width: 80px;
+}
+
+.monitorAdd .monitorAddWrapper .currentStepWrapper .currentStepBox {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  margin: 4px auto 0 auto;
+  background-color: #c7c7c7;
+  color: white;
+  border-radius: 100%;
+  z-index: 2;
+}
+
+.monitorAdd .monitorAddWrapper .currentStepWrapper .bg-current-step {
+  background-color: #17a2b8;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-bottom: 75px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settings-title {
+  text-align: center;
+  height: 30px;
+  margin: 20px 0 20px 0;
+  width: auto;
+  font-size: 20px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper {
+  margin-top: 20px;
+  min-height: 200px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .slider {
+  width: 100%;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .select-persons-tables-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .persons-tabel {
+  position: relative;
+  width: 300px;
+  min-height: 200px;
+  margin-top: 10px;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .persons-tabel-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: auto;
+  height: 40px;
+  font-size: 16px;
+  text-align: center;
+  border-bottom: 2px solid #17a2b8;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .persons-element-wrapper {
+  width: 100%;
+  height: 200px;
+  overflow-y: auto;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .persons-element-box {
+  display: flex;
+  justify-content: left;
+  margin-top: 5px;
+  padding-left: 5px;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .persons-element-box img {
+  border-radius: 5px;
+  height: 50px;
+  width: auto;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .persons-element-box .person-info-box {
+  margin-left: 10px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .confirmBox {
+  position: relative;
+  min-height: 200px;
+  height: auto;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .confirmBox .decrBox {
+  padding-left: 15px;
+  height: auto;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .confirmBox .decrBox-title {
+  padding-bottom: 5px;
+  width: auto;
+  border-bottom: 1px solid #17a2b8;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .confirmBox .decrBox span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  width: 100px;
+  height: 40px;
+  color: white;
+  background-color: #17a3b8c0;
+  border-radius: 5px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer button:hover {
+  background-color: #17a2b8;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .leftBtn {
+  margin-right: 5px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .leftBtn i {
+  margin-right: 15px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .completeBtn {
+  background-color: #17610596;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .completeBtn:hover {
+  background-color: #176105;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .completeBtn i {
+  margin-left: 15px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .rightBtn {
+  margin-left: 5px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .rightBtn i {
+  margin-left: 15px;
+}
+
+.monitorAdd .monitorAddWrapper .sliderInfoWrapper {
+  position: relative;
+}
+
+.monitorAdd .monitorAddWrapper .sliderInfoWrapper .sliderValue {
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
+
+.monitorAdd .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #17a2b8 0%, #d6d6d6 0%);
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.monitorAdd .slider_apdex {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #CA6D00;
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.monitorAdd .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #17a2b8;
+  cursor: pointer;
+}
+
+.monitorAdd .slider::-webkit-slider-thumb:hover {
+  width: 20px;
+  height: 20px;
+}
+
+.monitorAdd .slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #17a2b8;
+  cursor: pointer;
+}
+
+.monitorAdd .displayNone {
+  display: none;
+}
+

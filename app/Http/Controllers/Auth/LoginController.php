@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -152,6 +153,42 @@ class LoginController extends Controller
     protected function sendLoginResponse(Request $request)
     {
         $request->session()->regenerate();
+
+        //Get user email
+        $userEmail = $request->all()['login_email'];
+
+        //Get current user ID
+        $userId = DB::table('users')
+            ->where('email',$userEmail)
+            ->get('id')
+            ->first()->id;
+
+        //Get user role id
+        $userRole = DB::table('role_user')
+            ->where('user_id',$userId)
+            ->get('role_id')
+            ->first()->role_id;
+ 
+        // If user is userFree, userPro, userWebmaster
+        if($userRole == 1 || $userRole == 2 || $userRole == 3) {
+            //Get user group id
+            $userGroupId = DB::table('monitoring_users_groups')
+            ->where('group_admin_id',$userId)
+            ->get('group_id')
+            ->first()->group_id;
+
+            //Set user group to global variable
+            session(['groupId' => $userGroupId]);
+
+            //Get user's host group's id
+            $hostGroupId = DB::table('monitoring_hosts_groups')
+                ->where('user_group',$userGroupId)
+                ->get('host_group_id')
+                ->first()->host_group_id;
+
+            //Set current user host group's id to global variable
+            session(['hostGroup' => $hostGroupId]);
+        }
 
         $this->clearLoginAttempts($request);
 

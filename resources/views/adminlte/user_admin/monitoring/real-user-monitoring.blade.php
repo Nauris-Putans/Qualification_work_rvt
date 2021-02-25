@@ -1,8 +1,8 @@
 @extends('adminlte::page')
-@section('title', 'Real User Monitoring')
+@section('title', 'Download speed')
 
 @section('content_header')
-    <h1>Monitoring > Download speed</h1>
+    <h1>{{ __('Monitoring')}} > {{ __('Download speed')}}</h1>
 @stop
 
 
@@ -44,9 +44,9 @@
         <div class="col-md-3">
           <label>{{ __('Time') }}</label>
           <div class="input-group">
-            <a class="btn time-btn" id="timeButton">
+            <button class="btn time-btn" id="timeButton">
               <i class="fas fa-clock" style="height: 100%; width: auto;"></i>
-            </a>
+            </button>
             {{-- time settings container --}}
             <div class="time-content" id="timeSelectBox">
               <div class="select-time">
@@ -258,6 +258,7 @@
 
     //Global variables
     let friendlyNameCounter = 0;
+    let currentFriendlyNameSelected = '';
     let checkCounter = 0;
     let endDate = new Date();
     let startDate = new Date(endDate);
@@ -313,7 +314,17 @@
       let weekDayChartBox = document.getElementById("weekdayChartBox");
       let infoAlert = document.getElementById("infoAlert");
 
-      if(newfriendlyNames.length === 0 || Object.keys(newresponseTime).length < 2 ){
+      if(newfriendlyNames.length === 0){
+        $('#checkType').attr('disabled', 'disabled');
+        $('#datePicker').attr('disabled', 'disabled');
+        $('#timeButton').attr('disabled', 'disabled');
+      }else{
+        $('#checkType').removeAttr('disabled');
+        $('#datePicker').removeAttr('disabled');
+        $('#timeButton').removeAttr('disabled');
+      }
+
+      if(Object.keys(newresponseTime).length < 2 ){
         if(responseTimeInfoBoxes.classList.toggle("d-none") === true){
           responseChart.classList.toggle("d-none");
           weekDayChartBox.classList.toggle("d-none");
@@ -322,11 +333,8 @@
           responseTimeInfoBoxes.classList.toggle("d-none");
 
         }
-        if(currentChartType === 0){
-          addOptionsToDropDown(newfriendlyNames, newfriendlyNames[0]);
-        }else{
-          addOptionsToDropDown(newfriendlyNames, currentChartType);
-        }
+
+        addOptionsToDropDown(newfriendlyNames, dropDownVal);
 
       }else{
         if(responseTimeInfoBoxes.classList.toggle("d-none") === true){
@@ -336,7 +344,7 @@
           weekDayChartBox.classList.toggle("d-none");
           infoAlert.classList.toggle("d-none");
         }
-        insertData(newresponseTime,newfriendlyNames,dropDownVal);
+        insertData(newresponseTime,newfriendlyNames, dropDownVal);
       }
     }
 
@@ -347,13 +355,27 @@
         checkItemsIds = <?php echo json_encode($itemsIds); ?>;
 
         currentHistory = checkHistory;
-        optionSelectedId =['item'];
-        optionSelectedId['item'] = checkItemsIds[0]['item'];
-        
-        if(checkFriendlyName != []){
+        optionSelectedId = [];
+
+        if(checkFriendlyName.length != 0){
+          optionSelectedId =['item'];
+          optionSelectedId['item'] = checkItemsIds[0]['item'];
           //Will be set as current value in drop down box
-          let checkLastFriendlyName = checkFriendlyName[0];
+          let checkLastFriendlyName = checkFriendlyName[0].friendly_name;
+          currentFriendlyNameSelected = checkLastFriendlyName;
           userDataCheck(checkHistory,checkFriendlyName,checkLastFriendlyName);
+        }else{
+          $('#checkType').attr('disabled', 'disabled');
+          $('#datePicker').attr('disabled', 'disabled');
+          $('#timeButton').attr('disabled', 'disabled');
+          let weekDayChartBox = document.getElementById('weekdayChartBox');
+          if(responseTimeInfoBoxes.classList.toggle("d-none") === true){
+            responseChart.classList.toggle("d-none");
+            weekDayChartBox.classList.toggle("d-none");
+            infoAlert.classList.toggle("d-none");
+          }else{
+            responseTimeInfoBoxes.classList.toggle("d-none");
+          }
         }
 
     }
@@ -726,7 +748,8 @@
       }
 
       function callController(startDate,endDate,selectedItemId){
-        $.ajax( {
+        if(selectedItemId['item'] != null){
+          $.ajax( {
           type:'POST',
           header:{
           'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
@@ -740,28 +763,27 @@
           startDate: startDate,      
           endDate: endDate,
           }
-
-
-        })
-          .done(function(data) {
-            data = checkTime(data);
-            console.log(data);
-            userDataCheck(data.histories,data.itemsFriendlyName,null);
           })
-          .fail(function() {
-              alert("error");
-          });
+            .done(function(data) {
+              data = checkTime(data);
+  
+              userDataCheck(data.histories,data.itemsFriendlyName,currentFriendlyNameSelected);
+            })
+            .fail(function() {
+                alert(@json( __("error")));
+            });
+          }
       }
 
       //Insert new items to friendly name drop down form
       function addOptionsToDropDown(friendlyNames,dropDownValue){
+
           let dropDownCheckType = document.getElementById('checkType');
           let dropDownCheckTypeValue;
           if(dropDownValue){
-              dropDownCheckTypeValue = dropDownValue.friendly_name;
-          }else{
-              dropDownCheckTypeValue = $("#checkType").val();
+              dropDownCheckTypeValue = dropDownValue;
           }
+
           let dropDownElements =document.getElementsByTagName('option');
 
           $("#checkType option").remove();
@@ -799,6 +821,7 @@
       });
 
       $('#datePicker').on('apply.daterangepicker', function(ev, picker) {
+        currentFriendlyNameSelected = $("#checkType option:checked").text();
         startDate = picker.startDate.format();
         startDate = Math.floor(Date.parse(startDate) / 1000);
         endDate = picker.endDate.format();
@@ -819,6 +842,7 @@
         optionSelectedId = optionSelected.options[optionSelected.selectedIndex].id;
         optionSelectedId = optionSelectedId.replace('option','');
         optionSelectedId = checkItemsIds[optionSelectedId];
+        currentFriendlyNameSelected = $("#checkType option:checked").text();
         callController(startDate,endDate,optionSelectedId);
       });
 
@@ -909,7 +933,6 @@
           minute_change(e,i);
         });
 
-
       }
 
       function hour_change(e,data1){
@@ -955,6 +978,7 @@
           hour[data1] = 0;
         }
         setTime(data1);
+        correctTimeCheck();
       }
 
       function hour_down (data1){
@@ -963,6 +987,7 @@
           hour[data1] = 23;
         }
         setTime(data1);
+        correctTimeCheck();
       }
 
       function minute_up (data1){
@@ -976,6 +1001,7 @@
           }
         }
         setTime(data1);
+        correctTimeCheck();
       }
 
       function minute_down (data1){
@@ -988,6 +1014,7 @@
           }
         }
         setTime(data1);
+        correctTimeCheck();
       }
 
       function setTime(data1){
@@ -997,13 +1024,13 @@
       }
 
       function formatTime(time){
-        if( time < 10){
+        if( time < 10 && time != '00'){
           time = '0' + time;
         }
 
         return time;
       }
-
+      
   });
 </script>
 

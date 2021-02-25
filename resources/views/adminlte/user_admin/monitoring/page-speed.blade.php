@@ -2,7 +2,7 @@
 @section('title', 'Page Speed')
 
 @section('content_header')
-    <h1>Monitoring > Page Speed</h1>
+    <h1> {{ __('Monitoring') }} > {{ __('Page Speed') }}</h1>
 @stop
 
 @section('content')
@@ -43,14 +43,14 @@
         <div class="col-md-3">
           <label>{{ __('Time') }}</label>
           <div class="input-group">
-            <a class="btn time-btn" id="timeButton">
+            <button class="btn time-btn" id="timeButton">
               <i class="fas fa-clock" style="height: 100%; width: auto;"></i>
-            </a>
+            </button>
             {{-- time settings container --}}
             <div class="time-content" id="timeSelectBox">
               <div class="select-time">
                 <div class="time_picker_box">
-                  <div class="label">Start time</div>
+                  <div class="label">{{ __('Start time')}}</div>
                   <div class="time-picker" data-time="00:00">
                     <div class="hour">
                       <div class="hr-up"></div>
@@ -69,7 +69,7 @@
                 </div>
   
                 <div class="time_picker_box">
-                  <div class="label">End time</div>
+                  <div class="label">{{ __('End time')}}</div>
                   <div class="time-picker" data-time="00:00">
                     <div class="hour">
                       <div class="hr-up"></div>
@@ -227,7 +227,7 @@
     <div class="row d-none" id="infoAlert" style="margin-top: 10px">
       <div class="col-md-12">
         <div class="callout callout-warning" style="width: 100%">
-          <h5>Info!</h5>
+          <h5>{{ __("Info!")}}</h5>
 
           <p>{{ __("At the moment, there is no data yet.") }}</p>
         </div>
@@ -246,17 +246,19 @@
 @stop
 
 @section('js')
+{{-- Data picker js --}}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="{{ url('vendor/jquery.min.js') }}"></script>
 
-{{--    <script src="node_modules/chart.js/dist/Chart.bundle.js"></script>--}}
+{{-- Chart js--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
 <script>
   $(function () {  
 
     //Global variables
     let friendlyNameCounter = 0;
+    let currentFriendlyNameSelected = 0;
     let checkCounter = 0;
     let endDate = new Date();
     let startDate = new Date(endDate);
@@ -319,14 +321,12 @@
           infoAlert.classList.toggle("d-none");
         }else{
           responseTimeInfoBoxes.classList.toggle("d-none");
-
         }
 
-        if(currentChartType === 0){
-          addOptionsToDropDown(newfriendlyNames, newfriendlyNames[0]);
-        }else{
-          addOptionsToDropDown(newfriendlyNames, currentChartType);
+        if(newfriendlyNames.length != 0){
+          addOptionsToDropDown(newfriendlyNames, currentFriendlyNameSelected);
         }
+
       }else{
         if(responseTimeInfoBoxes.classList.toggle("d-none") === true){
           responseTimeInfoBoxes.classList.toggle("d-none");
@@ -335,6 +335,7 @@
           weekDayChartBox.classList.toggle("d-none");
           infoAlert.classList.toggle("d-none");
         }
+
         insertData(newresponseTime,newfriendlyNames,dropDownVal);
       }
     }
@@ -346,13 +347,27 @@
         checkItemsIds = <?php echo json_encode($itemsIds); ?>;
 
         currentHistory = checkHistory;
-        optionSelectedId =['item'];
-        optionSelectedId['item'] = checkItemsIds[0]['item'];
-        
-        if(checkFriendlyName != []){
+        optionSelectedId =[];
+ 
+        if(checkFriendlyName.length != 0){
+          optionSelectedId =['item'];
+          optionSelectedId['item'] = checkItemsIds[0]['item'];
           //Will be set as current value in drop down box
-          let checkLastFriendlyName = checkFriendlyName[0];
+          let checkLastFriendlyName = checkFriendlyName[0].friendly_name;
+          currentFriendlyNameSelected = checkLastFriendlyName;
           userDataCheck(checkHistory,checkFriendlyName,checkLastFriendlyName);
+        }else{
+          $('#checkType').attr('disabled', 'disabled');
+          $('#datePicker').attr('disabled', 'disabled');
+          $('#timeButton').attr('disabled', 'disabled');
+          let weekDayChartBox = document.getElementById('weekdayChartBox');
+          if(responseTimeInfoBoxes.classList.toggle("d-none") === true){
+            responseChart.classList.toggle("d-none");
+            weekDayChartBox.classList.toggle("d-none");
+            infoAlert.classList.toggle("d-none");
+          }else{
+            responseTimeInfoBoxes.classList.toggle("d-none");
+          }
         }
 
     }
@@ -725,41 +740,43 @@
       }
 
       function callController(startDate,endDate,selectedItemId){
-        $.ajax( {
-          type:'POST',
-          header:{
-          'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-          },
-          url:"/user/monitoring/page-speed",
-          data:{
-          _token: "{{ csrf_token() }}",
-          dataType: 'json', 
-          contentType:'application/json', 
-          item_id: selectedItemId['item'],
-          startDate: startDate,      
-          endDate: endDate,
-          }
+        if(selectedItemId['item'] != null){
+          $.ajax( {
+            type:'POST',
+            header:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            },
+            url:"/user/monitoring/page-speed",
+            data:{
+            _token: "{{ csrf_token() }}",
+            dataType: 'json', 
+            contentType:'application/json', 
+            item_id: selectedItemId['item'],
+            startDate: startDate,      
+            endDate: endDate,
+            }
 
 
-        })
-          .done(function(data) {
-            data = checkTime(data);
-            userDataCheck(data.histories,data.itemsFriendlyName,null);
           })
-          .fail(function() {
-              alert("error");
-          });
+            .done(function(data) {
+              data = checkTime(data);
+
+              userDataCheck(data.histories,data.itemsFriendlyName,currentFriendlyNameSelected);
+            })
+            .fail(function() {
+                alert("error");
+            });
+        }
       }
 
       //Insert new items to friendly name drop down form
       function addOptionsToDropDown(friendlyNames,dropDownValue){
+
           let dropDownCheckType = document.getElementById('checkType');
           let dropDownCheckTypeValue;
-          if(dropDownValue){
-              dropDownCheckTypeValue = dropDownValue.friendly_name;
-          }else{
-              dropDownCheckTypeValue = $("#checkType").val();
-          }
+
+          dropDownCheckTypeValue = dropDownValue;
+
           let dropDownElements =document.getElementsByTagName('option');
 
           $("#checkType option").remove();
@@ -774,6 +791,7 @@
           }
 
           //Set Current check friendly name to dropDown
+
           $("#checkType").val(dropDownCheckTypeValue);
           
       }
@@ -797,6 +815,7 @@
       });
 
       $('#datePicker').on('apply.daterangepicker', function(ev, picker) {
+        currentFriendlyNameSelected = $("#checkType option:checked").text();
         startDate = picker.startDate.format();
         startDate = Math.floor(Date.parse(startDate) / 1000);
         endDate = picker.endDate.format();
@@ -817,6 +836,7 @@
         optionSelectedId = optionSelected.options[optionSelected.selectedIndex].id;
         optionSelectedId = optionSelectedId.replace('option','');
         optionSelectedId = checkItemsIds[optionSelectedId];
+        currentFriendlyNameSelected = $("#checkType option:checked").text();
         callController(startDate,endDate,optionSelectedId);
       });
 

@@ -10,9 +10,9 @@
     <div class="row justify-content-center">
         <div class="col-md-10 menuHeader">
             <ul class="settings-links">
-                <li class="settings-links-item" id='acount'>Account</li>
-                <li class="settings-links-item">Notifications</li>
-                <li class="settings-links-item">Priccing and billing</li>
+                <li class="settings-links-item" id='acountLink'>{{ __('Account') }}</li>
+                <li class="settings-links-item" id='notificationLink'>{{ __('Notifications') }}</li>
+                <li class="settings-links-item" id='priccingLink'>{{ __('Priccing and billing') }}</li>
             </ul>
         </div>
     </div>
@@ -26,24 +26,24 @@
                     <i class="fas fa-plus"></i>
                 </div>
                 <div class="addImageDecr">
-                    <p class="addImageDecr-p" style="margin: 0;">Click to change your avatar</p>
+                    <p class="addImageDecr-p" style="margin: 0;">{{ __('Click to change your avatar') }}</p>
                 </div>
             </div>
             <div class="userInfoWrapper">
-                <div class="userName">Rolands Bidzans</div>
-                <div class="userEmail">freeUser@gmail.com</div>
+                <div class="userName">{{ $userName->name }}</div>
+                <div class="userEmail">{{$email->email}}</div>
             </div>
 
         </div>
-        <div class="col-md-10 header2">
-            <h2>User Information</h2>
-        </div>
-        <div class="col-md-10" style="background-color: white; padding: 0">
+        <div class="col-md-10 infoWrapper" id="userInfoPage" style="background-color: white; padding: 0">
+            <div class="header2">
+                <h2>{{ __('User Information') }}</h2>
+            </div>
             <form action="/user/settings" method="POST">
                 @csrf
                 <div class="userSettingsWrapper">
                     <div class="userSettingsWrapper-item">   
-                        <label for="fullName">Full name</label>
+                        <label for="fullName">{{ __('Full name') }}</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-user-secret"></i></span>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="userSettingsWrapper-item">   
-                        <label for="email">Email Address</label>
+                        <label for="email">{{ __('Email Address') }}</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-at"></i></span>
@@ -62,21 +62,21 @@
                     </div>
     
                     <div class="userSettingsWrapper-item">
-                        <label for="gender">Gender</label>
+                        <label for="gender">{{ __('Gender') }}</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
                             </div>
                             <select name="gender" class="form-control select2bs4 select2-hidden-accessible"  data-select2-id="25" tabindex="-1" aria-hidden="true">
-                              <option selected="selected" disabled="disabled" data-select2-id="26">Select your gender</option>
-                              <option data-select2-id="27">Male</option>
-                              <option data-select2-id="28">Female</option>
+                              <option selected="selected" disabled="disabled" data-select2-id="26">{{ __('Select your gender') }}</option>
+                              <option data-select2-id="27">{{ __('Male') }}</option>
+                              <option data-select2-id="28">{{ __('Female') }}</option>
                             </select>
                         </div>
                     </div>
     
                     <div class="userSettingsWrapper-item">
-                        <label for="phone">Phone number</label>
+                        <label for="phone">{{ __('Phone number') }}</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -86,17 +86,17 @@
                     </div>
     
                     <div class="userSettingsWrapper-item">
-                        <label for="birthDay">BirthDay</label>
+                        <label for="birthday">{{ __('Birthday') }}</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                             </div>
-                            <input type="text" name="birthDay" id='birthday' class="form-control" value="{{$birthDay->birthday}}">
+                            <input type="text" name="birthday" id='birthday' class="form-control" value="{{$birthDay->birthday}}">
                         </div>
                     </div>
     
                     <div class="userSettingsWrapper-item">
-                        <label for="country">Country</label>
+                        <label for="country">{{ __('Country') }}</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-globe-europe"></i></span>
@@ -111,7 +111,7 @@
                     </div>
     
                     <div class="userSettingsWrapper-item">
-                        <label for="city">City</label>
+                        <label for="city">{{ __('City') }}</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-city"></i></span>
@@ -124,20 +124,20 @@
                     <button class="settingsBtn successBtn" id='deleteAcountBtn'>
                         <i class="fas fa-user-edit"></i>
                     </button>
-                    <button type="submit" class="settingsBtnContent successBtnContent" style="width: 160px">Update information</button>
+                    <button type="submit" class="settingsBtnContent successBtnContent" style="width: 160px">{{ __('Update information') }}</button>
                 </div>
             </form>
             
         </div>
 
         <div class="col-md-10 header2">
-            <h2>Password & Security</h2>
+            <h2>{{ __('Password & Security') }}</h2>
         </div>
 
-        <div class="col-md-10" style="background-color: white; padding: 10px 0">
+        <div class="col-md-10" id="userPaswordPage" style="background-color: white; padding: 10px 0">
             <div class="userSettingsWrapper">
                 <div class="userSettingsWrapper-item">
-                    <label>Old Password</label>
+                    <label>{{ __('Old Password') }}</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
@@ -147,7 +147,7 @@
                 </div>
 
                 <div class="userSettingsWrapper-item">
-                    <label>New Password</label>
+                    <label>{{ __('New Password') }}</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -158,7 +158,7 @@
                 
     
                 <div class="userSettingsWrapper-item">
-                    <label>Confirm New Password</label>
+                    <label>{{ __('Confirm New Password') }}</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -174,23 +174,23 @@
                 <button class="settingsBtn successBtn" id='deleteAcountBtn'>
                     <i class="fas fa-lock"></i>
                 </button>
-                <div class="settingsBtnContent successBtnContent">Update password</div>
+                <div class="settingsBtnContent successBtnContent">{{ __('Update password') }}</div>
             </div>
         </div>
         
         <div class="col-md-10 deleteAcountWrapper">
-            <h2>DELETE this account</h2>
-            <p>Deleting the account will delete all the associated data permanently.</p>
+            <h2>{{ __('DELETE this account') }}</h2>
+            <p>{{ __('Deleting the account will delete all the associated data permanently.') }}</p>
             <div class="deleteAccountBox">
                 <div class="deleteAccountBox-decr">
-                    <div class="deleteAccountBox-title">Current Owner</div>
-                    <p>rolandone@inbox.lv</p>
+                    <div class="deleteAccountBox-title">{{ __('Current Owner') }}</div>
+                    <p>{{ $email->email }}</p>
                 </div>
                 <div class="settingsBtnWrapper">
                     <button class="settingsBtn" id='deleteAcountBtn'>
                         <i class="fas fa-user-slash"></i>
                     </button>
-                    <div class="settingsBtnContent">Delete account</div>
+                    <div class="settingsBtnContent">{{ __('Delete account') }}</div>
                 </div>
             </div>
         </div>
@@ -224,6 +224,20 @@
 
 
         //EVENT LISTENERS
+
+        // $('#acountLink').click( function(){
+        //     $("#userIfoPage infoWrapper").css({"display":"block"});
+        //     $("#userPasswordPage").css({"display":"none"});
+        // });
+
+        // $('#notificationLink').click( function(){
+        //     $("#userIfoPage infoWrapper").css({"display":"none"});
+        //     $("#userPasswordPage").css({"display":"block"});
+        // });
+
+        // $('#priccingLink').click( function(){
+
+        // });
 
         //Password forms value changed script
         $("#Password1").on('input', function(){
