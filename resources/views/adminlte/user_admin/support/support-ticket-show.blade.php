@@ -61,6 +61,10 @@
                                 <p class="ml-2 mb-4">
                                     <strong>{{ __('Closed by: ') }}</strong> {{ __("You") }}
                                 </p>
+                            @elseif ($ticket->closed_by === null)
+                                <p class="ml-2 mb-4">
+                                    <strong>{{ __('Closed by: ') }}</strong> {{ __('Unknown') }}
+                                </p>
                             @else
                                 <p class="ml-2 mb-4">
                                     <strong>{{ __('Closed by: ') }}</strong> {{ __($user_closedBy[$ticket->closed_by - 1]->roles[0]->display_name) }}

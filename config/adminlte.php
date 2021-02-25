@@ -298,7 +298,7 @@ return [
             'role' => $userFree,
         ],
         [
-            'text' => 'Settings',
+            'text' => 'Account Settings',
             'icon' => 'fas fa-cog',
             'classes' => 'text-bold',
             'url' => '/user/settings',

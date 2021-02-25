@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 
 class SettingsAdminController extends Controller
