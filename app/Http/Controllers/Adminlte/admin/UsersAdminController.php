@@ -36,7 +36,7 @@ class UsersAdminController extends Controller
         // Finds users that have role_id meant for user side
         $users = User::find($roles);
 
-        return view('adminlte.admin.users', compact(  'users', 'hashids'));
+        return view('adminlte.admin.users', compact('users', 'hashids'));
     }
 
     /**

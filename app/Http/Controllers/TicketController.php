@@ -7,6 +7,7 @@ use App\Mailers\AppMailer;
 use App\Models\Category;
 use App\Models\Ticket;
 use App\Role;
+use App\User;
 use Hashids\Hashids;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -14,6 +15,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
 
@@ -32,9 +34,11 @@ class TicketController extends Controller
         // Finds all tickets
         $tickets = Ticket::all();
 
-        return view('adminlte.admin.tickets', compact('tickets', 'hashids'));
-    }
+        // Finds all users
+        $tickets_users = User::all();
 
+        return view('adminlte.admin.tickets', compact('tickets', 'tickets_users', 'hashids'));
+    }
 
     /**
      * Display the specified resource.
@@ -53,7 +57,15 @@ class TicketController extends Controller
         // Finds user by user id
         $ticket = Ticket::find($id)->first();
 
-        return view('adminlte.admin.view-tickets', compact('ticket', 'hashids'));
+        // Sets current language to $locale
+        $locale = Config::get('app.locale');
+
+        $user_closedBy = User::all();
+
+        // Sets locale for all data types (php)
+        setlocale(LC_ALL, $locale . '_utf8');
+
+        return view('adminlte.admin.view-tickets', compact('ticket', 'hashids', 'user_closedBy'));
     }
 
     /**
@@ -87,8 +99,25 @@ class TicketController extends Controller
      * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function userStoreTicket(UserTicketCreateRequest $request, AppMailer $mailer)
+    public function userStoreTicket(UserTicketCreateRequest $request)
     {
+        // Priorities based on category
+        switch ($request->category)
+        {
+            case "1":
+                $priority = 'Low';
+                break;
+            case "2":
+                $priority = 'Medium';
+                break;
+            case "3":
+                $priority = 'High';
+                break;
+            case "4":
+                $priority = 'Low';
+                break;
+        }
+
         // Removes _ from string
         $action = str_replace('_', ' ', $request->action);
 
@@ -101,7 +130,7 @@ class TicketController extends Controller
             'user_id' => Auth::user()->id,
             'ticket_id' => $ticketID,
             'category_id' => ucfirst($request->category),
-            'priority' => ucfirst($request->priority),
+            'priority' => $priority,
             'message' => ucfirst($request->message),
             'action' => ucwords($action),
             'status' => ucfirst($request->status)
@@ -110,10 +139,15 @@ class TicketController extends Controller
         // Creates ticket with $data
         $ticket = Ticket::create($data);
 
-        // Sends ticket information
-        $mailer->sendTicketInformation(Auth::user(), $ticket);
+        // Mail info
+        $to = Auth::user()->email;
+        $from = ['address' => "info.webcheck@gmail.com", 'name' => __("Ticket Robot")];
+        $subject = __("[Ticket ID: #:ticket_id] :ticket_title", ['ticket_id' => $ticket->ticket_id, 'ticket_title' => $ticket->title]);
 
-        return redirect()->back()->with('message', __("A ticket with ID: #") . $ticketID . __(" has been created."));
+        // Sends ticket information
+        MailController::sendTicketInformation($data, $subject, $from, $to, Auth::user(), $ticket);
+
+        return redirect()->back()->with('message', __("Ticket with ID: #:ticket_id - :action", ['ticket_id' => $ticketID, 'action' => __("has been created!")]));
     }
 
     /**
@@ -149,7 +183,15 @@ class TicketController extends Controller
         // Finds user by user id
         $ticket = Ticket::where('id', $id)->first();
 
-        return view('adminlte.user_admin.support.support-ticket-show', compact('ticket', 'hashids'));
+        // Sets current language to $locale
+        $locale = Config::get('app.locale');
+
+        $user_closedBy = User::all();
+
+        // Sets locale for all data types (php)
+        setlocale(LC_ALL, $locale . '_utf8');
+
+        return view('adminlte.user_admin.support.support-ticket-show', compact('ticket', 'hashids', 'user_closedBy'));
     }
 
     /**
@@ -159,7 +201,7 @@ class TicketController extends Controller
      * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function close($ticket_id, AppMailer $mailer)
+    public function close($ticket_id)
     {
         // Finds ticket by $ticket_id
         $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
@@ -167,6 +209,7 @@ class TicketController extends Controller
         // Sets tickets status and action values
         $ticket->status = "Closed";
         $ticket->action = "Solved";
+        $ticket->closed_by = Auth::user()->id;
 
         // Saves changes to ticket
         $ticket->save();
@@ -174,11 +217,18 @@ class TicketController extends Controller
         // Sets ticket owner from $ticket->user
         $ticketOwner = $ticket->user;
 
-        // Sends ticket status notification
-        $mailer->sendTicketStatusNotification($ticketOwner, $ticket);
+        if ($ticketOwner->id !== Auth::user()->id)
+        {
+            // Mail info
+            $to = $ticketOwner->email;
+            $from = ['address' => "info.webcheck@gmail.com", 'name' => __("Ticket Robot")];
+            $subject = __("RE: :ticket_title [Ticket ID: #:ticket_id]", ['ticket_title' => $ticket->title, 'ticket_id' => $ticket->ticket_id]);
 
+            // Sends ticket status notification
+            MailController::sendTicketStatusNotification($subject, $from, $to, $ticketOwner, $ticket, Auth::user());
+        }
 
-        return redirect()->back()->with('message', __("The ticket #") . $ticket->ticket_id . " - " . $ticket->title . __("has been closed."));
+        return redirect()->back()->with('message', __("The ticket #:ticket_id - :action", ['ticket_id' => $ticket->ticket_id, 'action' => __("has been resolved and closed!")]));
     }
 
     /**
@@ -224,6 +274,6 @@ class TicketController extends Controller
         // Deletes role
         $ticket->delete();
 
-        return redirect()->back()->with('message', __('Ticket - #') . $ticket->ticket_id . __(' has been deleted!'));
+        return redirect()->back()->with('message', __("Ticket with ID: #:ticket_id - :action", ['ticket_id' => $ticket->ticket_id, 'action' => __("has been deleted!")]));
     }
 }

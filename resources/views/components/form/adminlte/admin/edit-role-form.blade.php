@@ -21,7 +21,7 @@
                     {{ __('Role display name (optional)') }}
                 </label>
                 <input
-                    value="{{ $role->display_name }}"
+                    value="{{ __($role->display_name) }}"
                     name="roleDisplayName"
                     type="text"
                     class="form-control @error('roleDisplayName') is-invalid @enderror">

@@ -24,78 +24,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    {{-- Filter table --}}
-                    <table class="table table-striped table-bordered dt-responsive nowrap filter-table mb-3 col-lg-6 col-md-6 col-sm-12" style="display: none">
-                        <tbody>
-                        {{-- Column - ID --}}
-                        <tr id="filter_col0" data-column="0">
-                            <td>{{ __('Column - ID') }}</td>
-                            <td align="center">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="column_filter form-control col-md-12" id="col0_filter">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        {{-- Column - NAME --}}
-                        <tr id="filter_col1" data-column="1">
-                            <td>{{ __('Column - NAME') }}</td>
-                            <td align="center">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="column_filter form-control col-md-12" id="col1_filter">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        {{-- Column - DISPLAY_NAME --}}
-                        <tr id="filter_col2" data-column="2">
-                            <td>{{ __('Column - DISPLAY NAME') }}</td>
-                            <td align="center">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="column_filter form-control" id="col2_filter">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        {{-- Column - DESCRIPTION --}}
-                        <tr id="filter_col3" data-column="3">
-                            <td>{{ __('Column - DESCRIPTION') }}</td>
-                            <td align="center">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="column_filter form-control" id="col3_filter">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
                     {{-- Data table --}}
-                    <table class="table table-striped table-bordered dt-responsive nowrap TableStyle" id="roles-table">
+                    <table class="table table-striped table-bordered nowrap TableStyle" id="roles-table">
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">{{ __('ID') }}</th>
@@ -110,36 +40,29 @@
                             <tr>
                                 <td>{{ $role->id }}</td>
                                 <td>{{ $role->name }}</td>
-                                <td>{{ $role->display_name }}</td>
+                                <td>{{ __($role->display_name) }}</td>
                                 <td>{{ $role->description }}</td>
                                 <td class="text-center">
                                     <div class="container">
-                                        <div class="row">
+                                        <a class="btn btn-primary mr-1" href="{{ URL::route('admin.roles.show', [$hashids->encode($role->id)]) }}" role="button">
+                                            <i class="fas fa-eye mr-1"></i>
+                                            {{ __('View') }}</a>
 
-                                            <a class="btn btn-primary mr-1" href="{{ URL::route('admin.roles.show', [$hashids->encode($role->id)]) }}" role="button">
-                                                <i class="fas fa-eye mr-1"></i>
-                                                {{ __('View') }}</a>
+                                        @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin' && $role->name != 'member' && $role->name != 'developer' && $role->name != 'maintainer')
+                                            <a class="btn btn-info mr-1" href="{{ URL::route('admin.roles.edit', [$hashids->encode($role->id)]) }}" role="button">
+                                                <i class="fas fa-pencil-alt mr-1"></i>
+                                                {{ __('Edit') }}</a>
+                                        @endif
 
-                                            @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin')
-                                                <a class="btn btn-info mr-1" href="{{ URL::route('admin.roles.edit', [$hashids->encode($role->id)]) }}" role="button">
-                                                    <i class="fas fa-pencil-alt mr-1"></i>
-                                                    {{ __('Edit') }}</a>
-                                            @endif
-
-                                            @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin')
-                                                <form action="{{ URL::route('admin.roles.destroy', [$hashids->encode($role->id)]) }}" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="btn btn-danger" onclick="return confirm('{{ __('Are you sure to delete this role - ' . $role->name . '?') }}')" type="submit">
-                                                        <i class="fas fa-trash mr-1"></i>
-                                                        {{ __('Delete') }}
-                                                    </button>
-                                                </form>
-                                            @endif
-
-                                        </div>
+                                        @if ($role->name != 'userFree' && $role->name != 'userPro' && $role->name != 'userWebmaster' && $role->name != 'admin' && $role->name != 'member' && $role->name != 'developer' && $role->name != 'maintainer')
+                                            <a href="#" class="btn btn-danger delete-action">
+                                                <i class="fas fa-trash mr-1"></i>
+                                                {{ __('Delete') }}
+                                            </a>
+                                            {{ Form::open(['url' => route('admin.roles.destroy', [$hashids->encode($role->id)]), 'method' => 'delete']) }}
+                                            {{ Form::close() }}
+                                        @endif
                                     </div>
-
                                 </td>
                             </tr>
                         @endforeach
@@ -157,6 +80,17 @@
 
 @section('js')
     <script>
+
+        // Delete action script for tickets
+        $(document).ready(function () {
+            $('.delete-action').click(function (e) {
+                if (confirm("<?php echo __('Are you sure to delete this role - :role?', ['role' => $role->name])?>")) {
+                    $(this).siblings('form').submit();
+                }
+
+                return false;
+            });
+        });
 
         //// Roles table ////
 
@@ -176,6 +110,10 @@
                         { "width": "20%", "targets": [4] },
                     ],
 
+                    // Allows you to scroll right and left if text is to long
+                    scrollX: true,
+                    scrollCollapse: true,
+
                     // Order by asc/desc
                     order: [
                         [ 0, "asc" ]
@@ -183,14 +121,12 @@
 
                     // Show entries length
                     lengthMenu: [
-                        [10, 20, 30, -1],
-                        [10, 20, 30, @json( __("All") )]
+                        [10, 20, 30, 40, 50],
+                        [10, 20, 30, 40, 50]
                     ],
 
                     // Position of control elements
                     dom:
-                        '<"col-lg-6 col-md-6 col-sm-12 mb-3 AdvanceFilter"Q>' +
-                        '<"col-lg-6 col-md-6 col-sm-12 mb-3"B>' +
                         '<"row"' +
                         '<"col-lg-6 col-md-6 col-sm-12"l>' +
                         '<"col-lg-6 col-md-6 col-sm-12"f>' +
@@ -198,7 +134,7 @@
                         't' +
                         '<"row"' +
                         '<"col-sm-12 col-md-6"i>' +
-                        '<"col-sm-12 col-md-6"p>' +
+                        '<"col-sm-12 col-md-6 mt-2"p>' +
                         '>'
                     ,
 

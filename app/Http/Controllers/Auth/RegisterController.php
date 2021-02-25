@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Role;
@@ -12,13 +13,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
 //Zabbix
 use Becker\Zabbix\ZabbixApi;
 use Becker\Zabbix\ZabbixException;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -108,11 +109,8 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        // Validates register form
-        $this->validator($request->all())->validate();
-
         event(new Registered($user = $this->create($request->all())));
 
         // Finds role - UserFree and adds it to new created user
@@ -138,7 +136,7 @@ class RegisterController extends Controller
                 [
                     "mediatypeid"=> "1", //Mail
                     "sendto"=> [
-                        $request->all()['signup_email'] //Email 
+                        $request->all()['signup_email'] //Email
                     ],
                 ]
             ]

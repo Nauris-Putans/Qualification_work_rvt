@@ -7,6 +7,7 @@
 
                 <div class="col-md-12 mt-3">
                     <div class="row">
+
                         {{-- Title input--}}
                         <div class="col-md-6 form-group">
                             <input
@@ -21,9 +22,11 @@
                         {{-- Category input--}}
                         <div class="col-md-6 form-group">
                             <select class="form-control @error('category') is-invalid @enderror" name="category" form="ticket">
-                                <option hidden disabled selected value>{{ __('Please choose message category') }}*</option>
-                                <optgroup label="{{ __('Category') }}">
+                                <option hidden disabled selected value>
+                                    {{ __('Please choose message category') }}*
+                                </option>
 
+                                <optgroup label="{{ __('Category') }}">
                                     <option value="question" @if (old('category') == "question") {{ 'selected' }} @endif>
                                         {{ __('Question') }}
                                     </option>
@@ -39,7 +42,6 @@
                                     <option value="other" @if (old('category') == "other") {{ 'selected' }} @endif>
                                         {{ __('Other') }}
                                     </option>
-
                                 </optgroup>
                             </select>
                         </div>

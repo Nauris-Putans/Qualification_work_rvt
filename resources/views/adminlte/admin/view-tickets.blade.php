@@ -18,8 +18,9 @@
 
     <div class="row">
         <div class="col-lg-5 col-md-5 col-sm-12">
-            <div class="card card-outline card-primary">
+            <x-alertAdmin />
 
+            <div class="card card-outline card-primary">
                 <div class="card-header">
                     <h1 class="card-title">#{{ $ticket->ticket_id }} - {{ $ticket->title }}</h1>
                     <div class="card-tools">
@@ -73,9 +74,20 @@
                             @endif
                         </p>
 
-                        <p class="ml-2 mb-4">
-                            <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
-                        </p>
+                        @if ($ticket->status === 'Closed')
+                            <p class="ml-2 mb-1">
+                                <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
+                            </p>
+
+                            <p class="ml-2 mb-4">
+                                <strong>{{ __('Closed by: ') }}</strong> {{ __($user_closedBy[$ticket->closed_by - 1]->name) }}
+                            </p>
+                        @else
+                            <p class="ml-2 mb-4">
+                                <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
+                            </p>
+                        @endif
+
                     </div>
 
                     <div class="card card-primary direct-chat direct-chat-primary direct-chat-contacts-open">
@@ -95,7 +107,6 @@
                             <div class="direct-chat-messages">
                                 <!-- Message. Default to the left -->
                             @foreach($ticket->comments as $comment)
-
                                 {{-- Checks if comment user is who created comment --}}
                                 @if($comment->user->name == auth()->user()->getUser()->name)
 
@@ -106,7 +117,7 @@
                                                     {{ $comment->user->name }}
                                                 </span>
                                                 <span class="direct-chat-timestamp float-right">
-                                                    {{ $comment->created_at->format('d M H:i') }}
+                                                    {{ strftime("%d %b %H:%M", strtotime($comment->created_at)) }}
                                                 </span>
                                             </div>
 
@@ -135,7 +146,7 @@
                                                     {{ $comment->user->name }}
                                                 </span>
                                                 <span class="direct-chat-timestamp float-left">
-                                                    {{ $comment->created_at->format('d M H:i') }}
+                                                    {{ strftime ("%d %b %H:%M", strtotime($comment->created_at)) }}
                                                 </span>
                                             </div>
 

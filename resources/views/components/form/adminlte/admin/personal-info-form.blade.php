@@ -7,7 +7,7 @@
 
                 <div class="col-12 mb-4">
                     <h5>
-                        {{ __('Change Personal Information here') }}
+                        {{ __('Change :attribute here', ['attribute' => __("Personal Information")]) }}
                     </h5>
                 </div>
 
@@ -99,6 +99,7 @@
                             <input name="birthday"
                                     type="text"
                                     class="form-control @error('birthday') is-invalid @enderror datepicker"
+
                                     @if($user->birthday != null)
                                         value="{{ date('d/m/Y', strtotime($user->birthday)) }}"
                                     @else
@@ -151,6 +152,11 @@
                         </div>
 
                     </div>
+                </div>
+
+                {{-- Hidden birthday input--}}
+                <div style="display: none">
+                    <input name="birthday_old" value="{{ date('d/m/Y', strtotime($user->birthday)) }}"/>
                 </div>
 
                 {{-- Hidden gender input--}}

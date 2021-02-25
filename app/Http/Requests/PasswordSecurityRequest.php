@@ -41,10 +41,10 @@ class PasswordSecurityRequest extends FormRequest
     public function messages()
     {
         return [
-            'current_password.required' => __('Current password is required!'),
-            'new_password.required' => __('New password is required!'),
-            'new_confirm_password.same' => __('New confirm password and new password must match'),
-            'new_confirm_password.different' => __('New confirm password and current password must be different'),
+            'current_password.required' => __(':attribute - :action', ['attribute' => __("Current password"), 'action' => __("is required!")]),
+            'new_password.required' => __(':attribute - :action', ['attribute' => __("New password"), 'action' => __("is required!")]),
+            'new_confirm_password.same' => __(':attribute_1 and :attribute_2 must match!', ['attribute_1' => __("New confirm password"), 'attribute_2' => __("new password")]),
+            'new_confirm_password.different' => __(':attribute_1 and :attribute_2 must be different!', ['attribute_1' => __("New confirm password"), 'attribute_2' => __("current password")]),
         ];
     }
 }

@@ -7,7 +7,7 @@
 
                 <div class="col-12 mb-4">
                     <h5>
-                        {{ __('Change Notifications here') }}
+                        {{ __('Change :attribute here', ['attribute' => __("Notifications")]) }}
                     </h5>
                 </div>
 
@@ -72,9 +72,13 @@
 
                     <div class="col-12 mb-4" style="padding-left: 0">
                         <h5>
-                            {{ __('Change Notification Destinations here') }}
+                            {{ __('Change :attribute here', ['attribute' => __("Notification Destinations")]) }}
                         </h5>
                     </div>
+
+                    <p>
+                        {{ __("You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.") }}
+                    </p>
 
                     <div class="row">
                         {{-- Email Address input--}}

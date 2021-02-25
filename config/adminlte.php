@@ -372,57 +372,31 @@ return [
                     'role' => $adminSide,
                 ],
                 [
-                    'text' => 'Privileges',
-                    'icon' => 'fas fa-key',
+                    'text' => 'Roles',
+                    'icon' => 'fas fa-user-cog',
                     'role' => $adminSide,
                     'submenu' => [
                         [
-                            'text' => 'Roles',
-                            'icon' => 'fas fa-user-cog',
+                            'text' => 'List',
+                            'icon' => 'fas fa-clipboard-list',
+                            'url' => '/admin/roles',
                             'role' => $adminSide,
-                            'submenu' => [
-                                [
-                                    'text' => 'List',
-                                    'icon' => 'fas fa-clipboard-list',
-                                    'url' => '/admin/roles',
-                                    'role' => $adminSide,
-                                ],
-                                [
-                                    'text' => 'Add Role',
-                                    'icon' => 'fas fa-plus',
-                                    'url' => '/admin/roles/create',
-                                    'role' => $adminSide,
-                                ],
-                                [
-                                    'text' => 'Assign Role',
-                                    'icon' => 'fas fa-wrench',
-                                    'url' => '/admin/assign-role',
-                                    'role' => $adminSide,
-                                ],
-                            ],
                         ],
-//                        [
-//                            'text' => 'Permissions',
-//                            'icon' => 'fas fa-user-cog',
-//                            'role' => $adminSide,
-//                            'submenu' => [
-//                                [
-//                                    'text' => 'Add Permission',
-//                                    'icon' => 'fas fa-plus',
-//                                    'url' => '/admin/add-permission',
-//                                    'role' => $adminSide,
-//                                ],
-//                                [
-//                                    'text' => 'Assign Permission',
-//                                    'icon' => 'fas fa-wrench',
-//                                    'url' => '/admin/assign-permission',
-//                                    'role' => $adminSide,
-//                                ],
-//                            ],
-//                        ],
-                    ]
+                        [
+                            'text' => 'Add Role',
+                            'icon' => 'fas fa-plus',
+                            'url' => '/admin/roles/create',
+                            'role' => $adminSide,
+                        ],
+                        [
+                            'text' => 'Assign Role',
+                            'icon' => 'fas fa-wrench',
+                            'url' => '/admin/assign-role',
+                            'role' => $adminSide,
+                        ],
+                    ],
                 ],
-            ]
+            ],
         ],
         [
             'text' => 'Tickets',
