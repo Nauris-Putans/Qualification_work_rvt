@@ -283,8 +283,8 @@ return [
                     'role' => $userFree,
                 ],
                 [
-                    'text' => 'Real User Monitoring',
-                    'icon' => 'fas fa-users',
+                    'text' => 'Download speed',
+                    'icon' => 'fas fa-download',
                     'url' => '/user/monitoring/real-user-monitoring',
                     'role' => $userFree,
                 ],

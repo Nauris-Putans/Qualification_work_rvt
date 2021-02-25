@@ -695,3 +695,290 @@ $Basic-Orange:#CA6D00;
         border-top-color: #53565A;
     }
 }
+
+.monitorAdd{
+    .monitorAddWrapper{
+        margin-top: 30px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: white;
+        height: auto;
+        padding: 5px 10px;
+        .monitorAdd-header{
+            position: relative;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .monitorAdd-header-first-step{
+            &:before{
+                border-radius: .25rem;
+                background: linear-gradient(90deg, #17a2b8 5%, #dee2e6 5%);
+                bottom: 0;
+                content: '';
+                left: 0;
+                margin: 0;
+                position: absolute;
+                top: 21px;
+                width: 100%;
+                height: 4px;
+                z-index: 1;
+            }
+        }
+        .monitorAdd-header-secound-step{
+            &:before{
+                background: linear-gradient(90deg, #17a2b8 27%, #dee2e6 27%);
+            }
+        }
+
+        .monitorAdd-header-third-step{
+            &:before{
+                background: linear-gradient(90deg, #17a2b8 50%, #dee2e6 50%);
+            }
+        }
+
+        .monitorAdd-header-fourth-step{
+            &:before{
+                background: linear-gradient(90deg, #17a2b8 75%, #dee2e6 75%);
+            }
+        }
+
+        .monitorAdd-header-last-step{
+            &:before{
+                background: linear-gradient(90deg, #17a2b8 100%, #dee2e6 100%);
+            }
+        }
+
+        .currentStepWrapper{
+            height: 100%;
+            width: 80px;
+            .currentStepBox{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items:center;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 20px;
+                margin: 4px auto 0 auto;
+                background-color: rgb(199, 199, 199);
+                color: white;
+                border-radius: 100%;
+                z-index: 2;
+            }
+
+            .bg-current-step{
+                background-color: #17a2b8;
+            }
+        }
+        
+
+        .monitorAdd-SettingsWrapper{
+            position: relative;
+            width: 100%;
+            height: auto;
+            padding-bottom: 75px;
+            .settings-title{
+                text-align: center;
+                height: 30px;
+                margin: 20px 0 20px 0;
+                width: auto;
+                font-size: 20px;
+            }
+            .settingsWrapper{
+                margin-top: 20px;
+                min-height: 200px;
+                .slider{
+                    width: 100%;
+                }
+                .select-persons-tables-wrapper{
+                    display: flex;
+                    justify-content: space-around;
+                    flex-wrap: wrap;
+                    align-items:center;
+                    width: 80%;
+                    margin: 0 auto;
+                }
+                .persons-tabel{
+                    position: relative;
+                    width: 300px;
+                    min-height: 200px;
+                    margin-top: 10px;
+                    height: auto;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    border-radius: 5px;
+                }
+                .persons-tabel-title{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
+                    width: auto;
+                    height: 40px;
+                    font-size: 16px;
+                    text-align: center;
+                    border-bottom: 2px solid #17a2b8;
+                }
+                .persons-element-wrapper{
+                    width: 100%;
+                    height: 200px;
+                    overflow-y: auto;
+                }
+                .persons-element-box{
+                    display: flex;
+                    justify-content: left;
+                    margin-top: 5px;
+                    padding-left: 5px;
+                    width: 100%;
+                    height: 50px;
+                    background-color: white;
+                    font-size: 14px;
+                    cursor: pointer;
+                    img{
+                        border-radius: 5px;
+                        height: 50px;
+                        width: auto;
+                    }
+                    .person-info-box{
+                        margin-left: 10px;
+                    }
+                }
+                //Confirmation page styles
+                .confirmBox{
+                    position: relative;
+                    min-height: 200px;
+                    height: auto;
+                    .decrBox{
+                        padding-left: 15px;
+                        height: auto;
+                        &-title{
+                            padding-bottom: 5px;
+                            width: auto;
+                            border-bottom: 1px solid #17a2b8;
+                            margin-bottom: 5px;
+                            text-align: center;
+                        }
+                        span{
+                            font-size: 14px;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+
+            .monitorAdd-footer{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                button{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: none;
+                    outline: none;
+                    width: 100px;
+                    height: 40px;
+                    color: white;
+                    background-color: #17a3b8c0;
+                    border-radius: 5px;
+                    &:hover{
+                        background-color: #17a2b8;
+                    }
+                }
+    
+                .leftBtn{
+                    margin-right: 5px;
+                    i{
+                        margin-right: 15px;
+                    }
+                }
+
+                .completeBtn{
+                    background-color: #17610596;
+                    &:hover{
+                        background-color: #176105;
+                    }
+                    i{
+                        margin-left: 15px;
+                    }
+                }
+    
+                .rightBtn{
+                    margin-left: 5px;
+                    i{
+                        margin-left: 15px;
+                    }
+                }
+            }
+        }
+
+        .sliderInfoWrapper{
+            position: relative;
+            .sliderValue{
+                position: absolute;
+                right: 0;
+                top: 0px;
+            }
+        }
+    }
+
+
+    //Slider Styles
+    .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 10px;
+        border-radius: 10px;
+        background: linear-gradient(90deg, #17a2b8 0%, rgb(214,214,214) 0%);
+        outline: none;
+        opacity: 1;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        &_apdex{
+            -webkit-appearance: none;
+            width: 100%;
+            height: 5px;
+            border-radius: 5px;
+            background: #CA6D00;
+            outline: none;
+            opacity: 1;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+    }
+      
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #17a2b8;
+        cursor: pointer;
+        &:hover{
+            width: 20px;
+            height: 20px;
+        }
+    }
+      
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #17a2b8;
+        cursor: pointer;
+    }
+
+
+    //Styles for all elements
+    .displayNone{
+        display: none;
+    }
+}

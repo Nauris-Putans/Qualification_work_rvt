@@ -91,12 +91,17 @@ Route::middleware(['role:' . $adminSide])->group( function()
 Route::middleware(['role:' . $userAdminSide])->group( function()
 {
     // Dashboard section
-    Route::get('/user/dashboard', 'Adminlte\ZabbixController@historyGet')->name('admin.user_admin.index');
+    Route::get('/user/dashboard', 'Adminlte\ZabbixController@index')->name('admin.user_admin.index');
+    Route::post('/user/dashboard/newAreaChartStore', 'Adminlte\ZabbixController@newAreaChartStore')->name('user.dashboard.newAreaChartStore');
+    Route::post('/user/dashboard/lastStatusGet', 'Adminlte\ZabbixController@lastStatusHistoryGet')->name('user.dashboard.lastStatusHistoryGet');
+    Route::post('/user/dashboard/removeItem', 'Adminlte\ZabbixController@itemRemove')->name('user.dashboard.itemRemove');
 
     // Monitoring sections
     Route::get('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@create');
     Route::post('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@store')->name('add.store');
-    Route::get('/user/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@history');
+    Route::get('/user/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@index');
+    Route::post('/user/monitoring/monitors/list/delete/{monitorId}', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@deleteMonitor')->name('monitor.destroy');
+    Route::post('/user/monitoring/monitors/list/change-status/{monitorId}', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@changeStatus')->name('monitor.changeStatus');
     Route::get('/user/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@index');
     Route::post('/user/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@store');
     Route::get('/user/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@index');

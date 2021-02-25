@@ -42,18 +42,18 @@ class MonitoringRealUserMonitoringController extends Controller
     {
 
         $currentUserID = $request->session()->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");//Get current user ID;
-        $usergroupID = DB::table('monitoring_users_groups')->where('group_admin_id', $currentUserID)->get('group_id')->first();//Get current user Group;
-        if($usergroupID != null){
-            $usergroupID = $usergroupID->group_id;
-        }
+   
+        $usergroupID = $request->session()->get("groupId");//Get current user Group;
+   
         $itemid = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 3)->get('item');//Get items;
 
         $itemsFriendlyName = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 3)->get('friendly_name');//Get items friendly names;
         $itemsIds = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 3)->get('item');//Get items id;
-        if($itemid != null){
+        $histories = [];
+        if($itemid->first() != null){
             $itemid = $itemid[0]->item;
         }else{
-            dd('You dont have any item');
+            return view('adminlte.user_admin.monitoring.real-user-monitoring', compact(['histories','itemsFriendlyName','itemsIds']));
         }
 
 
@@ -90,10 +90,8 @@ class MonitoringRealUserMonitoringController extends Controller
     public function store(Request $request)
     {
         $currentUserID = $request->session()->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");//Get current user ID;
-        $usergroupID = DB::table('monitoring_users_groups')->where('group_admin_id', $currentUserID)->get('group_id')->first();//Get current user Group;
-        if($usergroupID != null){
-            $usergroupID = $usergroupID->group_id;
-        }
+        $usergroupID = $request->session()->get("groupId");//Get current user Group;
+        
         $itemid = $request->item_id;//Get items
         $itemsFriendlyName = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 3)->get('friendly_name');//Get items friendly names;
         $itemsIds = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 3)->get('item');//Get items id;

@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+
+//Zabbix
+use Becker\Zabbix\ZabbixApi;
+use Becker\Zabbix\ZabbixException;
 
 class RegisterController extends Controller
 {
@@ -38,6 +43,13 @@ class RegisterController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
+     * The ZabbixApi instance.
+     *
+     * @var ZabbixApi
+     */
+    protected $zabbix;
+    /**
+     * Create a new Zabbix API instance.
      * Create a new controller instance.
      *
      * @return void
@@ -45,6 +57,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->zabbix = app('zabbix');
     }
 
     /**
@@ -52,6 +65,7 @@ class RegisterController extends Controller
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
+     *@throws ZabbixException
      */
     protected function validator(array $data)
     {
@@ -104,6 +118,75 @@ class RegisterController extends Controller
         // Finds role - UserFree and adds it to new created user
         $role = Role::find(1);
         $user->syncRoles([$role->id]);
+
+        //Get current user ID;
+        $currentUserID = DB::table('users')
+            ->where('email',$request->all()['signup_email'])
+            ->get('id')
+            ->first()->id;
+
+        //Create new user in Zabbix
+        $newZabbixUser = $this->zabbix->userCreate([
+            "alias"=> $request->all()['signup_name'].' '.$request->all()['signup_email'],
+            "passwd"=> $request->all()['signup_password'],
+            "usrgrps"=> [
+                [
+                    "usrgrpid"=> "13"
+                ]
+            ],
+            "user_medias"=> [
+                [
+                    "mediatypeid"=> "1", //Mail
+                    "sendto"=> [
+                        $request->all()['signup_email'] //Email 
+                    ],
+                ]
+            ]
+        ])->userids[0];
+
+        //Add new user group to database
+        DB::table('monitoring_users_groups')->insert(
+            [
+                'group_id' => 'G'.$currentUserID,
+                'group_admin_id' => $currentUserID,
+                'group_name' => $request->all()['signup_name'].' group'
+            ]
+        );
+
+        //Add new group member to database
+        DB::table('monitoring_group_members')->insert(
+            [
+                'group_id' => 'G'.$currentUserID,
+                'group_member' => $currentUserID,
+                'group_member_permission' => 1
+            ]
+        );
+
+
+        //Add new zabbix user to database
+        DB::table('monitoring_zabbix_users')->insert(
+            [
+                'zabbix_user_id' => $newZabbixUser,
+                'user_id' => $currentUserID,
+            ]
+        );
+
+        //Get user group id
+        $userGroupId = DB::table('monitoring_users_groups')->where('group_admin_id',$currentUserID)->get('group_id')->first()->group_id;
+
+        //Create new host group in zabbix
+        $hostGroupID = $this->zabbix->hostgroupCreate([
+            "name" => $userGroupId.'-Hosts'
+        ])->groupids[0];
+
+         //Add host group to database
+         DB::insert('insert into monitoring_hosts_groups (host_group_id, host_group_name, user_group) values (?, ?, ?)', [$hostGroupID, $userGroupId.'-Hosts', $userGroupId]);
+
+        //Set current user group's id to global variable
+        session(['groupId' => $userGroupId]);
+
+        //Set current user host group's id to global variable
+        session(['hostGroup' => $hostGroupID]);
 
         $this->guard()->login($user);
 

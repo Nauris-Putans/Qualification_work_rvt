@@ -2,72 +2,189 @@
 @section('title', 'Add')
 
 @section('content_header')
-    <h1>Monitoring > Monitors > Add</h1>
+    <h1> {{ __('Monitoring') }} > {{ __('Monitors') }} > {{ __('Add') }}</h1>
 @stop
 
 @section('content')
-@error('checkField') is-invalid @enderror
-    <section class="add-monitor">
+
+    <section class="monitorAdd">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 monitorAddWrapper">
+
+                    {{-- Settings header --}}
+                    <div class="monitorAdd-header monitorAdd-header-first-step" id="monitorAddHeader">
+                        <div class="currentStepWrapper" >
+                            <div class="currentStepBox bg-current-step" id="firstStep">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                        </div>
+                        <div class="currentStepWrapper">
+                            <div class="currentStepBox" id="secoundStep">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="currentStepWrapper">
+                            <div class="currentStepBox" id="thirdStep">
+                                <i class="fas fa-file-invoice"></i>
+                            </div>
+                        </div>
+                        <div class="currentStepWrapper" >
+                            <div class="currentStepBox" id="fourthStep">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                        </div>
+                        <div class="currentStepWrapper">
+                            <div class="currentStepBox" id="lastStep">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Settings body --}}
+                    <div class="monitorAdd-SettingsWrapper">
+
+                        {{-- Settings title --}}
+                        <div class="settings-title" id="settingsTitle">
+                            {{ __('Basic settings')}}
+                        </div>
+
+                        {{-- Bsic settings --}}
+                        <div class="settingsWrapper" id="basicSettingsWrapper">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-6">
+                                    <!-- select -->
+                                    <div class="form-group">
+                                      <label for="checkType">{{ __('Check type')}}</label>
+                                      <select class="form-control" name="checkType" id="checkType">
+                                        <option >HTTP/HTTPS</option>
+                                        <option >ICMP ping</option>
+                                        <option >DNS</option>
+                                      </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="checkAddress" id="checkAddressTitle">{{ __('Check URL')}}</label>
+                                        <input type="text" class="form-control" id="checkAddress" name="checkAddress" placeholder="https://">
+                                      </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="friendlyName">{{ __('Friendly name')}}</label>
+                                        <input type="text" class="form-control" id="friendlyName" name="friendlyName" placeholder="Friendly moitor name">
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center" style="padding-bottom: 20px">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="sliderInfoWrapper">
+                                            <label for="checkInterval">{{ __('Check interval')}}</label>
+                                            <div class="sliderValue" id="intervalSliderValue">10m</div>
+                                        </div>
+                                        <div class="slidecontainer slidecontainer_interval">
+                                            <input type="range" min="10" max="60" value="10" step="5" class="slider" id="checkInterval" name="checkInterval">
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="monitorAdd-footer">
+                                {{-- Start step buttons --}}
+                                <button id="nextToAddUsersStep" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
+        
+                            </div>
+                        </div>
+
+                        {{-- Add who to alert settings --}}
+                        <div class="settingsWrapper displayNone" id="addUsersSettingsWrapper">
+                            <div class="select-persons-tables-wrapper">
+                                <div class="persons-tabel">
+                                    <h2 class="persons-tabel-title">{{ __('Persons to alert')}}</h2>
+                                    <div id="available" class="persons-element-wrapper">
+                                        
+                                    </div>
+                                </div>
+                                <div class="persons-tabel">
+                                    <h2 class="persons-tabel-title">{{ __('Available persons')}}</h2>
+                                    <div id="out-of-stock" class="persons-element-wrapper">
+                                        @foreach ($allGroupsUsers as $user)
+                                            <div class="persons-element-box" id='{{ $user->zabbix_user_id }}'>
+                                                <img src="https://remind-wippermann.imgix.net/bilder/kontakt/ansprechpartner/wippermann-roger-paul.jpg?auto=format,compress&q=60&fit=crop&crop=focalpoint&w=480&h=" alt="">
+                                                <div class="person-info-box">
+                                                    <div class="userName">{{ $user->name }}</div>
+                                                    <div class="userEmail">{{ $user->email }}</div>
+                                                </div>
+                                             </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="monitorAdd-footer">
+                                {{-- Buttons in add users step --}}
+                                <button id="backToBasicSettings" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
+                                <button id="nextToAdvancedSettings" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
+                            </div>
+                        </div>
+
+                        {{-- Advanced settings --}}
+                        <div class="settingsWrapper displayNone" id="advancedSettingsWrapper">
+                            <div class="monitorAdd-footer">      
+                                {{-- Buttons in advanced settings step --}}
+                                <button id="backToAddUsersStep" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
+                                <button id="nextToSSLMonitoringSettings" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
+                            </div>
+                        </div>
+
+                        {{-- SSL settings --}}
+                        <div class="settingsWrapper displayNone" id="SSLSettingsWrapper">
+                            <div class="monitorAdd-footer">      
+                                {{-- Button in SSL settings step --}}
+                                <button id="backToadvancedSettings"  class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
+                                <button id="nextToConfirmation" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
+                            </div>
+                        </div>
+
+                        {{-- Confirm information --}}
+                        <div class="settingsWrapper displayNone" id="confirmInfoWrapper">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-4">
+                                    <div class="confirmBox">
+                                        <div class="decrBox" id="basicDecr">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="confirmBox">
+                                        <div class="decrBox" id="alertPersons">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="monitorAdd-footer">      
+                                {{-- Button in SSL settings step --}}
+                                <button id="confirmInfoStepBackBtn" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
+                                <button id="createMonitor" class="completeBtn">{{ __('Create')}}<i class="fas fa-clipboard-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="add-monitor d-none">
         <div class="column">
         <form method="POST" action="{{route('add.store')}}">
             {{-- ,['post' =>$customHeaderCount ?? "sanaca"] --}}
             @csrf
 
                 <div class="row justify-content-around">
-                    {{-- 
-                        Created by: Rolands Bidzans 
-                        Decr: Basic settings
-                    --}}
-                    <div class="col-md-5 offset-md-1">
-                        <div class="add-monitor__items-wrapper">
-
-                            <div class="header">
-                                <div class="header__title">Basic Settings</div>
-                                <div class="header__line"></div>
-                            </div>
-
-                            <div class="item-title" name="kk" id="kk1">Check type</div>
-                            <div class="settings-wrapper">
-                                <div class="box">
-                                    <select type="checkType" name="checkType" id='checkType'>
-                                        <option >HTTP/HTTPS</option>
-                                        <option >Web socket</option>
-                                        <option >ICMP ping</option>
-                                        <option >DNS</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="settings-wrapper">
-                                <div id="checkTypeWripper">
-                                    
-                                    <div class="item-title">Check URL<span>*</span></div>
-                                    <input class="input-large @error('checkField') is-invalid @enderror" type="text" id="URL" name="checkField" placeholder="https://">
-                                </div>
-                            </div>
-                            
-                            
-                            <div class="item-title">Friendly check name</div>
-                            <input class="input-large" type="text" id="friendlyName" name="friendlyName" placeholder="Check name">
-                            
-                            <div class="item-title">Check interval</div>
-                            <div class="settings-wrapper">
-                                <div class="settings-wrapper__settings-decr">
-                                    Monitor your website every
-                                </div>
-                                <div class="slidecontainer slidecontainer_interval">
-                                    <input type="range" min="10" max="60" value="10" step="5" class="slider" id="myRange" name="intervalSlider">
-                                </div>
-                                <p><span id="demo"></span> Min(s)</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {{-- 
-                        Created: Rolands Bidzans 
-                        Decr: Advanced monitoring settings
-                    --}}
                     <div class="col-md-5">
                         <div id='advancedSectionWrapper' class="add-monitor__items-wrapper">
                             <div class="header">
@@ -227,254 +344,573 @@
 @stop
 @section('css')
     <link rel="stylesheet" href="/css/app.css">
+
+    {{-- Toastr styles --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" media="all">
 @stop
 
 @section('js')
-    <script>
+{{-- toastr --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+{{-- Swal --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.14.0/sweetalert2.min.js"></script>
+
+{{-- JQuery UI  --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script>
     $(function(){
-        
-        //Script for Horicontal slider in Check Interval section
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
+        let usersToAlert = [];
+        let allUserData = <?php echo json_encode($allGroupsUsers); ?>;
 
-        slider.oninput = function() {
-            output.innerHTML = this.value;
+        $('#available').sortable({
+            connectWith: '#out-of-stock',
+            receive: function(event, ui){
+                const addUserId = ui.item[0]['id'];
+                usersToAlert.push(addUserId);
+            }
+        });
+
+        $('#out-of-stock').sortable({
+            connectWith: '#available',
+            receive: function(event, ui){
+                const removeUserId = ui.item[0]['id'];
+                let index = usersToAlert.indexOf(removeUserId);
+                if (index > -1) {
+                    usersToAlert.splice(index, 1);
+                }
+            }
+        });
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        let checkIntervalSlider = document.getElementById("checkInterval");
+        let intervalSliderValue = document.getElementById("intervalSliderValue");
+        intervalSliderValue.innerHTML = checkIntervalSlider.value + 'm';
+
+        //FUNCTIONS
+        function returnToStartPosition(){
+          
         }
 
-        slider.addEventListener('mousemove', function(){
+        //EVENT LISTENERS
+
+        //Sliders
+        checkIntervalSlider.oninput = function() {
+            intervalSliderValue.innerHTML = this.value + 'm';
+        }
+
+        checkIntervalSlider.addEventListener('mousemove', function(){
             let x = this.value-this.min;
             let valueInPercent = (100*x/(this.max-this.min));
-            let color = 'linear-gradient(90deg, #CA6D00 '+valueInPercent+'%, rgb(214,214,214) '+valueInPercent+'%)';
+            let color = 'linear-gradient(90deg, #17a2b8 '+valueInPercent+'%, rgb(214,214,214) '+valueInPercent+'%)';
             this.style.background = color;
         });
 
-        //Script for Horicontal slider in Apdex response Treshold section
-        var sliderApdex = document.getElementById("myRangeApdex");
-        var outputApdex = document.getElementById("sliderValueBox");
-        outputApdex.innerHTML = sliderApdex.value;
 
-        sliderApdex.oninput = function() {
-            outputApdex.innerHTML = this.value;
-        }
 
-        sliderApdex.addEventListener('mousemove', function(){
-            let x = this.value-this.min;
-            let valueInPercent = (100*x/(this.max-this.min));
-            let color = 'linear-gradient(90deg, #CA6D00 '+valueInPercent+'%, rgb(214,214,214) '+valueInPercent+'%)';
-            this.style.background = color;
+        $('#nextToAddUsersStep').click( function(){
+            $('#monitorAddHeader').addClass('monitorAdd-header-secound-step');
+            $('#secoundStep').addClass('bg-current-step');
+            $('#settingsTitle').text('Alert settings');
+            $('#basicSettingsWrapper').css("display", "none");
+            $('#addUsersSettingsWrapper').css("display", "block");
         });
 
-
-        //Created by Rolands Bidzans
-        //SCRIPT FOR ADDING NEW CUSTOM HTTP HEADER ELEMENTS
-
-        //VARIABLES
-        const addCustomHeaderLink = document.getElementById("addCustomHeader");
-        const customheaderSettingsWripper = document.getElementById("advancedSectionWrapper");
-        const a = document.getElementById("newHeaders");
-        let customHeaderCount = 2;
-
-        //FUNCTION
-        function addNewHeader(){
-            let createdHeaders=null;
-            let newHeaderItem = "";
-            for(let i=2;i<=customHeaderCount;i++) {
-                createdHeaders = document.getElementById("customHeader"+i);
-                if(createdHeaders == null) {
-                    newHeaderItem =`
-                            <div class="settings-wrapper" id="newHeaderWripper${i}">
-                                <input class="input-small" type="text" id="customHeader${i}" name="Headers[${i}][Header]" placeholder="Header${i}">
-                                <input class="input-small input-small_margin30px" type="text" id="customKey${i}" name="Headers[${i}][Key]" placeholder="Key${i}">
-                                <i class="fas fa-trash invisible" id="headerDelete${i}"></i>
-                            </div>
-                        `;
-
-                        const position = "beforeend";
-                        a.insertAdjacentHTML(position,newHeaderItem);
-
-                        let deleteHeaderIcon = document.getElementById(`headerDelete${i}`);
-                        deleteHeaderIcon.addEventListener('click',function(){
-                            deleteHeaderIcon.parentNode.parentNode.removeChild(deleteHeaderIcon.parentNode);
-                            customHeaderCount--;
-                        });
-
-                        let newHeaderWripper = document.getElementById(`newHeaderWripper${i}`);
-                        newHeaderWripper.addEventListener('mouseover',function(){
-                            deleteHeaderIcon.classList.remove("invisible");
-                        });
-                        newHeaderWripper.addEventListener('mouseout',function(){
-                            deleteHeaderIcon.classList.add("invisible");
-                        });
-
-                        customHeaderCount++;
-                        break;
-                }
-            }
-        }
-
-        addCustomHeaderLink.addEventListener('click', function(){
-            if(customHeaderCount<6){
-                addNewHeader();
-            }
+        //Add users settings buttons
+        $('#backToBasicSettings').click( function(){   
+            $('#monitorAddHeader').removeClass('monitorAdd-header-secound-step');
+            $('#secoundStep').removeClass('bg-current-step');
+            $('#settingsTitle').text('Basic settings');
+            $('#basicSettingsWrapper').css("display", "block");
+            $('#addUsersSettingsWrapper').css("display", "none");
         });
 
+        $('#nextToAdvancedSettings').click( function(){
+            $('#monitorAddHeader').removeClass('monitorAdd-header-secound-step');
+            $('#monitorAddHeader').addClass('monitorAdd-header-third-step');
+            $('#thirdStep').addClass('bg-current-step');
+            $('#settingsTitle').text('Advanced settings');
+            $('#addUsersSettingsWrapper').css("display", "none");
+            $('#advancedSettingsWrapper').css("display", "block");
+        });
 
+        //Advanced settings buttons
+        $('#backToAddUsersStep').click( function(){
+            $('#monitorAddHeader').removeClass('monitorAdd-header-third-step');
+            $('#monitorAddHeader').addClass('monitorAdd-header-secound-step');
+            $('#thirdStep').removeClass('bg-current-step');
+            $('#settingsTitle').text('Alert settings');
+            $('#advancedSettingsWrapper').css("display", "none");
+            $('#addUsersSettingsWrapper').css("display", "block");
+        });
 
-        //Created by Rolands Bidzans
-        //SCRIPT FOR ADDING NEW PERSON TO ALERT
+        $('#nextToSSLMonitoringSettings').click( function(){  
+            $('#monitorAddHeader').addClass('monitorAdd-header-fourth-step');
+            $('#monitorAddHeader').removeClass('monitorAdd-header-third-step');
+            $('#fourthStep').addClass('bg-current-step');
+            $('#settingsTitle').text('SSL Certificate');
+            $('#SSLSettingsWrapper').css("display", "block");
+            $('#advancedSettingsWrapper').css("display", "none");
+        });
 
-        //VARIABLES
-        let newPersonAddedWrapper = document.getElementById("newPersonAddedWrapper");
-        let addNewPersonBtn = document.getElementById("btnNewPersonAdd");
-        let newPersonName = document.getElementById("personName");
-        let newPersonEmail = document.getElementById("personEmail");
-        let newPersonNumber = document.getElementById("personNumber");
-        let AlertBoxColorLIST = ["gray","orange","#0074D9","#85144b","#DDDDDD","#FF4136","#2ECC40","#F012BF","#3D9970"];
-        let PersonsToAlertLIST = [];
-        let newPersonCount = 0;
+        // SSL certificate settings buttons
+        $('#nextToConfirmation').click( function(){  
+            $('#monitorAddHeader').addClass('monitorAdd-header-last-step');
+            $('#monitorAddHeader').removeClass('monitorAdd-header-fourth-step');
+            $('#lastStep').addClass('bg-current-step');
+            $('#settingsTitle').text('Confirmation');
+            $('#confirmInfoWrapper').css("display", "block");
+            $('#SSLSettingsWrapper').css("display", "none");
+            fillConfirmationPageBasic();
+            fillConfirmationPagePersons();
+        });
+
+        $('#backToadvancedSettings').click( function(){
+            $('#monitorAddHeader').removeClass('monitorAdd-header-fourth-step');
+            $('#monitorAddHeader').addClass('monitorAdd-header-third-step');
+            $('#fourthStep').removeClass('bg-current-step');
+            $('#settingsTitle').text('Alert settings');
+            $('#SSLSettingsWrapper').css("display", "none");
+            $('#advancedSettingsWrapper').css("display", "block");
+        });
+
+        // Confirmation information section buttons
+        // Create monitor button clicked
+        $('#createMonitor').click( function(){
+            addNewMonitor();
+        });
+
+        $('#confirmInfoStepBackBtn').click( function(){
+            $('#monitorAddHeader').removeClass('monitorAdd-header-last-step');
+            $('#monitorAddHeader').addClass('monitorAdd-header-fourth-step');
+            $('#lastStep').removeClass('bg-current-step');
+            $('#settingsTitle').text('SSL information');
+            $('#confirmInfoWrapper').css("display", "none");
+            $('#SSLSettingsWrapper').css("display", "block");
+        });
         
-        //FUNCTION
 
-        //Check that all forms is filled correct
-        function addNewPersonErrorsTests(){
-            let testSuccess = false;
-            if(newPersonName.value.length<1){
-                $("#addNewPersonErrorsShow").html("Person name form should be filled!");
-            }else if(newPersonEmail.value.length>=1){
-                if(newPersonEmail.value.indexOf("@")==-1){
-                    $("#addNewPersonErrorsShow").html("Email should have '@' simbol!");
-                }else{
-                    testSuccess = true;
-                }
-            }else if(newPersonNumber.value.length>=1){
-                testSuccess = true;
-            }else{
-                $("#addNewPersonErrorsShow").html("At least Phone or Email form should be field!");
-            }
-
-            return testSuccess;
+        function fillConfirmationPageBasic(){
+            const checkType = $( "#checkType option:selected" ).text();
+            const checkAdressTitle = $('#checkAddressTitle').text();
+            const checkAdress = $('#checkAddress').val();
+            const friendlyName = $('#friendlyName').val();
+            const checkInterval = checkIntervalSlider.value;
+            const basicSettings = `
+                                <div class="decrBox-title">BASIC SETTINGS</div>
+                                <div><span>Check type: </span>${checkType}</div>                                    
+                                <div><span>${checkAdressTitle}: </span>${checkAdress}</div>    
+                                <div><span>Friendly name: </span>${friendlyName}</div>
+                                <div><span>Check interval: </span>${checkInterval}m</div>
+                            `;
+                            
+            const basicDecr = document.getElementById('basicDecr');
+            const position = "beforeend";
+            basicDecr.innerHTML = '';
+            basicDecr.insertAdjacentHTML(position,basicSettings);
         }
 
-        //Function that add new person from add new person Modal Window if addNewPersonErrorsTests() returns true
-        function addNewPersonToAlert(){
-            
-            let createdPersons=null;
-            let newPersonItem = "";
+        function fillConfirmationPagePersons(){
 
-            if(addNewPersonErrorsTests() == true){
-                for(let i=0;i<=newPersonCount;i++) {
-                    createdPersons = document.getElementById("personToAlert"+i);
-                    if(createdPersons == null) {
-                        //ADD NEW PERSON 
-                        newPersonItem =`
-                                        <div class="userWripper" style="background-color : ${AlertBoxColorLIST[i % 10]}" data-toggle="popover${i}" data-trigger="hover" data-placement="top" >
-                                            <div class="userWripper__userType" id="personToAlert${i}">U</div>
-                                            ${newPersonName.value.substring(0,3)}
-                                            <div class="userWripper__delete" id="deletePerson${i}">x</div>
-                                        </div>
+            const alertPersons = document.getElementById('alertPersons');
+            const position = "beforeend";
+            alertPersons.innerHTML = '';
+            let personsDecr = `<div class="decrBox-title">PERSONS</div>`;
 
-                                        <input id="PersonName${i}" type="hidden" name="Persons[${i}][Name]" value="${newPersonName.value}">
-                                        <input id="PersonNumber${i}" type="hidden" name="Persons[${i}][Number]" value="${newPersonNumber.value}">
-                                        <input id="PersonEmail${i}" type="hidden" name="Persons[${i}][Email]" value="${newPersonEmail.value}">
-                                    `;
-                        const position = "beforeend";
-
-                        newPersonAddedWrapper.insertAdjacentHTML(position,newPersonItem);
-                        $(`[data-toggle="popover${i}"]`).popover({
-                            title: `${newPersonName.value}` ,
-                            content: `Email: ${newPersonEmail.value}<br />Phone number: ${newPersonNumber.value} `,
-                            html: true
-                        });
-
-                        //SAVE NEW ADDED PERSON'S INFO IN LIST(array)
-                        PersonsToAlertLIST.push({
-                            id : "personToAlert"+i,
-                            name : newPersonName.value,
-                            email : newPersonEmail.value,
-                            number :  newPersonNumber.value
-                        });
-
-                        //ADD EVENTLISTENER TO Delete icon (Delete person)
-                        let DeletePersonX = document.getElementById(`deletePerson${i}`);
-                        DeletePersonX.addEventListener('click',function(){
-                            $(`[data-toggle="popover${i}"]`).popover('hide')
-                            DeletePersonX.parentNode.parentNode.removeChild(DeletePersonX.parentNode);
-                            $(`#PersonName${i}`).remove();
-                            $(`#PersonEmail${i}`).remove();
-                            $(`#PersonNumber${i}`).remove();
-                            newPersonCount--;
-
-                            //DELETE Person from LIST
-                            for(let a=0; a<PersonsToAlertLIST.length;a++){
-                                if(PersonsToAlertLIST[a].id == "personToAlert"+i){
-                                    PersonsToAlertLIST.splice(a,1);
-                                    a=0;
-                                    break;
-                                }
-                            }
-                        });
-
-                        //CLEAR MODAL Window FORMS AND HIDE MODAL Window
-                        newPersonName.value="";
-                        newPersonEmail.value="";
-                        newPersonNumber.value="";
-                        $("#addNewPersonErrorsShow").html("");
-                        $('#addNewPersonToAlertModal').modal('hide');
-
-                        // $('#allPersons').val(PersonsToAlertLIST);
-                        newPersonCount++;
-                        break;
+            for (let i = 0; i < usersToAlert.length; i++) {
+                for (x in allUserData) {
+                    if(allUserData[x].zabbix_user_id == usersToAlert[i]){
+                        personsDecr += `                    
+                            <div><span>${allUserData[x].name}: </span>${allUserData[x].email}</div>    
+                            `;
                     }
                 }
             }
-            
+            alertPersons.insertAdjacentHTML(position,personsDecr);
         }
 
-        addNewPersonBtn.addEventListener("click",addNewPersonToAlert);
-
-        //Check type change
-        let checkTypeList = ["HTTP/HTTPS","Web socket","ICMP ping","DNS"];
+        //Check type changed
+        let checkTypeList = ["HTTP/HTTPS","ICMP ping","DNS"];
         let checkType;
-
-
         
         $("#checkType").change(function() {
             if(this.value == checkTypeList[0]){
-                checkType = `<div class="item-title">Check URL<span>*</span></div>
-                        <input class="input-large" type="text" id="URL" name="checkField" placeholder="https://">
-                        `
+                $('#checkAddressTitle').text('Check URL');
+                $('#checkAddress').attr('placeholder','https://');
+                $('#checkAddress').val(''); 
             }else if(this.value == checkTypeList[1]){
-                checkType = `<div class="item-title">WS or WSS URL<span>*</span></div>
-                        <input class="input-large" type="text" id="WsURL" name="checkField" placeholder="ws://yourdomain.com/sockets/notifications/">
-                        `
+                $('#checkAddressTitle').text('IP address');
+                $('#checkAddress').attr('placeholder','93.184.216.34');
+                $('#checkAddress').val(''); 
             }else if(this.value == checkTypeList[2]){
-                checkType = `<div class="item-title">IP Address/ Host Name<span>*</span></div>
-                        <input class="input-large" type="text" id="IpAddres" name="checkField" placeholder="93.184.216.34 or your yourdomain.com">
-                        `
-            }else{
-                checkType = `<div class="item-title">Host name<span>*</span></div>
-                        <input class="input-large" type="text" id="hostName" name="checkField" placeholder="www.domain.com">
-                        `
+                $('#checkAddressTitle').text('Host name');
+                $('#checkAddress').attr('placeholder','www.yourdomain.com');
+                $('#checkAddress').val(''); 
             }
-            $("#checkTypeWripper").html(`${checkType}`);
         });
 
 
-        //ADD EVENT LISTENER TO CHECK BOX
-        for(let i=1;i<=4;i++){
-            let checkBoxSSL = document.getElementById(`exampleCheck${i}`);
-            checkBoxSSL.addEventListener('click',function(){
-                for(let a=1;a<=4;a++){
-                    if(i!=a){
-                        $(`#exampleCheck${a}`).prop("checked", false);
-                    }else{
-                        $(`#exampleCheck${a}`).prop("checked", true);
+        //AJAX REQUESTS
+        let lastError = [];
+        let errrorCounter = 0;
+        //Add new monitor
+        function addNewMonitor(){
+
+            //Remove class 'is-invalid' from all elements
+            const arrayLength = lastError.length;
+            for (let i = 0; i < arrayLength; i++) {
+                if(lastError != ''){
+                    $(`#${lastError[i]}`).removeClass('is-invalid');
+                }
+            }
+            lastError = [];
+
+            let alertingPersonsInfo = [];
+            //Get all info about persons who alert
+            for(let i=0; i<usersToAlert.length; i++){
+                for (let property in allUserData) {
+                    if(allUserData[property]['zabbix_user_id'] == usersToAlert[i]){
+                        alertingPersonsInfo[i] = allUserData[property];
                     }
                 }
-            }); 
+            }
+
+            let checkType = $( "#checkType option:selected" ).text();
+            let checkField = $('#checkAddress').val();
+            let friendlyName = $('#friendlyName').val();
+            let checkInterval = checkIntervalSlider.value;
+ 
+            $.ajax( {
+            type:'POST',
+            header:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            },
+            url:'{{ URL::route("add.store") }}',
+            data:{
+            _token: "{{ csrf_token() }}",
+            dataType: 'json', 
+            contentType:'application/json',
+            //My passed data 
+            checkType: checkType,
+            checkAddress: checkField,
+            friendlyName: friendlyName,
+            checkInterval: checkInterval,
+            personsToAlert: alertingPersonsInfo
+            }
+
+
+            })
+          .done(function(data) {
+                alertingPersonsInfo = [];
+                if(data.message != null){
+                    toastr.success(data.message);
+                }
+                else if(data.error != null){
+                    toastr.error(data.error);
+                }else{
+                    for (key in data) {
+                        console.log(key);
+                        show_validation_failed(key, data[key]);
+                        moveToFirstValidationFailedPage(key);
+                        toastr.error(data[key]);
+                    }
+                }
+                returnToStartPosition();
+          })
+          .fail(function(error) {
+            if (error.status == 422) {
+                let response = JSON.parse(error.responseText);
+                let firstErrorId;
+                $.each( response.errors, function( key, value) {
+                    toastr.error(value);
+                    show_validation_failed(key, value[0]);
+                    if(errrorCounter == 0){
+                        firstErrorId = key;
+                    }
+                    errrorCounter++;
+                });
+                errrorCounter = 0;
+                moveToFirstValidationFailedPage(firstErrorId)
+            }
+          });
+        }
+
+        //Show/display where is first error 
+        function moveToFirstValidationFailedPage(firstError_ītem_id){
+            if(firstError_ītem_id == 'checkAddress' || firstError_ītem_id == 'friendlyName'){
+                $('#settingsTitle').text('Basic settings');
+                $('#basicSettingsWrapper').css("display", "block");
+                $('#lastStep').removeClass('bg-current-step');
+                $('#thirdStep').removeClass('bg-current-step');
+                $('#fourthStep').removeClass('bg-current-step');
+                $('#secoundStep').removeClass('bg-current-step');
+                $('#confirmInfoWrapper').css("display", "none");
+                $('#monitorAddHeader').removeClass('monitorAdd-header-last-step');
+            }else{
+                alert( @json( __('This element is not validated correctly yet') ));
+            }
+        }
+
+        function show_validation_failed(error_ītem_id, error_message){
+            if(error_ītem_id != 'NotUseId'){
+                lastError[errrorCounter] = error_ītem_id;
+                $(`#${error_ītem_id}`).addClass('is-invalid');
+            }
         }
     });
+</script>
 
-    </script>
+
+
+    // <script>
+    // $(function(){
+    //     //Script for Horicontal slider in Check Interval section
+    //     var slider = document.getElementById("myRange");
+    //     var output = document.getElementById("demo");
+    //     output.innerHTML = slider.value;
+
+    //     slider.oninput = function() {
+    //         output.innerHTML = this.value;
+    //     }
+
+    //     slider.addEventListener('mousemove', function(){
+    //         let x = this.value-this.min;
+    //         let valueInPercent = (100*x/(this.max-this.min));
+    //         let color = 'linear-gradient(90deg, #CA6D00 '+valueInPercent+'%, rgb(214,214,214) '+valueInPercent+'%)';
+    //         this.style.background = color;
+    //     });
+
+    //     //Script for Horicontal slider in Apdex response Treshold section
+    //     var sliderApdex = document.getElementById("myRangeApdex");
+    //     var outputApdex = document.getElementById("sliderValueBox");
+    //     outputApdex.innerHTML = sliderApdex.value;
+
+    //     sliderApdex.oninput = function() {
+    //         outputApdex.innerHTML = this.value;
+    //     }
+
+    //     sliderApdex.addEventListener('mousemove', function(){
+    //         let x = this.value-this.min;
+    //         let valueInPercent = (100*x/(this.max-this.min));
+    //         let color = 'linear-gradient(90deg, #CA6D00 '+valueInPercent+'%, rgb(214,214,214) '+valueInPercent+'%)';
+    //         this.style.background = color;
+    //     });
+
+
+    //     //Created by Rolands Bidzans
+    //     //SCRIPT FOR ADDING NEW CUSTOM HTTP HEADER ELEMENTS
+
+    //     //VARIABLES
+    //     const addCustomHeaderLink = document.getElementById("addCustomHeader");
+    //     const customheaderSettingsWripper = document.getElementById("advancedSectionWrapper");
+    //     const a = document.getElementById("newHeaders");
+    //     let customHeaderCount = 2;
+
+    //     //FUNCTION
+    //     function addNewHeader(){
+    //         let createdHeaders=null;
+    //         let newHeaderItem = "";
+    //         for(let i=2;i<=customHeaderCount;i++) {
+    //             createdHeaders = document.getElementById("customHeader"+i);
+    //             if(createdHeaders == null) {
+    //                 newHeaderItem =`
+    //                         <div class="settings-wrapper" id="newHeaderWripper${i}">
+    //                             <input class="input-small" type="text" id="customHeader${i}" name="Headers[${i}][Header]" placeholder="Header${i}">
+    //                             <input class="input-small input-small_margin30px" type="text" id="customKey${i}" name="Headers[${i}][Key]" placeholder="Key${i}">
+    //                             <i class="fas fa-trash invisible" id="headerDelete${i}"></i>
+    //                         </div>
+    //                     `;
+
+    //                     const position = "beforeend";
+    //                     a.insertAdjacentHTML(position,newHeaderItem);
+
+    //                     let deleteHeaderIcon = document.getElementById(`headerDelete${i}`);
+    //                     deleteHeaderIcon.addEventListener('click',function(){
+    //                         deleteHeaderIcon.parentNode.parentNode.removeChild(deleteHeaderIcon.parentNode);
+    //                         customHeaderCount--;
+    //                     });
+
+    //                     let newHeaderWripper = document.getElementById(`newHeaderWripper${i}`);
+    //                     newHeaderWripper.addEventListener('mouseover',function(){
+    //                         deleteHeaderIcon.classList.remove("invisible");
+    //                     });
+    //                     newHeaderWripper.addEventListener('mouseout',function(){
+    //                         deleteHeaderIcon.classList.add("invisible");
+    //                     });
+
+    //                     customHeaderCount++;
+    //                     break;
+    //             }
+    //         }
+    //     }
+
+    //     addCustomHeaderLink.addEventListener('click', function(){
+    //         if(customHeaderCount<6){
+    //             addNewHeader();
+    //         }
+    //     });
+
+
+
+    //     //Created by Rolands Bidzans
+    //     //SCRIPT FOR ADDING NEW PERSON TO ALERT
+
+    //     //VARIABLES
+    //     let newPersonAddedWrapper = document.getElementById("newPersonAddedWrapper");
+    //     let addNewPersonBtn = document.getElementById("btnNewPersonAdd");
+    //     let newPersonName = document.getElementById("personName");
+    //     let newPersonEmail = document.getElementById("personEmail");
+    //     let newPersonNumber = document.getElementById("personNumber");
+    //     let AlertBoxColorLIST = ["gray","orange","#0074D9","#85144b","#DDDDDD","#FF4136","#2ECC40","#F012BF","#3D9970"];
+    //     let PersonsToAlertLIST = [];
+    //     let newPersonCount = 0;
+        
+    //     //FUNCTION
+
+    //     //Check that all forms is filled correct
+    //     function addNewPersonErrorsTests(){
+    //         let testSuccess = false;
+    //         if(newPersonName.value.length<1){
+    //             $("#addNewPersonErrorsShow").html("Person name form should be filled!");
+    //         }else if(newPersonEmail.value.length>=1){
+    //             if(newPersonEmail.value.indexOf("@")==-1){
+    //                 $("#addNewPersonErrorsShow").html("Email should have '@' simbol!");
+    //             }else{
+    //                 testSuccess = true;
+    //             }
+    //         }else if(newPersonNumber.value.length>=1){
+    //             testSuccess = true;
+    //         }else{
+    //             $("#addNewPersonErrorsShow").html("At least Phone or Email form should be field!");
+    //         }
+
+    //         return testSuccess;
+    //     }
+
+    //     //Function that add new person from add new person Modal Window if addNewPersonErrorsTests() returns true
+    //     function addNewPersonToAlert(){
+            
+    //         let createdPersons=null;
+    //         let newPersonItem = "";
+
+    //         if(addNewPersonErrorsTests() == true){
+    //             for(let i=0;i<=newPersonCount;i++) {
+    //                 createdPersons = document.getElementById("personToAlert"+i);
+    //                 if(createdPersons == null) {
+    //                     //ADD NEW PERSON 
+    //                     newPersonItem =`
+    //                                     <div class="userWripper" style="background-color : ${AlertBoxColorLIST[i % 10]}" data-toggle="popover${i}" data-trigger="hover" data-placement="top" >
+    //                                         <div class="userWripper__userType" id="personToAlert${i}">U</div>
+    //                                         ${newPersonName.value.substring(0,3)}
+    //                                         <div class="userWripper__delete" id="deletePerson${i}">x</div>
+    //                                     </div>
+
+    //                                     <input id="PersonName${i}" type="hidden" name="Persons[${i}][Name]" value="${newPersonName.value}">
+    //                                     <input id="PersonNumber${i}" type="hidden" name="Persons[${i}][Number]" value="${newPersonNumber.value}">
+    //                                     <input id="PersonEmail${i}" type="hidden" name="Persons[${i}][Email]" value="${newPersonEmail.value}">
+    //                                 `;
+    //                     const position = "beforeend";
+
+    //                     newPersonAddedWrapper.insertAdjacentHTML(position,newPersonItem);
+    //                     $(`[data-toggle="popover${i}"]`).popover({
+    //                         title: `${newPersonName.value}` ,
+    //                         content: `Email: ${newPersonEmail.value}<br />Phone number: ${newPersonNumber.value} `,
+    //                         html: true
+    //                     });
+
+    //                     //SAVE NEW ADDED PERSON'S INFO IN LIST(array)
+    //                     PersonsToAlertLIST.push({
+    //                         id : "personToAlert"+i,
+    //                         name : newPersonName.value,
+    //                         email : newPersonEmail.value,
+    //                         number :  newPersonNumber.value
+    //                     });
+
+    //                     //ADD EVENTLISTENER TO Delete icon (Delete person)
+    //                     let DeletePersonX = document.getElementById(`deletePerson${i}`);
+    //                     DeletePersonX.addEventListener('click',function(){
+    //                         $(`[data-toggle="popover${i}"]`).popover('hide')
+    //                         DeletePersonX.parentNode.parentNode.removeChild(DeletePersonX.parentNode);
+    //                         $(`#PersonName${i}`).remove();
+    //                         $(`#PersonEmail${i}`).remove();
+    //                         $(`#PersonNumber${i}`).remove();
+    //                         newPersonCount--;
+
+    //                         //DELETE Person from LIST
+    //                         for(let a=0; a<PersonsToAlertLIST.length;a++){
+    //                             if(PersonsToAlertLIST[a].id == "personToAlert"+i){
+    //                                 PersonsToAlertLIST.splice(a,1);
+    //                                 a=0;
+    //                                 break;
+    //                             }
+    //                         }
+    //                     });
+
+    //                     //CLEAR MODAL Window FORMS AND HIDE MODAL Window
+    //                     newPersonName.value="";
+    //                     newPersonEmail.value="";
+    //                     newPersonNumber.value="";
+    //                     $("#addNewPersonErrorsShow").html("");
+    //                     $('#addNewPersonToAlertModal').modal('hide');
+
+    //                     // $('#allPersons').val(PersonsToAlertLIST);
+    //                     newPersonCount++;
+    //                     break;
+    //                 }
+    //             }
+    //         }
+            
+    //     }
+
+    //     addNewPersonBtn.addEventListener("click",addNewPersonToAlert);
+
+    //     //Check type change
+    //     let checkTypeList = ["HTTP/HTTPS","Web socket","ICMP ping","DNS"];
+    //     let checkType;
+
+
+        
+    //     $("#checkType").change(function() {
+    //         if(this.value == checkTypeList[0]){
+    //             checkType = `<div class="item-title">Check URL<span>*</span></div>
+    //                     <input class="input-large" type="text" id="URL" name="checkField" placeholder="https://">
+    //                     `
+    //         }else if(this.value == checkTypeList[1]){
+    //             checkType = `<div class="item-title">WS or WSS URL<span>*</span></div>
+    //                     <input class="input-large" type="text" id="WsURL" name="checkField" placeholder="ws://yourdomain.com/sockets/notifications/">
+    //                     `
+    //         }else if(this.value == checkTypeList[2]){
+    //             checkType = `<div class="item-title">IP Address/ Host Name<span>*</span></div>
+    //                     <input class="input-large" type="text" id="IpAddres" name="checkField" placeholder="93.184.216.34 or your yourdomain.com">
+    //                     `
+    //         }else{
+    //             checkType = `<div class="item-title">Host name<span>*</span></div>
+    //                     <input class="input-large" type="text" id="hostName" name="checkField" placeholder="www.domain.com">
+    //                     `
+    //         }
+    //         $("#checkTypeWripper").html(`${checkType}`);
+    //     });
+
+
+    //     //ADD EVENT LISTENER TO CHECK BOX
+    //     for(let i=1;i<=4;i++){
+    //         let checkBoxSSL = document.getElementById(`exampleCheck${i}`);
+    //         checkBoxSSL.addEventListener('click',function(){
+    //             for(let a=1;a<=4;a++){
+    //                 if(i!=a){
+    //                     $(`#exampleCheck${a}`).prop("checked", false);
+    //                 }else{
+    //                     $(`#exampleCheck${a}`).prop("checked", true);
+    //                 }
+    //             }
+    //         }); 
+    //     }
+    // });
+
+    // </script>
 @stop
