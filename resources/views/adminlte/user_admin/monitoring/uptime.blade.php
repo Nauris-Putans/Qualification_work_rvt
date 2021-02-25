@@ -2,7 +2,7 @@
 @section('title', 'Uptime')
 
 @section('content_header')
-    <h1>Monitoring > Uptime</h1>
+    <h1>{{ __('Monitoring')}} > {{ __('Uptime')}}</h1>
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                      <label>Your monitor</label>
+                      <label>{{ __('Your monitor')}}</label>
                       <select class="form-control" id='userMonitors'>
                   
                       </select>
@@ -28,7 +28,7 @@
                         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
                         <div class="info-box-content">
-                        <span class="info-box-text">Requests</span>
+                        <span class="info-box-text">{{ __('Requests')}}</span>
                         <span class="info-box-number" id="requests">
                             {{-- Requests number --}}
                         </span>
@@ -43,7 +43,7 @@
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-cloud-upload-alt"></i></i></span>
 
                         <div class="info-box-content">
-                        <span class="info-box-text">Uptime</span>
+                        <span class="info-box-text">{{ __('Uptime')}}</span>
                         <span class="info-box-number" id="upTime">
                             {{-- up time in percent--}}
                         </span>
@@ -62,20 +62,20 @@
             <div class="row" id="upTimeChart">
 
                 <div class="col-md-3 justify-content-center">
-                    <div class="chosenDayDateLable" id="chosenDayDateLable">01 September 2020</div>
+                    <div class="chosenDayDateLable" id="chosenDayDateLable">{{ __('No data given')}}</div>
                     <div class="info-box-content">
                         <div class="easy-pie-chart-box">
-                            <span style="margin: 0 auto;">Up</span>
+                            <span style="margin: 0 auto;">{{ __('Up') }}</span>
                             <div class="box">
-                                <div class="chart" id="upChart" data-percent="100">
+                                <div class="chart" id="upChart" data-percent="0">
                                     <span class="percent">0</span>
                                 </div>
                             </div>
                         </div>                      
                         <div class="easy-pie-chart-box">
-                            <span style="margin: 0 auto;">Down</span>
+                            <span style="margin: 0 auto;">{{ __('Down')}}</span>
                             <div class="box">
-                                <div class="chart" id="downChart" data-percent="100">
+                                <div class="chart" id="downChart" data-percent="0">
                                     <span class="downChartPercent">0</span>
                                 </div>
                             </div>
@@ -92,7 +92,11 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/app.css">
+{{-- Date styles --}}
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+{{-- Toastr styles --}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" media="all">
 <style>
     .box{
         width: 25%;
@@ -131,32 +135,38 @@
 {{--    <script src="node_modules/chart.js/dist/Chart.bundle.js"></script>--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
 
+
+{{-- toastr --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+{{-- Swal --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.14.0/sweetalert2.min.js"></script>
+
 <script>
     $.noConflict();
     $(function () { 
 
         let month = new Array(12);
-            month[0] = 'January';
-            month[1] = 'February';
-            month[2] = 'March';
-            month[3] = 'April';
-            month[4] = 'May';
-            month[5] = 'June';
-            month[6] = 'July';
-            month[7] = 'August';
-            month[8] = 'September';
-            month[9] = 'October';
-            month[10] = 'November';
-            month[11] = 'December';
+            month[0] = @json( __('January'));
+            month[1] = @json( __('February'));
+            month[2] = @json( __('March'));
+            month[3] = @json( __('April'));
+            month[4] = @json( __('May'));
+            month[5] = @json( __('June'));
+            month[6] = @json( __('July'));
+            month[7] = @json( __('August'));
+            month[8] = @json( __('September'));
+            month[9] = @json( __('October'));
+            month[10] = @json( __('November'));
+            month[11] = @json( __('December'));
 
         let weekday = new Array(7);
-            weekday[0] = "Sunday";
-            weekday[1] = "Monday";
-            weekday[2] = "Tuesday";
-            weekday[3] = "Wednesday";
-            weekday[4] = "Thursday";
-            weekday[5] = "Friday";
-            weekday[6] = "Saturday";
+            weekday[0] = @json( __("Sunday"));
+            weekday[1] = @json( __("Monday"));
+            weekday[2] = @json( __("Tuesday"));
+            weekday[3] = @json( __("Wednesday"));
+            weekday[4] = @json( __("Thursday"));
+            weekday[5] = @json( __("Friday"));
+            weekday[6] = @json( __("Saturday"));
         
         jQuery('#upChart').easyPieChart({
             barColor:'#55c911',
@@ -172,9 +182,6 @@
             lineWidth: 9,
         });
 
-
-        // jQuery('#chart').data('easyPieChart').update(45);
-
         let friendlyNameCounter = 0;
         let checkCounter = 0;
 
@@ -184,10 +191,13 @@
             let checkHistory = <?php echo json_encode($histories); ?>;
             let checkFriendlyName = <?php echo json_encode($itemsFriendlyName); ?>;
 
-            if(checkFriendlyName != []){
+            if(checkFriendlyName.length != 0){
+
                 //Will be set as current value in drop down box
                 let checkLastFriendlyName = checkFriendlyName[0];
                 insertData(checkHistory,checkFriendlyName,checkLastFriendlyName);
+            }else{
+                $('#userMonitors').attr('disabled', 'disabled');
             }
         }
 
@@ -378,7 +388,7 @@
                         }
 
                         let newDayBox =
-                                `<div class="dayBox" style="background-color: #a0a0a0;" id="${date}" title="no data" data-toggle="popover" data-trigger="hover" data-content="Data is not available">
+                                `<div class="dayBox" style="background-color: #a0a0a0;" id="${date}" title="no data" data-toggle="popover" data-trigger="hover" data-content="${ @json( __('Data is not available'))}">
                                     <div class="content d-none" >
                                        
                                     </div>
@@ -409,7 +419,7 @@
                                         <div class="contentWrapper">
                                             <div class="contentWrapper_label">${weekday[allDates[i]['date'].getDay()]}  ${(allDates[i]['date'].getDate())}</div>
                                             <div class="uptimeNumber"> ${math}%</div>
-                                            <button class="btnMore">More info</button>
+                                            <button class="btnMore">${ @json( __('More info'))}</button>
                                         </div>
                                     </div>
                                 </div>`;
@@ -437,11 +447,22 @@
 
             let sizeOfallDates= (Object.keys(allDates).length)-1;
 
-            jQuery('.percent').text(`${allDates[sizeOfallDates]['value']}`);
-            jQuery(".downChartPercent").text(allDates[sizeOfallDates]['valuesCounter']-allDates[sizeOfallDates]['value']);
-            jQuery('#upChart').data('easyPieChart').update(`${allDates[sizeOfallDates]['value']*100/allDates[sizeOfallDates]['valuesCounter']}`);
-            jQuery('#downChart').data('easyPieChart').update(`${(allDates[sizeOfallDates]['valuesCounter']-allDates[sizeOfallDates]['value'])*100 /allDates[sizeOfallDates]['valuesCounter']}`);
+            if(allDates[sizeOfallDates] != null){
+                jQuery('.percent').text(`${allDates[sizeOfallDates]['value']}`);
+                jQuery(".downChartPercent").text(allDates[sizeOfallDates]['valuesCounter']-allDates[sizeOfallDates]['value']);
+                jQuery('#upChart').data('easyPieChart').update(`${allDates[sizeOfallDates]['value']*100/allDates[sizeOfallDates]['valuesCounter']}`);
+                jQuery('#downChart').data('easyPieChart').update(`${(allDates[sizeOfallDates]['valuesCounter']-allDates[sizeOfallDates]['value'])*100 /allDates[sizeOfallDates]['valuesCounter']}`);
+                jQuery('#chosenDayDateLable').text(allDates[sizeOfallDates]['date'].getDate() + ' ' + month[allDates[sizeOfallDates]['date'].getMonth()] + ' ' + allDates[sizeOfallDates]['date'].getFullYear());
+            }else{
+                jQuery('.percent').text('0');
+                jQuery(".downChartPercent").text('0');
+                jQuery('#upChart').data('easyPieChart').update(0);
+                jQuery('#downChart').data('easyPieChart').update(0);
+                jQuery('#chosenDayDateLable').text(@json( __('There is no date to display!')  ));
+                toastr.warning( @json( __('There is no data yet!')  ));
+            }
 
+            //Add event listener
             for (let h = 0; h < coll.length; h++) {
                 coll[h].addEventListener("click", function() {
                     jQuery('.percent').text(allDates[h]['value']);
@@ -464,7 +485,12 @@
                     positiveData++;
                 }
             }
-            $("#upTime").text( ((positiveData*100) / checkCount) + '%');
+            console.log(positiveData + ' ' + checkCount);
+            if(checkCount != 0){
+                $("#upTime").text(Math.round((positiveData*100) / checkCount) + '%');
+            }else{
+                $("#upTime").text('0%');
+            }
 
         } 
  
@@ -527,7 +553,7 @@
               insertData(data.histories,data.itemsFriendlyName,null);
           })
           .fail(function() {
-              alert("error");
+              alert(@json( __("error")));
           });
         }
 

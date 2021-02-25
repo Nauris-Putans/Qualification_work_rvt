@@ -49,10 +49,11 @@ class MonitoringPageSpeedController extends Controller
 
         $itemsFriendlyName = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 1)->get('friendly_name');//Get items friendly names;
         $itemsIds = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 1)->get('item');//Get items id;
-        if($itemid != null){
+        $histories = [];
+        if($itemid->first() != null){
             $itemid = $itemid[0]->item;
         }else{
-            dd('You dont have any item');
+            return view('adminlte.user_admin.monitoring.page-speed', compact(['histories','itemsFriendlyName','itemsIds']));
         }
 
 

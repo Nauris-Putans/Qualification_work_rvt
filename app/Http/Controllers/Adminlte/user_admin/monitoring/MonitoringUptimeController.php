@@ -45,14 +45,16 @@ class MonitoringUptimeController extends Controller
         if($usergroupID != null){
             $usergroupID = $usergroupID->group_id;
         }
-        $itemid = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 2)->get('item');//Get items;
-
+        $itemid = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 2)->get(['item','monitor_type']);//Get items;
+     
         $itemsFriendlyName = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 2)->get('friendly_name');//Get items friendly names;
-
-        if($itemid != null){
+        $histories = [];
+        $monitorType = 0;
+        if($itemid->first() != null){
+            $monitorType = $itemid[0]->monitor_type;
             $itemid = $itemid[0]->item;
         }else{
-            dd('You dont have any item');
+            return view('adminlte.user_admin.monitoring.uptime', compact(['histories','itemsFriendlyName']));
         }
 
 
@@ -64,6 +66,18 @@ class MonitoringUptimeController extends Controller
             'sortorder' => 'DESC',
             'itemids' => $itemid,
         ]);
+
+        if($monitorType == 2){
+
+            foreach ($histories as $key => $value){
+
+                if($histories[$key]->value == 0){
+                    $histories[$key]->value = 1;
+                }else{
+                    $histories[$key]->value = 0;
+                }
+            }
+        }
 
         return view('adminlte.user_admin.monitoring.uptime', compact(['histories','itemsFriendlyName']));
     }
@@ -92,10 +106,12 @@ class MonitoringUptimeController extends Controller
         if($usergroupID != null){
             $usergroupID = $usergroupID->group_id;
         }
-        $itemid = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 2)->where('friendly_name', $request->item_name)->get('item');//Get items;
+        $itemid = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 2)->where('friendly_name', $request->item_name)->get(['item','monitor_type']);//Get items;
         $itemsFriendlyName = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 2)->get('friendly_name');//Get items friendly names;
+        $monitorType = 0;
         if($itemid != null){
             foreach ($itemid as $value){
+                $monitorType = $itemid[0]->monitor_type;
                 $itemid = $value->item;
             }
         }else{
@@ -107,6 +123,18 @@ class MonitoringUptimeController extends Controller
             'sortorder' => 'DESC',
             'itemids' => $itemid,
         ]);
+        
+        if($monitorType == 2){
+
+            foreach ($histories as $key => $value){
+
+                if($histories[$key]->value == 0){
+                    $histories[$key]->value = 1;
+                }else{
+                    $histories[$key]->value = 0;
+                }
+            }
+        }
 
         return compact(['histories','itemsFriendlyName']);
     }
