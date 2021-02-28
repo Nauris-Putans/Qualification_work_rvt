@@ -1,6 +1,5 @@
 @extends('adminlte::page')
-
-@section('title', 'Support')
+@section('title', __('Support'))
 
 @section('content_header')
     <nav aria-label="breadcrumb">
@@ -197,7 +196,7 @@
 
 @section('js')
     <script>
-        
+
         // Close and delete action script for tickets
         $(document).ready(function () {
             $('.close-action').click(function (e) {

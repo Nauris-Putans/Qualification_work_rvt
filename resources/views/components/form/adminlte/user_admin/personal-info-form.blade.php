@@ -73,7 +73,7 @@
                             <label for="gender">
                                 {{ __('Gender') }}
                             </label>
-                            <select class="form-control selectpicker @error('gender') is-invalid @enderror" data-style="CountrySelect" data-size="10" name="gender" form="personal_info">
+                            <select title="{{ __("Nothing selected") }}" class="form-control selectpicker @error('gender') is-invalid @enderror" data-style="CountrySelect" data-size="10" name="gender" form="personal_info">
                                 <option disabled selected data-tokens="{{ $user->gender }}" value="{{ $user->gender }}">
                                     {{ __($user->gender) }}
                                 </option>
@@ -114,7 +114,7 @@
                             <label for="country">
                                 {{ __('Country') }}
                             </label>
-                            <select class="form-control selectpicker @error('country') is-invalid @enderror" data-live-search="true" data-style="CountrySelect" data-size="10" id="countryList" name="country" form="personal_info">
+                            <select title="{{ __("Nothing selected") }}" class="form-control selectpicker @error('country') is-invalid @enderror" data-live-search="true" data-style="CountrySelect" data-size="10" id="countryList" name="country" form="personal_info">
                                 @if($countryName != null)
                                     <option disabled selected data-tokens="{{ __($countryName->name) }}" value="{{ $countryName->name }}">{{ __($countryName->name) }}</option>
                                 @else

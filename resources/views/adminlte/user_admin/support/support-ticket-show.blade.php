@@ -1,5 +1,4 @@
 @extends('adminlte::page')
-
 @section('title', $ticket->title)
 
 @section('content_header')

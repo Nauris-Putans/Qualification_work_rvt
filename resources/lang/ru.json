@@ -279,6 +279,8 @@
     "Has been created!": "Был создан!",
     "has been updated!": "обновлен!",
     "Has been updated!": "Обновлен!",
+    "do not match with password!": "не совпадают с паролем!",
+    "Do not match with password!": "Не совпадает с паролем!",
 
     "//////Text with fillables":
     {},
@@ -400,6 +402,7 @@
     "You can cancel your subscription plan in account settings.": "Вы можете отказаться от подписки в настройках учетной записи.",
     "How can I upgrade my subscription plan?": "Как я могу обновить свой план подписки?",
     "You can upgrade your subscription plan in account settings.": "Вы можете обновить план подписки в настройках учетной записи.",
+    "Have unanswered questions?": "Есть вопросы без ответа?",
 
     "//////Authentication":
     {},
@@ -550,6 +553,7 @@
     "Subscription Plan": "План подписки",
     "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.": "Здесь вы можете указать свой платежный адрес электронной почты. Он будет использоваться для отправки счетов и других уведомлений о выставлении счетов. Если вы оставите это поле пустым, по умолчанию будет использоваться адрес электронной почты вашего аккаунта.",
     "Choose how you will receive notifications from us. WEBcheck will send you email or SMS notifications based on your notification settings.": "Выберите, как вы будете получать от нас уведомления. WEBcheck будет отправлять вам уведомления по электронной почте или SMS в зависимости от ваших настроек уведомлений.",
+    "Nothing selected": "Ничего не выбрано",
 
     "//////Adminlte admin side navbar":
     {},

@@ -25,7 +25,9 @@ class FullnameRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        if (preg_match('/^[a-zA-Z]+(?:\s[a-zA-Z]+)+$/', $value))
+        $regex = '/^([A-ZА-Я\p{Cyrillic}\p{Common}]|Ē|Ū|Ī|Ā|Š|Ģ|Ķ|Ļ|Ž|Č|Ņ)[а-яa-zA-ZА-Я\p{Cyrillic}\p{Common}ēūīāšģķļžčņĒŪĪĀŠĢĶĻŽČŅ -]+(?:\s([A-ZА-Я\p{Cyrillic}\p{Common}]|Ē|Ū|Ī|Ā|Š|Ģ|Ķ|Ļ|Ž|Č|Ņ)[a-zа-яA-ZА-Я\p{Cyrillic}\p{Common}ēūīāšģķļžčņĒŪĪĀŠĢĶĻŽČŅ -]+)+$/';
+
+        if (preg_match($regex, $value))
         {
             return true;
         }
