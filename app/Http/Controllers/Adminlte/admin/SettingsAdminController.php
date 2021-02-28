@@ -33,7 +33,7 @@ class SettingsAdminController extends Controller
     public function personal_info_update(PersonalInfoRequest $request, $id)
     {
         // Hash key for id security
-        $hashids = new Hashids('WEBcheck', 10);
+        $hashids = new Hashids(env("HASHIDS"), 10);
 
         // Decodes id
         $id = $hashids->decode( $id );

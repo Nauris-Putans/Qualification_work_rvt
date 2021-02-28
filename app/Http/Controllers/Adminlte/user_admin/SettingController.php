@@ -37,7 +37,7 @@ class SettingController extends Controller
         $countries = Country::all();
 
         // Hash key for id security
-        $hashids = new Hashids('WEBcheck', 10);
+        $hashids = new Hashids(env("HASHIDS"), 10);
 
         // Finds users id by Auth model
         $id = Auth::id();

@@ -23,7 +23,7 @@ class UsersAdminController extends Controller
     public function index()
     {
         // Hash key for id security
-        $hashids = new Hashids('WEBcheck', 10);
+        $hashids = new Hashids(env("HASHIDS"), 10);
 
         // Finds roles that are meant for user side
         $roles = DB::table('role_user')
