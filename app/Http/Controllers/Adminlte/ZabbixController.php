@@ -116,16 +116,18 @@ class ZabbixController extends Controller
         $disabledMonitors = DB::table('monitoring_monitors')
             ->where('user_group', $userGroup)
             ->where('status', 2)
-            ->get('item');
+            ->get('host');
 
         $currentStatus['values']['paused'] = $disabledMonitors->count();
 
         $enabledMonitors = DB::table('monitoring_monitors')
-            ->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')
+            ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
+            ->join('host_has_application_webscenario', 'host_has_application_webscenario.host_id', '=', 'monitoring_hosts.host_id')
+            ->join('monitoring_items', 'monitoring_items.application', '=', 'host_has_application_webscenario.application')
             ->where('user_group', $userGroup)
             ->where('status', 1)
             ->where('check_type', 2)
-            ->get(['item','monitor_type']);
+            ->get(['item_id as item','monitor_type']);
     
 
         $activeMonitors = array();
@@ -190,7 +192,7 @@ class ZabbixController extends Controller
             $currentStatus['percentage']['down'] = $downMonitors * 100 / $allMonitorCount;
             $currentStatus['percentage']['paused'] = $disabledMonitors->count() * 100 / $allMonitorCount;
         }
-
+        
         return compact(['currentStatus']);
     }
 
@@ -204,24 +206,28 @@ class ZabbixController extends Controller
         $userGroup = $request->session()->get('groupId');
 
         $allItems = DB::table('monitoring_monitors')
-            ->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')
-            ->join('monitoring_check_types', 'monitoring_items.check_type', '=', 'monitoring_check_types.id')
+            ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
+            ->join('host_has_application_webscenario', 'host_has_application_webscenario.host_id', '=', 'monitoring_hosts.host_id')
+            ->join('monitoring_items', 'monitoring_items.application', '=', 'host_has_application_webscenario.application')
+            ->join('monitoring_check_types', 'monitoring_check_types.id', '=', 'monitoring_items.check_type')
             ->where('user_id', $currentUserID)
             ->where('user_group', $userGroup)
-            ->get(['item','friendly_name','check_type_name']);
+            ->get(['item_id','friendly_name','check_type_name']);
 
         $DashboardItemsCurrentCheckStatus = DB::table('monitoring_user_dashboard_items')
             ->join('monitoring_user_dashboard_item_types', 'monitoring_user_dashboard_item_types.item_type_id', '=', 'monitoring_user_dashboard_items.itemType')
             ->where('user', $currentUserID)
             ->where('group', $userGroup)
             ->where('itemType', 1)
-            ->get(['item_id','dashboardItemColor']);
+            ->get(['item_id','dashboardItemColor','element_position']);
 
         $currentStatusItemsInfo = [];
         foreach ($DashboardItemsCurrentCheckStatus as $key=>$value){
             $someValue = $this->getLastChecksHystory($currentUserID, $userGroup);
-            $currentStatusItemsInfo[$key] = $someValue;
-            $currentStatusItemsInfo[$key]['id'] = $value->dashboardItemColor;
+            $currentStatusItemsInfo[$key]=(object)[];
+            $currentStatusItemsInfo[$key]->currentStatus = $someValue['currentStatus'];
+            $currentStatusItemsInfo[$key]->id = $value->dashboardItemColor;
+            $currentStatusItemsInfo[$key]->element_position = $value->element_position;
         }
 
         $DashboardItemsResponseAndDownloadTime = DB::table('monitoring_user_dashboard_items')
@@ -230,20 +236,56 @@ class ZabbixController extends Controller
             ->where('user', $currentUserID)
             ->where('group', $userGroup)
             ->where('itemType', 2)
-            ->get(['check_type_name as dataType','item','hystory_from_days','dashboardItemColor as uniqIdForItem']);
+            ->get(['check_type_name as dataType','item','hystory_from_days','dashboardItemColor as uniqIdForItem','element_position']);
 
-            foreach($DashboardItemsResponseAndDownloadTime as $key=>$value) {
-                $DashboardItemsResponseAndDownloadTime[$key]->itemColors = DB::table('monitoring_user_dashboard_items_colors')
-                ->where('color_id', $DashboardItemsResponseAndDownloadTime[$key]->uniqIdForItem)
-                ->get()->first();
+        foreach($DashboardItemsResponseAndDownloadTime as $key=>$value) {
+            $DashboardItemsResponseAndDownloadTime[$key]->itemColors = DB::table('monitoring_user_dashboard_items_colors')
+            ->where('color_id', $DashboardItemsResponseAndDownloadTime[$key]->uniqIdForItem)
+            ->get()->first();
 
-                $DashboardItemsResponseAndDownloadTime[$key]->monitorName = DB::table('monitoring_monitors')
-                ->where('item', $DashboardItemsResponseAndDownloadTime[$key]->item)
-                ->get('friendly_name as monitorName')->first()->monitorName;
-            }
+            $DashboardItemsResponseAndDownloadTime[$key]->monitorName = DB::table('monitoring_monitors')
+            ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
+            ->join('host_has_application_webscenario', 'host_has_application_webscenario.host_id', '=', 'monitoring_hosts.host_id')
+            ->join('monitoring_items', 'monitoring_items.application', '=', 'host_has_application_webscenario.application')
+            ->where('item_id', $DashboardItemsResponseAndDownloadTime[$key]->item)
+            ->get('friendly_name as monitorName')->first()->monitorName;
+        }
 
         $itemsInfoForAreaChart = $this->getHystoryForAreaChart($DashboardItemsResponseAndDownloadTime, $currentUserID, $userGroup);
-        return view('adminlte/user_admin/index',compact(['allItems','currentStatusItemsInfo','itemsInfoForAreaChart']));
+        $allDashboardItems = [];
+
+        $itemCounter = 0;
+        foreach($itemsInfoForAreaChart['allItems'] as $value){
+            $allDashboardItems[$itemCounter]=$value;
+            $allDashboardItems[$itemCounter]->type= 'areaChart';
+            $itemCounter++;
+        }
+
+        foreach($currentStatusItemsInfo as $value){
+            $allDashboardItems[$itemCounter]=$value;
+            $allDashboardItems[$itemCounter]->type= 'currentStatus';
+            $itemCounter++;
+        }
+
+        $lastElementPosition = 0;
+        for($i=0; $i<count($allDashboardItems);$i++){
+            $currentCheckElement = $allDashboardItems[0];
+            $currentCheckElementPosition = $allDashboardItems[0]->element_position;
+            $lastElementPosition = $allDashboardItems[0]->element_position;
+            for($a=1; $a<count($allDashboardItems);$a++){
+                if($currentCheckElementPosition > $allDashboardItems[$a]->element_position){
+                    $betweenArray = $allDashboardItems[$a];
+                    $allDashboardItems[$a] = $currentCheckElement;
+                    $allDashboardItems[$a-1] = $betweenArray;
+                }else{
+                    $currentCheckElementPosition = $allDashboardItems[$a]->element_position;
+                    $currentCheckElement = $allDashboardItems[$a];
+                    $lastElementPosition = $allDashboardItems[$a]->element_position;
+                }
+            }
+        }
+
+        return view('adminlte/user_admin/index',compact(['allItems','allDashboardItems','lastElementPosition']));
     }
 
     /**
@@ -300,7 +342,8 @@ class ZabbixController extends Controller
              'itemType' => 2,
              'user' => $currentUserID,
              'group' => $userGroup,
-             'hystory_from_days' => $request->date
+             'hystory_from_days' => $request->date,
+             'element_position' => $request->createdElementPosition
             ]
         );
 
@@ -308,7 +351,7 @@ class ZabbixController extends Controller
     }
 
     /**
-     * Get item from zabbix
+     * Remove Dashboard element
      *
      * @throws ZabbixException
      */
@@ -327,6 +370,27 @@ class ZabbixController extends Controller
     }
 
     /**
+     * Save dashboards elements positions
+     *
+     * @throws ZabbixException
+     */
+    public function saveElementsPositions(Request $request)
+    {
+        $dashbordElementsIds = $request->elementsIds;
+
+        if($dashbordElementsIds != null){
+            foreach($dashbordElementsIds as $key=>$element){
+                //Change monitor status
+                $monitors = DB::table('monitoring_user_dashboard_items')
+                    ->where('dashboardItemColor', $element)
+                    ->update(['element_position' => $key ]); 
+            }
+        }
+
+        return compact(['dashbordElementsIds']);
+    }
+
+    /**
      * Get item from zabbix
      *
      * @throws ZabbixException
@@ -339,13 +403,15 @@ class ZabbixController extends Controller
 
         //Get user Group
         $userGroup = $request->session()->get("groupId");//Get current user Group;
-
+        
         $allItems = DB::table('monitoring_monitors')
-            ->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')
+            ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
+            ->join('host_has_application_webscenario', 'host_has_application_webscenario.host_id', '=', 'monitoring_hosts.host_id')
+            ->join('monitoring_items', 'monitoring_items.application', '=', 'host_has_application_webscenario.application')
             ->join('monitoring_check_types', 'monitoring_items.check_type', '=', 'monitoring_check_types.id')
             ->where('user_id', $currentUserID)
-            ->where('user_group', 'G1')
-            ->get(['item','friendly_name','check_type_name','monitor_type']);
+            ->where('user_group', $userGroup)
+            ->get(['item_id as item','friendly_name','check_type_name','monitor_type']);
 
         $someValue = $this->getLastChecksHystory($currentUserID, $userGroup);
 
@@ -369,7 +435,8 @@ class ZabbixController extends Controller
                 'itemType' => 1,
                 'user' => $currentUserID,
                 'group' => $userGroup,
-                'hystory_from_days' => 1
+                'hystory_from_days' => 1,
+                'element_position' => $request->createdElementPosition
             ]
         );
 

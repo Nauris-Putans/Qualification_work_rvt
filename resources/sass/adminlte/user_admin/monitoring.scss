@@ -471,6 +471,27 @@ $Basic-Orange:#CA6D00;
         margin: 0 2px 2px 0;
     }
 
+    // Style for easy-pie-chart
+    .box{
+        width: 25%;
+        float: left;
+    }
+
+    .box .chart{
+        position: relative;
+        width: 110px;
+        height: 110px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 30px;
+        line-height: 110px;
+    }
+    canvas{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
   /* Style the collapsible content. Note: hidden by default */
   .content {
     position: absolute;
@@ -778,6 +799,7 @@ $Basic-Orange:#CA6D00;
         .monitorAdd-SettingsWrapper{
             position: relative;
             width: 100%;
+            min-height: 390px;
             height: auto;
             padding-bottom: 75px;
             .settings-title{
@@ -892,8 +914,24 @@ $Basic-Orange:#CA6D00;
                         background-color: #17a2b8;
                     }
                 }
+
+                .toStartBtn{
+                    border: none;
+                    outline: none;
+                    padding: 5px 10px 5px 10px;
+                    width: auto;
+                    background-color: #1bc11bb7;
+                    color: white;
+                    border-radius: 5px;
+                    font-size: 20px;
+                    font-weight: 400;
+                    &:hover{
+                        background-color: #1bc11b;
+                    }
+                }
     
                 .leftBtn{
+                    width: auto;
                     margin-right: 5px;
                     i{
                         margin-right: 15px;
@@ -916,7 +954,48 @@ $Basic-Orange:#CA6D00;
                         margin-left: 15px;
                     }
                 }
+
+                .spinerBox{
+                    display: none;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: auto;
+                }
             }
+
+            .successIconWrapper{
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 140px;
+                width: 140px;
+                background-color: white;
+                border: 23px solid #1bc11b4d;
+                border-radius: 100%;
+                font-size: 100px;
+                color: #1bc11b;
+            }
+            .monitorCtreatedTitle{
+                margin-top: 20px;
+                text-align: center;
+                font-size: 30px;
+                font-weight: 600;
+                color: #1bc11b;
+            }
+            .monitorCtreatedURL{
+                margin-top: 10px;
+                margin-bottom: 20px;
+                text-align: center;
+                font-size: 25px;
+                font-weight: 600;
+                color: #1bc11b;
+            }
+
+        }
+        .monitorCreatedWrapper{
+            padding-top: 43px;
         }
 
         .sliderInfoWrapper{

@@ -95,9 +95,10 @@ Route::middleware(['role:' . $userAdminSide])->group( function()
     Route::post('/user/dashboard/newAreaChartStore', 'Adminlte\ZabbixController@newAreaChartStore')->name('user.dashboard.newAreaChartStore');
     Route::post('/user/dashboard/lastStatusGet', 'Adminlte\ZabbixController@lastStatusHistoryGet')->name('user.dashboard.lastStatusHistoryGet');
     Route::post('/user/dashboard/removeItem', 'Adminlte\ZabbixController@itemRemove')->name('user.dashboard.itemRemove');
+    Route::post('/user/dashboard/saveElementsPositions', 'Adminlte\ZabbixController@saveElementsPositions')->name('user.dashboard.savePosition');
 
     // Monitoring sections
-    Route::get('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@create');
+    Route::get('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@create')->name('monitor.add');
     Route::post('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@store')->name('add.store');
     Route::get('/user/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@index');
     Route::post('/user/monitoring/monitors/list/delete/{monitorId}', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@deleteMonitor')->name('monitor.destroy');
@@ -106,8 +107,8 @@ Route::middleware(['role:' . $userAdminSide])->group( function()
     Route::post('/user/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@store');
     Route::get('/user/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@index');
     Route::post('/user/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@store');
-    Route::get('/user/monitoring/real-user-monitoring', 'Adminlte\user_admin\monitoring\MonitoringRealUserMonitoringController@index');
-    Route::post('/user/monitoring/real-user-monitoring', 'Adminlte\user_admin\monitoring\MonitoringRealUserMonitoringController@store');
+    Route::get('/user/monitoring/download-speed', 'Adminlte\user_admin\monitoring\MonitoringDownloadSpeedController@index');
+    Route::post('/user/monitoring/download-speed', 'Adminlte\user_admin\monitoring\MonitoringDownloadSpeedController@store');
     // Alerts sections
     Route::get('/user/alerts', 'Adminlte\user_admin\AlertsController@index');
 

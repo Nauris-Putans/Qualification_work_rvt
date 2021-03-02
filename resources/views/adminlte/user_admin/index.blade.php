@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Dashboard')
+@section('title', __('Dashboard'))
 
 @section('content_header')
     <h1>{{ __('Dashboard')}}</h1>
@@ -10,7 +10,13 @@
 <section class="dashboard-header">
     <div class="column">
         <div class="row">
-            <div class="col-1 offset-11">
+            <div class="col-12  d-flex justify-content-between">
+                <div id='saveInProcess' class="spinner-border text-primary" style="display: none" role="status">
+                    <span class="visually-hidden"></span>
+                </div>
+                <a class="btn save-btn d-flex" id="savePosition">
+                    {{ __('Save')}}
+                </a>
                 <a class="btn " id="settingsBtn">
                     <i class="fas fa-cog"></i>
                 </a>
@@ -64,7 +70,7 @@
                                         @foreach ($allItems as $item)
                                             @if($item->check_type_name == 'Response speed')
                                                 {
-                                                    <option value="{{ $item->item }}">{{ $item->friendly_name }}</option>
+                                                    <option value="{{ $item->item_id }}">{{ $item->friendly_name }}</option>
                                                 }
                                             @endif
                                         @endforeach
@@ -218,6 +224,7 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/app.css">
+    <link href="/css/userAdmin.css" rel="stylesheet">
 
     {{-- Bootstrap color picker styles --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/css/bootstrap-colorpicker.min.css">
@@ -264,28 +271,36 @@
             let testAreaChart;
             let areaChartNr = 0;
             let numb = 0;
+            let lastElementPosition = <?php echo json_encode($lastElementPosition); ?>;
 
             //FUNCTIONS
             function getStartDashboard(){
-                let currentMonitorStatus = <?php echo json_encode($currentStatusItemsInfo); ?>;
-
-                let i;
-                for (i = 0; i < currentMonitorStatus.length; i++) {
-                    createLastChecksChart(currentMonitorStatus[i]['currentStatus'],currentMonitorStatus[i]['id']);
-                }
-
-                let areaChartItems = <?php echo json_encode($itemsInfoForAreaChart); ?>;
-
-                for(i = 0; i < areaChartItems['allItems'].length; i++){
- 
-                    if(areaChartItems['allItems'][i]['histories'] != null){
-                        costumizeDataForAreaChart(areaChartItems['allItems'][i]);
-                    }else{
-                        noDataItem(areaChartItems['allItems'][i]);
-                    }
-                }
                 $('#settingsModal').hide();
+                let allDashboardElements = <?php echo json_encode($allDashboardItems); ?>;
+
+                for(const property in allDashboardElements){
+                    const elementType = allDashboardElements[property]['type'];
+
+                    switch(elementType){
+                        case 'currentStatus':
+                            const elementId = allDashboardElements[property]['id'];
+                            const lastCheckStatus = allDashboardElements[property]['currentStatus'];
+
+                            createLastChecksChart(lastCheckStatus,elementId);
+                            break;
+                        case 'areaChart':
+                            const chartData = allDashboardElements[property];
+
+                            costumizeDataForAreaChart(chartData);
+                            break;
+                        default:
+                            console.log(`Sorry, we are out of something.`);
+                    }
+
+                }          
+
             }
+
             getStartDashboard();
 
             function noDataItem(newHystory){
@@ -332,7 +347,6 @@
                 $(`#itemRemove${itemId}`).on( "click", function() {
                     removeItem(itemId);
                     itemWrapper.remove();
-                    toastr.success( @json( __('Item has been removed successfully!')  ));
                 });
             }
 
@@ -435,7 +449,6 @@
                 $(`#areaChartHeaderToolRemove${areaChartNr}`).on( "click", function() {
                     removeItem(itemId);
                     itemWrapper.remove();
-                    toastr.success( @json( __('Item has been removed successfully!')  ));
                 });
                 
                 areaChartNr++;
@@ -525,7 +538,6 @@
                 $(`#currentStatusRemoveBtn${elementId}`).on( "click", function() {
                     removeItem(elementId);
                     itemWrapper.remove();
-                    toastr.success( @json( __('Item has been removed successfully!')  ));
                 });
 
                 numb++;
@@ -649,7 +661,7 @@
 
                 for (const property in monitorItems) {
                     if($('#dataType').val() == monitorItems[property]['check_type_name']){
-                        $('#monitor').append(`<option value="${monitorItems[property]['item']}"> 
+                        $('#monitor').append(`<option value="${monitorItems[property]['item_id']}"> 
                                        ${monitorItems[property]['friendly_name']} 
                                   </option>`); 
                     }
@@ -660,6 +672,11 @@
                 $('#templateChartHeaderTitle').html(selectedMonitorName+ `<span style="font-size:12px">(  ${typeOfData})</span>`);
             });
 
+            $('#savePosition').click( function(){
+                $('#saveInProcess').css("display", "block");
+                $('#savePosition').addClass('d-none');
+                saveDashboardElamentsPositions();
+            });
             $('#createNewAreaChart').click( function(){
                 let itemId = $('#monitor option:selected').val();
                 let date =$("input[name='selectedDate']:checked").val();
@@ -740,6 +757,7 @@
 
 
             function createNewAreaChartItem(itemId, date, data_type, itemColors, monitorName){
+                lastElementPosition++;
                 $.ajax( {
                 type:'POST',
                 header:{
@@ -755,7 +773,8 @@
                 date: $("input[name='selectedDate']:checked").val(),
                 data_type: $('#dataType').val(),
                 item_colors: itemColors,
-                monitorName: monitorName
+                monitorName: monitorName,
+                createdElementPosition: lastElementPosition
                 }
 
 
@@ -778,6 +797,7 @@
             }
 
             function createNewLastStatusCheck(){
+                lastElementPosition++;
                 $.ajax( {
                 type:'POST',
                 header:{
@@ -788,6 +808,7 @@
                 _token: "{{ csrf_token() }}",
                 dataType: 'json', 
                 contentType:'application/json',
+                createdElementPosition: lastElementPosition
                 }
 
 
@@ -819,9 +840,46 @@
 
                 })
                 .done(function(data) {
-                 
+                    toastr.success( @json( __('Item has been removed!')  ));
                 })
                 .fail(function() {
+                    toastr.error( @json( __('Something whent wrong!')  ));
+                });
+            }
+
+            function saveDashboardElamentsPositions(){
+ 
+                let allDashboadrElement =  $('#dashboardContentWrappper').children();
+                let elementsIds = [];
+                
+                for(let i=0;i<allDashboadrElement.length;i++){
+                    elementsIds[i] = allDashboadrElement[i].id;
+                }
+
+                $.ajax( {
+                type:'POST',
+                header:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                },
+                url: '{{ URL::route("user.dashboard.savePosition") }}',
+                data:{
+                _token: "{{ csrf_token() }}",
+                dataType: 'json', 
+                contentType:'application/json',
+                // My data
+                elementsIds: elementsIds,
+                }
+
+
+                })
+                .done(function(data) {
+                    $('#saveInProcess').css("display", "none");
+                    $('#savePosition').removeClass('d-none');
+                    toastr.success( @json( __('All has been saved!')  ));
+                })
+                .fail(function() {
+                    $('#saveInProcess').css("display", "none");
+                    $('#savePosition').removeClass('d-none');
                     toastr.error( @json( __('Something whent wrong!')  ));
                 });
             }

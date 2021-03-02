@@ -50,30 +50,11 @@ class MonitoringMonitorsListController extends Controller
         $usergroupID = $request->session()->get("groupId");
 
         $allUserMonitors = DB::table('monitoring_monitors')
-            ->join('monitoring_items', 'monitoring_items.item_id', '=', 'monitoring_monitors.item')
-            ->join('monitoring_applications', 'monitoring_applications.application_id', '=', 'monitoring_items.application')
-            ->join('host_has_application', 'host_has_application.application', '=', 'monitoring_applications.application_id')
+            ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
             ->where('user_group', $usergroupID)
             ->get(['friendly_name','host_id','check_address','status']);
 
-        $allUserHosts = DB::table('monitoring_hosts')
-            ->join('monitoring_hosts_groups', 'monitoring_hosts_groups.host_group_id', '=', 'monitoring_hosts.host_group')
-            ->where('user_group', $usergroupID)
-            ->get(['host_id']);
-
-        $sortedMonitors = [];
-        $sortedMonitorsCounter = 0;
-        foreach($allUserHosts as $value){
-
-            foreach($allUserMonitors as $monitorValue){
-                if($monitorValue->host_id == $value->host_id){
-                    $sortedMonitors[$sortedMonitorsCounter] = $monitorValue;
-                    $sortedMonitorsCounter++;
-                    break;
-                }
-            }
-
-        }
+        $sortedMonitors = $allUserMonitors;
 
         return view('adminlte.user_admin.monitoring.monitors.monitors-list',compact(['sortedMonitors']));
     }
@@ -86,18 +67,16 @@ class MonitoringMonitorsListController extends Controller
     public function deleteMonitor($monitorId, Request $request)
     {
 
-        $hostAplication = DB::table('host_has_application')
+        $hostAplicationWebScenario = DB::table('host_has_application_webscenario')
             ->where('host_id', $monitorId)
-            ->get(['application'])[0]->application;
+            ->get(['application','web_scenario'])->first();
 
-        $hostWebScenario = DB::table('host_has_web_scenario')
-            ->where('host_id', $monitorId)
-            ->get(['web_scenario']);
+        $webScenario = $hostAplicationWebScenario->web_scenario;
+        $application = $hostAplicationWebScenario->application;
 
-        //Remove webHost from database is exists
-        if($hostWebScenario->first() != null){
-            $hostWebScenario = $hostWebScenario[0]->web_scenario;
-            DB::delete('delete from web_scenarios where httptest_id = ?',[$hostWebScenario]);
+        //Remove webHost from database if exists
+        if($webScenario != null){
+            DB::delete('delete from web_scenarios where httptest_id = ?',[$webScenario]);
         }
 
         $trigger = DB::table('monitoring_zabbix_triggers')
@@ -122,7 +101,7 @@ class MonitoringMonitorsListController extends Controller
             ]);
         }
 
-        DB::delete('delete from monitoring_applications where application_id = ?',[$hostAplication]);
+        DB::delete('delete from monitoring_applications where application_id = ?',[$application]);
         DB::delete('delete from monitoring_zabbix_triggers where zabbix_triger_id = ?',[$trigger]);
         DB::delete('delete from monitoring_hosts where host_id = ?',[$monitorId]);
         
@@ -137,37 +116,25 @@ class MonitoringMonitorsListController extends Controller
      */
     public function changeStatus($hostId, Request $request)
     {
-        $hostAplication = DB::table('host_has_application')
-            ->where('host_id', $hostId)
-            ->get(['application'])[0]->application;
+        $monitor = DB::table('monitoring_monitors')
+            ->where('host', $hostId)
+            ->get(['status','id'])->first();
 
-        $applicationItems = DB::table('monitoring_items')
-            ->where('application', $hostAplication)
-            ->get(['item_id']);
-
+        $currentStatus = $monitor->status;
         $hostStatus = 0;
-        foreach($applicationItems as $item){
-
-            $monitor = DB::table('monitoring_monitors')
-                ->where('item', $item->item_id)
-                ->get(['status','id']);
-
-            $currentStatus = $monitor[0]->status;
-            
-            //Change status type
-            if($currentStatus == 1){//monitor active
-                $hostStatus = 1;
-                $currentStatus = 2;
-            }else{
-                $hostStatus = 0;
-                $currentStatus = 1;
-            }
-
-            $monitors = DB::table('monitoring_monitors')
-                ->where('id', $monitor[0]->id)
-                ->update(['status' => $currentStatus ]); 
-            
+        //Change status type
+        if($currentStatus == 1){//monitor active
+            $hostStatus = 1;
+            $currentStatus = 2;
+        }else{
+            $hostStatus = 0;
+            $currentStatus = 1;
         }
+
+        //Change monitor status
+        $monitors = DB::table('monitoring_monitors')
+            ->where('id', $monitor->id)
+            ->update(['status' => $currentStatus ]); 
        
         //Update Host
         $updatedHost = $this->zabbix->hostUpdate([

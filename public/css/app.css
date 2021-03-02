@@ -11044,6 +11044,7 @@ a.text-dark:focus {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+<<<<<<< HEAD
 .active a {
   color: orange !important;
   text-decoration: none;
@@ -16836,3 +16837,5 @@ a.text-dark:focus {
 
 >>>>>>> bb725bad746e36a8ed3f87d7ebd8221e29f09986
 >>>>>>> e8968775acd53845dd94d3c953ce55799e787c28
+=======
+>>>>>>> 70393f97631819065b15be1946a7eaf16328f2f0
