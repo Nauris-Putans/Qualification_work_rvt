@@ -8,9 +8,7 @@
 
 @section('content')
 
-<section class="response-time">
-
-    
+<section class="response-time">   
     {{-- column start --}}
     <div class="column">
 
@@ -22,8 +20,8 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-desktop"></i></span>
             </div>
-            <select class="form-control" id='checkType'>
-        
+            <select class="form-control" id='userMonitors'>
+              {{-- Here will be automatic generated options --}}
             </select>
           </div>
         </div>
@@ -243,13 +241,15 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/app.css">
+<link href="/css/userAdmin.css" rel="stylesheet">
+{{-- Data picker style --}}
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 @stop
 
 @section('js')
+{{-- Data,tyme picker scripts --}}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script src="{{ url('vendor/jquery.min.js') }}"></script>
 
 {{--    <script src="node_modules/chart.js/dist/Chart.bundle.js"></script>--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
@@ -262,7 +262,6 @@
     let checkCounter = 0;
     let endDate = new Date();
     let startDate = new Date(endDate);
-    let optionSelectedId;
     let currentHistory;
     let currentChartType = 0;
     let checkItemsIds;
@@ -306,7 +305,7 @@
         lastCheckValue.insertAdjacentHTML(position,newValue);
     } 
 
-    //Check that user have any monitors and monitor value
+    //Check that user have any monitor or data hystory
     function userDataCheck(newresponseTime,newfriendlyNames,dropDownVal){
 
       let responseTimeInfoBoxes = document.getElementById("responseTimeInfoBoxes");
@@ -315,11 +314,11 @@
       let infoAlert = document.getElementById("infoAlert");
 
       if(newfriendlyNames.length === 0){
-        $('#checkType').attr('disabled', 'disabled');
+        $('#userMonitors').attr('disabled', 'disabled');
         $('#datePicker').attr('disabled', 'disabled');
         $('#timeButton').attr('disabled', 'disabled');
       }else{
-        $('#checkType').removeAttr('disabled');
+        $('#userMonitors').removeAttr('disabled');
         $('#datePicker').removeAttr('disabled');
         $('#timeButton').removeAttr('disabled');
       }
@@ -335,7 +334,6 @@
         }
 
         addOptionsToDropDown(newfriendlyNames, dropDownVal);
-
       }else{
         if(responseTimeInfoBoxes.classList.toggle("d-none") === true){
           responseTimeInfoBoxes.classList.toggle("d-none");
@@ -344,7 +342,9 @@
           weekDayChartBox.classList.toggle("d-none");
           infoAlert.classList.toggle("d-none");
         }
-        insertData(newresponseTime,newfriendlyNames, dropDownVal);
+        insertData(newresponseTime);
+
+        addOptionsToDropDown(newfriendlyNames, dropDownVal);
       }
     }
 
@@ -352,20 +352,19 @@
     function setData(){
         let checkHistory = <?php echo json_encode($histories); ?>;
         let checkFriendlyName = <?php echo json_encode($itemsFriendlyName); ?>;
-        checkItemsIds = <?php echo json_encode($itemsIds); ?>;
+        let checkItemsIds = <?php echo json_encode($itemsIds); ?>;
 
         currentHistory = checkHistory;
         optionSelectedId = [];
 
-        if(checkFriendlyName.length != 0){
+        if(Object.keys(checkFriendlyName).length != 0){
           optionSelectedId =['item'];
           optionSelectedId['item'] = checkItemsIds[0]['item'];
           //Will be set as current value in drop down box
-          let checkLastFriendlyName = checkFriendlyName[0].friendly_name;
-          currentFriendlyNameSelected = checkLastFriendlyName;
+          let checkLastFriendlyName = checkItemsIds[0].item_id;
           userDataCheck(checkHistory,checkFriendlyName,checkLastFriendlyName);
         }else{
-          $('#checkType').attr('disabled', 'disabled');
+          $('#userMonitors').attr('disabled', 'disabled');
           $('#datePicker').attr('disabled', 'disabled');
           $('#timeButton').attr('disabled', 'disabled');
           let weekDayChartBox = document.getElementById('weekdayChartBox');
@@ -634,7 +633,7 @@
       setData();
 
       //Costomize and insert new data to charts and labels
-      function insertData(newresponseTime,newfriendlyNames,dropDownVal){
+      function insertData(newresponseTime){
         
         let speed = new Array();
         let clock = new Array();
@@ -694,7 +693,7 @@
         }else{
           insertDataToDayPartChart(speed,clockForWeekChart);
         }
-        addOptionsToDropDown(newfriendlyNames,dropDownVal);
+
       }
 
       let startHr = 0;
@@ -713,7 +712,6 @@
         let currentMin;
         let newHistory = {
           'histories' :{},
-          'itemsFriendlyName': {}
         };
         let i=0;
         for (const id in history['histories']) {
@@ -740,34 +738,32 @@
           }
         }
 
-        for(const id in history['itemsFriendlyName']){
-          newHistory['itemsFriendlyName'][id] = history['itemsFriendlyName'][id];
-        }
         currentHistory = newHistory['histories'];
         return newHistory;
       }
 
       function callController(startDate,endDate,selectedItemId){
-        if(selectedItemId['item'] != null){
+
+        if(selectedItemId != null){
           $.ajax( {
           type:'POST',
           header:{
           'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
           },
-          url:"/user/monitoring/real-user-monitoring",
+          url:"/user/monitoring/download-speed",
           data:{
           _token: "{{ csrf_token() }}",
           dataType: 'json', 
           contentType:'application/json', 
-          item_id: selectedItemId['item'],
+          item_id: selectedItemId,
           startDate: startDate,      
           endDate: endDate,
           }
           })
             .done(function(data) {
-              data = checkTime(data);
-  
-              userDataCheck(data.histories,data.itemsFriendlyName,currentFriendlyNameSelected);
+              //Costomize item hystory data
+              newdata = checkTime(data);
+              userDataCheck(newdata.histories,data.itemsFriendlyName,data.selectedId);
             })
             .fail(function() {
                 alert(@json( __("error")));
@@ -778,27 +774,28 @@
       //Insert new items to friendly name drop down form
       function addOptionsToDropDown(friendlyNames,dropDownValue){
 
-          let dropDownCheckType = document.getElementById('checkType');
+          let dropDownCheckType = document.getElementById('userMonitors');
           let dropDownCheckTypeValue;
+
           if(dropDownValue){
               dropDownCheckTypeValue = dropDownValue;
           }
 
           let dropDownElements =document.getElementsByTagName('option');
 
-          $("#checkType option").remove();
+          $("#userMonitors option").remove();
 
           //Add new items to user checks drop down form
           for (let x in friendlyNames) {
               newPersonItem =`
-                              <option id='option${x}'>${friendlyNames[x]['friendly_name']}</option>
+                              <option value='${x}'>${friendlyNames[x]['friendly_name']}</option>
                           `;
               const position = "beforeend";
               dropDownCheckType.insertAdjacentHTML(position,newPersonItem);
           }
 
           //Set Current check friendly name to dropDown
-          $("#checkType").val(dropDownCheckTypeValue);
+          $("#userMonitors").val(dropDownValue);
           
       }
 
@@ -821,7 +818,7 @@
       });
 
       $('#datePicker').on('apply.daterangepicker', function(ev, picker) {
-        currentFriendlyNameSelected = $("#checkType option:checked").text();
+        currentFriendlyNameSelected = $("#userMonitors option:checked").text();
         startDate = picker.startDate.format();
         startDate = Math.floor(Date.parse(startDate) / 1000);
         endDate = picker.endDate.format();
@@ -831,19 +828,20 @@
           endDate = Math.floor(Date.parse(endDate) / 1000);
         }
 
-        callController(startDate,endDate,optionSelectedId);
+        //Get selected items id
+        const selectedItemId = $("#userMonitors option:selected").val();
+        
+        callController(startDate,endDate,selectedItemId );
 
       });
 
       //EVENT LISTENERS
       
-      $("#checkType").change(function(){
-        let optionSelected = document.querySelector('#checkType');
-        optionSelectedId = optionSelected.options[optionSelected.selectedIndex].id;
-        optionSelectedId = optionSelectedId.replace('option','');
-        optionSelectedId = checkItemsIds[optionSelectedId];
-        currentFriendlyNameSelected = $("#checkType option:checked").text();
-        callController(startDate,endDate,optionSelectedId);
+      $("#userMonitors").change(function(){
+        //Get selected items id
+        const selectedItemId = $("#userMonitors option:selected").val();
+        
+        callController(startDate,endDate,selectedItemId );
       });
 
       $('#timeButton').click(function() {
@@ -857,7 +855,10 @@
     });
 
     $('#selectTime').click(function(){
-        callController(startDate,endDate,optionSelectedId);
+        //Get selected items id
+        const selectedItemId = $("#userMonitors option:selected").val();
+
+        callController(startDate,endDate,selectedItemId );
     });
 
     $('#radioOption1').click(function(){
@@ -978,7 +979,6 @@
           hour[data1] = 0;
         }
         setTime(data1);
-        correctTimeCheck();
       }
 
       function hour_down (data1){
@@ -987,7 +987,6 @@
           hour[data1] = 23;
         }
         setTime(data1);
-        correctTimeCheck();
       }
 
       function minute_up (data1){
@@ -1001,7 +1000,6 @@
           }
         }
         setTime(data1);
-        correctTimeCheck();
       }
 
       function minute_down (data1){
@@ -1014,7 +1012,6 @@
           }
         }
         setTime(data1);
-        correctTimeCheck();
       }
 
       function setTime(data1){

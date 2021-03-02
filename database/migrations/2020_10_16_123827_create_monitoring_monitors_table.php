@@ -34,7 +34,6 @@ class CreateMonitoringMonitorsTable extends Migration
 
         Schema::create('monitoring_items', function (Blueprint $table) {
             $table->unsignedBigInteger('item_id');
-            $table->string("check_address");
             $table->unsignedBigInteger("check_type");
             $table->unsignedBigInteger("monitor_type");
             $table->unsignedBigInteger("application");
@@ -106,9 +105,10 @@ class CreateMonitoringMonitorsTable extends Migration
         Schema::create('monitoring_monitors', function (Blueprint $table) {
             $table->id();
             $table->string('friendly_name');
+            $table->string('user_input');
             $table->string('user_group');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('item');
+            $table->unsignedBigInteger('host');
             $table->unsignedBigInteger('status');
 
             $table->timestamps();
@@ -117,7 +117,7 @@ class CreateMonitoringMonitorsTable extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('item')->references('item_id')->on('monitoring_items')
+            $table->foreign('host')->references('host_id')->on('monitoring_hosts')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('status')->references('status_id')->on('monitoring_status')
                 ->onUpdate('cascade')->onDelete('cascade');
@@ -131,10 +131,11 @@ class CreateMonitoringMonitorsTable extends Migration
             $table->primary("httptest_id");
         });
 
-        Schema::create('host_has_application', function (Blueprint $table) {
+        Schema::create('host_has_application_webScenario', function (Blueprint $table) {
 
             $table->unsignedBigInteger("host_id");
             $table->unsignedBigInteger("application");
+            $table->unsignedBigInteger("web_scenario")->nullable();
 
             $table->primary(["host_id","application"]);
 
@@ -142,18 +143,7 @@ class CreateMonitoringMonitorsTable extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('application')->references('application_id')->on('monitoring_applications')
                 ->onUpdate('cascade')->onDelete('cascade');
-        });
-
-        Schema::create('host_has_web_scenario', function (Blueprint $table) {
-
-            $table->unsignedBigInteger("web_scenario");
-            $table->unsignedBigInteger("host_id");
-
-            $table->primary(["web_scenario","host_id"]);
-
             $table->foreign('web_scenario')->references('httptest_id')->on('web_scenarios')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('host_id')->references('host_id')->on('monitoring_hosts')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }

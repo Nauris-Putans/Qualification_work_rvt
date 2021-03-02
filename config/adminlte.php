@@ -285,7 +285,7 @@ return [
                 [
                     'text' => 'Download speed',
                     'icon' => 'fas fa-download',
-                    'url' => '/user/monitoring/real-user-monitoring',
+                    'url' => '/user/monitoring/download-speed',
                     'role' => $userFree,
                 ],
             ]

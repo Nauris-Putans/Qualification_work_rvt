@@ -13,7 +13,9 @@
                     <div class="form-group">
                       <label>{{ __('Your monitor')}}</label>
                       <select class="form-control" id='userMonitors'>
-                  
+                        @foreach($itemsFriendlyName as $key=>$value)
+                           <option value="{{$key}}">{{$value['friendly_name']}}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -62,7 +64,7 @@
             <div class="row" id="upTimeChart">
 
                 <div class="col-md-3 justify-content-center">
-                    <div class="chosenDayDateLable" id="chosenDayDateLable">{{ __('No data given')}}</div>
+                    <div class="chosenDayDateLable" id="chosenDayDateLable">{{ __('There is no date to display!')}}</div>
                     <div class="info-box-content">
                         <div class="easy-pie-chart-box">
                             <span style="margin: 0 auto;">{{ __('Up') }}</span>
@@ -91,51 +93,31 @@
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/app.css">
+<link href="/css/userAdmin.css" rel="stylesheet">
+
 {{-- Date styles --}}
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 {{-- Toastr styles --}}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" media="all">
-<style>
-    .box{
-        width: 25%;
-        float: left;
-    }
-
-    .box .chart{
-        position: relative;
-        width: 110px;
-        height: 110px;
-        margin: 0 auto;
-        text-align: center;
-        font-size: 30px;
-        line-height: 110px;
-    }
-    canvas{
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-
-</style>
 @stop
 
 @section('js')
+{{-- jquery js script --}}
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script> 
 
-{{-- easy-pie-chart --}}
-<script src="https://code.jquery.com/jquery-2.2.4.js"></script>  
+{{-- easy-pie-chart --}} 
 <script type="text/javascript" src="{{ URL::asset('js/jquery.appear.min.js') }}">></script>
 <script type="text/javascript" src="{{ URL::asset('js/jquery.easypiechart.min.js') }}"></script>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script src="{{ url('vendor/jquery.min.js') }}"></script>
 
-{{--    <script src="node_modules/chart.js/dist/Chart.bundle.js"></script>--}}
+{{----}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
 
 
+{{-- Alert modal window --}}
 {{-- toastr --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 {{-- Swal --}}
@@ -145,7 +127,7 @@
     $.noConflict();
     $(function () { 
 
-        let month = new Array(12);
+        const month = new Array(12);
             month[0] = @json( __('January'));
             month[1] = @json( __('February'));
             month[2] = @json( __('March'));
@@ -159,7 +141,7 @@
             month[10] = @json( __('November'));
             month[11] = @json( __('December'));
 
-        let weekday = new Array(7);
+        const weekday = new Array(7);
             weekday[0] = @json( __("Sunday"));
             weekday[1] = @json( __("Monday"));
             weekday[2] = @json( __("Tuesday"));
@@ -185,37 +167,33 @@
         let friendlyNameCounter = 0;
         let checkCounter = 0;
 
-        //Get values from controller MonitoringPageSpeedController
-        //And send them to function insertData()        
-        function setData(){
+        //First function that is executed       
+        function getStart(){
             let checkHistory = <?php echo json_encode($histories); ?>;
-            let checkFriendlyName = <?php echo json_encode($itemsFriendlyName); ?>;
+            let friendlyNames = <?php echo json_encode($itemsFriendlyName); ?>;
 
-            if(checkFriendlyName.length != 0){
-
-                //Will be set as current value in drop down box
-                let checkLastFriendlyName = checkFriendlyName[0];
-                insertData(checkHistory,checkFriendlyName,checkLastFriendlyName);
+            if(friendlyNames.length != 0){
+                insertData(checkHistory);
             }else{
                 $('#userMonitors').attr('disabled', 'disabled');
             }
         }
 
-        setData();
+        getStart();
 
         //Check that user have any monitors and monitor value
         function userDataCheck(newresponseTime,newfriendlyNames,dropDownVal){
 
-            if(newresponseTime.length === 0 || newresponseTime.length < 0){
-
-           
+            if(newresponseTime.length != 0 || newresponseTime.length > 0){
+                insertData(newresponseTime);
+                addOptionsToDropDown(newfriendlyNames,dropDownVal);
             }else{
 
-            insertData(newresponseTime,newfriendlyNames,dropDownVal);
             }
         }
 
 
+        //Function add event lisstener to created boxes
         function addEventListenerToMonthChartBoxes(){
             var coll = document.getElementsByClassName("dayBox");
             var i;
@@ -248,6 +226,7 @@
             }
         }
 
+        //Function create uptime chart
         function createMonthChart(uptimeHistoryData){
 
             let allDates = {};
@@ -485,7 +464,7 @@
                     positiveData++;
                 }
             }
-            console.log(positiveData + ' ' + checkCount);
+
             if(checkCount != 0){
                 $("#upTime").text(Math.round((positiveData*100) / checkCount) + '%');
             }else{
@@ -495,10 +474,9 @@
         } 
  
         //Costomize and insert new data to charts and labels
-        function insertData(newUptimehistory,newfriendlyNames,dropDownVal){
+        function insertData(newUptimehistory){
             createMonthChart(newUptimehistory);
             displayNewInfo(newUptimehistory);
-            addOptionsToDropDown(newfriendlyNames,dropDownVal);
             $('[data-toggle="popover"]').popover(); 
         }
 
@@ -506,19 +484,22 @@
         function addOptionsToDropDown(friendlyNames,dropDownValue){
             let dropDownUserMonitors = document.getElementById('userMonitors');
             let dropDownUserMonitorsValue;
-            if(dropDownValue){
+
+            if(dropDownValue != null){
                 dropDownUserMonitorsValue = dropDownValue.friendly_name;
             }else{
                 dropDownUserMonitorsValue = $("#userMonitors").val();
             }
+
             let dropDownElements =document.getElementsByTagName('option');
 
+            //Remove all options that exists
             $("#userMonitors option").remove();
 
             //Add new items to user checks drop down form
             for (let x in friendlyNames) {
                 newPersonItem =`
-                                <option >${friendlyNames[x]['friendly_name']}</option>
+                                <option value='${x}' >${friendlyNames[x]['friendly_name']}</option>
                             `;
                 const position = "beforeend";
                 dropDownUserMonitors.insertAdjacentHTML(position,newPersonItem);
@@ -528,11 +509,13 @@
             $("#userMonitors").val(dropDownUserMonitorsValue);
             
         }
-
+        
         function callController(){
-            
             //Remove all old monthChart elements
             $('.monthChart-wrapper').remove();
+            
+            //Get selected items id
+            const itemid = $("#userMonitors option:selected").val();
 
             $.ajax( {
             type:'POST',
@@ -544,16 +527,17 @@
             _token: "{{ csrf_token() }}",
             dataType: 'json', 
             contentType:'application/json', 
-            item_name: $('#userMonitors').val(),
+            itemId: itemid,
             }
 
 
             })
           .done(function(data) {
-              insertData(data.histories,data.itemsFriendlyName,null);
+                insertData(data.histories);
+                addOptionsToDropDown(data.itemsFriendlyName,null);
           })
           .fail(function() {
-              alert(@json( __("error")));
+                alert(@json( __("error")));
           });
         }
 

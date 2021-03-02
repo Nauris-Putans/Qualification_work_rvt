@@ -40,14 +40,28 @@ class MonitoringUptimeController extends Controller
      */
     public function index(Request $request)
     {
-        $currentUserID = $request->session()->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");//Get current user ID;
-        $usergroupID = DB::table('monitoring_users_groups')->where('group_admin_id', $currentUserID)->get('group_id')->first();//Get current user Group;
-        if($usergroupID != null){
-            $usergroupID = $usergroupID->group_id;
-        }
-        $itemid = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 2)->get(['item','monitor_type']);//Get items;
+        //Get current user ID
+        $currentUserID = $request->session()->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
+        
+        //Get current user Group
+        $usergroupID = $request->session()->get("groupId");
+
+        $itemid = DB::table('monitoring_monitors')
+            ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
+            ->join('host_has_application_webscenario', 'host_has_application_webscenario.host_id', '=', 'monitoring_hosts.host_id')
+            ->join('monitoring_items', 'monitoring_items.application', '=', 'host_has_application_webscenario.application')
+            ->where('user_group', $usergroupID)
+            ->where('check_type', 2)
+            ->get(['item_id as item','monitor_type','friendly_name']);//Get items;
      
-        $itemsFriendlyName = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 2)->get('friendly_name');//Get items friendly names;
+
+        //Get items friendly names
+        $itemsFriendlyName = (object) [];
+        foreach ($itemid as $value) {
+            $key = $value->item;
+            $itemsFriendlyName->$key['friendly_name'] = $value->friendly_name;
+        }
+
         $histories = [];
         $monitorType = 0;
         if($itemid->first() != null){
@@ -101,31 +115,53 @@ class MonitoringUptimeController extends Controller
      */
     public function store(Request $request)
     {
-        $currentUserID = $request->session()->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");//Get current user ID;
-        $usergroupID = DB::table('monitoring_users_groups')->where('group_admin_id', $currentUserID)->get('group_id')->first();//Get current user Group;
-        if($usergroupID != null){
-            $usergroupID = $usergroupID->group_id;
+        //Get current user ID
+        $currentUserID = $request->session()->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
+        
+        //Get current user Group
+        $usergroupID = $request->session()->get("groupId");
+
+        //Get item
+        $itemid = DB::table('monitoring_monitors')
+            ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
+            ->join('host_has_application_webscenario', 'host_has_application_webscenario.host_id', '=', 'monitoring_hosts.host_id')
+            ->join('monitoring_items', 'monitoring_items.application', '=', 'host_has_application_webscenario.application')
+            ->where('user_group', $usergroupID)
+            ->where('check_type', 2)
+            ->where('item_id', $request->itemId)
+            ->get(['item_id','monitor_type'])->first();
+
+        $allItems = DB::table('monitoring_monitors')
+            ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
+            ->join('host_has_application_webscenario', 'host_has_application_webscenario.host_id', '=', 'monitoring_hosts.host_id')
+            ->join('monitoring_items', 'monitoring_items.application', '=', 'host_has_application_webscenario.application')
+            ->where('user_group', $usergroupID)
+            ->where('check_type', 2)
+            ->get(['item_id as item','monitor_type','friendly_name']);//Get items;
+
+            
+        //Get items friendly names
+        $itemsFriendlyName = (object) [];
+        foreach ($allItems as $value) {
+            $key = $value->item;
+            $itemsFriendlyName->$key['friendly_name'] = $value->friendly_name;
         }
-        $itemid = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 2)->where('friendly_name', $request->item_name)->get(['item','monitor_type']);//Get items;
-        $itemsFriendlyName = DB::table('monitoring_monitors')->join('monitoring_items', 'monitoring_monitors.item', '=', 'monitoring_items.item_id')->where('user_group', $usergroupID)->where('check_type', 2)->get('friendly_name');//Get items friendly names;
+  
         $monitorType = 0;
         if($itemid != null){
-            foreach ($itemid as $value){
-                $monitorType = $itemid[0]->monitor_type;
-                $itemid = $value->item;
-            }
+            $monitorType = $itemid->monitor_type;
+            $itemid = $itemid->item_id;
         }else{
             dd('You dont have any item');
         }
-
+        
         $histories = $this->zabbix->historyGet([
             'output' => 'extend',
             'sortorder' => 'DESC',
             'itemids' => $itemid,
         ]);
-        
+     
         if($monitorType == 2){
-
             foreach ($histories as $key => $value){
 
                 if($histories[$key]->value == 0){
