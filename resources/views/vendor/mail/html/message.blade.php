@@ -1,7 +1,7 @@
 @component('mail::layout')
 {{-- Header --}}
 @slot('header')
-@component('mail::header', ['url' => config('app.url')])
+@component('mail::header', ['url' => 'http://127.0.0.1:8000'])
 {{ config('app.name') }}
 @endcomponent
 @endslot

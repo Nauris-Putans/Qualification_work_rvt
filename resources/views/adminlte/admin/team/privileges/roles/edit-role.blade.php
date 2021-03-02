@@ -45,80 +45,15 @@
             <div class="col-md-9">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
-                        <h1 class="card-title">{{ __('Assigned Permissions to Role - ') }} {{ ucfirst($role->name) }}</h1>
+                        <h1 class="card-title">{{ __("Assigned Permissions to Role - :role!", ['role' => ucfirst($role->name)]) }}</h1>
+
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                         </div>
                     </div>
                     <div class="card-body">
-                        {{-- Filter table --}}
-                        <table class="table table-striped table-bordered dt-responsive nowrap filter-table mb-3 col-lg-6 col-md-6 col-sm-12" style="display: none">
-                            <tbody>
-                            <tr id="filter_col1" data-column="1">
-                                <td>{{ __('Column - ID') }}</td>
-                                <td align="center">
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" class="column_filter form-control col-md-12" id="col1_filter">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr id="filter_col2" data-column="2">
-                                <td>{{ __('Column - NAME') }}</td>
-                                <td align="center">
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" class="column_filter form-control col-md-12" id="col2_filter">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr id="filter_col3" data-column="3">
-                                <td>{{ __('Column - DISPLAY NAME') }}</td>
-                                <td align="center">
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" class="column_filter form-control" id="col3_filter">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr id="filter_col4" data-column="4">
-                                <td>{{ __('Column - DESCRIPTION') }}</td>
-                                <td align="center">
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" class="column_filter form-control" id="col4_filter">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-
                         {{-- Data table --}}
-                        <table class="table table-striped table-bordered dt-responsive nowrap TableStyle" id="permissions-table">
+                        <table class="table table-striped table-bordered nowrap TableStyle" id="permissions-table">
                             <thead class="thead-dark">
                             <tr>
                                 <th scope="col">
@@ -142,7 +77,7 @@
                                     </th>
                                     <td class="Text">{{ $permission->id }}</td>
                                     <td>{{ $permission->name }}</td>
-                                    <td>{{ $permission->display_name }}</td>
+                                    <td>{{ __($permission->display_name) }}</td>
                                     <td>{{ $permission->description }}</td>
                                 </tr>
                             @endforeach
@@ -198,6 +133,10 @@
                         { "width": "7%", "targets": 1 },
                     ],
 
+                    // Allows you to scroll right and left if text is to long
+                    scrollX: true,
+                    scrollCollapse: true,
+
                     // Order by asc/desc
                     order: [
                         [ 1, "asc" ]
@@ -205,14 +144,12 @@
 
                     // Show entries length
                     lengthMenu: [
-                        [10, 20, 30, -1],
-                        [10, 20, 30, @json( __("All") )]
+                        [10, 20, 30, 40, 50],
+                        [10, 20, 30, 40, 50]
                     ],
 
                     // Position of control elements
                     dom:
-                        '<"col-lg-6 col-md-6 col-sm-12 mb-3 AdvanceFilter"Q>' +
-                        '<"col-lg-6 col-md-6 col-sm-12 mb-3"B>' +
                         '<"row"' +
                         '<"col-lg-6 col-md-6 col-sm-12"l>' +
                         '<"col-lg-6 col-md-6 col-sm-12"f>' +
@@ -220,7 +157,7 @@
                         't' +
                         '<"row"' +
                         '<"col-sm-12 col-md-6"i>' +
-                        '<"col-sm-12 col-md-6"p>' +
+                        '<"col-sm-12 col-md-6 mt-2"p>' +
                         '>'
                     ,
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\FullnameRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ContactCreateRequest extends FormRequest
@@ -24,9 +25,9 @@ class ContactCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:50',
+            'title' => 'required|max:100',
             'category' => 'required',
-            'fullname' => 'required|max:100',
+            'fullname' => ['required', new FullnameRule()],
             'email' => 'required|email:rfc,dns|max:100',
             'message' => 'required|max:1000',
         ];
@@ -40,18 +41,18 @@ class ContactCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.max' => __('Title should not be greater than 50 chars.'),
-            'fullname.max' => __('Fullname should not be greater than 100 chars.'),
-            'email.max' => __('Email should not be greater than 100 chars.'),
-            'message.max' => __('Message should not be greater than 1000 chars.'),
+            'title.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Title"), 'amount' => "100"]),
+            'fullname.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Full name"), 'amount' => "100"]),
+            'email.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Email"), 'amount' => "100"]),
+            'message.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Message"), 'amount' => "1000"]),
 
-            'title.required' => __('Title is required!'),
-            'category.required' => __('Category is required!'),
-            'fullname.required' => __('Fullname is required!'),
-            'email.required' => __('Email is required!'),
-            'message.required' => __('Message is required!'),
+            'title.required' => __(':attribute - :action', ['attribute' => __("Title"), 'action' => __("is required!")]),
+            'category.required' => __(':attribute - :action', ['attribute' => __("Category"), 'action' => __("is required!")]),
+            'fullname.required' => __(':attribute - :action', ['attribute' => __("Full name"), 'action' => __("is required!")]),
+            'email.required' => __(':attribute - :action', ['attribute' => __("Email"), 'action' => __("is required!")]),
+            'message.required' => __(':attribute - :action', ['attribute' => __("Message"), 'action' => __("is required!")]),
 
-            'email.email' => __('Email is invalid'),
+            'email.email' => __(':attribute - :action', ['attribute' => __("Email"), 'action' => __("is invalid!")]),
         ];
     }
 }

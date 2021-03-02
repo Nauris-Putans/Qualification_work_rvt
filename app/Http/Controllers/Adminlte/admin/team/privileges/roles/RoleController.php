@@ -30,7 +30,7 @@ class RoleController extends Controller
         // Finds all roles
         $roles = Role::all();
 
-        return view('adminlte.admin.team.privileges.roles.list', compact( 'roles', 'hashids'));
+        return view('adminlte.admin.team.privileges.roles.list', compact('roles', 'hashids'));
     }
 
     /**
@@ -43,7 +43,7 @@ class RoleController extends Controller
         // Finds all permissions
         $permissions = Permission::all();
 
-        return view('adminlte.admin.team.privileges.roles.add-role', compact( 'permissions'));
+        return view('adminlte.admin.team.privileges.roles.add-role', compact('permissions'));
     }
 
     /**
@@ -67,7 +67,7 @@ class RoleController extends Controller
         // Adds selected permissions to role
         $role->syncPermissions($request->permissions ?? []);
 
-        return redirect()->back()->with('message', __('Role - ') .$request->roleName. __(' has been added!'));
+        return redirect()->back()->with('message', __("Role ':role' - :action", ['role' => $request->roleName, 'action' => __("has been added!")]));
     }
 
     /**
@@ -91,7 +91,7 @@ class RoleController extends Controller
         // Finds permissions by permission id
         $permissions = Permission::all();
 
-        return view('adminlte.admin.team.privileges.roles.view-role', compact( 'role', 'hashids', 'permissions'));
+        return view('adminlte.admin.team.privileges.roles.view-role', compact('role', 'hashids', 'permissions'));
     }
 
     /**
@@ -115,7 +115,7 @@ class RoleController extends Controller
         // Finds permissions by permission id
         $permissions = Permission::all();
 
-        return view('adminlte.admin.team.privileges.roles.edit-role', compact( 'role', 'permissions', 'hashids'));
+        return view('adminlte.admin.team.privileges.roles.edit-role', compact('role', 'permissions', 'hashids'));
     }
 
     /**
@@ -150,7 +150,7 @@ class RoleController extends Controller
         // Syncs permission to role
         $role->syncPermissions($request->get('permissions') ?? []);
 
-        return redirect()->back()->with('message', __('Role - ') . $role->name . __(' has been edited!'));
+        return redirect()->back()->with('message', __("Role ':role' - :action", ['role' => $role->name, 'action' => __("has been edited!")]));
     }
 
     /**
@@ -193,6 +193,6 @@ class RoleController extends Controller
         // Deletes role
         $role->delete();
 
-        return redirect()->back()->with('message', __('Role - ') . $role->name . __(' has been deleted!'));
+        return redirect()->back()->with('message', __("Role ':role' - :action", ['role' => $role->name, 'action' => __("has been deleted!")]));
     }
 }

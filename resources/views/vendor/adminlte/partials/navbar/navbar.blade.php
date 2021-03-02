@@ -128,7 +128,7 @@
                     @endif
 
                     <p>
-                        {{ auth()->user()->getUser()->roles[0]->display_name }}
+                        {{ __(auth()->user()->getUser()->roles[0]->display_name) }}
                         <small>{{ __('Member since ') . date('d.m.Y', strtotime(auth()->user()->getUser()->created_at)) }}</small>
                     </p>
                 </li>

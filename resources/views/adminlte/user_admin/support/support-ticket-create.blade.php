@@ -12,6 +12,12 @@
 @stop
 
 @section('content')
+    {{-- Back button --}}
+    <a class="btn btn-primary mb-3" href="/user/support/tickets" role="button">
+        <i class="fas fa-chevron-left mr-1"></i>
+        {{ __('Back') }}
+    </a>
+
     <form method="POST" action="/user/support/tickets/create">
         @method('POST')
         @csrf

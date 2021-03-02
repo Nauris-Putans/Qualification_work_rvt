@@ -26,6 +26,6 @@ class MatchOldPassword implements Rule
      */
     public function message()
     {
-        return __('Current password is incorrect');
+        return __(':attribute - :action', ['attribute' => __("Current password"), 'action' => __("is incorrect!")]);
     }
 }

@@ -73,7 +73,7 @@ Route::middleware(['role:' . $adminSide])->group( function()
     Route::get('/admin/tickets', 'TicketController@index');
     Route::get('/admin/tickets/{id}', 'TicketController@show');
     Route::delete('/admin/tickets/{id}', ['as' => 'admin.tickets.destroy', 'uses' => 'TicketController@destroy']);
-    Route::post('/admin/tickets/close_ticket/{id}', 'TicketController@close');
+    Route::post('/admin/tickets/close_ticket/{id}', ['as' => 'admin.tickets.close', 'uses' => 'TicketController@close']);
     Route::post('/admin/tickets/{ticket_id}/comment', 'CommentsController@postComment');
 
     // Settings section
@@ -91,28 +91,38 @@ Route::middleware(['role:' . $adminSide])->group( function()
 Route::middleware(['role:' . $userAdminSide])->group( function()
 {
     // Dashboard section
-    Route::get('/user/dashboard', 'Adminlte\ZabbixController@historyGet')->name('admin.user_admin.index');
+    Route::get('/user/dashboard', 'Adminlte\ZabbixController@index')->name('admin.user_admin.index');
+    Route::post('/user/dashboard/newAreaChartStore', 'Adminlte\ZabbixController@newAreaChartStore')->name('user.dashboard.newAreaChartStore');
+    Route::post('/user/dashboard/lastStatusGet', 'Adminlte\ZabbixController@lastStatusHistoryGet')->name('user.dashboard.lastStatusHistoryGet');
+    Route::post('/user/dashboard/removeItem', 'Adminlte\ZabbixController@itemRemove')->name('user.dashboard.itemRemove');
 
     // Monitoring sections
     Route::get('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@create');
     Route::post('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@store')->name('add.store');
-    Route::get('/user/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@history');
+    Route::get('/user/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@index');
+    Route::post('/user/monitoring/monitors/list/delete/{monitorId}', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@deleteMonitor')->name('monitor.destroy');
+    Route::post('/user/monitoring/monitors/list/change-status/{monitorId}', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@changeStatus')->name('monitor.changeStatus');
     Route::get('/user/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@index');
+    Route::post('/user/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@store');
     Route::get('/user/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@index');
     Route::post('/user/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@store');
     Route::get('/user/monitoring/real-user-monitoring', 'Adminlte\user_admin\monitoring\MonitoringRealUserMonitoringController@index');
-
+    Route::post('/user/monitoring/real-user-monitoring', 'Adminlte\user_admin\monitoring\MonitoringRealUserMonitoringController@store');
     // Alerts sections
     Route::get('/user/alerts', 'Adminlte\user_admin\AlertsController@index');
 
     // Settings section
     Route::get('/user/settings', 'Adminlte\user_admin\SettingController@index');
+    Route::post('/user/settings', 'Adminlte\user_admin\SettingController@personal_info');
+    // Route::post('/user/settings/password_security', 'Adminlte\user_admin\SettingController@password_security');
 
     // Tickets section
     Route::get('/user/support/tickets', ['as' => 'user.support.tickets', 'uses' => 'TicketController@userTickets']);
     Route::get('/user/support/tickets/create', ['as' => 'user.support.tickets.create', 'uses' => 'TicketController@userCreateTicket']);
     Route::post('/user/support/tickets/create', ['as' => 'user.support.tickets.create', 'uses' => 'TicketController@userStoreTicket']);
     Route::get('/user/support/tickets/{ticket_id}', ['as' => 'user.support.ticket', 'uses' => 'TicketController@userShowTicket']);
+    Route::post('/user/support/tickets/close_ticket/{id}', ['as' => 'user.support.ticket.close', 'uses' => 'TicketController@close']);
+    Route::delete('/user/support/tickets/{id}', ['as' => 'user.support.ticket.destroy', 'uses' => 'TicketController@destroy']);
     Route::post('/user/support/tickets/{ticket_id}/comment', 'CommentsController@postComment');
 
     // This link will add session of language when they click to change language

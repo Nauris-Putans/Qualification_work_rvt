@@ -1,0 +1,113 @@
+.dashboard-header{
+    a{
+        display: inline-block;
+        position: relative;
+        float: right;
+        background-color: rgba(255, 166, 0, 0.726);
+        &:hover{
+            background-color: rgb(255, 166, 0);
+        }
+    }
+
+    .dashboardSettingsWrapper{
+        position: absolute;
+        left: -300px;
+        top: 0;
+        height: 400px;
+        width:300px;
+        background-color: gray;
+        z-index: 3;
+    } 
+}
+
+.dashboard-content{
+
+    .chart{
+        height: 130px;
+    }
+    .info-box-content{
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px 5px;
+        justify-content: center;
+        align-items: center;
+        .easy-pie-chart-box{
+            width: 150px;
+            padding: 0 10px;
+            text-align: center;
+            .box{
+                position: relative;
+                width: 130px;
+                margin: 0 auto;
+                text-align: center;
+                line-height: 115px;
+                font-size: 30px;
+                .percent{
+                    width: 130px;
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                }
+            }
+        }
+    
+    }
+
+    .infoWrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 200px;
+        background-color: gray;
+        i{
+            width: 50px;
+            height: 50px;
+            font-size: 50px;
+            color: white;
+            margin-right: 20px;
+        }
+        &-decription{
+            display: flex;
+            align-items: center;
+            width: auto;
+            height: 50px;
+            color: white;
+            font-size: 24px;
+        }
+    }
+
+    .modal-close{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        outline: none;
+        border: none;
+        height: 25px;
+        width: 25px;
+        font-size: 25px;
+        color: red;
+    }
+
+    .mt-10{
+        margin-top: 10px;
+    }
+
+    .colorBtn{
+        width: 20px;
+    }
+
+    .input-group-append{
+        .input-group-text{
+            border-radius: 5px;
+            background-color: whitesmoke;
+        }
+    }
+
+    .colorpicker-input-addon i{
+        border: 1px solid black;
+    }
+}

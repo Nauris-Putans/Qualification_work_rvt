@@ -1,6 +1,12 @@
 .Faq
 {
 
+    a:hover {
+        color: white;
+        background-color: #a75900;
+        border-color: #a75900;
+    }
+
   .collapsible {
     background-color: #cb6b06;
     color: white;
@@ -30,7 +36,7 @@
   }
 
   .content {
-    
+
     padding: 0 18px;
     height: auto;
     max-height: 0;

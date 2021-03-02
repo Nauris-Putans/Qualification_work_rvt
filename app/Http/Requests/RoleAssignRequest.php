@@ -37,8 +37,8 @@ class RoleAssignRequest extends FormRequest
     public function messages()
     {
         return [
-            'role.required' => __('Select minimum 1 role.'),
-            'member.required' => __('Member is required!'),
+            'role.required' => __('Select minimum :amount role!', ['amount' => "1"]),
+            'member.required' => __(':attribute - :action', ['attribute' => __("Member"), 'action' => __("is required!")]),
         ];
     }
 }

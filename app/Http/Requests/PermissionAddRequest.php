@@ -38,11 +38,11 @@ class PermissionAddRequest extends FormRequest
     public function messages()
     {
         return [
-            'permissionName.required' => __('Permission name is required.'),
-            'permissionName.unique' => __('This permission name already exist'),
-            'permissionName.max' => __('Permission name should not be greater than 50 chars.'),
-            'permissionDisplayName.max' => __('Permission display name should not be greater than 50 chars.'),
-            'permissionDesc.max' => __('Permission description should not be greater than 100 chars.'),
+            'permissionName.required' => __(':attribute - :action', ['attribute' => __("Permission name"), 'action' => __("is required!")]),
+            'permissionName.unique' => __(':attribute - :action', ['attribute' => __("Permission name"), 'action' => __("already exists!")]),
+            'permissionName.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Permission name"), 'amount' => "50"]),
+            'permissionDisplayName.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Permission display name"), 'amount' => "50"]),
+            'permissionDesc.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Permission description"), 'amount' => "100"]),
         ];
     }
 }

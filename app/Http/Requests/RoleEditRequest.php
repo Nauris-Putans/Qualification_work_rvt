@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RoleEditRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class RoleEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'roleName' => 'required|max:50',
+            'roleName' => 'required|max:50|unique:role_user,user_id',
             'roleDisplayName' => 'max:50',
             'roleDesc' => 'max:100',
         ];
@@ -38,10 +39,11 @@ class RoleEditRequest extends FormRequest
     public function messages()
     {
         return [
-            'roleName.required' => __('Role name is required.'),
-            'roleName.max' => __('Role name should not be greater than 50 chars.'),
-            'roleDisplayName.max' => __('Role display name should not be greater than 50 chars.'),
-            'roleDesc.max' => __('Role description should not be greater than 100 chars.'),
+            'roleName.required' => __(':attribute - :action', ['attribute' => __("Role name"), 'action' => __("is required!")]),
+            'roleName.unique' => __(':attribute - :action', ['attribute' => __("Role name"), 'action' => __("already exists!")]),
+            'roleName.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Role name"), 'amount' => "50"]),
+            'roleDisplayName.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Role display name"), 'amount' => "50"]),
+            'roleDesc.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Role description"), 'amount' => "100"]),
         ];
     }
 }

@@ -64,7 +64,7 @@ class AppMailer
      * @param Ticket $ticket
      * @param $comment
      */
-    public function sendTicketComments($ticketOwner, $user, Ticket $ticket, $comment)
+    public function sendTicketComment($ticketOwner, $user, Ticket $ticket, $comment)
     {
         $this->to = $ticketOwner->email;
         $this->subject = "RE: $ticket->title (Ticket ID: $ticket->ticket_id)";

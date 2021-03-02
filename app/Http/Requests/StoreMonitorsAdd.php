@@ -24,11 +24,11 @@ class StoreMonitorsAdd extends FormRequest
     public function rules()
     {
         return [
-            'checkField' => 'bail|min:5|required|max:90',
-            'friendlyName' => 'max:90',
-            'authenticationName' => 'max:60',
-            'authenticationPassword' => 'max:60',
-            'troubleshootingInstructions' => 'max:90'
+            'checkAddress' => 'bail|required|min:5|max:200',
+            'friendlyName' => 'max:20',
+            'authenticationName' => 'max:20',
+            'authenticationPassword' => 'max:20',
+            'troubleshootingInstructions' => 'max:100'
         ];
     }
 
@@ -40,20 +40,17 @@ class StoreMonitorsAdd extends FormRequest
     public function messages()
     {
         return [
-            'checkField.bail' => __('gejs'),
-            'checkField.min' => __('gejs'),
+            'checkAddress.required' => __('Check address should be filled out!'),
+            'checkAddress.min' => __('Check address should contain more characters!'),
+            'checkAddress.max' => __('Check address should contain less characters!'),
 
-            'email_address.required' => __('Email address is required'),
-            'email_address.email' => __('Email address format is invalid'),
-            'email_address.unique' => __('Email address already exists'),
+            'friendlyName.max' => __('Friendly name should contain less character!'),
 
-            'phone_without_mask.min' => __('Phone number should not be less than 6 chars'),
-            'phone_without_mask.max' => __('Phone number should not be greater than 13 chars'),
+            'authenticationName.max' => __('Authentication Name should contain less character!'),
 
-            'birthday.date_format' => __('Birthday date should be m/d/Y format'),
-            'birthday.before' => __('Birthday must be a date before today'),
+            'authenticationPassword.max' => __('Authentication password should contain less character!'),
 
-            'city.max' => __('Cities name should not be greater than 50 chars'),
+            'troubleshootingInstructions.max' => __('Troubleshooting instructions should contain less character!'),
         ];
     }
 }

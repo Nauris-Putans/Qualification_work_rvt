@@ -33,7 +33,7 @@
                     @endif
 
                     <h3>{{ $user->name }}</h3>
-                    <h5 class="text-gray">{{ ucfirst($role->name) }}</h5>
+                    <h5 class="text-gray">{{ __($role->display_name) }}</h5>
                 </div>
             </div>
         </div>

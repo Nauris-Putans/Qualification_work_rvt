@@ -66,6 +66,6 @@ class RoleAssignmentController extends Controller
         // Syncs role to member
         $user->syncRoles($roleID);
 
-        return redirect()->back()->with('message', __('Successfully assigned member - ') . $user->name . __(' to role - ') . $request->roleName);
+        return redirect()->back()->with('message', __("Successfully assigned member: :user to role - :role", ['user' => $user->name, 'role' => $request->roleName]));
     }
 }

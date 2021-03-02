@@ -440,6 +440,7 @@ $Basic-Orange:#CA6D00;
     .popover-header{
         background-color: $Basic-Orange;
     }
+    
 }
 
 .upTimeMonitor{
@@ -451,6 +452,7 @@ $Basic-Orange:#CA6D00;
     .monthWrapper{
         padding-bottom: 15px;
         display: flex;
+        margin: 0 auto;
         flex-direction: row;
         flex-wrap: wrap;
         width: 182px;
@@ -462,8 +464,8 @@ $Basic-Orange:#CA6D00;
     }
     .dayBox{
         position: relative;
-        background-color:#9c9c9c;
-        border-radius: 100%;
+        background-color:#f8fafc;
+        border-radius: 5px;
         width: 24px;
         height: 24px;
         margin: 0 2px 2px 0;
@@ -511,4 +513,472 @@ $Basic-Orange:#CA6D00;
 
   }
 
+  .allInfoWrapper{
+      border: 2px solid green;
+      border-radius: 5px;
+      min-height: 100px;
+      padding: 10px 0 10px 0;
+  }
+
+  .chosenDayDateLable{
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+    text-align: center;
+    }   
+
+     .info-box-content{
+         position: relative;
+         width: 100%;
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         align-items: center;
+         .easy-pie-chart-box{
+             width: 130px;
+             padding: 0 10px;
+             text-align: center;
+             .box{
+                 width: 120px;
+             }
+         }
+     
+  }
+
+}
+    
+
+.response-time{
+    #responseTimeInfoBoxes{
+        margin-top: 10px;
+    }
+    .card-header{
+        background-color: white;
+        border: none;
+        border-top: 2px solid blue;
+
+        .card-title{
+            margin: 0;
+        }
+    }
+
+    .time-btn{
+        position: relative;
+        height: calc(1.6em + 0.75rem + 2px);
+        width: 80px;
+        margin: 0;
+        background-color: rgba(0, 0, 255, 0.719);
+        color: white;
+        z-index: 2;
+        &:hover{
+            background-color: blue;
+            color: white;
+        }
+    }
+    
+    .time-content{
+        position: absolute;
+        width: auto;
+        height: 0;
+        border: none;
+        border-radius: 5px;
+        background-color: #f1f1f1;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        transition: height 1s ease;
+        overflow: hidden;
+        top: 36px;
+        z-index: 1;
+    }
+
+    .select-time{
+        display: flex;
+        width: auto;
+        height: 122px;
+    }
+
+    .time_picker_box{
+        height: 120px;
+        padding: 10px;
+        .label{
+            text-align: center;
+        }
+    }
+
+    //Costumize time picker
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type="number"]{
+        -moz-appearance: textfield;
+    }
+
+    .time-picker{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        width: 100px;
+        max-width: 200px;
+        height: 70px;
+        padding: 25px 15px;
+        
+        background-color: #fbfbfb;
+        border-radius: 8px;
+        box-shadow: 0px 0px 6px rgba(0,0,0,0.2);
+
+        color: #53565A;
+        font-size: 42px;
+        font-weight: 700;
+
+        user-select: none;
+    }
+
+    .time-picker .hour,
+    .time-picker .minute{
+        position: relative;
+        max-width: 60px;
+        text-align: center;
+        display: flex;
+        justify-content: stretch;
+        align-items: stretch;
+    }
+
+    .time-picker .hour .hr,
+    .time-picker .minute .min{
+        background: none;
+        font-size: 20px;
+        appearance: none;
+        border: none;
+        outline: none;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .time-picker .hour .hr-up,
+    .time-picker .hour .hr-down,
+    .time-picker .minute .min-up,
+    .time-picker .minute .min-down{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 20px;
+        height: 10px;
+
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+
+        cursor: pointer;
+    }
+
+    .time-picker .hour .hr-up,
+    .time-picker .minute .min-up {
+        top: -10px;
+        border-bottom: 10px solid #AAA;
+    }
+
+    .time-picker .hour .hr-down,
+    .time-picker .minute .min-down {
+        bottom: -10px;
+        border-top: 10px solid #AAA;
+    }
+
+    .time-picker .hour .hr-up:hover,
+    .time-picker .hour .hr-down:hover,
+    .time-picker .minute .min-up:hover,
+    .time-picker .minute .min-down:hover{
+        border-bottom-color: #53565A;
+        border-top-color: #53565A;
+    }
+}
+
+.monitorAdd{
+    .monitorAddWrapper{
+        margin-top: 30px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: white;
+        height: auto;
+        padding: 5px 10px;
+        .monitorAdd-header{
+            position: relative;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .monitorAdd-header-first-step{
+            &:before{
+                border-radius: .25rem;
+                background: linear-gradient(90deg, #17a2b8 5%, #dee2e6 5%);
+                bottom: 0;
+                content: '';
+                left: 0;
+                margin: 0;
+                position: absolute;
+                top: 21px;
+                width: 100%;
+                height: 4px;
+                z-index: 1;
+            }
+        }
+        .monitorAdd-header-secound-step{
+            &:before{
+                background: linear-gradient(90deg, #17a2b8 27%, #dee2e6 27%);
+            }
+        }
+
+        .monitorAdd-header-third-step{
+            &:before{
+                background: linear-gradient(90deg, #17a2b8 50%, #dee2e6 50%);
+            }
+        }
+
+        .monitorAdd-header-fourth-step{
+            &:before{
+                background: linear-gradient(90deg, #17a2b8 75%, #dee2e6 75%);
+            }
+        }
+
+        .monitorAdd-header-last-step{
+            &:before{
+                background: linear-gradient(90deg, #17a2b8 100%, #dee2e6 100%);
+            }
+        }
+
+        .currentStepWrapper{
+            height: 100%;
+            width: 80px;
+            .currentStepBox{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items:center;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 20px;
+                margin: 4px auto 0 auto;
+                background-color: rgb(199, 199, 199);
+                color: white;
+                border-radius: 100%;
+                z-index: 2;
+            }
+
+            .bg-current-step{
+                background-color: #17a2b8;
+            }
+        }
+        
+
+        .monitorAdd-SettingsWrapper{
+            position: relative;
+            width: 100%;
+            height: auto;
+            padding-bottom: 75px;
+            .settings-title{
+                text-align: center;
+                height: 30px;
+                margin: 20px 0 20px 0;
+                width: auto;
+                font-size: 20px;
+            }
+            .settingsWrapper{
+                margin-top: 20px;
+                min-height: 200px;
+                .slider{
+                    width: 100%;
+                }
+                .select-persons-tables-wrapper{
+                    display: flex;
+                    justify-content: space-around;
+                    flex-wrap: wrap;
+                    align-items:center;
+                    width: 80%;
+                    margin: 0 auto;
+                }
+                .persons-tabel{
+                    position: relative;
+                    width: 300px;
+                    min-height: 200px;
+                    margin-top: 10px;
+                    height: auto;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    border-radius: 5px;
+                }
+                .persons-tabel-title{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
+                    width: auto;
+                    height: 40px;
+                    font-size: 16px;
+                    text-align: center;
+                    border-bottom: 2px solid #17a2b8;
+                }
+                .persons-element-wrapper{
+                    width: 100%;
+                    height: 200px;
+                    overflow-y: auto;
+                }
+                .persons-element-box{
+                    display: flex;
+                    justify-content: left;
+                    margin-top: 5px;
+                    padding-left: 5px;
+                    width: 100%;
+                    height: 50px;
+                    background-color: white;
+                    font-size: 14px;
+                    cursor: pointer;
+                    img{
+                        border-radius: 5px;
+                        height: 50px;
+                        width: auto;
+                    }
+                    .person-info-box{
+                        margin-left: 10px;
+                    }
+                }
+                //Confirmation page styles
+                .confirmBox{
+                    position: relative;
+                    min-height: 200px;
+                    height: auto;
+                    .decrBox{
+                        padding-left: 15px;
+                        height: auto;
+                        &-title{
+                            padding-bottom: 5px;
+                            width: auto;
+                            border-bottom: 1px solid #17a2b8;
+                            margin-bottom: 5px;
+                            text-align: center;
+                        }
+                        span{
+                            font-size: 14px;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+
+            .monitorAdd-footer{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                button{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: none;
+                    outline: none;
+                    width: 100px;
+                    height: 40px;
+                    color: white;
+                    background-color: #17a3b8c0;
+                    border-radius: 5px;
+                    &:hover{
+                        background-color: #17a2b8;
+                    }
+                }
+    
+                .leftBtn{
+                    margin-right: 5px;
+                    i{
+                        margin-right: 15px;
+                    }
+                }
+
+                .completeBtn{
+                    background-color: #17610596;
+                    &:hover{
+                        background-color: #176105;
+                    }
+                    i{
+                        margin-left: 15px;
+                    }
+                }
+    
+                .rightBtn{
+                    margin-left: 5px;
+                    i{
+                        margin-left: 15px;
+                    }
+                }
+            }
+        }
+
+        .sliderInfoWrapper{
+            position: relative;
+            .sliderValue{
+                position: absolute;
+                right: 0;
+                top: 0px;
+            }
+        }
+    }
+
+
+    //Slider Styles
+    .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 10px;
+        border-radius: 10px;
+        background: linear-gradient(90deg, #17a2b8 0%, rgb(214,214,214) 0%);
+        outline: none;
+        opacity: 1;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        &_apdex{
+            -webkit-appearance: none;
+            width: 100%;
+            height: 5px;
+            border-radius: 5px;
+            background: #CA6D00;
+            outline: none;
+            opacity: 1;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+    }
+      
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #17a2b8;
+        cursor: pointer;
+        &:hover{
+            width: 20px;
+            height: 20px;
+        }
+    }
+      
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #17a2b8;
+        cursor: pointer;
+    }
+
+
+    //Styles for all elements
+    .displayNone{
+        display: none;
+    }
 }

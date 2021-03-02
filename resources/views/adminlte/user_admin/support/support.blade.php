@@ -19,6 +19,8 @@
     <div class="row">
         {{-- My Tickets --}}
         <div class="col-lg-12 col-md-12 col-sm-12">
+            <x-alertAdmin />
+
             <div class="card card-outline card-primary">
                 <div class="card-header">
                     <h1 class="card-title">{{ __('My Tickets') }}</h1>
@@ -32,7 +34,7 @@
                         <tbody>
                         {{-- Column - ID --}}
                         <tr id="filter_col0" data-column="0">
-                            <td>{{ __('Column - ID') }}</td>
+                            <td>{{ __("Column - :attribute", ['attribute' => __("ID")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -48,7 +50,7 @@
                         </tr>
                         {{-- Column - CATEGORY --}}
                         <tr id="filter_col1" data-column="1">
-                            <td>{{ __('Column - CATEGORY') }}</td>
+                            <td>{{ __("Column - :attribute", ['attribute' => __("CATEGORY")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -64,7 +66,7 @@
                         </tr>
                         {{-- Column - TITLE --}}
                         <tr id="filter_col2" data-column="2">
-                            <td>{{ __('Column - TITLE') }}</td>
+                            <td>{{ __("Column - :attribute", ['attribute' => __("TITLE")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -80,7 +82,7 @@
                         </tr>
                         {{-- Column - STATUS --}}
                         <tr id="filter_col3" data-column="3">
-                            <td>{{ __('Column - STATUS') }}</td>
+                            <td>{{ __('Column - :attribute', ['attribute' => __("STATUS")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -96,7 +98,7 @@
                         </tr>
                         {{-- Column - LAST UPDATED --}}
                         <tr id="filter_col4" data-column="4">
-                            <td>{{ __('Column - LAST UPDATED') }}</td>
+                            <td>{{ __('Column - :attribute', ['attribute' => __("LAST UPDATED")]) }}</td>
                             <td align="center">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="input-group">
@@ -114,7 +116,7 @@
                     </table>
 
                     {{-- Data table --}}
-                    <table class="table table-striped table-bordered dt-responsive nowrap TableStyle" id="tickets-table">
+                    <table class="table table-striped table-bordered nowrap TableStyle" id="tickets-table">
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">{{ __('ID') }}</th>
@@ -152,12 +154,31 @@
 
                                 <td class="TextMiddle">
                                     <div class="container">
-                                        <div class="row">
+                                        @if($ticket->status === 'Opened')
+                                            <a class="btn btn-info mr-1" href="{{ '/user/support/tickets/'. $hashids->encode($ticket->id) }}" role="button">
+                                                <i class="fas fa-comment mr-1"></i>
+                                                {{ __('Comment') }}
+                                            </a>
+
+                                            <a href="#" class="btn btn-warning close-action">
+                                                <i class="fas fa-times mr-1"></i>
+                                                {{ __('Close') }}
+                                            </a>
+                                            {{ Form::open(['url' => route('user.support.ticket.close', [$ticket->ticket_id]), 'method' => 'post']) }}
+                                            {{ Form::close() }}
+                                        @else
                                             <a class="btn btn-primary mr-1" href="{{ '/user/support/tickets/'. $hashids->encode($ticket->id) }}" role="button">
                                                 <i class="fas fa-eye mr-1"></i>
                                                 {{ __('View') }}
                                             </a>
-                                        </div>
+
+                                            <a href="#" class="btn btn-danger delete-action">
+                                                <i class="fas fa-trash mr-1"></i>
+                                                {{ __('Delete') }}
+                                            </a>
+                                            {{ Form::open(['url' => route('user.support.ticket.destroy', [$hashids->encode($ticket->id)]), 'method' => 'delete']) }}
+                                            {{ Form::close() }}
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -176,6 +197,26 @@
 
 @section('js')
     <script>
+        
+        // Close and delete action script for tickets
+        $(document).ready(function () {
+            $('.close-action').click(function (e) {
+                if (confirm("<?php echo __('Are you sure to close this ticket?') ?>")) {
+                    $(this).siblings('form').submit();
+                }
+
+                return false;
+            });
+
+            $('.delete-action').click(function (e) {
+                if (confirm("<?php echo __('Are you sure to delete this ticket?') ?>")) {
+                    $(this).siblings('form').submit();
+                }
+
+                return false;
+            });
+        });
+
         //// Tickets table ////
 
         // Filter function
@@ -191,18 +232,22 @@
                     columnDefs: [
                         { "orderable": false, "targets": 5 },
                         { "width": "5%", "targets": [0] },
-                        { "width": "10%", "targets": [1, 3, 4, 5] },
+                        { "width": "10%", "targets": [1, 2, 3, 4, 5] },
                     ],
+
+                    // Allows you to scroll right and left if text is to long
+                    scrollX: true,
+                    scrollCollapse: true,
 
                     // Order by asc/desc
                     order: [
-                        [ 0, "asc" ]
+                        [ 0, "desc" ]
                     ],
 
                     // Show entries length
                     lengthMenu: [
-                        [10, 20, 30, -1],
-                        [10, 20, 30, "All"]
+                        [10, 20, 30, 40, 50],
+                        [10, 20, 30, 40, 50]
                     ],
 
                     // Position of control elements
@@ -216,7 +261,7 @@
                         't' +
                         '<"row"' +
                         '<"col-sm-12 col-md-6"i>' +
-                        '<"col-sm-12 col-md-6"p>' +
+                        '<"col-sm-12 col-md-6 mt-2"p>' +
                         '>'
                     ,
 
@@ -352,6 +397,87 @@
                                 },
                                 'starts': {
                                     conditionName: "<?php echo __('Starts With')?>",
+                                },
+                            },
+                            "html": {
+                                '!=': {
+                                    conditionName: "<?php echo __('Not')?>",
+                                },
+                                '!null': {
+                                    conditionName: "<?php echo __('Not Empty')?>",
+                                },
+                                '=': {
+                                    conditionName: "<?php echo __('Equals')?>",
+                                },
+                                'contains': {
+                                    conditionName: "<?php echo __('Contains')?>",
+                                },
+                                'ends': {
+                                    conditionName: "<?php echo __('Ends With')?>",
+                                },
+                                'null': {
+                                    conditionName: "<?php echo __('Empty')?>",
+                                },
+                                'starts': {
+                                    conditionName: "<?php echo __('Starts With')?>",
+                                },
+                            },
+                            "html-num": {
+                                '!=': {
+                                    conditionName: "<?php echo __('Not')?>",
+                                },
+                                '!between': {
+                                    conditionName: "<?php echo __('Not Between')?>",
+                                },
+                                '!null': {
+                                    conditionName: "<?php echo __('Not Empty')?>",
+                                },
+                                '<': {
+                                    conditionName: "<?php echo __('Less Than')?>",
+                                },
+                                '<=': {
+                                    conditionName: "<?php echo __('Less Than Equal To')?>",
+                                },
+                                '=': {
+                                    conditionName: "<?php echo __('Equals')?>",
+                                },
+                                '>': {
+                                    conditionName: "<?php echo __('Greater Than')?>",
+                                },
+                                '>=': {
+                                    conditionName: "<?php echo __('Greater Than Equal To')?>",
+                                },
+                                'multipleOf': {
+                                    conditionName: "<?php echo __('Value + ')?>", // String value that will be displayed in the condition select element
+                                    init: function (that, fn, preDefined = null) {
+                                        // Declare the input element and set the listener to trigger searching
+                                        const el =  jQuery('<input/>').on('input', function() { fn(that, this) });
+
+                                        // Add mechanism to apply preDefined values that may be passed in
+                                        if (preDefined !== null) {
+                                            jQuery(el).val(preDefined[0]);
+                                        }
+
+                                        return el;
+                                    },
+                                    inputValue: function (el) {
+                                        // Return the value within the input element
+                                        return jQuery(el[0]).val();
+                                    },
+                                    isInputValid: function (el, that) {
+                                        // If there is text in the input element then it is valid for searching
+                                        return jQuery(el[0]).val().length !== 0;
+                                    },
+                                    search: function (value, comparison) {
+                                        // Use the modulo (%) operator to check that there is no remainder
+                                        return value%comparison === 0;
+                                    }
+                                },
+                                'between': {
+                                    conditionName: "<?php echo __('Between')?>",
+                                },
+                                'null': {
+                                    conditionName: "<?php echo __('Empty')?>",
                                 },
                             },
                         },

@@ -13,42 +13,22 @@
         </div>
     </div>
 
+    {{-- Category input--}}
     <div class="form-group">
         <label for="category" class="col-md-4 control-label">
             {{ __('Category') }}*
         </label>
         <div class="col-12">
-            <select id="category" type="category" class="form-control @error('category') is-invalid @enderror" name="category">
-                <option value="">
-                    {{ __('Select Category') }}
+            <select name="category" id="category" type="category" class="form-control @error('category') is-invalid @enderror">
+                <option hidden disabled selected value>
+                    {{ __('Select :attribute', ['attribute' => __("Category")]) }}
                 </option>
+
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">
+                    <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>
                         {{ __($category->name) }}
                     </option>
                 @endforeach
-            </select>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="priority" class="col-md-4 control-label">
-            {{ __('Priority') }}*
-        </label>
-        <div class="col-12">
-            <select id="priority" type="priority" class="form-control @error('priority') is-invalid @enderror" name="priority">
-                <option value="">
-                    {{ __('Select Priority') }}
-                </option>
-                <option value="low">
-                    {{ __('Low') }}
-                </option>
-                <option value="medium">
-                    {{ __('Medium') }}
-                </option>
-                <option value="high">
-                    {{ __('High') }}
-                </option>
             </select>
         </div>
     </div>
@@ -62,7 +42,7 @@
                       id="message"
                       class="form-control @error('message') is-invalid @enderror"
                       name="message"
-            ></textarea>
+            >{{ old('message') }}</textarea>
         </div>
     </div>
 
