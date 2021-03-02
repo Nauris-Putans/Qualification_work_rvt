@@ -21,7 +21,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-desktop"></i></span>
             </div>
-            <select class="form-control" id='checkType'>
+            <select class="form-control" id='userMonitors'>
         
             </select>
           </div>
@@ -242,6 +242,9 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/app.css">
+<link href="/css/userAdmin.css" rel="stylesheet">
+
+{{-- Data picker styles --}}
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 @stop
 
@@ -249,7 +252,6 @@
 {{-- Data picker js --}}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script src="{{ url('vendor/jquery.min.js') }}"></script>
 
 {{-- Chart js--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
@@ -314,17 +316,26 @@
       let weekDayChartBox = document.getElementById("weekdayChartBox");
       let infoAlert = document.getElementById("infoAlert");
 
-      if(newfriendlyNames.length === 0 || Object.keys(newresponseTime).length < 2 ){
+      if(newfriendlyNames.length === 0){
+        $('#userMonitors').attr('disabled', 'disabled');
+        $('#datePicker').attr('disabled', 'disabled');
+        $('#timeButton').attr('disabled', 'disabled');
+      }else{
+        $('#userMonitors').removeAttr('disabled');
+        $('#datePicker').removeAttr('disabled');
+        $('#timeButton').removeAttr('disabled');
+
+        addOptionsToDropDown(newfriendlyNames, dropDownVal);
+      }
+
+      if(Object.keys(newresponseTime).length < 2 ){
         if(responseTimeInfoBoxes.classList.toggle("d-none") === true){
           responseChart.classList.toggle("d-none");
           weekDayChartBox.classList.toggle("d-none");
           infoAlert.classList.toggle("d-none");
         }else{
           responseTimeInfoBoxes.classList.toggle("d-none");
-        }
 
-        if(newfriendlyNames.length != 0){
-          addOptionsToDropDown(newfriendlyNames, currentFriendlyNameSelected);
         }
 
       }else{
@@ -335,8 +346,8 @@
           weekDayChartBox.classList.toggle("d-none");
           infoAlert.classList.toggle("d-none");
         }
+        insertData(newresponseTime);
 
-        insertData(newresponseTime,newfriendlyNames,dropDownVal);
       }
     }
 
@@ -349,15 +360,15 @@
         currentHistory = checkHistory;
         optionSelectedId =[];
  
-        if(checkFriendlyName.length != 0){
+        if(Object.keys(checkFriendlyName).length != 0){
           optionSelectedId =['item'];
           optionSelectedId['item'] = checkItemsIds[0]['item'];
           //Will be set as current value in drop down box
-          let checkLastFriendlyName = checkFriendlyName[0].friendly_name;
-          currentFriendlyNameSelected = checkLastFriendlyName;
+          let checkLastFriendlyName = checkItemsIds[0].item_id;
+
           userDataCheck(checkHistory,checkFriendlyName,checkLastFriendlyName);
         }else{
-          $('#checkType').attr('disabled', 'disabled');
+          $('#userMonitors').attr('disabled', 'disabled');
           $('#datePicker').attr('disabled', 'disabled');
           $('#timeButton').attr('disabled', 'disabled');
           let weekDayChartBox = document.getElementById('weekdayChartBox');
@@ -626,7 +637,7 @@
       setData();
 
       //Costomize and insert new data to charts and labels
-      function insertData(newresponseTime,newfriendlyNames,dropDownVal){
+      function insertData(newresponseTime){
         
         let speed = new Array();
         let clock = new Array();
@@ -686,7 +697,6 @@
         }else{
           insertDataToDayPartChart(speed,clockForWeekChart);
         }
-        addOptionsToDropDown(newfriendlyNames,dropDownVal);
       }
 
       let startHr = 0;
@@ -705,7 +715,6 @@
         let currentMin;
         let newHistory = {
           'histories' :{},
-          'itemsFriendlyName': {}
         };
         let i=0;
         for (const id in history['histories']) {
@@ -732,15 +741,12 @@
           }
         }
 
-        for(const id in history['itemsFriendlyName']){
-          newHistory['itemsFriendlyName'][id] = history['itemsFriendlyName'][id];
-        }
         currentHistory = newHistory['histories'];
         return newHistory;
       }
 
       function callController(startDate,endDate,selectedItemId){
-        if(selectedItemId['item'] != null){
+        if(selectedItemId != null){
           $.ajax( {
             type:'POST',
             header:{
@@ -751,7 +757,7 @@
             _token: "{{ csrf_token() }}",
             dataType: 'json', 
             contentType:'application/json', 
-            item_id: selectedItemId['item'],
+            item_id: selectedItemId,
             startDate: startDate,      
             endDate: endDate,
             }
@@ -759,9 +765,9 @@
 
           })
             .done(function(data) {
-              data = checkTime(data);
-
-              userDataCheck(data.histories,data.itemsFriendlyName,currentFriendlyNameSelected);
+              //Costomize item hystory data
+              newdata = checkTime(data);
+              userDataCheck(newdata.histories,data.itemsFriendlyName,data.selectedId);
             })
             .fail(function() {
                 alert("error");
@@ -772,19 +778,16 @@
       //Insert new items to friendly name drop down form
       function addOptionsToDropDown(friendlyNames,dropDownValue){
 
-          let dropDownCheckType = document.getElementById('checkType');
-          let dropDownCheckTypeValue;
-
-          dropDownCheckTypeValue = dropDownValue;
+          let dropDownCheckType = document.getElementById('userMonitors');
 
           let dropDownElements =document.getElementsByTagName('option');
 
-          $("#checkType option").remove();
+          $("#userMonitors option").remove();
 
           //Add new items to user checks drop down form
           for (let x in friendlyNames) {
               newPersonItem =`
-                              <option id='option${x}'>${friendlyNames[x]['friendly_name']}</option>
+                              <option value='${x}'>${friendlyNames[x]['friendly_name']}</option>
                           `;
               const position = "beforeend";
               dropDownCheckType.insertAdjacentHTML(position,newPersonItem);
@@ -792,7 +795,7 @@
 
           //Set Current check friendly name to dropDown
 
-          $("#checkType").val(dropDownCheckTypeValue);
+          $("#userMonitors").val(dropDownValue);
           
       }
 
@@ -815,7 +818,7 @@
       });
 
       $('#datePicker').on('apply.daterangepicker', function(ev, picker) {
-        currentFriendlyNameSelected = $("#checkType option:checked").text();
+        currentFriendlyNameSelected = $("#userMonitors option:checked").text();
         startDate = picker.startDate.format();
         startDate = Math.floor(Date.parse(startDate) / 1000);
         endDate = picker.endDate.format();
@@ -825,19 +828,20 @@
           endDate = Math.floor(Date.parse(endDate) / 1000);
         }
 
-        callController(startDate,endDate,optionSelectedId);
+        //Get selected items id
+        const selectedItemId = $("#userMonitors option:selected").val();
+
+        callController(startDate,endDate,selectedItemId );
 
       });
 
       //EVENT LISTENERS
       
-      $("#checkType").change(function(){
-        let optionSelected = document.querySelector('#checkType');
-        optionSelectedId = optionSelected.options[optionSelected.selectedIndex].id;
-        optionSelectedId = optionSelectedId.replace('option','');
-        optionSelectedId = checkItemsIds[optionSelectedId];
-        currentFriendlyNameSelected = $("#checkType option:checked").text();
-        callController(startDate,endDate,optionSelectedId);
+      $("#userMonitors").change(function(){
+        //Get selected items id
+        const selectedItemId = $("#userMonitors option:selected").val();
+
+        callController(startDate,endDate,selectedItemId );
       });
 
       $('#timeButton').click(function() {
@@ -851,7 +855,10 @@
     });
 
     $('#selectTime').click(function(){
-        callController(startDate,endDate,optionSelectedId);
+        //Get selected items id
+        const selectedItemId = $("#userMonitors option:selected").val();
+
+        callController(startDate,endDate,selectedItemId );
     });
 
     $('#radioOption1').click(function(){

@@ -49907,6 +49907,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/admin.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/admin.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -49918,9 +49929,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/sass/monitor.scss":
+/***/ "./resources/sass/section.scss":
 /*!*************************************!*\
-  !*** ./resources/sass/monitor.scss ***!
+  !*** ./resources/sass/section.scss ***!
   \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -49929,21 +49940,29 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/userAdmin.scss":
+/*!***************************************!*\
+  !*** ./resources/sass/userAdmin.scss ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*******************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/monitor.scss ***!
-  \*******************************************************************************************/
+/*!*******************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/userAdmin.scss ./resources/sass/admin.scss ./resources/sass/section.scss ***!
+  \*******************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! C:\Users\user\PhpstormProjects\monitoring_project\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\user\PhpstormProjects\monitoring_project\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
 __webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\monitor.scss */"./resources/sass/monitor.scss");
->>>>>>> bb725bad746e36a8ed3f87d7ebd8221e29f09986
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\userAdmin.scss */"./resources/sass/userAdmin.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\admin.scss */"./resources/sass/admin.scss");
+module.exports = __webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\section.scss */"./resources/sass/section.scss");
 
 
 /***/ })
