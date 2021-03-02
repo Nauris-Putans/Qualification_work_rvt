@@ -78,18 +78,24 @@ class MonitoringMonitorsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new created monitor in storage.
      * @param Request $request
      * @return Response
      */
     public function store(StoreMonitorsAdd $request)
     {
 
-        //VARIABLES
-        $checkType = $request->checkType;//Get check type(DNS or PING or http) from add Monitor page
-        $checkAddress = $request->checkAddress; //Get DNS or PING address from add Monitor page
-        $currentUserID = $request->session()->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");//Get current user ID;
-        $checkInterval = $request->checkInterval; //Check interval
+        //Get check type(DNS or PING or http)
+        $checkType = $request->checkType;
+        //Get DNS or PING address
+        $checkAddress = $request->checkAddress; 
+        //Check interval
+        $checkInterval = $request->checkInterval;
+
+        //Get current user ID;
+        $currentUserID = $request
+            ->session()
+            ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
 
         //Get current user's group id
         $usergroupID = $request->session()->get('groupId');
@@ -110,7 +116,6 @@ class MonitoringMonitorsController extends Controller
             //Change https:\\...\ to https://.../
             $checkAddress = str_replace("\\",'/',$checkAddress);
 
-            $url = $checkAddress;
             $dns = $checkAddress;
             $useip = '0'; 
 
@@ -125,8 +130,9 @@ class MonitoringMonitorsController extends Controller
             if(substr($dns,0,4) === 'www.'){
                 $dns = str_replace("www.",'',$dns);
             }
-             
-            $hostName = $usergroupID.' '.$dns;
+
+            $url = $dns;
+            $url = "https://".$url;
 
             //Change webCheck/notification.com to webCheck.notification.com
             $hostName = str_replace("/",'.',$hostName);
@@ -135,19 +141,21 @@ class MonitoringMonitorsController extends Controller
             if(strpos($dns,'/') !== false){
                 $FoundId = strpos($dns,'/');
                 if(strpos($dns,'/') < 3){
-                    dd("Something went wrong");
+                    return response()->json(['error' => __('Something is not good!')]);
                 }
                 $dns = substr($dns,0,$FoundId);
             }
+            date_default_timezone_set("Europe/Riga");
+            $time = time();
+            $time = date("Y-m-d H-m-s",$time);
+
+            $hostName = $usergroupID.' '.$dns.' '.$time;
 
             //If $dns smaller than 3
             if(strlen($dns) < 3){
-                return response()->json(['error' => __('Something is not good!')]);
+                return response()->json(['error' => __('Something is not good! ')]);
             }
 
-            if(strpos($url,'https://') === false && strpos($url,'http://') === false) {
-                $url = "https://".$url;
-            }
 
         }else if($checkType == "ICMP ping") {//check that ping is written correct
             
@@ -195,12 +203,16 @@ class MonitoringMonitorsController extends Controller
         }
 
 
-        $hostDBCheck = DB::table('monitoring_hosts')->where('host_name',$hostName)->first();
+        $monitorDBCheck = DB::table('monitoring_monitors')
+            ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
+            ->where('user_group',$usergroupID)
+            ->where('check_address',$ip.$url)
+            ->first();
 
         //CREATE NEW MONITOR IN ZABBIX
         $newHostID = 0;
         //If host doesnt't exist yet
-        if($hostDBCheck == null){
+        if($monitorDBCheck == null){
 
            //Create new Host
             $newHostID = $this->zabbix->hostCreate([
@@ -246,8 +258,8 @@ class MonitoringMonitorsController extends Controller
 
                 
                 $foundId = strpos($webScenarioStepName,'/');
-                //Check that $webScenarioStepName has / , if hasn't change $webScenarioStepName to 'Home page'
 
+                //Check that $webScenarioStepName has / , if hasn't change $webScenarioStepName to 'Home page'
                 if($foundId === false) {
                     $webScenarioStepName = 'Home page';
                 }else{
@@ -271,12 +283,53 @@ class MonitoringMonitorsController extends Controller
                     ]
                 ])->httptestids[0];
                 
-                DB::insert('insert into monitoring_hosts (host_id, host_name, check_address, host_group) values (?, ?, ?, ?)', [$newHostID, $hostName, $dns, $hostGroupID]);
-                DB::insert('insert into monitoring_applications (application_id, application_name) values (?, ?)', [$newApplicationID, "SimpleCheck"]);
-                DB::insert('insert into web_scenarios (httptest_id, httptest_name) values (?, ?)', [$newWebScenarioID, $dns." check"]);
-                DB::insert('insert into host_has_application (host_id, application) values (?, ?)', [$newHostID, $newApplicationID]);
-                DB::insert('insert into host_has_web_scenario (web_scenario, host_id) values (?, ?)', [$newWebScenarioID, $newHostID]);
+                //Store new host into database
+                DB::table('monitoring_hosts')->insert(
+                    [
+                        'host_id' => $newHostID,
+                        'host_name' => $hostName,
+                        'check_address' => $url,
+                        'host_group' => $hostGroupID
+                    ]
+                );
 
+                //Store new application into database
+                DB::table('monitoring_applications')->insert(
+                    [
+                        'application_id' => $newApplicationID,
+                        'application_name' => 'Web check'
+                    ]
+                );
+
+                //Store new web scenario into database
+                DB::table('web_scenarios')->insert(
+                    [
+                        'httptest_id' => $newWebScenarioID,
+                        'httptest_name' => $dns." check"
+                    ]
+                );
+
+                //fill out table between aplication,webScenario and host tables
+                DB::table('host_has_application_webscenario')->insert(
+                    [
+                        'host_id' => $newHostID,
+                        'application' => $newApplicationID,
+                        'web_scenario' => $newWebScenarioID
+                    ]
+                );
+
+                //Fill out monitoring_monitors table
+                DB::table('monitoring_monitors')->insert(
+                    [
+                        'friendly_name' => $request->friendlyName ?? $url,
+                        'user_input' => $checkAddress,
+                        'user_group' => $usergroupID,
+                        'user_id' => $currentUserID,
+                        'host' => $newHostID,
+                        'status' => 1
+                    ]
+                );
+                
                 //Get all web scenario's and application's items
                 $allItems = $this->zabbix->itemGet([
                     "applicationids" => $newApplicationID,
@@ -284,18 +337,39 @@ class MonitoringMonitorsController extends Controller
                 ]);
                 
 
-                    foreach ($allItems as $item) {
-                        if($item->name == 'Download speed for step "$2" of scenario "$1".' && strpos($item->key_, $webScenarioStepName)){
-                            DB::insert('insert into monitoring_items (item_id, check_address, check_type, monitor_type, application) values (?, ?, ?, ?, ?)', [$item->itemid, $url, 3, 2, $newApplicationID]);
-                            DB::insert('insert into monitoring_monitors (friendly_name, user_group, user_id, item, status) values (?, ?, ?, ?, ?)', [$request->friendlyName ?? $ip.$url, $usergroupID, $currentUserID, $item->itemid,1]);
-                        }else if($item->name == 'Failed step of scenario "$1".'){
-                            DB::insert('insert into monitoring_items (item_id, check_address, check_type, monitor_type, application) values (?, ?, ?, ?, ?)', [$item->itemid, $url, 2, 2, $newApplicationID]);
-                            DB::insert('insert into monitoring_monitors (friendly_name, user_group, user_id, item, status) values (?, ?, ?, ?, ?)', [$request->friendlyName ?? $ip.$url, $usergroupID, $currentUserID, $item->itemid, 1]);
-                        }else if($item->name == 'Response time for step "$2" of scenario "$1".' && strpos($item->key_, $webScenarioStepName)){
-                            DB::insert('insert into monitoring_items (item_id, check_address, check_type, monitor_type, application) values (?, ?, ?, ?, ?)', [$item->itemid, $url, 1, 2, $newApplicationID]);
-                            DB::insert('insert into monitoring_monitors (friendly_name, user_group, user_id, item, status) values (?, ?, ?, ?, ?)', [$request->friendlyName ?? $url, $usergroupID, $currentUserID, $item->itemid, 1]);
-                        }
+                foreach ($allItems as $item) {
+                    if($item->name == 'Download speed for step "$2" of scenario "$1".' && strpos($item->key_, $webScenarioStepName)){
+                        //insert new download speed item
+                        DB::table('monitoring_items')->insert(
+                            [
+                                'item_id' => $item->itemid,
+                                'check_type' => 3,
+                                'monitor_type' => 2,
+                                'application' => $newApplicationID,
+                            ]
+                        );
+                    }else if($item->name == 'Failed step of scenario "$1".'){
+                        //insert new uptime item
+                        DB::table('monitoring_items')->insert(
+                            [
+                                'item_id' => $item->itemid,
+                                'check_type' => 2,
+                                'monitor_type' => 2,
+                                'application' => $newApplicationID,
+                            ]
+                        );
+                    }else if($item->name == 'Response time for step "$2" of scenario "$1".' && strpos($item->key_, $webScenarioStepName)){
+                        //insert new response time item
+                        DB::table('monitoring_items')->insert(
+                            [
+                                'item_id' => $item->itemid,
+                                'check_type' => 1,
+                                'monitor_type' => 2,
+                                'application' => $newApplicationID,
+                            ]
+                        );
                     }
+                }
                 
             }
             else if($checkType == "ICMP ping") //If user want monitor ping address
@@ -330,15 +404,63 @@ class MonitoringMonitorsController extends Controller
                     "delay"=> $checkInterval.'m'   //check time
                 ])->itemids[0];
 
-                
-                DB::insert('insert into monitoring_hosts (host_id, host_name, check_address, host_group) values (?, ?, ?, ?)', [$newHostID, $hostName, $ip, $hostGroupID]);
-                DB::insert('insert into monitoring_applications (application_id, application_name) values (?, ?)', [$newApplicationID, "SimpleCheck"]);
-                DB::insert('insert into host_has_application (host_id, application) values (?, ?)', [$newHostID, $newApplicationID]);
-                DB::insert('insert into monitoring_items (item_id, check_address, check_type, monitor_type, application) values (?, ?, ?, ?, ?)', [$ResponseTimeItem, $ip, 1, 1, $newApplicationID]);
-                DB::insert('insert into monitoring_items (item_id, check_address, check_type, monitor_type, application) values (?, ?, ?, ?, ?)', [$UpTimeItem, $ip, 2, 1, $newApplicationID]);
-                DB::insert('insert into monitoring_monitors (friendly_name, user_group, user_id, item, status) values (?, ?, ?, ?, ?)', [$request->friendlyName ?? $ip, $usergroupID, $currentUserID, $ResponseTimeItem, 1]);
-                DB::insert('insert into monitoring_monitors (friendly_name, user_group, user_id, item, status) values (?, ?, ?, ?, ?)', [$request->friendlyName ?? $ip, $usergroupID, $currentUserID, $UpTimeItem, 1]);
+                //insert new host into database
+                DB::table('monitoring_hosts')->insert(
+                    [
+                        'host_id' => $newHostID,
+                        'host_name' => $hostName,
+                        'check_address' => $ip,
+                        'host_group' => $hostGroupID,
+                    ]
+                );
 
+                //insert new application into database
+                DB::table('monitoring_applications')->insert(
+                    [
+                        'application_id' => $newApplicationID,
+                        'application_name' => 'ping check',
+                    ]
+                );
+
+                //fill out table between aplication,webScenario and host tables
+                DB::table('host_has_application_webscenario')->insert(
+                    [
+                        'host_id' => $newHostID,
+                        'application' => $newApplicationID,
+                    ]
+                );
+
+                //insert response time item into database
+                DB::table('monitoring_items')->insert(
+                    [
+                        'item_id' => $ResponseTimeItem,
+                        'check_type' => 1,
+                        'monitor_type' => 1,
+                        'application' => $newApplicationID,
+                    ]
+                );
+
+                //insert uptime  item into database
+                DB::table('monitoring_items')->insert(
+                    [
+                        'item_id' => $UpTimeItem,
+                        'check_type' => 2,
+                        'monitor_type' => 1,
+                        'application' => $newApplicationID,
+                    ]
+                );
+
+                //Fill out monitoring_monitors table
+                DB::table('monitoring_monitors')->insert(
+                    [
+                        'friendly_name' => $request->friendlyName ?? $ip,
+                        'user_input' => $checkAddress,
+                        'user_group' => $usergroupID,
+                        'user_id' => $currentUserID,
+                        'host' => $newHostID,
+                        'status' => 1
+                    ]
+                );
             }else {
                 return response()->json(['error' => __('Somenthing get wrong try once more!')]);
             };

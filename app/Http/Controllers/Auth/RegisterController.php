@@ -123,25 +123,6 @@ class RegisterController extends Controller
             ->get('id')
             ->first()->id;
 
-        //Create new user in Zabbix
-        $newZabbixUser = $this->zabbix->userCreate([
-            "alias"=> $request->all()['signup_name'].' '.$request->all()['signup_email'],
-            "passwd"=> $request->all()['signup_password'],
-            "usrgrps"=> [
-                [
-                    "usrgrpid"=> "13"
-                ]
-            ],
-            "user_medias"=> [
-                [
-                    "mediatypeid"=> "1", //Mail
-                    "sendto"=> [
-                        $request->all()['signup_email'] //Email
-                    ],
-                ]
-            ]
-        ])->userids[0];
-
         //Add new user group to database
         DB::table('monitoring_users_groups')->insert(
             [
@@ -160,6 +141,44 @@ class RegisterController extends Controller
             ]
         );
 
+        //Get user group id
+        $userGroupId = DB::table('monitoring_users_groups')
+            ->where('group_admin_id',$currentUserID)
+            ->get('group_id')
+            ->first()->group_id;
+
+        //Create new host group in zabbix
+        $hostGroupID = $this->zabbix->hostgroupCreate([
+            "name" => $userGroupId.'-Hosts'
+        ])->groupids[0];
+
+        //Create new user group in Zabbix
+        $newZabbixUserGroup = $this->zabbix->usergroupCreate([
+            "name"=> $userGroupId.'-group',
+            "rights"=> [
+                "permission"=> 2, //2 - read-only access
+                "id"=> $hostGroupID //host group id
+            ]
+        ])->usrgrpids[0];
+
+        //Create new user in Zabbix
+        $newZabbixUser = $this->zabbix->userCreate([
+            "alias"=> $request->all()['signup_name'].' '.$request->all()['signup_email'],
+            "passwd"=> $request->all()['signup_password'],
+            "usrgrps"=> [
+                [
+                    "usrgrpid"=> $newZabbixUserGroup  //Zabbix user group id
+                ]
+            ],
+            "user_medias"=> [
+                [
+                    "mediatypeid"=> "1", //Mail
+                    "sendto"=> [
+                        $request->all()['signup_email'] //Email
+                    ],
+                ]
+            ]
+        ])->userids[0];
 
         //Add new zabbix user to database
         DB::table('monitoring_zabbix_users')->insert(
@@ -169,16 +188,31 @@ class RegisterController extends Controller
             ]
         );
 
-        //Get user group id
-        $userGroupId = DB::table('monitoring_users_groups')->where('group_admin_id',$currentUserID)->get('group_id')->first()->group_id;
+        //Add new zabbix user group to database
+        DB::table('zabbix_user_group')->insert(
+            [
+                'zabbix_group_id' => $newZabbixUserGroup,
+                'zabbix_group_name' => $userGroupId.'-group',
+                'zabbix_group_admin' => $currentUserID
+            ]
+        );
 
-        //Create new host group in zabbix
-        $hostGroupID = $this->zabbix->hostgroupCreate([
-            "name" => $userGroupId.'-Hosts'
-        ])->groupids[0];
+        //Add new member to zabbix user group 
+        DB::table('zabbix_group_members')->insert(
+            [
+                'zabbix_group_id' => $newZabbixUserGroup,
+                'zabbix_group_member' => $newZabbixUser
+            ]
+        );
 
-         //Add host group to database
-         DB::insert('insert into monitoring_hosts_groups (host_group_id, host_group_name, user_group) values (?, ?, ?)', [$hostGroupID, $userGroupId.'-Hosts', $userGroupId]);
+        //Add host group to database
+        DB::table('monitoring_hosts_groups')->insert(
+            [
+                'host_group_id' => $hostGroupID,
+                'host_group_name' => $userGroupId.'-Hosts',
+                'user_group' => $userGroupId,
+            ]
+        );
 
         //Set current user group's id to global variable
         session(['groupId' => $userGroupId]);

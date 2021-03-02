@@ -37,6 +37,7 @@ class CreateUserDashboardTable extends Migration
             $table->unsignedBigInteger('user');
             $table->string('group');
             $table->unsignedBigInteger('hystory_from_days');
+            $table->unsignedBigInteger('element_position');
 
             $table->foreign('item')->references('item_id')->on('monitoring_items')
                 ->onUpdate('cascade')->onDelete('cascade');

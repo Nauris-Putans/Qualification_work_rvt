@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Add')
+@section('title', __('Add'))
 
 @section('content_header')
     <h1> {{ __('Monitoring') }} > {{ __('Monitors') }} > {{ __('Add') }}</h1>
@@ -10,7 +10,7 @@
     <section class="monitorAdd">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 monitorAddWrapper">
+                <div class="col-md-12 monitorAddWrapper" id="monitorAddWrapper">
 
                     {{-- Settings header --}}
                     <div class="monitorAdd-header monitorAdd-header-first-step" id="monitorAddHeader">
@@ -169,7 +169,36 @@
                                 {{-- Button in SSL settings step --}}
                                 <button id="confirmInfoStepBackBtn" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
                                 <button id="createMonitor" class="completeBtn">{{ __('Create')}}<i class="fas fa-clipboard-check"></i></button>
+                                <div class="spinerBox" id="spinerBox">
+                                    <div class="spinner-grow text-primary" role="status">
+                                        <span class="visually-hidden"></span>
+                                    </div>
+                                    <div class="spinner-grow text-success" role="status">
+                                        <span class="visually-hidden"></span>
+                                    </div>
+                                    <div class="spinner-grow text-danger" role="status">
+                                        <span class="visually-hidden"></span>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 monitorAddWrapper d-none" id="monitorCreatedWrapper">
+                    <div class="monitorAdd-SettingsWrapper monitorCreatedWrapper">
+                        <div class="successIconWrapper">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="monitorCtreatedTitle">{{ __('Monitor has been created!')}}</div>
+                        <div class="monitorCtreatedURL" id="createdMonitorAddress">{{ __('www.rolands.com')}}</div>
+                        <div class="monitorAdd-footer"> 
+                            <form method="GET" action="{{ URL::route('monitor.add') }}">
+                                @csrf
+                                <button id="backToStart"  class="toStartBtn">{{ __('Create new monitor')}}</button> 
+                            </form> 
                         </div>
                     </div>
                 </div>
@@ -343,7 +372,7 @@
     </section>
 @stop
 @section('css')
-    <link rel="stylesheet" href="/css/app.css">
+    <link href="/css/userAdmin.css" rel="stylesheet">
 
     {{-- Toastr styles --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" media="all">
@@ -482,6 +511,9 @@
         // Confirmation information section buttons
         // Create monitor button clicked
         $('#createMonitor').click( function(){
+            $('#createMonitor').css("display", "none");
+            $('#confirmInfoStepBackBtn').css("display", "none");
+            $('#spinerBox').css("display", "flex");
             addNewMonitor();
         });
 
@@ -606,15 +638,20 @@
 
             })
           .done(function(data) {
+            $('#createMonitor').css("display", "block");
+            $('#confirmInfoStepBackBtn').css("display", "block");
+            $('#spinerBox').css("display", "none");
                 alertingPersonsInfo = [];
                 if(data.message != null){
+                    $('#monitorAddWrapper').addClass('d-none');
+                    $("#createdMonitorAddress").text(checkField);
+                    $('#monitorCreatedWrapper').removeClass('d-none');
                     toastr.success(data.message);
                 }
                 else if(data.error != null){
                     toastr.error(data.error);
                 }else{
                     for (key in data) {
-                        console.log(key);
                         show_validation_failed(key, data[key]);
                         moveToFirstValidationFailedPage(key);
                         toastr.error(data[key]);
@@ -623,6 +660,9 @@
                 returnToStartPosition();
           })
           .fail(function(error) {
+            $('#createMonitor').css("display", "block");
+            $('#confirmInfoStepBackBtn').css("display", "block");
+            $('#spinerBox').css("display", "none");
             if (error.status == 422) {
                 let response = JSON.parse(error.responseText);
                 let firstErrorId;

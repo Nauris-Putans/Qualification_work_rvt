@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Adminlte\user_admin\monitoring;
 
-use App\Models\Adminlte\user_admin\Monitoring\MonitoringPageSpeed;
+use App\Models\Adminlte\user_admin\Monitoring\MonitoringDownloadSpeedMonitoring;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -13,8 +13,9 @@ use Becker\Zabbix\ZabbixApi;
 use Becker\Zabbix\ZabbixException;
 use Illuminate\Support\Facades\DB;
 
-class MonitoringPageSpeedController extends Controller
+class MonitoringDownloadSpeedController extends Controller
 {
+
     /**
      * The ZabbixApi instance.
      *
@@ -33,27 +34,26 @@ class MonitoringPageSpeedController extends Controller
     }
 
     /**
-     * Get first item hystory and display Response time page
+     * Display a download speed page
      *
      * @return Application|Factory|Response|View
      */
     public function index(Request $request)
     {
-        //Get current user ID
-        $currentUserID = $request
-        ->session()
-        ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
 
-        //Get current user Group
-        $usergroupID = $request->session()->get("groupId");
-        
+        $currentUserID = $request
+            ->session()
+            ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");//Get current user ID;
+   
+        $usergroupID = $request->session()->get("groupId");//Get current user Group;
+
         //Get items id and friendly name from database
         $items = DB::table('monitoring_monitors')
             ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
             ->join('host_has_application_webscenario', 'host_has_application_webscenario.host_id', '=', 'monitoring_hosts.host_id')
             ->join('monitoring_items', 'monitoring_items.application', '=', 'host_has_application_webscenario.application')
             ->where('user_group', $usergroupID)
-            ->where('check_type', 1)
+            ->where('check_type', 3)
             ->get(['item_id as item','friendly_name']);
 
         $itemsIds = (object)[];
@@ -69,12 +69,13 @@ class MonitoringPageSpeedController extends Controller
 
         foreach($items as $key=>$value){
             $itemsIds->$key['item_id'] = $value->item;
-            $nameId = $value->item;
+           $nameId = $value->item;
             $itemsFriendlyName->$nameId['friendly_name'] = $value->friendly_name;
         }
 
         date_default_timezone_set("Europe/Riga");
         $yesterday  = mktime(0, 0, 0, date("m"), date("d")-1, date("Y"));
+
 
         $histories = $this->zabbix->historyGet([
             'output' => 'extend',
@@ -84,22 +85,21 @@ class MonitoringPageSpeedController extends Controller
             'itemids' => $firtsItem,
         ]);
 
-        return view('adminlte.user_admin.monitoring.page-speed', compact(['histories','itemsFriendlyName','itemsIds']));
+        return view('adminlte.user_admin.monitoring.download-speed', compact(['histories','itemsFriendlyName','itemsIds']));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Get item history
      *
      * @param Request $request
      * @return Response
      */
     public function store(Request $request)
     {
-
         //Get current user ID
         $currentUserID = $request
-        ->session()
-        ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
+            ->session()
+            ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
 
         //Get current user Group
         $usergroupID = $request->session()->get("groupId");
@@ -113,9 +113,9 @@ class MonitoringPageSpeedController extends Controller
             ->join('host_has_application_webscenario', 'host_has_application_webscenario.host_id', '=', 'monitoring_hosts.host_id')
             ->join('monitoring_items', 'monitoring_items.application', '=', 'host_has_application_webscenario.application')
             ->where('user_group', $usergroupID)
-            ->where('check_type', 1)
+            ->where('check_type', 3)
             ->get(['item_id as item','friendly_name']);
-    
+
         $itemsIds = (object)[];
         $itemsFriendlyName = (object)[];
         $histories = (object)[];
