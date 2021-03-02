@@ -11964,14 +11964,9 @@ h3 {
 }
 
 /* ------------ Kontakti ------------ */
-<<<<<<< HEAD
-=======
-
 .Kontakti {
   padding-top: 50px !important;
 }
-
->>>>>>> bf59a7f07022b24001b7231d11ab97d5355b8202
 .Kontakti .text-shadow {
   text-shadow: 1px 1px 1px #000000;
 }
@@ -12531,14 +12526,12 @@ h3 {
 .LoginForm .container.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
-<<<<<<< HEAD
 .LoginForm .logbutton {
   background-color: #FF8A00;
 }
 .LoginForm .logbutton:hover {
   background-color: #FF8A00;
 }
-=======
 
 .add-monitor {
   text-align: center;
@@ -12549,12 +12542,10 @@ h3 {
   /* The slider */
   /* Rounded sliders */
 }
-
 .add-monitor__header-title {
   color: black;
   text-align: center;
 }
-
 .add-monitor__items-wrapper {
   margin-top: 30px;
   min-height: 200px;
@@ -12562,16 +12553,13 @@ h3 {
   text-align: left;
   background-color: #f4f6f9;
 }
-
 .add-monitor__items-wrapper .header {
   text-align: center;
 }
-
 .add-monitor__items-wrapper .header__title {
   font-size: 20px;
   color: black;
 }
-
 .add-monitor__items-wrapper .header__line {
   margin: 0 auto;
   margin-bottom: 20px;
@@ -12580,16 +12568,13 @@ h3 {
   background-color: #CA6D00;
   border-radius: 3px;
 }
-
 .add-monitor__items-wrapper .item-title {
   text-align: left;
   color: black;
 }
-
 .add-monitor__items-wrapper .item-title span {
   color: red;
 }
-
 .add-monitor__items-wrapper .settings-wrapper {
   margin-top: 3px;
   display: flex;
@@ -12597,24 +12582,20 @@ h3 {
   align-items: center;
   flex-wrap: wrap;
 }
-
 .add-monitor__items-wrapper .settings-wrapper__toggle-switch {
   width: 10%;
   min-height: 25px;
 }
-
 .add-monitor__items-wrapper .settings-wrapper__toggle-switch .switch {
   position: relative;
   display: inline-block;
   height: 25px;
   margin: 0 auto;
 }
-
 .add-monitor__items-wrapper .settings-wrapper__settings-decr {
   font-size: 12px;
   color: #4d4d4d;
 }
-
 .add-monitor__items-wrapper .settings-wrapper .userWripper {
   display: flex;
   position: relative;
@@ -12629,7 +12610,6 @@ h3 {
   color: white;
   border-radius: 15px;
 }
-
 .add-monitor__items-wrapper .settings-wrapper .userWripper__userType {
   display: flex;
   position: absolute;
@@ -12644,7 +12624,6 @@ h3 {
   border-radius: 15px;
   border: 1px solid gray;
 }
-
 .add-monitor__items-wrapper .settings-wrapper .userWripper__delete {
   display: flex;
   position: absolute;
@@ -12657,20 +12636,16 @@ h3 {
   color: black;
   cursor: pointer;
 }
-
 .add-monitor__btn-add {
   margin-top: 30px;
   text-align: center;
 }
-
 .add-monitor .box {
   position: relative;
 }
-
 .add-monitor .box select {
   outline: none;
 }
-
 .add-monitor .box select {
   color: black;
   padding: 2px;
@@ -12680,7 +12655,6 @@ h3 {
   font-size: 13px;
   -webkit-appearance: button;
 }
-
 .add-monitor .box:before {
   content: "\F358";
   font-family: "Font Awesome 5 Free";
@@ -12697,7 +12671,6 @@ h3 {
   border: none;
   pointer-events: none;
 }
-
 .add-monitor .input-large {
   width: 180px;
   font-size: 12px;
@@ -12706,11 +12679,9 @@ h3 {
   border-bottom: 1px solid #585858;
   outline: none;
 }
-
 .add-monitor .input-large:focus {
   border: 1px solid #CA6D00;
 }
-
 .add-monitor .input-small {
   width: 25%;
   font-size: 12px;
@@ -12719,29 +12690,23 @@ h3 {
   border-bottom: 1px solid #585858;
   outline: none;
 }
-
 .add-monitor .input-small:focus {
   border: 1px solid #CA6D00;
 }
-
 .add-monitor .input-small:last-child {
   margin-left: 30px;
 }
-
 .add-monitor .input-small_margin30px {
   margin-left: 30px;
 }
-
 .add-monitor .slidecontainer_interval {
   margin: 0 15px;
   width: 20%;
 }
-
 .add-monitor .slidecontainer_apdex {
   margin: 0 15px 0 0;
   width: 35%;
 }
-
 .add-monitor .slider {
   -webkit-appearance: none;
   width: 100%;
@@ -12752,7 +12717,6 @@ h3 {
   opacity: 1;
   transition: opacity 0.2s;
 }
-
 .add-monitor .slider_apdex {
   -webkit-appearance: none;
   width: 100%;
@@ -12763,7 +12727,6 @@ h3 {
   opacity: 1;
   transition: opacity 0.2s;
 }
-
 .add-monitor .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -12774,12 +12737,10 @@ h3 {
   border: 1px solid black;
   cursor: pointer;
 }
-
 .add-monitor .slider::-webkit-slider-thumb:hover {
   width: 15px;
   height: 15px;
 }
-
 .add-monitor .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
@@ -12788,7 +12749,6 @@ h3 {
   border: 1px solid black;
   cursor: pointer;
 }
-
 .add-monitor p {
   width: 16%;
   margin: 0;
@@ -12800,18 +12760,15 @@ h3 {
   border-radius: 4px;
   box-shadow: 1px 1px #353535;
 }
-
 .add-monitor .modal-content {
   display: flex;
   justify-content: center;
   padding: 20px;
 }
-
 .add-monitor .modal-content .newPersonTitle {
   text-align: center;
   font-size: 20px;
 }
-
 .add-monitor .modal-content .modalSeperatorline {
   display: block;
   margin: 0 auto;
@@ -12821,7 +12778,6 @@ h3 {
   border-radius: 2px;
   margin-top: 10px;
 }
-
 .add-monitor .modal-content .modal-form-wrapper {
   margin-top: 10px;
   width: 100%;
@@ -12829,7 +12785,6 @@ h3 {
   justify-content: left;
   flex-wrap: wrap;
 }
-
 .add-monitor .modal-content .btnNewPersonAdd {
   display: block;
   margin: 0 auto;
@@ -12842,13 +12797,11 @@ h3 {
   background-color: #CA6D00;
   outline: none;
 }
-
 .add-monitor .modal-content .ModalLable {
   margin: 0;
   margin-top: 10px;
   font-size: 14px;
 }
-
 .add-monitor .modal-content .modal-input-form {
   width: 90%;
   height: 35px;
@@ -12857,42 +12810,35 @@ h3 {
   border-bottom: 1px solid grey;
   outline: none;
 }
-
 .add-monitor .modal-content .modal-input-form:focus {
   outline: 1px solid #CA6D00;
   border: none;
 }
-
 .add-monitor .fa-trash {
   margin-left: 10px;
   transition: 0.4s;
 }
-
 .add-monitor .fa-trash:hover {
   color: red;
   cursor: pointer;
 }
-
 .add-monitor #alertSettingsLink {
   color: #142afd;
   font-size: 12px;
   margin-left: 10px;
 }
-
 .add-monitor #addCustomHeader {
   color: #142afd;
   font-size: 12px;
   margin-top: 10px;
   cursor: pointer;
 }
-
 .add-monitor #addPersonToAlert {
   color: #142afd;
   font-size: 12px;
   margin-top: 10px;
   cursor: pointer;
 }
-
 .add-monitor .toggle-switch {
   position: relative;
   display: inline-block;
@@ -12900,19 +12846,16 @@ h3 {
   height: 17px;
   margin: 0;
 }
-
 .add-monitor .toggle-switch-container {
   margin-left: 10px;
   display: flex;
   align-items: center;
 }
-
 .add-monitor .toggle-switch .input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 .add-monitor .toggle-slider {
   position: absolute;
   cursor: pointer;
@@ -12923,7 +12866,6 @@ h3 {
   background-color: #ccc;
   transition: 0.4s;
 }
-
 .add-monitor .toggle-slider:before {
   position: absolute;
   content: "";
@@ -12934,27 +12876,21 @@ h3 {
   background-color: white;
   transition: 0.4s;
 }
-
 .add-monitor .input:checked + .toggle-slider {
   background-color: #CA6D00;
 }
-
 .add-monitor .input:focus + .toggle-slider {
   box-shadow: 0 0 1px #CA6D00;
 }
-
 .add-monitor .input:checked + .toggle-slider:before {
   transform: translateX(17px);
 }
-
 .add-monitor .toggle-slider.round {
   border-radius: 34px;
 }
-
 .add-monitor .toggle-slider.round:before {
   border-radius: 50%;
 }
-
 .add-monitor .popover-header {
   background-color: #CA6D00;
 }
@@ -12962,13 +12898,11 @@ h3 {
 .upTimeMonitor {
   /* Style the collapsible content. Note: hidden by default */
 }
-
 .upTimeMonitor .monthLable {
   width: 100%;
   padding-bottom: 10px;
   text-align: center;
 }
-
 .upTimeMonitor .monthWrapper {
   padding-bottom: 15px;
   display: flex;
@@ -12976,13 +12910,11 @@ h3 {
   flex-wrap: wrap;
   width: 182px;
 }
-
 .upTimeMonitor .weekWrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-
 .upTimeMonitor .dayBox {
   position: relative;
   background-color: #9c9c9c;
@@ -12991,18 +12923,15 @@ h3 {
   height: 24px;
   margin: 0 2px 2px 0;
 }
-
 .upTimeMonitor .content {
   position: absolute;
   top: 24px;
   left: 0;
   z-index: 99;
 }
-
 .upTimeMonitor .content::hover {
   display: block;
 }
-
 .upTimeMonitor .content .contentWrapper {
   width: 125px;
   background-color: whitesmoke;
@@ -13010,18 +12939,15 @@ h3 {
   border-radius: 5px;
   border: 1.5px solid green;
 }
-
 .upTimeMonitor .content .contentWrapper_label {
   text-align: center;
 }
-
 .upTimeMonitor .content .contentWrapper .uptimeNumber {
   margin-top: 10px;
   width: 100%;
   font-size: 20px;
   text-align: center;
 }
-
 .upTimeMonitor .content .contentWrapper button {
   text-align: center;
   height: 25px;
@@ -13042,7 +12968,6 @@ h3 {
   height: 100px;
   align-items: center;
 }
-
 .settings_header_content .user-img-box {
   display: flex;
   margin: 10px 0 0 40px;
@@ -13053,18 +12978,15 @@ h3 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 100%;
 }
-
 .settings_header_content .user-img-box__img {
   width: 65px;
   height: 65px;
   background-color: red;
   border-radius: 100%;
 }
-
 .settings_header_content .title_wrapper {
   margin-left: 10px;
 }
-
 .settings_header_content .title_wrapper .title-user-name {
   font-size: 18px;
 }
@@ -13075,21 +12997,18 @@ h3 {
   background-color: #E9E9E9;
   min-height: 60px;
 }
-
 .settings-menu-wrapper .settings-links {
   margin: 0;
   display: flex;
   justify-content: left;
   list-style-type: none;
 }
-
 .settings-menu-wrapper .settings-links__item {
   font-size: 16px;
   position: relative;
   margin-left: 40px;
   cursor: pointer;
 }
-
 .settings-menu-wrapper .settings-links__item:before {
   content: "";
   display: block;
@@ -13101,11 +13020,9 @@ h3 {
   transition: 0.5s all;
   border-radius: 2px;
 }
-
 .settings-menu-wrapper .settings-links__item:hover:before {
   width: 100%;
 }
-
 .settings-menu-wrapper__line {
   display: block;
   margin: 0 auto;
@@ -13118,29 +13035,24 @@ h3 {
   padding: 55px 65px;
   background-color: #E9E9E9;
 }
-
 .userProfileSettings__header {
   display: flex;
   justify-content: left;
 }
-
 .userProfileSettings__icon {
   display: block;
   color: black;
   font-size: 30px;
 }
-
 .userProfileSettings__title {
   position: relative;
   margin-left: 10px;
   width: 130px;
 }
-
 .userProfileSettings__title span {
   position: absolute;
   bottom: 0;
 }
-
 .userProfileSettings .user-info-wrapper {
   display: flex;
   justify-content: center;
@@ -13152,7 +13064,6 @@ h3 {
   border: 2px solid black;
   border-radius: 10px;
 }
-
 .userProfileSettings .user-info-wrapper .user-img-box {
   display: flex;
   margin: 30px auto 0 auto;
@@ -13163,23 +13074,18 @@ h3 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 100%;
 }
-
 .userProfileSettings .user-info-wrapper .user-img-box__img {
   width: 85px;
   height: 85px;
   background-color: green;
   border-radius: 100%;
 }
-
 .userProfileSettings .user-info-wrapper button {
   display: block;
   margin: 10px auto 0 auto;
 }
-
 .userProfileSettings .user-info-wrapper .user-info-box {
   width: 42.5%;
   height: 100%;
   background-color: red;
 }
-
->>>>>>> bf59a7f07022b24001b7231d11ab97d5355b8202

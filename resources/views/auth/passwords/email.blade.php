@@ -27,7 +27,7 @@
 </head>
 
 <body>
-<div style="background-image: url({{ URL::asset('/images/password_background.jpg') }}); background-repeat: no-repeat; background-size: cover; position: relative; overflow: auto; height: 100vh; display: flex; justify-content: center; align-items: center;">
+<div style="background-image: url({{ URL::asset('/images/background.jpg') }}); background-repeat: no-repeat; background-size: cover; position: relative; overflow: auto; height: 100vh; display: flex; justify-content: center; align-items: center;">
 
     <section class="EmailForm col-lg-8 col-md-12 col-sm-12">
         <div class="container">
