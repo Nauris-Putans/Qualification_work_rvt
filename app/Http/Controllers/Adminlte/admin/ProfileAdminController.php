@@ -24,7 +24,7 @@ class ProfileAdminController extends Controller
     public function index($id)
     {
         // Hash key for id security
-        $hashids = new Hashids('WEBcheck', 10);
+        $hashids = new Hashids(env("HASHIDS"), 10);
 
         // Decodes id
         $id = $hashids->decode( $id );

@@ -56,8 +56,8 @@ class RegisterRequest extends FormRequest
             'signup_email.max'=> __(':attribute should not be greater than :amount chars!', ['attribute' => __("Email"), 'amount' => "100"]),
             'signup_password.max' => __(':attribute should not be greater than :amount chars!', ['attribute' => __("Password"), 'amount' => "100"]),
 
-            'signup_email.unique' => __(':attribute - :action', ['attribute' => __("Email"), 'action' => __("is required!")]),
-            'signup_password.confirmed' => __(':attribute - :action', ['attribute' => __("Password"), 'action' => __("is required!")]),
+            'signup_email.unique' => __(':attribute - :action', ['attribute' => __("Email"), 'action' => __("already exists!")]),
+            'signup_password.confirmed' => __(':attribute - :action', ['attribute' => __("Confirm Password"), 'action' => __("do not match with password!")]),
         ];
     }
 }

@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Dashboard')
+@section('title', __('Dashboard'))
 
 @section('content_header')
     <nav aria-label="breadcrumb">

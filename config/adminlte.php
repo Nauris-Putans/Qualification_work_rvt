@@ -283,7 +283,7 @@ return [
                     'role' => $userFree,
                 ],
                 [
-                    'text' => 'Download speed',
+                    'text' => 'Download Speed',
                     'icon' => 'fas fa-download',
                     'url' => '/user/monitoring/download-speed',
                     'role' => $userFree,
@@ -298,7 +298,7 @@ return [
             'role' => $userFree,
         ],
         [
-            'text' => 'Settings',
+            'text' => 'Account Settings',
             'icon' => 'fas fa-cog',
             'classes' => 'text-bold',
             'url' => '/user/settings',

@@ -1,7 +1,7 @@
 <div class="boxed">
     <div class="input-info">
         <div spellcheck="false" class="form justify-content-center">
-            <form method="POST" action="{{ URL::route('admin.settings.personal_info.update', [$hashids->encode($user->id)]) }}" id="personal_info">
+            <form method="POST" action="{{ URL::route('user.settings.personal_info.update', [$hashids->encode($user->id)]) }}" id="personal_info">
                 @method('PATCH')
                 @csrf
 
