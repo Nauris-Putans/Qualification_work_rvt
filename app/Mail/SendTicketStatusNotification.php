@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 class SendTicketStatusNotification extends Mailable
 {
     use Queueable, SerializesModels;
-    
+
     public $subject;
     public $fromAddress;
     public $fromName;
@@ -38,7 +38,7 @@ class SendTicketStatusNotification extends Mailable
         $this->ticketOwner = $ticketOwner;
         $this->user = $user;
         $this->ticket = $ticket;
-        $this->hashids = new Hashids('WEBcheck', 10);
+        $this->hashids = new Hashids(env("HASHIDS"), 10);
     }
 
     /**

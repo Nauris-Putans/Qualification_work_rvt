@@ -25,6 +25,7 @@
         "hashids/hashids": "^4.0",
         "jeroennoten/laravel-adminlte": "^3.5",
         "laravel-lang/lang": "^7.0",
+        "laravel/cashier": "^12.9",
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.4",

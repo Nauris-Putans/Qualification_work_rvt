@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Ticket')
+@section('title', __('Ticket'))
 
 @section('content_header')
     <nav aria-label="breadcrumb">
@@ -79,9 +79,15 @@
                                 <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}
                             </p>
 
-                            <p class="ml-2 mb-4">
-                                <strong>{{ __('Closed by: ') }}</strong> {{ __($user_closedBy[$ticket->closed_by - 1]->name) }}
-                            </p>
+                            @if($ticket->closed_by === null)
+                                <p class="ml-2 mb-4">
+                                    <strong>{{ __('Closed by: ') }}</strong> {{ __('Unknown') }}
+                                </p>
+                            @else
+                                <p class="ml-2 mb-4">
+                                    <strong>{{ __('Closed by: ') }}</strong> {{ __($user_closedBy[$ticket->closed_by - 1]->name) }}
+                                </p>
+                            @endif
                         @else
                             <p class="ml-2 mb-4">
                                 <strong>{{ __('Created: ') }}</strong> {{ $ticket->created_at->diffForHumans() }}

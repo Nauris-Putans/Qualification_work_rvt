@@ -279,6 +279,8 @@
     "Has been created!": "Ir izveidots!",
     "has been updated!": "ir atjaunināts!",
     "Has been updated!": "Ir atjaunināts!",
+    "do not match with password!": "nesakrīt ar paroli!",
+    "Do not match with password!": "Nesakrīt ar paroli!",
 
     "//////Text with fillables":
     {},
@@ -400,6 +402,7 @@
     "You can cancel your subscription plan in account settings.": "Abonēšanas plānu varat atcelt konta iestatījumos.",
     "How can I upgrade my subscription plan?": "Kā es varu uzlabot savu abonēšanas plānu?",
     "You can upgrade your subscription plan in account settings.": "Abonēšanas plānu varat jaunināt konta iestatījumos.",
+    "Have unanswered questions?": "Vai jums ir neatbildēti jautājumi?",
 
     "//////Authentication":
     {},
@@ -537,8 +540,8 @@
     "//////Adminlte admin side account settings section":
     {},
     "Problem": "Problēma",
-    "Update": "Обновить",
-    "Payment": "Оплата",
+    "Update": "Atjaunināt",
+    "Payment": "Maksājums",
     "Update Profile Photo": "Atjaunināt profila fotoattēlu",
     "Upload a New Photo": "Augšupielādējiet jaunu fotoattēlu",
     "Account Settings": "Konta iestatījumi",
@@ -550,6 +553,7 @@
     "Subscription Plan": "Abonēšanas plāns",
     "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.": "Norēķinu e-pasta adresi varat iestatīt šeit. To izmantos rēķinu un citu rēķinu paziņojumu nosūtīšanai. Ja atstājat šo lauku tukšu, pēc noklusējuma tiks izmantota jūsu konta e-pasta adrese.",
     "Choose how you will receive notifications from us. WEBcheck will send you email or SMS notifications based on your notification settings.": "Izvēlieties, kā no mums saņemsit paziņojumus. WEBcheck nosūtīs jums e-pasta vai SMS paziņojumus, pamatojoties uz jūsu paziņojumu iestatījumiem.",
+    "Nothing selected": "Nekas nav atlasīts",
 
     "//////Adminlte admin side navbar":
     {},

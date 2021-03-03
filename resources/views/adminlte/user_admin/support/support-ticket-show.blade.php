@@ -1,5 +1,4 @@
 @extends('adminlte::page')
-
 @section('title', $ticket->title)
 
 @section('content_header')
@@ -60,6 +59,10 @@
                             @if ($user_closedBy[$ticket->closed_by - 1]->id === $ticket->user_id)
                                 <p class="ml-2 mb-4">
                                     <strong>{{ __('Closed by: ') }}</strong> {{ __("You") }}
+                                </p>
+                            @elseif ($ticket->closed_by === null)
+                                <p class="ml-2 mb-4">
+                                    <strong>{{ __('Closed by: ') }}</strong> {{ __('Unknown') }}
                                 </p>
                             @else
                                 <p class="ml-2 mb-4">

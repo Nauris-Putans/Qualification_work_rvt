@@ -114,8 +114,10 @@ Route::middleware(['role:' . $userAdminSide])->group( function()
 
     // Settings section
     Route::get('/user/settings', 'Adminlte\user_admin\SettingController@index');
-    Route::post('/user/settings', 'Adminlte\user_admin\SettingController@personal_info');
-    // Route::post('/user/settings/password_security', 'Adminlte\user_admin\SettingController@password_security');
+    Route::patch('/user/settings/personal_info/{id}', ['as' => 'user.settings.personal_info.update', 'uses' => 'Adminlte\user_admin\SettingController@personal_info_update']);
+    Route::patch('/user/settings/notification/{id}', ['as' => 'user.settings.notification.update', 'uses' => 'Adminlte\user_admin\SettingController@notification_update']);
+    Route::patch('/user/settings/password_security/{id}', ['as' => 'user.settings.password_security.update', 'uses' => 'Adminlte\user_admin\SettingController@password_security_update']);
+    Route::post('/user/settings/profile_image/update', 'Adminlte\user_admin\SettingController@updateProfile');
 
     // Tickets section
     Route::get('/user/support/tickets', ['as' => 'user.support.tickets', 'uses' => 'TicketController@userTickets']);

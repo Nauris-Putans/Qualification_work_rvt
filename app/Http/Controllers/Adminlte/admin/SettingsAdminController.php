@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 
 class SettingsAdminController extends Controller
@@ -35,7 +33,7 @@ class SettingsAdminController extends Controller
     public function personal_info_update(PersonalInfoRequest $request, $id)
     {
         // Hash key for id security
-        $hashids = new Hashids('WEBcheck', 10);
+        $hashids = new Hashids(env("HASHIDS"), 10);
 
         // Decodes id
         $id = $hashids->decode( $id );

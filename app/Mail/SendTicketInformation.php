@@ -38,7 +38,7 @@ class SendTicketInformation extends Mailable
         $this->fromName = $from['name'];
         $this->user = $user;
         $this->ticket = $ticket;
-        $this->hashids = new Hashids('WEBcheck', 10);
+        $this->hashids = new Hashids(env("HASHIDS"), 10);
     }
 
     /**

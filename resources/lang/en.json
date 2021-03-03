@@ -279,6 +279,8 @@
     "Has been created!": "Has been created!",
     "has been updated!": "has been updated!",
     "Has been updated!": "Has been updated!",
+    "do not match with password!": "do not match with password!",
+    "Do not match with password!": "Do not match with password!",
 
     "//////Text with fillables":
     {},
@@ -400,6 +402,7 @@
     "You can cancel your subscription plan in account settings.": "You can cancel your subscription plan in account settings.",
     "How can I upgrade my subscription plan?": "How can I upgrade my subscription plan?",
     "You can upgrade your subscription plan in account settings.": "You can upgrade your subscription plan in account settings.",
+    "Have unanswered questions?": "Have unanswered questions?",
 
     "//////Authentication":
     {},
@@ -550,6 +553,7 @@
     "Subscription Plan": "Subcription Plan",
     "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.": "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.",
     "Choose how you will receive notifications from us. WEBcheck will send you email or SMS notifications based on your notification settings.": "Choose how you will receive notifications from us. WEBcheck will send you email or SMS notifications based on your notification settings.",
+    "Nothing selected": "Nothing selected",
 
     "//////Adminlte admin side navbar":
     {},
