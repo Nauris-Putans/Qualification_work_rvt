@@ -22,6 +22,8 @@ Route::get('/features', 'Pages\FeaturesController@index')->name('features');
 
 // Pricing section
 Route::get('/pricing', 'Pages\PricingController@index')->name('pricing');
+Route::get('/pricing/{plan}', 'Pages\PricingController@show')->name('plans.show');
+Route::post('/subscription', 'SubscriptionController@processSubscription')->name('subscription.create');
 
 // FAQ section
 Route::get('/faq', 'Pages\FAQController@index')->name('faq');

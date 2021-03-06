@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Laravel\Cashier\Cashier;
 
 class DashboardAdminController extends Controller
 {

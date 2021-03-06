@@ -43,6 +43,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/section.css') }}" rel="stylesheet">
+
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <div id="app">
@@ -255,5 +257,7 @@
         <!-- Arrow who sends back to the top-->
         <a id="back2Top" title="Back to top" href="#">&#10148;</a>
     </div>
+
+    @yield('scripts')
 </body>
 </html>

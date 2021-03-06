@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    <x-alert />
     <section class="homeIntroduce">
+
         <div class="container">
             <h1>
                 {{ __("BE UPTIME WITH WEBCHECK") }}
