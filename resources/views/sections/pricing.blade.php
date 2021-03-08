@@ -6,7 +6,7 @@
         <div class="row">
             <div class="pricing__lable">
                 <h1 class="FeaturesPageHeader fade-in align-self-center text-center text-md-center text-white font-weight-bold text-shadow">
-                    {{ __("Flawless plans that suit you") }}
+                    {{ __("Choose a plan") }}
                 </h1>
             </div>
         </div>
@@ -119,7 +119,7 @@
                             </div>
                         @elseif(($plan->product->metadata['Button']) == "orange")
                             <div class="nav-item payBtn OrangeButton">
-                                <a class="nav-link btn btn-orange" href="{{ 'pricing/' . $plan->id }}">
+                                <a class="nav-link btn btn-orange" href="{{ route('plans.show', ['plan' => $plan->id, 'role' => $plan->product->metadata['RoleID']]) }}">
                                     {{ __("Subscribe now") }}
                                 </a>
                             </div>

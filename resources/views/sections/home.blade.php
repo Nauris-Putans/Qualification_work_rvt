@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-alert />
+<x-alert />
     <section class="homeIntroduce">
-
         <div class="container">
             <h1>
                 {{ __("BE UPTIME WITH WEBCHECK") }}
@@ -143,7 +142,7 @@
             <div class="row">
                 <div class="pricing__lable">
                     <h2>
-                        {{ __("Choose a plan") }}
+                        {{ __("Flawless plans that suit you") }}
                     </h2>
                 </div>
             </div>
@@ -170,12 +169,6 @@
                             <div class="plan-freature-box">{{ __("No log file") }}</div>
                             <div class="plan-freature-box">{{ __("No SSL check") }}</div>
                         </div>
-
-                        <div class="nav-item payBtn GreyButton">
-                            <a class="nav-link btn btn-gray" href="{{ route('login') }}">
-                                {{ __('Start monitoring') }}
-                            </a>
-                        </div>
                     </div>
                 </div>
 
@@ -199,12 +192,6 @@
                             <div class="plan-freature-box">{{ __("Port monitoring") }}</div>
                             <div class="plan-freature-box">{{ __("No log file") }}</div>
                             <div class="plan-freature-box">{{ __("No SSL check") }}</div>
-                        </div>
-
-                        <div class="nav-item payBtn OrangeButton">
-                            <a class="nav-link btn btn-orange" href="{{ route('login') }}">
-                                {{ __('Subscribe now') }}
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -230,12 +217,6 @@
                             <div class="plan-freature-box">{{ __("Log file") }}</div>
                             <div class="plan-freature-box">{{ __("SSL check") }}</div>
                         </div>
-
-                        <div class="nav-item payBtn OrangeButton">
-                            <a class="nav-link btn btn-orange" href="{{ route('login') }}">
-                                {{ __('Subscribe now') }}
-                            </a>
-                        </div>
                     </div>
                 </div>
 
@@ -248,17 +229,9 @@
                         <div class="plan-enterprise-decription-wrapper">
                             {{ __("Need something special? No problem, we can handle a custom number of monitors and check-intervals.") }}
                         </div>
-
-                        <div class="nav-item payBtn GreyButton">
-                            <a class="nav-link btn btn-gray" href="{{ route('contacts') }}">
-                                {{ __('Contact us') }}
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        {{-- <div class="plan-end-line"></div> --}}
     </section>
 @endsection

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 require_once('../vendor/autoload.php');
 
 use App\Http\Controllers\Controller;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -49,7 +51,7 @@ class SubscriptionController extends Controller
         // Checks if user is subscribed to selected plan
         if($request->user()->subscribedToPlan($request->plan, 'default'))
         {
-            return view('sections/home')->with('warning', 'You have already subscribed the plan!');
+            return redirect('/')->with('warning', __('You have already subscribed to this plan!'));
         }
 
         // Retrvies payment method from form
@@ -70,6 +72,15 @@ class SubscriptionController extends Controller
                 'email' => $request->user()->email,
             ]);
 
-        return view('sections/home')->with('success', 'Succsesfuly subscribed the plan!');
+        // Finds role by request role id
+        $role = Role::find($request->role_id);
+
+        // Converts int to string
+        $roleID = strval($role->id);
+
+        // Syncs role for current user
+        $request->user()->syncRoles([$roleID]);
+
+        return redirect('/')->with('success', __('Successfully subscribed to plan!'));
     }
 }

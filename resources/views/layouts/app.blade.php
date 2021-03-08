@@ -114,7 +114,7 @@
                         @guest
                             <li class="nav-item Login">
                                 <a class="nav-link" href="{{ route('login') }}">
-                                    {{ __('Log in') }}
+                                    {{ __('Sign in') }}
                                 </a>
                             </li>
 
