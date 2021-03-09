@@ -14,6 +14,7 @@ use Laravel\Cashier\Cashier;
 use Stripe\Plan;
 use \Stripe\Stripe;
 use Stripe\Token;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 
 /**
  * SubscriptionController
@@ -54,23 +55,63 @@ class SubscriptionController extends Controller
             return redirect('/')->with('warning', __('You have already subscribed to this plan!'));
         }
 
+        // Checks if user is already subscribed to any plan
+        if ($request->user()->subscribed('default'))
+        {
+            return redirect('/')->with('info', __('You can change subscription plan in account settings'));
+
+            // TODO jaieliek šis account settings priekš users
+
+            // try
+            // {
+            //     // Swaps subscription plans
+            //     $request->user()
+            //         ->subscription('default')->swap($request->plan);
+            // }
+
+            // catch (IncompletePayment $exception)
+            // {
+            //     return redirect()->route(
+            //         'cashier.payment',
+            //         [$exception->payment->id, 'redirect' => route('home')]
+            //     );
+            // }
+        }
+
         // Retrvies payment method from form
         $paymentMethod = $request->paymentMethod;
 
+        // Customer options for account info
+        $customerOptions = [
+            'name' => $request->user()->name,
+            'phone' => $request->cardHolderPhone
+        ];
+
         // Creates or gets stripe customer
         $request->user()
-            ->createOrGetStripeCustomer();
+            ->createOrGetStripeCustomer($customerOptions);
 
         // Updates default payment method
         $request->user()
-            ->updateDefaultPaymentMethod($paymentMethod);
+            ->updateDefaultPaymentMethodFromStripe($paymentMethod);
 
-        // Subscribes to new plan with payment method variable $paymentMethod
-        $request->user()
-            ->newSubscription('default', $request->plan)
-            ->create($paymentMethod, [
-                'email' => $request->user()->email,
-            ]);
+        try
+        {
+            // Subscribes to new plan with payment method variable $paymentMethod
+            $request->user()
+                ->newSubscription('default', $request->plan)
+                ->create($paymentMethod, [
+                    'email' => $request->user()->email,
+                ]);
+        }
+
+        catch (IncompletePayment $exception)
+        {
+            return redirect()->route(
+                'cashier.payment',
+                [$exception->payment->id, 'redirect' => route('home')]
+            );
+        }
 
         // Finds role by request role id
         $role = Role::find($request->role_id);

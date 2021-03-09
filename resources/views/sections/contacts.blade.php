@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Section - Kontakti -->
     <section class="Kontakti py-4 pb-5" style="background-image: url({{ URL::asset('/images/ContactBackground.jpg') }}); background-repeat: no-repeat; background-size: cover;">
         <div class="box">
             <div class="container">
@@ -41,4 +40,16 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('styles')
+
+@endsection
+
+@section('scripts-top')
+    
+@endsection
+
+@section('scripts-bottom')
+
 @endsection

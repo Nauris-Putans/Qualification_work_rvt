@@ -299,6 +299,8 @@
     "Column - :attribute": "Column - :attribute",
     "Change :attribute here": "Change :attribute here",
     ":attribute must be a date after :day": ":attribute must be a date after :day",
+    ":plan - plan": ":plan - plan",
+    "Pay :amount": "Pay :amount",
 
     "//////Navbar":
     {},
@@ -386,8 +388,17 @@
     "Flawless plans that suit you": "Flawless plans that suit you",
     "You have already subscribed to this plan!": "You have already subscribed to this plan!",
     "Successfully subscribed to plan!": "Successfully subscribed to plan!",
-    "You need to sign in in account to do transactions": "You need to sign in in account to do transactions",
+    "You need to sign in to do transactions": "You need to sign in to do transactions",
     "You are unable to subscribe to plans!": "You are unable to subscribe to plans!",
+    "Billing information": "Billing information",
+    "Name on card": "Name on card",
+    "Card information": "Card information",
+    "Full name as displayed on card": "Full name as displayed on card",
+    "Card number": "Card number",
+    "Summary": "Summary",
+    "Brief description": "Brief description",
+    "Privacy": "Privacy",
+    "Terms": "Terms",
 
     "//////FAQ section":
     {},

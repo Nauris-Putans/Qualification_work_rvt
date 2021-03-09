@@ -14,9 +14,6 @@
 
     <!-- Our scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/arrow.js') }}"></script>
-    <script src="{{ asset('js/switch.js')}}"></script>
-    <script src="{{ asset('js/faq.js')}}"></script>
 
     <!-- Cookies -->
     <script type="text/javascript" id="cookieinfo"
@@ -37,99 +34,165 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/section.css') }}" rel="stylesheet">
 
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-    <div class="container-fluid h-100" style="background-color: rgb(153, 35, 35)">
-        <div class="row justify-content-center h-100 align-items-center p-5">
-            <div class="col-6">
-                <a id="back-button" class="btn btn-primary" href="/" role="button">Back</a>
-                <br><br>
-
-                <h3>{{ __($plan->product->name) }} {{ __('plan') }}</h3>
-                <h3><strong>{{ __($plan->amount/100) . '€' }} /{{ __($plan->interval) }}</strong></h3>
+    <div id="app" class="jumbotron vertical-center mb-0" style="background-color: #f8f9fa !important">
+        <div class="container">
+            <div class="mb-4">
+                <a class="icon-block" href="{{ route('pricing') }}">
+                    <i class="fas fa-long-arrow-alt-left fa-2x "></i>
+                </a>
             </div>
-            <div class="col-6">
-                <div class="card">
+
+            <div class="row">
+                <div class="col-md-4 order-md-2 mb-4">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">
+                            {{ __('Summary') }}
+                        </span>
+                    </h4>
+
+                    <ul class="list-group mb-3 sticky-top">
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">
+                                    {{ __(":plan - plan", ['plan' => __($plan->product->name)]) }}
+                                </h6>
+
+                                <small class="text-muted">
+                                    {{ __('Brief description') }}
+                                </small>
+                            </div>
+
+                            <span class="text-muted">
+                                <strong>{{ __($plan->amount/100) . '€' }}</strong> /{{ __($plan->interval) }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-8 order-md-1">
+                    <h4 class="mb-3">
+                        {{ __('Billing information') }}
+                    </h4>
+
                     <form action="{{ route('subscription.create') }}" method="post" id="payment-form">
                         @csrf
                         @method('post')
+
+                        <div class="row" >
+                            <div class="col-md-6 mb-3">
+                                <label for="card-holder-email">
+                                    {{ __('Email') }}
+                                </label>
+
+                                <input type="email" class="form-control" id="card-holder-email" placeholder="joe420@inbox.lv" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="card-holder-phone">
+                                    {{ __('Phone number') }}
+                                </label>
+
+                                <input type="text" class="form-control" id="card-holder-phone" placeholder="+371 22222222" required>
+                            </div>
+                        </div>
+
+                        <hr class="mb-4">
+
+                        <h4 class="mb-3">
+                            {{ __('Payment') }}
+                        </h4>
+
+                        <div class="icon-container mb-3">
+                            <i class="fab fa-cc-visa fa-2x" style="color:navy;"></i>
+                            <i class="fab fa-cc-amex fa-2x" style="color:blue;"></i>
+                            <i class="fab fa-cc-mastercard fa-2x" style="color:red;"></i>
+                            <i class="fab fa-cc-discover fa-2x" style="color:orange;"></i>
+                        </div>
 
                         <div id="card-errors" role="alert">
                             <!-- Used to display form errors. -->
                         </div>
 
-                        <div class="form-group">
-                            <div class="card-title pt-3">
-                                <h2 class="text-center">{{ __('Billing information') }}</h2>
-                            </div>
-                            <hr>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="card-holder-name">
+                                    {{ __('Name on card') }}
+                                </label>
 
-                            <div class="card-body pt-0">
-                                <div class="form-group mb-2">
-                                    <label for="card-holder-name">
-                                        {{ __('Name on Card') }}
-                                    </label>
-                                    <input type="text" class="form-control" id="card-holder-name" placeholder="Joe Mama" required>
-                                </div>
+                                <input type="text" class="form-control" id="card-holder-name" placeholder="Joe Mama" required>
 
-                                <div class="form-group mb-2">
-                                    <label for="card-holder-email">
-                                        {{ __('Email') }}
-                                    </label>
-                                    <input type="text" class="form-control" id="card-holder-email" placeholder="joe420@inbox.lv" required>
-                                </div>
-
-                                <div class="form-group mb-2">
-                                    <label for="card-holder-phone">
-                                        {{ __('Phone') }}
-                                    </label>
-                                    <input type="text" class="form-control" id="card-holder-phone" placeholder="+371 22222222" required>
-                                </div>
+                                <small class="text-muted">
+                                    {{ __('Full name as displayed on card') }}
+                                </small>
                             </div>
 
-                            <div class="card-title">
-                                <h2 class="text-center">{{ __('Payment information') }}</h2>
-                            </div>
-                            <hr>
+                            <div class="col-md-8 mb-3">
+                                <label for="card-holder-name">
+                                    {{ __('Card information') }}
+                                </label>
 
-                            <div class="card-body pt-0" style="padding-bottom: 5px !important;">
-                                <div class="form-group">
-                                    <label for="card-element">
-                                        {{ __('Credit or debit card') }}
-                                    </label>
-                                    <div id="card-element" class="form-control">
+                                <div id="card-element" class="form-control">
                                     <!-- A Stripe Element will be inserted here. -->
-                                    </div>
                                 </div>
-
-                                <input type="hidden" name="plan" value="{{ $plan->id }}" />
-                                <input type="hidden" name="role_id" value="{{ $role }}" />
-
-                                <button id="card-button" data-secret="{{ $intent->client_secret }}" class="btn btn-lg btn-dark form-control mt-3" type="submit">
-                                    <span id="spinner" class="spinner-border spinner-border-sm hidden" role="status" aria-hidden="true"></span>
-                                    <span id="button-text">{{ __("Pay :amount", ['amount' => ($plan->amount/100) . '€']) }}</span>
-                                </button>
                             </div>
                         </div>
+
+                        <input type="hidden" name="plan" value="{{ $plan->id }}" />
+                        <input type="hidden" name="role_id" value="{{ $role }}" />
+
+                        <hr class="mb-4">
+
+                        <button id="card-button" data-secret="{{ $intent->client_secret }}" class="btn btn-primary btn-lg btn-block" type="submit">
+                            <span id="spinner" class="spinner-border spinner-border-sm hidden" role="status" aria-hidden="true"></span>
+                            <span id="button-text">
+                                {{ __("Pay :amount", ['amount' => ($plan->amount/100) . '€']) }}
+                            </span>
+                        </button>
                     </form>
                 </div>
             </div>
+
+            <footer class="my-5 pt-5 text-muted text-center text-small">
+                <p class="mb-1">
+                    {{ __("© :year. All Rights Reserved.", ['year' => "2021"]) }}
+                </p>
+
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="https://stripe.com/en-lv/privacy">
+                            {{ __('Privacy') }}
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item">
+                        <a href="https://stripe.com/en-lv/ssa">
+                            {{ __('Terms') }}
+                        </a>
+                    </li>
+                </ul>
+            </footer>
         </div>
     </div>
 </body>
 </html>
 
 <style>
-html,body {
-  height: 100%;
+.vertical-center {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.hidden {
+    display: none;
 }
 </style>
 
@@ -139,8 +202,13 @@ html,body {
 
     window.addEventListener('load',function()
     {
+        // Finds projects locale language
+        var locale = '<?php echo(Config::get('app.locale'));?>';
+
         // Create a Stripe client.
-        var stripe = Stripe('{{ env("STRIPE_KEY") }}');
+        var stripe = Stripe('{{ env("STRIPE_KEY") }}', {
+            locale: locale
+        });
 
         // Create an instance of Elements.
         var elements = stripe.elements();
@@ -267,8 +335,20 @@ html,body {
         // Submit the form with the token ID.
         function stripeTokenHandler(paymentMethod)
         {
+            changeLoadingState(false);
+
+            // Disable the button until we have Stripe set up on the page
+            document.getElementById('card-button').disabled = false;
+
             // Insert the token ID into the form so it gets submitted to the server
             var form = document.getElementById('payment-form');
+
+            var billingPhone = document.createElement('input');
+            billingPhone.setAttribute('type', 'hidden');
+            billingPhone.setAttribute('name', 'cardHolderPhone');
+            billingPhone.setAttribute('value', cardHolderPhone.value);
+            form.appendChild(billingPhone);
+
             var hiddenInput = document.createElement('input');
             hiddenInput.setAttribute('type', 'hidden');
             hiddenInput.setAttribute('name', 'paymentMethod');
@@ -277,6 +357,11 @@ html,body {
 
             // Submit the form
             form.submit();
+
+            changeLoadingState(false);
+
+            // Disable the button until we have Stripe set up on the page
+            document.getElementById('card-button').disabled = false;
         }
     });
 </script>

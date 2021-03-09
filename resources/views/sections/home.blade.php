@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<x-alert />
+    <x-alert />
     <section class="homeIntroduce">
         <div class="container">
             <h1>
@@ -12,7 +12,7 @@
                 {!! __("Monitoring services that allows you to <br> check about your website statistics -<br> Port, Response time, SSL<br> Certification check and much more") !!}
             </div>
 
-            <a type="button" class="btn btn-orange" style="margin-top: 90px;">
+            <a href="{{ route('login') }}" type="button" class="btn btn-orange" style="margin-top: 90px;">
                 {{ __("TRY IT FREE") }}
             </a>
         </div>
@@ -234,4 +234,16 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('styles')
+
+@endsection
+
+@section('scripts-top')
+
+@endsection
+
+@section('scripts-bottom')
+
 @endsection

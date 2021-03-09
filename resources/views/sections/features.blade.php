@@ -133,3 +133,15 @@
         </div>
     </section>
 @endsection
+
+@section('styles')
+
+@endsection
+
+@section('scripts-top')
+
+@endsection
+
+@section('scripts-bottom')
+
+@endsection

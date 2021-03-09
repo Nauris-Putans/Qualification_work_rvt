@@ -271,10 +271,6 @@
   -moz-transition: all 0.5s;
 }
 
-.hidden {
-    display: none;
-}
-
 .Faq h1 {
   color: white;
   padding-bottom: 15px;
@@ -315,7 +311,7 @@
 
 .features {
   padding: 50px 0;
-  background-color: rgb(240, 240, 240);
+  background-color: #DEDEDE;
   text-align: center;
 }
 

@@ -299,6 +299,8 @@
     "Column - :attribute": "Колонка - :attribute",
     "Change :attribute here": "Изменить :attribute здесь",
     ":attribute must be a date after :day": ":attribute должна быть датой после :day",
+    ":plan - plan": ":plan - план",
+    "Pay :amount": "Платить :amount",
 
     "//////Navbar":
     {},
@@ -386,8 +388,17 @@
     "Flawless plans that suit you": "Безупречные планы, которые вам подходят",
     "You have already subscribed to this plan!": "Вы уже подписались на этот план!",
     "Successfully subscribed to plan!": "Подписка на план выполнена успешно!",
-    "You need to sign in in account to do transactions": "Вам необходимо войти в учетную запись для совершения транзакций",
+    "You need to sign in to do transactions": "Вам необходимо войти в учетную запись для совершения транзакций",
     "You are unable to subscribe to plans!": "Вы не можете подписаться на планы!",
+    "Billing information": "Информация об оплате",
+    "Name on card": "Имя на карте",
+    "Card information": "Информация о карте",
+    "Full name as displayed on card": "Полное имя, как показано на карточке",
+    "Card number": "Номер карты",
+    "Summary": "Пводка",
+    "Brief description": "Краткое описание",
+    "Privacy": "Конфиденциальность",
+    "Terms": "Условия",
 
     "//////FAQ section":
     {},

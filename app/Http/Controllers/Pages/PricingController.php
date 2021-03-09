@@ -45,24 +45,24 @@ class PricingController extends Controller
         // Retrieves current user
         $user = Auth::user();
 
-        // Checks if user is auth
-        if ($user == null) {
-            return redirect('/')->with('info', __('You need to sign in in account to do transactions'));
-        }
-
-        // Checks if admin is trying to subscribe to plans
-        if (!(Auth::user()->hasRole('userFree')) && !(Auth::user()->hasRole('userPro')) && !(Auth::user()->hasRole('userWebmaster')))
-        {
-            return redirect('/')->with('warning', __('You are unable to subscribe to plans!'));
-        }
-
         // Retrieves plan with $planID variable
         $plan = Plan::retrieve($planID);
 
-        // Checks if user is subscribed to selected plan
-        if($request->user()->subscribedToPlan($plan, 'default'))
+        // Checks if user is auth
+        if ($user == null) {
+            return redirect('/pricing')->with('info', __('You need to sign in to do transactions'));
+        }
+
+        // Checks if admin is trying to subscribe to plans
+        else if (!($request->user()->hasRole('userFree')) && !($request->user()->hasRole('userPro')) && !($request->user()->hasRole('userWebmaster')))
         {
-            return redirect('/')->with('warning', __('You have already subscribed to this plan!'));
+            return redirect('/pricing')->with('warning', __('You are unable to subscribe to plans!'));
+        }
+
+        // Checks if user is subscribed to selected plan
+        else if ($request->user()->subscribedToPlan($planID, 'default'))
+        {
+            return redirect('/pricing')->with('warning', __('You have already subscribed to this plan!'));
         }
 
         // Retrieves product and adds it to plan

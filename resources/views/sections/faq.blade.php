@@ -88,8 +88,17 @@
             </div>
         </div>
     </section>
+@endsection
 
-    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+@section('styles')
+
+@endsection
+
+@section('scripts-top')
+
+@endsection
+
+@section('scripts-bottom')
     <script type="text/javascript">
 
         // Shows and hides frequently asked questions script
@@ -103,7 +112,6 @@
                 coll[i].addEventListener("click", function()
                 {
                     this.classList.toggle("active");
-                    console.log(this.nextElementSibling);
                     var content = this.nextElementSibling;
 
                     if (content.style.maxHeight)

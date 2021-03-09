@@ -9,14 +9,11 @@
 
     <title>{{ config('app.name', 'WEBcheck') }}</title>
 
-    <!-- Scripts -->
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Our scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/arrow.js') }}"></script>
-    <script src="{{ asset('js/switch.js')}}"></script>
-    <script src="{{ asset('js/faq.js')}}"></script>
 
     <!-- Cookies -->
     <script type="text/javascript" id="cookieinfo"
@@ -32,19 +29,22 @@
             data-close-text="Got it!">
     </script>
 
-    <!-- Place your kit's code here -->
+    <!-- Font awesome -->
     <script src="https://kit.fontawesome.com/f53cf4b771.js" crossorigin="anonymous"></script>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @yield('scripts-top')
 
-    <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <!-- Our scripts -->
+    <script src="{{ asset('js/arrow.js') }}"></script>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+    @yield('styles')
+
+    <!-- Our styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/section.css') }}" rel="stylesheet">
-
-    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <div id="app">
@@ -222,7 +222,7 @@
                         </h2>
 
                         <p class="pr-5 text-white-50">
-                            {{ __('Monitoring services that allows you to check about your website statistics - Ping, Port, Response time, SSL Certification Check and much more') }}
+                            {{ __('Monitoring services that allows you to check about your website statistics - Port, Response time, SSL Certification Check and much more') }}
                         </p>
                     </div>
 
@@ -232,11 +232,11 @@
                         </h4>
 
                         <ul class="m-0 p-0">
-                            <li>- <a href="/">{{ __('Home') }}</a></li>
-                            <li>- <a href="/features">{{ __('Features') }}</a></li>
-                            <li>- <a href="/pricing">{{ __('Pricing') }}</a></li>
-                            <li>- <a href="/faq">{{ __('FAQ') }}</a></li>
-                            <li>- <a href="/contacts">{{ __('Contacts') }}</a></li>
+                            <li>- <a href="{{ route('home') }}">{{ __('Home') }}</a></li>
+                            <li>- <a href="{{ route('features') }}">{{ __('Features') }}</a></li>
+                            <li>- <a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
+                            <li>- <a href="{{ route('faq') }}">{{ __('FAQ') }}</a></li>
+                            <li>- <a href="{{ route('contacts') }}">{{ __('Contacts') }}</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-xs-12 location">
@@ -258,6 +258,6 @@
         <a id="back2Top" title="Back to top" href="#">&#10148;</a>
     </div>
 
-    @yield('scripts')
+    @yield('scripts-bottom')
 </body>
 </html>
