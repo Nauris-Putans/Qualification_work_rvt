@@ -22,11 +22,13 @@
             data-bg="#131a26"
             data-fg="#FFFFFF"
             data-link="#CA6D00"
+            data-message="{{ __('We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.') }}"
+            data-linkmsg="{{ __('More info') }}"
             data-cookie="CookieScript"
             data-text-align="center"
             data-divlink="#FFFFFF"
             data-divlinkbg="#CA6D00"
-            data-close-text="Got it!">
+            data-close-text="{{ __('Got it!') }}">
     </script>
 
     <!-- Place your kit's code here -->
@@ -89,15 +91,15 @@
                         <div class="row" >
                             <div class="col-md-6 mb-3">
                                 <label for="card-holder-email">
-                                    {{ __('Email') }}
+                                    {{ __('Email') }}*
                                 </label>
 
-                                <input type="email" class="form-control" id="card-holder-email" placeholder="joe420@inbox.lv" required>
+                                <input type="email" class="form-control" id="card-holder-email" placeholder="jpriede@inbox.lv" required>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="card-holder-phone">
-                                    {{ __('Phone number') }}
+                                    {{ __('Phone number') }}*
                                 </label>
 
                                 <input type="text" class="form-control" id="card-holder-phone" placeholder="+371 22222222" required>
@@ -117,17 +119,17 @@
                             <i class="fab fa-cc-discover fa-2x" style="color:orange;"></i>
                         </div>
 
-                        <div id="card-errors" role="alert">
+                        <div id="card-errors" class="mb-3" role="alert" style="color: #e3342f;font-weight: 700;">
                             <!-- Used to display form errors. -->
                         </div>
 
                         <div class="row">
                             <div class="col-md-4 mb-3">
                                 <label for="card-holder-name">
-                                    {{ __('Name on card') }}
+                                    {{ __('Name on card') }}*
                                 </label>
 
-                                <input type="text" class="form-control" id="card-holder-name" placeholder="Joe Mama" required>
+                                <input type="text" class="form-control" id="card-holder-name" placeholder="Janis Priede" required>
 
                                 <small class="text-muted">
                                     {{ __('Full name as displayed on card') }}
@@ -136,7 +138,7 @@
 
                             <div class="col-md-8 mb-3">
                                 <label for="card-holder-name">
-                                    {{ __('Card information') }}
+                                    {{ __('Card information') }}*
                                 </label>
 
                                 <div id="card-element" class="form-control">

@@ -22,11 +22,13 @@
             data-bg="#131a26"
             data-fg="#FFFFFF"
             data-link="#CA6D00"
+            data-message="{{ __('We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.') }}"
+            data-linkmsg="{{ __('More info') }}"
             data-cookie="CookieScript"
             data-text-align="center"
             data-divlink="#FFFFFF"
             data-divlinkbg="#CA6D00"
-            data-close-text="Got it!">
+            data-close-text="{{ __('Got it!') }}">
     </script>
 
     <!-- Font awesome -->

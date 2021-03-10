@@ -299,8 +299,6 @@
     "Column - :attribute": "Column - :attribute",
     "Change :attribute here": "Change :attribute here",
     ":attribute must be a date after :day": ":attribute must be a date after :day",
-    ":plan - plan": ":plan - plan",
-    "Pay :amount": "Pay :amount",
 
     "//////Navbar":
     {},
@@ -366,6 +364,8 @@
     "Subscribe now": "Subscribe now",
     "TRY IT FREE": "TRY IT FREE",
     "When you have any questions we are always happy to help.": "When you have any questions we are always happy to help.",
+    "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.": "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.",
+    "Got it!": "Got it!",
 
     "//////Features section":
     {},
@@ -399,6 +399,10 @@
     "Brief description": "Brief description",
     "Privacy": "Privacy",
     "Terms": "Terms",
+    "You are now subscribed to :plan plan": "You are now subscribed to :plan plan",
+    ":plan - plan": ":plan - plan",
+    "Pay :amount": "Pay :amount",
+    "You can change subscription plan in account settings": "You can change subscription plan in account settings",
 
     "//////FAQ section":
     {},
@@ -447,9 +451,13 @@
     "Ticket Robot": "Ticket Robot",
     "You can view the ticket at any time by pressing this button or accessing user support table.": "You can view the ticket at any time by pressing this button or accessing user support table.",
     "You got replied by: :role_display_name": "You got replied by: :role_display_name",
-    "Your :attribute - :action!": "Your :attribute - :action",
+    "Your :attribute - :action": "Your :attribute - :action",
     "Your Ticket": "Your Ticket",
     "Your ticket with ID #:ticket_id has been marked resolved and closed by: :role_display_name": "Your ticket with ID #:ticket_id has been marked resolved and closed by: :role_display_name",
+    "Congratulations!": "Congratulations!",
+    "Subscription Robot": "Subscription Robot",
+    "Your Subscription": "Your Subscription",
+    "You can view the subscription plan at any time by pressing this button or accessing account settings.": "You can view the subscription plan at any time by pressing this button or accessing account settings.",
 
     "//////Adminlte admin side":
     {},

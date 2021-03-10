@@ -259,8 +259,8 @@
     {},
     "already exists!": "jau eksistē!",
     "Already exists!": "Jau eksistē!",
-    "has been sent!": "ir nosūtīts!",
-    "Has been sent!": "Ir nosūtīts!",
+    "has been sent!": "ir nosūtīta!",
+    "Has been sent!": "Ir nosūtīta!",
     "is incorrect!": "ir nepareizs!",
     "Is incorrect!": "Ir nepareizs!",
     "is invalid!": "nav derīgs!",
@@ -299,8 +299,6 @@
     "Column - :attribute": "Kolonna - :attribute",
     "Change :attribute here": "Mainiet :attribute šeit",
     ":attribute must be a date after :day": ":attribute jābūt datumam pēc :day",
-    ":plan - plan": ":plan - plāns",
-    "Pay :amount": "Maksā :amount",
 
     "//////Navbar":
     {},
@@ -366,6 +364,8 @@
     "Subscribe now": "Abonē tagad",
     "TRY IT FREE": "IZMĒĢINIET BEZ MAKSAS",
     "When you have any questions we are always happy to help.": "Kad jums ir kādi jautājumi, mēs vienmēr priecājamies palīdzēt.",
+    "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.": "Mēs izmantojam sīkdatnes, lai uzlabotu jūsu pieredzi. Turpinot apmeklēt šo vietni, jūs piekrītat, ka mēs izmantojam sīkdatnes.",
+    "Got it!": "Sapratu!",
 
     "//////Features section":
     {},
@@ -399,6 +399,10 @@
     "Brief description": "Īss apraksts",
     "Privacy": "Privātums",
     "Terms": "Noteikumi",
+    "You are now subscribed to :plan plan": "Jūs tagad esat abonējis :plan plānu",
+    ":plan - plan": ":plan - plāns",
+    "Pay :amount": "Maksāt :amount",
+    "You can change subscription plan in account settings": "Abonēšanas plānu var mainīt konta iestatījumos",
 
     "//////FAQ section":
     {},
@@ -447,9 +451,13 @@
     "Ticket Robot": "Biļešu robots",
     "You can view the ticket at any time by pressing this button or accessing user support table.": "Biļeti var apskatīt jebkurā laikā, nospiežot šo pogu vai piekļūstot lietotāju atbalsta tabulai.",
     "You got replied by: :role_display_name": "Jums atbildēja: :role_display_name",
-    "Your :attribute - :action!": "Jūsu :attribute :action",
+    "Your :attribute - :action": "Jūsu :attribute :action",
     "Your Ticket": "Jūsu biļete",
     "Your ticket with ID #:ticket_id has been marked resolved and closed by: :role_display_name": "Jūsu biļete ar ID #:ticket_id ir atzīmēts kā atrisināts un slēgts: :role_display_name",
+    "Congratulations!": "Apsveicam!",
+    "Subscription Robot": "Abonēšanas robots",
+    "Your Subscription": "Jūsu abonements",
+    "You can view the subscription plan at any time by pressing this button or accessing account settings.": "Abonēšanas plānu varat apskatīt jebkurā laikā, nospiežot šo pogu vai piekļūstot konta iestatījumiem.",
 
     "//////Adminlte admin side":
     {},

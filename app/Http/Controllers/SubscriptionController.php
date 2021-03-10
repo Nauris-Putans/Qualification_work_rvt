@@ -15,6 +15,7 @@ use Stripe\Plan;
 use \Stripe\Stripe;
 use Stripe\Token;
 use Laravel\Cashier\Exceptions\IncompletePayment;
+use Stripe\Product;
 
 /**
  * SubscriptionController
@@ -49,6 +50,10 @@ class SubscriptionController extends Controller
      */
     public function processSubscription(Request $request)
     {
+        // Retrievs data for mail
+        $plan = Plan::retrieve($request->plan);
+        $product = Product::retrieve($plan->product);
+
         // Checks if user is subscribed to selected plan
         if($request->user()->subscribedToPlan($request->plan, 'default'))
         {
@@ -121,6 +126,24 @@ class SubscriptionController extends Controller
 
         // Syncs role for current user
         $request->user()->syncRoles([$roleID]);
+
+        // Mail info
+        $title = __("Congratulations!");
+        $message = __("You are now subscribed to :plan plan", ['plan' => $product->name]);
+
+        $data = [
+            'title' => ucfirst($title),
+            'message' => $message,
+            'product_name' => $product->name,
+            'plan_price' => ($plan->amount/100),
+        ];
+
+        $to = $request->user()->email;
+        $from = ['address' => "info.webcheck@gmail.com", 'name' => __("Subscription Robot")];
+        $subject = __("You are now subscribed to :plan plan", ['plan' => $product->name]);
+
+        // Sends mail about subscription
+        MailController::sendSubscriptionToEmail($data, $subject, $from, $to);
 
         return redirect('/')->with('success', __('Successfully subscribed to plan!'));
     }

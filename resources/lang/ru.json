@@ -299,8 +299,6 @@
     "Column - :attribute": "Колонка - :attribute",
     "Change :attribute here": "Изменить :attribute здесь",
     ":attribute must be a date after :day": ":attribute должна быть датой после :day",
-    ":plan - plan": ":plan - план",
-    "Pay :amount": "Платить :amount",
 
     "//////Navbar":
     {},
@@ -366,6 +364,8 @@
     "Subscribe now": "Подпишитесь сейчас",
     "TRY IT FREE": "ПОПРОБУЙТЕ БЕСПЛАТНО",
     "When you have any questions we are always happy to help.": "Если у вас возникнут вопросы, мы всегда рады помочь.",
+    "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.": "Мы используем файлы cookie, чтобы вам было удобнее. Продолжая посещать этот сайт, вы соглашаетесь на использование файлов cookie.",
+    "Got it!": "Понятно!",
 
     "//////Features section":
     {},
@@ -399,6 +399,10 @@
     "Brief description": "Краткое описание",
     "Privacy": "Конфиденциальность",
     "Terms": "Условия",
+    "You are now subscribed to :plan plan": "Теперь вы подписаны на :plan план",
+    ":plan - plan": ":plan - план",
+    "Pay :amount": "Платить :amount",
+    "You can change subscription plan in account settings": "Вы можете изменить тарифный план в настройках аккаунта",
 
     "//////FAQ section":
     {},
@@ -450,6 +454,10 @@
     "Your :attribute - :action": "Ваш :attribute :action",
     "Your Ticket": "Ваш билет",
     "Your ticket with ID #:ticket_id has been marked resolved and closed by: :role_display_name": "Ваш билет с ID #:ticket_id был отмечен как решенный и закрыт: :role_display_name",
+    "Congratulations!": "Поздравляю!",
+    "Subscription Robot": "Подписка Робот",
+    "Your Subscription": "Ваша подписка",
+    "You can view the subscription plan at any time by pressing this button or accessing account settings.": "Вы можете просмотреть план подписки в любое время, нажав эту кнопку или зайдя в настройки учетной записи.",
 
     "//////Adminlte admin side":
     {},

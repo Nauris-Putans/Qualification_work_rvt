@@ -10,7 +10,7 @@
 {{ __('You can view the ticket at any time by pressing this button or accessing user support table.') }}<br>
 
 {{ __('Regards') }},<br>
-{{ __('WEBCheck') }}
+{{ __('WEBcheck') }}
 
 @component('mail::subcopy')
 {{ __("If you’re having trouble clicking the ':button_text' button, copy and paste the URL below into your web browser:", ['button_text' => __('Your Ticket')]) }}
