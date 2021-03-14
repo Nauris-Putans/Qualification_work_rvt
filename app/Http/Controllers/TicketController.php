@@ -82,17 +82,6 @@ class TicketController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Stores users ticket from contacts page to database
      *
      * @param UserTicketCreateRequest $request
@@ -229,29 +218,6 @@ class TicketController extends Controller
         }
 
         return redirect()->back()->with('message', __("The ticket #:ticket_id - :action", ['ticket_id' => $ticket->ticket_id, 'action' => __("has been resolved and closed!")]));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Ticket $ticket
-     * @return Response
-     */
-    public function edit(Ticket $ticket)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param Ticket $ticket
-     * @return Response
-     */
-    public function update(Request $request, Ticket $ticket)
-    {
-        //
     }
 
     /**

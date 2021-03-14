@@ -174,17 +174,6 @@ class SettingsAdminController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param SettingsAdmin $settingsAdmin
@@ -208,39 +197,5 @@ class SettingsAdminController extends Controller
         $countryName = Country::find($user->country);
 
         return view('adminlte.admin.account-settings-admin', compact('countries', 'hashids', 'user', 'countryName'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param SettingsAdmin $settingsAdmin
-     * @return Response
-     */
-    public function edit(SettingsAdmin $settingsAdmin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param SettingsAdmin $settingsAdmin
-     * @return Response
-     */
-    public function update(Request $request, SettingsAdmin $settingsAdmin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param SettingsAdmin $settingsAdmin
-     * @return Response
-     */
-    public function destroy(SettingsAdmin $settingsAdmin)
-    {
-        //
     }
 }

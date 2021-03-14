@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::get('/faq', 'Pages\FAQController@index')->name('faq');
 // Contacts sections
 Route::get('/contacts', 'Pages\ContactController@index')->name('contacts');
 Route::post('/contacts/create', 'Pages\ContactController@store')->name('contacts.create');
+
 /*
 |--------------------------------------------------------------------------
 | Adminlte
@@ -44,6 +46,7 @@ $userAdminSide = 'userFree|userPro|userWebmaster';
 // Role - Admin
 Route::middleware(['role:' . $adminSide])->group( function()
 {
+
     // Dashboard section
     Route::get('/admin/dashboard', 'Adminlte\admin\DashboardAdminController@index');
 
@@ -137,3 +140,5 @@ Route::middleware(['role:' . $userAdminSide])->group( function()
 
 // This link will add session of language when they click to change language
 Route::get('lang/{locale}', 'LocalizationController@index');
+
+Route::get('/invoice/{invoice}', 'InvoiceController@show')->name('invoice.download');

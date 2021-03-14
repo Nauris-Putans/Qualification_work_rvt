@@ -529,6 +529,17 @@
     "Successfully assigned member: :user to role - :role": "Участник успешно назначен: :user на роль - :role",
     "View Role": "Посмотрите на роль",
 
+    "//////Adminlte admin side users section":
+    {},
+    "Activity": "Дктивность",
+    "No data": "Без даты",
+    "Download .pdf": "Пагрузить .pdf",
+    "No activity for this user": "Нет активности для этого пользователя",
+    "Subscription invoice": "Счет за подписку",
+    "1 × Free (at €0.00 / month)": "1 × Free - план (€0.00 / в месяц)",
+    "1 × Pro (at €5.00 / month)": "1 × Pro - план (€5.00 / в месяц)",
+    "1 × Webmaster (at €10.00 / month)": "1 × Webmaster - план (€10.00 / в месяц)",
+
     "//////Adminlte admin side tickets section":
     {},
     "You": "Ты",

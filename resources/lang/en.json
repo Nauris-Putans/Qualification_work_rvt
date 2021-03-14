@@ -529,6 +529,17 @@
     "Successfully assigned member: :user to role - :role": "Successfully assigned member: :user to role - :role",
     "View Role": "View Role",
 
+    "//////Adminlte admin side users section":
+    {},
+    "Activity": "Activity",
+    "No data": "No data",
+    "Download .pdf": "Download .pdf",
+    "No activity for this user": "No activity for this user",
+    "Subscription invoice": "Subscription invoice",
+    "1 × Free (at €0.00 / month)": "1 × Free - plan (at €0.00 / month)",
+    "1 × Pro (at €5.00 / month)": "1 × Pro - plan (at €5.00 / month)",
+    "1 × Webmaster (at €10.00 / month)": "1 × Webmaster - plan (at €10.00 / month)",
+
     "//////Adminlte admin side tickets section":
     {},
     "You": "You",

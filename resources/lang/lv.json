@@ -344,7 +344,7 @@
     "Monitoring <br> Frequency": "Uzraudzības <br> biežums",
     "Monitoring Frequency": "Uzraudzības biežums",
     "Monitoring services that allows you to <br> check about your website statistics -<br> Port, Response time, SSL<br> Certification check and much more": "Uzraudzības pakalpojumi, kas ļauj <br> pārbaudīt jūsu vietnes statistiku - <br> portus, atbildes laikus, SSL <br> sertifikāta pārbaudes un vēl daudz vairāk",
-    "Monitoring services that allows you to check about your website statistics - Ping, Port, Response time, SSL Certification Check and much more": "Uzraudzības pakalpojumi, kas ļauj pārbaudīt jūsu vietnes statistiku - portus, atbildes laikus, SSL sertifikāta pārbaudes un vēl daudz vairāk",
+    "Monitoring services that allows you to check about your website statistics - Port, Response time, SSL Certification Check and much more": "Uzraudzības pakalpojumi, kas ļauj pārbaudīt jūsu vietnes statistiku - portus, atbildes laikus, SSL sertifikāta pārbaudes un vēl daudz vairāk",
     "more": "vairāk",
     "MORE": "VAIRĀK",
     "Need something special? No problem, we can handle a custom number of monitors and check-intervals.": "Vajag kaut ko īpašu? Nav problēmu, mēs varam apstrādāt pielāgotu monitoru skaitu un pārbaudes intervālus.",
@@ -528,6 +528,17 @@
     "Select minimum :amount role!": "Atlasiet vismaz :amount lomu!",
     "Successfully assigned member: :user to role - :role": "Veiksmīgi piešķirts dalībnieks: :user uz lomu - :role",
     "View Role": "Skatīt lomu",
+
+    "//////Adminlte admin side users section":
+    {},
+    "Activity": "Aktivitāte",
+    "No data": "Nav datu",
+    "Download .pdf": "Lejupielādēt .pdf",
+    "No activity for this user": "Šim lietotājam nav darbību",
+    "Subscription invoice": "Abonēšanas rēķins",
+    "1 × Free (at €0.00 / month)": "1 × Free - plāns (€0.00 / mēnesī)",
+    "1 × Pro (at €5.00 / month)": "1 × Pro - plāns (€5.00 / mēnesī)",
+    "1 × Webmaster (at €10.00 / month)": "1 × Webmaster - plāns (€10.00 / mēnesī)",
 
     "//////Adminlte admin side tickets section":
     {},
