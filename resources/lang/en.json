@@ -586,6 +586,7 @@
     "Create New Ticket": "Create New Ticket",
     "The ticket #:ticket_id - :action": "The ticket #:ticket_id - :action",
     "Ticket with ID: #:ticket_id - :action": "Ticket with ID: #:ticket_id - :action",
+    "Unknown": "Unknown",
 
     "//////Adminlte admin side account settings section":
     {},

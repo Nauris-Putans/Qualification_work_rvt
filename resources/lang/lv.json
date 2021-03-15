@@ -586,6 +586,7 @@
     "Create New Ticket": "Izveidot jaunu biļeti",
     "The ticket #:ticket_id - :action": "Biļetes Nr. #:ticket_id :action",
     "Ticket with ID: #:ticket_id - :action": "Biļete ar ID: #:ticket_id :action",
+    "Unknown": "Nezināms",
 
     "//////Adminlte admin side account settings section":
     {},
