@@ -18,7 +18,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-3">
+            <div class="col-lg-3 col-md-12 col-sm-12">
                 <div class="card card-outline card-primary">
                     <div class="card-body text-center">
 
@@ -42,33 +42,38 @@
                     </div>
                     <div class="card-body">
                         <div class="Email">
+                            <i class="fas fa-envelope"></i>
                             <b>{{ __('Email') }}</b>
                             <p class="text-gray">{{ !empty($user->email) ? $user->email : __("No data") }}</p>
                             <hr>
                         </div>
                         <div class="Gender">
+                            <i class="fas fa-venus-mars"></i>
                             <b>{{ __('Gender') }}</b>
                             <p class="text-gray">{{ !empty($user->gender) ? __($user->gender) : __("No data") }}</p>
                             <hr>
                         </div>
                         <div class="Birthday">
+                            <i class="fas fa-calendar-day"></i>
                             <b>{{ __('Birthday') }}</b>
                             <p class="text-gray">{{ !empty($user->birthday) ? date('d/m/Y', strtotime($user->birthday)) : __("No data") }}</p>
                             <hr>
                         </div>
                         <div class="Mobile Phone">
+                            <i class="fas fa-phone-alt"></i>
                             <b>{{ __('Mobile Phone') }}</b>
                             <p class="text-gray">{{ !empty($user->phone_number) ? $user->phone_number : __("No data") }}</p>
                             <hr>
                         </div>
                         <div class="Location">
+                            <i class="fas fa-map-marker-alt"></i>
                             <b>{{ __('Location') }}</b>
                             <p class="text-gray">{{ !empty($countryName[$user->id]->name) ? __($countryName[$user->id]->name) . ', ' . $user->city : __("No data") }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-9">
+            <div class="col-lg-9 col-md-12 col-sm-12">
                 <div class="card card-outline">
                     <div class="card-header bg-info">
                         <h1 class="card-title">{{ __('Activity') }}</h1>
