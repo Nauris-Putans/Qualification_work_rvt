@@ -1,0 +1,73 @@
+.FeaturesPageHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px !important;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+}
+
+.AdvancedFeatures .features-wrapper {
+  padding: 50px 0;
+  background: linear-gradient(145deg, #ca6c00d8 10%, #ca6c00f5 70%);
+  width: 100%;
+}
+
+.AdvancedFeatures .features-wrapper .feature-box {
+  background-color: white;
+  width: 100%;
+  min-height: 220px;
+  padding: 20px 5px 0 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 50px;
+  border-radius: 10px;
+}
+
+.AdvancedFeatures .features-wrapper .feature-box .feature-box-holder {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  background-color: white;
+  transform: rotate(45deg);
+}
+
+.AdvancedFeatures .features-wrapper .feature-box .feature-box-holder .feature-box-holder-round {
+  height: 25px;
+  width: 25px;
+  border-radius: 100%;
+  transform: rotate(-45deg);
+  background-color: #CA6D00;
+}
+
+.AdvancedFeatures .features-wrapper .feature-box .feature-icon-box {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  font-size: 50px;
+}
+
+.AdvancedFeatures .features-wrapper .feature-box .feature-label {
+  margin-top: 30px;
+  display: flex;
+  width: 100%;
+  height: 30px;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
+}
+
+.AdvancedFeatures .features-wrapper .feature-box .feature-decr {
+  display: flex;
+  width: 80%;
+  padding: 5px 0;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  margin: 0 auto;
+}
+

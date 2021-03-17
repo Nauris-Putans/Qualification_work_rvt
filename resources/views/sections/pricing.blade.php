@@ -127,3 +127,7 @@
         </div>
     </section>
 @endsection
+
+@section('css')
+ <link href="/css/sections/pricing.css" rel="stylesheet">
+@stop

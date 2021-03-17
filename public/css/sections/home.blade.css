@@ -1,0 +1,105 @@
+.homeIntroduce {
+  min-height: 700px;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), URL("/images/homePage/bg/homebgimg.jpg") center center/cover fixed;
+  text-align: center;
+  padding: 215px 0 60px 0;
+  color: #e6e6e6;
+}
+
+.homeIntroduce h1 {
+  font-size: 50px;
+}
+
+.homeIntroduce .titleDecr {
+  font-size: 21px;
+  color: #bebebe;
+}
+
+.homeIntroduce a {
+  color: white;
+}
+
+.homeIntroduce a:hover {
+  color: white;
+  background-color: #a75900;
+  border-color: #a75900;
+}
+
+.features {
+  padding: 50px 0;
+  background-color: #DEDEDE;
+  text-align: center;
+}
+
+.features h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.features .featureBox {
+  position: relative;
+  padding: 20px;
+  min-height: 380px;
+  background-color: #131A26;
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+
+.features .featureBox .featureBox_header {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  color: #bdbdbd;
+  justify-content: center;
+  min-height: 70px;
+  width: 100%;
+  font-size: 20px;
+}
+
+.features .featureBox .featureBox_header img {
+  margin-right: 10px;
+  height: 50px;
+  width: 50px;
+}
+
+.features .featureBox .featureBox_line {
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 2px;
+  background-color: white;
+  height: 4px;
+  width: 50%;
+}
+
+.features .featureBox .featureBox_decr {
+  margin-top: 20px;
+  width: 100%;
+  min-height: 200px;
+  font-size: 18px;
+  color: #adadad;
+}
+
+.features .featureBox .featureBox_link {
+  text-align: center;
+  position: relative;
+  margin-top: 10px;
+  height: 10px;
+  width: 100%;
+}
+
+.features .featureBox .featureBox_link a {
+  color: #c5c5c5;
+}
+
+.advantages {
+  background-color: #CA6D00;
+  min-height: 340px;
+  color: white;
+  padding: 50px;
+}
+
+.advantages h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+

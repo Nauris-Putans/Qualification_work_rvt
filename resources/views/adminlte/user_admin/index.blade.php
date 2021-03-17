@@ -2,7 +2,13 @@
 @section('title', __('Dashboard'))
 
 @section('content_header')
-    <h1>{{ __('Dashboard')}}</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">
+                <a >{{ __('Dashboard')}}</a>
+            </li>
+        </ol>
+    </nav>
 @stop
 
 @section('content')
@@ -36,7 +42,7 @@
 
     {{--Add Item Modal Window  --}}
     <div class="modal" tabindex="-1" id="settingsModal" data-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">{{ __('Add new item')}}</h5>
@@ -224,7 +230,7 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/app.css">
-    <link href="/css/userAdmin.css" rel="stylesheet">
+    <link href="/css/adminlte/user_admin/dashboard.css" rel="stylesheet">
 
     {{-- Bootstrap color picker styles --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/css/bootstrap-colorpicker.min.css">
@@ -234,8 +240,6 @@
 @stop
 
 @section('js')
-
-    <script src="{{ url('vendor/jquery.min.js') }}"></script>
     
     {{-- easy-pie-chart --}}
     <script type="text/javascript" src="{{ URL::asset('js/jquery.appear.min.js') }}">></script>
@@ -394,6 +398,7 @@
                     
                 let areaChartData = {
                     labels  : newHystory['clock'],
+                    
                     datasets: [
                     {
                         label               : 'Download speed(KBps)',
@@ -406,32 +411,42 @@
                         pointHighlightStroke: 'rgba(60,141,188,1)',
                         data                : newHystory['values'],
                         fill: true,
-                        pointRadius: 4,
-                        pointHoverRadius: 6,
+                        pointRadius: 1,
+                        pointHoverRadius: 1,
                         pointBackgroundColor: 'white',
                     }
                     ]
                 };
-                
+
                 let areaChartOptions = {
                     maintainAspectRatio : false,
                     responsive : true,
                     legend: {
-                    display: false
+                        display: false
                     },
+                   
+                        datalabels: {
+                            display: false,
+                        },
                     scales: {
                         xAxes: [{
                             gridLines : {
-                            display : true,
+                                display : false,
+                            },
+                            ticks: {
+                                display: false
                             }
                         }],
                         yAxes: [{
-                        gridLines : {
-                            display : false,
-                        },
-                        ticks: {
-                            beginAtZero: true   // minimum value will be 0.
-                        }
+                            gridLines : {
+                                display : false,
+                            },
+                            ticks: {
+                                beginAtZero: true,   // minimum value will be 0.
+                                // steps: 10,
+                                // stepValue: 5,
+                                // max: 11
+                            }
                         }]
                     }
                     
@@ -461,16 +476,15 @@
                                     <div class="col-6" id="${elementId}">
                                     <div class="card">
                                         <div class="card-header" style="background-color: #008b8b; color: white;">
-                                        <h3 class="card-title">Last check status</h3>
-                        
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" style="color: white;" data-card-widget="collapse">
-                                            <i class="fas fa-minus"></i>
-                                            </button>
-                                            <button type="button" id="currentStatusRemoveBtn${elementId}" class="btn btn-tool" style="color: white;" >
-                                            <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
+                                            <h3 class="card-title">Last check status</h3>
+                                            <div class="card-tools">
+                                                <button type="button" class="btn btn-tool" style="color: white;" data-card-widget="collapse">
+                                                <i class="fas fa-minus"></i>
+                                                </button>
+                                                <button type="button" id="currentStatusRemoveBtn${elementId}" class="btn btn-tool" style="color: white;" >
+                                                <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                         <!-- /.card-header -->
                                         <div class="card-body p-0">
@@ -730,7 +744,7 @@
                 let clock = [];
                 let currentValue = 0;
 
-                if(newData['histories'].length > 2){
+                if(newData['histories'] != null && newData['histories'].length > 1){
                     for (const property in newData['histories']) {
                         if(newData['dataType'] == 'Download speed'){
                             currentValue = newData['histories'][property]['value'];
@@ -906,14 +920,15 @@
               pointHighlightStroke: 'rgba(60,141,188,1)',
               data                : [10,13,8,12,14],
               fill: true,
-              pointRadius: 4,
-              pointHoverRadius: 6,
+              pointRadius: 1,
+              pointHoverRadius: 1,
               pointBackgroundColor: 'white',
           }
         ]
       };
     
       var testAreaChartOptions = {
+          animation: false,
           maintainAspectRatio : false,
           responsive : true,
           legend: {

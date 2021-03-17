@@ -1,0 +1,80 @@
+/* ------------ Kontakti ------------ */
+
+.Kontakti {
+  padding-top: 50px !important;
+}
+
+.Kontakti .text-shadow {
+  text-shadow: 1px 1px 1px #000000;
+}
+
+.Kontakti .contacts-info {
+  color: white !important;
+  cursor: default;
+  display: block;
+  text-align: center;
+}
+
+.Kontakti .contacts-info i:nth-child(1) {
+  padding-left: 30px;
+}
+
+.Kontakti .contacts-info a {
+  text-decoration: none;
+  padding-right: 30px;
+}
+
+.Kontakti .btn:hover {
+  color: white;
+  background-color: #a75900;
+  border-color: #a75900;
+}
+
+.Kontakti .form {
+  text-align: center;
+}
+
+.Kontakti .form input[type=text],
+.Kontakti .form input[type=email] {
+  height: 40px;
+  border-radius: 4px;
+  padding: 12px 20px;
+}
+
+.Kontakti .form select {
+  color: rgba(53, 60, 67, 0.78);
+  height: 40px;
+  border-radius: 4px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.Kontakti .form textarea {
+  height: 200px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  resize: none;
+  outline: 0 none;
+}
+
+/* ------------ Google maps ------------ */
+
+.map-responsive {
+  border: 3px solid #ca6d00;
+  border-radius: 25px;
+  margin-top: 15px;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.map-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+

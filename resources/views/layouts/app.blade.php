@@ -42,7 +42,10 @@
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/section.css') }}" rel="stylesheet">
+
+    @yield('css')
+    <link href="/css/sections/footer.css" rel="stylesheet">
+    <link href="/css/sections/header.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">

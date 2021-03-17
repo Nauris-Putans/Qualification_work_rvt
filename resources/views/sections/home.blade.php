@@ -257,6 +257,10 @@
             </div>
         </div>
 
-        {{-- <div class="plan-end-line"></div> --}}
     </section>
 @endsection
+
+@section('css')
+ <link href="/css/sections/home.blade.css" rel="stylesheet">
+ <link href="/css/sections/pricing.css" rel="stylesheet">
+@stop

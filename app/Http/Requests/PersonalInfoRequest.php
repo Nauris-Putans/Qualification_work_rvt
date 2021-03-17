@@ -34,7 +34,7 @@ class PersonalInfoRequest extends FormRequest
             'gender' => 'nullable',
             'country' => 'nullable',
             'city' => 'nullable|max:50',
-            'birthday' => 'nullable|date_format:d/m/Y|before:today|after:01/01/1940',
+            'birthday' => 'nullable|before:today|after:01/01/1940',
         ];
     }
 

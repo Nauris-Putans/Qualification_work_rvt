@@ -46,15 +46,74 @@ class MonitoringMonitorsListController extends Controller
     public function index(Request $request)
     {
 
-        //Get current user Group
         $usergroupID = $request->session()->get("groupId");
 
         $allUserMonitors = DB::table('monitoring_monitors')
             ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
+            ->join('monitoring_zabbix_triggers', 'monitoring_zabbix_triggers.host', '=', 'monitoring_hosts.host_id')
+            ->join('monitoring_zabbix_actions', 'monitoring_zabbix_actions.zabbix_trigger', '=', 'monitoring_zabbix_triggers.zabbix_triger_id')
+            ->join('monitoring_zabbix_actions_has_users', 'monitoring_zabbix_actions_has_users.zabbix_action', '=', 'monitoring_zabbix_actions.zabbix_action_id')
+            ->join('monitoring_zabbix_users', 'monitoring_zabbix_users.zabbix_user_id', '=', 'monitoring_zabbix_actions_has_users.user')
+            ->join('users', 'users.id', '=', 'monitoring_zabbix_users.user_id')
             ->where('user_group', $usergroupID)
-            ->get(['friendly_name','host_id','check_address','status']);
+            ->get(['friendly_name','host_id','user_input as check_address','status','name','email','users.id','profile_image']);  
 
-        $sortedMonitors = $allUserMonitors;
+        $allUserMonitorsNoAlertUsers = DB::table('monitoring_monitors')
+            ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
+            ->where('user_group', $usergroupID)
+            ->get(['friendly_name','host_id','user_input as check_address','status']);  
+
+        $alreadyAddedMonitor = [];
+        $sortedMonitors = [];
+        $monitorKey = 0;
+        foreach($allUserMonitors as $key=>$monitor){
+            $alreadyAdded = 0;
+            foreach($alreadyAddedMonitor as $value){
+                if($monitor->host_id == $value){
+                    $alreadyAdded = 1;
+                }
+            }
+
+            if($alreadyAdded){
+                $sortedMonitors[$monitorKey]->users[$key] = (object)[];
+                $sortedMonitors[$monitorKey]->users[$key]->fullName = $monitor->name;
+                $sortedMonitors[$monitorKey]->users[$key]->email = $monitor->email;
+                $sortedMonitors[$monitorKey]->users[$key]->id = $monitor->id;
+                $sortedMonitors[$monitorKey]->users[0]->profile_image = $monitor->profile_image;
+            }else{
+                $monitorKey ++;
+                $sortedMonitors[$monitorKey] = (object)[];
+                $sortedMonitors[$monitorKey]->friendly_name = $monitor->friendly_name;
+                $sortedMonitors[$monitorKey]->host_id = $monitor->host_id;
+                $sortedMonitors[$monitorKey]->status = $monitor->status;
+                $sortedMonitors[$monitorKey]->check_address = $monitor->check_address;
+                $sortedMonitors[$monitorKey]->name = $monitor->name;
+                $sortedMonitors[$monitorKey]->users[0] = (object)[];
+                $sortedMonitors[$monitorKey]->users[0]->fullName = $monitor->name;
+                $sortedMonitors[$monitorKey]->users[0]->email = $monitor->email;
+                $sortedMonitors[$monitorKey]->users[0]->id = $monitor->id;
+                $sortedMonitors[$monitorKey]->users[0]->profile_image = $monitor->profile_image;
+
+                $alreadyAddedMonitor[$key] = $monitor->host_id;
+            }
+        }
+
+        foreach($allUserMonitorsNoAlertUsers as $monitor){
+            $monitorId = $monitor->host_id;
+            $alreadyAdded = false;
+            foreach($sortedMonitors as $sortMonitor){
+                if($monitorId == $sortMonitor->host_id){
+                    $alreadyAdded = true;
+                }
+            }
+
+            if($alreadyAdded == false){
+                $monitorKey ++;
+                $sortedMonitors[$monitorKey] = $monitor;
+                $sortedMonitors[$monitorKey]->users = null;
+            }
+
+        }
 
         return view('adminlte.user_admin.monitoring.monitors.monitors-list',compact(['sortedMonitors']));
     }
