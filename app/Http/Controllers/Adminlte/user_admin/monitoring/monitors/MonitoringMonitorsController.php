@@ -99,7 +99,7 @@ class MonitoringMonitorsController extends Controller
 
         //Get current user's group id
         $usergroupID = $request->session()->get('groupId');
-
+        
         //Get user group's hostgroup id
         $hostGroupID = $request->session()->get('hostGroup');
 
@@ -213,7 +213,7 @@ class MonitoringMonitorsController extends Controller
         $newHostID = 0;
         //If host doesnt't exist yet
         if($monitorDBCheck == null){
-
+            
            //Create new Host
             $newHostID = $this->zabbix->hostCreate([
                 "host" => $hostName,
@@ -229,7 +229,7 @@ class MonitoringMonitorsController extends Controller
                 ],
                 "groups" => [
                     [
-                        "groupid" => $hostGroupID
+                        "groupid" =>$hostGroupID
                     ]
                 ]
             ])->hostids[0];
@@ -468,7 +468,7 @@ class MonitoringMonitorsController extends Controller
         }else{
             return response()->json(['checkAddress' => __('This monitor already exist!')]);
         }
-
+       
         $trigerID = '';
         //Triger create
         if($checkType == "DNS"  || $checkType == "HTTP/HTTPS") {
@@ -537,8 +537,28 @@ class MonitoringMonitorsController extends Controller
                     ],
                 ],
             ])->actionids[0];
-            
-            DB::insert('insert into monitoring_zabbix_actions (zabbix_action_id, zabbix_trigger) values (?, ?)', [$actionID, $trigerID]);
+
+
+            //Insert new created action to database
+            DB::table('monitoring_zabbix_actions')->insert(
+                [
+                    'zabbix_action_id' => $actionID,
+                    'zabbix_trigger' => $trigerID
+                ]
+            );
+            $personsIds->$key['userid'];
+
+            $actionAndUserWhoToAlert = [];
+            foreach($personsIds as $key=>$person){
+                $actionAndUserWhoToAlert[$key] = [];
+                $actionAndUserWhoToAlert[$key]['zabbix_action'] = $actionID;
+                $actionAndUserWhoToAlert[$key]['user'] = $person['userid'];
+            }
+
+            //Add persons who to alert if website is down
+            DB::table('monitoring_zabbix_actions_has_users')->insert(
+                $actionAndUserWhoToAlert
+            );
 
         }
         

@@ -1,4 +1,3 @@
-
 .LoginForm * {
   box-sizing: border-box;
 }
@@ -135,7 +134,7 @@
   opacity: 1;
   z-index: 5;
   -webkit-animation: show 0.6s;
-          animation: show 0.6s;
+  animation: show 0.6s;
 }
 
 @-webkit-keyframes show {
@@ -235,3 +234,4 @@
 .LoginForm .logbutton:hover {
   background-color: #FF8A00;
 }
+

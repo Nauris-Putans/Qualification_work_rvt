@@ -42,3 +42,7 @@
         </div>
     </section>
 @endsection
+
+@section('css')
+ <link href="/css/sections/contacts.blade.css" rel="stylesheet">
+@stop

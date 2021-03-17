@@ -210,7 +210,6 @@ class ZabbixController extends Controller
             ->join('host_has_application_webscenario', 'host_has_application_webscenario.host_id', '=', 'monitoring_hosts.host_id')
             ->join('monitoring_items', 'monitoring_items.application', '=', 'host_has_application_webscenario.application')
             ->join('monitoring_check_types', 'monitoring_check_types.id', '=', 'monitoring_items.check_type')
-            ->where('user_id', $currentUserID)
             ->where('user_group', $userGroup)
             ->get(['item_id','friendly_name','check_type_name']);
 
@@ -409,7 +408,6 @@ class ZabbixController extends Controller
             ->join('host_has_application_webscenario', 'host_has_application_webscenario.host_id', '=', 'monitoring_hosts.host_id')
             ->join('monitoring_items', 'monitoring_items.application', '=', 'host_has_application_webscenario.application')
             ->join('monitoring_check_types', 'monitoring_items.check_type', '=', 'monitoring_check_types.id')
-            ->where('user_id', $currentUserID)
             ->where('user_group', $userGroup)
             ->get(['item_id as item','friendly_name','check_type_name','monitor_type']);
 

@@ -120,3 +120,7 @@
         });
     </script>
 @endsection
+
+@section('css')
+ <link href="/css/sections/faq.blade.css" rel="stylesheet">
+@stop

@@ -1,0 +1,68 @@
+.monitorsList{
+    .monitor-info-Wrapper{
+        width: 100%;
+        .friendlyName{
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .checkAddress{
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: 400;
+        }
+    }
+    .table td {
+        vertical-align: middle;
+        justify-content: center;   
+    }
+
+    .list-inline{
+        margin-bottom: 0;
+    }
+    .list-inline-item{
+        position: relative;
+        cursor: pointer;
+        img{
+            border-radius: 50%;
+            display: inline;
+            width: 45px;
+            height: 45px;
+        }
+        .content {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 130%;
+            z-index: 99;
+            height: 50px;
+            width: auto;
+            .arrow{
+                top: 15px;
+                left: -15px;
+                position: absolute;
+                width: 0; 
+                height: 0; 
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent; 
+                
+                
+                border-right:10px solid #007bff;
+            }
+            .personName{
+                width: 100%;
+                padding: 1px 5px;
+                font-size: 16px;
+                font-weight: 600;
+                background-color: #007bff;
+                color: white;
+            }
+            .personEmail{
+                width: 100%;
+                padding: 1px 5px;
+                font-size: 14px;
+                font-weight: 400;
+                background-color: white;
+            }
+        }
+    }
+}

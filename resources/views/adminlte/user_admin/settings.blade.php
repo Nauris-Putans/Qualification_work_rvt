@@ -54,6 +54,31 @@
                             </a>
                         </li>
 
+                        <!-- Group Dropdown Menu -->
+                        <li class="row nav-item dropdown Language" style="margin-right: 0; margin-left: 0;">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                {{ __('Group: ') }}
+                            </a>
+
+                            {{-- Groups --}}
+                            <div class="dropdown-menu dropdown-menu-right p-0">
+                                @foreach($groups as $group)
+                                    @if ($group->group_id == $activeUserGroup)
+                                        <button class="dropdown-item active">
+                                            {{ $group->group_name }}
+                                        </button>
+                                    @else
+                                        <form method="POST" action="{{ URL::route('user.change.group', $group->group_id) }}" >
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">
+                                                {{ $group->group_name }}
+                                            </button>
+                                        </form>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </li>
+
                         <!-- Language Dropdown Menu -->
                         <li class="row nav-item dropdown Language" style="margin-right: 0; margin-left: 0;">
                             @if (App::isLocale('en'))
@@ -212,6 +237,7 @@
 
             // Datepicker for birthday
             $('.datepicker').datepicker({
+                format: 'yyyy/mm/dd',
                 language: locale,
             });
         });

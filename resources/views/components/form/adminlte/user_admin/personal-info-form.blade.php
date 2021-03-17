@@ -98,10 +98,11 @@
                             </label>
                             <input name="birthday"
                                     type="text"
+                                    id="birthdayPicker"
                                     class="form-control @error('birthday') is-invalid @enderror datepicker"
 
                                     @if($user->birthday != null)
-                                        value="{{ date('d/m/Y', strtotime($user->birthday)) }}"
+                                        value="{{ date('Y/m/d', strtotime($user->birthday)) }}"
                                     @else
                                         value=""
                                     @endif

@@ -21,6 +21,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
@@ -31,7 +32,7 @@ class SettingController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
         // Finds all countries and stores in $countries
         $countries = Country::all();
@@ -42,13 +43,20 @@ class SettingController extends Controller
         // Finds users id by Auth model
         $id = Auth::id();
 
+        $activeUserGroup = $request->session()->get("groupId");
+
+        $groups = DB::table('monitoring_group_members')
+            ->join('monitoring_users_groups','monitoring_users_groups.group_id','monitoring_group_members.group_id')
+            ->where('group_member',$id)
+            ->get(['monitoring_group_members.group_id','group_name']);
+
         // Finds user by $id
         $user = User::find($id);
 
         // Finds country by $countryID
         $countryName = Country::find($user->country);
-
-        return view('adminlte.user_admin.settings', compact('countries', 'hashids', 'user', 'countryName'));
+        
+        return view('adminlte.user_admin.settings', compact('countries', 'hashids', 'user', 'countryName','groups','activeUserGroup'));
     }
 
     /**
@@ -63,11 +71,13 @@ class SettingController extends Controller
         // Hash key for id security
         $hashids = new Hashids('WEBcheck', 10);
 
-        // Decodes id
-        $id = $hashids->decode( $id );
+        // get user id
+        $id = $request
+            ->session()
+            ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
 
         // Finds user by $id
-        $user = User::find($id)->first();
+        $user = User::where('id',$id)->first();
 
         // Finds country name by $request->country
         $countryName = Country::where('name', !empty($request->country) ? $request->country : $request->country_old)->first();
@@ -97,7 +107,7 @@ class SettingController extends Controller
             'birthday' => !empty($birthday) ? $birthday : $request->birthday_old,
         ];
 
-        // Updates user with $data values
+        //Updates user with $data values
         $user->update($data);
 
         return redirect()->back()->with('message', __(':attribute - :action', ['attribute' => __("Personal Information"), 'action' => __("has been updated!")]));
@@ -135,21 +145,62 @@ class SettingController extends Controller
         // Hash key for id security
         $hashids = new Hashids('WEBcheck', 10);
 
-        // Decodes id
-        $id = $hashids->decode( $id );
+        // get user id
+        $id = $request
+            ->session()
+            ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
 
         // Finds user by $id
-        $user = User::find($id)->first();
+        $user = User::where('id',$id)->first();
 
         // Storing new info in $data
         $data = [
             'password'=> Hash::make($request->new_password),
         ];
+        
+        //Set new password
+        $user->password = $data['password'];
 
         // Updates user with $data values
-        $user->update($data);
+        $user->save();
 
         return redirect()->back()->with('message', __(':attribute - :action', ['attribute' => __("Password & Security"), 'action' => __("has been updated!")]));
+    }
+
+    /**
+     * Updates password security in account settings section
+     *
+     * @param $groupid
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function changeGroup(Request $request, $groupid)
+    {
+  
+        // get user id
+        $userId = $request
+            ->session()
+            ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
+
+        $userIsMember = DB::table('monitoring_group_members')
+            ->where('group_member',$userId)
+            ->where('group_id',$groupid)
+            ->get()->first();
+
+        if($userIsMember){
+            //Set new group to user to global variable (groupId)
+            session(['groupId' => $groupid]);
+
+            $hostGroupID = DB::table('monitoring_hosts_groups')
+                ->where('user_group',$groupid)
+                ->get('host_group_id')->first()->host_group_id;
+
+            //Set current user host group's id to global variable
+            session(['hostGroup' => $hostGroupID]);
+
+        }
+
+
+        return redirect()->back();
     }
 
     /**
@@ -160,6 +211,7 @@ class SettingController extends Controller
      */
     public function updateProfile(ProfileImageRequest $request)
     {
+
         // Get current user
         $user = User::findOrFail(auth()->user()->id);
 
