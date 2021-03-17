@@ -71,7 +71,7 @@
                 <div class="collapse navbar-collapse col-lg-8 col-md-12 col-sm-12" id="navbarNavDropdown">
 
                     <!-- Middle Of Navbar -->
-                    <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="col-lg-6 col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px;">
                         <ul class="navbar-nav Sections mx-auto justify-content-center">
                             {{-- Home --}}
                             <li class="nav-item {{ Request::path() == '/' ? 'active' : '' }}">
