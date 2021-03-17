@@ -1,0 +1,132 @@
+.upTimeMonitor {
+  /* Style the collapsible content. Note: hidden by default */
+}
+
+.upTimeMonitor .monthLable {
+  width: 100%;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.upTimeMonitor .monthWrapper {
+  padding-bottom: 15px;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 182px;
+}
+
+.upTimeMonitor .weekWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.upTimeMonitor .dayBox {
+  position: relative;
+  background-color: #f8fafc;
+  border-radius: 5px;
+  width: 24px;
+  height: 24px;
+  margin: 0 2px 2px 0;
+}
+
+.upTimeMonitor .box {
+  width: 25%;
+  float: left;
+}
+
+.upTimeMonitor .box .chart {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 30px;
+  line-height: 110px;
+}
+
+.upTimeMonitor canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.upTimeMonitor .content {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  z-index: 99;
+}
+
+.upTimeMonitor .content::hover {
+  display: block;
+}
+
+.upTimeMonitor .content .contentWrapper {
+  width: 125px;
+  background-color: whitesmoke;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1.5px solid green;
+}
+
+.upTimeMonitor .content .contentWrapper_label {
+  text-align: center;
+}
+
+.upTimeMonitor .content .contentWrapper .uptimeNumber {
+  margin-top: 10px;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+}
+
+.upTimeMonitor .content .contentWrapper button {
+  text-align: center;
+  height: 25px;
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  outline: none;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  border: 1px solid green;
+  font-size: 13px;
+}
+
+.upTimeMonitor .allInfoWrapper {
+  border: 2px solid green;
+  border-radius: 5px;
+  min-height: 100px;
+  padding: 10px 0 10px 0;
+}
+
+.upTimeMonitor .chosenDayDateLable {
+  width: 100%;
+  height: 30px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.upTimeMonitor .info-box-content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.upTimeMonitor .info-box-content .easy-pie-chart-box {
+  width: 130px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.upTimeMonitor .info-box-content .easy-pie-chart-box .box {
+  width: 120px;
+}
+

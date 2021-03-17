@@ -24,7 +24,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/section.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sections/login.blade.css') }}" rel="stylesheet">
 </head>
 <body>
     <div style="background-image: url({{ URL::asset('/images/background.jpg') }}); background-repeat: no-repeat; background-size: cover; position: relative; overflow: auto; height: 100vh; display: flex; justify-content: center; align-items: center;">

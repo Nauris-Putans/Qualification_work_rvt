@@ -62,7 +62,7 @@ class MonitoringPageSpeedController extends Controller
         // If no item was found
         if($items->first() == null){
             $histories = [];
-            return view('adminlte.user_admin.monitoring.download-speed', compact(['histories','itemsFriendlyName','itemsIds']));
+            return view('adminlte.user_admin.monitoring.page-speed', compact(['histories','itemsFriendlyName','itemsIds']));
         }
         
         $firtsItem = $items->first()->item;

@@ -1,267 +1,5 @@
-@extends('adminlte::page')
-@section('title', 'Download speed')
+$(function () {  
 
-@section('content_header')
-    <h1>{{ __('Monitoring')}} > {{ __('Download speed')}}</h1>
-@stop
-
-
-@section('content')
-
-<section class="response-time">   
-    {{-- column start --}}
-    <div class="column">
-
-      {{-- Response time page settings --}}
-      <div class="row">
-        <div class="col-md-3">
-          <label>{{ __('Monitor') }}</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-desktop"></i></span>
-            </div>
-            <select class="form-control" id='userMonitors'>
-              {{-- Here will be automatic generated options --}}
-            </select>
-          </div>
-        </div>
-        {{-- Date settings --}}
-        <div class="col-md-3">
-          <label>{{ __('Date') }}</label>
-          <i ${lastCheckIcon} id="lastCheckIcon"></i>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="far fa-calendar-alt"></i>
-              </span>
-            </div>
-            <input type="text" class="form-control float-right" name="datefilter" value="" id="datePicker">
-          </div>
-        </div>
-        {{-- Time settings --}}
-        <div class="col-md-3">
-          <label>{{ __('Time') }}</label>
-          <div class="input-group">
-            <button class="btn time-btn" id="timeButton">
-              <i class="fas fa-clock" style="height: 100%; width: auto;"></i>
-            </button>
-            {{-- time settings container --}}
-            <div class="time-content" id="timeSelectBox">
-              <div class="select-time">
-                <div class="time_picker_box">
-                  <div class="label">{{ __('Start time') }}</div>
-                  <div class="time-picker" data-time="00:00">
-                    <div class="hour">
-                      <div class="hr-up"></div>
-                      <input type="number" class="hr" value="00">
-                      <div class="hr-down"></div>
-                    </div>
-        
-                    <div class="separator">:</div>
-        
-                    <div class="minute">
-                      <div class="min-up"></div>
-                      <input type="number" class="min" value="00">
-                      <div class="min-down"></div>
-                    </div>
-                  </div>
-                </div>
-  
-                <div class="time_picker_box">
-                  <div class="label">{{ __('End time') }}</div>
-                  <div class="time-picker" data-time="00:00">
-                    <div class="hour">
-                      <div class="hr-up"></div>
-                      <input type="number" class="hr" value="23">
-                      <div class="hr-down"></div>
-                    </div>
-        
-                    <div class="separator">:</div>
-        
-                    <div class="minute">
-                      <div class="min-up"></div>
-                      <input type="number" class="min" value="59">
-                      <div class="min-down"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-              <button type="button" class="btn btn-success" id="selectTime" style="margin: 0 auto; display: block">{{ __('Select') }}</button>
-
-            </div>
-            {{--END  time settings container --}}
-          </div>    
-      </div>
-    </div>
-
-
-  {{-- Response time page info Boxes --}}
-  <div class="row" id="responseTimeInfoBoxes" >
-    <div class="col-md-3">
-      <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text">{{ __('Requests') }}</span>
-          <span class="info-box-number" id="requests">
-              {{-- Requests number --}}
-          </span>
-        </div>
-        <!-- /.info-box-content -->
-      </div>
-      <!-- /.info-box -->
-    </div>
-    <!-- /.col -->
-    <div class="col-md-3">
-      <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-thumbs-up"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text">{{ __('Fast speed') }}</span>
-          <span class="info-box-number" id="maxTime">
-              {{-- Check min response time --}}
-          </span>
-        </div>
-        <!-- /.info-box-content -->
-      </div>
-      <!-- /.info-box -->
-    </div>
-    <!-- /.col -->
-
-    <!-- fix for small devices only -->
-    <div class="clearfix hidden-md-up"></div>
-
-    <div class="col-md-3">
-      <div class="info-box mb-3">
-        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-wave-square"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text">{{ __('Average speed') }}</span>
-          <span class="info-box-number" id="averageTime">
-              {{-- Check average response time --}}
-          </span>
-        </div>
-        <!-- /.info-box-content -->
-      </div>
-      <!-- /.info-box -->
-    </div>
-    <!-- /.col -->
-    <div class="col-md-3">
-      <div class="info-box mb-3">
-        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-down"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text">{{ __('Low speed') }}</span>
-          <span class="info-box-number" id="minTime">
-              {{-- Check the biggest response time --}}
-          </span>
-        </div>
-        <!-- /.info-box-content -->
-      </div>
-      <!-- /.info-box -->
-    </div>
-    <!-- /.col -->
-  </div>
-
-
-      <div class="row">
-        <div class="col-md-8 col-md-12" id="responseChart">
-          <div class="card">
-            <div class="card-header" style="background-color:white;">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title">{{ __('Download speed(KBps)') }}</h3>
-                <nav aria-label="pagination wrapper">
-                  <ul class="pagination" id="paginationWrapper">
-                    
-                  </ul>
-                </nav>
-                <div class="card-tools">
-                  {{-- <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button> --}}
-                  <button type="button" class="btn btn-tool" id="resize_btn"><i id="resize_icon" class="fas fa-compress-alt"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-
-            <div class="d-flex">
-              <p class="ml-auto d-flex flex-column text-right">
-                <span class="text-success" id="lastCheckValue">
-                  <i ${lastCheckIcon} id="lastCheckIcon"></i>
-                </span>
-                <span class="text-muted">{{ __("Last check's value change") }}</span>
-              </p>
-            </div>
-            <!-- /.d-flex -->
-
-            <div class="position-relative mb-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-              <canvas id="areaChart" height="257px" width="1128" class="chartjs-render-monitor" style="display: block; min-height: 257px; width: 903px;"></canvas>
-            </div>
-
-            </div>   
-          </div>
-        </div>
-
-        {{-- Weekday average response time Start--}}
-        <div class="col-md-4" id="weekdayChartBox">
-          <div class="card" style = "height : 435px">
-            <div class="card-header d-flex justify-content-center">
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn bg-olive">
-                  <input type="radio" name="options" id="radioOption1" autocomplete="off" checked=""> {{ __('Weekday') }}
-                </label>
-                <label class="btn bg-olive active">
-                  <input type="radio" name="options" id="radioOption2" autocomplete="off"> Day's parts
-                </label>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive p-0" style="height: 300px;">
-              <canvas id="WeekDayChart" height="90%" width="90%" class="chartjs-render-monitor" style="display: block; height: 200px; width: 903px;"></canvas>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        {{-- Weekday average response time END--}}
-
-    </div>
- 
-    <div class="row d-none" id="infoAlert" style="margin-top: 10px">
-      <div class="col-md-12">
-        <div class="callout callout-warning" style="width: 100%">
-          <h5>{{ __('Info!') }}</h5>
-
-          <p>{{ __('At the moment, there is no data yet.') }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-    {{-- column end --}}
-</section>
-
-
-@stop
-
-@section('css')
-<link href="/css/adminlte/user_admin/statistic.css" rel="stylesheet">
-<link href="/css/userAdmin.css" rel="stylesheet">
-{{-- Data picker style --}}
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-@stop
-
-@section('js')
-{{-- Data,tyme picker scripts --}}
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-{{--    <script src="node_modules/chart.js/dist/Chart.bundle.js"></script>--}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
-<script>
-  $(function () {  
-
-    //Global variables
     let endDate = new Date();
     let startDate = new Date(endDate);
     let currentHistory;
@@ -269,17 +7,25 @@
     let splitedHystory = [];
     let sortedHistoryIndex = 0;
 
+    const weekday = new Array(7);
+        weekday[0] = @json( __("Sunday")  );
+        weekday[1] = @json( __("Monday")  );
+        weekday[2] = @json( __("Tuesday")  );
+        weekday[3] = @json( __("Wednesday")  );
+        weekday[4] = @json( __("Thursday")  );
+        weekday[5] = @json( __("Friday")  );
+        weekday[6] = @json( __("Saturday")  );
+
+    const dayParts = new Array(3);
+      dayParts[0] = @json( __('Morning')  );
+      dayParts[1] = @json( __('Afternoon')  );
+      dayParts[2] = @json( __('Evening')  );
+
     startDate.setDate(startDate.getDate() - 1);
     startDate.setHours(0);
     startDate.setMinutes(0);
     endDate.toDateString();
     startDate.toDateString();
-
-    //Insert new Date to date rang picker
-    $('#datePicker').daterangepicker({ startDate:  startDate, endDate: endDate });
-
-    startDate = Math.floor(Date.parse(startDate) / 1000);
-    endDate = Math.floor(Date.parse(endDate) / 1000);
 
     //Function that display new info to info labels,boxes
     function displayNewInfo(responseSpeedMS,checkCount){
@@ -289,7 +35,7 @@
         $("#lastCheckValue").text('');
 
         lastCheckValue = document.getElementById('lastCheckValue');
-        lastChecksDiference = responseSpeedMS[checkCount-1] - responseSpeedMS[checkCount-2];
+        lastChecksDiference = Math.round((responseSpeedMS[checkCount-1] - responseSpeedMS[checkCount-2]) * Math.pow(10, 4)) / Math.pow(10, 4);
         let lastCheckIcon ;
         if(lastChecksDiference<0){
             lastCheckIcon ='class="fas fa-arrow-down" style="color:green"';
@@ -301,19 +47,19 @@
         }
         $("#requests").text(checkCount);
         let newValue =`
-                <i ${lastCheckIcon} id="lastCheckIcon"></i>${Math.round(lastChecksDiference * Math.pow(10, 2)) / Math.pow(10, 2)}
+                <i ${lastCheckIcon} id="lastCheckIcon"></i>${lastChecksDiference}
                 `;
         const position = "beforeend";
         lastCheckValue.insertAdjacentHTML(position,newValue);
     } 
 
-    //Check that user have any monitor or data hystory
-    function userDataCheck(newresponseTime,newfriendlyNames,dropDownVal){
+    //Check that user have any monitors and monitor value
+    function dataCheck(newresponseTime,newfriendlyNames,dropDownVal){
 
-      let responseTimeInfoBoxes = document.getElementById("responseTimeInfoBoxes");
-      let responseChart = document.getElementById("responseChart");
-      let weekDayChartBox = document.getElementById("weekdayChartBox");
-      let infoAlert = document.getElementById("infoAlert");
+      const responseTimeInfoBoxes = document.getElementById("responseTimeInfoBoxes");
+      const responseChart = document.getElementById("responseChart");
+      const weekDayChartBox = document.getElementById("weekdayChartBox");
+      const infoAlert = document.getElementById("infoAlert");
 
       if(newfriendlyNames.length === 0){
         $('#userMonitors').attr('disabled', 'disabled');
@@ -323,6 +69,8 @@
         $('#userMonitors').removeAttr('disabled');
         $('#datePicker').removeAttr('disabled');
         $('#timeButton').removeAttr('disabled');
+
+        addOptionsToDropDown(newfriendlyNames, dropDownVal);
       }
 
       if(Object.keys(newresponseTime).length < 2 ){
@@ -332,10 +80,8 @@
           infoAlert.classList.toggle("d-none");
         }else{
           responseTimeInfoBoxes.classList.toggle("d-none");
-
         }
 
-        addOptionsToDropDown(newfriendlyNames, dropDownVal);
       }else{
         if(responseTimeInfoBoxes.classList.toggle("d-none") === true){
           responseTimeInfoBoxes.classList.toggle("d-none");
@@ -344,9 +90,182 @@
           weekDayChartBox.classList.toggle("d-none");
           infoAlert.classList.toggle("d-none");
         }
-        insertData(newresponseTime);
+ 
+        const newHystoryData = spliteHistory();
+        insertData(newHystoryData);
 
-        addOptionsToDropDown(newfriendlyNames, dropDownVal);
+      }
+    }
+
+    function paginationButtons(paginationCount){
+      $('#paginationWrapper li').remove();
+
+      sortedHistoryIndex = paginationCount;
+      let buttonStatus = '';
+      let paginationList = '';
+
+      if(paginationCount <= 1){
+        buttonStatus = 'disabled'
+      }
+
+      for(let i=1; i<=paginationCount;i++ ){ 
+        if(paginationCount == i){
+          paginationList += `<li class="page-item active"><a id="pagination${i}" class="page-link">${i}</a></li>`
+        }else{
+          paginationList += `<li class="page-item"><a id="pagination${i}" class="page-link">${i}</a></li>`;
+        }
+      }
+
+      $( "#paginationWrapper" ).append( `
+          <li class="page-item ${buttonStatus}" id="previosPagination1">
+            <a id="previosPagination" class="page-link page-link-left" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          ${paginationList}
+          <li class="page-item disabled">
+            <a id="nextPagination" class="page-link page-link-right"  aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+      `);
+
+      for(let i=1; i<=paginationCount ; i++){
+        if(i+4 < paginationCount){
+          $( `#pagination${i}` ).parent().addClass('d-none');
+        }
+      }
+
+      //Add event listener to paginations
+      const allPaginations =  $( "#paginationWrapper").children();
+      const paginationLength = allPaginations.length;
+      for(let i=0;i<paginationLength;i++){
+
+        const paginationId = allPaginations[i].children[0].id;
+
+        switch(paginationId) {
+          case 'previosPagination':
+            $("#previosPagination").click( function(){
+
+              $('#paginationWrapper li').not( "#previosPagination" ).addClass('d-none');
+              $('#nextPagination').parent().removeClass('d-none')
+              $('#previosPagination').parent().removeClass('d-none')
+
+              sortedHistoryIndex--;
+
+              let lastElementDisplay = sortedHistoryIndex+2;
+              let firstElementDisplay = sortedHistoryIndex-2;
+
+              if(lastElementDisplay >= paginationCount){
+                firstElementDisplay = firstElementDisplay - (lastElementDisplay - paginationCount);
+                lastElementDisplay = paginationCount;
+              }else{
+                if(firstElementDisplay < 1){
+                  firstElementDisplay = 1;
+                  lastElementDisplay = 5;
+                }
+              }
+
+              for(let i=1 ;i <= paginationCount; i++){
+                if(i >= firstElementDisplay && i <= lastElementDisplay){
+                  if(i > 0 && i <= paginationCount){
+                    $( `#pagination${i}`).parent().removeClass('d-none');
+                  }
+                }
+              }
+
+              if(1 == sortedHistoryIndex){
+                $( "#previosPagination").parent().addClass('disabled');
+                if(paginationCount > 1){
+                  $( "#nextPagination").parent().removeClass('disabled');
+                }
+
+                $( `#pagination${sortedHistoryIndex+1}`).parent().removeClass('active');
+                $( `#pagination${sortedHistoryIndex}`).parent().addClass('active');
+                insertData(splitedHystory[sortedHistoryIndex-1]);
+              }else if(1 < sortedHistoryIndex){
+                $( "#previosPagination").parent().removeClass('disabled');
+                if(paginationCount > 1){
+                  $( "#nextPagination").parent().removeClass('disabled');
+                }
+
+                $( `#pagination${sortedHistoryIndex+1}`).parent().removeClass('active');
+                $( `#pagination${sortedHistoryIndex}`).parent().addClass('active');
+                insertData(splitedHystory[sortedHistoryIndex-1]);
+              }
+            });
+            break;
+          case 'nextPagination':
+            $(`#${paginationId}`).click( function(){
+
+              $('#paginationWrapper li').not( "#previosPagination" ).addClass('d-none');
+              $('#nextPagination').parent().removeClass('d-none')
+              $('#previosPagination').parent().removeClass('d-none')
+
+              sortedHistoryIndex++;
+
+              let lastElementDisplay = sortedHistoryIndex+2;
+              let firstElementDisplay = sortedHistoryIndex-2;
+
+              if(lastElementDisplay >= paginationCount){
+                firstElementDisplay = firstElementDisplay - (lastElementDisplay - paginationCount);
+                lastElementDisplay = paginationCount;
+              }else{
+                if(firstElementDisplay < 1){
+                  firstElementDisplay = 1;
+                  lastElementDisplay = 5;
+                }
+              }
+
+              for(let i=1 ;i <= paginationCount; i++){
+                if(i >= firstElementDisplay && i <= lastElementDisplay){
+                  if(i > 0 && i <= paginationCount){
+                    $( `#pagination${i}`).parent().removeClass('d-none');
+                  }
+                }
+              }
+
+              if(paginationCount == sortedHistoryIndex){
+                $( "#nextPagination").parent().addClass('disabled');
+                if(paginationCount > 1){
+                  $( "#previosPagination").parent().removeClass('disabled');
+                }
+                
+                $( `#pagination${sortedHistoryIndex-1}`).parent().removeClass('active');
+                $( `#pagination${sortedHistoryIndex}`).parent().addClass('active');
+                insertData(splitedHystory[sortedHistoryIndex-1]);
+              }else if(paginationCount > sortedHistoryIndex){
+                $( "#nextPagination").parent().removeClass('disabled');
+                if(paginationCount > 1){
+                  $( "#previosPagination").parent().removeClass('disabled');
+                }
+                
+                $( `#pagination${sortedHistoryIndex-1}`).parent().removeClass('active');
+                $( `#pagination${sortedHistoryIndex}`).parent().addClass('active');
+                insertData(splitedHystory[sortedHistoryIndex-1]);
+              }
+            });
+            break;
+          default:
+            $(`#${paginationId}`).click( function(){
+              sortedHistoryIndex = parseInt(paginationId.replace("pagination", ""));
+              if(paginationCount == sortedHistoryIndex){
+                $( "#nextPagination").parent().addClass('disabled');
+              }else{
+                $( "#nextPagination").parent().removeClass('disabled');
+              }
+
+              if(1 == sortedHistoryIndex){
+                $( "#previosPagination").parent().addClass('disabled');
+              }else{
+                $( "#previosPagination").parent().removeClass('disabled');
+              }
+
+              $( "#paginationWrapper").children().removeClass('active');
+              insertData(splitedHystory[sortedHistoryIndex-1]);
+              $( `#${paginationId}`).parent().addClass('active');
+            });
+        }
       }
     }
 
@@ -375,13 +294,8 @@
         splitEnd -=  500;
       }
 
-      if(paginationCount == 1){
-        upToFourPaginationElements(paginationCount);
-      }else if(paginationCount > 1 &&paginationCount < 5){
-        upToFourPaginationElements(paginationCount);
-      }else{
-        aLotPaginationElements(paginationCount);
-      }
+      paginationButtons(paginationCount);
+
       let displayHystory = 0;
 
       return splitedHystory[paginationCount-1];
@@ -391,31 +305,27 @@
     function setData(){
         let checkHistory = <?php echo json_encode($histories); ?>;
         let checkFriendlyName = <?php echo json_encode($itemsFriendlyName); ?>;
-        let checkItemsIds = <?php echo json_encode($itemsIds); ?>;
+        const checkItemsIds = <?php echo json_encode($itemsIds); ?>;
+
+        //Insert new Date to date rang picker
+        $('#datePicker').daterangepicker({ startDate:  startDate, endDate: endDate });
+
+        startDate = Math.floor(Date.parse(startDate) / 1000);
+        endDate = Math.floor(Date.parse(endDate) / 1000);
 
         currentHistory = checkHistory;
-        optionSelectedId = [];
-
+        let optionSelectedId =[];
+ 
         if(Object.keys(checkFriendlyName).length != 0){
           optionSelectedId =['item'];
           optionSelectedId['item'] = checkItemsIds[0]['item'];
           //Will be set as current value in drop down box
           let checkLastFriendlyName = checkItemsIds[0].item_id;
-          userDataCheck(checkHistory,checkFriendlyName,checkLastFriendlyName);
-        }else{
-          $('#userMonitors').attr('disabled', 'disabled');
-          $('#datePicker').attr('disabled', 'disabled');
-          $('#timeButton').attr('disabled', 'disabled');
-          let weekDayChartBox = document.getElementById('weekdayChartBox');
-          if(responseTimeInfoBoxes.classList.toggle("d-none") === true){
-            responseChart.classList.toggle("d-none");
-            weekDayChartBox.classList.toggle("d-none");
-            infoAlert.classList.toggle("d-none");
-          }else{
-            responseTimeInfoBoxes.classList.toggle("d-none");
-          }
-        }
 
+          dataCheck(checkHistory,checkFriendlyName,checkLastFriendlyName);
+        }else{
+          dataCheck(checkHistory,[],[]);
+        }
     }
 
     //Create createweekDayChart 
@@ -426,8 +336,6 @@
       var weekDayChartData        = {
         labels: [
             'Monday',
-          
-
         ],
         datasets: [
           {
@@ -437,7 +345,6 @@
         ]
       }
       var weekDayChartOptions = {
-
         legend: {
           display: false
         },
@@ -500,15 +407,6 @@
 
         let weekdayResponseTimeSum = [0,0,0,0,0,0,0];
 
-        let weekday = new Array(7);
-        weekday[0] = @json( __("Sunday")  );
-        weekday[1] = @json( __("Monday")  );
-        weekday[2] = @json( __("Tuesday")  );
-        weekday[3] = @json( __("Wednesday")  );
-        weekday[4] = @json( __("Thursday")  );
-        weekday[5] = @json( __("Friday")  );
-        weekday[6] = @json( __("Saturday")  );
-
         let i=0;
         let b=0;
         let newDate;
@@ -519,7 +417,7 @@
 
             if(weekday[newDate.getDay()] == weekday[b]){
               weekdayCounter[b]++;
-              weekdayResponseTimeSum[b] += Math.round((responseSpeed[i]) * Math.pow(10, 2)) / Math.pow(10, 2);
+              weekdayResponseTimeSum[b] += responseSpeed[i];
               break;
             }
           }
@@ -532,7 +430,7 @@
         for(let a=0;a<7;a++){
           if(weekdayResponseTimeSum[a] != 0){
             weekdayResponseTimeSum[a] /= weekdayCounter[a];
-            weekdayResponseTimeSum[a] = Math.round(weekdayResponseTimeSum[a] * Math.pow(10, 2)) / Math.pow(10, 2);
+            weekdayResponseTimeSum[a] = Math.round(weekdayResponseTimeSum[a] * Math.pow(10, 4)) / Math.pow(10, 4);
             chartDataLabels.push(weekday[a]);
             chartDataAvarageTime.push(weekdayResponseTimeSum[a]);
           }
@@ -545,10 +443,6 @@
       }
 
       function insertDataToDayPartChart(responseSpeed,ResponseClock){
-        let dayParts = new Array(3);
-        dayParts[0] = @json( __('Morning')  );
-        dayParts[1] = @json( __('Afternoon')  );
-        dayParts[2] = @json( __('Evening')  );
 
         let dayPartsValues = [0,0,0];
         let dayPartsValuesCount = [0,0,0];
@@ -599,7 +493,7 @@
         for(i =0; i<3;i++){
           if(dayPartsValuesCount[i] != 0){
               chartDataAvarageTime[exist] = dayPartsValues[i] / dayPartsValuesCount[i];
-              chartDataAvarageTime[exist] = Math.round(chartDataAvarageTime[exist] * Math.pow(10, 2)) / Math.pow(10, 2);
+              chartDataAvarageTime[exist] = Math.round(chartDataAvarageTime[exist] * Math.pow(10, 4)) / Math.pow(10, 4);
               chartDataLabels[exist] = dayParts[i];
               exist++;
           }
@@ -612,24 +506,29 @@
       }
 
       //Create area chart
-      var areaChart;
+      let areaChart;
       // function chartIt(){
       // Get context with jQuery - using jQuery's .get() method.
-      var areaChartCanvas = $('#areaChart').get(0).getContext('2d');
-          
+      let areaChartCanvas = $('#areaChart').get(0).getContext('2d');
+  
+      let gradientStroke = areaChartCanvas.createLinearGradient(0,200,10, 0,100,20);
+          gradientStroke.addColorStop(0, "rgba(60,141,188,0.9)");
+          gradientStroke.addColorStop(1, "rgba(60,141,188,0.2)");
+ 
+
       var areaChartData = {
-          labels  : ['margarīns,zupa'],
+          labels  : [],
           datasets: [
           {
-              label               : 'Download speed(KBps)',
-              backgroundColor     : 'rgba(60,141,188,0.2)',
+              label               : 'Response time(ms)',
+              backgroundColor     : gradientStroke,
               borderColor         : 'rgba(60,141,188,0.9)',
               pointRadius          : true,
               pointColor          : '#3b8bba',
               pointStrokeColor    : 'rgba(60,141,188,1)',
               pointHighlightFill  : '#fff',
               pointHighlightStroke: 'rgba(60,141,188,1)',
-              data                : [1,2],
+              data                : [],
               fill: true,
               pointRadius: 4,
               pointHoverRadius: 6,
@@ -640,9 +539,13 @@
     
       var areaChartOptions = {
           maintainAspectRatio : false,
+          animation: false,
+          // animation: {
+          //   easing: "easeInSine"
+          // },
           responsive : true,
           legend: {
-          display: false
+            display: false
           },
           scales: {
             xAxes: [{
@@ -678,18 +581,17 @@
         let clock = new Array();
         let clockForWeekChart = new Array();
 
-        let friendlyNameCounter = 0;
         let checkCounter = 0;
 
-        let minResponseTime = 3000000;
+        let minResponseTime = 10;
         let maxResponseTime = 0;
         let averageResponseTime = 0;
 
-        while(newresponseTime[checkCounter]!=null){
+        for( const value in newresponseTime){
 
 
             //round number to 4 numbers after ,
-            speed[checkCounter] = Math.round((newresponseTime[checkCounter].value / 1000) * Math.pow(10, 2)) / Math.pow(10, 2);
+            speed[checkCounter] = Math.round(newresponseTime[value].value * Math.pow(10, 4)) / Math.pow(10, 4);
             
             //find max response time
             if(maxResponseTime < speed[checkCounter]){
@@ -704,23 +606,23 @@
             //Count together all response times
             averageResponseTime += speed[checkCounter];
             
-            clock[checkCounter] = newresponseTime[checkCounter].clock;
+            clock[checkCounter] = newresponseTime[value].clock;
             clock[checkCounter] = moment(clock[checkCounter]*1000).format("DD-MM-YYYY HH:mm:ss");
 
-            clockForWeekChart[checkCounter] = newresponseTime[checkCounter].clock;
+            clockForWeekChart[checkCounter] = newresponseTime[value].clock;
             
             checkCounter++;
         }
 
         //Work out average response time
         averageResponseTime /= checkCounter;
-        averageResponseTime = Math.round(averageResponseTime * Math.pow(10, 2)) / Math.pow(10, 2);
+        averageResponseTime = Math.round(averageResponseTime * Math.pow(10, 4)) / Math.pow(10, 4);
 
         displayNewInfo(speed,checkCounter);
         $("#numberOfCheck").text(checkCounter);
-        $('#minTime').text(minResponseTime + ' KBps');
-        $('#averageTime').text(averageResponseTime + ' KBps');
-        $('#maxTime').text(maxResponseTime + ' KBps');
+        $('#minTime').text(minResponseTime + 's');
+        $('#averageTime').text(averageResponseTime + 's');
+        $('#maxTime').text(maxResponseTime + 's');
         
         areaChart.data.datasets[0].data = speed;
         areaChart.data.labels = clock;
@@ -732,7 +634,6 @@
         }else{
           insertDataToDayPartChart(speed,clockForWeekChart);
         }
-
       }
 
       let startHr = 0;
@@ -741,11 +642,11 @@
       let endHr = 15;
       let endMin = 0;
 
-      function checkTime(history){
-        startHr = document.querySelectorAll('.hr')[0].value;
-        endHr = document.querySelectorAll('.hr')[1].value;
-        startMin = document.querySelectorAll('.min')[0].value;
-        endMin = document.querySelectorAll('.min')[1].value;
+      function costomizeData(history){
+        let startHr = document.querySelectorAll('.hr')[0].value;
+        let endHr = document.querySelectorAll('.hr')[1].value;
+        let startMin = document.querySelectorAll('.min')[0].value;
+        let endMin = document.querySelectorAll('.min')[1].value;
 
         let currentHr;
         let currentMin;
@@ -782,43 +683,38 @@
       }
 
       function callController(startDate,endDate,selectedItemId){
-
         if(selectedItemId != null){
           $.ajax( {
-          type:'POST',
-          header:{
-          'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-          },
-          url:"/user/monitoring/download-speed",
-          data:{
-          _token: "{{ csrf_token() }}",
-          dataType: 'json', 
-          contentType:'application/json', 
-          item_id: selectedItemId,
-          startDate: startDate,      
-          endDate: endDate,
-          }
+            type:'POST',
+            header:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            },
+            url:"/user/monitoring/page-speed",
+            data:{
+            _token: "{{ csrf_token() }}",
+            dataType: 'json', 
+            contentType:'application/json', 
+            item_id: selectedItemId,
+            startDate: startDate,      
+            endDate: endDate,
+            }
+
+
           })
             .done(function(data) {
-              //Costomize item hystory data
-              newdata = checkTime(data);
-              userDataCheck(newdata.histories,data.itemsFriendlyName,data.selectedId);
+              newdata = costomizeData(data);
+              dataCheck(newdata.histories,data.itemsFriendlyName,data.selectedId);
             })
             .fail(function() {
-                alert(@json( __("error")));
+                alert("error");
             });
-          }
+        }
       }
 
       //Insert new items to friendly name drop down form
       function addOptionsToDropDown(friendlyNames,dropDownValue){
 
           let dropDownCheckType = document.getElementById('userMonitors');
-          let dropDownCheckTypeValue;
-
-          if(dropDownValue){
-              dropDownCheckTypeValue = dropDownValue;
-          }
 
           let dropDownElements =document.getElementsByTagName('option');
 
@@ -834,6 +730,7 @@
           }
 
           //Set Current check friendly name to dropDown
+
           $("#userMonitors").val(dropDownValue);
           
       }
@@ -857,7 +754,6 @@
       });
 
       $('#datePicker').on('apply.daterangepicker', function(ev, picker) {
-        currentFriendlyNameSelected = $("#userMonitors option:checked").text();
         startDate = picker.startDate.format();
         startDate = Math.floor(Date.parse(startDate) / 1000);
         endDate = picker.endDate.format();
@@ -869,7 +765,7 @@
 
         //Get selected items id
         const selectedItemId = $("#userMonitors option:selected").val();
-        
+
         callController(startDate,endDate,selectedItemId );
 
       });
@@ -879,11 +775,15 @@
       $("#userMonitors").change(function(){
         //Get selected items id
         const selectedItemId = $("#userMonitors option:selected").val();
-        
+
         callController(startDate,endDate,selectedItemId );
       });
 
-    $('#timeButton').click(function() {
+      $('#timeButton').click(function() {
+        hideOrShowSelectTimeBox();
+      });
+
+    function hideOrShowSelectTimeBox(){
       let content = document.getElementById('timeSelectBox');
 
       if (content.style.height == '0px' || content.style.height == ''){
@@ -891,13 +791,14 @@
       } else {
         content.style.height = 0 + 'px';
       } 
-    });
+    }
 
     $('#selectTime').click(function(){
-        //Get selected items id
-        const selectedItemId = $("#userMonitors option:selected").val();
+        hideOrShowSelectTimeBox();
 
-        callController(startDate,endDate,selectedItemId );
+        const selectedDropDownOption = $("#userMonitors option:selected").val();
+
+        callController(startDate,endDate,selectedDropDownOption);
     });
 
     $('#radioOption1').click(function(){
@@ -905,9 +806,11 @@
       let value = new Array();
       let time = new Array();
 
-      for (const property in currentHistory) {
-        value[property] = Math.round((currentHistory[property]['value'] / 1000) * Math.pow(10, 2)) / Math.pow(10, 2);
-        time[property] = currentHistory[property]['clock'];
+      let i = 0;
+      for (const property in splitedHystory[sortedHistoryIndex-1]) {
+        value[i] = Math.round(currentHistory[property]['value'] * Math.pow(10, 4)) / Math.pow(10, 4);
+        time[i] = currentHistory[property]['clock'];
+        i++;
       }
 
       insertDataToWeekdayChart(value,time);
@@ -918,9 +821,11 @@
       let value = new Array();
       let time = new Array();
 
-      for (const property in currentHistory) {
-        value[property] = Math.round((currentHistory[property]['value'] / 1000) * Math.pow(10, 2)) / Math.pow(10, 2);
-        time[property] = currentHistory[property]['clock'];
+      let i=0;
+      for (const property in splitedHystory[sortedHistoryIndex-1]) {
+        value[i] = Math.round(currentHistory[property]['value'] * Math.pow(10, 4)) / Math.pow(10, 4);
+        time[i] = currentHistory[property]['clock'];
+        i++;
       }
       insertDataToDayPartChart(value,time);
     });
@@ -972,6 +877,7 @@
         min_element[i].addEventListener('change', function(e){
           minute_change(e,i);
         });
+
 
       }
 
@@ -1060,14 +966,11 @@
       }
 
       function formatTime(time){
-        if( time < 10 && time != '00'){
+        if( time < 10){
           time = '0' + time;
         }
 
         return time;
       }
-      
-  });
-</script>
 
-@stop
+  });

@@ -93,10 +93,7 @@
 @stop
 
 @section('css')
-<link href="/css/userAdmin.css" rel="stylesheet">
-
-{{-- Date styles --}}
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link href="/css/adminlte/user_admin/uptime.css" rel="stylesheet">
 
 {{-- Toastr styles --}}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" media="all">
@@ -111,11 +108,6 @@
 <script type="text/javascript" src="{{ URL::asset('js/jquery.easypiechart.min.js') }}"></script>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-{{----}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
-
 
 {{-- Alert modal window --}}
 {{-- toastr --}}

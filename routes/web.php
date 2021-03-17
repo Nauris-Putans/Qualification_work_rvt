@@ -106,7 +106,7 @@ Route::middleware(['role:' . $userAdminSide])->group( function()
     // Monitoring sections
     Route::get('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@create')->name('monitor.add');
     Route::post('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@store')->name('add.store');
-    Route::get('/user/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@index');
+    Route::get('/user/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@index')->name('monitor.list.show');
     Route::post('/user/monitoring/monitors/list/delete/{monitorId}', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@deleteMonitor')->name('monitor.destroy');
     Route::post('/user/monitoring/monitors/list/change-status/{monitorId}', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@changeStatus')->name('monitor.changeStatus');
     Route::get('/user/monitoring/uptime', 'Adminlte\user_admin\monitoring\MonitoringUptimeController@index');
@@ -118,12 +118,16 @@ Route::middleware(['role:' . $userAdminSide])->group( function()
     // Alerts sections
     Route::get('/user/alerts', 'Adminlte\user_admin\AlertsController@index');
 
+    // Profile section
+    Route::get('/user/profile/{id}', 'Adminlte\user_admin\UserProfileController@index')->name('userProfile.show');
+
     // Settings section
     Route::get('/user/settings', 'Adminlte\user_admin\SettingController@index');
     Route::patch('/user/settings/personal_info/{id}', ['as' => 'user.settings.personal_info.update', 'uses' => 'Adminlte\user_admin\SettingController@personal_info_update']);
     Route::patch('/user/settings/notification/{id}', ['as' => 'user.settings.notification.update', 'uses' => 'Adminlte\user_admin\SettingController@notification_update']);
     Route::patch('/user/settings/password_security/{id}', ['as' => 'user.settings.password_security.update', 'uses' => 'Adminlte\user_admin\SettingController@password_security_update']);
     Route::post('/user/settings/profile_image/update', 'Adminlte\user_admin\SettingController@updateProfile');
+    Route::post('/user/settings/group/change/{groupid}', 'Adminlte\user_admin\SettingController@changeGroup')->name('user.change.group');
 
     // Tickets section
     Route::get('/user/support/tickets', ['as' => 'user.support.tickets', 'uses' => 'TicketController@userTickets']);

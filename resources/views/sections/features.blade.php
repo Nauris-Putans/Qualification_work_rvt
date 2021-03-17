@@ -134,8 +134,8 @@
     </section>
 @endsection
 
-@section('styles')
-
+@section('css')
+    <link href="/css/sections/features.blade.css" rel="stylesheet">
 @endsection
 
 @section('scripts-top')

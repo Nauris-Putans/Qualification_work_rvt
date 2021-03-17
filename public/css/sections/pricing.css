@@ -1,0 +1,144 @@
+.pricing {
+  background-color: #131A26;
+  width: 100%;
+  padding: 50px 5px;
+}
+
+.pricing .pricing__lable {
+  width: 100%;
+  height: 50px;
+  font-size: 24px;
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.pricing .plan-wrapper {
+  background-color: white;
+  width: 100%;
+  min-height: 200px;
+  margin-top: 20px;
+  padding: 10px 5px;
+  border-radius: 5px;
+}
+
+.pricing .plan-wrapper .plan-lable {
+  font-weight: 600;
+  width: 100%;
+  height: 25px;
+  font-size: 14px;
+  text-align: center;
+  color: black;
+}
+
+.pricing .plan-wrapper .price-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  margin: 10px auto 0 auto;
+  height: 75px;
+  padding: 10px 0;
+  border-top: 3px solid #CA6D00;
+  border-bottom: 3px solid #CA6D00;
+  font-size: 22px;
+  color: black;
+}
+
+.pricing .plan-wrapper .plan-decription-wrapper {
+  width: 90%;
+  margin: 10px auto;
+  height: 240px;
+  color: black;
+  padding: 10px 0;
+}
+
+.pricing .plan-wrapper .plan-decription-wrapper .plan-freature-box {
+  width: 100%;
+  height: 25px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.pricing .plan-wrapper .plan-enterprise-decription-wrapper {
+  display: flex;
+  width: 90%;
+  border-top: 3px solid #CA6D00;
+  align-items: center;
+  text-align: center;
+  margin: 10px auto;
+  height: 325px;
+  color: black;
+  padding: 10px 0;
+}
+
+.pricing .plan-wrapper .plan-enterprise-decription-wrapper .plan-freature-box {
+  width: 80%;
+  min-height: 25px;
+  text-align: center;
+  font-size: 14px;
+  margin: 0 auto;
+}
+
+.pricing .plan-end-line {
+  width: 100%;
+  height: 4px;
+  margin-top: 30px;
+  background-color: #B40707;
+}
+
+.pricing .btn-gray {
+  background-color: #687790;
+  color: white;
+}
+
+.pricing .payBtn {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.pricing .OrangeButton a {
+  color: white;
+}
+
+.pricing .OrangeButton a:hover {
+  color: white;
+  background-color: #a75900;
+  border-color: #a75900;
+}
+
+.pricing .OrangeButton button {
+  color: white;
+}
+
+.pricing .OrangeButton button:hover {
+  color: white;
+  background-color: #a75900;
+  border-color: #a75900;
+}
+
+.pricing .GreyButton a {
+  color: white;
+}
+
+.pricing .GreyButton a:hover {
+  color: white;
+  background-color: #545f74;
+  border-color: #545f74;
+}
+
+.pricing .GreyButton button {
+  color: white;
+}
+
+.pricing .GreyButton button:hover {
+  color: white;
+  background-color: #545f74;
+  border-color: #545f74;
+}
+
+.pricing .enterprise-padding {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+

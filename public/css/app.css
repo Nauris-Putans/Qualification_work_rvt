@@ -12844,6 +12844,7 @@ a.text-dark:focus {
   background-image: url(/images/vendor/flag-icon-css/flags/1x1/us.svg?8ec583188aba7e9426580350312d97a5);
 }
 
+<<<<<<< HEAD
 .flag-icon-uy {
   background-image: url(/images/vendor/flag-icon-css/flags/4x3/uy.svg?79b02850081e27b3ba209e6ae60ad50f);
 }
@@ -13084,3 +13085,5 @@ a.text-dark:focus {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+=======
+>>>>>>> dee82ac0b061f4c02f0bd5b5535016714120494b

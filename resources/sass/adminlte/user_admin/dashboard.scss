@@ -116,5 +116,17 @@
     .colorpicker-input-addon i{
         border: 1px solid black;
     }
+
+    .draggable{
+        cursor: move;
+    }
+
+    .dragging{
+        opacity: 0.5;
+    }
+
+    .card-body{
+        cursor: context-menu;
+    }
 }
 

@@ -42,12 +42,12 @@
     </section>
 @endsection
 
-@section('styles')
-
+@section('css')
+    <link href="/css/sections/contacts.blade.css" rel="stylesheet">
 @endsection
 
 @section('scripts-top')
-    
+
 @endsection
 
 @section('scripts-bottom')

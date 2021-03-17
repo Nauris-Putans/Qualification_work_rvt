@@ -161,8 +161,8 @@
     </section>
 @endsection
 
-@section('styles')
-
+@section('css')
+    <link href="/css/sections/pricing.css" rel="stylesheet">
 @endsection
 
 @section('scripts-top')
