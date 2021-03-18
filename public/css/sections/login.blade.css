@@ -177,8 +177,7 @@
 }
 
 .LoginForm .overlay {
-  background-color: #d63230;
-  background: linear-gradient(319deg, #d63230 0%, #f39237 100%);
+  background: #fd711d;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;

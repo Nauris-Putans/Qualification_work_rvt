@@ -90,7 +90,7 @@
     </section>
 @endsection
 
-@section('styles')
+@section('css')
 
 @endsection
 
