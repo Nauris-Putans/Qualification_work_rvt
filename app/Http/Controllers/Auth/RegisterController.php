@@ -21,6 +21,7 @@ use Becker\Zabbix\ZabbixApi;
 use Becker\Zabbix\ZabbixException;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Cashier\Exceptions\IncompletePayment;
+use Stripe\Product;
 
 class RegisterController extends Controller
 {
@@ -129,7 +130,12 @@ class RegisterController extends Controller
         try
         {
             // Subscribes to new plan with payment method variable $paymentMethod
-            $user->newSubscription('default', 'price_1IPyAQLPN6FCz2Owwsyt23QS')->create();
+            $user
+                ->newSubscription('default', 'price_1IPyAQLPN6FCz2Owwsyt23QS')
+                ->withMetadata([
+                    'Plan name' => 'Free'
+                ])
+                ->create();
         }
 
         catch (IncompletePayment $exception)

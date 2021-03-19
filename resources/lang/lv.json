@@ -605,6 +605,10 @@
     "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.": "Norēķinu e-pasta adresi varat iestatīt šeit. To izmantos rēķinu un citu rēķinu paziņojumu nosūtīšanai. Ja atstājat šo lauku tukšu, pēc noklusējuma tiks izmantota jūsu konta e-pasta adrese.",
     "Choose how you will receive notifications from us. WEBcheck will send you email or SMS notifications based on your notification settings.": "Izvēlieties, kā no mums saņemsit paziņojumus. WEBcheck nosūtīs jums e-pasta vai SMS paziņojumus, pamatojoties uz jūsu paziņojumu iestatījumiem.",
     "Nothing selected": "Nekas nav atlasīts",
+    "Current subscription": "Pašreizējais abonements",
+    "none": "neviena",
+    "plan": "plāns",
+    "Next billing date": "Nākamais norēķinu datums",
 
     "//////Adminlte admin side navbar":
     {},

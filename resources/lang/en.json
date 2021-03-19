@@ -605,6 +605,10 @@
     "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.": "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.",
     "Choose how you will receive notifications from us. WEBcheck will send you email or SMS notifications based on your notification settings.": "Choose how you will receive notifications from us. WEBcheck will send you email or SMS notifications based on your notification settings.",
     "Nothing selected": "Nothing selected",
+    "Current subscription": "Current subscription",
+    "none": "none",
+    "plan": "plan",
+    "Next billing date": "Next billing date",
 
     "//////Adminlte admin side navbar":
     {},

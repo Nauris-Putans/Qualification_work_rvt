@@ -105,6 +105,9 @@ class SubscriptionController extends Controller
             // Subscribes to new plan with payment method variable $paymentMethod
             $request->user()
                 ->newSubscription('default', $request->plan)
+                ->withMetadata([
+                    'Plan name' => $product->name
+                ])
                 ->create($paymentMethod, [
                     'email' => $request->user()->email,
                 ]);

@@ -17,6 +17,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Config;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
@@ -55,8 +56,17 @@ class SettingController extends Controller
 
         // Finds country by $countryID
         $countryName = Country::find($user->country);
-        
-        return view('adminlte.user_admin.settings', compact('countries', 'hashids', 'user', 'countryName','groups','activeUserGroup'));
+
+        // Finds next billing date for user
+        $timestamp = date("Y-m-d H:i:s", $user->asStripeCustomer()->subscriptions->data[0]["current_period_end"]);
+
+        // Sets current language to $locale
+        $locale = Config::get('app.locale');
+
+        // Sets locale for all data types (php)
+        setlocale(LC_ALL, $locale . '_utf8');
+
+        return view('adminlte.user_admin.settings', compact('countries', 'hashids', 'user', 'countryName', 'groups', 'activeUserGroup', 'timestamp'));
     }
 
     /**
@@ -157,7 +167,7 @@ class SettingController extends Controller
         $data = [
             'password'=> Hash::make($request->new_password),
         ];
-        
+
         //Set new password
         $user->password = $data['password'];
 
@@ -175,7 +185,7 @@ class SettingController extends Controller
      */
     public function changeGroup(Request $request, $groupid)
     {
-  
+
         // get user id
         $userId = $request
             ->session()

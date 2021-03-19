@@ -605,6 +605,10 @@
     "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.": "Здесь вы можете указать свой платежный адрес электронной почты. Он будет использоваться для отправки счетов и других уведомлений о выставлении счетов. Если вы оставите это поле пустым, по умолчанию будет использоваться адрес электронной почты вашего аккаунта.",
     "Choose how you will receive notifications from us. WEBcheck will send you email or SMS notifications based on your notification settings.": "Выберите, как вы будете получать от нас уведомления. WEBcheck будет отправлять вам уведомления по электронной почте или SMS в зависимости от ваших настроек уведомлений.",
     "Nothing selected": "Ничего не выбрано",
+    "Current subscription": "Текущая подписка",
+    "none": "никто",
+    "plan": "план",
+    "Next billing date": "Дата следующего выставления счета",
 
     "//////Adminlte admin side navbar":
     {},
