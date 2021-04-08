@@ -403,6 +403,7 @@
     ":plan - plan": ":plan - план",
     "Pay :amount": "Платить :amount",
     "You can change subscription plan in account settings": "Вы можете изменить тарифный план в настройках аккаунта",
+    "Powered by Stripe": "При поддержке Stripe",
 
     "//////FAQ section":
     {},

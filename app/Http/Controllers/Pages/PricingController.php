@@ -67,7 +67,7 @@ class PricingController extends Controller
 
         // Retrieves product and adds it to plan
         $prod = Product::retrieve(
-            $plan->product,[]
+            $plan->product, []
         );
 
         $plan->product = $prod;

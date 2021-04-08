@@ -91,7 +91,7 @@
 @endsection
 
 @section('css')
-
+    <link href="/css/sections/faq.blade.css" rel="stylesheet">
 @endsection
 
 @section('scripts-top')

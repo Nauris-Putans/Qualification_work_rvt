@@ -140,7 +140,7 @@
                             {{ Form::personalInfoForm() }}
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-subscription" role="tabpanel" aria-labelledby="custom-tabs-one-subscription-tab">
-                            {{ Form::component('subscriptionForm', 'components.form.adminlte.user_admin.subscription-form', ['hashids' => $hashids, 'user' => $user, 'timestamp' => $timestamp]) }}
+                            {{ Form::component('subscriptionForm', 'components.form.adminlte.user_admin.subscription-form', ['hashids' => $hashids, 'user' => $user, 'timestamp' => $timestamp, 'planName' => $planName, 'invoices' => $invoices]) }}
                             {{ Form::subscriptionForm() }}
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-notification" role="tabpanel" aria-labelledby="custom-tabs-one-notification-tab">

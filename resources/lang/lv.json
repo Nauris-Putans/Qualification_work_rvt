@@ -403,6 +403,7 @@
     ":plan - plan": ":plan - plāns",
     "Pay :amount": "Maksāt :amount",
     "You can change subscription plan in account settings": "Abonēšanas plānu var mainīt konta iestatījumos",
+    "Powered by Stripe": "Darbina ar Stripe",
 
     "//////FAQ section":
     {},

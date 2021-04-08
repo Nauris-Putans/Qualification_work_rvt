@@ -163,6 +163,10 @@
             </div>
 
             <footer class="my-5 pt-5 text-muted text-center text-small">
+                <a class="mb-1" href="https://stripe.com">
+                    {{ __("Powered by Stripe") }}
+                </a>
+
                 <p class="mb-1">
                     {{ __("© :year. All Rights Reserved.", ['year' => "2021"]) }}
                 </p>

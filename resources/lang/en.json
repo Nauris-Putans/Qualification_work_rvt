@@ -403,6 +403,7 @@
     ":plan - plan": ":plan - plan",
     "Pay :amount": "Pay :amount",
     "You can change subscription plan in account settings": "You can change subscription plan in account settings",
+    "Powered by Stripe": "Powered by Stripe",
 
     "//////FAQ section":
     {},

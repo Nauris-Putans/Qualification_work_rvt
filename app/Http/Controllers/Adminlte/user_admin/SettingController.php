@@ -35,6 +35,8 @@ class SettingController extends Controller
      */
     public function index(Request $request)
     {
+        date_default_timezone_set('Europe/Riga');
+
         // Finds all countries and stores in $countries
         $countries = Country::all();
 
@@ -57,8 +59,22 @@ class SettingController extends Controller
         // Finds country by $countryID
         $countryName = Country::find($user->country);
 
-        // Finds next billing date for user
-        $timestamp = date("Y-m-d H:i:s", $user->asStripeCustomer()->subscriptions->data[0]["current_period_end"]);
+        if ($user->asStripeCustomer()->subscriptions->data != null)
+        {
+            // Finds next billing date for user
+            $timestamp = date("Y-m-d H:i:s", $user->asStripeCustomer()->subscriptions->data[0]["current_period_end"]);
+
+            // Finds plan name for user
+            $planName = $user->asStripeCustomer()->subscriptions->data[0]->metadata['Plan name'];
+        }
+
+        else
+        {
+            $timestamp = null;
+            $planName = null;
+        }
+
+        $invoices = $user->invoices();
 
         // Sets current language to $locale
         $locale = Config::get('app.locale');
@@ -66,7 +82,7 @@ class SettingController extends Controller
         // Sets locale for all data types (php)
         setlocale(LC_ALL, $locale . '_utf8');
 
-        return view('adminlte.user_admin.settings', compact('countries', 'hashids', 'user', 'countryName', 'groups', 'activeUserGroup', 'timestamp'));
+        return view('adminlte.user_admin.settings', compact('countries', 'hashids', 'user', 'countryName', 'groups', 'activeUserGroup', 'timestamp', 'planName', 'invoices'));
     }
 
     /**
