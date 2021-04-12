@@ -90,7 +90,12 @@
                                             @foreach ($invoices as $invoice)
                                                 <div class="time-label">
                                                     <span class="bg-green">
-                                                        {{ strftime("%d %b", strtotime($invoice->date()->setTimezone(new DateTimeZone('Europe/Riga')))) }}
+                                                        @if (Config::get('app.locale') !== 'ru')
+                                                            {{ strftime("%d %b", strtotime($invoice->date())) }}
+                                                        @else
+                                                            {{ iconv('windows-1251', 'utf-8', strftime("%d %B", strtotime($invoice->date()))) }}
+                                                        @endif
+
                                                         <input name="stop" type="hidden" value="stop">
                                                     </span>
                                                 </div>

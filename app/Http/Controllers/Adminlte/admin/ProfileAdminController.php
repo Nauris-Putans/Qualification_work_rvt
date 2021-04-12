@@ -58,7 +58,7 @@ class ProfileAdminController extends Controller
         $locale = Config::get('app.locale');
 
         // Sets locale for all data types (php)
-        setlocale(LC_ALL, $locale . '_utf8');
+        setlocale(LC_ALL, $locale . '_' . strtoupper($locale), $locale);
 
         return view('adminlte.admin.profile-admin', compact('user', 'role', 'countryName', 'invoices'));
     }

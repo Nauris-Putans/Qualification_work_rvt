@@ -57,13 +57,13 @@ class TicketController extends Controller
         // Finds user by user id
         $ticket = Ticket::find($id)->first();
 
+        $user_closedBy = User::all();
+
         // Sets current language to $locale
         $locale = Config::get('app.locale');
 
-        $user_closedBy = User::all();
-
         // Sets locale for all data types (php)
-        setlocale(LC_ALL, $locale . '_utf8');
+        setlocale(LC_ALL, $locale . '_' . strtoupper($locale), $locale);
 
         return view('adminlte.admin.view-tickets', compact('ticket', 'hashids', 'user_closedBy'));
     }

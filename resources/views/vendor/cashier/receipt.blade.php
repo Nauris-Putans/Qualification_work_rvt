@@ -12,7 +12,7 @@
 
     <style>
         * {
-            font-family: DejaVu Sans;
+            font-family: DejaVu Sans !important;
         }
 
         body {
@@ -77,7 +77,8 @@
                 <br><br>
                 <strong>{{ __('To:') }}</strong> {{ $owner->stripeEmail() ?: $owner->name }}
                 <br>
-                <strong>{{ __('Date:') }}</strong> {{ $invoice->date()->toFormattedDateString() }}
+                <strong>{{ __('Date:') }}</strong>
+                {{ date("d.m.Y", strtotime($invoice->date()->toDateString())) }}
             </td>
         </tr>
         <tr valign="top">
@@ -164,8 +165,8 @@
                         <tr class="row">
                             <td>{{ __('Subscription') }} ({{ $subscription->quantity }})</td>
                             <td>
-                                {{ strftime("%B %e, %Y", strtotime($subscription->startDateAsCarbon())) }} -
-                                {{ strftime("%B %e, %Y", strtotime($subscription->endDateAsCarbon())) }}
+                                {{ date("d.m.Y", strtotime($subscription->startDateAsCarbon()->toDateString())) }} -
+                                {{ date("d.m.Y", strtotime($subscription->endDateAsCarbon()->toDateString())) }}
                             </td>
 
                             @if ($invoice->hasTax())

@@ -610,6 +610,10 @@
     "none": "none",
     "plan": "plan",
     "Next billing date": "Next billing date",
+    "Changes an existing subscription to match new selected plan. When changing prices, we will optionally prorate the price we charge next month to make up for any price changes.": "Changes an existing subscription to match new selected plan. When changing prices, we will optionally prorate the price we charge next month to make up for any price changes.",
+    "Change Subscription": "Change Subscription",
+    "Cancels a customer’s subscription immediately. The customer will not be charged again for the subscription however, that any pending invoice items that you’ve created will still be charged for at the end of the period.": "Cancels a customer’s subscription immediately. The customer will not be charged again for the subscription however, that any pending invoice items that you’ve created will still be charged for at the end of the period.",
+    "Cancel Subscription": "Cancel Subscription",
 
     "//////Adminlte admin side navbar":
     {},

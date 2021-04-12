@@ -42,7 +42,7 @@ class InvoiceController extends Controller
         $locale = Config::get('app.locale');
 
         // Sets locale for all data types (php)
-        setlocale(LC_ALL, $locale . '_utf8');
+        setlocale(LC_ALL, $locale . '_' . strtoupper($locale), $locale, $locale . '_utf8');
 
         $user = User::find($request->userID);
 

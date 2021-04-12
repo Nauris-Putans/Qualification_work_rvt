@@ -80,7 +80,7 @@ class SettingController extends Controller
         $locale = Config::get('app.locale');
 
         // Sets locale for all data types (php)
-        setlocale(LC_ALL, $locale . '_utf8');
+        setlocale(LC_ALL, $locale . '_' . strtoupper($locale), $locale);
 
         return view('adminlte.user_admin.settings', compact('countries', 'hashids', 'user', 'countryName', 'groups', 'activeUserGroup', 'timestamp', 'planName', 'invoices'));
     }

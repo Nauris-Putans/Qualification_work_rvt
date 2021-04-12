@@ -610,6 +610,10 @@
     "none": "neviena",
     "plan": "plāns",
     "Next billing date": "Nākamais norēķinu datums",
+    "Changes an existing subscription to match new selected plan. When changing prices, we will optionally prorate the price we charge next month to make up for any price changes.": "Maina esošu abonementu, lai tas atbilstu jaunajam atlasītajam plānam. Mainot cenas, mēs pēc izvēles proporcionēsim cenu, ko iekasējam nākamajā mēnesī, lai kompensētu visas cenu izmaiņas.",
+    "Change Subscription": "Mainīt abonementu",
+    "Cancels a customer’s subscription immediately. The customer will not be charged again for the subscription however, that any pending invoice items that you’ve created will still be charged for at the end of the period.": "Nekavējoties atceļ klienta abonementu. Klientam par abonementu atkal netiks iekasēta maksa, taču perioda beigās joprojām tiks iekasēta maksa par visiem jūsu izveidotajiem neapstiprinātajiem rēķina vienumiem.",
+    "Cancel Subscription": "Atcelt abonementu",
 
     "//////Adminlte admin side navbar":
     {},

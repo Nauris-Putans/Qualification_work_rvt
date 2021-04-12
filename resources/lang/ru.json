@@ -610,6 +610,10 @@
     "none": "никто",
     "plan": "план",
     "Next billing date": "Дата следующего выставления счета",
+    "Changes an existing subscription to match new selected plan. When changing prices, we will optionally prorate the price we charge next month to make up for any price changes.": "Изменяет существующую подписку в соответствии с новым выбранным планом. При изменении цен мы, по желанию, пропорционально изменим цену, которую взимаем в следующем месяце, чтобы компенсировать любые изменения цен.",
+    "Change Subscription": "Изменить подписку",
+    "Cancels a customer’s subscription immediately. The customer will not be charged again for the subscription however, that any pending invoice items that you’ve created will still be charged for at the end of the period.": "Немедленно отменяет подписку клиента. С клиента не будет снова взиматься плата за подписку, и все созданные вами незавершенные счета-фактуры по-прежнему будут оплачиваться в конце периода.",
+    "Cancel Subscription": "Отписаться от рассылки",
 
     "//////Adminlte admin side navbar":
     {},
