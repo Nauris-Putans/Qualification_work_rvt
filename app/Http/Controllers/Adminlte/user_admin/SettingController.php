@@ -59,7 +59,7 @@ class SettingController extends Controller
         // Finds country by $countryID
         $countryName = Country::find($user->country);
 
-        if ($user->asStripeCustomer()->subscriptions->data != null)
+        if ($user->createOrGetStripeCustomer()->subscriptions->data !== [])
         {
             // Finds next billing date for user
             $timestamp = date("Y-m-d H:i:s", $user->asStripeCustomer()->subscriptions->data[0]["current_period_end"]);
@@ -74,7 +74,15 @@ class SettingController extends Controller
             $planName = null;
         }
 
-        $invoices = $user->invoices();
+        if ($user->invoices() !== [])
+        {
+            $invoices = $user->invoices();
+        }
+
+        else
+        {
+            $invoices = null;
+        }
 
         // Sets current language to $locale
         $locale = Config::get('app.locale');
@@ -277,71 +285,5 @@ class SettingController extends Controller
         $user->save();
 
         return redirect()->back()->with('message', __(':attribute - :action', ['attribute' => __("Profile image"), 'action' => __("has been updated!")]));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param Setting $setting
-     * @return Response
-     */
-    public function show(Setting $setting)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Setting $setting
-     * @return Response
-     */
-    public function edit(Setting $setting)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param Setting $setting
-     * @return Response
-     */
-    public function update(Request $request, Setting $setting)
-    {
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Setting $setting
-     * @return Response
-     */
-    public function destroy(Setting $setting)
-    {
-        //
     }
 }

@@ -122,12 +122,17 @@ Route::middleware(['role:' . $userAdminSide])->group( function()
     Route::get('/user/profile/{id}', 'Adminlte\user_admin\UserProfileController@index')->name('userProfile.show');
 
     // Settings section
-    Route::get('/user/settings', 'Adminlte\user_admin\SettingController@index');
+    Route::get('/user/settings', 'Adminlte\user_admin\SettingController@index')->name('user.settings');
     Route::patch('/user/settings/personal_info/{id}', ['as' => 'user.settings.personal_info.update', 'uses' => 'Adminlte\user_admin\SettingController@personal_info_update']);
     Route::patch('/user/settings/notification/{id}', ['as' => 'user.settings.notification.update', 'uses' => 'Adminlte\user_admin\SettingController@notification_update']);
     Route::patch('/user/settings/password_security/{id}', ['as' => 'user.settings.password_security.update', 'uses' => 'Adminlte\user_admin\SettingController@password_security_update']);
     Route::post('/user/settings/profile_image/update', 'Adminlte\user_admin\SettingController@updateProfile');
     Route::post('/user/settings/group/change/{groupid}', 'Adminlte\user_admin\SettingController@changeGroup')->name('user.change.group');
+
+    Route::get('/user/settings/subscription/plans', ['as' => 'user.settings.subscription.plans', 'uses' => 'SubscriptionController@showPlans']);
+    Route::get('/user/settings/subscription/plans/cancel', ['as' => 'user.settings.subscription.plans.cancel', 'uses' => 'SubscriptionController@showConfirmation']);
+    Route::get('/user/settings/subscription/plans/cancel_confirm', ['as' => 'user.settings.subscription.plans.cancel_confirm', 'uses' => 'SubscriptionController@showConfirmation']);
+    Route::get('/user/settings/subscription/plans/cancel', ['as' => 'user.settings.subscription.plans.cancel', 'uses' => 'SubscriptionController@cancelSubscription']);
 
     // Tickets section
     Route::get('/user/support/tickets', ['as' => 'user.support.tickets', 'uses' => 'TicketController@userTickets']);

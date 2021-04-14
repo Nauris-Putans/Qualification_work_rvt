@@ -1,9 +1,6 @@
 <div class="boxed">
     <div class="input-info">
         <div spellcheck="false" class="form justify-content-center">
-            <form method="POST" action="{{ URL::route('user.settings.personal_info.update', [$hashids->encode($user->id)]) }}" id="personal_info">
-                @method('PATCH')
-                @csrf
 
                 <div class="col-12 mb-4">
                     <h5>
@@ -124,8 +121,6 @@
                         </div>
                     </div>
                 @endif
-
-            </form>
         </div>
     </div>
 </div>

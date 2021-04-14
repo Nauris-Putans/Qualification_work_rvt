@@ -27,19 +27,99 @@ class SubscriptionController extends Controller
      *
      * @return void
      */
-    public function retrievePlans() {
-        $key = \config('services.stripe.secret');
-        $stripe = new \Stripe\StripeClient($key);
+    public function retrievePlans()
+    {
+        $stripe = new \Stripe\StripeClient(env("STRIPE_SECRET"));
         $plansraw = $stripe->plans->all();
-        $plans = $plansraw->data;
 
-        foreach($plans as $plan) {
+        $plans = $plansraw->data;
+        $plans = array_reverse($plans, true);
+
+        foreach($plans as $plan)
+        {
             $prod = $stripe->products->retrieve(
-                $plan->product,[]
+                $plan->product, []
             );
+
             $plan->product = $prod;
         }
+
         return $plans;
+    }
+
+    public function showPlans(Request $request)
+    {
+        $planName = $request->planName;
+
+        // Retrieves all plans
+        $plans = $this->retrievePlans();
+
+        return view('payment/plans/change', compact('plans', 'planName'));
+    }
+
+    public function showConfirmation(Request $request)
+    {
+        $planName = $request->planName;
+
+        return view('payment/plans/cancel', compact('planName'));
+    }
+
+    // TODO nestrada cancel subscription
+
+    public function cancelSubscription(Request $request)
+    {
+        // Creates or gets stripe customer
+        $request->user()
+            ->createOrGetStripeCustomer();
+
+        try
+        {
+            // Swaps subscription plans
+            $request->user()
+                ->subscription('default')
+                ->swapAndInvoice(
+                    ['price_1IPyAQLPN6FCz2Owwsyt23QS'],
+                    ['metadata' => ['Plan name' => 'Free']]
+                );
+        }
+
+        catch (IncompletePayment $exception)
+        {
+            return redirect()->route(
+                'cashier.payment',
+                [$exception->payment->id, 'redirect' => route('home')]
+            );
+        }
+
+        $request->user()->asStripeCustomer()->subscriptions->data[0]->metadata['Plan name'] = "Free";
+
+        // Finds user free role
+        $role = Role::find(1);
+
+        // Converts int to string
+        $roleID = strval($role->id);
+
+        // Syncs role for current user
+        $request->user()->syncRoles([$roleID]);
+
+        // Mail info
+        $title = __("Unfortunately!");
+        $message = __("You have canceled subscription to :plan plan", ['plan' => $request->planName]);
+
+        $data = [
+            'title' => ucfirst($title),
+            'message' => $message,
+            'product_name' => $request->planName,
+        ];
+
+        $to = $request->user()->email;
+        $from = ['address' => "info.webcheck@gmail.com", 'name' => __("Subscription Robot")];
+        $subject = __("You have canceled subscription to :plan plan", ['plan' => $request->planName]);
+
+        // Sends mail about subscription
+        MailController::sendSubscriptionToEmail($data, $subject, $from, $to);
+
+        return redirect('/user/settings')->with('success', __('Successfully canceled subscription to plan!'));
     }
 
     /**
@@ -60,29 +140,6 @@ class SubscriptionController extends Controller
             return redirect('/')->with('warning', __('You have already subscribed to this plan!'));
         }
 
-        // Checks if user is already subscribed to any plan
-        if ($request->user()->subscribed('default'))
-        {
-            return redirect('/')->with('info', __('You can change subscription plan in account settings'));
-
-            // TODO jaieliek šis account settings priekš users
-
-            // try
-            // {
-            //     // Swaps subscription plans
-            //     $request->user()
-            //         ->subscription('default')->swap($request->plan);
-            // }
-
-            // catch (IncompletePayment $exception)
-            // {
-            //     return redirect()->route(
-            //         'cashier.payment',
-            //         [$exception->payment->id, 'redirect' => route('home')]
-            //     );
-            // }
-        }
-
         // Retrvies payment method from form
         $paymentMethod = $request->paymentMethod;
 
@@ -100,25 +157,55 @@ class SubscriptionController extends Controller
         $request->user()
             ->updateDefaultPaymentMethodFromStripe($paymentMethod);
 
-        try
+        // Checks if user is already subscribed to any plan
+        if ($request->user()->subscribed('default'))
         {
-            // Subscribes to new plan with payment method variable $paymentMethod
-            $request->user()
-                ->newSubscription('default', $request->plan)
-                ->withMetadata([
-                    'Plan name' => $product->name
-                ])
-                ->create($paymentMethod, [
-                    'email' => $request->user()->email,
-                ]);
+            $url = '/user/settings';
+
+            try
+            {
+                // Swaps subscription plans
+                $request->user()
+                    ->subscription('default')
+                    ->swapAndInvoice(
+                        [$request->plan],
+                        ['metadata' => ['Plan name' => $product->name]]
+                    );
+            }
+
+            catch (IncompletePayment $exception)
+            {
+                return redirect()->route(
+                    'cashier.payment',
+                    [$exception->payment->id, 'redirect' => route('home')]
+                );
+            }
         }
 
-        catch (IncompletePayment $exception)
+        else
         {
-            return redirect()->route(
-                'cashier.payment',
-                [$exception->payment->id, 'redirect' => route('home')]
-            );
+            $url = '/';
+
+            try
+            {
+                // Subscribes to new plan with payment method variable $paymentMethod
+                $request->user()
+                    ->newSubscription('default', $request->plan)
+                    ->withMetadata([
+                        'Plan name' => $product->name
+                    ])
+                    ->create($paymentMethod, [
+                        'email' => $request->user()->email,
+                    ]);
+            }
+
+            catch (IncompletePayment $exception)
+            {
+                return redirect()->route(
+                    'cashier.payment',
+                    [$exception->payment->id, 'redirect' => route('home')]
+                );
+            }
         }
 
         // Finds role by request role id
@@ -148,6 +235,6 @@ class SubscriptionController extends Controller
         // Sends mail about subscription
         MailController::sendSubscriptionToEmail($data, $subject, $from, $to);
 
-        return redirect('/')->with('success', __('Successfully subscribed to plan!'));
+        return redirect($url)->with('success', __('Successfully subscribed to plan!'));
     }
 }

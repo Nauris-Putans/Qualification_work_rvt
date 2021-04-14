@@ -614,6 +614,7 @@
     "Change Subscription": "Изменить подписку",
     "Cancels a customer’s subscription immediately. The customer will not be charged again for the subscription however, that any pending invoice items that you’ve created will still be charged for at the end of the period.": "Немедленно отменяет подписку клиента. С клиента не будет снова взиматься плата за подписку, и все созданные вами незавершенные счета-фактуры по-прежнему будут оплачиваться в конце периода.",
     "Cancel Subscription": "Отписаться от рассылки",
+    "Already subscribed": "Уже подписан",
 
     "//////Adminlte admin side navbar":
     {},

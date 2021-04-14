@@ -614,6 +614,7 @@
     "Change Subscription": "Mainīt abonementu",
     "Cancels a customer’s subscription immediately. The customer will not be charged again for the subscription however, that any pending invoice items that you’ve created will still be charged for at the end of the period.": "Nekavējoties atceļ klienta abonementu. Klientam par abonementu atkal netiks iekasēta maksa, taču perioda beigās joprojām tiks iekasēta maksa par visiem jūsu izveidotajiem neapstiprinātajiem rēķina vienumiem.",
     "Cancel Subscription": "Atcelt abonementu",
+    "Already subscribed": "Jau abonējis",
 
     "//////Adminlte admin side navbar":
     {},
