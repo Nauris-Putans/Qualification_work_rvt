@@ -57,14 +57,14 @@
                     <div class="col-md-3 m-1">
                         <div class="plan-wrapper">
                             <div class="plan-lable">
-                                {{ __(strtoupper($plan->product->name)) }}
+                                <strong>{{ __(strtoupper($plan->product->name)) }}</strong>
                             </div>
 
-                            <div class="price-box">
+                            <div class="price-box mb-3">
                                 {{ __(":price /month", ['price' => number_format(($plan->amount)/100) . '€']) }}
                             </div>
 
-                            <div class="plan-decription-wrapper">
+                            <div class="plan-decription-wrapper mb-3">
                                 <div class="plan-freature-box">
                                     {{ __(":count monitors", ['count' => $plan->product->metadata['Monitors']]) }}
                                 </div>
