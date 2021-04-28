@@ -47,6 +47,12 @@ class SubscriptionController extends Controller
         return $plans;
     }
 
+    /**
+     * showPlans
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function showPlans(Request $request)
     {
         $planName = $request->planName;
@@ -57,6 +63,12 @@ class SubscriptionController extends Controller
         return view('payment/plans/change', compact('plans', 'planName'));
     }
 
+    /**
+     * showConfirmation
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function showConfirmation(Request $request)
     {
         $planName = $request->planName;
@@ -66,6 +78,12 @@ class SubscriptionController extends Controller
 
     // TODO nestrada cancel subscription
 
+    /**
+     * cancelSubscription
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function cancelSubscription(Request $request)
     {
         // Creates or gets stripe customer

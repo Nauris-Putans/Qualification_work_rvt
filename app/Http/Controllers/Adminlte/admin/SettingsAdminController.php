@@ -11,7 +11,6 @@ use App\Models\Adminlte\admin\SettingsAdmin;
 use App\Http\Controllers\Controller;
 use App\User;
 use Hashids\Hashids;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\UploadTrait;
@@ -19,6 +18,9 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+/**
+ * SettingsAdminController
+ */
 class SettingsAdminController extends Controller
 {
     use UploadTrait;
