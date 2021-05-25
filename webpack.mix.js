@@ -13,9 +13,8 @@ const mix = require('laravel-mix');
 // mix.minify('public/css/addMonitor.css');//To min  css
 
 //Basic styles, scripts
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
- 
+mix.js('resources/js/app.js', 'public/js').sourceMaps();
+mix.sass('resources/sass/app.scss', 'public/css');
 
 //USER SIDE
 mix

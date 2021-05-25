@@ -81,8 +81,7 @@
                             name="message"
                             class="form-control @error('message') is-invalid @enderror"
                             placeholder="{{ __('Message') }}*"
-                        >{{ old('message') }}
-                        </textarea>
+                        >{{ old('message') }}</textarea>
                     </div>
                 </div>
 

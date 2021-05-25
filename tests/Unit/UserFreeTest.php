@@ -11,27 +11,27 @@ use Tests\TestCase;
 
 class UserFreeTest extends TestCase
 {
-//    /**
-//     * UserFree can see dashboard section
-//     */
-//    public function testUserFreeCanSeeDashboard()
-//    {
-//        $user = UserFreeTest::createUser();
-//        $this->actingAs($user);
-//        $this->get('/user/dashboard')->assertStatus(200);
-//        $user->delete();
-//    }
-//
-//    /**
-//     * UserFree cant see dashboard section
-//     */
-//    public function testUserFreeCantSeeDashboard()
-//    {
-//        $user = UserFreeTest::createUser();
-//        $this->actingAs($user);
-//        $this->get('/user/dashboard')->assertStatus(500);
-//        $user->delete();
-//    }
+   /**
+    * UserFree can see dashboard section
+    */
+   public function testUserFreeCanSeeDashboard()
+   {
+       $user = UserFreeTest::createUser();
+       $this->actingAs($user);
+       $this->get('/user/dashboard')->assertStatus(200);
+       $user->delete();
+   }
+
+   /**
+    * UserFree cant see dashboard section
+    */
+   public function testUserFreeCantSeeDashboard()
+   {
+       $user = UserFreeTest::createUser();
+       $this->actingAs($user);
+       $this->get('/user/dashboard')->assertStatus(500);
+       $user->delete();
+   }
 
     /**
      * UserFree can see add monitor section
@@ -86,14 +86,14 @@ class UserFreeTest extends TestCase
     {
         $user = User::create([
             'id'                   => 9999,
-            'name'                 => "Rihards Zaglis",
+            'name'                 => "Janis Abele",
             'email'                => 'test@test.lv',
             'profile_image'        => null,
             'email_verified_at'    => now(),
             'password'             => Hash::make('1'),
             'phone_number'         => '+37111111111',
-            'country'              => 69,
-            'city'                 => "Kaļeningrad",
+            'country'              => 40,
+            'city'                 => "Lietuva",
             'gender'               => "Male",
             'birthday'             => "2001-01-01",
             'remember_token'       => Str::random(10),

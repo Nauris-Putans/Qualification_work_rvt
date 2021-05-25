@@ -75,6 +75,6 @@ class ContactController extends Controller
         // Sends ticket to support email
         MailController::sendTicketToEmail($data, $subject, $from, $to);
 
-        return redirect()->back()->with('message', __('Your :attribute - :action', ['attribute' => __("mail"), 'action' => __("has been sent!")]));
+        return redirect()->back()->with('success', __('Your :attribute - :action', ['attribute' => __("message"), 'action' => __("has been sent!")]));
     }
 }

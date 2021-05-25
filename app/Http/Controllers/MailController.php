@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\SendMail;
+use App\Mail\SendSubscription;
 use App\Mail\SendTicketComment;
 use App\Mail\SendTicketInformation;
 use App\Mail\SendTicketStatusNotification;
@@ -25,6 +26,20 @@ class MailController extends Controller
     public static function sendTicketToEmail($data, $subject, $from, $to)
     {
         Mail::to($to)->send(new SendMail($data, $subject, $from));
+    }
+
+    /**
+     * Sends subscription details to user mail
+     *
+     * @param  mixed $data
+     * @param  mixed $subject
+     * @param  mixed $from
+     * @param  mixed $to
+     * @return void
+     */
+    public static function sendSubscriptionToEmail($data, $subject, $from, $to)
+    {
+        Mail::to($to)->send(new SendSubscription($data, $subject, $from));
     }
 
     /**

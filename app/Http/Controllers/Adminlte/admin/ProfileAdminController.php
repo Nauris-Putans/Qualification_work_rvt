@@ -10,9 +10,13 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Stripe\Customer;
+use Stripe\Issuing\Transaction;
+use Stripe\PaymentMethod;
 
 class ProfileAdminController extends Controller
 {
@@ -48,72 +52,14 @@ class ProfileAdminController extends Controller
             ->where('id', $roleID->role_id)
             ->first();
 
-        return view('adminlte.admin.profile-admin', compact('user', 'role', 'countryName'));
-    }
+        $invoices = $user->invoices();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
+        // Sets current language to $locale
+        $locale = Config::get('app.locale');
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Sets locale for all data types (php)
+        setlocale(LC_ALL, $locale . '_' . strtoupper($locale), $locale);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  User  $id
-     * @return Response
-     */
-    public function show(User $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  User  $id
-     * @return Response
-     */
-    public function edit(User $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  User  $id
-     * @return Response
-     */
-    public function update(Request $request, User $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  User  $id
-     * @return Response
-     */
-    public function destroy(User $id)
-    {
-        //
+        return view('adminlte.admin.profile-admin', compact('user', 'role', 'countryName', 'invoices'));
     }
 }

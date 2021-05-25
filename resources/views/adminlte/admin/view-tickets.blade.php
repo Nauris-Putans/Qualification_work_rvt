@@ -123,7 +123,11 @@
                                                     {{ $comment->user->name }}
                                                 </span>
                                                 <span class="direct-chat-timestamp float-right">
-                                                    {{ strftime("%d %b %H:%M", strtotime($comment->created_at)) }}
+                                                    @if (Config::get('app.locale') !== 'ru')
+                                                        {{ strftime("%d %b %H:%M", strtotime($comment->created_at)) }}
+                                                    @else
+                                                        {{ iconv('windows-1251', 'utf-8', strftime("%d %b %H:%M", strtotime($comment->created_at))) }}
+                                                    @endif
                                                 </span>
                                             </div>
 
@@ -152,7 +156,11 @@
                                                     {{ $comment->user->name }}
                                                 </span>
                                                 <span class="direct-chat-timestamp float-left">
-                                                    {{ strftime ("%d %b %H:%M", strtotime($comment->created_at)) }}
+                                                    @if (Config::get('app.locale') !== 'ru')
+                                                        {{ strftime("%d %b %H:%M", strtotime($comment->created_at)) }}
+                                                    @else
+                                                        {{ iconv('windows-1251', 'utf-8', strftime("%d %b %H:%M", strtotime($comment->created_at))) }}
+                                                    @endif
                                                 </span>
                                             </div>
 

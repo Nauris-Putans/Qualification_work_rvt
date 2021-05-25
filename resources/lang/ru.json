@@ -364,6 +364,8 @@
     "Subscribe now": "Подпишитесь сейчас",
     "TRY IT FREE": "ПОПРОБУЙТЕ БЕСПЛАТНО",
     "When you have any questions we are always happy to help.": "Если у вас возникнут вопросы, мы всегда рады помочь.",
+    "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.": "Мы используем файлы cookie, чтобы вам было удобнее. Продолжая посещать этот сайт, вы соглашаетесь на использование файлов cookie.",
+    "Got it!": "Понятно!",
 
     "//////Features section":
     {},
@@ -384,6 +386,24 @@
     "//////Pricing section":
     {},
     "Flawless plans that suit you": "Безупречные планы, которые вам подходят",
+    "You have already subscribed to this plan!": "Вы уже подписались на этот план!",
+    "Successfully subscribed to plan!": "Подписка на план выполнена успешно!",
+    "You need to sign in to do transactions": "Вам необходимо войти в учетную запись для совершения транзакций",
+    "You are unable to subscribe to plans!": "Вы не можете подписаться на планы!",
+    "Billing information": "Информация об оплате",
+    "Name on card": "Имя на карте",
+    "Card information": "Информация о карте",
+    "Full name as displayed on card": "Полное имя, как показано на карточке",
+    "Card number": "Номер карты",
+    "Summary": "Пводка",
+    "Brief description": "Краткое описание",
+    "Privacy": "Конфиденциальность",
+    "Terms": "Условия",
+    "You are now subscribed to :plan plan": "Теперь вы подписаны на :plan план",
+    ":plan - plan": ":plan - план",
+    "Pay :amount": "Платить :amount",
+    "You can change subscription plan in account settings": "Вы можете изменить тарифный план в настройках аккаунта",
+    "Powered by Stripe": "При поддержке Stripe",
 
     "//////FAQ section":
     {},
@@ -435,6 +455,10 @@
     "Your :attribute - :action": "Ваш :attribute :action",
     "Your Ticket": "Ваш билет",
     "Your ticket with ID #:ticket_id has been marked resolved and closed by: :role_display_name": "Ваш билет с ID #:ticket_id был отмечен как решенный и закрыт: :role_display_name",
+    "Congratulations!": "Поздравляю!",
+    "Subscription Robot": "Подписка Робот",
+    "Your Subscription": "Ваша подписка",
+    "You can view the subscription plan at any time by pressing this button or accessing account settings.": "Вы можете просмотреть план подписки в любое время, нажав эту кнопку или зайдя в настройки учетной записи.",
 
     "//////Adminlte admin side":
     {},
@@ -506,6 +530,33 @@
     "Successfully assigned member: :user to role - :role": "Участник успешно назначен: :user на роль - :role",
     "View Role": "Посмотрите на роль",
 
+    "//////Adminlte admin side users section":
+    {},
+    "Activity": "Дктивность",
+    "No data": "Без даты",
+    "Download .pdf": "Пагрузить .pdf",
+    "No activity for this user": "Нет активности для этого пользователя",
+    "Subscription invoice": "Счет за подписку",
+    "1 × Free (at €0.00 / month)": "1 × Free - план (€0.00 / в месяц)",
+    "1 × Pro (at €5.00 / month)": "1 × Pro - план (€5.00 / в месяц)",
+    "1 × Webmaster (at €10.00 / month)": "1 × Webmaster - план (€10.00 / в месяц)",
+    "Monthly Subscription": "Месячная подписка",
+    "Receipt": "Kвитанция",
+    "To:": "Кому:",
+    "Date:": "Дата:",
+    "Product:": "Товар:",
+    "Invoice Number:": "Номер счета:",
+    "Date": "Дата",
+    "Tax": "Налог",
+    "Amount": "Количество",
+    "Subscription": "Подписка",
+    "Subtotal": "Промежуточный итог",
+    "Off": "",
+    "Tax is exempted": "Налог не облагается",
+    "Tax to be paid on reverse charge basis": "Налог, подлежащий уплате на основе обратного начисления",
+    "Customer Balance": "Баланс клиента",
+    "Total": "Общий",
+
     "//////Adminlte admin side tickets section":
     {},
     "You": "Ты",
@@ -536,6 +587,7 @@
     "Un-Answered": "Без ответа",
     "Unsolved": "Нерешенный",
     "View Ticket": "Посмотреть билет",
+    "Unknown": "Неизвестный",
 
     "//////Adminlte admin side account settings section":
     {},
@@ -554,6 +606,15 @@
     "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.": "Здесь вы можете указать свой платежный адрес электронной почты. Он будет использоваться для отправки счетов и других уведомлений о выставлении счетов. Если вы оставите это поле пустым, по умолчанию будет использоваться адрес электронной почты вашего аккаунта.",
     "Choose how you will receive notifications from us. WEBcheck will send you email or SMS notifications based on your notification settings.": "Выберите, как вы будете получать от нас уведомления. WEBcheck будет отправлять вам уведомления по электронной почте или SMS в зависимости от ваших настроек уведомлений.",
     "Nothing selected": "Ничего не выбрано",
+    "Current subscription": "Текущая подписка",
+    "none": "никто",
+    "plan": "план",
+    "Next billing date": "Дата следующего выставления счета",
+    "Changes an existing subscription to match new selected plan. When changing prices, we will optionally prorate the price we charge next month to make up for any price changes.": "Изменяет существующую подписку в соответствии с новым выбранным планом. При изменении цен мы, по желанию, пропорционально изменим цену, которую взимаем в следующем месяце, чтобы компенсировать любые изменения цен.",
+    "Change Subscription": "Изменить подписку",
+    "Cancels a customer’s subscription immediately. The customer will not be charged again for the subscription however, that any pending invoice items that you’ve created will still be charged for at the end of the period.": "Немедленно отменяет подписку клиента. С клиента не будет снова взиматься плата за подписку, и все созданные вами незавершенные счета-фактуры по-прежнему будут оплачиваться в конце периода.",
+    "Cancel Subscription": "Отписаться от рассылки",
+    "Already subscribed": "Уже подписан",
 
     "//////Adminlte admin side navbar":
     {},

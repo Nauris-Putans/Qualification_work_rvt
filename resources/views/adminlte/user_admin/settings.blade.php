@@ -43,6 +43,12 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-subscription-tab" data-toggle="pill" href="#custom-tabs-one-subscription" role="tab" aria-controls="custom-tabs-one-subscription" aria-selected="false">
+                                {{ __('Subscription') }}
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-one-notification-tab" data-toggle="pill" href="#custom-tabs-one-notification" role="tab" aria-controls="custom-tabs-one-notification" aria-selected="false">
                                 {{ __('Notification') }}
                             </a>
@@ -132,6 +138,10 @@
                         <div class="tab-pane fade active show" id="custom-tabs-one-personal-info" role="tabpanel" aria-labelledby="custom-tabs-one-personal-info-tab">
                             {{ Form::component('personalInfoForm', 'components.form.adminlte.user_admin.personal-info-form', ['countries' => $countries, 'hashids' => $hashids, 'user' => $user, 'countryName' => $countryName]) }}
                             {{ Form::personalInfoForm() }}
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-subscription" role="tabpanel" aria-labelledby="custom-tabs-one-subscription-tab">
+                            {{ Form::component('subscriptionForm', 'components.form.adminlte.user_admin.subscription-form', ['hashids' => $hashids, 'user' => $user, 'timestamp' => $timestamp, 'planName' => $planName, 'invoices' => $invoices]) }}
+                            {{ Form::subscriptionForm() }}
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-notification" role="tabpanel" aria-labelledby="custom-tabs-one-notification-tab">
                             {{ Form::component('notificationForm', 'components.form.adminlte.user_admin.notification-form', ['countries' => $countries, 'hashids' => $hashids, 'user' => $user, 'countryName' => $countryName]) }}

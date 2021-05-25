@@ -57,13 +57,13 @@ class TicketController extends Controller
         // Finds user by user id
         $ticket = Ticket::find($id)->first();
 
+        $user_closedBy = User::all();
+
         // Sets current language to $locale
         $locale = Config::get('app.locale');
 
-        $user_closedBy = User::all();
-
         // Sets locale for all data types (php)
-        setlocale(LC_ALL, $locale . '_utf8');
+        setlocale(LC_ALL, $locale . '_' . strtoupper($locale), $locale);
 
         return view('adminlte.admin.view-tickets', compact('ticket', 'hashids', 'user_closedBy'));
     }
@@ -79,17 +79,6 @@ class TicketController extends Controller
         $categories = Category::all();
 
         return view('adminlte.user_admin.support.support-ticket-create', compact('categories'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -229,29 +218,6 @@ class TicketController extends Controller
         }
 
         return redirect()->back()->with('message', __("The ticket #:ticket_id - :action", ['ticket_id' => $ticket->ticket_id, 'action' => __("has been resolved and closed!")]));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Ticket $ticket
-     * @return Response
-     */
-    public function edit(Ticket $ticket)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param Ticket $ticket
-     * @return Response
-     */
-    public function update(Request $request, Ticket $ticket)
-    {
-        //
     }
 
     /**
