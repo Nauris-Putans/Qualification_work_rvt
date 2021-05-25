@@ -1,0 +1,193 @@
+.GroupMembers{
+    background-color: white;
+    border-radius: 5px;
+    min-height: 400px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+    .sectionHeader{
+        display: flex;
+        justify-content: left;
+        align-items:flex-end;
+        gap: 10px;
+        i{
+            font-size: 30px;
+        }
+        &-title{
+            font-size: 20px;
+            font-weight: 550px;
+        }
+    }
+    .card{
+        margin-top: 15px;
+        width: 100%;
+        img{
+            width: 110px;
+            height: 110px;
+            border-radius: 100%;
+        }
+
+        li{
+            margin-top: 10px;
+        }
+
+        li:first-child{
+            margin-top: 20px;
+        }
+        
+    }
+}
+
+
+.InviteNewMember{
+    background-color: white;
+    border-radius: 5px;
+    min-height: 400px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+    .sectionHeader{
+        display: flex;
+        justify-content: left;
+        align-items:flex-end;
+        gap: 10px;
+        i{
+            font-size: 30px;
+        }
+        &-title{
+            font-size: 20px;
+            font-weight: 550px;
+        }
+    }
+
+    .input-group{
+        margin: 0 auto;
+        margin-top: 15px;
+        .btn-sidebar{
+            background-color: #007bff;
+            color: white;
+        }
+    }
+    
+    .card{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2px;
+        width: 100%;
+        height: auto;
+        padding: 5px;
+        margin-top: 5px;
+        &:first-child{
+            margin-top: 15px;
+        }
+        img{
+            height: 40px;
+            width: 40px;
+            border-radius: 100%;
+        }
+        &-text{
+            display: flex;
+            flex-direction: column;
+            width: 55%;
+        }
+        &-title{
+            font-size: 16px;
+        }
+        &-decr{
+            font-size: 12px;
+        }
+
+        .button{
+            outline: none;
+            border: none;
+            border-radius: 3px;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            width: auto;
+            gap: 4px;
+            i{
+                font-size: 12px;
+            }
+        }
+
+        .button.button-add{
+            background-color: rgb(8, 128, 8);
+            color: white;
+            box-shadow: 0 4px 8px 0 rgba(8, 128, 8, 0.37), 0 6px 10px 0 rgba(8, 128, 8, 0.288);
+        }
+
+        .button.button-requested{
+            background-color: rgb(29, 129, 196);
+            color: white;
+            box-shadow: 0 4px 8px 0 rgb(29, 129, 196, 0.288), 0 6px 10px 0 rgb(29, 129, 196, 0.37);
+            pointer-events: none;
+            font-size: 14px;
+        }
+
+        .button.button-member{
+            background-color: #d55555;
+            color: white;
+            box-shadow: 0 4px 8px 0 #d555551a, 0 6px 10px 0 #d555552f;
+            pointer-events: none;
+            font-size: 14px;
+        }
+    }
+
+    .foundUsersBox{
+        overflow-y: auto;
+        height: 300px;
+        max-height: 500px;
+    }
+}
+
+/* Use a media query to add a breakpoint at 1100px: */
+@media screen and (max-width: 1100px) {
+    .GroupMembers{
+        .card{
+            img{
+                height: 95px;
+                width: 95px;
+            }
+        }
+    }
+}
+
+/* Use a media query to add a breakpoint at 780px: */
+@media screen and (max-width: 880px) {
+    .GroupMembers{
+        .card{
+            img{
+                height: 75px;
+                width: 75px;
+            }
+        }
+    }
+}
+
+/* Use a media query to add a breakpoint at 576px: */
+@media screen and (max-width: 576px) {
+    .GroupMembers{
+        margin-top: 10px;
+        .card{
+            img{
+                height: 110px;
+                width: 110px;
+            }
+        }
+    }
+}
+
+/* Use a media query to add a breakpoint at 300px: */
+@media screen and (max-width: 300px) {
+    .GroupMembers{
+        .card{
+            img{
+                height: 80px;
+                width: 80px;
+            }
+        }
+    }
+}

@@ -35,6 +35,8 @@
                             <th scope="col">#</th>
                             <th scope="col">{{ __('MONITOR') }}</th>
                             <th scope="col">{{ __('PERSONS') }}</th>
+                            <th scope="col">{{ __('CHECK INTERVAL') }}</th>
+                            <th scope="col">{{ __('CREATED') }}</th>
                             <th scope="col">{{ __('STATUS') }}</th>
                             <th scope="col"></th>
                         </tr>
@@ -43,7 +45,8 @@
                         @foreach($sortedMonitors as $monitor)
                             <tr>
                                 <td >#</td>
-                                <td ><div class="monitor-info-Wrapper">
+                                <td >
+                                    <div class="monitor-info-Wrapper">
                                         <div class="friendlyName">{{ $monitor->friendly_name }}</div>
                                         <div class="checkAddress">{{ $monitor->check_address }}</div>
                                     </div>
@@ -54,7 +57,16 @@
                                             @foreach($monitor->users as $user)
                                             <li class="list-inline-item" id="user{{ $monitor->host_id.$user->id}}">
                                                 <a href="{{ URL::route('userProfile.show', [$user->id]) }}">
-                                                    <img alt="Avatar" class="table-avatar" src="/images/256x256/256_12.png">
+                                                    @if($user->profile_image)
+                                                        <img alt="Avatar" class="table-avatar" src="../../../..{{ $user->profile_image}}">
+                                                    @else
+                                                        @if($user->gender == 'Female')
+                                                            <img alt="Avatar" class="table-avatar" src="../../../../images/256x256/256_12.png">
+                                                        @else
+                                                            <img alt="Avatar" class="table-avatar" src="../../../../images/256x256/256_13.png">
+                                                        @endif
+                                                    @endif
+
                                                     <div class="content" id="content{{ $monitor->host_id.$user->id}}">
                                                         <div class="arrow"></div>
                                                         <div class="personName">{{ $user->fullName }}</div>
@@ -66,27 +78,48 @@
                                         @endif
                                     </ul>
                                 </td>
-                                <td class="project-state">
-                                    @if($monitor->status == 1)
-                                        <span class="badge badge-success" style="font-size: 100% !important; width: 100%;">Active</span>
-                                    @elseif($monitor->status == 2)
-                                        <span class="badge" style="background-color: rgb(105, 105, 105); color: white; font-size: 16px">Paused</span>
-                                    @endIf
+                                <td >{{ $monitor->checkInterval }}</td>
+                                <td>
+                                    <div class="monitor-info-Wrapper">
+                                        @if($monitor->created_at != null)
+                                            <div class="friendlyName">{{ $monitor->created_at->date }}</div>
+                                            <div class="checkAddress">{{ $monitor->created_at->time }}</div>
+                                        @endif
+                                    </div>
+                                </td>
+                                <td> 
+                                    <form method="POST" action="{{ URL::route('monitor.changeStatus', [$monitor->host_id]) }}">
+                                        @csrf
+                                        <button class="status-box">
+                                            @if($monitor->status == 1)
+                                                <div class="status-icon status-icon-active" ></div>
+                                                <div class="status-text">Active</div>
+                                            @elseif($monitor->status == 2)
+                                                <div class="status-icon status-icon-disabled" ></div>
+                                                <div class="status-text">Disabled</div>
+                                            @else
+                                                <div class="status-icon status-icon-noAlert" ></div>
+                                                <div class="status-text">No alert</div>
+                                            @endIf
+                                        </button> 
+                                    </form>
                                 </td>
                                 <td >
                                     <div class="d-flex">
-                                        <form method="POST" action="{{ URL::route('monitor.changeStatus', [$monitor->host_id]) }}">
+                                        <button type="submit" class="btn btn-info btn-sm" >
+                                            <i class="fas fa-history"></i>
+                                            {{ __('Hystory')}}
+                                        </button>
+                                        <form method="GET" action="{{ URL::route('monitor.edit', [$monitor->host_id]) }}">
                                             @csrf
-                                            <button type="submit" class="btn btn-primary">
-                                                <i class="fas fa-folder">
-                                                </i>
-                                                {{ __('status')}}
+                                            <button class="btn btn-primary btn-sm m-left-5" href="#">
+                                                <i class="far fa-edit"></i>
+                                                {{ __('Edit')}}
                                             </button>
                                         </form>
-
                                         <form method="POST" action="{{ URL::route('monitor.destroy', [$monitor->host_id]) }}">
                                             @csrf
-                                            <button type="submit" class="btn btn-danger" >
+                                            <button type="submit" class="btn btn-danger btn-sm m-left-5" >
                                                 <i class="fas fa-trash">
                                                 </i>
                                                 {{ __('Delete')}}
@@ -138,10 +171,14 @@
             "order": [[1,"asc"]], 
             // Specific columns
             columnDefs: [
-                { "orderable": false, "targets": [0,2,4] },
-                { "width": '1%', "targets": 0 },
-                { "width": '25%', "targets": 1 },
-                { "width": '5%', "targets": 3 },
+                { "orderable": false, "targets": [0,2,3,4,5,6] },
+                { "width": '2%', "targets": 0 },
+                { "width": '40%', "targets": 1 },
+                { "width": '14%', "targets": 2 },
+                { "width": '2%', "targets": 3 },
+                { "width": '14%', "targets": 4 },
+                { "width": '14%', "targets": 5 },
+                { "width": '14%', "targets": 6 },
                 // { "width": '30%', "targets": 2 },
             ],
 

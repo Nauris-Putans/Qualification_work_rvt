@@ -669,6 +669,28 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 
 /***/ }),
 
+/***/ "./resources/sass/adminlte/user_admin/userGroup.scss":
+/*!***********************************************************!*\
+  !*** ./resources/sass/adminlte/user_admin/userGroup.scss ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/adminlte/user_admin/userGroupControl.scss":
+/*!******************************************************************!*\
+  !*** ./resources/sass/adminlte/user_admin/userGroupControl.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -769,12 +791,31 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /***/ }),
 
 /***/ 0:
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/adminlte/user_admin/monitorAdd.scss ./resources/sass/adminlte/user_admin/monitorList.scss ./resources/sass/adminlte/user_admin/uptime.scss ./resources/sass/adminlte/user_admin/statistic.scss ./resources/sass/adminlte/user_admin/dashboard.scss ./resources/sass/sections/footer.scss ./resources/sass/sections/header.scss ./resources/sass/sections/home.blade.scss ./resources/sass/sections/pricing.scss ./resources/sass/sections/features.blade.scss ./resources/sass/sections/faq.blade.scss ./resources/sass/sections/contacts.blade.scss ./resources/sass/sections/login.blade.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/adminlte/user_admin/monitorAdd.scss ./resources/sass/adminlte/user_admin/monitorList.scss ./resources/sass/adminlte/user_admin/uptime.scss ./resources/sass/adminlte/user_admin/statistic.scss ./resources/sass/adminlte/user_admin/dashboard.scss ./resources/sass/adminlte/user_admin/userGroup.scss ./resources/sass/adminlte/user_admin/userGroupControl.scss ./resources/sass/sections/footer.scss ./resources/sass/sections/header.scss ./resources/sass/sections/home.blade.scss ./resources/sass/sections/pricing.scss ./resources/sass/sections/features.blade.scss ./resources/sass/sections/faq.blade.scss ./resources/sass/sections/contacts.blade.scss ./resources/sass/sections/login.blade.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\monitorAdd.scss */"./resources/sass/adminlte/user_admin/monitorAdd.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\monitorList.scss */"./resources/sass/adminlte/user_admin/monitorList.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\uptime.scss */"./resources/sass/adminlte/user_admin/uptime.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\statistic.scss */"./resources/sass/adminlte/user_admin/statistic.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\dashboard.scss */"./resources/sass/adminlte/user_admin/dashboard.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\userGroup.scss */"./resources/sass/adminlte/user_admin/userGroup.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\userGroupControl.scss */"./resources/sass/adminlte/user_admin/userGroupControl.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\footer.scss */"./resources/sass/sections/footer.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\header.scss */"./resources/sass/sections/header.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\home.blade.scss */"./resources/sass/sections/home.blade.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\pricing.scss */"./resources/sass/sections/pricing.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\features.blade.scss */"./resources/sass/sections/features.blade.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\faq.blade.scss */"./resources/sass/sections/faq.blade.scss");
+__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\contacts.blade.scss */"./resources/sass/sections/contacts.blade.scss");
+module.exports = __webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\login.blade.scss */"./resources/sass/sections/login.blade.scss");
+=======
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\app.scss */"./resources/sass/app.scss");
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\adminlte\user_admin\monitorAdd.scss */"./resources/sass/adminlte/user_admin/monitorAdd.scss");
@@ -790,6 +831,7 @@ __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\r
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\sections\faq.blade.scss */"./resources/sass/sections/faq.blade.scss");
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\sections\contacts.blade.scss */"./resources/sass/sections/contacts.blade.scss");
 module.exports = __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\sections\login.blade.scss */"./resources/sass/sections/login.blade.scss");
+>>>>>>> 14c4f4a7cbbe562f17ce1d79a1e0d8221d529884
 
 
 /***/ })

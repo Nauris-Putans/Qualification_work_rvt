@@ -1,0 +1,157 @@
+.groupHeader .titleBox {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.groupHeader .titleBox-iconBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+  background-color: #17a2b8;
+  color: white;
+  font-size: 25px;
+  border-radius: 5px;
+}
+
+.groupHeader .titleBox-title {
+  font-size: 25px;
+  font-weight: 50px;
+}
+
+.groupBody {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.groupBody .card {
+  margin-top: 25px;
+  margin-right: 10px;
+  min-height: 375px;
+  height: auto;
+  width: 350px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.groupBody .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+}
+
+.groupBody .card-header:after {
+  display: none;
+}
+
+.groupBody .card-header .checkBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
+  border-radius: 100%;
+  color: white;
+  background-color: #b8b8b8;
+  font-size: 14px;
+  box-shadow: 0 4px 8px 0 #b8b8b859, 0 6px 20px 0 #b8b8b84f;
+}
+
+.groupBody .card-header .checkBox.selected {
+  background-color: #17a2b8;
+  border: 1px solid #17a2b8;
+  box-shadow: 0 4px 8px 0 #17a3b818, 0 6px 20px 0 #17a3b823;
+}
+
+.groupBody .card-body {
+  text-align: center;
+}
+
+.groupBody .card-body img {
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.groupBody .card-body .text-company {
+  font-weight: 600;
+  font-size: 24px;
+  margin-top: 5px;
+}
+
+.groupBody .card-body .text-admin {
+  font-weight: 500;
+  font-size: 16px;
+  color: #575757;
+}
+
+.groupBody .card-body-tools {
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  gap: 5px;
+}
+
+.groupBody .card-body-tools button {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  min-width: 100px;
+  width: 100%;
+  color: white;
+}
+
+.groupBody .card-body-tools .button-changGroup {
+  background-color: #17a2b8;
+}
+
+.groupBody .card-body-tools .button-changGroup.disabled {
+  background-color: #b4b4b4;
+  pointer-events: none;
+}
+
+.groupBody .card-body-tools form {
+  width: 100%;
+}
+
+.groupBody .card-body-tools .button-groupControl {
+  background-color: #20c997;
+}
+
+.groupBody .card-footer {
+  position: relative;
+  display: flex;
+  background-color: #e9e9e9;
+}
+
+.groupBody .card-footer .footerBox {
+  text-align: center;
+  width: 100%;
+}
+
+.groupBody .card-footer .footerBox .title {
+  color: #6e6e6e;
+  font-size: 16px;
+}
+
+.groupBody .card-footer .footerBox .decr {
+  font-weight: 550;
+  font-size: 16px;
+}
+
+.groupBody .card-footer:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  height: 70%;
+  width: 0.1px;
+  background-color: #5e5e5e;
+}
+

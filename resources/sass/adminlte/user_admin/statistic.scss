@@ -251,13 +251,6 @@
             height: auto;
             padding: 5px;
         }
-        .settings-footer{
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            padding: 5px;
-            color: white;
-        }
     }
 
     .cursor-pointer{
@@ -270,4 +263,5 @@
         -ms-user-select: none;      /* IE 10+ */
         user-select: none;          /* Likely future */     
     }
+
 }

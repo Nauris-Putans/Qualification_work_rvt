@@ -163,8 +163,8 @@
 
     </div>
 
-    {{-- Area chart --}}
     <div class="row">
+      {{-- Area chart --}}
       <div class="col-md-8" id="responseChart">
         <div class="card">
           <div class="card-header" style="background-color:white;">
@@ -184,16 +184,12 @@
                   <div class="areaChartSettingsContainer" id="areaChartSettingsWrapper">
                     <div class="settings-body">
                       <div class="form-group">
-                        <label>Sort data</label>
-                        <select class="form-control">
-                          <option>Every point</option>
-                          <option>Month days</option>
-                          <option>Month</option>
+                        <label for="dataGroupOption">Data group</label>
+                        <select class="form-control" id="dataGroupOption">
+                          <option value="EveryPoint">Every point</option>
+                          <option value="MonthDays">Month days</option>
                         </select>
                       </div>
-                    </div>
-                    <div class="settings-footer">
-                      <div type="button" class="btn  bg-gradient-primary">Save</div>
                     </div>
                   </div>
                 </div>
@@ -292,60 +288,25 @@
 
     slider.oninput = function() {
 
-      $("#barChartTitle").empty();
-
       if(this.value == 1) {
-        currentChartType = 0;
-        let value = new Array();
-        let time = new Array();
-
-        let i = 0;
-        for (const property in splitedHystory[sortedHistoryIndex-1]) {
-          value[i] = Math.round(currentHistory[property]['value'] * Math.pow(10, 4)) / Math.pow(10, 4);
-          time[i] = currentHistory[property]['clock'];
-          i++;
-        }
-      
-        insertDataToWeekdayChart(value,time);
-
-        const newTitle = `
-          <i class="fas fa-calendar-alt"></i>
-          Week days
-        `
-        $("#barChartTitle").append(newTitle);
+        barChartType = 'weekDay'
+        updateBarChart(currentHistory);
       }else {
-        currentChartType = 1;
-        let value = new Array();
-        let time = new Array();
-
-        let i=0;
-        for (const property in splitedHystory[sortedHistoryIndex-1]) {
-          value[i] = Math.round(currentHistory[property]['value'] * Math.pow(10, 4)) / Math.pow(10, 4);
-          time[i] = currentHistory[property]['clock'];
-          i++;
-        }
-        insertDataToDayPartChart(value,time);
-
-        const newTitle = `
-          <i class="fas fa-clock"></i>
-          Day part
-        `
-        $("#barChartTitle").append(newTitle);
+        barChartType = 'dayPart'
+        updateBarChart(currentHistory);
       }
 
     }
 
+
     let endDate = new Date();
     let startDate = new Date(endDate);
+    let barChartType = 'weekDay'
     let currentHistory;
-    let currentChartType = 0;
     let splitedHystory = [];
     let sortedHistoryIndex = 0;
-    let startHr = 0;
-    let startMin = 0;
-    let endHr = 15;
-    let endMin = 0;
     let selectedMonitorId;
+    let areaChartDataSort = 'EveryPoint';
 
     const weekday = new Array(7);
         weekday[0] = @json( __("Sunday")  );
@@ -368,14 +329,18 @@
     startDate.toDateString();
 
     //Function that display new info to info label
-    function displayNewInfo(responseSpeedMS,checkCount){
+    function displayNewInfo(responseSpeed){
+      
+        checkCount = getCheckCount(responseSpeed);
+
         OldLastCheckValue = document.getElementById('lastCheckIcon');
 
         OldLastCheckValue.remove();
         $("#lastCheckValue").text('');
 
         lastCheckValue = document.getElementById('lastCheckValue');
-        lastChecksDiference = Math.round((responseSpeedMS[checkCount-1] - responseSpeedMS[checkCount-2]) * Math.pow(10, 4)) / Math.pow(10, 4);
+        lastChecksDiference = Math.round((responseSpeed[checkCount-1] - responseSpeed[checkCount-2]) * Math.pow(10, 4)) / Math.pow(10, 4);
+
         let lastCheckIcon ;
         if(lastChecksDiference<0){
             lastCheckIcon ='class="fas fa-arrow-down" style="margin-right: 5px"';
@@ -460,22 +425,31 @@
 
     //Check that user have any monitors and monitor value
     function dataCheck(newresponseTime,newfriendlyNames,dropDownVal){
-
       const responseTimeInfoBoxes = document.getElementById("responseTimeInfoBoxes");
       const responseChart = document.getElementById("responseChart");
       const weekDayChartBox = document.getElementById("weekdayChartBox");
 
       friendlyNameCheck(newfriendlyNames);
 
-
       const enoughData = historyCountCheck(newresponseTime,2);
 
       if(enoughData){
-        const newHystoryData = spliteHistory();
-        insertData(newHystoryData);
-        showAreaChart();
-        showBarChart();
+        if(areaChartDataSort =='MonthDays'){
+          let newHystoryData = customizeDataMonth(currentHistory);
+
+          newHystoryData = spliteHistory(newHystoryData);
+
+          insertData(newHystoryData);
+        }else{
+
+          let newHystoryData = customizeDataAllPoints(currentHistory);
+          newHystoryData = spliteHistory(newHystoryData);
+
+          insertData(newHystoryData);
+        }
       }else{
+        console.log('tiku te');
+        $("#paginationWrapper").empty();
         insertNewValueIntoInfoBoxes(0, 0, 0, 0);
         hideAreaChart();
         hideBarChart();
@@ -654,14 +628,21 @@
       }
     }
 
-    function spliteHistory(){
-      let historyElementCount = Object.keys(currentHistory).length;
+    function spliteHistory(newData){
+      let historyElementCount = Object.keys(newData).length;
       const paginationCount = Math.ceil(historyElementCount/500);
 
       let splitStart = historyElementCount-1;
       let splitEnd = historyElementCount - 500;
 
+      let arrayElement;
       for(let i=paginationCount-1 ;i >= 0; i--){
+
+        if(historyElementCount/(paginationCount-i) >= 500){
+          arrayElement = 499;
+        }else{
+          arrayElement = historyElementCount - 500*(paginationCount-1)-1;
+        }
 
         if(splitEnd < 0){
           splitEnd = 0;
@@ -671,10 +652,11 @@
 
         for(splitStart ;splitStart >= splitEnd; splitStart--){
 
-          splitedHystory[i][splitStart] = {};
-          splitedHystory[i][splitStart].itemid = currentHistory[splitStart].itemid;
-          splitedHystory[i][splitStart].clock = currentHistory[splitStart].clock;
-          splitedHystory[i][splitStart].value = currentHistory[splitStart].value;
+          splitedHystory[i][arrayElement] = {};
+          splitedHystory[i][arrayElement].clock = newData[splitStart].clock;
+          splitedHystory[i][arrayElement].value = newData[splitStart].value;
+
+          arrayElement--;
         }
         splitEnd -=  500;
       }
@@ -920,11 +902,20 @@ let weekDayChart;
     for(let a=0;a<7;a++){
       if(weekdayResponseTimeSum[a] != 0){
         weekdayResponseTimeSum[a] /= weekdayCounter[a];
-        weekdayResponseTimeSum[a] = Math.round(weekdayResponseTimeSum[a] * Math.pow(10, 4)) / Math.pow(10, 4);
+        weekdayResponseTimeSum[a] = roundNumber(weekdayResponseTimeSum[a], 4 );
         chartDataLabels.push(weekday[a]);
         chartDataAvarageTime.push(weekdayResponseTimeSum[a]);
       }
     }  
+
+    const newTitle = `
+      <i class="fas fa-calendar-alt"></i>
+      Week days
+    `
+    $("#barChartTitle").append(newTitle);
+
+    const barCount = getCheckCount(chartDataAvarageTime);
+    changeBarChartBarThickness(barCount);
 
     weekDayChart.data.datasets[0].data = chartDataAvarageTime;
     weekDayChart.data.labels = chartDataLabels;
@@ -979,15 +970,24 @@ let weekDayChart;
       }
     }
 
-    let exist =0;
+    let arrayIndex =0;
     for(i =0; i<3;i++){
       if(dayPartsValuesCount[i] != 0){
-          chartDataAvarageTime[exist] = dayPartsValues[i] / dayPartsValuesCount[i];
-          chartDataAvarageTime[exist] = Math.round(chartDataAvarageTime[exist] * Math.pow(10, 4)) / Math.pow(10, 4);
-          chartDataLabels[exist] = dayParts[i];
-          exist++;
+          chartDataAvarageTime[arrayIndex] = dayPartsValues[i] / dayPartsValuesCount[i];
+          chartDataAvarageTime[arrayIndex] = roundNumber(chartDataAvarageTime[arrayIndex], 4 );
+          chartDataLabels[arrayIndex] = dayParts[i];
+          arrayIndex++;
       }
     }
+
+    const newTitle = `
+      <i class="fas fa-clock"></i>
+      Day part
+    `
+    $("#barChartTitle").append(newTitle);
+
+    const barCount = getCheckCount(chartDataAvarageTime);
+    changeBarChartBarThickness(barCount);
 
     weekDayChart.data.datasets[0].data = chartDataAvarageTime;
     weekDayChart.data.labels = chartDataLabels;
@@ -1051,6 +1051,14 @@ let weekDayChart;
               beginAtZero: true   // minimum value will be 0.
           }
         }]
+      },
+      layout: {
+      padding: {
+          left: 10,
+          right: 5,
+          top: 5,
+          bottom: 5
+        }
       }
       
   }
@@ -1133,31 +1141,23 @@ let weekDayChart;
     return roundedNumber;
   }
 
-  function customizeDateAllPoints(newData){
-    let clock = new Array();
-    let clockForWeekChart = new Array();
+  function customizeDataAllPoints(newData){
+    let history = new Array();
 
-    let i=0;
-    for( const value in newData){
-      
-      clock[i] = newData[value].clock;
+    for( const key in newData){
+      history[key] = {};
+      history[key].clock = newData[key].clock;
+      history[key].clock = moment(history[key].clock*1000).format("MM-DD HH:mm");
 
-      // clock[i] = moment(clock[i]*1000).format("DD MMMM");
-      clock[i] = moment(clock[i]*1000).format("MM-DD HH:mm");
-      clockForWeekChart[i] = newData[value].clock;
-
-      i++;
+      history[key].value = newData[key].value;
     }
 
-    return clock;
+    return history;
   }
 
   function customizeDataMonth(newData){
 
-    let customizeHystory = {
-      clock: [],
-      value: []
-    };
+    let customizeHystory = [];
 
     let elementCounter = [];
 
@@ -1165,28 +1165,26 @@ let weekDayChart;
     let currentDate = 0;
     for (const [key, value] of Object.entries(newData)) {
       const stringDate = moment(value.clock*1000).format("YYYY-MM-DD");
- 
+
       if(stringDate == currentDate){
         elementCounter[i] ++;
-        customizeHystory.value[i] += parseFloat(value.value);
+        customizeHystory[i].value += parseFloat(value.value);
       }else{
         i++;
         elementCounter[i] = 1;
-        customizeHystory.clock[i] = stringDate;
-        customizeHystory.value[i] = parseFloat(value.value);
+        customizeHystory[i] = {};
+        customizeHystory[i].clock = stringDate;
+        customizeHystory[i].value = parseFloat(value.value);
         currentDate = stringDate;
       };
 
     }
 
-    i=0;
-    for (const [key, value] of Object.entries(customizeHystory.value)) {
-      customizeHystory.value[key] /= elementCounter[key];
-      customizeHystory.value[key] = roundNumber(customizeHystory.value[key], 4);
-      i++;
+    for (i = 0; i<customizeHystory.length; i++) {
+      customizeHystory[i].value /= elementCounter[i];
+      customizeHystory[i].value = customizeHystory[i].value;
     }
-console.log(customizeHystory);
-// console.log(elementCounter);
+
     return customizeHystory;
   }
 
@@ -1203,11 +1201,16 @@ console.log(customizeHystory);
   }
 
 
-  function updateBarChart(newValue, newClock){
-    if(currentChartType == 0){
-      insertDataToWeekdayChart(newValue,newClock);
+  function updateBarChart(newData){
+    const value = getValues(newData);
+    const clock = customizeDateForBarChart(newData);
+
+    $("#barChartTitle").empty();
+
+    if(barChartType == 'weekDay'){
+      insertDataToWeekdayChart(value,clock);
     }else{
-      insertDataToDayPartChart(newValue,newClock);
+      insertDataToDayPartChart(value,clock);
     }
   }
 
@@ -1219,7 +1222,9 @@ console.log(customizeHystory);
   }
 
   function getCheckCount(newData){
+
     let checkCounter = 0;
+
     for( const value in newData){     
         checkCounter++;
     }
@@ -1255,25 +1260,90 @@ console.log(customizeHystory);
     return values;
   }
 
-  function insertData(newData){
+  function getClock(checkHistory){
+    let clock = new Array();
 
-    const checkCount = getCheckCount(newData);
-    const value = roundNumbers(newData,4);
-    const clock = customizeDateAllPoints(newData);
-    const clockForBarChart = customizeDateForBarChart(newData);
+    for(let i=0; i<checkHistory.length; i++){
+      clock[i] = checkHistory[i].clock;
+    }
 
-    customizeDataMonth(newData);
+    return clock;
+  }
 
-    displayNewInfo(value,checkCount);
-    updateAreaChart(value, clock);
-    updateBarChart(value,clockForBarChart);
+  function getValues(checkHistory){
+    let values = new Array();
+
+    for(const key in checkHistory){
+      values[key] = roundNumber(checkHistory[key].value, 4);
+    }
+
+    return values;
+  }
+  
+  function changeAreaChartPointSize(chart,elementCount){
+
+      let lineChartWrapperWidth = $('#areaChart').width();
+
+      lineChartWrapperWidth = (lineChartWrapperWidth*40)/100;
+
+      let pointRadius = Math.floor(lineChartWrapperWidth/elementCount);
+
+      if(pointRadius > 8){
+        pointRadius = 8;
+      }else if(pointRadius < 2){
+        pointRadius = 2;
+      }
+
+      chart.data.datasets[0].pointRadius = pointRadius
+      chart.data.datasets[0].pointHoverRadius = pointRadius+1
+  }
+
+  function insertData(newDataHistory){
+
+    const elementCount = getCheckCount(newDataHistory);
+    changeAreaChartPointSize(areaChart,elementCount);
+
+    const enoughData = historyCountCheck(newDataHistory,2);
+
+    if(enoughData){
+
+      showAreaChart();
+      showBarChart();
+
+      let value = getValues(newDataHistory);
+      let clock = getClock(newDataHistory);
+
+      displayNewInfo(value);
+
+      updateAreaChart(value, clock);
+      
+      updateBarChart(currentHistory);
+    }else{
+      $('#paginationWrapper').empty();
+      hideAreaChart();
+      hideBarChart();
+    }
+  }
+
+  function changeBarChartBarThickness(barCount){
+
+    let barChartWrapperWidth = $('#weekDayChart').width();
+
+    barChartWrapperWidth = (barChartWrapperWidth*40)/100;
+
+    let barWidth = Math.floor(barChartWrapperWidth/barCount);
+
+    if(barWidth > 80){
+      barWidth = 80;
+    }
+    weekDayChart.options.scales.xAxes[0].barThickness = barWidth;
   }
 
   function matchDataWithTimeInterval(history){
-    startHr = document.querySelectorAll('.hr')[0].value;
-    endHr = document.querySelectorAll('.hr')[1].value;
-    startMin = document.querySelectorAll('.min')[0].value;
-    endMin = document.querySelectorAll('.min')[1].value;
+    let startHr = document.querySelectorAll('.hr')[0].value;
+    let endHr = document.querySelectorAll('.hr')[1].value;
+    let startMin = document.querySelectorAll('.min')[0].value;
+    let endMin = document.querySelectorAll('.min')[1].value;
 
     let currentHr;
     let currentMin;
@@ -1402,6 +1472,26 @@ console.log(customizeHystory);
 
   $('#timeButton').click(function() {
     hideOrShowSelectTimeBox();
+  });
+
+  $( "#dataGroupOption" ).change(function() {
+
+    if(this.value == 'EveryPoint'){
+      areaChartDataSort = this.value;
+
+      let newHystoryData = customizeDataAllPoints(currentHistory);
+      newHystoryData = spliteHistory(newHystoryData);
+
+      insertData(newHystoryData);
+    }else{
+      areaChartDataSort = this.value;
+
+      let newHystoryData = customizeDataMonth(currentHistory);
+      newHystoryData = spliteHistory(newHystoryData);
+
+      insertData(newHystoryData);
+    }
+
   });
 
 function hideOrShowSelectTimeBox(){

@@ -305,6 +305,13 @@ return [
             'role' => $userFree,
         ],
         [
+            'text' => 'Group',
+            'icon' => 'fas fa-users',
+            'classes' => 'text-bold',
+            'url' => '/user/user_group',
+            'role' => $userFree,
+        ],
+        [
             'text' => 'Support',
             'icon' => 'fas fa-question-circle',
             'classes' => 'text-bold',
