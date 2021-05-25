@@ -30,19 +30,13 @@
         }
         .monitorAdd-header-secound-step{
             &:before{
-                background: linear-gradient(90deg, #17a2b8 27%, #dee2e6 27%);
+                background: linear-gradient(90deg, #17a2b8 33%, #dee2e6 33%);
             }
         }
 
         .monitorAdd-header-third-step{
             &:before{
-                background: linear-gradient(90deg, #17a2b8 50%, #dee2e6 50%);
-            }
-        }
-
-        .monitorAdd-header-fourth-step{
-            &:before{
-                background: linear-gradient(90deg, #17a2b8 75%, #dee2e6 75%);
+                background: linear-gradient(90deg, #17a2b8 64%, #dee2e6 64%);
             }
         }
 
@@ -176,6 +170,24 @@
                     font-size: 16px;
                     color: rgb(82, 82, 82);
                 }
+
+                .success_header{
+                    font-size: 30px;
+                    text-align: center;
+                }
+                .success_decr{
+                    font-size: 24px;
+                    color:rgb(82, 82, 82);
+                    text-align: center;
+                }
+                .icon-box{
+                    display: block;
+                    margin: 0 auto;
+                    height: 200px;
+                    width: 150px;
+                    font-size: 150px;
+                    color: #17a2b8;
+                }
             }
 
             .monitorAdd-footer{
@@ -208,20 +220,14 @@
                     outline: none;
                     padding: 5px 10px 5px 10px;
                     width: auto;
-                    color: black;
-                    border-left: 6px solid #17a2b8;
-                    border-right: 6px solid #17a2b8;
+                    color: white;
                     border-radius: 5px;
                     font-size: 18px;
                     font-weight: 400;
                 
-                    /* "to left" / "to right" - affects initial color */
-                    background: linear-gradient(to left, rgb(255, 255, 255) 50%, #17a2b8 50%) right;
-                    background-size: 200%;
-                    transition: .5s ease-out;
+                    background:  #17a2b8;
                     &:hover{
-                        color: white;
-                        background-position: left;
+                        background:  #0c7c8d;
                     }
                 }
     
@@ -371,5 +377,70 @@
         .input-group{
             height: 20px;
         }
+    }
+
+    //TABLE
+    .table-user{
+        &-name{
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            font-weight: 550;
+            img{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin-right: 15px;
+            }
+        }
+
+
+        .userPermission{
+            height: 24px;
+            width: max-content;
+            background-color: gray;
+            border-radius: 3px;
+            color: white;
+            font-size: 14px;
+            padding: 2px 4px;
+        }
+
+        .select-icon-box{
+            color: rgb(39, 39, 39);
+            width: max-content;
+            font-size: 20px;
+            font-weight: 550;
+            cursor: pointer;
+            &:hover{
+                color: rgb(0, 0, 0);
+            }
+        }
+
+        .select-icon-box.selected{
+            color: rgb(12, 116, 2);
+            &:hover{
+                color: rgb(119, 119, 119);
+            }
+        }
+    }
+
+    //Language select styles
+    .alertLanguage-wrapper{
+        padding: 5px 0;
+        min-width: 75px;
+        width: auto;
+        height: auto;
+        text-align: center;
+        border-radius: 10px;
+        cursor: pointer;
+        &:hover{
+            border: 1px solid #17a2b8;
+            box-shadow: 0 4px 8px 0 #17a3b863, 0 6px 20px 0 #17a3b8be;
+        }
+    }
+
+    .alertLanguage-wrapper.selected{
+        border: 1px solid #17a2b8;
+        box-shadow: 0 4px 8px 0 #17a3b863, 0 6px 20px 0 #17a3b8be;
     }
 }

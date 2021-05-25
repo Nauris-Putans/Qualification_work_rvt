@@ -35,14 +35,11 @@ class CreateMonitoringMonitorsTable extends Migration
         Schema::create('monitoring_items', function (Blueprint $table) {
             $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger("check_type");
-            $table->unsignedBigInteger("monitor_type");
             $table->unsignedBigInteger("application");
 
             $table->primary("item_id");
 
             $table->foreign('check_type')->references('id')->on('monitoring_check_types')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('monitor_type')->references('monitor_type_id')->on('monitoring_monitor_type')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('application')->references('application_id')->on('monitoring_applications')
                 ->onUpdate('cascade')->onDelete('cascade');
@@ -59,6 +56,15 @@ class CreateMonitoringMonitorsTable extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
+ 
+        Schema::create('group_member_permission', function (Blueprint $table) {
+            $table->unsignedBigInteger('permission_id');
+            $table->string('permission_name');
+
+            $table->unique('permission_name', 'permission_id');
+            $table->primary(["permission_id"]);
+        });
+
         Schema::create('monitoring_group_members', function (Blueprint $table) {
             $table->string('group_id');
             $table->unsignedBigInteger('group_member');
@@ -69,6 +75,8 @@ class CreateMonitoringMonitorsTable extends Migration
             $table->foreign('group_id')->references('group_id')->on('monitoring_users_groups')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('group_member')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('group_member_permission')->references('permission_id')->on('group_member_permission')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     
@@ -107,6 +115,8 @@ class CreateMonitoringMonitorsTable extends Migration
             $table->string('friendly_name');
             $table->string('user_input');
             $table->string('user_group');
+            $table->unsignedBigInteger("monitor_type");
+            $table->string("check_interval");
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('host');
             $table->unsignedBigInteger('status');
@@ -114,6 +124,8 @@ class CreateMonitoringMonitorsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_group')->references('group_id')->on('monitoring_users_groups')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('monitor_type')->references('monitor_type_id')->on('monitoring_monitor_type')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');

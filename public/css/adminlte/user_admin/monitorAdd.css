@@ -29,15 +29,11 @@
 }
 
 .monitorAdd .monitorAddWrapper .monitorAdd-header-secound-step:before {
-  background: linear-gradient(90deg, #17a2b8 27%, #dee2e6 27%);
+  background: linear-gradient(90deg, #17a2b8 33%, #dee2e6 33%);
 }
 
 .monitorAdd .monitorAddWrapper .monitorAdd-header-third-step:before {
-  background: linear-gradient(90deg, #17a2b8 50%, #dee2e6 50%);
-}
-
-.monitorAdd .monitorAddWrapper .monitorAdd-header-fourth-step:before {
-  background: linear-gradient(90deg, #17a2b8 75%, #dee2e6 75%);
+  background: linear-gradient(90deg, #17a2b8 64%, #dee2e6 64%);
 }
 
 .monitorAdd .monitorAddWrapper .monitorAdd-header-last-step:before {
@@ -182,6 +178,26 @@
   color: #525252;
 }
 
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .success_header {
+  font-size: 30px;
+  text-align: center;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .success_decr {
+  font-size: 24px;
+  color: #525252;
+  text-align: center;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .icon-box {
+  display: block;
+  margin: 0 auto;
+  height: 200px;
+  width: 150px;
+  font-size: 150px;
+  color: #17a2b8;
+}
+
 .monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer {
   position: absolute;
   bottom: 0;
@@ -215,21 +231,15 @@
   outline: none;
   padding: 5px 10px 5px 10px;
   width: auto;
-  color: black;
-  border-left: 6px solid #17a2b8;
-  border-right: 6px solid #17a2b8;
+  color: white;
   border-radius: 5px;
   font-size: 18px;
   font-weight: 400;
-  /* "to left" / "to right" - affects initial color */
-  background: linear-gradient(to left, white 50%, #17a2b8 50%) right;
-  background-size: 200%;
-  transition: 0.5s ease-out;
+  background: #17a2b8;
 }
 
 .monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .toStartBtn:hover {
-  color: white;
-  background-position: left;
+  background: #0c7c8d;
 }
 
 .monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .leftBtn {
@@ -377,5 +387,73 @@
 
 .monitorAdd .inputWrapper .input-group {
   height: 20px;
+}
+
+.monitorAdd .table-user-name {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-weight: 550;
+}
+
+.monitorAdd .table-user-name img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.monitorAdd .table-user .userPermission {
+  height: 24px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  background-color: gray;
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  padding: 2px 4px;
+}
+
+.monitorAdd .table-user .select-icon-box {
+  color: #272727;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 20px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.monitorAdd .table-user .select-icon-box:hover {
+  color: black;
+}
+
+.monitorAdd .table-user .select-icon-box.selected {
+  color: #0c7402;
+}
+
+.monitorAdd .table-user .select-icon-box.selected:hover {
+  color: #777777;
+}
+
+.monitorAdd .alertLanguage-wrapper {
+  padding: 5px 0;
+  min-width: 75px;
+  width: auto;
+  height: auto;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.monitorAdd .alertLanguage-wrapper:hover {
+  border: 1px solid #17a2b8;
+  box-shadow: 0 4px 8px 0 #17a3b863, 0 6px 20px 0 #17a3b8be;
+}
+
+.monitorAdd .alertLanguage-wrapper.selected {
+  border: 1px solid #17a2b8;
+  box-shadow: 0 4px 8px 0 #17a3b863, 0 6px 20px 0 #17a3b8be;
 }
 

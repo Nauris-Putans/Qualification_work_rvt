@@ -28,7 +28,11 @@ mix
     //Download and Response speed pages style
     .sass('resources/sass/adminlte/user_admin/statistic.scss', 'public/css/adminlte/user_admin')
     //dashboard page style
-    .sass('resources/sass/adminlte/user_admin/dashboard.scss', 'public/css/adminlte/user_admin');
+    .sass('resources/sass/adminlte/user_admin/dashboard.scss', 'public/css/adminlte/user_admin')
+    //user group
+    .sass('resources/sass/adminlte/user_admin/userGroup.scss', 'public/css/adminlte/user_admin')
+    //user group
+    .sass('resources/sass/adminlte/user_admin/userGroupControl.scss', 'public/css/adminlte/user_admin');
 
 
 //ADMIN SIDE STYLES

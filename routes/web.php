@@ -96,10 +96,13 @@ Route::middleware(['role:' . $userAdminSide])->group( function()
     Route::post('/user/dashboard/lastStatusGet', 'Adminlte\ZabbixController@lastStatusHistoryGet')->name('user.dashboard.lastStatusHistoryGet');
     Route::post('/user/dashboard/removeItem', 'Adminlte\ZabbixController@itemRemove')->name('user.dashboard.itemRemove');
     Route::post('/user/dashboard/saveElementsPositions', 'Adminlte\ZabbixController@saveElementsPositions')->name('user.dashboard.savePosition');
+    Route::post('/user/dashboard/storeGroupMemberElement', 'Adminlte\ZabbixController@storeGroupMemberElement')->name('user.dashboard.storeGroupMemberElement');
 
     // Monitoring sections
     Route::get('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@create')->name('monitor.add');
     Route::post('/user/monitoring/monitors/add', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsController@store')->name('add.store');
+    Route::get('/user/monitoring/monitors/edit/{id}', 'Adminlte\user_admin\monitoring\monitors\MonitorEditController@show')->name('monitor.edit');
+    Route::post('/user/monitoring/monitors/edit', 'Adminlte\user_admin\monitoring\monitors\MonitorEditController@update')->name('monitor.edit.update');
     Route::get('/user/monitoring/monitors/list', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@index')->name('monitor.list.show');
     Route::post('/user/monitoring/monitors/list/delete/{monitorId}', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@deleteMonitor')->name('monitor.destroy');
     Route::post('/user/monitoring/monitors/list/change-status/{monitorId}', 'Adminlte\user_admin\monitoring\monitors\MonitoringMonitorsListController@changeStatus')->name('monitor.changeStatus');
@@ -109,6 +112,16 @@ Route::middleware(['role:' . $userAdminSide])->group( function()
     Route::post('/user/monitoring/page-speed', 'Adminlte\user_admin\monitoring\MonitoringPageSpeedController@store');
     Route::get('/user/monitoring/download-speed', 'Adminlte\user_admin\monitoring\MonitoringDownloadSpeedController@index');
     Route::post('/user/monitoring/download-speed', 'Adminlte\user_admin\monitoring\MonitoringDownloadSpeedController@store');
+    
+    // User group sections
+    Route::get('/user/user_group', 'Adminlte\user_admin\UserGroupController@show')->name('userGroup.show');
+    Route::post('/user/group/change/{groupid}', 'Adminlte\user_admin\UserGroupController@changeGroup')->name('userGroup.changeGroup');
+    
+    // User group control sections
+    Route::get('/user/group/members/{groupid}', 'Adminlte\user_admin\GroupMemberController@show')->name('userGroup.controlGroupMembers');
+    Route::post('/user/group/usersFind', 'Adminlte\user_admin\GroupMemberController@findUsers')->name('userGroup.findUsers');
+    Route::post('/user/group/usersInvite', 'Adminlte\user_admin\GroupMemberController@inviteUser')->name('userGroup.inviteUser');
+
     // Alerts sections
     Route::get('/user/alerts', 'Adminlte\user_admin\AlertsController@index');
 

@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', __('Add'))
+@section('title', __('Edit'))
 
 @section('content_header')
     <nav aria-label="breadcrumb">
@@ -7,7 +7,9 @@
             <li class="breadcrumb-item active" aria-current="page">
                 <a href="{{ URL::route('admin.user_admin.index') }}" >{{ __('Dashboard')}}</a>
                 \
-                <a>{{ __('monitor add')}}</a>
+                <a href="{{ URL::route('monitor.list.show') }}" >{{ __('Monitor list')}}</a>
+                \
+                <a>{{ __('monitor edit')}}</a>
             </li>
         </ol>
     </nav>
@@ -62,12 +64,8 @@
                                 <div class="col-sm-6">
                                     <!-- select -->
                                     <div class="form-group">
-                                      <label for="checkType">{{ __('Check type')}}</label>
-                                      <select class="form-control" name="checkType" id="checkType">
-                                        <option >HTTP/HTTPS</option>
-                                        <option >ICMP ping</option>
-                                        <option >DNS</option>
-                                      </select>
+                                      <label for="monitorType">{{ __('Check type')}}</label>
+                                      <input type="text" class="form-control" id="monitorType" name="monitorType" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -75,13 +73,13 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="checkAddress" id="checkAddressTitle">{{ __('Check URL')}}</label>
-                                        <input type="text" class="form-control" id="checkAddress" name="checkAddress" placeholder="https://">
-                                      </div>
+                                        <input type="text" class="form-control" value="{{$monitor->user_input}}" id="checkAddress" name="checkAddress" placeholder="https://" disabled>
+                                    </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="friendlyName">{{ __('Friendly name')}}</label>
-                                        <input type="text" class="form-control" id="friendlyName" name="friendlyName" placeholder="Friendly moitor name">
+                                        <input type="text" class="form-control" value="{{$monitor->friendly_name}}" id="friendlyName" name="friendlyName" placeholder="Friendly moitor name">
                                       </div>
                                 </div>
                             </div>
@@ -90,7 +88,7 @@
                                     <div class="form-group">
                                         <div class="sliderInfoWrapper">
                                             <label for="checkInterval">{{ __('Check interval')}}</label>
-                                            <div class="sliderValue" id="intervalSliderValue">30s</div>
+                                            <div class="sliderValue" id="intervalSliderValue"></div>
                                         </div>
                                         <div class="slidecontainer slidecontainer_interval">
                                             <input type="range" min="0" max="10" value="0" step="1" class="slider" id="checkInterval" name="checkInterval">
@@ -100,7 +98,7 @@
                             </div>
                             <div class="monitorAdd-footer">
                                 {{-- Start step buttons --}}
-                                <button id="nextAdvancedSettings" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
+                                <button id="nextToAddUsersStep" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
         
                             </div>
                         </div>
@@ -113,7 +111,7 @@
                                         <div class="ssl_decr ">{{ __('Set a response time threshold to calculate the Apdex score')}}</div>
                                         <div class="form-group" style="margin-top:10px">
                                             <div class="slidecontainer slidecontainer_interval">
-                                                <input disabled type="range" min="10" max="60" value="10" step="5" class="slider" id="checkInterval" name="checkInterval">
+                                                <input disabled type="range" min="10" max="60" value="10" step="5" class="slider" id="apdexInterval" name="checkInterval">
                                             </div>
                                         </div>
                                         <div class="ssl_title" style="margin-top: 10px">{{ __('AUTHENTICATION PARAMETERS')}}</div>
@@ -121,12 +119,12 @@
                                         <div class="row justify-content-center" style="margin-top: 10px">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <input disabled type="text" class="form-control" id="checkAddress" name="checkAddress" placeholder="User name">
+                                                    <input disabled type="text" class="form-control" id="authenticationUsername" name="authenticationUsername" placeholder="User name">
                                                   </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <input disabled type="text" class="form-control" id="friendlyName" name="friendlyName" placeholder="Password">
+                                                    <input disabled type="text" class="form-control" id="authenticationPassword" name="authenticationPassword" placeholder="Password">
                                                   </div>
                                             </div>
                                         </div>
@@ -136,12 +134,12 @@
                                         <div class="row justify-content-center" style="margin-top: 10px">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <input disabled type="text" class="form-control" id="checkAddress" name="checkAddress" placeholder="Header">
+                                                    <input disabled type="text" class="form-control" id="header" name="header" placeholder="Header">
                                                   </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <input disabled type="text" class="form-control" id="friendlyName" name="friendlyName" placeholder="Key">
+                                                    <input disabled type="text" class="form-control" id="headerKey" name="headerKey" placeholder="Key">
                                                   </div>
                                             </div>
                                         </div>
@@ -149,8 +147,8 @@
                             </div>
                             <div class="monitorAdd-footer">
                                 {{-- Buttons in add users step --}}
-                                <button id="backBasicSettings" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
-                                <button id="nextSSLCheck" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
+                                <button id="backToBasicSettings" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
+                                <button id="nextToAdvancedSettings" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
                             </div>
                         </div>
 
@@ -168,26 +166,26 @@
                                 <div class="col-md-6  d-flex">
                                     <div class="custom-control custom-radio custom-control-inline">
                                         <input checked type="radio" class="custom-control-input" id="noSSLCheck" name="example" value="customEx">
-                                        <label class="custom-control-label" for="noSSLCheck">No SSL check</label>
+                                        <label class="custom-control-label" for="noSSLCheck">{{ __('No SSL check')}}</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
                                         <input type="radio" class="custom-control-input" id="7dayBefore" name="example" value="customEx" disabled>
-                                        <label class="custom-control-label" for="7dayBefore">Before 7 days</label>
+                                        <label class="custom-control-label" for="7dayBefore">{{ __('Before 7 days')}}</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
                                         <input type="radio" class="custom-control-input" id="30dayBefore" name="example" value="customEx" disabled>
-                                        <label class="custom-control-label" for="30dayBefore">Before 30 days</label>
+                                        <label class="custom-control-label" for="30dayBefore">{{ __('Before 30 days')}}</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
                                         <input type="radio" class="custom-control-input" id="onExpiry" name="example" value="customEx" disabled>
-                                        <label class="custom-control-label" for="onExpiry">On expiry</label>
+                                        <label class="custom-control-label" for="onExpiry">{{ __('On expiry')}}</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="monitorAdd-footer">      
                                 {{-- Buttons in advanced settings step --}}
-                                <button id="backAdvancedSettings" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
-                                <button id="nextAlertSettings" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
+                                <button id="backToAddUsersStep" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
+                                <button id="nextToSSLMonitoringSettings" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
                             </div>
                         </div>
 
@@ -198,32 +196,56 @@
                                     <div class="table-responsive-md">
                                         <table class="table table-user">
                                             <thead class="thead-light">
-                                              <tr>
-                                                <th width="60%">User Name</th>
-                                                <th width="30%">Type</th>
-                                                <th width="10%">Select</th>
-                                              </tr>
+                                                <tr>
+                                                <th width="60%">{{ __('User Name')}}</th>
+                                                <th width="30%">{{ __('Type')}}</th>
+                                                <th width="10%">{{ __('Select')}}</th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($allGroupsUsers as $user)
+                                                @foreach ($groupedPersons->reciveAlertPersons as $user)
                                                     <tr>
                                                         <td class="table-user-name">
                                                             @if($user->profile_image)
-                                                                <img alt="Avatar" class="table-avatar" src="../../..{{ $user->profile_image}}">
+                                                                <img alt="Avatar" class="table-avatar" src="../../../..{{ $user->profile_image}}">
                                                             @else
                                                                 @if($user->gender == 'Female')
-                                                                    <img alt="Avatar" class="table-avatar" src="../../../images/256x256/256_12.png">
+                                                                    <img alt="Avatar" class="table-avatar" src="../../../../images/256x256/256_12.png">
                                                                 @else
-                                                                    <img alt="Avatar" class="table-avatar" src="../../../images/256x256/256_13.png">
+                                                                    <img alt="Avatar" class="table-avatar" src="../../../../images/256x256/256_13.png">
                                                                 @endif
                                                             @endif
                                                             {{ $user->name }}
                                                         </td>
                                                         <td style="vertical-align: middle">
-                                                            <div class="userPermission">Member</div>
+                                                            <div class="userPermission">{{ __('Member')}}</div>
                                                         </td>
                                                         <td style="vertical-align: middle" >
-                                                            <div class="select-icon-box" id="userSelect{{ $user->zabbix_user_id }}">
+                                                            <div class="select-icon-box selected" id="userSelect{{ $user->userID  }}">
+                                                                <i class="fas fa-check"></i>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                @foreach ($groupedPersons->noReciveAlertPersons as $user)
+                                                    <tr>
+                                                        <td class="table-user-name">
+                                                            @if($user->profile_image)
+                                                                <img alt="Avatar" class="table-avatar" src="../../../..{{ $user->profile_image}}">
+                                                            @else
+                                                                @if($user->gender == 'Female')
+                                                                    <img alt="Avatar" class="table-avatar" src="../../../../images/256x256/256_12.png">
+                                                                @else
+                                                                    <img alt="Avatar" class="table-avatar" src="../../../../images/256x256/256_13.png">
+                                                                @endif
+                                                            @endif
+                                                            {{ $user->name }}
+                                                        </td>
+                                                        <td style="vertical-align: middle">
+                                                            <div class="userPermission">{{ __('Member')}}</div>
+                                                        </td>
+                                                        <td style="vertical-align: middle" >
+                                                            <div class="select-icon-box" id="userSelect{{ $user->userID  }}">
                                                                 <i class="fas fa-plus"></i>
                                                             </div>
                                                         </td>
@@ -237,24 +259,24 @@
                             {{-- Selected users --}}
                             <div class="row justify-content-center" style="margin-top: 10px">
                                 <div class="col-md-6 d-flex justify-content-around"> 
-                                    <div class="alertLanguage-wrapper selected" id="englishLanguage">    
+                                    <div class="alertLanguage-wrapper" id="englishLanguage">    
                                         <i class="flag-icon flag-icon-us"></i>
-                                        <div class="alertLanguage-title">English</div>
+                                        <div class="alertLanguage-title">{{ __('English')}}</div>
                                     </div> 
                                     <div class="alertLanguage-wrapper" id="latvianLanguage">    
                                         <i class="flag-icon flag-icon-lv"></i>
-                                        <div class="alertLanguage-title">Latvian</div>
+                                        <div class="alertLanguage-title">{{ __('Latvian')}}</div>
                                     </div> 
                                     <div class="alertLanguage-wrapper" id="russianLanguage">    
                                         <i class="flag-icon flag-icon-ru"></i>
-                                        <div class="alertLanguage-title">Russian</div>
+                                        <div class="alertLanguage-title">{{ __('Russian')}}</div>
                                     </div> 
                                 </div>
                             </div>
                             <div class="monitorAdd-footer">      
                                 {{-- Select alert persons section button --}}
                                 <button id="backSSLSettings"  class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
-                                <button id="createMonitor" class="completeBtn">{{ __('Create')}}<i class="fas fa-clipboard-check"></i></button>
+                                <button id="createMonitor" class="completeBtn">{{ __('Update')}}<i class="fas fa-clipboard-check"></i></button>
                                 <div class="spinerBox" id="spinerBox">
                                     <div class="spinner-border text-primary" role="status">
                                         <span class="visually-hidden"></span>
@@ -265,13 +287,13 @@
 
                         {{-- Monitor was successful updated --}}
                         <div class="settingsWrapper d-none" id="monitorCreatedWrapper">
-                            <div class="success_header">{{ __('Success')}}</div>
-                            <div class="success_decr">{{ __('Monitor has been created!')}}</div>
-                            <div class="icon-box"><i class="fas fa-laugh-wink"></i></div>
+                                <div class="success_header"> {{ __('Success')}}</div>
+                                <div class="success_decr">{{ __('Monitor has been updated!')}}</div>
+                                <div class="icon-box"><i class="fas fa-laugh-wink"></i></div>
                             <div class="monitorAdd-footer">      
-                                <form method="GET" action="{{ URL::route('monitor.add') }}">
+                                <form method="GET" action="{{ URL::route('monitor.list.show') }}">
                                     @csrf
-                                    <button id="backToStart"  class="toStartBtn">{{ __('Create new monitor')}}</button> 
+                                    <button id="backToStart"  class="toStartBtn">{{ __('Go back to monitor list')}}</button> 
                                 </form> 
                             </div>
                         </div>
@@ -296,15 +318,78 @@
 
 <script>
     $(function(){
+
+        let checkIntervalSlider = document.getElementById("checkInterval");
+        let intervalSliderValue = document.getElementById("intervalSliderValue");
+
+        function setStartIntervalPickerValue(){
+            let checkInterval = <?php echo json_encode($monitor->check_interval); ?>;
+            intervalSliderValue.innerHTML = checkInterval;
+
+            if(checkInterval == '30s'){
+                
+            }else{
+                checkInterval = checkInterval.replace('m','');
+                checkInterval = parseInt(checkInterval);
+                checkIntervalSlider.value = checkInterval;
+                let x = checkIntervalSlider.value-checkIntervalSlider.min;
+                let valueInPercent = (100*x/(checkIntervalSlider.max-checkIntervalSlider.min));
+                let color = 'linear-gradient(90deg, #17a2b8 '+valueInPercent+'%, rgb(214,214,214) '+valueInPercent+'%)';
+                checkIntervalSlider.style.background = color;
+            }
+
+        }
+
+        setStartIntervalPickerValue();
+        
+        function setCheckedMonitorType(){
+            const selectedMonitor = <?php echo json_encode($monitor->monitor_type); ?>;
+            const monitortype = ['ICMP ping', 'HTTP/HTTPS', 'DNS'];
+            document.getElementById("monitorType").value = monitortype[selectedMonitor-1];
+        }
+        setCheckedMonitorType();
+
+        function setSelectedAlertLanguage(){
+            const selectedLanguage = <?php echo json_encode($alertLanguage); ?>;
+            const languageElementIds = {
+                'English': 'englishLanguage',
+                'Latvian': 'latvianLanguage',
+                'Russian': 'russianLanguage',
+            };
+
+            if(selectedLanguage){
+                const elementId = languageElementIds[selectedLanguage];
+                let languageElement = document.getElementById(elementId);
+                languageElement.classList.add("selected");
+            }else{
+                let languageElement = document.getElementById('englishLanguage');
+                languageElement.classList.add("selected");
+            }
+
+        }
+        setSelectedAlertLanguage();
+
         let usersToAlert = [];
-        let allUserData = <?php echo json_encode($allGroupsUsers); ?>;
+
+        function setAlertPersons(){
+            const persons = <?php echo json_encode($groupedPersons->reciveAlertPersons); ?>;
+
+            for(let i=0; i<persons.length; i++){
+                const personID = (persons[i].userID).toString();
+                usersToAlert.push(personID);
+            }
+
+
+        }
+        setAlertPersons();
 
         const usersSelectIcon = document.querySelectorAll('.select-icon-box');
         usersSelectIcon.forEach((icon) => {
+
             icon.addEventListener('click', () => {
                 let addUserId = icon.id;
                 addUserId = addUserId.replace('userSelect','');
-                addUserId = parseInt(addUserId)
+                addUserId = (addUserId).toString()
 
                 const currentIcon = icon.children[0].classList.contains('fa-plus');
                 if(currentIcon){
@@ -326,16 +411,6 @@
             });
         });
 
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-        });
-
-        let checkIntervalSlider = document.getElementById("checkInterval");
-        let intervalSliderValue = document.getElementById("intervalSliderValue");
-
         //FUNCTIONS
         function removeSelectedFromLanguages(){
           $('#englishLanguage').removeClass('selected');
@@ -344,8 +419,6 @@
         }
 
         //EVENT LISTENERS
-
-        //Alert language select buttons
         $('#englishLanguage').click( function(){
             removeSelectedFromLanguages()
             $('#englishLanguage').addClass('selected')
@@ -360,6 +433,15 @@
             removeSelectedFromLanguages()
             $('#russianLanguage').addClass('selected')
         });
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        //EVENT LISTENERS
 
         //Sliders
         checkIntervalSlider.oninput = function() {
@@ -380,7 +462,7 @@
 
 
 
-        $('#nextAdvancedSettings').click( function(){
+        $('#nextToAddUsersStep').click( function(){
             $('#monitorAddHeader').addClass('monitorAdd-header-secound-step');
             $('#secoundStep').addClass('bg-current-step');
             $('#settingsTitle').text('Advanced settings');
@@ -389,7 +471,7 @@
         });
 
         //Add users settings buttons
-        $('#backBasicSettings').click( function(){   
+        $('#backToBasicSettings').click( function(){   
             $('#monitorAddHeader').removeClass('monitorAdd-header-secound-step');
             $('#secoundStep').removeClass('bg-current-step');
             $('#settingsTitle').text('Basic settings');
@@ -397,17 +479,17 @@
             $('#addUsersSettingsWrapper').css("display", "none");
         });
 
-        $('#nextSSLCheck').click( function(){
+        $('#nextToAdvancedSettings').click( function(){
             $('#monitorAddHeader').removeClass('monitorAdd-header-secound-step');
             $('#monitorAddHeader').addClass('monitorAdd-header-third-step');
             $('#thirdStep').addClass('bg-current-step');
-            $('#settingsTitle').text('SSL settings');
+            $('#settingsTitle').text('SSL certificate');
             $('#addUsersSettingsWrapper').css("display", "none");
             $('#advancedSettingsWrapper').css("display", "block");
         });
 
         //Advanced settings buttons
-        $('#backAdvancedSettings').click( function(){
+        $('#backToAddUsersStep').click( function(){
             $('#monitorAddHeader').removeClass('monitorAdd-header-third-step');
             $('#monitorAddHeader').addClass('monitorAdd-header-secound-step');
             $('#thirdStep').removeClass('bg-current-step');
@@ -416,7 +498,7 @@
             $('#addUsersSettingsWrapper').css("display", "block");
         });
 
-        $('#nextAlertSettings').click( function(){  
+        $('#nextToSSLMonitoringSettings').click( function(){  
             $('#monitorAddHeader').addClass('monitorAdd-header-last-step');
             $('#monitorAddHeader').removeClass('monitorAdd-header-third-step');
             $('#fourthStep').addClass('bg-current-step');
@@ -425,16 +507,16 @@
             $('#advancedSettingsWrapper').css("display", "none");
         });
 
+        // Alert settings section buttons
         $('#backSSLSettings').click( function(){
             $('#monitorAddHeader').removeClass('monitorAdd-header-last-step');
             $('#monitorAddHeader').addClass('monitorAdd-header-third-step');
             $('#fourthStep').removeClass('bg-current-step');
-            $('#settingsTitle').text('SSL settings');
+            $('#settingsTitle').text('SSL certificate');
             $('#SSLSettingsWrapper').css("display", "none");
             $('#advancedSettingsWrapper').css("display", "block");
         });
 
-        // Create monitor button clicked
         $('#createMonitor').click( function(){
             $('#createMonitor').css("display", "none");
             $('#backSSLSettings').css("display", "none");
@@ -442,35 +524,13 @@
             addNewMonitor();
         });
 
-        //Check type changed
-        let checkTypeList = ["HTTP/HTTPS","ICMP ping","DNS"];
-        let checkType;
-        
-        $("#checkType").change(function() {
-            if(this.value == checkTypeList[0]){
-                $('#checkAddressTitle').text('Check URL');
-                $('#checkAddress').attr('placeholder','https://');
-                $('#checkAddress').val(''); 
-            }else if(this.value == checkTypeList[1]){
-                $('#checkAddressTitle').text('IP address');
-                $('#checkAddress').attr('placeholder','93.184.216.34');
-                $('#checkAddress').val(''); 
-            }else if(this.value == checkTypeList[2]){
-                $('#checkAddressTitle').text('Host name');
-                $('#checkAddress').attr('placeholder','www.yourdomain.com');
-                $('#checkAddress').val(''); 
-            }
-        });
-
-
         function showMonitorCreatedPage(message){
             $('#monitorCreatedWrapper').removeClass('d-none');
             $('#settingsTitle').addClass('d-none');
-            $('#SSLSettingsWrapper').css("display", "none");
+            $('#SSLSettingsWrapper').addClass('d-none');
             $('#lastStep').addClass('bg-current-step');
 
             const stepWrappers = document.querySelectorAll('.currentStepWrapper');
-
             stepWrappers.forEach((wrapper) => {
                 wrapper.classList.toggle('d-none');
             });
@@ -483,7 +543,7 @@
 
         //AJAX REQUESTS
         let lastError = [];
-        let errrorCounter = 0;
+        let errorCounter = 0;
         //Add new monitor
         function addNewMonitor(){
 
@@ -494,22 +554,12 @@
                     $(`#${lastError[i]}`).removeClass('is-invalid');
                 }
             }
+
             lastError = [];
 
-            let alertingPersonsInfo = [];
-            //Get all info about persons who alert
-            for(let i=0; i<usersToAlert.length; i++){
-                for (let property in allUserData) {
-                    if(allUserData[property]['zabbix_user_id'] == usersToAlert[i]){
-                        alertingPersonsInfo[i] = allUserData[property];
-                    }
-                }
-            }
-
-            let checkType = $( "#checkType option:selected" ).text();
-            let checkField = $('#checkAddress').val();
             let friendlyName = $('#friendlyName').val();
             let checkInterval = checkIntervalSlider.value;
+            const oldData = <?php echo json_encode($monitor); ?>;
             let email = $('.alertLanguage-wrapper.selected')[0].id;
             email = email.replace('Language','');
 
@@ -518,17 +568,16 @@
             header:{
             'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
             },
-            url:'{{ URL::route("add.store") }}',
+            url:'{{ URL::route("monitor.edit.update") }}',
             data:{
             _token: "{{ csrf_token() }}",
             dataType: 'json', 
             contentType:'application/json',
             //My passed data 
-            checkType: checkType,
-            checkAddress: checkField,
+            monitor: oldData,
             friendlyName: friendlyName,
             checkInterval: checkInterval,
-            personsToAlert: alertingPersonsInfo,
+            personsToAlert: usersToAlert,
             email: email,
             }
 
@@ -538,7 +587,8 @@
             $('#createMonitor').css("display", "block");
             $('#backSSLSettings').css("display", "block");
             $('#spinerBox').css("display", "none");
-            alertingPersonsInfo = [];
+
+            data = data.original;
             if(data.message){
                 showMonitorCreatedPage(data.message)
             }
@@ -562,32 +612,27 @@
                 $.each( response.errors, function( key, value) {
                     toastr.error(value);
                     show_validation_failed(key, value[0]);
-                    if(errrorCounter == 0){
+                    if(errorCounter == 0){
                         firstErrorId = key;
                     }
-                    errrorCounter++;
+                    errorCounter++;
                 });
-                errrorCounter = 0;
+                errorCounter = 0;
                 moveToFirstValidationFailedPage(firstErrorId)
             }
           });
         }
 
-        function returnToFirstPage(){
-            $('#settingsTitle').text('Basic settings');
-            $('#basicSettingsWrapper').css("display", "block");
-            $('#lastStep').removeClass('bg-current-step');
-            $('#thirdStep').removeClass('bg-current-step');
-            $('#fourthStep').removeClass('bg-current-step');
-            $('#secoundStep').removeClass('bg-current-step');
-            $('#SSLSettingsWrapper').css("display", "none");
-            $('#monitorAddHeader').removeClass('monitorAdd-header-last-step');
-        }
-
-        //Show/display where is first error 
-        function moveToFirstValidationFailedPage(firstError_ītem_id){
-            if(firstError_ītem_id == 'checkAddress' || firstError_ītem_id == 'friendlyName'){
-                returnToFirstPage();
+        //Show/display where is first error occures
+        function moveToFirstValidationFailedPage(firstError_item_id){
+            if(firstError_item_id == 'checkAddress' || firstError_item_id == 'friendlyName'){
+                $('#settingsTitle').text('Basic settings');
+                $('#basicSettingsWrapper').css("display", "block");
+                $('#lastStep').removeClass('bg-current-step');
+                $('#thirdStep').removeClass('bg-current-step');
+                $('#fourthStep').removeClass('bg-current-step');
+                $('#secoundStep').removeClass('bg-current-step');
+                $('#monitorAddHeader').removeClass('monitorAdd-header-last-step');
             }else{
                 alert( @json( __('This element is not validated correctly yet') ));
             }
@@ -595,7 +640,7 @@
 
         function show_validation_failed(error_ītem_id, error_message){
             if(error_ītem_id != 'NotUseId'){
-                lastError[errrorCounter] = error_ītem_id;
+                lastError[errorCounter] = error_ītem_id;
                 $(`#${error_ītem_id}`).addClass('is-invalid');
             }
         }

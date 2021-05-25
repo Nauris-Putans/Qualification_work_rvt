@@ -251,14 +251,6 @@
   padding: 5px;
 }
 
-.response-time .areaChartSettingsContainer .settings-footer {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 5px;
-  color: white;
-}
-
 .response-time .cursor-pointer {
   cursor: pointer;
 }

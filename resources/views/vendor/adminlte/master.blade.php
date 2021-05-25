@@ -183,6 +183,9 @@
                 // Renders calendar
                 calendar.render();
             });
+            const not = document.getElementById('notification');
+            not.style.backgroundColor = 'red';
+            console.log(not);
 
         </script>
 

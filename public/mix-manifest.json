@@ -6,6 +6,8 @@
     "/css/adminlte/user_admin/uptime.css": "/css/adminlte/user_admin/uptime.css",
     "/css/adminlte/user_admin/statistic.css": "/css/adminlte/user_admin/statistic.css",
     "/css/adminlte/user_admin/dashboard.css": "/css/adminlte/user_admin/dashboard.css",
+    "/css/adminlte/user_admin/userGroup.css": "/css/adminlte/user_admin/userGroup.css",
+    "/css/adminlte/user_admin/userGroupControl.css": "/css/adminlte/user_admin/userGroupControl.css",
     "/css/sections/footer.css": "/css/sections/footer.css",
     "/css/sections/header.css": "/css/sections/header.css",
     "/css/sections/home.blade.css": "/css/sections/home.blade.css",

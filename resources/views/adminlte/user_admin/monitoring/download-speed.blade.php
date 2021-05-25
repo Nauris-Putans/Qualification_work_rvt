@@ -2,7 +2,15 @@
 @section('title', 'Download speed')
 
 @section('content_header')
-    <h1>{{ __('Monitoring')}} > {{ __('Download speed')}}</h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">
+              <a href="{{ URL::route('admin.user_admin.index') }}" >{{ __('Dashboard')}}</a>
+              \
+              <a >{{ __('Download speed')}}</a>
+          </li>
+      </ol>
+  </nav>
 @stop
 
 
@@ -166,7 +174,7 @@
 
 
       <div class="row">
-        <div class="col-md-8 col-md-12" id="responseChart">
+        <div class="col-md-8" id="responseChart">
           <div class="card">
             <div class="card-header" style="background-color:white;">
               <div class="d-flex justify-content-between">
@@ -176,37 +184,54 @@
                     
                   </ul>
                 </nav>
-                <div class="card-tools">
-                  {{-- <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button> --}}
-                  <button type="button" class="btn btn-tool" id="resize_btn"><i id="resize_icon" class="fas fa-compress-alt"></i></button>
+                <div class="card-tools d-flex" style="width: 65px; justify-content: space-between">
+
+                  <div class="tool">
+                    <button type="button" id="areaChartSettingsBtn" class="btn btn-primary btn-sm daterange" data-toggle="tooltip" title="Date range">
+                      <i class="fas fa-cog"></i>
+                    </button>
+                    <div class="areaChartSettingsContainer" id="areaChartSettingsWrapper">
+                      <div class="settings-body">
+                        <div class="form-group">
+                          <label for="dataGroupOption">Data group</label>
+                          <select class="form-control" id="dataGroupOption">
+                            <option value="EveryPoint">Every point</option>
+                            <option value="MonthDays">Month days</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="button" class="btn btn-tool" id="resize_btn"><i id="resize_icon" class="fas fa-expand-alt"></i></button>
                 </div>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body" id="areaChartBody">
+              <div class="d-flex">
+                <p class="ml-auto d-flex flex-column text-right">
+                  <span id="lastCheckValue">
+                    <i ${lastCheckIcon} id="lastCheckIcon"></i>
+                  </span>
+                  <span class="text-muted">{{ __("Last check's value change") }}</span>
+                </p>
+              </div>
 
-            <div class="d-flex">
-              <p class="ml-auto d-flex flex-column text-right">
-                <span class="text-success" id="lastCheckValue">
-                  <i ${lastCheckIcon} id="lastCheckIcon"></i>
-                </span>
-                <span class="text-muted">{{ __("Last check's value change") }}</span>
-              </p>
+              <div class="position-relative mb-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                <canvas id="areaChart" height="257px" width="1128" class="chartjs-render-monitor" style="display: block; min-height: 257px; width: 903px;"></canvas>
+              </div>
             </div>
-            <!-- /.d-flex -->
-
-            <div class="position-relative mb-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-              <canvas id="areaChart" height="257px" width="1128" class="chartjs-render-monitor" style="display: block; min-height: 257px; width: 903px;"></canvas>
+            
+            <div class="card-body card-body-default" id="areaChartDefaultBody">
+              No data available
             </div>
-
-            </div>   
           </div>
         </div>
 
-        {{-- Weekday average response time Start--}}
+        {{--Bar chart--}}
         <div class="col-md-4" id="weekdayChartBox">
           <div class="card" style = "height : 435px">
-            <div class="card-header d-flex justify-content-center">
+            {{-- <div class="card-header d-flex justify-content-center">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn bg-olive">
                   <input type="radio" name="options" id="radioOption1" autocomplete="off" checked=""> {{ __('Weekday') }}
@@ -215,30 +240,37 @@
                   <input type="radio" name="options" id="radioOption2" autocomplete="off"> Day's parts
                 </label>
               </div>
+            </div> --}}
+
+            <div class="card-header ui-sortable-handle" style="cursor: move;">
+              <h3 class="card-title" id="barChartTitle">
+                <i class="fas fa-calendar-alt"></i>
+                Week days
+              </h3>
+              <!-- card tools -->
+              <div class="card-tools">
+                <button type="button" class="btn btn-primary btn-sm daterange" data-toggle="tooltip" title="Date range">
+                  <i class="fas fa-sliders-h"></i>
+                </button>
+              </div>
             </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive p-0" style="height: 300px;">
-              <canvas id="WeekDayChart" height="90%" width="90%" class="chartjs-render-monitor" style="display: block; height: 200px; width: 903px;"></canvas>
+
+            <div class="card-header border-0 card-header-center" id="barChartSliderBody">
+              <div class="slidecontainer">
+                <input type="range" min="1" max="2" value="1" class="slider" id="barChartRang">
+              </div>
             </div>
-            <!-- /.card-body -->
+
+            <div class="card-body table-responsive p-0" id="barChartBody" style="height: 300px;">
+              <canvas id="weekDayChart" height="100%" width="100%" class="chartjs-render-monitor" style="display: block; max-height: 100%; max-width: 100%;"></canvas>
+            </div>
+            <div class="card-body card-body-default" id="barChartDefaultBody">
+              No data available
+            </div>
           </div>
-          <!-- /.card -->
         </div>
-        {{-- Weekday average response time END--}}
-
-    </div>
- 
-    <div class="row d-none" id="infoAlert" style="margin-top: 10px">
-      <div class="col-md-12">
-        <div class="callout callout-warning" style="width: 100%">
-          <h5>{{ __('Info!') }}</h5>
-
-          <p>{{ __('At the moment, there is no data yet.') }}</p>
-        </div>
-      </div>
-    </div>
   </div>
-    {{-- column end --}}
+  
 </section>
 
 
@@ -246,7 +278,7 @@
 
 @section('css')
 <link href="/css/adminlte/user_admin/statistic.css" rel="stylesheet">
-<link href="/css/userAdmin.css" rel="stylesheet">
+
 {{-- Data picker style --}}
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 @stop
@@ -261,6 +293,20 @@
 <script>
   $(function () {  
 
+    const slider = document.getElementById("barChartRang");
+
+    slider.oninput = function() {
+
+      if(this.value == 1) {
+        barChartType = 'weekDay'
+        updateBarChart(currentHistory);
+      }else {
+        barChartType = 'dayPart'
+        updateBarChart(currentHistory);
+      }
+
+    }
+
     //Global variables
     let endDate = new Date();
     let startDate = new Date(endDate);
@@ -268,6 +314,23 @@
     let currentChartType = 0;
     let splitedHystory = [];
     let sortedHistoryIndex = 0;
+    let selectedMonitorId;
+    let areaChartDataSort = 'EveryPoint';
+    let barChartType = 'weekDay'
+
+    const weekday = new Array(7);
+        weekday[0] = @json( __("Sunday")  );
+        weekday[1] = @json( __("Monday")  );
+        weekday[2] = @json( __("Tuesday")  );
+        weekday[3] = @json( __("Wednesday")  );
+        weekday[4] = @json( __("Thursday")  );
+        weekday[5] = @json( __("Friday")  );
+        weekday[6] = @json( __("Saturday")  );
+
+    const dayParts = new Array(3);
+      dayParts[0] = @json( __('Morning')  );
+      dayParts[1] = @json( __('Afternoon')  );
+      dayParts[2] = @json( __('Evening')  );
 
     startDate.setDate(startDate.getDate() - 1);
     startDate.setHours(0);
@@ -275,89 +338,229 @@
     endDate.toDateString();
     startDate.toDateString();
 
-    //Insert new Date to date rang picker
-    $('#datePicker').daterangepicker({ startDate:  startDate, endDate: endDate });
-
-    startDate = Math.floor(Date.parse(startDate) / 1000);
-    endDate = Math.floor(Date.parse(endDate) / 1000);
-
     //Function that display new info to info labels,boxes
-    function displayNewInfo(responseSpeedMS,checkCount){
-        OldLastCheckValue = document.getElementById('lastCheckIcon');
+    function displayNewInfo(responseSpeed){
+      
+      checkCount = getCheckCount(responseSpeed);
 
-        OldLastCheckValue.remove();
-        $("#lastCheckValue").text('');
+      OldLastCheckValue = document.getElementById('lastCheckIcon');
 
-        lastCheckValue = document.getElementById('lastCheckValue');
-        lastChecksDiference = responseSpeedMS[checkCount-1] - responseSpeedMS[checkCount-2];
-        let lastCheckIcon ;
-        if(lastChecksDiference<0){
-            lastCheckIcon ='class="fas fa-arrow-down" style="color:green"';
-        }else if(lastChecksDiference>0)
-        {
-            lastCheckIcon ='class="fas fa-arrow-up" style="color:red"';
-        }else{
+      OldLastCheckValue.remove();
+      $("#lastCheckValue").text('');
 
-        }
-        $("#requests").text(checkCount);
-        let newValue =`
-                <i ${lastCheckIcon} id="lastCheckIcon"></i>${Math.round(lastChecksDiference * Math.pow(10, 2)) / Math.pow(10, 2)}
-                `;
-        const position = "beforeend";
-        lastCheckValue.insertAdjacentHTML(position,newValue);
-    } 
+      lastCheckValue = document.getElementById('lastCheckValue');
+      lastChecksDiference = Math.round((responseSpeed[checkCount-1] - responseSpeed[checkCount-2]) * Math.pow(10, 4)) / Math.pow(10, 4);
 
-    //Check that user have any monitor or data hystory
-    function userDataCheck(newresponseTime,newfriendlyNames,dropDownVal){
-
-      let responseTimeInfoBoxes = document.getElementById("responseTimeInfoBoxes");
-      let responseChart = document.getElementById("responseChart");
-      let weekDayChartBox = document.getElementById("weekdayChartBox");
-      let infoAlert = document.getElementById("infoAlert");
-
-      if(newfriendlyNames.length === 0){
-        $('#userMonitors').attr('disabled', 'disabled');
-        $('#datePicker').attr('disabled', 'disabled');
-        $('#timeButton').attr('disabled', 'disabled');
+      let lastCheckIcon ;
+      if(lastChecksDiference<0){
+        lastCheckIcon ='class="fas fa-arrow-down" style="margin-right: 5px"';
+        $('#lastCheckValue').css('color','red');
+      }else if(lastChecksDiference>0)
+      {
+        lastCheckIcon ='class="fas fa-arrow-up" style="margin-right: 5px"';
+        $('#lastCheckValue').css('color','green');
       }else{
-        $('#userMonitors').removeAttr('disabled');
-        $('#datePicker').removeAttr('disabled');
-        $('#timeButton').removeAttr('disabled');
+        $('#lastCheckValue').css('color','orange');
       }
 
-      if(Object.keys(newresponseTime).length < 2 ){
-        if(responseTimeInfoBoxes.classList.toggle("d-none") === true){
-          responseChart.classList.toggle("d-none");
-          weekDayChartBox.classList.toggle("d-none");
-          infoAlert.classList.toggle("d-none");
-        }else{
-          responseTimeInfoBoxes.classList.toggle("d-none");
+      let newValue =`
+              <i ${lastCheckIcon} id="lastCheckIcon"></i>${lastChecksDiference}
+              `;
+      const position = "beforeend";
+      lastCheckValue.insertAdjacentHTML(position,newValue);
+    } 
 
-        }
+    function updateAreaChart(values, labels){
+      areaChart.data.datasets[0].data = values;
+      areaChart.data.labels = labels;
+      areaChart.update();
+      areaChart.resize();
+    }
 
-        addOptionsToDropDown(newfriendlyNames, dropDownVal);
+    function customizeDateForBarChart(newData){
+      let clockForWeekChart = new Array();
+
+      let i=0;
+      for( const value in newData){
+        clockForWeekChart[i] = newData[value].clock;
+        i++;
+      }
+
+      return clockForWeekChart;
+    }
+
+    function updateBarChart(newData){
+      let value = getValues(newData);
+      const clock = customizeDateForBarChart(newData);
+
+      value = customizeValueToKBps(value);
+
+      $("#barChartTitle").empty();
+
+      if(barChartType == 'weekDay'){
+        insertDataToWeekdayChart(value,clock);
       }else{
-        if(responseTimeInfoBoxes.classList.toggle("d-none") === true){
-          responseTimeInfoBoxes.classList.toggle("d-none");
-        }else{
-          responseChart.classList.toggle("d-none");
-          weekDayChartBox.classList.toggle("d-none");
-          infoAlert.classList.toggle("d-none");
-        }
-        insertData(newresponseTime);
-
-        addOptionsToDropDown(newfriendlyNames, dropDownVal);
+        insertDataToDayPartChart(value,clock);
       }
     }
 
-    function spliteHistory(){
-      let historyElementCount = Object.keys(currentHistory).length;
+    function customizeDataMonth(newData){
+
+      let customizeHystory = [];
+
+      let elementCounter = [];
+
+      let i = -1;
+      let currentDate = 0;
+      for (const [key, value] of Object.entries(newData)) {
+        const stringDate = moment(value.clock*1000).format("YYYY-MM-DD");
+
+        if(stringDate == currentDate){
+          elementCounter[i] ++;
+          customizeHystory[i].value += parseFloat(value.value);
+        }else{
+          i++;
+          elementCounter[i] = 1;
+          customizeHystory[i] = {};
+          customizeHystory[i].clock = stringDate;
+          customizeHystory[i].value = parseFloat(value.value);
+          currentDate = stringDate;
+        };
+
+      }
+
+      for (i = 0; i<customizeHystory.length; i++) {
+        customizeHystory[i].value /= elementCounter[i];
+        customizeHystory[i].value = customizeHystory[i].value;
+      }
+
+      return customizeHystory;
+    }
+
+    $( "#dataGroupOption" ).change(function() {
+
+      if(this.value == 'EveryPoint'){
+        areaChartDataSort = this.value;
+
+        let newHystoryData = customizeDataAllPoints(currentHistory);
+        newHystoryData = spliteHistory(newHystoryData);
+
+        insertData(newHystoryData);
+      }else{
+        areaChartDataSort = this.value;
+
+        let newHystoryData = customizeDataMonth(currentHistory);
+        newHystoryData = spliteHistory(newHystoryData);
+
+        insertData(newHystoryData);
+      }
+
+    });
+
+    function disableMainSettings(){
+      $('#userMonitors').attr('disabled', 'disabled');
+      $('#datePicker').attr('disabled', 'disabled');
+      $('#timeButton').attr('disabled', 'disabled');
+    }
+
+    function enableMainSettings(){
+      $('#userMonitors').removeAttr('disabled');
+      $('#datePicker').removeAttr('disabled');
+      $('#timeButton').removeAttr('disabled');
+    }
+
+    function friendlyNameCheck(newFriendlyNames){
+      let monitorCount = newFriendlyNames.length;
+
+      if(monitorCount === 0) {
+        disableMainSettings();
+      }else {
+        enableMainSettings();
+        if(selectedMonitorId != null){
+          addOptionsToDropDown(newFriendlyNames,selectedMonitorId);
+        }else{
+          const firstMonitor = Object.keys(newFriendlyNames)[0];
+          addOptionsToDropDown(newFriendlyNames,firstMonitor);
+        }
+      }
+
+    }
+
+    function historyCountCheck(newHistoryValues, minCheckCount){
+      let permission;
+
+      if(Object.keys(newHistoryValues).length < minCheckCount) {
+        permission = 0;
+      }else {
+        permission = 1;
+      }
+
+      return permission;
+    }
+
+    function customizeDataAllPoints(newData){
+      let history = new Array();
+
+      for( const key in newData){
+        history[key] = {};
+        history[key].clock = newData[key].clock;
+        history[key].clock = moment(history[key].clock*1000).format("MM-DD HH:mm");
+
+        history[key].value = newData[key].value;
+      }
+
+      return history;
+    }
+
+    //Check that user have any monitor or data hystory
+    function dataCheck(newresponseTime,newfriendlyNames,dropDownVal){
+
+      const responseTimeInfoBoxes = document.getElementById("responseTimeInfoBoxes");
+      const responseChart = document.getElementById("responseChart");
+      const weekDayChartBox = document.getElementById("weekdayChartBox");
+
+      friendlyNameCheck(newfriendlyNames);
+      const enoughData = historyCountCheck(newresponseTime,2);
+
+      if(enoughData){
+        if(areaChartDataSort =='MonthDays'){
+          let newHystoryData = customizeDataMonth(currentHistory);
+
+          newHystoryData = spliteHistory(newHystoryData);
+
+          insertData(newHystoryData);
+        }else{
+          let newHystoryData = customizeDataAllPoints(currentHistory);
+
+          newHystoryData = spliteHistory(newHystoryData);
+
+          insertData(newHystoryData);
+        }
+      }else{
+        console.log('tiku te');
+        $("#paginationWrapper").empty();
+        insertNewValueIntoInfoBoxes(0, 0, 0, 0);
+        hideAreaChart();
+        hideBarChart();
+      } 
+    }
+
+    function spliteHistory(newData){
+
+      let historyElementCount = Object.keys(newData).length;
       const paginationCount = Math.ceil(historyElementCount/500);
 
       let splitStart = historyElementCount-1;
       let splitEnd = historyElementCount - 500;
 
+      let arrayElement;
       for(let i=paginationCount-1 ;i >= 0; i--){
+
+        if(historyElementCount/(paginationCount-i) >= 500){
+          arrayElement = 499;
+        }else{
+          arrayElement = historyElementCount - 500*(paginationCount-1)-1;
+        }
 
         if(splitEnd < 0){
           splitEnd = 0;
@@ -367,62 +570,439 @@
 
         for(splitStart ;splitStart >= splitEnd; splitStart--){
 
-          splitedHystory[i][splitStart] = {};
-          splitedHystory[i][splitStart].itemid = currentHistory[splitStart].itemid;
-          splitedHystory[i][splitStart].clock = currentHistory[splitStart].clock;
-          splitedHystory[i][splitStart].value = currentHistory[splitStart].value;
+          splitedHystory[i][arrayElement] = {};
+          splitedHystory[i][arrayElement].clock = newData[splitStart].clock;
+          splitedHystory[i][arrayElement].value = newData[splitStart].value;
+
+          arrayElement--;
         }
         splitEnd -=  500;
       }
 
-      if(paginationCount == 1){
-        upToFourPaginationElements(paginationCount);
-      }else if(paginationCount > 1 &&paginationCount < 5){
-        upToFourPaginationElements(paginationCount);
-      }else{
-        aLotPaginationElements(paginationCount);
-      }
+      paginationButtons(paginationCount);
+
       let displayHystory = 0;
 
       return splitedHystory[paginationCount-1];
     }
 
+    function paginationButtons(paginationCount){
+      $('#paginationWrapper li').remove();
+
+      sortedHistoryIndex = paginationCount;
+      let buttonStatus = '';
+      let paginationList = '';
+
+      if(paginationCount <= 1){
+        buttonStatus = 'disabled'
+      }
+
+      for(let i=1; i<=paginationCount;i++ ){ 
+        if(paginationCount == i){
+          paginationList += `<li class="page-item cursor-pointer no-copy active"><a id="pagination${i}" class="page-link">${i}</a></li>`
+        }else{
+          paginationList += `<li class="page-item cursor-pointer no-copy"><a id="pagination${i}" class="page-link">${i}</a></li>`;
+        }
+      }
+
+      $( "#paginationWrapper" ).append( `
+          <li class="page-item cursor-pointer no-copy ${buttonStatus}" id="previosPagination1">
+            <a id="previosPagination" class="page-link page-link-left" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          ${paginationList}
+          <li class="page-item cursor-pointer no-copy disabled">
+            <a id="nextPagination" class="page-link page-link-right"  aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+      `);
+
+      for(let i=1; i<=paginationCount ; i++){
+        if(i+4 < paginationCount){
+          $( `#pagination${i}` ).parent().addClass('d-none');
+        }
+      }
+
+      //Add event listener to paginations
+      const allPaginations =  $( "#paginationWrapper").children();
+      const paginationLength = allPaginations.length;
+      for(let i=0;i<paginationLength;i++){
+
+        const paginationId = allPaginations[i].children[0].id;
+
+        switch(paginationId) {
+          case 'previosPagination':
+            $("#previosPagination").click( function(){
+
+              $('#paginationWrapper li').not( "#previosPagination" ).addClass('d-none');
+              $('#nextPagination').parent().removeClass('d-none')
+              $('#previosPagination').parent().removeClass('d-none')
+
+              sortedHistoryIndex--;
+
+              let lastElementDisplay = sortedHistoryIndex+2;
+              let firstElementDisplay = sortedHistoryIndex-2;
+
+              if(lastElementDisplay >= paginationCount){
+                firstElementDisplay = firstElementDisplay - (lastElementDisplay - paginationCount);
+                lastElementDisplay = paginationCount;
+              }else{
+                if(firstElementDisplay < 1){
+                  firstElementDisplay = 1;
+                  lastElementDisplay = 5;
+                }
+              }
+
+              for(let i=1 ;i <= paginationCount; i++){
+                if(i >= firstElementDisplay && i <= lastElementDisplay){
+                  if(i > 0 && i <= paginationCount){
+                    $( `#pagination${i}`).parent().removeClass('d-none');
+                  }
+                }
+              }
+
+              if(1 == sortedHistoryIndex){
+                $( "#previosPagination").parent().addClass('disabled');
+                if(paginationCount > 1){
+                  $( "#nextPagination").parent().removeClass('disabled');
+                }
+
+                $( `#pagination${sortedHistoryIndex+1}`).parent().removeClass('active');
+                $( `#pagination${sortedHistoryIndex}`).parent().addClass('active');
+                insertData(splitedHystory[sortedHistoryIndex-1]);
+              }else if(1 < sortedHistoryIndex){
+                $( "#previosPagination").parent().removeClass('disabled');
+                if(paginationCount > 1){
+                  $( "#nextPagination").parent().removeClass('disabled');
+                }
+
+                $( `#pagination${sortedHistoryIndex+1}`).parent().removeClass('active');
+                $( `#pagination${sortedHistoryIndex}`).parent().addClass('active');
+                insertData(splitedHystory[sortedHistoryIndex-1]);
+              }
+            });
+            break;
+          case 'nextPagination':
+            $(`#${paginationId}`).click( function(){
+
+              $('#paginationWrapper li').not( "#previosPagination" ).addClass('d-none');
+              $('#nextPagination').parent().removeClass('d-none')
+              $('#previosPagination').parent().removeClass('d-none')
+
+              sortedHistoryIndex++;
+
+              let lastElementDisplay = sortedHistoryIndex+2;
+              let firstElementDisplay = sortedHistoryIndex-2;
+
+              if(lastElementDisplay >= paginationCount){
+                firstElementDisplay = firstElementDisplay - (lastElementDisplay - paginationCount);
+                lastElementDisplay = paginationCount;
+              }else{
+                if(firstElementDisplay < 1){
+                  firstElementDisplay = 1;
+                  lastElementDisplay = 5;
+                }
+              }
+
+              for(let i=1 ;i <= paginationCount; i++){
+                if(i >= firstElementDisplay && i <= lastElementDisplay){
+                  if(i > 0 && i <= paginationCount){
+                    $( `#pagination${i}`).parent().removeClass('d-none');
+                  }
+                }
+              }
+
+              if(paginationCount == sortedHistoryIndex){
+                $( "#nextPagination").parent().addClass('disabled');
+                if(paginationCount > 1){
+                  $( "#previosPagination").parent().removeClass('disabled');
+                }
+                
+                $( `#pagination${sortedHistoryIndex-1}`).parent().removeClass('active');
+                $( `#pagination${sortedHistoryIndex}`).parent().addClass('active');
+                insertData(splitedHystory[sortedHistoryIndex-1]);
+              }else if(paginationCount > sortedHistoryIndex){
+                $( "#nextPagination").parent().removeClass('disabled');
+                if(paginationCount > 1){
+                  $( "#previosPagination").parent().removeClass('disabled');
+                }
+                
+                $( `#pagination${sortedHistoryIndex-1}`).parent().removeClass('active');
+                $( `#pagination${sortedHistoryIndex}`).parent().addClass('active');
+                insertData(splitedHystory[sortedHistoryIndex-1]);
+              }
+            });
+            break;
+          default:
+            $(`#${paginationId}`).click( function(){
+              sortedHistoryIndex = parseInt(paginationId.replace("pagination", ""));
+              if(paginationCount == sortedHistoryIndex){
+                $( "#nextPagination").parent().addClass('disabled');
+              }else{
+                $( "#nextPagination").parent().removeClass('disabled');
+              }
+
+              if(1 == sortedHistoryIndex){
+                $( "#previosPagination").parent().addClass('disabled');
+              }else{
+                $( "#previosPagination").parent().removeClass('disabled');
+              }
+
+              $( "#paginationWrapper").children().removeClass('active');
+              insertData(splitedHystory[sortedHistoryIndex-1]);
+              $( `#${paginationId}`).parent().addClass('active');
+            });
+        }
+      }
+    }
+
+    function roundNumber(number,numbersDecimalPlaces){
+      let roundedNumber = Math.round(number * Math.pow(10, numbersDecimalPlaces)) / Math.pow(10, numbersDecimalPlaces);
+
+      return roundedNumber;
+    }
+
+    function getOnlyValues(newData){
+      let values = [];
+      let i=0;
+      for (const [key, data] of Object.entries(newData)) {
+        values[i] = data.value / 1000;
+        i++;
+      }
+
+      return values;
+    }
+
+    function getCheckCount(newData){
+      let checkCounter = 0;
+
+      for( const value in newData){     
+          checkCounter++;
+      }
+
+      return checkCounter;
+    }
+
+    function getAverageValue(newValue){
+      let averageResponseTime = 0;
+
+      let i=0;
+
+      for( const value in newValue){
+        averageResponseTime += parseFloat(newValue[value])
+        i++;
+      }
+
+      averageResponseTime /= i;
+
+      return roundNumber(averageResponseTime,2);
+    }
+
+    function getMinValue(newValue){
+      let minResponseTime = 9999;
+
+      let i=0;
+
+      for( const value in newValue){
+
+        if(minResponseTime > parseFloat(newValue[value]) ){
+          minResponseTime = parseFloat(newValue[value]);
+        }
+
+        i++;
+      }
+
+      return roundNumber(minResponseTime,2);
+    }
+
+    function getMaxValue(newValue){
+      let maxResponseTime = 0;
+
+      let i=0;
+
+      for( const value in newValue){
+
+        if(maxResponseTime < parseFloat(newValue[value])){
+          maxResponseTime = parseFloat(newValue[value]);
+        }
+
+        i++;
+      }
+
+      return roundNumber(maxResponseTime,2);
+    }
+
+    function updateInfoBoxes(newData){
+      const checkCount = getCheckCount(newData);
+      const averageTime = getAverageValue(newData);
+      const minTime = getMinValue(newData);
+      const maxTime = getMaxValue(newData);
+
+      insertNewValueIntoInfoBoxes(checkCount, averageTime, minTime, maxTime);
+    }
+
+    function insertNewValueIntoInfoBoxes(checkCount, averageTime, minTime, maxTime){
+      $('#averageTime').text(averageTime + ' KBps');
+      $('#maxTime').text(maxTime + ' KBps');
+      $('#minTime').text(minTime + ' KBps');
+      $("#requests").text(checkCount);
+    }
+
+    $('#areaChartSettingsBtn').click(function(e){
+      $('#areaChartSettingsWrapper').toggle('d-none');
+    });
+
     //Get values from controller MonitoringPageSpeedController
-    function setData(){
+    function getStart(){
         let checkHistory = <?php echo json_encode($histories); ?>;
         let checkFriendlyName = <?php echo json_encode($itemsFriendlyName); ?>;
         let checkItemsIds = <?php echo json_encode($itemsIds); ?>;
 
+        $('#datePicker').daterangepicker({ startDate:  startDate, endDate: endDate });
+
+        startDate = Math.floor(Date.parse(startDate) / 1000);
+        endDate = Math.floor(Date.parse(endDate) / 1000);
+
         currentHistory = checkHistory;
-        optionSelectedId = [];
+
+        const allValues = getOnlyValues(currentHistory);
+        updateInfoBoxes(allValues);
+
 
         if(Object.keys(checkFriendlyName).length != 0){
-          optionSelectedId =['item'];
-          optionSelectedId['item'] = checkItemsIds[0]['item'];
-          //Will be set as current value in drop down box
-          let checkLastFriendlyName = checkItemsIds[0].item_id;
-          userDataCheck(checkHistory,checkFriendlyName,checkLastFriendlyName);
+          const checkLastFriendlyName = checkItemsIds[0].item_id;
+          dataCheck(checkHistory,checkFriendlyName,checkLastFriendlyName);
         }else{
-          $('#userMonitors').attr('disabled', 'disabled');
-          $('#datePicker').attr('disabled', 'disabled');
-          $('#timeButton').attr('disabled', 'disabled');
-          let weekDayChartBox = document.getElementById('weekdayChartBox');
-          if(responseTimeInfoBoxes.classList.toggle("d-none") === true){
-            responseChart.classList.toggle("d-none");
-            weekDayChartBox.classList.toggle("d-none");
-            infoAlert.classList.toggle("d-none");
-          }else{
-            responseTimeInfoBoxes.classList.toggle("d-none");
-          }
+          dataCheck(checkHistory,[],[]);
         }
 
     }
 
+    var radiusPlus = 4;
+    Chart.elements.Rectangle.prototype.draw = function() {
+      var ctx = this._chart.ctx;
+      var vm = this._view;
+      var left, right, top, bottom, signX, signY, borderSkipped;
+      var borderWidth = vm.borderWidth;
+
+      if (!vm.horizontal) {
+          left = vm.x - vm.width / 2;
+          right = vm.x + vm.width / 2;
+          top = vm.y;
+          bottom = vm.base;
+          signX = 1;
+          signY = bottom > top? 1: -1;
+          borderSkipped = vm.borderSkipped || 'bottom';
+      } else {
+          left = vm.base;
+          right = vm.x;
+          top = vm.y - vm.height / 2;
+          bottom = vm.y + vm.height / 2;
+          signX = right > left? 1: -1;
+          signY = 1;
+          borderSkipped = vm.borderSkipped || 'left';
+      }
+
+      if (borderWidth) {
+      var barSize = Math.min(Math.abs(left - right), Math.abs(top - bottom));
+      borderWidth = borderWidth > barSize? barSize: borderWidth;
+      var halfStroke = borderWidth / 2;
+      var borderLeft = left + (borderSkipped !== 'left'? halfStroke * signX: 0);
+      var borderRight = right + (borderSkipped !== 'right'? -halfStroke * signX: 0);
+      var borderTop = top + (borderSkipped !== 'top'? halfStroke * signY: 0);
+      var borderBottom = bottom + (borderSkipped !== 'bottom'? -halfStroke * signY: 0);
+
+      if (borderLeft !== borderRight) {
+          top = borderTop;
+          bottom = borderBottom;
+      }
+      if (borderTop !== borderBottom) {
+          left = borderLeft;
+          right = borderRight;
+      }
+      }
+
+      var barWidth = Math.abs(left - right);
+      var roundness = this._chart.config.options.barRoundness || 0.5;
+      var radius = barWidth * roundness * 0.5;
+      
+      var prevTop = top;
+      
+      top = prevTop + radius;
+      var barRadius = top - prevTop;
+
+      ctx.beginPath();
+      ctx.fillStyle = vm.backgroundColor;
+      ctx.strokeStyle = vm.borderColor;
+      ctx.lineWidth = borderWidth;
+
+      // draw the chart
+      var x= left, y = (top - barRadius + 1), width = barWidth, height = bottom - prevTop, radius = barRadius + radiusPlus;
+
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height);
+      ctx.lineTo(x, y + height);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+
+      ctx.fill();
+      if (borderWidth) {
+      ctx.stroke();
+      }
+
+      top = prevTop;
+    }
+
+    function getBarChartBackgroundColors(ctx){
+      let background_1 = ctx.createLinearGradient(0, 0, 0, 600);
+        background_1.addColorStop(0, 'red');
+        background_1.addColorStop(1, 'blue');
+
+      let background_2 = ctx.createLinearGradient(0, 0, 0, 600);
+        background_2.addColorStop(0, 'yellow');
+        background_2.addColorStop(1, 'red');
+
+      let background_3 = ctx.createLinearGradient(0, 0, 0, 600);
+        background_3.addColorStop(0, 'green');
+        background_3.addColorStop(1, 'yellow');
+
+      let background_4 = ctx.createLinearGradient(0, 0, 0, 600);
+        background_4.addColorStop(0, '#783c78');
+        background_4.addColorStop(1, '#783cb4');
+
+      let background_5 = ctx.createLinearGradient(0, 0, 0, 600);
+        background_5.addColorStop(0, '#783c78');
+        background_5.addColorStop(1, '#f0003c');
+
+      let background_6 = ctx.createLinearGradient(0, 0, 0, 600);
+        background_6.addColorStop(0, '#00b4f0');
+        background_6.addColorStop(1, '#f0b4f0');
+
+      let background_7 = ctx.createLinearGradient(0, 0, 0, 600);
+        background_7.addColorStop(0, 'green');
+        background_7.addColorStop(1, 'yellow');
+
+      const background = [
+        background_1,
+        background_2,
+        background_3,
+        background_4,
+        background_5,
+        background_6,
+        background_7
+      ]
+        return background;
+    }
+
     //Create createweekDayChart 
     let weekDayChart;
-      var barChartCanvas = $('#WeekDayChart').get(0).getContext('2d');
-      Chart.defaults.global.elements.point.pointStyle = 'rectRounded';
-      Chart.defaults.global.elements.rectangle.borderSkipped = "right";
+      let barChartCanvas = $('#weekDayChart').get(0).getContext('2d');
+      const backgroundColors = getBarChartBackgroundColors(barChartCanvas);
       var weekDayChartData        = {
         labels: [
             'Monday',
@@ -432,7 +1012,7 @@
         datasets: [
           {
             data: [0.001],
-            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#00a65a'],
+            backgroundColor : backgroundColors,
           }
         ]
       }
@@ -493,21 +1073,26 @@
         options: weekDayChartOptions
       })
 
+      function changeBarChartBarThickness(barCount){
+        let barChartWrapperWidth = $('#weekDayChart').width();
+
+        barChartWrapperWidth = (barChartWrapperWidth*40)/100;
+
+        let barWidth = Math.floor(barChartWrapperWidth/barCount);
+
+        if(barWidth > 80){
+          barWidth = 80;
+        }
+
+        weekDayChart.options.scales.xAxes[0].barThickness = barWidth;
+      }
+
 
       //Costomize and insert new data to Weekday chart
       function insertDataToWeekdayChart(responseSpeed,ResponseClock){
         let weekdayCounter = [0,0,0,0,0,0,0];
 
         let weekdayResponseTimeSum = [0,0,0,0,0,0,0];
-
-        let weekday = new Array(7);
-        weekday[0] = @json( __("Sunday")  );
-        weekday[1] = @json( __("Monday")  );
-        weekday[2] = @json( __("Tuesday")  );
-        weekday[3] = @json( __("Wednesday")  );
-        weekday[4] = @json( __("Thursday")  );
-        weekday[5] = @json( __("Friday")  );
-        weekday[6] = @json( __("Saturday")  );
 
         let i=0;
         let b=0;
@@ -519,7 +1104,7 @@
 
             if(weekday[newDate.getDay()] == weekday[b]){
               weekdayCounter[b]++;
-              weekdayResponseTimeSum[b] += Math.round((responseSpeed[i]) * Math.pow(10, 2)) / Math.pow(10, 2);
+              weekdayResponseTimeSum[b] += responseSpeed[i];
               break;
             }
           }
@@ -532,11 +1117,20 @@
         for(let a=0;a<7;a++){
           if(weekdayResponseTimeSum[a] != 0){
             weekdayResponseTimeSum[a] /= weekdayCounter[a];
-            weekdayResponseTimeSum[a] = Math.round(weekdayResponseTimeSum[a] * Math.pow(10, 2)) / Math.pow(10, 2);
+            weekdayResponseTimeSum[a] = roundNumber(weekdayResponseTimeSum[a], 4 );
             chartDataLabels.push(weekday[a]);
             chartDataAvarageTime.push(weekdayResponseTimeSum[a]);
           }
         }  
+
+        const newTitle = `
+          <i class="fas fa-calendar-alt"></i>
+          Week days
+        `
+        $("#barChartTitle").append(newTitle);
+
+        const barCount = getCheckCount(chartDataAvarageTime);
+        changeBarChartBarThickness(barCount);
 
         weekDayChart.data.datasets[0].data = chartDataAvarageTime;
         weekDayChart.data.labels = chartDataLabels;
@@ -545,10 +1139,6 @@
       }
 
       function insertDataToDayPartChart(responseSpeed,ResponseClock){
-        let dayParts = new Array(3);
-        dayParts[0] = @json( __('Morning')  );
-        dayParts[1] = @json( __('Afternoon')  );
-        dayParts[2] = @json( __('Evening')  );
 
         let dayPartsValues = [0,0,0];
         let dayPartsValuesCount = [0,0,0];
@@ -605,6 +1195,15 @@
           }
         }
 
+        const newTitle = `
+          <i class="fas fa-clock"></i>
+          Day part
+        `
+        $("#barChartTitle").append(newTitle);
+
+        const barCount = getCheckCount(chartDataAvarageTime);
+        changeBarChartBarThickness(barCount);
+
         weekDayChart.data.datasets[0].data = chartDataAvarageTime;
         weekDayChart.data.labels = chartDataLabels;
         weekDayChart.update();
@@ -641,6 +1240,7 @@
       var areaChartOptions = {
           maintainAspectRatio : false,
           responsive : true,
+          animation: false,
           legend: {
           display: false
           },
@@ -669,70 +1269,92 @@
           options: areaChartOptions
       })
 
-      setData();
+      getStart();
 
-      //Costomize and insert new data to charts and labels
-      function insertData(newresponseTime){
-        
-        let speed = new Array();
+      function showAreaChart(){
+        $('#areaChartBody').css('display','block');
+        $("#areaChartDefaultBody").css( "display", "none" );
+      }
+
+      function hideAreaChart(){
+        $('#areaChartBody').css('display','none');
+        $("#areaChartDefaultBody").css( "display", "block" );
+      }
+
+      function showBarChart(){
+        $('#barChartBody').css('display','block');
+        $('#barChartSliderBody').css('display','flex');
+        $("#barChartDefaultBody").css( "display", "none" );
+      }
+
+      function hideBarChart(){
+        $('#barChartBody').css('display','none');
+        $('#barChartSliderBody').css('display','none');
+        $("#barChartDefaultBody").css( "display", "block" );
+      }
+
+      function changeAreaChartPointSize(chart,elementCount){
+        let lineChartWrapperWidth = $('#areaChart').width();
+
+        lineChartWrapperWidth = (lineChartWrapperWidth*40)/100;
+
+        let pointRadius = Math.floor(lineChartWrapperWidth/elementCount);
+
+        if(pointRadius > 8){
+          pointRadius = 8;
+        }else if(pointRadius < 2){
+          pointRadius = 2;
+        }
+
+        chart.data.datasets[0].pointRadius = pointRadius
+        chart.data.datasets[0].pointHoverRadius = pointRadius+1
+      }
+
+      function getClock(checkHistory){
         let clock = new Array();
-        let clockForWeekChart = new Array();
 
-        let friendlyNameCounter = 0;
-        let checkCounter = 0;
-
-        let minResponseTime = 3000000;
-        let maxResponseTime = 0;
-        let averageResponseTime = 0;
-
-        while(newresponseTime[checkCounter]!=null){
-
-
-            //round number to 4 numbers after ,
-            speed[checkCounter] = Math.round((newresponseTime[checkCounter].value / 1000) * Math.pow(10, 2)) / Math.pow(10, 2);
-            
-            //find max response time
-            if(maxResponseTime < speed[checkCounter]){
-              maxResponseTime = speed[checkCounter];
-            }
-
-            //find min response time
-            if(minResponseTime > speed[checkCounter]){
-              minResponseTime = speed[checkCounter];
-            }
-          
-            //Count together all response times
-            averageResponseTime += speed[checkCounter];
-            
-            clock[checkCounter] = newresponseTime[checkCounter].clock;
-            clock[checkCounter] = moment(clock[checkCounter]*1000).format("DD-MM-YYYY HH:mm:ss");
-
-            clockForWeekChart[checkCounter] = newresponseTime[checkCounter].clock;
-            
-            checkCounter++;
+        for(let i=0; i<checkHistory.length; i++){
+          clock[i] = checkHistory[i].clock;
         }
 
-        //Work out average response time
-        averageResponseTime /= checkCounter;
-        averageResponseTime = Math.round(averageResponseTime * Math.pow(10, 2)) / Math.pow(10, 2);
+        return clock;
+      }
 
-        displayNewInfo(speed,checkCounter);
-        $("#numberOfCheck").text(checkCounter);
-        $('#minTime').text(minResponseTime + ' KBps');
-        $('#averageTime').text(averageResponseTime + ' KBps');
-        $('#maxTime').text(maxResponseTime + ' KBps');
+      function getValues(checkHistory){
+        let values = new Array();
+
+        for(const key in checkHistory){
+          values[key] = roundNumber(checkHistory[key].value, 4);
+        }
+
+        return values;
+      }
+
+      function insertData(newDataHistory){
         
-        areaChart.data.datasets[0].data = speed;
-        areaChart.data.labels = clock;
-        areaChart.update();
-        areaChart.resize();
+        const elementCount = getCheckCount(newDataHistory);
+        changeAreaChartPointSize(areaChart,elementCount);
 
-        if(currentChartType == 0){
-          insertDataToWeekdayChart(speed,clockForWeekChart);
+        const enoughData = historyCountCheck(newDataHistory,2);
+
+        if(enoughData){
+
+          showAreaChart();
+          showBarChart();
+
+          let value = getValues(newDataHistory);
+          let clock = getClock(newDataHistory);
+          value = customizeValueToKBps(value);
+          displayNewInfo(value);
+
+          updateAreaChart(value, clock);
+          
+          updateBarChart(currentHistory);
         }else{
-          insertDataToDayPartChart(speed,clockForWeekChart);
+          $('#paginationWrapper').empty();
+          hideAreaChart();
+          hideBarChart();
         }
-
       }
 
       let startHr = 0;
@@ -741,7 +1363,7 @@
       let endHr = 15;
       let endMin = 0;
 
-      function checkTime(history){
+      function matchDataWithTimeInterval(history){
         startHr = document.querySelectorAll('.hr')[0].value;
         endHr = document.querySelectorAll('.hr')[1].value;
         startMin = document.querySelectorAll('.min')[0].value;
@@ -781,6 +1403,14 @@
         return newHistory;
       }
 
+      function customizeValueToKBps(valuesToCustomize){
+        valuesToCustomize.forEach(function(value,key) {
+          valuesToCustomize[key] = value/1000;
+        });
+
+        return valuesToCustomize;
+      }
+
       function callController(startDate,endDate,selectedItemId){
 
         if(selectedItemId != null){
@@ -800,9 +1430,12 @@
           }
           })
             .done(function(data) {
-              //Costomize item hystory data
-              newdata = checkTime(data);
-              userDataCheck(newdata.histories,data.itemsFriendlyName,data.selectedId);
+              newdata = matchDataWithTimeInterval(data);
+
+              const allValues = getOnlyValues(newdata.histories);
+              updateInfoBoxes(allValues);
+
+              dataCheck(newdata.histories,data.itemsFriendlyName,data.selectedId);
             })
             .fail(function() {
                 alert(@json( __("error")));
@@ -832,8 +1465,8 @@
               const position = "beforeend";
               dropDownCheckType.insertAdjacentHTML(position,newPersonItem);
           }
+          selectedMonitorId = dropDownValue;
 
-          //Set Current check friendly name to dropDown
           $("#userMonitors").val(dropDownValue);
           
       }
@@ -877,10 +1510,9 @@
       //EVENT LISTENERS
       
       $("#userMonitors").change(function(){
-        //Get selected items id
-        const selectedItemId = $("#userMonitors option:selected").val();
-        
-        callController(startDate,endDate,selectedItemId );
+        selectedMonitorId = $("#userMonitors option:selected").val();
+
+        callController(startDate, endDate, selectedMonitorId );
       });
 
     $('#timeButton').click(function() {
@@ -927,9 +1559,9 @@
 
     //Resize response time chart and change resize button icon
     $('#resize_btn').click(function(){
-      var element = document.getElementById("responseChart");
+      let element = document.getElementById("responseChart");
       element.classList.toggle("col-md-12");
-      var resizebtn = document.getElementById("resize_icon");
+      let resizebtn = document.getElementById("resize_icon");
       resizebtn.classList.toggle("fa-expand-alt");
       resizebtn.classList.toggle("fa-compress-alt");
     });
