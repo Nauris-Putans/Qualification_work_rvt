@@ -136,4 +136,12 @@
 
 @section('css')
     <link href="/css/sections/features.blade.css" rel="stylesheet">
-@stop
+@endsection
+
+@section('scripts-top')
+
+@endsection
+
+@section('scripts-bottom')
+
+@endsection

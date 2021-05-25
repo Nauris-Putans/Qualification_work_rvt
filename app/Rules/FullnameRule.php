@@ -45,6 +45,6 @@ class FullnameRule implements Rule
      */
     public function message()
     {
-        return __('Full name should contain 2 words - Name, Surname');
+        return __(':attribute - :action', ['attribute' => __("Full name"), 'action' => __("is invalid!")]);
     }
 }

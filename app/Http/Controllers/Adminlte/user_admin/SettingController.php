@@ -17,6 +17,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Config;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
@@ -34,6 +35,8 @@ class SettingController extends Controller
      */
     public function index(Request $request)
     {
+        date_default_timezone_set('Europe/Riga');
+
         // Finds all countries and stores in $countries
         $countries = Country::all();
 
@@ -55,8 +58,39 @@ class SettingController extends Controller
 
         // Finds country by $countryID
         $countryName = Country::find($user->country);
-        
-        return view('adminlte.user_admin.settings', compact('countries', 'hashids', 'user', 'countryName','groups','activeUserGroup'));
+
+        if ($user->createOrGetStripeCustomer()->subscriptions->data !== [])
+        {
+            // Finds next billing date for user
+            $timestamp = date("Y-m-d H:i:s", $user->asStripeCustomer()->subscriptions->data[0]["current_period_end"]);
+
+            // Finds plan name for user
+            $planName = $user->asStripeCustomer()->subscriptions->data[0]->metadata['Plan name'];
+        }
+
+        else
+        {
+            $timestamp = null;
+            $planName = null;
+        }
+
+        if ($user->invoices() !== [])
+        {
+            $invoices = $user->invoices();
+        }
+
+        else
+        {
+            $invoices = null;
+        }
+
+        // Sets current language to $locale
+        $locale = Config::get('app.locale');
+
+        // Sets locale for all data types (php)
+        setlocale(LC_ALL, $locale . '_' . strtoupper($locale), $locale);
+
+        return view('adminlte.user_admin.settings', compact('countries', 'hashids', 'user', 'countryName', 'groups', 'activeUserGroup', 'timestamp', 'planName', 'invoices'));
     }
 
     /**
@@ -157,7 +191,7 @@ class SettingController extends Controller
         $data = [
             'password'=> Hash::make($request->new_password),
         ];
-        
+
         //Set new password
         $user->password = $data['password'];
 
@@ -175,7 +209,7 @@ class SettingController extends Controller
      */
     public function changeGroup(Request $request, $groupid)
     {
-  
+
         // get user id
         $userId = $request
             ->session()
@@ -251,71 +285,5 @@ class SettingController extends Controller
         $user->save();
 
         return redirect()->back()->with('message', __(':attribute - :action', ['attribute' => __("Profile image"), 'action' => __("has been updated!")]));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param Setting $setting
-     * @return Response
-     */
-    public function show(Setting $setting)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Setting $setting
-     * @return Response
-     */
-    public function edit(Setting $setting)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param Setting $setting
-     * @return Response
-     */
-    public function update(Request $request, Setting $setting)
-    {
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Setting $setting
-     * @return Response
-     */
-    public function destroy(Setting $setting)
-    {
-        //
     }
 }

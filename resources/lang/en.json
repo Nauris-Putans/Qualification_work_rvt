@@ -364,6 +364,8 @@
     "Subscribe now": "Subscribe now",
     "TRY IT FREE": "TRY IT FREE",
     "When you have any questions we are always happy to help.": "When you have any questions we are always happy to help.",
+    "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.": "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.",
+    "Got it!": "Got it!",
 
     "//////Features section":
     {},
@@ -384,6 +386,24 @@
     "//////Pricing section":
     {},
     "Flawless plans that suit you": "Flawless plans that suit you",
+    "You have already subscribed to this plan!": "You have already subscribed to this plan!",
+    "Successfully subscribed to plan!": "Successfully subscribed to plan!",
+    "You need to sign in to do transactions": "You need to sign in to do transactions",
+    "You are unable to subscribe to plans!": "You are unable to subscribe to plans!",
+    "Billing information": "Billing information",
+    "Name on card": "Name on card",
+    "Card information": "Card information",
+    "Full name as displayed on card": "Full name as displayed on card",
+    "Card number": "Card number",
+    "Summary": "Summary",
+    "Brief description": "Brief description",
+    "Privacy": "Privacy",
+    "Terms": "Terms",
+    "You are now subscribed to :plan plan": "You are now subscribed to :plan plan",
+    ":plan - plan": ":plan - plan",
+    "Pay :amount": "Pay :amount",
+    "You can change subscription plan in account settings": "You can change subscription plan in account settings",
+    "Powered by Stripe": "Powered by Stripe",
 
     "//////FAQ section":
     {},
@@ -432,9 +452,13 @@
     "Ticket Robot": "Ticket Robot",
     "You can view the ticket at any time by pressing this button or accessing user support table.": "You can view the ticket at any time by pressing this button or accessing user support table.",
     "You got replied by: :role_display_name": "You got replied by: :role_display_name",
-    "Your :attribute - :action!": "Your :attribute - :action",
+    "Your :attribute - :action": "Your :attribute - :action",
     "Your Ticket": "Your Ticket",
     "Your ticket with ID #:ticket_id has been marked resolved and closed by: :role_display_name": "Your ticket with ID #:ticket_id has been marked resolved and closed by: :role_display_name",
+    "Congratulations!": "Congratulations!",
+    "Subscription Robot": "Subscription Robot",
+    "Your Subscription": "Your Subscription",
+    "You can view the subscription plan at any time by pressing this button or accessing account settings.": "You can view the subscription plan at any time by pressing this button or accessing account settings.",
 
     "//////Adminlte admin side":
     {},
@@ -506,6 +530,33 @@
     "Successfully assigned member: :user to role - :role": "Successfully assigned member: :user to role - :role",
     "View Role": "View Role",
 
+    "//////Adminlte admin side users section":
+    {},
+    "Activity": "Activity",
+    "No data": "No data",
+    "Download .pdf": "Download .pdf",
+    "No activity for this user": "No activity for this user",
+    "Subscription invoice": "Subscription invoice",
+    "1 × Free (at €0.00 / month)": "1 × Free - plan (at €0.00 / month)",
+    "1 × Pro (at €5.00 / month)": "1 × Pro - plan (at €5.00 / month)",
+    "1 × Webmaster (at €10.00 / month)": "1 × Webmaster - plan (at €10.00 / month)",
+    "Monthly Subscription": "Monthly Subscription",
+    "Receipt": "Receipt",
+    "To:": "To:",
+    "Date:": "Date:",
+    "Product:": "Product:",
+    "Invoice Number:": "Invoice Number:",
+    "Date": "Date",
+    "Tax": "Tax",
+    "Amount": "Amount",
+    "Subscription": "Subscription",
+    "Subtotal": "Subtotal",
+    "Off": "Off",
+    "Tax is exempted": "Tax is exempted",
+    "Tax to be paid on reverse charge basis": "Tax to be paid on reverse charge basis",
+    "Customer Balance": "Customer Balance",
+    "Total": "Total",
+
     "//////Adminlte admin side tickets section":
     {},
     "You": "You",
@@ -536,6 +587,7 @@
     "Create New Ticket": "Create New Ticket",
     "The ticket #:ticket_id - :action": "The ticket #:ticket_id - :action",
     "Ticket with ID: #:ticket_id - :action": "Ticket with ID: #:ticket_id - :action",
+    "Unknown": "Unknown",
 
     "//////Adminlte admin side account settings section":
     {},
@@ -554,6 +606,15 @@
     "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.": "You can set your billing email address here. It will be used for sending invoices and other billing notifications. If you leave this field empty, your account email will be used by default.",
     "Choose how you will receive notifications from us. WEBcheck will send you email or SMS notifications based on your notification settings.": "Choose how you will receive notifications from us. WEBcheck will send you email or SMS notifications based on your notification settings.",
     "Nothing selected": "Nothing selected",
+    "Current subscription": "Current subscription",
+    "none": "none",
+    "plan": "plan",
+    "Next billing date": "Next billing date",
+    "Changes an existing subscription to match new selected plan. When changing prices, we will optionally prorate the price we charge next month to make up for any price changes.": "Changes an existing subscription to match new selected plan. When changing prices, we will optionally prorate the price we charge next month to make up for any price changes.",
+    "Change Subscription": "Change Subscription",
+    "Cancels a customer’s subscription immediately. The customer will not be charged again for the subscription however, that any pending invoice items that you’ve created will still be charged for at the end of the period.": "Cancels a customer’s subscription immediately. The customer will not be charged again for the subscription however, that any pending invoice items that you’ve created will still be charged for at the end of the period.",
+    "Cancel Subscription": "Cancel Subscription",
+    "Already subscribed": "Already subscribed",
 
     "//////Adminlte admin side navbar":
     {},
