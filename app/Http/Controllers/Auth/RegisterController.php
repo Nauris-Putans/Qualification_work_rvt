@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\DB;
 use Becker\Zabbix\ZabbixApi;
 use Becker\Zabbix\ZabbixException;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Cashier\Exceptions\IncompletePayment;
+use Stripe\Product;
 
 class RegisterController extends Controller
 {
@@ -117,6 +119,33 @@ class RegisterController extends Controller
         $role = Role::find(1);
         $user->syncRoles([$role->id]);
 
+        // Customer options for account info
+        $customerOptions = [
+            'name' => $user->name,
+        ];
+
+        // Creates or gets stripe customer
+        $user->createOrGetStripeCustomer($customerOptions);
+
+        try
+        {
+            // Subscribes to new plan with payment method variable $paymentMethod
+            $user
+                ->newSubscription('default', 'price_1IPyAQLPN6FCz2Owwsyt23QS')
+                ->withMetadata([
+                    'Plan name' => 'Free'
+                ])
+                ->create();
+        }
+
+        catch (IncompletePayment $exception)
+        {
+            return redirect()->route(
+                'cashier.payment',
+                [$exception->payment->id, 'redirect' => route('home')]
+            );
+        }
+
         //Get current user ID;
         $currentUserID = DB::table('users')
             ->where('email',$request->all()['signup_email'])
@@ -197,7 +226,7 @@ class RegisterController extends Controller
             ]
         );
 
-        //Add new member to zabbix user group 
+        //Add new member to zabbix user group
         DB::table('zabbix_group_members')->insert(
             [
                 'zabbix_group_id' => $newZabbixUserGroup,

@@ -1,106 +1,139 @@
 @extends('layouts.app')
 
 @section('content')
+    <x-alert />
     <section class="pricing">
         <div class="container">
             <div class="row">
                 <div class="pricing__lable">
                     <h1 class="FeaturesPageHeader fade-in align-self-center text-center text-md-center text-white font-weight-bold text-shadow">
-                        {{ __("Flawless plans that suit you") }}
+                        {{ __("Choose a plan") }}
                     </h1>
                 </div>
             </div>
 
             <div class="row justify-content-center">
-                <div class="col-md-3 m-1">
-                    <div class="plan-wrapper">
-                        <div class="plan-lable">
-                            {{ __("FREE") }}
-                        </div>
+                @foreach($plans as $plan)
+                    <div class="col-md-3 m-1">
+                        <div class="plan-wrapper">
+                            <div class="plan-lable">
+                                {{ __(strtoupper($plan->product->name)) }}
+                            </div>
 
-                        <div class="price-box">
-                            {{ __(":price /month", ['price' => '0€']) }}
-                        </div>
+                            <div class="price-box">
+                                {{ __(":price /month", ['price' => number_format(($plan->amount)/100) . '€']) }}
+                            </div>
 
-                        <div class="plan-decription-wrapper">
-                            <div class="plan-freature-box">{{ __(":count monitors", ['count' => '2']) }}</div>
-                            <div class="plan-freature-box">{{ __(":time min monitoring interval", ['time' => '30']) }}</div>
-                            <div class="plan-freature-box">{{ __("No alerts") }}</div>
-                            <div class="plan-freature-box">{{ __("HTTP(S) monitoring") }}</div>
-                            <div class="plan-freature-box">{{ __("Response time monitoring") }}</div>
-                            <div class="plan-freature-box">{{ __("Ping monitoring") }}</div>
-                            <div class="plan-freature-box">{{ __("Port monitoring") }}</div>
-                            <div class="plan-freature-box">{{ __("No log file") }}</div>
-                            <div class="plan-freature-box">{{ __("No SSL check") }}</div>
-                        </div>
+                            <div class="plan-decription-wrapper">
+                                <div class="plan-freature-box">
+                                    {{ __(":count monitors", ['count' => $plan->product->metadata['Monitors']]) }}
+                                </div>
 
-                        <div class="nav-item payBtn GreyButton">
-                            <a class="nav-link btn btn-gray" href="{{ route('login') }}">
-                                {{ __("Start monitoring") }}
-                            </a>
+                                <div class="plan-freature-box">
+                                    {{ __(":time min monitoring interval", ['time' => $plan->product->metadata['Min monitoring interval']]) }}
+                                </div>
+
+                                <div class="plan-freature-box">
+                                    {{ __($plan->product->metadata['Alert']) }}
+                                </div>
+
+                                @if(($plan->product->metadata['HTTP(S) monitoring']) == "true")
+                                    <div class="plan-freature-box">
+                                        {{ __('HTTP(S) monitoring') }}
+                                    </div>
+                                @else
+                                    <div class="plan-freature-box">
+                                        {{ __('No HTTP(S) monitoring') }}
+                                    </div>
+                                @endif
+
+                                @if(($plan->product->metadata['Response time monitoring']) == "true")
+                                    <div class="plan-freature-box">
+                                        {{ __('Response time monitoring') }}
+                                    </div>
+                                @else
+                                    <div class="plan-freature-box">
+                                        {{ __('No response time monitoring') }}
+                                    </div>
+                                @endif
+
+                                @if(($plan->product->metadata['Ping monitoring']) == "true")
+                                    <div class="plan-freature-box">
+                                        {{ __('Ping monitoring') }}
+                                    </div>
+                                @else
+                                    <div class="plan-freature-box">
+                                        {{ __('No ping monitoring') }}
+                                    </div>
+                                @endif
+
+                                @if(($plan->product->metadata['Port monitoring']) == "true")
+                                    <div class="plan-freature-box">
+                                        {{ __('Port monitoring') }}
+                                    </div>
+                                @else
+                                    <div class="plan-freature-box">
+                                        {{ __('No port monitoring') }}
+                                    </div>
+                                @endif
+
+                                @if(($plan->product->metadata['Log file']) == "true")
+                                    <div class="plan-freature-box">
+                                        {{ __('Log file') }}
+                                    </div>
+                                @else
+                                    <div class="plan-freature-box">
+                                        {{ __('No log file') }}
+                                    </div>
+                                @endif
+
+                                @if(($plan->product->metadata['SSL check']) == "true")
+                                    <div class="plan-freature-box">
+                                        {{ __('SSL check') }}
+                                    </div>
+                                @else
+                                    <div class="plan-freature-box">
+                                        {{ __('No SSL check') }}
+                                    </div>
+                                @endif
+                            </div>
+
+                            @if(($plan->product->metadata['Button']) == "grey")
+                                <div class="nav-item payBtn GreyButton">
+                                    @if(Auth::user() == null)
+                                        <a class="nav-link btn btn-gray" href="{{ route('login') }}">
+                                            {{ __("Start monitoring") }}
+                                        </a>
+                                    @else
+                                        @if (!(Laratrust::hasRole('userFree')) && !(Laratrust::hasRole('userPro')) && !(Laratrust::hasRole('userWebmaster')))
+                                            {{-- Admin dashboard--}}
+                                            <a class="nav-link btn btn-gray" href="{{ url('/admin/dashboard') }}">
+                                                {{ __("Start monitoring") }}
+                                            </a>
+                                        @else
+                                        {{-- User dashboard--}}
+                                            <a class="nav-link btn btn-gray" href="{{ url('/user/dashboard') }}">
+                                                {{ __("Start monitoring") }}
+                                            </a>
+                                        @endif
+                                    @endif
+                                </div>
+                            @elseif(($plan->product->metadata['Button']) == "orange")
+                                <div class="nav-item payBtn OrangeButton">
+                                    <a class="nav-link btn btn-orange" href="{{ route('plans.show', ['plan' => $plan->id, 'role' => $plan->product->metadata['RoleID']]) }}">
+                                        {{ __("Subscribe now") }}
+                                    </a>
+                                </div>
+                            @else
+                                <div class="nav-item payBtn GreyButton" style="width: 50%" >
+                                    <a class="nav-link btn btn-gray" href="{{ route('contacts') }}">
+                                        {{ __("Contact us") }}
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </div>
-                </div>
-
-                <div class="col-md-3 m-1">
-                    <div class="plan-wrapper">
-                        <div class="plan-lable">
-                            {{ __("PRO") }}
-                        </div>
-
-                        <div class="price-box">
-                            {{ __(":price /month", ['price' => '5€']) }}
-                        </div>
-
-                        <div class="plan-decription-wrapper">
-                            <div class="plan-freature-box">{{ __(":count monitors", ['count' => '5']) }}</div>
-                            <div class="plan-freature-box">{{ __(":time min monitoring interval", ['time' => '5']) }}</div>
-                            <div class="plan-freature-box">{{ __("Email alerts") }}</div>
-                            <div class="plan-freature-box">{{ __("HTTP(S) monitoring") }}</div>
-                            <div class="plan-freature-box">{{ __("Response time monitoring") }}</div>
-                            <div class="plan-freature-box">{{ __("Ping monitoring") }}</div>
-                            <div class="plan-freature-box">{{ __("Port monitoring") }}</div>
-                            <div class="plan-freature-box">{{ __("No log file") }}</div>
-                            <div class="plan-freature-box">{{ __("No SSL check") }}</div>
-                        </div>
-
-                        <div class="nav-item payBtn OrangeButton">
-                            <a class="nav-link btn btn-orange" href="{{ route('login') }}">
-                                {{ __("Subscribe now") }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 m-1">
-                    <div class="plan-wrapper">
-                        <div class="plan-lable">
-                            {{ __("WEBMASTER") }}
-                        </div>
-
-                        <div class="price-box">
-                            {{ __(":price /month", ['price' => '10€']) }}
-                        </div>
-
-                        <div class="plan-decription-wrapper">
-                            <div class="plan-freature-box">{{ __(":count monitors", ['count' => '10']) }}</div>
-                            <div class="plan-freature-box">{{ __(":time min monitoring interval", ['time' => '1']) }}</div>
-                            <div class="plan-freature-box">{{ __("Email and SMS alerts") }}</div>
-                            <div class="plan-freature-box">{{ __("HTTP(S) monitoring") }}</div>
-                            <div class="plan-freature-box">{{ __("Response time monitoring") }}</div>
-                            <div class="plan-freature-box">{{ __("Ping monitoring") }}</div>
-                            <div class="plan-freature-box">{{ __("Port monitoring") }}</div>
-                            <div class="plan-freature-box">{{ __("Log file") }}</div>
-                            <div class="plan-freature-box">{{ __("SSL check") }}</div>
-                        </div>
-
-                        <div class="nav-item payBtn OrangeButton">
-                            <a class="nav-link btn btn-orange" href="{{ route('login') }}">
-                                {{ __("Subscribe now") }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <div class="row justify-content-center">
@@ -127,3 +160,16 @@
         </div>
     </section>
 @endsection
+
+@section('css')
+    <link href="/css/sections/pricing.css" rel="stylesheet">
+@endsection
+
+@section('scripts-top')
+
+@endsection
+
+@section('scripts-bottom')
+
+@endsection
+

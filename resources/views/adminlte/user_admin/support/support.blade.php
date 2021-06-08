@@ -171,12 +171,12 @@
                                                 {{ __('View') }}
                                             </a>
 
-                                            <a href="#" class="btn btn-danger delete-action">
+                                            {{-- <a href="#" class="btn btn-danger delete-action">
                                                 <i class="fas fa-trash mr-1"></i>
                                                 {{ __('Delete') }}
                                             </a>
                                             {{ Form::open(['url' => route('user.support.ticket.destroy', [$hashids->encode($ticket->id)]), 'method' => 'delete']) }}
-                                            {{ Form::close() }}
+                                            {{ Form::close() }} --}}
                                         @endif
                                     </div>
                                 </td>

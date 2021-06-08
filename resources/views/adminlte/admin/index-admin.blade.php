@@ -1,14 +1,6 @@
 @extends('adminlte::page')
 @section('title', __('Dashboard'))
 
-@section('content_header')
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page"><a>{{ __('Dashboard') }}</a></li>
-        </ol>
-    </nav>
-@stop
-
 @section('content')
     <div class="row">
         {{-- Users box --}}

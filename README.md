@@ -3,9 +3,8 @@
 
 ## Projekta apraksts
 PIKC “Rīgas Valsts tehnikums” Kvalifikācijas darba repozitorijs. Uzraudzības pakalpojums, kas ļauj pārbaudīt
-jūsu tīmekļa vietnes statistiku - pingu, portu, atbildes laiku, SSL sertifikācijas pārbaudi un daudz ko citu. 
-Lietotāja/administratora/viesa autentifikācija un pārvaldības sistēma. Ir 4 veidu plāni - free, pro, webmaster 
-un enterprise.
+jūsu tīmekļa vietnes statistiku, ka piemēram: pingu, atbildes laiku, SSL sertifikācijas pārbaudi un daudzas citas funkcionalitātes. 
+Lietotāja/administratora/viesa autentifikācija un pārvaldības sistēma.
 
 ## Ko esmu paveicis šaja projektā
  - ...
@@ -23,15 +22,21 @@ un enterprise.
  - [Mani izmantotie avoti](#mani-izmantotie-avoti)
 
 ## Versijas
- - Php: **7.2.5**
- - Apache
- - Phpmyadmin 
- - Mysql
+ - Php: **^7.3.21**
+ - Apache **2.4.46**
+ - Phpmyadmin **5.0.2**
+ - Mysql **5.7.31**
  - Zabbix: **5**
+ - CentOS **8**
  - Laravel **7.24**
  - Adminlte **^3.5**
- - npm **6.14.8**
- - CentOS **8**
+ - npm **^6.14.8**
+ - Laratrust **^6.2**
+ - Stripe **^7.75**
+ - Cashier **^12.9**
+ - Hashids **^4.0**
+ - Phpunit **^8.5**
+ - Faker **^1.9.1**
 
 ## Izmantotās tehnoloģijas
 Valodas:
@@ -51,16 +56,35 @@ Ietvari:
 Serveri:
 - [Zabbix](https://en.wikipedia.org/wiki/Zabbix) ir uzstadīts uz [CentOS](https://en.wikipedia.org/wiki/CentOS) virtuālās kastes
 
-Citi:
+Tīmekļa serveri:
 - [Apache](https://en.wikipedia.org/wiki/Apache_HTTP_Server)
+
+Tīmekļa pielikuma rīki:
 - [Phpmyadmin](https://en.wikipedia.org/wiki/PhpMyAdmin)
+
+Relāciju datubāzu pārvaldības sistēmas:
 - [Mysql](https://en.wikipedia.org/wiki/MySQL)
+
+Administratora informācijas panelis un vadības paneļi:
 - [Adminlte](https://adminlte.io/)
+
+Pakotņu pārvaldnieki:
 - [npm](https://en.wikipedia.org/wiki/Npm_(software))
+
+JavaScript bibliotēka datu vizualizēšanai:
 - [Chart.js](https://www.chartjs.org/)
 
-## Prasības
+Finanšu pakalpojumi un programmatūras:
+- [Stripe](https://stripe.com/en-lv)
 
+Citi:
+- [Laratrust](https://laratrust.santigarcor.me)
+- [Cashier](https://laravel.com/docs/master/billing)
+- [Hashids](https://hashids.org) 
+- [Phpunit](https://phpunit.de)
+- [Faker](https://github.com/fzaninotto/Faker)
+
+## Prasības
 Lai palaistu šo kvalifikācijas darbu, ir jābūt:
 
 1. WampServer var lejupielādēt [šeit](https://www.wampserver.com/en/#download-wrapper)
@@ -71,7 +95,6 @@ Lai palaistu šo kvalifikācijas darbu, ir jābūt:
 ## Instalācija
 
 ### Klonešana
-
 Klonēt šo repozitoriju uz vietējo datoru, izmantojot `https://github.com/rvtprog-kval-21/...`
 
 ```bash
@@ -85,11 +108,16 @@ Skripts, kas palaiž visas nepieciešāmās komandas
 composer run-script start-project
 ```
 
-Pievienot datu bāzi ar nosaukumu - monitoring_project
+Pievienot datubāzi ar nosaukumu - monitoring_project
 
-Pēc datubāzes pievienošanas, izmantojiet šo komandu, kas izveidos tabulas ar pirmtam izveidotiem datiem
+Pēc datubāzes pievienošanas, izmantojiet šo komandu, kas izveidos tabulas ar pirmstam izveidotiem datiem
 ```bash
 php artisan migrate:fresh --seed
+```
+
+Pievienot pie .env faila savus vidē mainīgos un palaist komandu
+```bash
+php run-script clear-project-cache
 ```
 
 Palaist projektu lokālajā datorā
@@ -182,7 +210,28 @@ Laravel development server started: http://127.0.0.1:8000
     - https://github.com/chartjs
     - https://medium.com/javascript-in-plain-english/exploring-chart-js-e3ba70b07aa4
     - https://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/
-
+- Laratrust
+    - https://laratrust.santigarcor.me
+    - https://github.com/santigarcor/laratrust
+    - https://packagist.org/packages/santigarcor/laratrust
+- Stripe
+    - https://stripe.com
+    - https://en.wikipedia.org/wiki/Stripe_(company)
+    - https://twitter.com/stripe
+- Cashier
+    - https://laravel.com/docs/8.x/billing
+    - https://github.com/laravel/cashier-stripe
+- Hashids
+    - https://hashids.org
+    - https://github.com/vinkla/hashids
+    - https://www.npmjs.com/package/hashids
+- Phpunit
+    - https://phpunit.de
+    - https://github.com/sebastianbergmann/phpunit
+    - https://laravel.com/docs/8.x/testing
+- Faker
+    - https://github.com/fzaninotto/Faker
+    - https://laravel-news.com/changes-coming-to-php-faker
 ## Mani izmantotie avoti
 ...
 ...

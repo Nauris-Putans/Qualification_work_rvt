@@ -1,0 +1,158 @@
+.upTimeMonitor .box {
+  width: 25%;
+  float: left;
+}
+
+.upTimeMonitor .box .chart {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 30px;
+  line-height: 110px;
+}
+
+.upTimeMonitor canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.upTimeMonitor .allInfoWrapper {
+  border: 2px solid green;
+  border-radius: 5px;
+  min-height: 100px;
+  padding: 10px 0 10px 0;
+}
+
+.upTimeMonitor .chosenDayDateLable {
+  width: 100%;
+  height: 30px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.upTimeMonitor .info-box-content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.upTimeMonitor .info-box-content .easy-pie-chart-box {
+  width: 130px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.upTimeMonitor .info-box-content .easy-pie-chart-box .box {
+  width: 120px;
+}
+
+.upTimeMonitor .uptimeChart {
+  position: relative;
+  display: flex;
+  justify-content: left;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  padding: 0 10px 20px 10px;
+}
+
+.upTimeMonitor .uptimeChart-wrapper {
+  position: relative;
+  height: 200px;
+  width: 200px;
+}
+
+.upTimeMonitor .uptimeChart-title {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.upTimeMonitor .uptimeChart-monthBox {
+  width: 100%;
+  height: auto;
+  padding: 5px;
+}
+
+.upTimeMonitor .uptimeChart-weekBox {
+  display: flex;
+  justify-content: left;
+  margin-top: 5px;
+}
+
+.upTimeMonitor .uptimeChart-weekBox:first-child {
+  margin-top: 0;
+}
+
+.upTimeMonitor .uptimeChart-dayBox {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  margin-right: 3px;
+  border-radius: 5px;
+}
+
+.upTimeMonitor .uptimeChart-dayBox.noColor {
+  background: transparent;
+}
+
+.upTimeMonitor .uptimeChart-dayBox.red {
+  background-color: red;
+  cursor: pointer;
+}
+
+.upTimeMonitor .uptimeChart-dayBox.yellow {
+  background-color: yellow;
+  cursor: pointer;
+}
+
+.upTimeMonitor .uptimeChart-dayBox.green {
+  background-color: green;
+  cursor: pointer;
+}
+
+.upTimeMonitor .uptimeChart-dayBox.gray {
+  background-color: #9f9d9d;
+}
+
+.upTimeMonitor .uptimeChart-boxContentCard {
+  position: absolute;
+  bottom: -80px;
+  left: -45px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 110px;
+  display: none;
+  height: auto;
+  z-index: 2;
+  border-radius: 5px;
+}
+
+.upTimeMonitor .uptimeChart-boxContentCardHeader {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 550;
+  padding: 5px;
+}
+
+.upTimeMonitor .uptimeChart-boxContentCardBody {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+

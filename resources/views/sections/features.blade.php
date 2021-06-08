@@ -133,3 +133,15 @@
         </div>
     </section>
 @endsection
+
+@section('css')
+    <link href="/css/sections/features.blade.css" rel="stylesheet">
+@endsection
+
+@section('scripts-top')
+
+@endsection
+
+@section('scripts-bottom')
+
+@endsection

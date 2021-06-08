@@ -2,11 +2,18 @@
 @section('title', __('Add'))
 
 @section('content_header')
-    <h1> {{ __('Monitoring') }} > {{ __('Monitors') }} > {{ __('Add') }}</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">
+                <a href="{{ URL::route('admin.user_admin.index') }}" >{{ __('Dashboard')}}</a>
+                \
+                <a>{{ __('monitor add')}}</a>
+            </li>
+        </ol>
+    </nav>
 @stop
 
 @section('content')
-
     <section class="monitorAdd">
         <div class="container">
             <div class="row">
@@ -21,20 +28,20 @@
                         </div>
                         <div class="currentStepWrapper">
                             <div class="currentStepBox" id="secoundStep">
-                                <i class="fas fa-users"></i>
+                                <i class="fas fa-file-invoice"></i>
                             </div>
                         </div>
                         <div class="currentStepWrapper">
                             <div class="currentStepBox" id="thirdStep">
-                                <i class="fas fa-file-invoice"></i>
+                                <i class="fas fa-shield-alt"></i>
                             </div>
                         </div>
                         <div class="currentStepWrapper" >
                             <div class="currentStepBox" id="fourthStep">
-                                <i class="fas fa-shield-alt"></i>
+                                <i class="fas fa-users"></i>
                             </div>
                         </div>
-                        <div class="currentStepWrapper">
+                        <div class="currentStepWrapper d-none">
                             <div class="currentStepBox" id="lastStep">
                                 <i class="fas fa-clipboard-check"></i>
                             </div>
@@ -83,296 +90,199 @@
                                     <div class="form-group">
                                         <div class="sliderInfoWrapper">
                                             <label for="checkInterval">{{ __('Check interval')}}</label>
-                                            <div class="sliderValue" id="intervalSliderValue">10m</div>
+                                            <div class="sliderValue" id="intervalSliderValue">30s</div>
                                         </div>
                                         <div class="slidecontainer slidecontainer_interval">
-                                            <input type="range" min="10" max="60" value="10" step="5" class="slider" id="checkInterval" name="checkInterval">
+                                            <input type="range" min="0" max="10" value="0" step="1" class="slider" id="checkInterval" name="checkInterval">
                                         </div>
                                       </div>
                                 </div>
                             </div>
                             <div class="monitorAdd-footer">
                                 {{-- Start step buttons --}}
-                                <button id="nextToAddUsersStep" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
+                                <button id="nextAdvancedSettings" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
         
                             </div>
                         </div>
 
                         {{-- Add who to alert settings --}}
                         <div class="settingsWrapper displayNone" id="addUsersSettingsWrapper">
-                            <div class="select-persons-tables-wrapper">
-                                <div class="persons-tabel">
-                                    <h2 class="persons-tabel-title">{{ __('Persons to alert')}}</h2>
-                                    <div id="available" class="persons-element-wrapper">
-                                        
-                                    </div>
-                                </div>
-                                <div class="persons-tabel">
-                                    <h2 class="persons-tabel-title">{{ __('Available persons')}}</h2>
-                                    <div id="out-of-stock" class="persons-element-wrapper">
-                                        @foreach ($allGroupsUsers as $user)
-                                            <div class="persons-element-box" id='{{ $user->zabbix_user_id }}'>
-                                                <img src="https://remind-wippermann.imgix.net/bilder/kontakt/ansprechpartner/wippermann-roger-paul.jpg?auto=format,compress&q=60&fit=crop&crop=focalpoint&w=480&h=" alt="">
-                                                <div class="person-info-box">
-                                                    <div class="userName">{{ $user->name }}</div>
-                                                    <div class="userEmail">{{ $user->email }}</div>
-                                                </div>
-                                             </div>
-                                        @endforeach
-                                    </div>
+                            <div class="row justify-content-center" style="margin-top: 20px">
+                                <div class="col-md-6 ">
+                                        <div class="ssl_title">{{ __('Apdex Response Threshold')}}</div>
+                                        <div class="ssl_decr ">{{ __('Set a response time threshold to calculate the Apdex score')}}</div>
+                                        <div class="form-group" style="margin-top:10px">
+                                            <div class="slidecontainer slidecontainer_interval">
+                                                <input disabled type="range" min="10" max="60" value="10" step="5" class="slider" id="checkInterval" name="checkInterval">
+                                            </div>
+                                        </div>
+                                        <div class="ssl_title" style="margin-top: 10px">{{ __('AUTHENTICATION PARAMETERS')}}</div>
+                                        <div class="ssl_decr ">{{ __('Add credentials to get through authentication and perform the check.')}}</div>
+                                        <div class="row justify-content-center" style="margin-top: 10px">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <input disabled type="text" class="form-control" id="checkAddress" name="checkAddress" placeholder="User name">
+                                                  </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <input disabled type="text" class="form-control" id="friendlyName" name="friendlyName" placeholder="Password">
+                                                  </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="ssl_title" style="margin-top: 10px">{{ __('CUSTOM HTTP HEADER')}}</div>
+                                        <div class="ssl_decr ">{{ __('Add custom header parameters and key')}}</div>
+                                        <div class="row justify-content-center" style="margin-top: 10px">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <input disabled type="text" class="form-control" id="checkAddress" name="checkAddress" placeholder="Header">
+                                                  </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <input disabled type="text" class="form-control" id="friendlyName" name="friendlyName" placeholder="Key">
+                                                  </div>
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
                             <div class="monitorAdd-footer">
                                 {{-- Buttons in add users step --}}
-                                <button id="backToBasicSettings" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
-                                <button id="nextToAdvancedSettings" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
+                                <button id="backBasicSettings" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
+                                <button id="nextSSLCheck" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
                             </div>
                         </div>
 
                         {{-- Advanced settings --}}
                         <div class="settingsWrapper displayNone" id="advancedSettingsWrapper">
+                            <div class="row justify-content-center" style="margin-top: 10px">
+                                <div class="col-md-6 ">
+                                        <div class="ssl_title">{{ __('SSL monitoring')}}</div>
+                                        <div class="ssl_decr ">{{ __('Considers the website as down, if the SSL check fails')}}</div>
+                                        <div class="ssl_title" style="margin-top: 10px">{{ __('SSL expiry alert')}}</div>
+                                        <div class="ssl_decr ">{{ __('Alerts before SSL certificate expiry')}}</div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center" style="margin-top: 40px">
+                                <div class="col-md-6  d-flex">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input checked type="radio" class="custom-control-input" id="noSSLCheck" name="example" value="customEx">
+                                        <label class="custom-control-label" for="noSSLCheck">No SSL check</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input" id="7dayBefore" name="example" value="customEx" disabled>
+                                        <label class="custom-control-label" for="7dayBefore">Before 7 days</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input" id="30dayBefore" name="example" value="customEx" disabled>
+                                        <label class="custom-control-label" for="30dayBefore">Before 30 days</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input" id="onExpiry" name="example" value="customEx" disabled>
+                                        <label class="custom-control-label" for="onExpiry">On expiry</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="monitorAdd-footer">      
                                 {{-- Buttons in advanced settings step --}}
-                                <button id="backToAddUsersStep" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
-                                <button id="nextToSSLMonitoringSettings" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
+                                <button id="backAdvancedSettings" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
+                                <button id="nextAlertSettings" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
                             </div>
                         </div>
 
-                        {{-- SSL settings --}}
-                        <div class="settingsWrapper displayNone" id="SSLSettingsWrapper">
-                            <div class="monitorAdd-footer">      
-                                {{-- Button in SSL settings step --}}
-                                <button id="backToadvancedSettings"  class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
-                                <button id="nextToConfirmation" class="rightBtn">{{ __('Next')}}<i class="fas fa-long-arrow-alt-right"></i></button>
-                            </div>
-                        </div>
-
-                        {{-- Confirm information --}}
-                        <div class="settingsWrapper displayNone" id="confirmInfoWrapper">
+                        {{-- Select user settings --}}
+                        <div class="settingsWrapper displayNone" id="SSLSettingsWrapper" >
                             <div class="row justify-content-center">
-                                <div class="col-sm-4">
-                                    <div class="confirmBox">
-                                        <div class="decrBox" id="basicDecr">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="confirmBox">
-                                        <div class="decrBox" id="alertPersons">
-                                            
-                                        </div>
+                                <div class="col-md-5">
+                                    <div class="table-responsive-md">
+                                        <table class="table table-user">
+                                            <thead class="thead-light">
+                                              <tr>
+                                                <th width="60%">User Name</th>
+                                                <th width="30%">Type</th>
+                                                <th width="10%">Select</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($allGroupsUsers as $user)
+                                                    <tr>
+                                                        <td class="table-user-name">
+                                                            @if($user->profile_image)
+                                                                <img alt="Avatar" class="table-avatar" src="../../..{{ $user->profile_image}}">
+                                                            @else
+                                                                @if($user->gender == 'Female')
+                                                                    <img alt="Avatar" class="table-avatar" src="../../../images/256x256/256_12.png">
+                                                                @else
+                                                                    <img alt="Avatar" class="table-avatar" src="../../../images/256x256/256_13.png">
+                                                                @endif
+                                                            @endif
+                                                            {{ $user->name }}
+                                                        </td>
+                                                        <td style="vertical-align: middle">
+                                                            <div class="userPermission">Member</div>
+                                                        </td>
+                                                        <td style="vertical-align: middle" >
+                                                            <div class="select-icon-box" id="userSelect{{ $user->zabbix_user_id }}">
+                                                                <i class="fas fa-plus"></i>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
+                            {{-- Selected users --}}
+                            <div class="row justify-content-center" style="margin-top: 10px">
+                                <div class="col-md-6 d-flex justify-content-around"> 
+                                    <div class="alertLanguage-wrapper selected" id="englishLanguage">    
+                                        <i class="flag-icon flag-icon-us"></i>
+                                        <div class="alertLanguage-title">English</div>
+                                    </div> 
+                                    <div class="alertLanguage-wrapper" id="latvianLanguage">    
+                                        <i class="flag-icon flag-icon-lv"></i>
+                                        <div class="alertLanguage-title">Latvian</div>
+                                    </div> 
+                                    <div class="alertLanguage-wrapper" id="russianLanguage">    
+                                        <i class="flag-icon flag-icon-ru"></i>
+                                        <div class="alertLanguage-title">Russian</div>
+                                    </div> 
+                                </div>
+                            </div>
                             <div class="monitorAdd-footer">      
-                                {{-- Button in SSL settings step --}}
-                                <button id="confirmInfoStepBackBtn" class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
+                                {{-- Select alert persons section button --}}
+                                <button id="backSSLSettings"  class="leftBtn"><i class="fas fa-long-arrow-alt-left"></i>{{ __('Previous')}}</button>
                                 <button id="createMonitor" class="completeBtn">{{ __('Create')}}<i class="fas fa-clipboard-check"></i></button>
                                 <div class="spinerBox" id="spinerBox">
-                                    <div class="spinner-grow text-primary" role="status">
-                                        <span class="visually-hidden"></span>
-                                    </div>
-                                    <div class="spinner-grow text-success" role="status">
-                                        <span class="visually-hidden"></span>
-                                    </div>
-                                    <div class="spinner-grow text-danger" role="status">
+                                    <div class="spinner-border text-primary" role="status">
                                         <span class="visually-hidden"></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-12 monitorAddWrapper d-none" id="monitorCreatedWrapper">
-                    <div class="monitorAdd-SettingsWrapper monitorCreatedWrapper">
-                        <div class="successIconWrapper">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="monitorCtreatedTitle">{{ __('Monitor has been created!')}}</div>
-                        <div class="monitorCtreatedURL" id="createdMonitorAddress">{{ __('www.rolands.com')}}</div>
-                        <div class="monitorAdd-footer"> 
-                            <form method="GET" action="{{ URL::route('monitor.add') }}">
-                                @csrf
-                                <button id="backToStart"  class="toStartBtn">{{ __('Create new monitor')}}</button> 
-                            </form> 
+                        {{-- Monitor was successful updated --}}
+                        <div class="settingsWrapper d-none" id="monitorCreatedWrapper">
+                            <div class="success_header">{{ __('Success')}}</div>
+                            <div class="success_decr">{{ __('Monitor has been created!')}}</div>
+                            <div class="icon-box"><i class="fas fa-laugh-wink"></i></div>
+                            <div class="monitorAdd-footer">      
+                                <form method="GET" action="{{ URL::route('monitor.add') }}">
+                                    @csrf
+                                    <button id="backToStart"  class="toStartBtn">{{ __('Create new monitor')}}</button> 
+                                </form> 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-
-    <section class="add-monitor d-none">
-        <div class="column">
-        <form method="POST" action="{{route('add.store')}}">
-            {{-- ,['post' =>$customHeaderCount ?? "sanaca"] --}}
-            @csrf
-
-                <div class="row justify-content-around">
-                    <div class="col-md-5">
-                        <div id='advancedSectionWrapper' class="add-monitor__items-wrapper">
-                            <div class="header">
-                                <div class="header__title">Advanced monitoring settings</div>
-                                <div class="header__line"></div>
-                            </div>
-                            <div class="item-title">Apdex Response Threshold</div>
-                            <div class="settings-wrapper">
-                                <div class="settings-wrapper__settings-decr">
-                                    Set a response time threshold to calculate the Apdex score
-                                </div>
-                            </div>
-                            <div class="settings-wrapper">
-                                <div class="slidecontainer slidecontainer_apdex">
-                                    <input type="range" min="1000" max="5000" value="1000" step="500" class="slider" id="myRangeApdex" name="apdexSlider">
-                                </div>
-                                <p><span id="sliderValueBox"></span> ms</p>
-                            </div>
-                            <div class="item-title">AUTHENTICATION PARAMETERS</div>
-                            <div class="settings-wrapper">
-                                <div class="settings-wrapper__settings-decr">
-                                    Add credentials to get through authentication and perform the check.
-                                </div>
-                            </div>
-                            <div class="settings-wrapper">
-                                <input class="input-small" type="text" id="authenticationName" name="authenticationName" placeholder="User name">
-                                <input class="input-small input-small_magin30px" type="text" id="authenticationPassword" name="authenticationPassword" placeholder="Password">
-                            </div>
-
-                            <div class="item-title">CUSTOM HTTP HEADER</div>
-                            <div class="settings-wrapper">
-                                <div class="settings-wrapper__settings-decr">
-                                    Add custom header parameters and key
-                                </div>
-                            </div>
-                            <div id="headerSettingsWripper" class="settings-wrapper">
-                                <input class="input-small" type="text" id="customHeader" name="Headers[0][Header]" placeholder="Header">
-                                <input class="input-small input-small_margin30px" type="text" id="customKey" name="Headers[0][Key]" placeholder="Key">
-                            </div>
-                            <div id="newHeaders">
-                            </div>
-                            <a id="addCustomHeader">+ Add custom header</a>
-                        </div>
-                    </div>
-
-
-                    {{-- 
-                        Created: Rolands Bidzans 
-                        Decr: Alert settings
-                    --}}
-                    <div class="col-md-5 offset-md-1">
-                        <div class="add-monitor__items-wrapper">
-                            <div class="header">
-                                <div class="header__title">Alert settings</div>
-                                <div class="header__line"></div>
-                            </div>
-
-                            <div class="settings-wrapper">
-                                <div class="settings-wrapper__settings-decr">
-                                    Do you want to recive alertings?
-                                </div>
-                                {{-- Toggle switch --}}
-                                <div class="toggle-switch-container">
-                                    <label class="toggle-switch">
-                                    <input class="input" type="checkbox" name="alertCheckbox" checked>
-                                        <span class="toggle-slider round"></span>
-                                    </label>
-                                </div>
-                                <a id="alertSettingsLink" href="/settings" target="_self">Change alerting settings</a>
-                            </div>
-                            
-                            <div class="item-title">Who to alert?</div>
-                            <div class="settings-wrapper" id="newPersonAddedWrapper">
-                                {{-- Auto generate content(Persons to alert) --}}
-                            </div>
-                            <a id="addPersonToAlert" data-toggle="modal" data-target=".bd-example-modal-sm">+Add another person to alert</a>
-                            <div class="item-title">Add note to alert</div>
-                            <input class="input-large" type="text" id="troubleshootingInstructions" name="troubleshootingInstructions" placeholder="Troubleshooting instructions">
-                        </div>
-                    </div>
-
-
-                    {{-- 
-                        Created: Rolands Bidzans 
-                        Decr: SSL monitoring settings
-                    --}}
-                    <div class="col-md-5">
-                        <div class="add-monitor__items-wrapper">
-                            <div class="header">
-                                <div class="header__title">SSL monitoring settings</div>
-                                <div class="header__line"></div>
-                            </div>
-
-                            <div class="item-title">SSL monitoring</div>
-                            <div class="settings-wrapper">
-                                <div class="settings-wrapper__settings-decr">
-                                    Considers the website as down, if the SSL check fails
-                                </div>
-                            </div>
-
-                            <div class="item-title">SSL expiry alert</div>
-                            <div class="settings-wrapper">
-                                <div class="settings-wrapper__settings-decr">
-                                    Alerts before SSL certificate expiry
-                                </div>
-                            </div>
-                            <div class="settings-wrapper">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" checked>
-                                    <label class="form-check-label" for="exampleCheck1">Before 7 days</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                    <label class="form-check-label" for="exampleCheck2">Before 15 days                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck3">
-                                    <label class="form-check-label" for="exampleCheck3">Before 30 days                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck4">
-                                    <label class="form-check-label" for="exampleCheck4">On expiry</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button type="submit" class="add-monitor__btn-add" id="storeAllBtn">Add monitor</button>
-            </form>
-        </div>
-
-        {{-- Modal window for adding new person to alert --}}
-        <div class="modal fade bd-example-modal-sm" id="addNewPersonToAlertModal"  tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-                <div class="modal-content">
-                    <div class="newPersonTitle">New Person</div>
-                    <div class="modalSeperatorline"></div>
-                    <div id="addNewPersonErrorsShow"></div>
-                    <div class="modal-form-wrapper">
-                        <label class="ModalLable" for="personName">Person name</label>
-                        <input class="modal-input-form" type="text" id="personName" name="personName[]" placeholder="Example Jurijs">
-                        <label class="ModalLable" for="personEmail">Person email</label>
-                        <input class="modal-input-form" type="text" id="personEmail" name="personEmail[]" placeholder="Example@webcheck.lv">
-                        <label class="ModalLable" for="personNumber">Person number</label>
-                        <input class="modal-input-form" type="text" id="personNumber" name="personNumber[]" placeholder="+371 23***343">
-                    </div>
-                    <div class="modalSeperatorline"></div>
-                    <button class="btnNewPersonAdd" id="btnNewPersonAdd">Add</button>
-                </div>
-            </div>
-        </div>
-
-    
-
     </section>
 @stop
 @section('css')
-    <link href="/css/userAdmin.css" rel="stylesheet">
+    <link href="/css/adminlte/user_admin/monitorAdd.css" rel="stylesheet">
 
     {{-- Toastr styles --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" media="all">
@@ -384,30 +294,36 @@
 {{-- Swal --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.14.0/sweetalert2.min.js"></script>
 
-{{-- JQuery UI  --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script>
     $(function(){
         let usersToAlert = [];
         let allUserData = <?php echo json_encode($allGroupsUsers); ?>;
 
-        $('#available').sortable({
-            connectWith: '#out-of-stock',
-            receive: function(event, ui){
-                const addUserId = ui.item[0]['id'];
-                usersToAlert.push(addUserId);
-            }
-        });
+        const usersSelectIcon = document.querySelectorAll('.select-icon-box');
+        usersSelectIcon.forEach((icon) => {
+            icon.addEventListener('click', () => {
+                let addUserId = icon.id;
+                addUserId = addUserId.replace('userSelect','');
+                addUserId = parseInt(addUserId)
 
-        $('#out-of-stock').sortable({
-            connectWith: '#available',
-            receive: function(event, ui){
-                const removeUserId = ui.item[0]['id'];
-                let index = usersToAlert.indexOf(removeUserId);
-                if (index > -1) {
-                    usersToAlert.splice(index, 1);
+                const currentIcon = icon.children[0].classList.contains('fa-plus');
+                if(currentIcon){
+                    icon.children[0].classList.remove('fa-plus');
+                    icon.children[0].classList.add('fa-check');
+                    icon.classList.add('selected');
+                    
+                    usersToAlert.push(addUserId);
+                }else{
+                    icon.children[0].classList.remove('fa-check');
+                    icon.children[0].classList.add('fa-plus');
+                    icon.classList.remove('selected');
+
+                    let index = usersToAlert.indexOf(addUserId);
+                    if (index > -1) {
+                        usersToAlert.splice(index, 1);
+                    }
                 }
-            }
+            });
         });
 
         const Toast = Swal.mixin({
@@ -419,18 +335,40 @@
 
         let checkIntervalSlider = document.getElementById("checkInterval");
         let intervalSliderValue = document.getElementById("intervalSliderValue");
-        intervalSliderValue.innerHTML = checkIntervalSlider.value + 'm';
 
         //FUNCTIONS
-        function returnToStartPosition(){
-          
+        function removeSelectedFromLanguages(){
+          $('#englishLanguage').removeClass('selected');
+          $('#latvianLanguage').removeClass('selected');
+          $('#russianLanguage').removeClass('selected');
         }
 
         //EVENT LISTENERS
 
+        //Alert language select buttons
+        $('#englishLanguage').click( function(){
+            removeSelectedFromLanguages()
+            $('#englishLanguage').addClass('selected')
+        });
+
+        $('#latvianLanguage').click( function(){
+            removeSelectedFromLanguages()
+            $('#latvianLanguage').addClass('selected')
+        });
+
+        $('#russianLanguage').click( function(){
+            removeSelectedFromLanguages()
+            $('#russianLanguage').addClass('selected')
+        });
+
         //Sliders
         checkIntervalSlider.oninput = function() {
-            intervalSliderValue.innerHTML = this.value + 'm';
+
+            if(this.value > 0){
+                intervalSliderValue.innerHTML = this.value + 'm';
+            }else{
+                intervalSliderValue.innerHTML = '30s';
+            }
         }
 
         checkIntervalSlider.addEventListener('mousemove', function(){
@@ -442,16 +380,16 @@
 
 
 
-        $('#nextToAddUsersStep').click( function(){
+        $('#nextAdvancedSettings').click( function(){
             $('#monitorAddHeader').addClass('monitorAdd-header-secound-step');
             $('#secoundStep').addClass('bg-current-step');
-            $('#settingsTitle').text('Alert settings');
+            $('#settingsTitle').text('Advanced settings');
             $('#basicSettingsWrapper').css("display", "none");
             $('#addUsersSettingsWrapper').css("display", "block");
         });
 
         //Add users settings buttons
-        $('#backToBasicSettings').click( function(){   
+        $('#backBasicSettings').click( function(){   
             $('#monitorAddHeader').removeClass('monitorAdd-header-secound-step');
             $('#secoundStep').removeClass('bg-current-step');
             $('#settingsTitle').text('Basic settings');
@@ -459,112 +397,50 @@
             $('#addUsersSettingsWrapper').css("display", "none");
         });
 
-        $('#nextToAdvancedSettings').click( function(){
+        $('#nextSSLCheck').click( function(){
             $('#monitorAddHeader').removeClass('monitorAdd-header-secound-step');
             $('#monitorAddHeader').addClass('monitorAdd-header-third-step');
             $('#thirdStep').addClass('bg-current-step');
-            $('#settingsTitle').text('Advanced settings');
+            $('#settingsTitle').text('SSL settings');
             $('#addUsersSettingsWrapper').css("display", "none");
             $('#advancedSettingsWrapper').css("display", "block");
         });
 
         //Advanced settings buttons
-        $('#backToAddUsersStep').click( function(){
+        $('#backAdvancedSettings').click( function(){
             $('#monitorAddHeader').removeClass('monitorAdd-header-third-step');
             $('#monitorAddHeader').addClass('monitorAdd-header-secound-step');
             $('#thirdStep').removeClass('bg-current-step');
-            $('#settingsTitle').text('Alert settings');
+            $('#settingsTitle').text('Advanced settings');
             $('#advancedSettingsWrapper').css("display", "none");
             $('#addUsersSettingsWrapper').css("display", "block");
         });
 
-        $('#nextToSSLMonitoringSettings').click( function(){  
-            $('#monitorAddHeader').addClass('monitorAdd-header-fourth-step');
+        $('#nextAlertSettings').click( function(){  
+            $('#monitorAddHeader').addClass('monitorAdd-header-last-step');
             $('#monitorAddHeader').removeClass('monitorAdd-header-third-step');
             $('#fourthStep').addClass('bg-current-step');
-            $('#settingsTitle').text('SSL Certificate');
+            $('#settingsTitle').text('Alert settings');
             $('#SSLSettingsWrapper').css("display", "block");
             $('#advancedSettingsWrapper').css("display", "none");
         });
 
-        // SSL certificate settings buttons
-        $('#nextToConfirmation').click( function(){  
-            $('#monitorAddHeader').addClass('monitorAdd-header-last-step');
-            $('#monitorAddHeader').removeClass('monitorAdd-header-fourth-step');
-            $('#lastStep').addClass('bg-current-step');
-            $('#settingsTitle').text('Confirmation');
-            $('#confirmInfoWrapper').css("display", "block");
-            $('#SSLSettingsWrapper').css("display", "none");
-            fillConfirmationPageBasic();
-            fillConfirmationPagePersons();
-        });
-
-        $('#backToadvancedSettings').click( function(){
-            $('#monitorAddHeader').removeClass('monitorAdd-header-fourth-step');
+        $('#backSSLSettings').click( function(){
+            $('#monitorAddHeader').removeClass('monitorAdd-header-last-step');
             $('#monitorAddHeader').addClass('monitorAdd-header-third-step');
             $('#fourthStep').removeClass('bg-current-step');
-            $('#settingsTitle').text('Alert settings');
+            $('#settingsTitle').text('SSL settings');
             $('#SSLSettingsWrapper').css("display", "none");
             $('#advancedSettingsWrapper').css("display", "block");
         });
 
-        // Confirmation information section buttons
         // Create monitor button clicked
         $('#createMonitor').click( function(){
             $('#createMonitor').css("display", "none");
-            $('#confirmInfoStepBackBtn').css("display", "none");
+            $('#backSSLSettings').css("display", "none");
             $('#spinerBox').css("display", "flex");
             addNewMonitor();
         });
-
-        $('#confirmInfoStepBackBtn').click( function(){
-            $('#monitorAddHeader').removeClass('monitorAdd-header-last-step');
-            $('#monitorAddHeader').addClass('monitorAdd-header-fourth-step');
-            $('#lastStep').removeClass('bg-current-step');
-            $('#settingsTitle').text('SSL information');
-            $('#confirmInfoWrapper').css("display", "none");
-            $('#SSLSettingsWrapper').css("display", "block");
-        });
-        
-
-        function fillConfirmationPageBasic(){
-            const checkType = $( "#checkType option:selected" ).text();
-            const checkAdressTitle = $('#checkAddressTitle').text();
-            const checkAdress = $('#checkAddress').val();
-            const friendlyName = $('#friendlyName').val();
-            const checkInterval = checkIntervalSlider.value;
-            const basicSettings = `
-                                <div class="decrBox-title">BASIC SETTINGS</div>
-                                <div><span>Check type: </span>${checkType}</div>                                    
-                                <div><span>${checkAdressTitle}: </span>${checkAdress}</div>    
-                                <div><span>Friendly name: </span>${friendlyName}</div>
-                                <div><span>Check interval: </span>${checkInterval}m</div>
-                            `;
-                            
-            const basicDecr = document.getElementById('basicDecr');
-            const position = "beforeend";
-            basicDecr.innerHTML = '';
-            basicDecr.insertAdjacentHTML(position,basicSettings);
-        }
-
-        function fillConfirmationPagePersons(){
-
-            const alertPersons = document.getElementById('alertPersons');
-            const position = "beforeend";
-            alertPersons.innerHTML = '';
-            let personsDecr = `<div class="decrBox-title">PERSONS</div>`;
-
-            for (let i = 0; i < usersToAlert.length; i++) {
-                for (x in allUserData) {
-                    if(allUserData[x].zabbix_user_id == usersToAlert[i]){
-                        personsDecr += `                    
-                            <div><span>${allUserData[x].name}: </span>${allUserData[x].email}</div>    
-                            `;
-                    }
-                }
-            }
-            alertPersons.insertAdjacentHTML(position,personsDecr);
-        }
 
         //Check type changed
         let checkTypeList = ["HTTP/HTTPS","ICMP ping","DNS"];
@@ -586,6 +462,24 @@
             }
         });
 
+
+        function showMonitorCreatedPage(message){
+            $('#monitorCreatedWrapper').removeClass('d-none');
+            $('#settingsTitle').addClass('d-none');
+            $('#SSLSettingsWrapper').css("display", "none");
+            $('#lastStep').addClass('bg-current-step');
+
+            const stepWrappers = document.querySelectorAll('.currentStepWrapper');
+
+            stepWrappers.forEach((wrapper) => {
+                wrapper.classList.toggle('d-none');
+            });
+
+            const header = document.getElementById('monitorAddHeader');
+            header.style.justifyContent = 'center';
+
+            toastr.success(message);
+        }
 
         //AJAX REQUESTS
         let lastError = [];
@@ -616,7 +510,9 @@
             let checkField = $('#checkAddress').val();
             let friendlyName = $('#friendlyName').val();
             let checkInterval = checkIntervalSlider.value;
- 
+            let email = $('.alertLanguage-wrapper.selected')[0].id;
+            email = email.replace('Language','');
+
             $.ajax( {
             type:'POST',
             header:{
@@ -632,36 +528,33 @@
             checkAddress: checkField,
             friendlyName: friendlyName,
             checkInterval: checkInterval,
-            personsToAlert: alertingPersonsInfo
+            personsToAlert: alertingPersonsInfo,
+            email: email,
             }
 
 
             })
           .done(function(data) {
             $('#createMonitor').css("display", "block");
-            $('#confirmInfoStepBackBtn').css("display", "block");
+            $('#backSSLSettings').css("display", "block");
             $('#spinerBox').css("display", "none");
-                alertingPersonsInfo = [];
-                if(data.message != null){
-                    $('#monitorAddWrapper').addClass('d-none');
-                    $("#createdMonitorAddress").text(checkField);
-                    $('#monitorCreatedWrapper').removeClass('d-none');
-                    toastr.success(data.message);
+            alertingPersonsInfo = [];
+            if(data.message){
+                showMonitorCreatedPage(data.message)
+            }
+            else if(data.error){
+                toastr.error(data.error);
+            }else{
+                for (key in data) {
+                    show_validation_failed(key, data[key]);
+                    moveToFirstValidationFailedPage(key);
+                    toastr.error(data[key]);
                 }
-                else if(data.error != null){
-                    toastr.error(data.error);
-                }else{
-                    for (key in data) {
-                        show_validation_failed(key, data[key]);
-                        moveToFirstValidationFailedPage(key);
-                        toastr.error(data[key]);
-                    }
-                }
-                returnToStartPosition();
+            }
           })
           .fail(function(error) {
             $('#createMonitor').css("display", "block");
-            $('#confirmInfoStepBackBtn').css("display", "block");
+            $('#backSSLSettings').css("display", "block");
             $('#spinerBox').css("display", "none");
             if (error.status == 422) {
                 let response = JSON.parse(error.responseText);
@@ -680,17 +573,21 @@
           });
         }
 
+        function returnToFirstPage(){
+            $('#settingsTitle').text('Basic settings');
+            $('#basicSettingsWrapper').css("display", "block");
+            $('#lastStep').removeClass('bg-current-step');
+            $('#thirdStep').removeClass('bg-current-step');
+            $('#fourthStep').removeClass('bg-current-step');
+            $('#secoundStep').removeClass('bg-current-step');
+            $('#SSLSettingsWrapper').css("display", "none");
+            $('#monitorAddHeader').removeClass('monitorAdd-header-last-step');
+        }
+
         //Show/display where is first error 
         function moveToFirstValidationFailedPage(firstError_ītem_id){
             if(firstError_ītem_id == 'checkAddress' || firstError_ītem_id == 'friendlyName'){
-                $('#settingsTitle').text('Basic settings');
-                $('#basicSettingsWrapper').css("display", "block");
-                $('#lastStep').removeClass('bg-current-step');
-                $('#thirdStep').removeClass('bg-current-step');
-                $('#fourthStep').removeClass('bg-current-step');
-                $('#secoundStep').removeClass('bg-current-step');
-                $('#confirmInfoWrapper').css("display", "none");
-                $('#monitorAddHeader').removeClass('monitorAdd-header-last-step');
+                returnToFirstPage();
             }else{
                 alert( @json( __('This element is not validated correctly yet') ));
             }
@@ -704,253 +601,4 @@
         }
     });
 </script>
-
-
-
-    // <script>
-    // $(function(){
-    //     //Script for Horicontal slider in Check Interval section
-    //     var slider = document.getElementById("myRange");
-    //     var output = document.getElementById("demo");
-    //     output.innerHTML = slider.value;
-
-    //     slider.oninput = function() {
-    //         output.innerHTML = this.value;
-    //     }
-
-    //     slider.addEventListener('mousemove', function(){
-    //         let x = this.value-this.min;
-    //         let valueInPercent = (100*x/(this.max-this.min));
-    //         let color = 'linear-gradient(90deg, #CA6D00 '+valueInPercent+'%, rgb(214,214,214) '+valueInPercent+'%)';
-    //         this.style.background = color;
-    //     });
-
-    //     //Script for Horicontal slider in Apdex response Treshold section
-    //     var sliderApdex = document.getElementById("myRangeApdex");
-    //     var outputApdex = document.getElementById("sliderValueBox");
-    //     outputApdex.innerHTML = sliderApdex.value;
-
-    //     sliderApdex.oninput = function() {
-    //         outputApdex.innerHTML = this.value;
-    //     }
-
-    //     sliderApdex.addEventListener('mousemove', function(){
-    //         let x = this.value-this.min;
-    //         let valueInPercent = (100*x/(this.max-this.min));
-    //         let color = 'linear-gradient(90deg, #CA6D00 '+valueInPercent+'%, rgb(214,214,214) '+valueInPercent+'%)';
-    //         this.style.background = color;
-    //     });
-
-
-    //     //Created by Rolands Bidzans
-    //     //SCRIPT FOR ADDING NEW CUSTOM HTTP HEADER ELEMENTS
-
-    //     //VARIABLES
-    //     const addCustomHeaderLink = document.getElementById("addCustomHeader");
-    //     const customheaderSettingsWripper = document.getElementById("advancedSectionWrapper");
-    //     const a = document.getElementById("newHeaders");
-    //     let customHeaderCount = 2;
-
-    //     //FUNCTION
-    //     function addNewHeader(){
-    //         let createdHeaders=null;
-    //         let newHeaderItem = "";
-    //         for(let i=2;i<=customHeaderCount;i++) {
-    //             createdHeaders = document.getElementById("customHeader"+i);
-    //             if(createdHeaders == null) {
-    //                 newHeaderItem =`
-    //                         <div class="settings-wrapper" id="newHeaderWripper${i}">
-    //                             <input class="input-small" type="text" id="customHeader${i}" name="Headers[${i}][Header]" placeholder="Header${i}">
-    //                             <input class="input-small input-small_margin30px" type="text" id="customKey${i}" name="Headers[${i}][Key]" placeholder="Key${i}">
-    //                             <i class="fas fa-trash invisible" id="headerDelete${i}"></i>
-    //                         </div>
-    //                     `;
-
-    //                     const position = "beforeend";
-    //                     a.insertAdjacentHTML(position,newHeaderItem);
-
-    //                     let deleteHeaderIcon = document.getElementById(`headerDelete${i}`);
-    //                     deleteHeaderIcon.addEventListener('click',function(){
-    //                         deleteHeaderIcon.parentNode.parentNode.removeChild(deleteHeaderIcon.parentNode);
-    //                         customHeaderCount--;
-    //                     });
-
-    //                     let newHeaderWripper = document.getElementById(`newHeaderWripper${i}`);
-    //                     newHeaderWripper.addEventListener('mouseover',function(){
-    //                         deleteHeaderIcon.classList.remove("invisible");
-    //                     });
-    //                     newHeaderWripper.addEventListener('mouseout',function(){
-    //                         deleteHeaderIcon.classList.add("invisible");
-    //                     });
-
-    //                     customHeaderCount++;
-    //                     break;
-    //             }
-    //         }
-    //     }
-
-    //     addCustomHeaderLink.addEventListener('click', function(){
-    //         if(customHeaderCount<6){
-    //             addNewHeader();
-    //         }
-    //     });
-
-
-
-    //     //Created by Rolands Bidzans
-    //     //SCRIPT FOR ADDING NEW PERSON TO ALERT
-
-    //     //VARIABLES
-    //     let newPersonAddedWrapper = document.getElementById("newPersonAddedWrapper");
-    //     let addNewPersonBtn = document.getElementById("btnNewPersonAdd");
-    //     let newPersonName = document.getElementById("personName");
-    //     let newPersonEmail = document.getElementById("personEmail");
-    //     let newPersonNumber = document.getElementById("personNumber");
-    //     let AlertBoxColorLIST = ["gray","orange","#0074D9","#85144b","#DDDDDD","#FF4136","#2ECC40","#F012BF","#3D9970"];
-    //     let PersonsToAlertLIST = [];
-    //     let newPersonCount = 0;
-        
-    //     //FUNCTION
-
-    //     //Check that all forms is filled correct
-    //     function addNewPersonErrorsTests(){
-    //         let testSuccess = false;
-    //         if(newPersonName.value.length<1){
-    //             $("#addNewPersonErrorsShow").html("Person name form should be filled!");
-    //         }else if(newPersonEmail.value.length>=1){
-    //             if(newPersonEmail.value.indexOf("@")==-1){
-    //                 $("#addNewPersonErrorsShow").html("Email should have '@' simbol!");
-    //             }else{
-    //                 testSuccess = true;
-    //             }
-    //         }else if(newPersonNumber.value.length>=1){
-    //             testSuccess = true;
-    //         }else{
-    //             $("#addNewPersonErrorsShow").html("At least Phone or Email form should be field!");
-    //         }
-
-    //         return testSuccess;
-    //     }
-
-    //     //Function that add new person from add new person Modal Window if addNewPersonErrorsTests() returns true
-    //     function addNewPersonToAlert(){
-            
-    //         let createdPersons=null;
-    //         let newPersonItem = "";
-
-    //         if(addNewPersonErrorsTests() == true){
-    //             for(let i=0;i<=newPersonCount;i++) {
-    //                 createdPersons = document.getElementById("personToAlert"+i);
-    //                 if(createdPersons == null) {
-    //                     //ADD NEW PERSON 
-    //                     newPersonItem =`
-    //                                     <div class="userWripper" style="background-color : ${AlertBoxColorLIST[i % 10]}" data-toggle="popover${i}" data-trigger="hover" data-placement="top" >
-    //                                         <div class="userWripper__userType" id="personToAlert${i}">U</div>
-    //                                         ${newPersonName.value.substring(0,3)}
-    //                                         <div class="userWripper__delete" id="deletePerson${i}">x</div>
-    //                                     </div>
-
-    //                                     <input id="PersonName${i}" type="hidden" name="Persons[${i}][Name]" value="${newPersonName.value}">
-    //                                     <input id="PersonNumber${i}" type="hidden" name="Persons[${i}][Number]" value="${newPersonNumber.value}">
-    //                                     <input id="PersonEmail${i}" type="hidden" name="Persons[${i}][Email]" value="${newPersonEmail.value}">
-    //                                 `;
-    //                     const position = "beforeend";
-
-    //                     newPersonAddedWrapper.insertAdjacentHTML(position,newPersonItem);
-    //                     $(`[data-toggle="popover${i}"]`).popover({
-    //                         title: `${newPersonName.value}` ,
-    //                         content: `Email: ${newPersonEmail.value}<br />Phone number: ${newPersonNumber.value} `,
-    //                         html: true
-    //                     });
-
-    //                     //SAVE NEW ADDED PERSON'S INFO IN LIST(array)
-    //                     PersonsToAlertLIST.push({
-    //                         id : "personToAlert"+i,
-    //                         name : newPersonName.value,
-    //                         email : newPersonEmail.value,
-    //                         number :  newPersonNumber.value
-    //                     });
-
-    //                     //ADD EVENTLISTENER TO Delete icon (Delete person)
-    //                     let DeletePersonX = document.getElementById(`deletePerson${i}`);
-    //                     DeletePersonX.addEventListener('click',function(){
-    //                         $(`[data-toggle="popover${i}"]`).popover('hide')
-    //                         DeletePersonX.parentNode.parentNode.removeChild(DeletePersonX.parentNode);
-    //                         $(`#PersonName${i}`).remove();
-    //                         $(`#PersonEmail${i}`).remove();
-    //                         $(`#PersonNumber${i}`).remove();
-    //                         newPersonCount--;
-
-    //                         //DELETE Person from LIST
-    //                         for(let a=0; a<PersonsToAlertLIST.length;a++){
-    //                             if(PersonsToAlertLIST[a].id == "personToAlert"+i){
-    //                                 PersonsToAlertLIST.splice(a,1);
-    //                                 a=0;
-    //                                 break;
-    //                             }
-    //                         }
-    //                     });
-
-    //                     //CLEAR MODAL Window FORMS AND HIDE MODAL Window
-    //                     newPersonName.value="";
-    //                     newPersonEmail.value="";
-    //                     newPersonNumber.value="";
-    //                     $("#addNewPersonErrorsShow").html("");
-    //                     $('#addNewPersonToAlertModal').modal('hide');
-
-    //                     // $('#allPersons').val(PersonsToAlertLIST);
-    //                     newPersonCount++;
-    //                     break;
-    //                 }
-    //             }
-    //         }
-            
-    //     }
-
-    //     addNewPersonBtn.addEventListener("click",addNewPersonToAlert);
-
-    //     //Check type change
-    //     let checkTypeList = ["HTTP/HTTPS","Web socket","ICMP ping","DNS"];
-    //     let checkType;
-
-
-        
-    //     $("#checkType").change(function() {
-    //         if(this.value == checkTypeList[0]){
-    //             checkType = `<div class="item-title">Check URL<span>*</span></div>
-    //                     <input class="input-large" type="text" id="URL" name="checkField" placeholder="https://">
-    //                     `
-    //         }else if(this.value == checkTypeList[1]){
-    //             checkType = `<div class="item-title">WS or WSS URL<span>*</span></div>
-    //                     <input class="input-large" type="text" id="WsURL" name="checkField" placeholder="ws://yourdomain.com/sockets/notifications/">
-    //                     `
-    //         }else if(this.value == checkTypeList[2]){
-    //             checkType = `<div class="item-title">IP Address/ Host Name<span>*</span></div>
-    //                     <input class="input-large" type="text" id="IpAddres" name="checkField" placeholder="93.184.216.34 or your yourdomain.com">
-    //                     `
-    //         }else{
-    //             checkType = `<div class="item-title">Host name<span>*</span></div>
-    //                     <input class="input-large" type="text" id="hostName" name="checkField" placeholder="www.domain.com">
-    //                     `
-    //         }
-    //         $("#checkTypeWripper").html(`${checkType}`);
-    //     });
-
-
-    //     //ADD EVENT LISTENER TO CHECK BOX
-    //     for(let i=1;i<=4;i++){
-    //         let checkBoxSSL = document.getElementById(`exampleCheck${i}`);
-    //         checkBoxSSL.addEventListener('click',function(){
-    //             for(let a=1;a<=4;a++){
-    //                 if(i!=a){
-    //                     $(`#exampleCheck${a}`).prop("checked", false);
-    //                 }else{
-    //                     $(`#exampleCheck${a}`).prop("checked", true);
-    //                 }
-    //             }
-    //         }); 
-    //     }
-    // });
-
-    // </script>
 @stop

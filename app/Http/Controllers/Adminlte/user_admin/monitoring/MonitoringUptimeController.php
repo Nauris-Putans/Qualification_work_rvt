@@ -73,15 +73,16 @@ class MonitoringUptimeController extends Controller
 
 
         date_default_timezone_set("Europe/Riga");
-        $yesterday  = mktime(0, 0, 0, date("m"), date("d")-1, date("Y"));
+        $thisMonth  = mktime(0, 0, 0, date("m"), 1, date("Y"));
 
         $histories = $this->zabbix->historyGet([
             'output' => 'extend',
             'sortorder' => 'DESC',
+            'time_from' => $thisMonth,
             'itemids' => $itemid,
         ]);
 
-        if($monitorType == 2){
+        if($monitorType != 1){
 
             foreach ($histories as $key => $value){
 
@@ -94,17 +95,6 @@ class MonitoringUptimeController extends Controller
         }
 
         return view('adminlte.user_admin.monitoring.uptime', compact(['histories','itemsFriendlyName']));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     * 
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -154,14 +144,18 @@ class MonitoringUptimeController extends Controller
         }else{
             dd('You dont have any item');
         }
+        $period = $request->period;
+        date_default_timezone_set("Europe/Riga");
+        $monthFrom  = mktime(0, 0, 0, date("m") - $period, 1, date("Y"));
         
         $histories = $this->zabbix->historyGet([
             'output' => 'extend',
             'sortorder' => 'DESC',
+            'time_from' => $monthFrom,
             'itemids' => $itemid,
         ]);
-     
-        if($monitorType == 2){
+
+        if($monitorType != 1){
             foreach ($histories as $key => $value){
 
                 if($histories[$key]->value == 0){
@@ -172,51 +166,8 @@ class MonitoringUptimeController extends Controller
             }
         }
 
-        return compact(['histories','itemsFriendlyName']);
+        return compact(['histories']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param MonitoringUptime $monitoringUptime
-     * @return Response
-     */
-    public function show(MonitoringUptime $monitoringUptime)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param MonitoringUptime $monitoringUptime
-     * @return Response
-     */
-    public function edit(MonitoringUptime $monitoringUptime)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param MonitoringUptime $monitoringUptime
-     * @return Response
-     */
-    public function update(Request $request, MonitoringUptime $monitoringUptime)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param MonitoringUptime $monitoringUptime
-     * @return Response
-     */
-    public function destroy(MonitoringUptime $monitoringUptime)
-    {
-        //
-    }
 }

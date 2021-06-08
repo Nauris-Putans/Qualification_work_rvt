@@ -3,9 +3,14 @@
 *Read this in other languages: [🇱🇻](README.md)*
 
 ## Description of the project
-PIKC “Riga State Technical School” Qualification Work Repository. Monitoring services that allows you to check about
-your website statistics - Ping, Port, Response time, SSL Certification Check and much more. User/Admin/Guest authentication 
-and management system. There are 2 types of accounts - Free and Pro.
+PIKC “Riga State Technical School” Qualification Work Repository. Monitoring service that allows you to check about
+your website statistics such as: Ping, Response time, SSL certification check and many more functionalities. User/Admin/Guest authentication 
+and management system.
+
+## What have I done in this project
+ - ...
+ - ...
+ - ...
 
 ## Table of content
  - [Versions](#versions)
@@ -15,21 +20,26 @@ and management system. There are 2 types of accounts - Free and Pro.
    - [Clone](#clone)
    - [Setup](#setup)
  - [Sources used](#sources-used)
+ - [My-used-sources](#my-used-sources)
 
 ## Versions
-A website is created with:
- - Php: **7.2.5**
- - Apache
- - Phpmyadmin 
- - Mysql
+ - Php: **^7.3.21**
+ - Apache **2.4.46**
+ - Phpmyadmin **5.0.2**
+ - Mysql **5.7.31**
  - Zabbix: **5**
+ - CentOS **8**
  - Laravel **7.24**
  - Adminlte **^3.5**
- - npm **6.14.8**
- - CentOS **8**
+ - npm **^6.14.8**
+ - Laratrust **^6.2**
+ - Stripe **^7.75**
+ - Cashier **^12.9**
+ - Hashids **^4.0**
+ - Phpunit **^8.5**
+ - Faker **^1.9.1**
 
 ## Technologies used
-
 Languages:
 - [HTML](https://en.wikipedia.org/wiki/HTML)
 - [PHP](https://en.wikipedia.org/wiki/PHP)
@@ -47,16 +57,35 @@ Frameworks:
 Servers:
 - [Zabbix](https://en.wikipedia.org/wiki/Zabbix) is on [CentOS](https://en.wikipedia.org/wiki/CentOS) virtual box
 
-Others:
+Web servers:
 - [Apache](https://en.wikipedia.org/wiki/Apache_HTTP_Server)
+
+Web Attachment Tools:
 - [Phpmyadmin](https://en.wikipedia.org/wiki/PhpMyAdmin)
+
+Relational database management systems:
 - [Mysql](https://en.wikipedia.org/wiki/MySQL)
+
+Admin Dashboard and Control Panels:
 - [Adminlte](https://adminlte.io/)
+
+Package managers:
 - [npm](https://en.wikipedia.org/wiki/Npm_(software))
+
+JavaScript library for data visualization:
 - [Chart.js](https://www.chartjs.org/)
 
-## Requirements
+Financial services and software:
+- [Stripe](https://stripe.com/en-lv)
 
+Others:
+- [Laratrust](https://laratrust.santigarcor.me)
+- [Cashier](https://laravel.com/docs/master/billing)
+- [Hashids](https://hashids.org) 
+- [Phpunit](https://phpunit.de)
+- [Faker](https://github.com/fzaninotto/Faker)
+
+## Requirements
 To run this website, you must have:
 
 1. WampServer can be downloaded [here](https://www.wampserver.com/en/#download-wrapper)
@@ -67,71 +96,32 @@ To run this website, you must have:
 ## Installation
 
 ### Clone
-
-> Clone this repository to your local machine using `https://git01.obvius.lv:10143/mon/monitoring_project.git`
+Clone this repository to a local computer using `https://github.com/rvtprog-kval-21/...`
 
 ```bash
-git clone https://git01.obvius.lv:10143/mon/monitoring_project.git
+git clone https://github.com/rvtprog-kval-21/...
 cd monitoring-project
 ```
 
 ### Setup
-
-> Install a composer to project
+A script that runs all the necessary commands
 ```bash
-composer install 
+composer run-script start-project
 ```
 
-> If there is a problem downloading composer use this commands
+Add a database named - monitoring_project
+
+After adding the database, use this command to create tables with the data created previously
 ```bash
-composer dump-autoload
+php artisan migrate:fresh --seed
 ```
 
-Or
-
+Add variables to your environment file (.env) and run the command
 ```bash
-COMPOSER_MEMORY_LIMIT=-1 composer install
+php run-script clear-project-cache
 ```
 
-> Install npm to project
-```bash
-npm install
-```
-
-> Compile files
-```bash
-npm run dev
-```
-
-Or
-
-> Compile files automaticly
-```bash
-npm run watch
-```
-
-> Copy .env.example file and paste in with a name - .env and put in your environment variables.
-```bash
-cp .env.example .env
-```
-
-> Add a database with name - monitoring_project and use this command
-```bash
-php artisan migrate
-```
-
-> Comment out 288,289,290 line from vendor/becker/laravel-zabbix-api/src/ZabbixApiAbstract.php
-```bash
-284             // validate response
-285             if (!is_object($this->responseDecoded) && !is_array($this->responseDecoded)) {
-286                 throw new Exception('Could not decode JSON response.');
-287             }
-288     //        if (array_key_exists('error', $this->responseDecoded)) {
-289     //            throw new Exception('API error '.$this->responseDecoded->error->code.': '.$this->responseDecoded->error->data);
-290     //        }
-```
-
-> Run project on local machine
+Run project on local machine
 ```bash
 php artisan serve
 ```
@@ -144,7 +134,6 @@ Laravel development server started: http://127.0.0.1:8000
 ```
 
 ## Sources used
-
 - HTML
     - https://www.w3schools.com/html/
     - https://html.com/
@@ -222,5 +211,29 @@ Laravel development server started: http://127.0.0.1:8000
     - https://github.com/chartjs
     - https://medium.com/javascript-in-plain-english/exploring-chart-js-e3ba70b07aa4
     - https://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/
-
-
+- Laratrust
+    - https://laratrust.santigarcor.me
+    - https://github.com/santigarcor/laratrust
+    - https://packagist.org/packages/santigarcor/laratrust
+- Stripe
+    - https://stripe.com
+    - https://en.wikipedia.org/wiki/Stripe_(company)
+    - https://twitter.com/stripe
+- Cashier
+    - https://laravel.com/docs/8.x/billing
+    - https://github.com/laravel/cashier-stripe
+- Hashids
+    - https://hashids.org
+    - https://github.com/vinkla/hashids
+    - https://www.npmjs.com/package/hashids
+- Phpunit
+    - https://phpunit.de
+    - https://github.com/sebastianbergmann/phpunit
+    - https://laravel.com/docs/8.x/testing
+- Faker
+    - https://github.com/fzaninotto/Faker
+    - https://laravel-news.com/changes-coming-to-php-faker
+## Sources I use
+...
+...
+...

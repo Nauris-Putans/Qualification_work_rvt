@@ -38,6 +38,16 @@ class MonitoringMonitorsListController extends Controller
     /////////////ZABBIX END//////////////////
     //////////////////////////////////////
 
+    public function customizeDate($date){
+        $d1=strtotime($date);
+        
+        $newDate = (object) [];
+        $newDate->date = date('d M Y',$d1);
+        $newDate->time = date('H:i:s',$d1);
+
+        return $newDate;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,15 +56,85 @@ class MonitoringMonitorsListController extends Controller
     public function index(Request $request)
     {
 
-        //Get current user Group
         $usergroupID = $request->session()->get("groupId");
 
         $allUserMonitors = DB::table('monitoring_monitors')
             ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
+            ->join('monitoring_zabbix_triggers', 'monitoring_zabbix_triggers.host', '=', 'monitoring_hosts.host_id')
+            ->join('monitoring_zabbix_actions', 'monitoring_zabbix_actions.zabbix_trigger', '=', 'monitoring_zabbix_triggers.zabbix_triger_id')
+            ->join('monitoring_zabbix_actions_has_users', 'monitoring_zabbix_actions_has_users.zabbix_action', '=', 'monitoring_zabbix_actions.zabbix_action_id')
+            ->join('monitoring_zabbix_users', 'monitoring_zabbix_users.zabbix_user_id', '=', 'monitoring_zabbix_actions_has_users.user')
+            ->join('users', 'users.id', '=', 'monitoring_zabbix_users.user_id')
             ->where('user_group', $usergroupID)
-            ->get(['friendly_name','host_id','check_address','status']);
+            ->get(['friendly_name','host_id','user_input as check_address', 'check_interval as checkInterval', 'status', 'gender', 'name','email','users.id','profile_image', 'monitoring_monitors.created_at']);  
 
-        $sortedMonitors = $allUserMonitors;
+        $allUserMonitorsNoAlertUsers = DB::table('monitoring_monitors')
+            ->join('monitoring_hosts', 'monitoring_hosts.host_id', '=', 'monitoring_monitors.host')
+            ->where('user_group', $usergroupID)
+            ->get(['friendly_name','host_id','user_input as check_address', 'check_interval as checkInterval', 'status', 'monitoring_monitors.created_at']);  
+
+        $alreadyAddedMonitor = [];
+        $sortedMonitors = [];
+        $monitorKey = 0;
+        foreach($allUserMonitors as $key=>$monitor){
+            $alreadyAdded = 0;
+            foreach($alreadyAddedMonitor as $value){
+                if($monitor->host_id == $value){
+                    $alreadyAdded = 1;
+                }
+            }
+
+            if($alreadyAdded){
+                $sortedMonitors[$monitorKey]->users[$key] = (object)[];
+                $sortedMonitors[$monitorKey]->users[$key]->fullName = $monitor->name;
+                $sortedMonitors[$monitorKey]->users[$key]->email = $monitor->email;
+                $sortedMonitors[$monitorKey]->users[$key]->id = $monitor->id;
+                $sortedMonitors[$monitorKey]->users[$key]->profile_image = $monitor->profile_image;
+                $sortedMonitors[$monitorKey]->users[$key]->gender = $monitor->gender;
+            }else{
+                $monitorKey ++;
+                $sortedMonitors[$monitorKey] = (object)[];
+                $sortedMonitors[$monitorKey]->friendly_name = $monitor->friendly_name;
+                $sortedMonitors[$monitorKey]->host_id = $monitor->host_id;
+                $sortedMonitors[$monitorKey]->status = $monitor->status;
+
+                $checkAdress = $monitor->check_address;
+                if(strlen($checkAdress) > 30) {
+                    $sortedMonitors[$monitorKey]->check_address = substr($monitor->check_address,0, 29).'...';
+                }else{
+                    $sortedMonitors[$monitorKey]->check_address = $checkAdress;
+                }
+                $sortedMonitors[$monitorKey]->name = $monitor->name;
+                $sortedMonitors[$monitorKey]->checkInterval = $monitor->checkInterval;
+                $sortedMonitors[$monitorKey]->created_at = $this->customizeDate($monitor->created_at);
+                $sortedMonitors[$monitorKey]->users[0] = (object)[];
+                $sortedMonitors[$monitorKey]->users[0]->fullName = $monitor->name;
+                $sortedMonitors[$monitorKey]->users[0]->email = $monitor->email;
+                $sortedMonitors[$monitorKey]->users[0]->id = $monitor->id;
+                $sortedMonitors[$monitorKey]->users[0]->profile_image = $monitor->profile_image;
+                $sortedMonitors[$monitorKey]->users[0]->gender = $monitor->gender;
+
+                $alreadyAddedMonitor[$key] = $monitor->host_id;
+            }
+        }
+
+        foreach($allUserMonitorsNoAlertUsers as $monitor){
+            $monitorId = $monitor->host_id;
+            $alreadyAdded = false;
+            foreach($sortedMonitors as $sortMonitor){
+                if($monitorId == $sortMonitor->host_id){
+                    $alreadyAdded = true;
+                }
+            }
+
+            if($alreadyAdded == false){
+                $monitorKey ++;
+                $monitor->created_at = $this->customizeDate($monitor->created_at);
+                $sortedMonitors[$monitorKey] = $monitor;
+                $sortedMonitors[$monitorKey]->users = null;
+            }
+
+        }
 
         return view('adminlte.user_admin.monitoring.monitors.monitors-list',compact(['sortedMonitors']));
     }
@@ -120,14 +200,27 @@ class MonitoringMonitorsListController extends Controller
             ->where('host', $hostId)
             ->get(['status','id'])->first();
 
+        $action = DB::table('monitoring_zabbix_triggers')
+            ->join('monitoring_zabbix_actions','monitoring_zabbix_actions.zabbix_trigger','monitoring_zabbix_triggers.zabbix_triger_id')
+            ->where('host', $hostId)
+            ->get(['zabbix_action_id'])->first();
+
         $currentStatus = $monitor->status;
         $hostStatus = 0;
+        $actionStatus = 0;
+
         //Change status type
-        if($currentStatus == 1){//monitor active
+        if($currentStatus == 1){
             $hostStatus = 1;
+            $actionStatus = 1;
             $currentStatus = 2;
+        }else if($currentStatus == 2){
+            $hostStatus = 0;
+            $actionStatus = 1;
+            $currentStatus = 3;
         }else{
             $hostStatus = 0;
+            $actionStatus = 0;
             $currentStatus = 1;
         }
 
@@ -142,7 +235,15 @@ class MonitoringMonitorsListController extends Controller
             "status"=> $hostStatus
         ]);
 
-        return redirect()->back()->with('message', __("Monitor ") . __("status has been changed."));
+        if($action != null){
+            //Update action
+            $updatedAction = $this->zabbix->actionUpdate([
+                "actionid"=> $action->zabbix_action_id,
+                "status"=> $actionStatus
+            ]);
+        }
+
+        return redirect()->back();
     }
 
 }

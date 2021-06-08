@@ -1,0 +1,454 @@
+.content-header {
+  display: none;
+}
+
+.fixedSettingsContainer {
+  position: fixed;
+  top: 56px;
+  right: 0;
+  height: 100%;
+  width: 0;
+  background-color: white;
+  z-index: 10;
+  transition: width 0.5s ease;
+}
+
+.fixedSettingsContainer-btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  right: 0;
+  top: calc(50% - 25px);
+  left: -30px;
+  height: 50px;
+  width: 30px;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  background-color: #01015f;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.fixedSettingsContainer .button-wrapper {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: auto;
+}
+
+.fixedSettingsContainer .button-wrapper .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: white;
+  color: black;
+  height: 100px;
+  width: 100px;
+}
+
+.fixedSettingsContainer .button-wrapper .btn-modal {
+  box-shadow: 0 4px 8px 0 #17a3b863, 0 6px 10px 0 #17a3b8be;
+}
+
+.fixedSettingsContainer .button-wrapper .btn-modal:hover {
+  border: 1px solid #17a2b8;
+  box-shadow: 0 4px 8px 0 #17a3b863, 0 6px 20px 0 #17a3b8be;
+}
+
+.fixedSettingsContainer .button-wrapper .btn-save {
+  box-shadow: 0 4px 8px 0 #6a17b863, 0 6px 20px 0 #6a17b8be;
+}
+
+.fixedSettingsContainer .button-wrapper .btn-save:hover {
+  border: 1px solid #17a2b8;
+  box-shadow: 0 4px 8px 0 #6a17b863, 0 6px 20px 0 #6a17b8be;
+}
+
+.fixedSettingsContainer-wrapper {
+  position: relative;
+  width: 320px;
+  padding: 10px 5px;
+  height: calc(100% - 50px);
+}
+
+.fixedSettingsContainer .text-primary {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.dashboard-content .overview_title {
+  padding: 15px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.dashboard-content .card {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.dashboard-content .card .card-header {
+  background: transparent;
+  border: none;
+}
+
+.dashboard-content .card .card-header .card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 550;
+}
+
+.dashboard-content .card .card-header .btn-tool {
+  font-size: 16px;
+  font-weight: 550;
+}
+
+.dashboard-content .chart {
+  height: 130px;
+}
+
+.dashboard-content .info-box-content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-content .info-box-content .easy-pie-chart-box {
+  width: 150px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.dashboard-content .info-box-content .easy-pie-chart-box .box {
+  position: relative;
+  width: 130px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 115px;
+  font-size: 30px;
+}
+
+.dashboard-content .info-box-content .easy-pie-chart-box .box .percent {
+  width: 130px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.dashboard-content .infoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+}
+
+.dashboard-content .infoWrapper i {
+  width: 50px;
+  height: 50px;
+  font-size: 50px;
+  color: black;
+  margin-right: 20px;
+}
+
+.dashboard-content .infoWrapper-decription {
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 50px;
+  color: black;
+  font-size: 24px;
+}
+
+.dashboard-content .modal-header {
+  position: relative;
+  background-color: white;
+  color: black;
+  border: none;
+}
+
+.dashboard-content .modal-header:before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 2px;
+  border-radius: 5px;
+  bottom: 0;
+  background-color: #060e98;
+  left: 25%;
+}
+
+.dashboard-content .modal-close {
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 25px;
+  font-size: 20px;
+  background: transparent;
+  color: black;
+}
+
+.dashboard-content .settingsWarrning {
+  display: none;
+  padding-top: 20px;
+  justify-content: left;
+}
+
+.dashboard-content .settingsWarrning-icon {
+  display: flex;
+  color: #939393;
+  font-size: 60px;
+}
+
+.dashboard-content .settingsWarrning-wrapper {
+  padding-left: 10px;
+}
+
+.dashboard-content .settingsWarrning-title {
+  font-size: 20px;
+  font-weight: 550;
+}
+
+.dashboard-content .mt-10 {
+  margin-top: 10px;
+}
+
+.dashboard-content .colorBtn {
+  width: auto;
+}
+
+.dashboard-content .input-group-append .input-group-text {
+  border-radius: 5px;
+  background-color: whitesmoke;
+}
+
+.dashboard-content .colorpicker-input-addon i {
+  border: 1px solid black;
+}
+
+.dashboard-content .card-body {
+  cursor: context-menu;
+}
+
+.dashboard-content .card-body-box {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.dashboard-content .card-body-personInfoWrapper {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: auto;
+}
+
+.dashboard-content .card-body-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.dashboard-content .card-body-image img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.dashboard-content .card-body-title {
+  font-weight: 550;
+}
+
+.dashboard-content .card-body-tools {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-content .card-body-tools button {
+  border: none;
+  outline: none;
+  font-size: 18px;
+  background: transparent;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.dashboard-content .card-body-tools button i {
+  cursor: pointer;
+}
+
+.dashboard-content .card.chart-settings {
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.dashboard-content .elementsContainer {
+  margin-top: 5px;
+}
+
+.dashboard-content .draggable {
+  cursor: move;
+}
+
+.dashboard-content .dragging {
+  opacity: 0.5;
+}
+
+.dashboard-content .chartSettingWrapper {
+  display: none;
+}
+
+.dashboard-content .d-block {
+  display: flex;
+}
+
+.dashboard-content .tr-bodyHeader {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.dashboard-content .settingsBox {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px 5px;
+}
+
+.dashboard-content .settingsBox .settingsDecr {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 40%;
+}
+
+.dashboard-content .settingsBox .settingsOptions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 60%;
+}
+
+.dashboard-content .settingsBox .settingsOptions .colorpicker-input-addon {
+  background: transparent;
+  border: none;
+}
+
+.dashboard-content .settingsBox .settingsOptions .colorpicker-input-addon:before {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+}
+
+.dashboard-content .settingsBox .settingsOptions .colorpicker-input-addon i {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 3px;
+}
+
+.dashboard-content .settingsBox .settingsOptions .border-width-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 25px;
+  font-size: 17px;
+  border-bottom: 1px solid #026299;
+}
+
+.dashboard-content .settingsBox .settingsOptions .measurement_select {
+  width: 70%;
+  height: 35px;
+  font-size: 15px;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  border-bottom: 1px solid #026299;
+}
+
+.dashboard-content .settingsBox .settingsOptions .slider {
+  -webkit-appearance: none;
+  width: 70px;
+  height: 3px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #17a2b8 0%, #d6d6d6 0%);
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.dashboard-content .settingsBox .settingsOptions .slider_apdex {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #CA6D00;
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.dashboard-content .settingsBox .settingsOptions .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  border: 2px solid #3f3f3f;
+  background-color: white;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.dashboard-content .settingsBox .settingsOptions .slider::-webkit-slider-thumb:hover {
+  width: 25px;
+  height: 25px;
+}
+
+.dashboard-content .settingsBox .settingsOptions .slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #17a2b8;
+  cursor: pointer;
+}
+
+.dashboard-content .settingsBox .radio-btn {
+  display: flex;
+  align-items: center;
+  border: 1px solid #026299;
+  height: 30px;
+  font-weight: 400;
+  font-size: 15px;
+  border-radius: 2px;
+}
+
+.dashboard-content .settingsBox .radio-btn:first-child {
+  margin-right: 5px;
+}
+
+.dashboard-content .settingsBox .radio-btn.active {
+  background-color: #026299;
+  color: white;
+}
+
+.dashboard-content .collapseBtn {
+  cursor: pointer;
+}
+

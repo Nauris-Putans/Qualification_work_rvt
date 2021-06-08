@@ -1,0 +1,125 @@
+.monitorsList .monitor-info-Wrapper {
+  width: 100%;
+}
+
+.monitorsList .monitor-info-Wrapper .friendlyName {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.monitorsList .monitor-info-Wrapper .checkAddress {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.monitorsList .table td {
+  vertical-align: middle;
+  justify-content: center;
+}
+
+.monitorsList .list-inline {
+  margin-bottom: 0;
+}
+
+.monitorsList .list-inline-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.monitorsList .list-inline-item img {
+  border-radius: 50%;
+  display: inline;
+  width: 45px;
+  height: 45px;
+}
+
+.monitorsList .list-inline-item .content {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 130%;
+  z-index: 99;
+  height: 50px;
+  width: auto;
+}
+
+.monitorsList .list-inline-item .content .arrow {
+  top: 15px;
+  left: -15px;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #007bff;
+}
+
+.monitorsList .list-inline-item .content .personName {
+  width: 100%;
+  padding: 1px 5px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #007bff;
+  color: white;
+}
+
+.monitorsList .list-inline-item .content .personEmail {
+  width: 100%;
+  padding: 1px 5px;
+  font-size: 14px;
+  font-weight: 400;
+  background-color: white;
+}
+
+.monitorsList .status-box {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  height: auto;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.monitorsList .status-box .status-icon {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.monitorsList .status-box .status-icon-active {
+  border: 2px solid #15ff00;
+}
+
+.monitorsList .status-box .status-icon-active:hover {
+  background-color: #15ff00;
+}
+
+.monitorsList .status-box .status-icon-disabled {
+  border: 2px solid red;
+}
+
+.monitorsList .status-box .status-icon-disabled:hover {
+  background-color: red;
+}
+
+.monitorsList .status-box .status-icon-noAlert {
+  border: 2px solid #fffb03;
+}
+
+.monitorsList .status-box .status-icon-noAlert:hover {
+  background-color: #fffb03;
+}
+
+.monitorsList .status-box .status-text {
+  margin-left: 5px;
+  width: auto;
+}
+
+.monitorsList .m-left-5 {
+  margin-left: 5px;
+}
+

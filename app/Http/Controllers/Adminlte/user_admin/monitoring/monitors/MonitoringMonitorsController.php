@@ -72,7 +72,7 @@ class MonitoringMonitorsController extends Controller
             ->join('users', 'users.id', '=', 'monitoring_group_members.group_member')
             ->join('monitoring_zabbix_users', 'monitoring_group_members.group_member', '=', 'monitoring_zabbix_users.user_id')
             ->where('group_id', $usergroupID)
-            ->get(['name','email','profile_image','zabbix_user_id']);
+            ->get(['name','email','profile_image', 'gender', 'zabbix_user_id']);
 
         return view('adminlte.user_admin.monitoring.monitors.add',compact(['allGroupsUsers']));
     }
@@ -84,6 +84,8 @@ class MonitoringMonitorsController extends Controller
      */
     public function store(StoreMonitorsAdd $request)
     {
+        //Set date timezone
+        date_default_timezone_set("Europe/Riga");
 
         //Get check type(DNS or PING or http)
         $checkType = $request->checkType;
@@ -92,6 +94,12 @@ class MonitoringMonitorsController extends Controller
         //Check interval
         $checkInterval = $request->checkInterval;
 
+        if($checkInterval > 0){
+            $checkInterval = $checkInterval.'m';
+        }else{
+            $checkInterval = '30s';
+        }
+
         //Get current user ID;
         $currentUserID = $request
             ->session()
@@ -99,7 +107,7 @@ class MonitoringMonitorsController extends Controller
 
         //Get current user's group id
         $usergroupID = $request->session()->get('groupId');
-
+        
         //Get user group's hostgroup id
         $hostGroupID = $request->session()->get('hostGroup');
 
@@ -111,95 +119,81 @@ class MonitoringMonitorsController extends Controller
         $webScenarioName = '';
         $webScenarioStepName = '';
 
-        if($checkType == "DNS"  || $checkType == "HTTP/HTTPS") {
 
-            //Change https:\\...\ to https://.../
+        if($checkType == "HTTP/HTTPS"){
+
+            // Replace \ to /
             $checkAddress = str_replace("\\",'/',$checkAddress);
 
+            //Remove last char if it is '/'
+            if($checkAddress[strlen($dns) - 1] == '/'){
+                $checkAddress = substr_replace($checkAddress ,"", -1);
+            }
+
+            if(!filter_var($checkAddress, FILTER_VALIDATE_URL)){
+                return response()->json(['checkAddress' => __('HTTP(s) is not correct!')]);
+            };
+    
+            if(substr($checkAddress,0,8) != 'https://'){
+                if(substr($checkAddress,0,7) != 'http://'){
+                    return response()->json(['checkAddress' => __('HTTP(s) is not correct!')]);
+                }else{
+                    $checkAddress = str_replace('http://', 'https://', $checkAddress);
+                }
+            }
+ 
             $dns = $checkAddress;
+            $url = $checkAddress;
             $useip = '0'; 
 
-            //Remove "https://" or "http://" from $dns
-            if(strpos($dns,'https://') !== false) {
-                $dns = str_replace("https://",'',$dns);
-            }else if(strpos($dns,'http://') !== false) {
-                $dns = str_replace("http://",'',$dns);
+            //Get Domain name from URL
+            $parse = parse_url($dns);
+            $dns = $parse['host'];
+
+            //Check if domain is correct
+            if(!filter_var($dns, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME)){
+                return response()->json(['checkAddress' => __('HTTP(s) is not correct!')]);
             }
 
-            //Check that domain has "www.", www.google.com => google.com
-            if(substr($dns,0,4) === 'www.'){
-                $dns = str_replace("www.",'',$dns);
-            }
 
-            $url = $dns;
-            $url = "https://".$url;
-
-            //Change webCheck/notification.com to webCheck.notification.com
-            $hostName = str_replace("/",'.',$hostName);
-
-            //Check that $dns has / , google.com/home/page => google.com
-            if(strpos($dns,'/') !== false){
-                $FoundId = strpos($dns,'/');
-                if(strpos($dns,'/') < 3){
-                    return response()->json(['error' => __('Something is not good!')]);
-                }
-                $dns = substr($dns,0,$FoundId);
-            }
             date_default_timezone_set("Europe/Riga");
             $time = time();
             $time = date("Y-m-d H-m-s",$time);
 
             $hostName = $usergroupID.' '.$dns.' '.$time;
 
-            //If $dns smaller than 3
-            if(strlen($dns) < 3){
-                return response()->json(['error' => __('Something is not good! ')]);
+        }else if($checkType == "DNS"){
+            $dns = $checkAddress;
+            $useip = '0';
+            
+            //Check if domain is correct
+            if(!filter_var($dns, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME)){
+                return response()->json(['checkAddress' => __('Domain name is not correct!')]);
             }
 
+            $url = $dns;
+            $url = "https://".$url;
 
+            date_default_timezone_set("Europe/Riga");
+            $time = time();
+            $time = date("Y-m-d H-m-s",$time);
+
+            $hostName = $usergroupID.' '.$dns.' '.$time;
+            
         }else if($checkType == "ICMP ping") {//check that ping is written correct
             
             $ip = $checkAddress;
-
-            //Ping should contain not more than 15 characters
-            if(strlen($ip) > 15){
-                return response()->json(['checkAddress' => __('Ping is not correct!')]);
-            }
-
-            //Count points in string, can be not more or less than three
-            if(substr_count($ip,'.') > 3 || substr_count($ip,'.') < 3){
-                return response()->json(['checkAddress' => __('Ping is not correct!')]);
-            }
-
-            $pingInParts = ['','','',''];
             $useip = '1';
-            $trueEterationsCount = 0;
-            $startPos = 0;
-            
-            for($i=0; $i<3; $i++){
-                $pointPosition = strpos($ip, '.', $startPos);
-
-                $pingInParts[$i] = substr($ip,$startPos,$pointPosition-$startPos);
-                $startPos = $pointPosition+1;
-            }
-
-            $pingInParts[3] = substr($ip,$startPos);
-
-            foreach ($pingInParts as $value) {
-                if(is_numeric($value)){
-                    if($value <= 255){
-                        $trueEterationsCount++;
-                    }
-                }
-            }
-
-            if($trueEterationsCount != 4){
-                return response()->json(['checkAddress' =>__('Ping is not correct!')]);
-            }
-
             $hostName = $usergroupID.' '.$ip;
+
+            //Check if ping is correct
+            $valid = filter_var($ip, FILTER_VALIDATE_IP);
+
+            if($valid == false){
+                return response()->json(['checkAddress' => __('Ping is not correct!')]);
+            }
         }else{
-            dd('Something went wrong');
+            return response()->json(['checkAddress' => __('There is some kind of problem!')]);
         }
 
 
@@ -211,9 +205,10 @@ class MonitoringMonitorsController extends Controller
 
         //CREATE NEW MONITOR IN ZABBIX
         $newHostID = 0;
+        
         //If host doesnt't exist yet
         if($monitorDBCheck == null){
-
+            
            //Create new Host
             $newHostID = $this->zabbix->hostCreate([
                 "host" => $hostName,
@@ -229,7 +224,7 @@ class MonitoringMonitorsController extends Controller
                 ],
                 "groups" => [
                     [
-                        "groupid" => $hostGroupID
+                        "groupid" =>$hostGroupID
                     ]
                 ]
             ])->hostids[0];
@@ -272,7 +267,7 @@ class MonitoringMonitorsController extends Controller
                     "name" =>  $webScenarioName,
                     "hostid" => $newHostID,
                     "applicationid" => $newApplicationID,
-                    "delay" => $checkInterval.'m',   //check time
+                    "delay" => $checkInterval,   //check time
                     "steps"=> [     //Steps for Web sceanario
                         [
                             "name" => $webScenarioStepName,
@@ -326,7 +321,11 @@ class MonitoringMonitorsController extends Controller
                         'user_group' => $usergroupID,
                         'user_id' => $currentUserID,
                         'host' => $newHostID,
-                        'status' => 1
+                        'status' => 1,
+                        'monitor_type' => 2,
+                        'check_interval' => $checkInterval,
+                        'updated_at' => date("Y-m-d H:i:s"),
+                        'created_at' => date("Y-m-d H:i:s")
                     ]
                 );
                 
@@ -344,7 +343,6 @@ class MonitoringMonitorsController extends Controller
                             [
                                 'item_id' => $item->itemid,
                                 'check_type' => 3,
-                                'monitor_type' => 2,
                                 'application' => $newApplicationID,
                             ]
                         );
@@ -354,7 +352,6 @@ class MonitoringMonitorsController extends Controller
                             [
                                 'item_id' => $item->itemid,
                                 'check_type' => 2,
-                                'monitor_type' => 2,
                                 'application' => $newApplicationID,
                             ]
                         );
@@ -364,7 +361,6 @@ class MonitoringMonitorsController extends Controller
                             [
                                 'item_id' => $item->itemid,
                                 'check_type' => 1,
-                                'monitor_type' => 2,
                                 'application' => $newApplicationID,
                             ]
                         );
@@ -386,7 +382,7 @@ class MonitoringMonitorsController extends Controller
                     "applications"=> [
                         $newApplicationID //ApplicationID
                     ],
-                    "delay"=> $checkInterval.'m'   //check time
+                    "delay"=> $checkInterval   //check time
                 ])->itemids[0];
             
         
@@ -401,7 +397,7 @@ class MonitoringMonitorsController extends Controller
                     "applications"=> [
                         $newApplicationID //ApplicationID
                     ],
-                    "delay"=> $checkInterval.'m'   //check time
+                    "delay"=> $checkInterval   //check time
                 ])->itemids[0];
 
                 //insert new host into database
@@ -435,7 +431,6 @@ class MonitoringMonitorsController extends Controller
                     [
                         'item_id' => $ResponseTimeItem,
                         'check_type' => 1,
-                        'monitor_type' => 1,
                         'application' => $newApplicationID,
                     ]
                 );
@@ -445,7 +440,6 @@ class MonitoringMonitorsController extends Controller
                     [
                         'item_id' => $UpTimeItem,
                         'check_type' => 2,
-                        'monitor_type' => 1,
                         'application' => $newApplicationID,
                     ]
                 );
@@ -458,7 +452,11 @@ class MonitoringMonitorsController extends Controller
                         'user_group' => $usergroupID,
                         'user_id' => $currentUserID,
                         'host' => $newHostID,
-                        'status' => 1
+                        'status' => 1,
+                        'monitor_type' => 1,
+                        'check_interval' => $checkInterval,
+                        'updated_at' => date("Y-m-d H:i:s"),
+                        'created_at' => date("Y-m-d H:i:s")
                     ]
                 );
             }else {
@@ -468,24 +466,61 @@ class MonitoringMonitorsController extends Controller
         }else{
             return response()->json(['checkAddress' => __('This monitor already exist!')]);
         }
-
+       
         $trigerID = '';
         //Triger create
         if($checkType == "DNS"  || $checkType == "HTTP/HTTPS") {
+            $decriptions = (object) [
+             'english' => " Monitor:<span>".$checkAddress."</span>
+                                <br>
+                                Checked URL:<span>".$url."</span>
+                            ",
+             'latvian' => " Monitors:<span>".$checkAddress."</span>
+                            <br>
+                            Pārbaudīts URL:<span>".$url."</span>
+                            ",
+             'russian' => " Монитор:<span>".$checkAddress."</span>
+                            <br>
+                            Проверенный URL:<span>".$url."</span>
+                            ",
+            ];
+
+            $email = $request->email;
+            $decription = $decriptions->$email;
+
             //Create triger
             $trigerID = $this->zabbix->triggerCreate([
                 "description" => $hostName." is unreachable",
+                "comments" => $decription,
                 "expression" => '
                                 {'.$hostName.':web.test.fail['.$webScenarioName.'].last()}>0
                                 or
                                 {'.$hostName.':web.test.rspcode['.$webScenarioName.','.$webScenarioStepName.'].last()}<>200
                                 ',
+                "recovery_mode" => 1,
+                "recovery_expression" => '
+                                    {'.$hostName.':web.test.fail['.$webScenarioName.'].last()}=0
+                                    or
+                                    {'.$hostName.':web.test.rspcode['.$webScenarioName.','.$webScenarioStepName.'].last()}=200
+                                    ',
             ])->triggerids[0];
         }else{
+            $decriptions = (object) [
+                'english' => "ICMP PING:<span>".$checkAddress."</span>",
+                'latvian' => "ICMP PING:<span>".$checkAddress."</span>",
+                'russian' => "ICMP PING:<span>".$checkAddress."</span>",
+            ];
+
+            $email = $request->email;
+            $decription = $decriptions->$email;
+
             //Create triger
             $trigerID = $this->zabbix->triggerCreate([
                 "description" => $hostName." is unreachable",
+                "comments" => $decription,
                 "expression" => '{'.$usergroupID.' '.$ip.':icmpping.last()}=0',
+                "recovery_mode" => 1,
+                "recovery_expression" => '{'.$usergroupID.' '.$ip.':icmpping.last()}>0',
             ])->triggerids[0];
         }
 
@@ -506,6 +541,16 @@ class MonitoringMonitorsController extends Controller
         }
 
         if($counter != 0){
+
+            $EmailMediaTypes = (object) [
+                'latvian' => 4,
+                'english' => 1,
+                'russian' => 22
+            ];
+
+            $email = $request->email;
+            $email = $EmailMediaTypes->$email;
+
             // Actio create
             $actionID = $this->zabbix->actionCreate([
                 "name"=> $hostName." action",
@@ -532,61 +577,45 @@ class MonitoringMonitorsController extends Controller
                         "opmessage_usr"=> $personsIds, //Who to send mesage
                         "opmessage"=> [
                             "default_msg"=> 1,
-                            "mediatypeid"=> "1" //Mail
+                            "mediatypeid"=> $email, //Mail
                         ]
                     ],
                 ],
             ])->actionids[0];
-            
-            DB::insert('insert into monitoring_zabbix_actions (zabbix_action_id, zabbix_trigger) values (?, ?)', [$actionID, $trigerID]);
+
+
+            //Insert new created action to database
+            DB::table('monitoring_zabbix_actions')->insert(
+                [
+                    'zabbix_action_id' => $actionID,
+                    'zabbix_trigger' => $trigerID
+                ]
+            );
+            $personsIds->$key['userid'];
+
+            $actionAndUserWhoToAlert = [];
+            foreach($personsIds as $key=>$person){
+                $actionAndUserWhoToAlert[$key] = [];
+                $actionAndUserWhoToAlert[$key]['zabbix_action'] = $actionID;
+                $actionAndUserWhoToAlert[$key]['user'] = $person['userid'];
+            }
+
+            //Add persons who to alert if website is down
+            DB::table('monitoring_zabbix_actions_has_users')->insert(
+                $actionAndUserWhoToAlert
+            );
+
+            //Add meadia type to created action
+            DB::table('monitoring_alerts')->insert(
+                [
+                    'ActionID' => $actionID,
+                    'MediaTypeID' => $email
+                ]
+            );
 
         }
         
         return response()->json(['message' => __('Monitor has been created!')]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param MonitoringMonitors $monitoringMonitors
-     * @return Response
-     */
-    public function show(MonitoringMonitors $monitoringMonitors)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param MonitoringMonitors $monitoringMonitors
-     * @return Response
-     */
-    public function edit(MonitoringMonitors $monitoringMonitors)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param MonitoringMonitors $monitoringMonitors
-     * @return Response
-     */
-    public function update(Request $request, MonitoringMonitors $monitoringMonitors)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param MonitoringMonitors $monitoringMonitors
-     * @return Response
-     */
-    public function destroy(MonitoringMonitors $monitoringMonitors)
-    {
-        //
-    }
 }

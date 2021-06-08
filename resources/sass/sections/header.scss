@@ -1,0 +1,158 @@
+// Active section text
+.active a {
+    color: orange !important;
+    text-decoration: none;
+    border-bottom: 2px solid orange;
+}
+
+// Navbar color
+.bg-darkblue {
+    background-color: rgb(19, 26, 38) !important;
+}
+
+// Button color
+.btn-orange {
+    color: #fff;
+    background-color: #CA6D00;
+    border-color: #CA6D00;
+}
+
+.OrangeButton {
+    a {
+        color: white;
+    }
+
+    a:hover {
+        color: white;
+        background-color: #a75900;
+        border-color: #a75900;
+    }
+
+    button {
+        color: white;
+    }
+
+    button:hover {
+        color: white;
+        background-color: #a75900;
+        border-color: #a75900;
+    }
+}
+
+.GreyButton {
+    a {
+        color: white;
+    }
+
+    a:hover {
+        color: white;
+        background-color: #545f74;
+        border-color: #545f74;
+    }
+
+    button {
+        color: white;
+    }
+
+    button:hover {
+        color: white;
+        background-color: #545f74;
+        border-color: #545f74;
+    }
+}
+
+.Sections {
+    li a {
+        color: white;
+        font-weight: 600;
+    }
+
+    li a:hover {
+        color: #CA6D00 !important;
+        text-decoration: none;
+        border-bottom: 2px solid #CA6D00;
+    }
+}
+
+.Authentication {
+    .Login {
+        a {
+            color: white;
+            font-weight: 600;
+        }
+        a:hover {
+            color: #CA6D00 !important;
+        }
+    }
+
+    .Register {
+        a {
+            color: white;
+            font-weight: 600;
+        }
+
+        a:hover {
+            color: white;
+            background-color: #a75900;
+            border-color: #a75900;
+        }
+    }
+
+    .dropdown {
+        .dropdown-toggle {
+            color: white;
+            font-weight: 600;
+        }
+
+        .dropdown-toggle:hover {
+            color: #CA6D00 !important;
+        }
+
+        .dropdown-item {
+            font-weight: 600;
+        }
+
+        .dropdown-item:hover {
+            background-color: #bdbdbd6e;
+            font-weight: 600;
+        }
+
+        .dropdown-item:active {
+            color: black;
+            font-weight: 600;
+        }
+    }
+}
+
+.Language {
+    list-style: none;
+
+    .dropdown-menu {
+        margin-top: 14px;
+    }
+
+    .dropdown-item.active, .dropdown-item:active {
+        color: white;
+        text-decoration: none;
+        background-color: #ca6d00;
+    }
+
+    .dropdown-toggle:hover {
+        color: #a75900 !important;
+    }
+
+    .dropdown-item {
+        font-weight: 600;
+    }
+
+    .dropdown-item:hover {
+        background-color: #a75900;
+        color: white;
+        font-weight: 600;
+    }
+
+    .dropdown-item:active {
+        color: white;
+        font-weight: 600;
+    }
+}

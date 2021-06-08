@@ -43,6 +43,12 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-subscription-tab" data-toggle="pill" href="#custom-tabs-one-subscription" role="tab" aria-controls="custom-tabs-one-subscription" aria-selected="false">
+                                {{ __('Subscription') }}
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-one-notification-tab" data-toggle="pill" href="#custom-tabs-one-notification" role="tab" aria-controls="custom-tabs-one-notification" aria-selected="false">
                                 {{ __('Notification') }}
                             </a>
@@ -52,6 +58,31 @@
                             <a class="nav-link" id="custom-tabs-one-password-and-security-tab" data-toggle="pill" href="#custom-tabs-one-password-and-security" role="tab" aria-controls="custom-tabs-one-password-and-security" aria-selected="false">
                                 {{ __('Password & Security') }}
                             </a>
+                        </li>
+
+                        <!-- Group Dropdown Menu -->
+                        <li class="row nav-item dropdown Language" style="margin-right: 0; margin-left: 0;">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                {{ __('Group: ') }}
+                            </a>
+
+                            {{-- Groups --}}
+                            <div class="dropdown-menu dropdown-menu-right p-0">
+                                @foreach($groups as $group)
+                                    @if ($group->group_id == $activeUserGroup)
+                                        <button class="dropdown-item active">
+                                            {{ $group->group_name }}
+                                        </button>
+                                    @else
+                                        <form method="POST" action="{{ URL::route('user.change.group', $group->group_id) }}" >
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">
+                                                {{ $group->group_name }}
+                                            </button>
+                                        </form>
+                                    @endif
+                                @endforeach
+                            </div>
                         </li>
 
                         <!-- Language Dropdown Menu -->
@@ -107,6 +138,10 @@
                         <div class="tab-pane fade active show" id="custom-tabs-one-personal-info" role="tabpanel" aria-labelledby="custom-tabs-one-personal-info-tab">
                             {{ Form::component('personalInfoForm', 'components.form.adminlte.user_admin.personal-info-form', ['countries' => $countries, 'hashids' => $hashids, 'user' => $user, 'countryName' => $countryName]) }}
                             {{ Form::personalInfoForm() }}
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-subscription" role="tabpanel" aria-labelledby="custom-tabs-one-subscription-tab">
+                            {{ Form::component('subscriptionForm', 'components.form.adminlte.user_admin.subscription-form', ['hashids' => $hashids, 'user' => $user, 'timestamp' => $timestamp, 'planName' => $planName, 'invoices' => $invoices]) }}
+                            {{ Form::subscriptionForm() }}
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-notification" role="tabpanel" aria-labelledby="custom-tabs-one-notification-tab">
                             {{ Form::component('notificationForm', 'components.form.adminlte.user_admin.notification-form', ['countries' => $countries, 'hashids' => $hashids, 'user' => $user, 'countryName' => $countryName]) }}
@@ -212,6 +247,7 @@
 
             // Datepicker for birthday
             $('.datepicker').datepicker({
+                format: 'yyyy/mm/dd',
                 language: locale,
             });
         });

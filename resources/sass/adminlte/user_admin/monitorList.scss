@@ -1,0 +1,111 @@
+.monitorsList{
+    .monitor-info-Wrapper{
+        width: 100%;
+        .friendlyName{
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .checkAddress{
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: 400;
+        }
+    }
+    .table td {
+        vertical-align: middle;
+        justify-content: center;   
+    }
+
+    .list-inline{
+        margin-bottom: 0;
+    }
+    .list-inline-item{
+        position: relative;
+        cursor: pointer;
+        img{
+            border-radius: 50%;
+            display: inline;
+            width: 45px;
+            height: 45px;
+        }
+        .content {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 130%;
+            z-index: 99;
+            height: 50px;
+            width: auto;
+            .arrow{
+                top: 15px;
+                left: -15px;
+                position: absolute;
+                width: 0; 
+                height: 0; 
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent; 
+                
+                
+                border-right:10px solid #007bff;
+            }
+            .personName{
+                width: 100%;
+                padding: 1px 5px;
+                font-size: 16px;
+                font-weight: 600;
+                background-color: #007bff;
+                color: white;
+            }
+            .personEmail{
+                width: 100%;
+                padding: 1px 5px;
+                font-size: 14px;
+                font-weight: 400;
+                background-color: white;
+            }
+        }
+    }
+
+    .status-box{
+        width: 100%;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        height: auto;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 0 5px;
+        .status-icon{
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            &-active{
+                border:2px solid rgb(21, 255, 0);
+                &:hover{
+                    background-color: rgb(21, 255, 0);
+                }
+            }
+            &-disabled{
+                border:2px solid rgb(255, 0, 0);
+                &:hover{
+                    background-color: rgb(255, 0, 0);
+                }
+            }
+            &-noAlert{
+                border:2px solid rgb(255, 251, 3);
+                &:hover{
+                    background-color: rgb(255, 251, 3);
+                }
+            }
+        }
+        .status-text{
+            margin-left: 5px;
+            width: auto;
+        }
+    }
+
+    .m-left-5{
+        margin-left: 5px;
+    }
+}

@@ -1,0 +1,459 @@
+.monitorAdd .monitorAddWrapper {
+  margin-top: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  height: auto;
+  padding: 5px 10px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-header {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-header-first-step:before {
+  border-radius: 0.25rem;
+  background: linear-gradient(90deg, #17a2b8 5%, #dee2e6 5%);
+  bottom: 0;
+  content: "";
+  left: 0;
+  margin: 0;
+  position: absolute;
+  top: 21px;
+  width: 100%;
+  height: 4px;
+  z-index: 1;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-header-secound-step:before {
+  background: linear-gradient(90deg, #17a2b8 33%, #dee2e6 33%);
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-header-third-step:before {
+  background: linear-gradient(90deg, #17a2b8 64%, #dee2e6 64%);
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-header-last-step:before {
+  background: linear-gradient(90deg, #17a2b8 100%, #dee2e6 100%);
+}
+
+.monitorAdd .monitorAddWrapper .currentStepWrapper {
+  height: 100%;
+  width: 80px;
+}
+
+.monitorAdd .monitorAddWrapper .currentStepWrapper .currentStepBox {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  margin: 4px auto 0 auto;
+  background-color: #c7c7c7;
+  color: white;
+  border-radius: 100%;
+  z-index: 2;
+}
+
+.monitorAdd .monitorAddWrapper .currentStepWrapper .bg-current-step {
+  background-color: #17a2b8;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 330px;
+  height: auto;
+  padding-bottom: 75px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settings-title {
+  text-align: center;
+  height: 30px;
+  margin: 20px 0 20px 0;
+  width: auto;
+  font-size: 20px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper {
+  margin-top: 20px;
+  min-height: 100px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .select-persons-tables-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .persons-tabel {
+  position: relative;
+  width: 300px;
+  min-height: 200px;
+  margin-top: 10px;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .persons-tabel-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: auto;
+  height: 40px;
+  font-size: 16px;
+  text-align: center;
+  border-bottom: 2px solid #17a2b8;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .persons-element-wrapper {
+  width: 100%;
+  height: 200px;
+  overflow-y: auto;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .persons-element-box {
+  display: flex;
+  justify-content: left;
+  margin-top: 5px;
+  padding-left: 5px;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .persons-element-box img {
+  border-radius: 5px;
+  height: 50px;
+  width: auto;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .persons-element-box .person-info-box {
+  margin-left: 10px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .confirmBox {
+  position: relative;
+  min-height: 200px;
+  height: auto;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .confirmBox .decrBox {
+  padding-left: 15px;
+  height: auto;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .confirmBox .decrBox-title {
+  padding-bottom: 5px;
+  width: auto;
+  border-bottom: 1px solid #17a2b8;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .confirmBox .decrBox span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .ssl_title {
+  font-weight: 700;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .ssl_decr {
+  font-size: 16px;
+  color: #525252;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .success_header {
+  font-size: 30px;
+  text-align: center;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .success_decr {
+  font-size: 24px;
+  color: #525252;
+  text-align: center;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .settingsWrapper .icon-box {
+  display: block;
+  margin: 0 auto;
+  height: 200px;
+  width: 150px;
+  font-size: 150px;
+  color: #17a2b8;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  width: 100px;
+  height: 40px;
+  color: white;
+  background-color: #17a3b8c0;
+  border-radius: 5px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer button:hover {
+  background-color: #17a2b8;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .toStartBtn {
+  border: none;
+  outline: none;
+  padding: 5px 10px 5px 10px;
+  width: auto;
+  color: white;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 400;
+  background: #17a2b8;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .toStartBtn:hover {
+  background: #0c7c8d;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .leftBtn {
+  width: auto;
+  margin-right: 5px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .leftBtn i {
+  margin-right: 15px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .completeBtn {
+  background-color: #17610596;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .completeBtn:hover {
+  background-color: #176105;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .completeBtn i {
+  margin-left: 15px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .rightBtn {
+  margin-left: 5px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .rightBtn i {
+  margin-left: 15px;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorAdd-footer .spinerBox {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .successIconWrapper {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 140px;
+  width: 140px;
+  background-color: white;
+  border: 4px solid #17a2b8;
+  border-radius: 100%;
+  font-size: 100px;
+  color: #17a2b8;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorCtreatedTitle {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: black;
+}
+
+.monitorAdd .monitorAddWrapper .monitorAdd-SettingsWrapper .monitorCtreatedURL {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  color: black;
+}
+
+.monitorAdd .monitorAddWrapper .monitorCreatedWrapper {
+  padding-top: 43px;
+}
+
+.monitorAdd .monitorAddWrapper .sliderInfoWrapper {
+  position: relative;
+}
+
+.monitorAdd .monitorAddWrapper .sliderInfoWrapper .sliderValue {
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
+
+.monitorAdd .slidecontainer_interval .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #17a2b8 0%, #d6d6d6 0%);
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.monitorAdd .slidecontainer_interval .slider_apdex {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #CA6D00;
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.monitorAdd .slidecontainer_interval .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 6px solid #17a2b8;
+  background-color: white;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.monitorAdd .slidecontainer_interval .slider::-webkit-slider-thumb:hover {
+  width: 25px;
+  height: 25px;
+}
+
+.monitorAdd .slidecontainer_interval .slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #17a2b8;
+  cursor: pointer;
+}
+
+.monitorAdd .displayNone {
+  display: none;
+}
+
+.monitorAdd .t-center {
+  text-align: center;
+}
+
+.monitorAdd .inputWrapper {
+  display: flex;
+  justify-content: left;
+  height: 20px;
+}
+
+.monitorAdd .inputWrapper .input-group {
+  height: 20px;
+}
+
+.monitorAdd .table-user-name {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-weight: 550;
+}
+
+.monitorAdd .table-user-name img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.monitorAdd .table-user .userPermission {
+  height: 24px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  background-color: gray;
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  padding: 2px 4px;
+}
+
+.monitorAdd .table-user .select-icon-box {
+  color: #272727;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 20px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.monitorAdd .table-user .select-icon-box:hover {
+  color: black;
+}
+
+.monitorAdd .table-user .select-icon-box.selected {
+  color: #0c7402;
+}
+
+.monitorAdd .table-user .select-icon-box.selected:hover {
+  color: #777777;
+}
+
+.monitorAdd .alertLanguage-wrapper {
+  padding: 5px 0;
+  min-width: 75px;
+  width: auto;
+  height: auto;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.monitorAdd .alertLanguage-wrapper:hover {
+  border: 1px solid #17a2b8;
+  box-shadow: 0 4px 8px 0 #17a3b863, 0 6px 20px 0 #17a3b8be;
+}
+
+.monitorAdd .alertLanguage-wrapper.selected {
+  border: 1px solid #17a2b8;
+  box-shadow: 0 4px 8px 0 #17a3b863, 0 6px 20px 0 #17a3b8be;
+}
+

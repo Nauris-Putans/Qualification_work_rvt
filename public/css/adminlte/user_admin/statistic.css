@@ -1,0 +1,268 @@
+.response-time #responseTimeInfoBoxes {
+  margin-top: 10px;
+}
+
+.response-time .card-header {
+  background-color: white;
+  border: none;
+  border-top: 2px solid blue;
+}
+
+.response-time .card-header .card-title {
+  margin: 0;
+}
+
+.response-time .time-btn {
+  position: relative;
+  height: calc(1.6em + 0.75rem + 2px);
+  width: 80px;
+  margin: 0;
+  background-color: rgba(0, 0, 255, 0.719);
+  color: white;
+  z-index: 2;
+}
+
+.response-time .time-btn:hover {
+  background-color: blue;
+  color: white;
+}
+
+.response-time .time-content {
+  position: absolute;
+  width: auto;
+  height: 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: height 1s ease;
+  overflow: hidden;
+  top: 38px;
+  z-index: 8;
+}
+
+.response-time .select-time {
+  display: flex;
+  width: auto;
+  height: 122px;
+}
+
+.response-time .time_picker_box {
+  height: 120px;
+  padding: 10px;
+}
+
+.response-time .time_picker_box .label {
+  text-align: center;
+}
+
+.response-time input[type=number]::-webkit-outer-spin-button,
+.response-time input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.response-time input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.response-time .time-picker {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100px;
+  max-width: 200px;
+  height: 70px;
+  padding: 25px 15px;
+  background-color: #fbfbfb;
+  border-radius: 8px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+  color: #53565A;
+  font-size: 42px;
+  font-weight: 700;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.response-time .time-picker .hour,
+.response-time .time-picker .minute {
+  position: relative;
+  max-width: 60px;
+  text-align: center;
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.response-time .time-picker .hour .hr,
+.response-time .time-picker .minute .min {
+  background: none;
+  font-size: 20px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  outline: none;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.response-time .time-picker .hour .hr-up,
+.response-time .time-picker .hour .hr-down,
+.response-time .time-picker .minute .min-up,
+.response-time .time-picker .minute .min-down {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  cursor: pointer;
+}
+
+.response-time .time-picker .hour .hr-up,
+.response-time .time-picker .minute .min-up {
+  top: -10px;
+  border-bottom: 10px solid #AAA;
+}
+
+.response-time .time-picker .hour .hr-down,
+.response-time .time-picker .minute .min-down {
+  bottom: -10px;
+  border-top: 10px solid #AAA;
+}
+
+.response-time .time-picker .hour .hr-up:hover,
+.response-time .time-picker .hour .hr-down:hover,
+.response-time .time-picker .minute .min-up:hover,
+.response-time .time-picker .minute .min-down:hover {
+  border-bottom-color: #53565A;
+  border-top-color: #53565A;
+}
+
+.response-time .pagination {
+  margin: 0;
+  height: 29px;
+}
+
+.response-time .page-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 29px;
+  width: 29px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.response-time .slider {
+  -webkit-appearance: none;
+  width: 70px;
+  height: 3px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #17a2b8 0%, #d6d6d6 0%);
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.response-time .slider_apdex {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #CA6D00;
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.response-time .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  border: 2px solid #3f3f3f;
+  background-color: white;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.response-time .slider::-webkit-slider-thumb:hover {
+  width: 25px;
+  height: 25px;
+}
+
+.response-time .slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #17a2b8;
+  cursor: pointer;
+}
+
+.response-time .daterange {
+  position: relative;
+}
+
+.response-time .tool {
+  position: relative;
+}
+
+.response-time .daterange {
+  background-color: white;
+  color: black;
+  border-color: white;
+}
+
+.response-time .card-header-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.response-time .card-body-default {
+  display: none;
+  text-align: center;
+  background-color: #e9e9e9;
+  border: 1px solid #e9e9e9;
+}
+
+.response-time .areaChartSettingsContainer {
+  display: none;
+  z-index: 4;
+  position: absolute;
+  width: 200px;
+  right: 0;
+  top: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.response-time .areaChartSettingsContainer .settings-body {
+  width: 100%;
+  height: auto;
+  padding: 5px;
+}
+
+.response-time .cursor-pointer {
+  cursor: pointer;
+}
+
+.response-time .no-copy {
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
+}
+
