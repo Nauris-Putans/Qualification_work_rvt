@@ -84,7 +84,7 @@
 
                                 <div class="form-group row mb-0 OrangeButton">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-orange">
+                                        <button type="submit"  class="mt-2 btn btn-orange text-white" style=" background-color: #FF8A00">
                                             {{ __('Reset Password') }}
                                         </button>
                                     </div>

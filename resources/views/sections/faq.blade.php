@@ -13,7 +13,8 @@
 
             <div class="content">
                 <p>
-                    {{ __("Website monitoring is the process of testing and verifying that end-users can interact with a website or web application as expected. Website monitoring is often used by businesses to ensure website uptime, performance, and functionality is as expected.") }}
+                    {{ __("Website monitoring is the process of testing and verifying that end-users can interact with a website or web application as expected. 
+                    Website monitoring is often used by businesses to ensure website uptime, performance, and functionality is as expected.") }}
                 </p>
             </div>
 
@@ -33,7 +34,9 @@
 
             <div class="content">
                 <p>
-                    {{ __("Our monitoring service is unique by giving a lot of custom build in Zabbix features, that user can use for his needs. For free plan we give little inside of our website monitoring, however if you want to have more fantastic features, you can subscribe to our Pro, Webmaster or Enterprise plan, that we offer on our website.") }}
+                    {{ __("Our monitoring service is unique by giving a lot of custom build in Zabbix features, that user can use for his needs. 
+                    For free plan we give little inside of our website monitoring, however if you want to have more fantastic features, 
+                    you can subscribe to our Pro, Webmaster or Enterprise plan, that we offer on our website.") }}
                 </p>
             </div>
 
@@ -43,7 +46,8 @@
 
             <div class="content">
                 <p>
-                    {{ __("You don’t have to download anything, because our monitoring service is working online on the web. There is two things, that you need - browser and internet.") }}
+                    {{ __("You don’t have to download anything, because our monitoring service is working online on the web. 
+                    There is two things, that you need - browser and internet.") }}
                 </p>
             </div>
 
