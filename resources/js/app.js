@@ -29,4 +29,8 @@
 
  const app = new Vue({
      el: '#app',
+<<<<<<< HEAD
  });
+=======
+ });
+>>>>>>> 6c3a785d1441377ee0476a68bfc3dc6d77c1229e

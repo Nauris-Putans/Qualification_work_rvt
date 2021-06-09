@@ -103,6 +103,13 @@
                                 </a>
                             </li>
 
+                            {{-- Team --}}
+                            <li class="nav-item {{ Request::path() == 'team' ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('team') }}">
+                                    {{ __('Team') }}
+                                </a>
+                            </li>
+
                             {{-- Contacts --}}
                             <li class="nav-item {{ Request::path() == 'contacts' ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('contacts') }}">
@@ -240,6 +247,7 @@
                             <li>- <a href="{{ route('features') }}">{{ __('Features') }}</a></li>
                             <li>- <a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
                             <li>- <a href="{{ route('faq') }}">{{ __('FAQ') }}</a></li>
+                            <li>- <a href="{{ route('team') }}">{{ __('Team') }}</a></li>
                             <li>- <a href="{{ route('contacts') }}">{{ __('Contacts') }}</a></li>
                         </ul>
                     </div>

@@ -30,6 +30,9 @@ Route::post('/subscription', 'SubscriptionController@processSubscription')->name
 // FAQ section
 Route::get('/faq', 'Pages\FAQController@index')->name('faq');
 
+// Team section
+Route::get('/team', 'Pages\TeamController@index')->name('team');
+
 // Contacts sections
 Route::get('/contacts', 'Pages\ContactController@index')->name('contacts');
 Route::post('/contacts/create', 'Pages\ContactController@store')->name('contacts.create');
