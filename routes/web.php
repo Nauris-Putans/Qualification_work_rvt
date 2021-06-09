@@ -131,6 +131,12 @@ Route::middleware(['role:' . $userAdminSide])->group( function()
     Route::post('/user/group/usersFind', 'Adminlte\user_admin\GroupMemberController@findUsers')->name('userGroup.findUsers');
     Route::post('/user/group/usersInvite', 'Adminlte\user_admin\GroupMemberController@inviteUser')->name('userGroup.inviteUser');
 
+    //Notifications
+    Route::post('/user/notifications', 'NotificationController@getNotifications')->name('notifications.getNotifications');
+    Route::post('/user/notifications/decline', 'NotificationController@decline')->name('invitation.decline');
+    Route::post('/user/notifications/accept', 'NotificationController@accept')->name('invitation.accept');
+    Route::post('/user/notifications/remove', 'NotificationController@removeRequest')->name('invitation.removeRequest');
+
     // Alerts sections
     Route::get('/user/alerts', 'Adminlte\user_admin\AlertsController@index');
 
@@ -139,11 +145,11 @@ Route::middleware(['role:' . $userAdminSide])->group( function()
 
     // Settings section
     Route::get('/user/settings', 'Adminlte\user_admin\SettingController@index')->name('user.settings');
+    Route::post('/user/settings/alert_notification', 'Adminlte\user_admin\SettingController@alertNotificationUpdate')->name('user.settings.alert_notification.update');
     Route::patch('/user/settings/personal_info/{id}', ['as' => 'user.settings.personal_info.update', 'uses' => 'Adminlte\user_admin\SettingController@personal_info_update']);
     Route::patch('/user/settings/notification/{id}', ['as' => 'user.settings.notification.update', 'uses' => 'Adminlte\user_admin\SettingController@notification_update']);
     Route::patch('/user/settings/password_security/{id}', ['as' => 'user.settings.password_security.update', 'uses' => 'Adminlte\user_admin\SettingController@password_security_update']);
     Route::post('/user/settings/profile_image/update', 'Adminlte\user_admin\SettingController@updateProfile');
-    Route::post('/user/settings/group/change/{groupid}', 'Adminlte\user_admin\SettingController@changeGroup')->name('user.change.group');
 
     Route::get('/user/settings/subscription/plans', ['as' => 'user.settings.subscription.plans', 'uses' => 'SubscriptionController@showPlans']);
     Route::get('/user/settings/subscription/plans/cancel', ['as' => 'user.settings.subscription.plans.cancel', 'uses' => 'SubscriptionController@showConfirmation']);

@@ -26,27 +26,14 @@
         <li class="nav-item dropdown"  id="notification">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
+                <span class="badge badge-warning navbar-badge" id="notificationCountLable">0</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-header">15 {{ __('Notifications') }}</span>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right dropdown-notifications">
+                <span class="dropdown-header"> {{ __('Invitations') }}</span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 {{ __('new messages') }}
-                    <span class="float-right text-muted text-sm">3 {{ __('mins') }}</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 {{ __('friend requests') }}
-                    <span class="float-right text-muted text-sm">12 {{ __('hours') }}</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 3 {{ __('new reports') }}
-                    <span class="float-right text-muted text-sm">2 {{ __('days') }}</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">{{ __('See All Notifications') }}</a>
+                <div class="item-wrapper" id="invitationWrapper">
+                    {{-- Here will be automaticaly created items --}}
+                </div>
             </div>
         </li>
 

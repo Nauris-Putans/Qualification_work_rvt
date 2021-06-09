@@ -60,29 +60,10 @@
                             </a>
                         </li>
 
-                        <!-- Group Dropdown Menu -->
-                        <li class="row nav-item dropdown Language" style="margin-right: 0; margin-left: 0;">
-                            <a class="nav-link" data-toggle="dropdown" href="#">
-                                {{ __('Group: ') }}
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-alert-notification-tab" data-toggle="pill" href="#custom-tabs-one-alert-notification" role="tab" aria-controls="custom-tabs-one-alert-notification" aria-selected="false">
+                                {{ __('Alert notification') }}
                             </a>
-
-                            {{-- Groups --}}
-                            <div class="dropdown-menu dropdown-menu-right p-0">
-                                @foreach($groups as $group)
-                                    @if ($group->group_id == $activeUserGroup)
-                                        <button class="dropdown-item active">
-                                            {{ $group->group_name }}
-                                        </button>
-                                    @else
-                                        <form method="POST" action="{{ URL::route('user.change.group', $group->group_id) }}" >
-                                            @csrf
-                                            <button type="submit" class="dropdown-item">
-                                                {{ $group->group_name }}
-                                            </button>
-                                        </form>
-                                    @endif
-                                @endforeach
-                            </div>
                         </li>
 
                         <!-- Language Dropdown Menu -->
@@ -151,6 +132,60 @@
                             {{ Form::component('passwordSecurityForm', 'components.form.adminlte.user_admin.password-security-form', ['countries' => $countries, 'hashids' => $hashids, 'user' => $user]) }}
                             {{ Form::passwordSecurityForm() }}
                         </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-alert-notification" role="tabpanel" aria-labelledby="custom-tabs-one-alert-notification-tab">
+                            <div class="col-12 mb-4">
+                                <h5>
+                                    {{ __('Alerts') }}
+                                </h5>
+                                <section class="alertNotificationSettings">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            {{-- Week day Options --}}
+                                            <div class="flexWrapper">
+                                                <div class="options options-spaceAround">
+                                                    <button class="alertDay" value="1-5">
+                                                        <i class="fas fa-business-time"></i>
+                                                        {{ __('Only business day')}}
+                                                    </button>
+                                                    <button class="alertDay" value="6-7">
+                                                        <i class="fas fa-umbrella-beach"></i>
+                                                        {{ __('Only weekands')}}
+                                                    </button>
+                                                </div>
+                                                <div class="options options-spaceAround">
+                                                    <button class="alertDay alertDay-last" value="1-7">
+                                                        <i class="fas fa-satellite"></i>
+                                                        {{ __('All week')}}
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            {{-- Day time Options --}}
+                                            <div class="flexWrapper">
+                                                <div class="options" style="justify-content: center">
+                                                    <button class="dayTime" value="00:00-06:00">00:00-06:00</button>
+                                                    <button class="dayTime" value="00:00-12:00">00:00-12:00</button>
+                                                    <button class="dayTime" value="00:00-18:00">00:00-18:00</button>
+                                                    <button class="dayTime" value="06:00-12:00">06:00-12:00</button>
+                                                    <button class="dayTime" value="06:00-18:00">06:00-18:00</button>
+                                                    <button class="dayTime" value="06:00-24:00">06:00-24:00</button>
+                                                    <button class="dayTime" value="12:00-18:00">12:00-18:00</button>
+                                                    <button class="dayTime" value="12:00-24:00">12:00-24:00</button>
+                                                    <button class="dayTime" value="18:00-24:00">18:00-24:00</button>
+                                                    <button class="dayTime" value="00:00-24:00">00:00-24:00</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 justify-content-center mt-2 mb-2">
+                                        <button type="submit" id="bnt_save_period" class="btn btn-info">
+                                            <i class="fas fa-pencil-alt mr-1"></i>
+                                            Save Changes
+                                        </button>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -163,7 +198,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/css/fileinput.min.css" integrity="sha512-8KeRJXvPns3KF9uGWdZW18Azo4c1SG8dy2IqiMBq8Il1wdj7EWtR3EGLwj+DnvznrRjn0oyBU+OEwJk7A79n7w==" crossorigin="anonymous" />
-
+    <link href="/css/adminlte/user_admin/alertNotificationSettings.css" rel="stylesheet">
 @stop
 
 @section('js')
@@ -250,6 +285,99 @@
                 format: 'yyyy/mm/dd',
                 language: locale,
             });
+
+            //ALERT SECTION JS SCRIPT//
+
+            //FUNCTIONS
+
+            function setSelectedPeriod(){
+                let alertPeriod = <?php echo json_encode($alertPeriod); ?>;
+                const alertDays = alertPeriod.substring(0,3);
+                const index = alertPeriod.indexOf(",");
+                const alertHours = alertPeriod.substring(index+1);
+
+                const alertDayButtons = document.querySelectorAll('.alertDay');
+                alertDayButtons.forEach((button) => {
+                    if(button.value === alertDays){
+                        button.classList.add('selected');
+                    }
+                });
+
+                const alertHourButtons = document.querySelectorAll('.dayTime');
+                alertHourButtons.forEach((button) => {
+                    if(button.value === alertHours){
+                        button.classList.add('selected');
+                    }
+                });
+            }
+            setSelectedPeriod()
+
+            //Removes class selected from all buttons that have specific class
+            //specific class is passed like function's atribute
+            function removeSelectClassFromAllButtons(buttonClass){        
+                const alertDayButtons = document.querySelectorAll(buttonClass);
+
+                alertDayButtons.forEach((button) => {
+                    button.classList.remove('selected');
+                });
+            }    
+
+            //ELVENT LISTENERTS
+
+            //Add event listener to alert day buttons
+            const alertDayButtons = document.querySelectorAll('.alertDay');
+            alertDayButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    removeSelectClassFromAllButtons('.alertDay'); 
+                    button.classList.add('selected');
+                });
+            });
+
+            //Add event listener to dayTime buttons
+            const dayTimeButtons = document.querySelectorAll('.dayTime');
+            dayTimeButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    removeSelectClassFromAllButtons('.dayTime'); 
+                    button.classList.add('selected');
+                });
+            });
+
+            //Add event listener to save alert period
+            const savePeriodButton = document.getElementById('bnt_save_period');
+            savePeriodButton.addEventListener('click', () => {
+                const alertDay = document.getElementsByClassName('alertDay selected')[0].value;
+                const alertHours = document.getElementsByClassName('dayTime selected')[0].value;
+
+                const alertPeriod = alertDay + ',' + alertHours;
+
+                saveAlertPeriod(alertPeriod)
+            })
+
+
+            //AJAX REXUESTS
+            function saveAlertPeriod(alertPeriod){
+                $.ajax( {
+                    type:'POST',
+                    header:{
+                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ URL::route('user.settings.alert_notification.update') }}",
+                    data:{
+                    _token: "{{ csrf_token() }}",
+                    dataType: 'json', 
+                    contentType:'application/json',
+                    //My passed data 
+                    alertPeriod: alertPeriod,
+                    }
+
+                })
+                .done(function(data) {
+console.log(data);
+                })
+                .fail(function(error) {
+    
+                });
+            }
         });
 
         ///////////////////////// Phone Mask using andr-04/inputmask-multi plugin (jQuery) /////////////////////////

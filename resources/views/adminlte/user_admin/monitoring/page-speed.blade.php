@@ -46,12 +46,13 @@
         </div>
       </div>
       {{-- Time settings --}}
-      <div class="col-md-3">
+      <div class="col-md-1">
         <label for="timeButton">{{ __('Time') }}</label>
         <div class="input-group">
           <button class="btn time-btn" id="timeButton" aria-label="Center Align">
             <i class="fas fa-clock" style="height: 100%; width: auto;"></i>
           </button>
+
           {{-- time settings container --}}
           <div class="time-content" id="timeSelectBox">
             <div class="select-time">
@@ -94,11 +95,26 @@
               </div>
             </div>
           
-            <button type="button" class="btn btn-success" id="selectTime" style="margin: 0 auto; display: block">{{ __('Select') }}</button>
+            <div class="error-wrapper" id="timeSelectError">{{ __('Wrong time period!')}}</div>
+            <button type="button" class="btn-selectTime" id="selectTime" style="margin: 0 auto; display: block">{{ __('Select') }}</button>
 
           </div>
           {{--END  time settings container --}}
         </div>    
+      </div>
+      {{-- Measurement settings --}}
+      <div class="col-md-3">
+        <label for="measurement">{{ __('Measurement')}}</label>
+        <div class="input-group">
+          <div class="btn-group btn-group-toggle  btn-group-toggle-measurement" data-toggle="buttons" id="measurement-toggle">
+            <label class="btn btn-measurement">
+              <input type="radio" name="measurement-options" value="s" autocomplete="off"> {{ __('Second')}}
+            </label>
+            <label class="btn btn-measurement active">
+              <input type="radio" name="measurement-options" value="ms" autocomplete="off" checked="checked"> {{ __('Millisecond')}}
+            </label>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -169,12 +185,8 @@
         <div class="card">
           <div class="card-header" style="background-color:white;">
             <div class="d-flex justify-content-between">
-              <h3 class="card-title">{{ __('Response time(s)') }}</h3>
-              <nav aria-label="pagination wrapper">
-                <ul class="pagination" id="paginationWrapper">
-                  
-                </ul>
-              </nav>
+              <h3 class="card-title" id="areaChartTitle">{{ __('Response time(s)') }}</h3>
+
               <div class="card-tools d-flex" style="width: 65px; justify-content: space-between">
                 {{-- Settings botton --}}
                 <div class="tool">
@@ -186,8 +198,10 @@
                       <div class="form-group">
                         <label for="dataGroupOption">Data group</label>
                         <select class="form-control" id="dataGroupOption">
-                          <option value="EveryPoint">Every point</option>
-                          <option value="MonthDays">Month days</option>
+                          <option value="Minutes">{{ __('Minutes')}}</option>
+                          <option value="Hours">{{ __('Hours')}}</option>
+                          <option value="Days">{{ __('Days')}}</option>
+                          <option value="Months">{{ __('Months')}}</option>
                         </select>
                       </div>
                     </div>
@@ -203,12 +217,13 @@
           </div>
 
           <div class="card-body" id="areaChartBody">
+
             <div class="d-flex">
               <p class="ml-auto d-flex flex-column text-right">
                 <span id="lastCheckValue">
                   <i ${lastCheckIcon} id="lastCheckIcon"></i>
                 </span>
-                <span class="text-muted">{{ __("Last check's value change") }}</span>
+                <span id="differenceLable"class="text-muted">{{ __("Last check change") }}</span>
               </p>
             </div>
             <!-- /.d-flex -->
@@ -216,6 +231,13 @@
             <div class="position-relative mb-4">
               <canvas id="areaChart" height="257" width="1128" class="chartjs-render-monitor" style="display: block; min-height: 257px; width: 903px;"></canvas>
             </div>
+          </div>
+          <div class="card-footer" id="paginationBox">
+            <nav aria-label="pagination wrapper">
+              <ul class="pagination" id="paginationWrapper">
+                
+              </ul>
+            </nav>
           </div>
           <div class="card-body card-body-default" id="areaChartDefaultBody">
             No data available
@@ -306,7 +328,7 @@
     let splitedHystory = [];
     let sortedHistoryIndex = 0;
     let selectedMonitorId;
-    let areaChartDataSort = 'EveryPoint';
+    let areaChartDataGrouped = 'Minutes';
 
     const weekday = new Array(7);
         weekday[0] = @json( __("Sunday")  );
@@ -390,9 +412,9 @@
     }
 
     function historyCountCheck(newHistoryValues, minCheckCount){
-      let permission;
+      let permission = 0;
 
-      if(Object.keys(newHistoryValues).length < minCheckCount) {
+      if(Object.keys(newHistoryValues).length < minCheckCount || typeof newHistoryValues !== 'object' || newHistoryValues === null) {
         permission = 0;
       }else {
         permission = 1;
@@ -404,11 +426,14 @@
     function showAreaChart(){
       $('#areaChartBody').css('display','block');
       $("#areaChartDefaultBody").css( "display", "none" );
+      document.getElementById('paginationBox').style.display = 'flex';
     }
 
     function hideAreaChart(){
       $('#areaChartBody').css('display','none');
       $("#areaChartDefaultBody").css( "display", "block" );
+      //Hide pagination wrapper/card footer
+      document.getElementById('paginationBox').style.display = 'none';
     }
 
     function showBarChart(){
@@ -434,21 +459,10 @@
       const enoughData = historyCountCheck(newresponseTime,2);
 
       if(enoughData){
-        if(areaChartDataSort =='MonthDays'){
-          let newHystoryData = customizeDataMonth(currentHistory);
-
-          newHystoryData = spliteHistory(newHystoryData);
-
-          insertData(newHystoryData);
-        }else{
-
-          let newHystoryData = customizeDataAllPoints(currentHistory);
-          newHystoryData = spliteHistory(newHystoryData);
-
-          insertData(newHystoryData);
-        }
+        let groupedHystoryData = getGroupData(areaChartDataGrouped);
+        groupedHystoryData = spliteHistory(groupedHystoryData);
+        insertData(groupedHystoryData);
       }else{
-        console.log('tiku te');
         $("#paginationWrapper").empty();
         insertNewValueIntoInfoBoxes(0, 0, 0, 0);
         hideAreaChart();
@@ -505,11 +519,11 @@
         switch(paginationId) {
           case 'previosPagination':
             $("#previosPagination").click( function(){
-
+              //Similar
               $('#paginationWrapper li').not( "#previosPagination" ).addClass('d-none');
               $('#nextPagination').parent().removeClass('d-none')
               $('#previosPagination').parent().removeClass('d-none')
-
+              
               sortedHistoryIndex--;
 
               let lastElementDisplay = sortedHistoryIndex+2;
@@ -668,11 +682,17 @@
       return splitedHystory[paginationCount-1];
     }
 
+    function updateTitlesToSpecificmeasurement(){
+      measurement = getMeasurementCurrentInUse();
+      document.getElementById('areaChartTitle').innerHTML = @json('Response time') +'('+measurement+')';
+    }
+  
     function getStart(){
         let checkHistory = <?php echo json_encode($histories); ?>;
         let checkFriendlyName = <?php echo json_encode($itemsFriendlyName); ?>;
         const checkItemsIds = <?php echo json_encode($itemsIds); ?>;
 
+        updateTitlesToSpecificmeasurement()
         $('#datePicker').daterangepicker({ startDate:  startDate, endDate: endDate });
 
         startDate = Math.floor(Date.parse(startDate) / 1000);
@@ -692,8 +712,8 @@
     }
 
 
-var radiusPlus = 4;
-Chart.elements.Rectangle.prototype.draw = function() {
+  var radiusPlus = 4;
+  Chart.elements.Rectangle.prototype.draw = function() {
    var ctx = this._chart.ctx;
    var vm = this._view;
    var left, right, top, bottom, signX, signY, borderSkipped;
@@ -1010,14 +1030,17 @@ let weekDayChart;
       labels  : [],
       datasets: [
       {
-          label               : 'Response time(s)',
+          label               : 'Response time',
           backgroundColor     : gradientStroke,
           borderColor         : 'rgba(60,141,188,0.9)',
           pointRadius          : true,
           pointColor          : '#3b8bba',
+          pointHoverRadius: 5,
+          pointHoverBorderWidth: 5,
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
+          borderWidth: 1,
           data                : [],
           fill: true,
           pointRadius: 2,
@@ -1030,9 +1053,14 @@ let weekDayChart;
   var areaChartOptions = {
       maintainAspectRatio : false,
       animation: false,
-      // animation: {
-      //   easing: "easeInSine"
-      // },
+      tooltips: {
+        mode: 'index',
+        intersect: false
+      },
+      hover: {
+        mode: 'index',
+        intersect: false
+      },
       responsive : true,
       legend: {
         display: false
@@ -1090,7 +1118,7 @@ let weekDayChart;
   }
 
   function setMinValue(newValue){
-    let minResponseTime = 10;
+    let minResponseTime = 10000000;
 
     let i=0;
 
@@ -1098,6 +1126,7 @@ let weekDayChart;
 
       if(minResponseTime > parseFloat(newValue[value]) ){
         minResponseTime = parseFloat(newValue[value]);
+        console.log(minResponseTime);
       }
 
       i++;
@@ -1141,51 +1170,38 @@ let weekDayChart;
     return roundedNumber;
   }
 
-  function customizeDataAllPoints(newData){
-    let history = new Array();
-
-    for( const key in newData){
-      history[key] = {};
-      history[key].clock = newData[key].clock;
-      history[key].clock = moment(history[key].clock*1000).format("MM-DD HH:mm");
-
-      history[key].value = newData[key].value;
-    }
-
-    return history;
-  }
-
-  function customizeDataMonth(newData){
-
-    let customizeHystory = [];
-
+  function groupValueByDateFormat(newData, dateFormat, stringToClock){
+    let groupedData = [];
     let elementCounter = [];
 
     let i = -1;
     let currentDate = 0;
     for (const [key, value] of Object.entries(newData)) {
-      const stringDate = moment(value.clock*1000).format("YYYY-MM-DD");
+      let stringDate = moment(value.clock*1000).format(dateFormat);
 
+      if(stringToClock){
+        stringDate = stringDate + stringToClock;
+      }
       if(stringDate == currentDate){
         elementCounter[i] ++;
-        customizeHystory[i].value += parseFloat(value.value);
+        groupedData[i].value += parseFloat(value.value);
       }else{
         i++;
         elementCounter[i] = 1;
-        customizeHystory[i] = {};
-        customizeHystory[i].clock = stringDate;
-        customizeHystory[i].value = parseFloat(value.value);
+        groupedData[i] = {};
+        groupedData[i].clock = stringDate;
+        groupedData[i].value = parseFloat(value.value);
         currentDate = stringDate;
       };
 
     }
 
-    for (i = 0; i<customizeHystory.length; i++) {
-      customizeHystory[i].value /= elementCounter[i];
-      customizeHystory[i].value = customizeHystory[i].value;
+    for (i = 0; i<groupedData.length; i++) {
+      groupedData[i].value /= elementCounter[i];
+      groupedData[i].value = groupedData[i].value;
     }
 
-    return customizeHystory;
+    return groupedData;
   }
 
   function customizeDateForBarChart(newData){
@@ -1241,17 +1257,31 @@ let weekDayChart;
     insertNewValueIntoInfoBoxes(checkCount, averageTime, minTime, maxTime);
   }
 
+  //Return type of measurement that is used
+  function getMeasurementCurrentInUse(){
+    return $("input[name='measurement-options']:checked").val()
+  }
+
   function insertNewValueIntoInfoBoxes(checkCount, averageTime, minTime, maxTime){
-    $('#averageTime').text(averageTime + 's');
-    $('#maxTime').text(maxTime + 's');
-    $('#minTime').text(minTime + 's');
-    $("#requests").text(checkCount);
+    measurement = getMeasurementCurrentInUse();
+    if(measurement == 'ms'){
+      $('#averageTime').text(averageTime + 'ms');
+      $('#maxTime').text(maxTime + 'ms');
+      $('#minTime').text(minTime + 'ms');
+      $("#requests").text(checkCount);
+    }else{
+      $('#averageTime').text(averageTime + 's');
+      $('#maxTime').text(maxTime + 's');
+      $('#minTime').text(minTime + 's');
+      $("#requests").text(checkCount);
+    }
   }
 
   function getOnlyValues(newData){
 
     let values = [];
     let i=0;
+
     for (const [key, data] of Object.entries(newData)) {
       values[i] = data.value;
       i++;
@@ -1380,7 +1410,9 @@ let weekDayChart;
   }
 
   function callController(startDate,endDate){
-
+    const permission = checkStartEndTime();
+    
+    if(permission){
       $.ajax( {
         type:'POST',
         header:{
@@ -1394,21 +1426,27 @@ let weekDayChart;
         item_id: selectedMonitorId,
         startDate: startDate,      
         endDate: endDate,
+        measurement: getMeasurementCurrentInUse() 
         }
 
 
       })
         .done(function(data) {
-          newdata = matchDataWithTimeInterval(data);
+          updateTitlesToSpecificmeasurement()
+            //Return values that coincides with the given start/end time
+            newdata = matchDataWithTimeInterval(data);
+            
+            //Return only check values
+            const allValues = getOnlyValues(newdata.histories);
+            //Display/Insert new data into info boxes
+            updateInfoBoxes(allValues);
 
-          const allValues = getOnlyValues(newdata.histories);
-          updateInfoBoxes(allValues);
-
-          dataCheck(newdata.histories,data.itemsFriendlyName,data.selectedId);
+            dataCheck(newdata.histories,data.itemsFriendlyName,data.selectedId);
         })
         .fail(function() {
             alert("error");
         });
+    }
   }
 
   //Insert new items to friendly name drop down form
@@ -1446,11 +1484,16 @@ let weekDayChart;
       $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
   });
 
+  $("#measurement-toggle").change( ()=>{
+    callController(startDate,endDate);
+  })
+
   $('#datePicker').on('apply.daterangepicker', function(ev, picker) {
     startDate = picker.startDate.format();
     startDate = Math.floor(Date.parse(startDate) / 1000);
     endDate = picker.endDate.format();
     if(picker.maxDate.format("YYYY-MM-DD hh:mm:ss A Z") == picker.endDate.format("YYYY-MM-DD hh:mm:ss A Z")){
+      //Set date time to the end of the day
       endDate = Math.floor(Date.parse(endDate) / 1000+(24*60*60-1));
     }else{
       endDate = Math.floor(Date.parse(endDate) / 1000);
@@ -1474,42 +1517,70 @@ let weekDayChart;
     hideOrShowSelectTimeBox();
   });
 
-  $( "#dataGroupOption" ).change(function() {
+  function getGroupData(groupingParameter){
+    const differenceLable = document.getElementById('differenceLable');
+    let groupedHystoryData = [];
 
-    if(this.value == 'EveryPoint'){
-      areaChartDataSort = this.value;
-
-      let newHystoryData = customizeDataAllPoints(currentHistory);
-      newHystoryData = spliteHistory(newHystoryData);
-
-      insertData(newHystoryData);
+    if(groupingParameter == 'Minutes'){
+      groupedHystoryData = groupValueByDateFormat(currentHistory, "MM-DD HH:mm", ':00');
+      differenceLable.innerText = @json( __("Last minute difference"));
+    }else if(groupingParameter == 'Days'){
+      groupedHystoryData = groupValueByDateFormat(currentHistory, "YYYY-MM-DD", null);
+      differenceLable.innerText = @json( __("Last day difference"));
+    }else if(groupingParameter == 'Hours'){
+      groupedHystoryData = groupValueByDateFormat(currentHistory, "YYYY-MM-DD HH", ':00');
+      differenceLable.innerText = @json( __("Last hour difference"));
     }else{
-      areaChartDataSort = this.value;
-
-      let newHystoryData = customizeDataMonth(currentHistory);
-      newHystoryData = spliteHistory(newHystoryData);
-
-      insertData(newHystoryData);
+      groupedHystoryData = groupValueByDateFormat(currentHistory, "YYYY-MM", null);
+      differenceLable.innerText = @json( __("Last month difference"));
     }
 
+    return groupedHystoryData;
+  }
+
+  $( "#dataGroupOption" ).change(function() {
+    areaChartDataGrouped = this.value;
+
+    let groupedHystoryData = getGroupData(areaChartDataGrouped);
+    groupedHystoryData = spliteHistory(groupedHystoryData);
+    insertData(groupedHystoryData);
   });
 
 function hideOrShowSelectTimeBox(){
   let content = document.getElementById('timeSelectBox');
 
   if (content.style.height == '0px' || content.style.height == ''){
-    content.style.height = 172 + 'px';
+    content.style.height = 'auto';
   } else {
     content.style.height = 0 + 'px';
   } 
 }
 
+function checkStartEndTime(){
+  let permission = false;
+  let startHr = document.querySelectorAll('.hr')[0].value;
+  let endHr = document.querySelectorAll('.hr')[1].value;
+  let startMin = document.querySelectorAll('.min')[0].value;
+  let endMin = document.querySelectorAll('.min')[1].value;
+
+  const startTime = parseInt((startHr*60)) + parseInt(startMin);
+  const endTime = parseInt((endHr*60)) + parseInt(endMin);
+
+  if(startTime < endTime){
+    permission = true;
+    document.querySelector('.error-wrapper').style.display = 'none';
+    document.getElementById('timeSelectBox').style.height = '0';
+  }else{
+    document.querySelector('.error-wrapper').style.display = 'flex';
+    document.getElementById('timeSelectBox').style.height = 'auto';
+  }
+
+  return permission;
+}
+
 $('#selectTime').click(function(){
-    hideOrShowSelectTimeBox();
-
-    const selectedDropDownOption = $("#userMonitors option:selected").val();
-
-    callController(startDate,endDate,selectedDropDownOption);
+ 
+    callController(startDate,endDate);
 });
 
 //Resize response time chart and change resize button icon
@@ -1521,141 +1592,139 @@ $('#resize_btn').click(function(){
   resizebtn.classList.toggle("fa-expand-alt");
   resizebtn.classList.toggle("fa-compress-alt");
 });
+ //TIME PICKERS
+ const time_picker_element = document.querySelectorAll('.time-picker');
+      
+      const hr_element = document.querySelectorAll('.time-picker .hour .hr');
+      const min_element = document.querySelectorAll('.time-picker .minute .min');
 
-  //TIME PICKERS
-  const time_picker_element = document.querySelectorAll('.time-picker');
-  
-  const hr_element = document.querySelectorAll('.time-picker .hour .hr');
-  const min_element = document.querySelectorAll('.time-picker .minute .min');
+      const hr_up = document.querySelectorAll('.time-picker .hour .hr-up');
+      const hr_down = document.querySelectorAll('.time-picker .hour .hr-down');
 
-  const hr_up = document.querySelectorAll('.time-picker .hour .hr-up');
-  const hr_down = document.querySelectorAll('.time-picker .hour .hr-down');
+      const min_up = document.querySelectorAll('.time-picker .minute .min-up');
+      const min_down = document.querySelectorAll('.time-picker .minute .min-down');
 
-  const min_up = document.querySelectorAll('.time-picker .minute .min-up');
-  const min_down = document.querySelectorAll('.time-picker .minute .min-down');
+      let hour = [0,'23'];
+      let minute = [0,59];
 
-  let hour = [0,'23'];
-  let minute = [0,59];
+      //EVENT LISTENERS
+      for(let i=0; i< time_picker_element.length;i++){
 
-  //EVENT LISTENERS
-  for(let i=0; i< time_picker_element.length;i++){
+        hr_up[i].addEventListener('click', function(e){
+          hour_up(i);
+        });
+        hr_down[i].addEventListener('click', function(e){
+          hour_down(i);
+        });
 
-    hr_up[i].addEventListener('click', function(e){
-      hour_up(i);
-    });
-    hr_down[i].addEventListener('click', function(e){
-      hour_down(i);
-    });
+        min_up[i].addEventListener('click', function(e){
+          minute_up(i);
+        });
+        min_down[i].addEventListener('click', function(e){
+          minute_down(i);
+        });
 
-    min_up[i].addEventListener('click', function(e){
-      minute_up(i);
-    });
-    min_down[i].addEventListener('click', function(e){
-      minute_down(i);
-    });
+        hr_element[i].addEventListener('change', function(e){
+          hour_change(e,i);
+        });
+        min_element[i].addEventListener('change', function(e){
+          minute_change(e,i);
+        });
 
-    hr_element[i].addEventListener('change', function(e){
-      hour_change(e,i);
-    });
-    min_element[i].addEventListener('change', function(e){
-      minute_change(e,i);
-    });
-
-
-  }
-
-  function hour_change(e,data1){
-    if(e.target.value > 23){
-      e.target.value = 23;
-    }else if(e.target.value < 0){
-      e.target.value = '00';
-    }
-
-    if(e.target.value == ''){
-      e.target.value = formatTime(hour[data1]);
-    }
-
-    hour[data1] = e.target.value;
-  }
-
-  function minute_change(e,data1){
-
-    if(e.target.value > 59){
-      e.target.value = 59;
-    }else if(e.target.value < 0){
-      e.target.value = '00';
-    }
-
-    if(e.target.value == ''){
-      if(minute[data1] != '00'){
-        e.target.value = formatTime(minute[data1]);
-      }else{
-        e.target.value = minute[data1];
       }
-    }
 
-    if(e.target.value == 0){
-      e.target.value = '00';
-    }
+      function hour_change(e,data1){
+        if(e.target.value > 23){
+          e.target.value = 23;
+        }else if(e.target.value < 0){
+          e.target.value = '00';
+        }
 
-    minute[data1] = e.target.value;
-  }
+        if(e.target.value == ''){
+          e.target.value = formatTime(hour[data1]);
+        }
 
-  function hour_up (data1){
-    hour[data1]++;
-    if(hour[data1] > 23) {
-      hour[data1] = 0;
-    }
-    setTime(data1);
-  }
+        hour[data1] = e.target.value;
+      }
 
-  function hour_down (data1){
-    hour[data1]--;
-    if(hour[data1] < 0) {
-      hour[data1] = 23;
-    }
-    setTime(data1);
-  }
+      function minute_change(e,data1){
 
-  function minute_up (data1){
-    minute[data1]++;
-    if(minute[data1] > 59) {
-      minute[data1] = 0;
-      if(hour[data1] == 23){
-        hour[data1] = '0';
-      }else{
+        if(e.target.value > 59){
+          e.target.value = 59;
+        }else if(e.target.value < 0){
+          e.target.value = '00';
+        }
+
+        if(e.target.value == ''){
+          if(minute[data1] != '00'){
+            e.target.value = formatTime(minute[data1]);
+          }else{
+            e.target.value = minute[data1];
+          }
+        }
+
+        if(e.target.value == 0){
+          e.target.value = '00';
+        }
+
+        minute[data1] = e.target.value;
+      }
+
+      function hour_up (data1){
         hour[data1]++;
+        if(hour[data1] > 23) {
+          hour[data1] = 0;
+        }
+        setTime(data1);
       }
-    }
-    setTime(data1);
-  }
 
-  function minute_down (data1){
-    minute[data1]--;
-    if(minute[data1] < 0) {
-      minute[data1] = 59;
-      hour[data1]--;
-      if( hour[data1] < 0){
-        hour[data1]=23;
+      function hour_down (data1){
+        hour[data1]--;
+        if(hour[data1] < 0) {
+          hour[data1] = 23;
+        }
+        setTime(data1);
       }
-    }
-    setTime(data1);
-  }
 
-  function setTime(data1){
-    hr_element[data1].value = formatTime(hour[data1]);
-    min_element[data1].value = formatTime(minute[data1]);
-    time_picker_element[data1].dataset.time = formatTime(hour[data1]) + ':' + formatTime(minute[data1]);
-  }
+      function minute_up (data1){
+        minute[data1]++;
+        if(minute[data1] > 59) {
+          minute[data1] = 0;
+          if(hour[data1] == 23){
+            hour[data1] = '0';
+          }else{
+            hour[data1]++;
+          }
+        }
+        setTime(data1);
+      }
 
-  function formatTime(time){
-    if( time < 10){
-      time = '0' + time;
-    }
+      function minute_down (data1){
+        minute[data1]--;
+        if(minute[data1] < 0) {
+          minute[data1] = 59;
+          hour[data1]--;
+          if( hour[data1] < 0){
+            hour[data1]=23;
+          }
+        }
+        setTime(data1);
+      }
 
-    return time;
-  }
+      function setTime(data1){
+        hr_element[data1].value = formatTime(hour[data1]);
+        min_element[data1].value = formatTime(minute[data1]);
+        time_picker_element[data1].dataset.time = formatTime(hour[data1]) + ':' + formatTime(minute[data1]);
+      }
 
+      function formatTime(time){
+        if( time < 10 && time != '00'){
+          time = '0' + time;
+        }
+
+        return time;
+      }
+      
 });
 </script>
 @stop

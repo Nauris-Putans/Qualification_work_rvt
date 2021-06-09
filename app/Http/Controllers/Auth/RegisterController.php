@@ -147,15 +147,37 @@ class RegisterController extends Controller
         }
 
         //Get current user ID;
-        $currentUserID = DB::table('users')
+        $currentUser = DB::table('users')
             ->where('email',$request->all()['signup_email'])
-            ->get('id')
-            ->first()->id;
+            ->get(['id','email'])
+            ->first();
+
+        $currentUserID = $currentUser->id;
+        $currentUserEmail = $currentUser->email;
+
+        //Create new user group in Zabbix
+        $newZabbixUserGroup = $this->zabbix->usergroupCreate([
+            "name"=> $currentUserEmail.' group',
+        ])->usrgrpids[0];
+
+        //Create new host group in zabbix
+        $hostGroupID = $this->zabbix->hostgroupCreate([
+            "name" => $newZabbixUserGroup.'-Hosts'
+        ])->groupids[0];
+
+        //Set host to new created zabbix user group
+        $this->zabbix->usergroupUpdate([
+            "usrgrpid"=> $newZabbixUserGroup,
+            "rights"=> [
+                "permission"=> 2, //2 - read-only access
+                "id"=> $hostGroupID //host group id
+            ]
+        ]);
 
         //Add new user group to database
         DB::table('monitoring_users_groups')->insert(
             [
-                'group_id' => 'G'.$currentUserID,
+                'group_id' => $newZabbixUserGroup,
                 'group_admin_id' => $currentUserID,
                 'group_name' => $request->all()['signup_name'].' group'
             ]
@@ -164,31 +186,11 @@ class RegisterController extends Controller
         //Add new group member to database
         DB::table('monitoring_group_members')->insert(
             [
-                'group_id' => 'G'.$currentUserID,
+                'group_id' => $newZabbixUserGroup,
                 'group_member' => $currentUserID,
                 'group_member_permission' => 1
             ]
         );
-
-        //Get user group id
-        $userGroupId = DB::table('monitoring_users_groups')
-            ->where('group_admin_id',$currentUserID)
-            ->get('group_id')
-            ->first()->group_id;
-
-        //Create new host group in zabbix
-        $hostGroupID = $this->zabbix->hostgroupCreate([
-            "name" => $userGroupId.'-Hosts'
-        ])->groupids[0];
-
-        //Create new user group in Zabbix
-        $newZabbixUserGroup = $this->zabbix->usergroupCreate([
-            "name"=> $userGroupId.'-group',
-            "rights"=> [
-                "permission"=> 2, //2 - read-only access
-                "id"=> $hostGroupID //host group id
-            ]
-        ])->usrgrpids[0];
 
         //Create new user in Zabbix
         $newZabbixUser = $this->zabbix->userCreate([
@@ -201,10 +203,25 @@ class RegisterController extends Controller
             ],
             "user_medias"=> [
                 [
-                    "mediatypeid"=> "1", //Mail
+                    "mediatypeid"=> "1", //e-mail EN
                     "sendto"=> [
                         $request->all()['signup_email'] //Email
                     ],
+                    "period" => "1-7,00:00-24:00"
+                ],
+                [
+                    "mediatypeid"=> "4", //e-mail LV
+                    "sendto"=> [
+                        $request->all()['signup_email'] //Email
+                    ],
+                    "period" => "1-7,00:00-24:00"
+                ],
+                [
+                    "mediatypeid"=> "22", //e-mail RU
+                    "sendto"=> [
+                        $request->all()['signup_email'] //Email
+                    ],
+                    "period" => "1-7,00:00-24:00"
                 ]
             ]
         ])->userids[0];
@@ -214,23 +231,7 @@ class RegisterController extends Controller
             [
                 'zabbix_user_id' => $newZabbixUser,
                 'user_id' => $currentUserID,
-            ]
-        );
-
-        //Add new zabbix user group to database
-        DB::table('zabbix_user_group')->insert(
-            [
-                'zabbix_group_id' => $newZabbixUserGroup,
-                'zabbix_group_name' => $userGroupId.'-group',
-                'zabbix_group_admin' => $currentUserID
-            ]
-        );
-
-        //Add new member to zabbix user group
-        DB::table('zabbix_group_members')->insert(
-            [
-                'zabbix_group_id' => $newZabbixUserGroup,
-                'zabbix_group_member' => $newZabbixUser
+                'alert-period' => '1-7,00:00-24:00'
             ]
         );
 
@@ -238,13 +239,13 @@ class RegisterController extends Controller
         DB::table('monitoring_hosts_groups')->insert(
             [
                 'host_group_id' => $hostGroupID,
-                'host_group_name' => $userGroupId.'-Hosts',
-                'user_group' => $userGroupId,
+                'host_group_name' => $newZabbixUserGroup.'-Hosts',
+                'user_group' => $newZabbixUserGroup,
             ]
         );
 
         //Set current user group's id to global variable
-        session(['groupId' => $userGroupId]);
+        session(['groupId' => $newZabbixUserGroup]);
 
         //Set current user host group's id to global variable
         session(['hostGroup' => $hostGroupID]);

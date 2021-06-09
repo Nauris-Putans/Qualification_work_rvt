@@ -404,6 +404,9 @@
     "Pay :amount": "Maksāt :amount",
     "You can change subscription plan in account settings": "Abonēšanas plānu var mainīt konta iestatījumos",
     "Powered by Stripe": "Darbina ar Stripe",
+    "Are you sure to cancel current plan - :planName": "Vai tiešām vēlaties atcelt pašreizējo plānu - :planName",
+    "Yes": "Jā",
+    "No": "Nē",
 
     "//////FAQ section":
     {},
@@ -628,6 +631,62 @@
     "Notifications": "Paziņojumi",
     "See All Notifications": "Skatīt visus ziņojumus",
     "Sign out": "Izrakstīties",
+
+
+    "//////Adminlte user admin notification":
+    {},
+    "Invited by": "Aicinājums no",
+    "Join": "Pievienoties",
+    "Decline": "Atteikties",
+    "Invitations": "Aicinājumi",
+    "OK": "Labi",
+
+    "//////Uptime":
+    {},
+    "Up": "Veiksmīgi",
+    "Down": "Neveiksmīgi",
+
+    "//////Statisctic":
+    {},
+    "Last check difference": "Pedējo testu starpība",
+    "Last day difference": "Pēdējo dienu starpība",
+    "Last month difference": "Pēdējo mēnešu starpība",
+    "Ungrouped": "Negrupēt",
+    "Days": "Dienas",
+    "Months": "Mēneši",
+    "Wrong time period!": "Nepareizs laika periods!",
+
+    "//////Months":
+    {},
+    "January": "Janvāris",
+    "February": "Februāris",
+    "March": "Marts",
+    "April": "Aprīlis",
+    "May": "Maijs",
+    "June": "Jūnijs",
+    "July": "Jūlijs",
+    "August": "Augusts",
+    "September": "Septembris",
+    "October": "Oktobris",
+    "November": "Novembris",
+    "December": "Decembris",
+
+    "//////Week days":
+    {},
+    "Monday": "Pirmdiena",
+    "Tuesday": "Otrdiena",
+    "Wednesday": "Trešdiena",
+    "Thursday": "Ceturtdiena",
+    "Friday": "Piektdiena",
+    "Saturday": "Sestdiena",
+    "Sunday": "Svētdiena",
+    "Yesterday": "Vakar",
+
+    "//////Day parts":
+    {},
+    "Morning": "Rīts",
+    "Afternoon": "Pustdienas",
+    "Evening": "Vakars",
 
     "//////Calendar":
     {},

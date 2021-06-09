@@ -47,7 +47,7 @@
           </div>
         </div>
         {{-- Time settings --}}
-        <div class="col-md-3">
+        <div class="col-md-1">
           <label>{{ __('Time') }}</label>
           <div class="input-group">
             <button class="btn time-btn" id="timeButton">
@@ -95,11 +95,27 @@
                 </div>
               </div>
             
-              <button type="button" class="btn btn-success" id="selectTime" style="margin: 0 auto; display: block">{{ __('Select') }}</button>
+              <div class="error-wrapper" id="timeSelectError">{{ __('Wrong time period!')}}</div>
+              <button type="button" class="btn-selectTime" id="selectTime" style="margin: 0 auto; display: block">{{ __('Select') }}</button>
 
             </div>
             {{--END  time settings container --}}
           </div>    
+      </div>
+
+      {{-- Measurement settings --}}
+      <div class="col-md-3">
+        <label for="measurement">{{ __('Measurement')}}</label>
+        <div class="input-group">
+          <div class="btn-group btn-group-toggle  btn-group-toggle-measurement" data-toggle="buttons" id="measurement-toggle">
+            <label class="btn btn-measurement">
+              <input type="radio" name="measurement-options" value="s" autocomplete="off"> {{ __('Megabit')}}
+            </label>
+            <label class="btn btn-measurement active">
+              <input type="radio" name="measurement-options" value="ms" autocomplete="off" checked="checked"> {{ __('Kilobit')}}
+            </label>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -179,13 +195,7 @@
             <div class="card-header" style="background-color:white;">
               <div class="d-flex justify-content-between">
                 <h3 class="card-title">{{ __('Download speed(KBps)') }}</h3>
-                <nav aria-label="pagination wrapper">
-                  <ul class="pagination" id="paginationWrapper">
-                    
-                  </ul>
-                </nav>
                 <div class="card-tools d-flex" style="width: 65px; justify-content: space-between">
-
                   <div class="tool">
                     <button type="button" id="areaChartSettingsBtn" class="btn btn-primary btn-sm daterange" data-toggle="tooltip" title="Date range">
                       <i class="fas fa-cog"></i>
@@ -195,8 +205,10 @@
                         <div class="form-group">
                           <label for="dataGroupOption">Data group</label>
                           <select class="form-control" id="dataGroupOption">
-                            <option value="EveryPoint">Every point</option>
-                            <option value="MonthDays">Month days</option>
+                            <option value="Minutes">{{ __('Minutes')}}</option>
+                            <option value="Hours">{{ __('Hours')}}</option>
+                            <option value="Days">{{ __('Days')}}</option>
+                            <option value="Months">{{ __('Months')}}</option>
                           </select>
                         </div>
                       </div>
@@ -213,7 +225,7 @@
                   <span id="lastCheckValue">
                     <i ${lastCheckIcon} id="lastCheckIcon"></i>
                   </span>
-                  <span class="text-muted">{{ __("Last check's value change") }}</span>
+                  <span class="text-muted" id="differenceLable">{{ __("Last minute difference") }}</span>
                 </p>
               </div>
 
@@ -225,22 +237,19 @@
             <div class="card-body card-body-default" id="areaChartDefaultBody">
               No data available
             </div>
+            <div class="card-footer" id="paginationBox">
+              <nav aria-label="pagination wrapper">
+                <ul class="pagination" id="paginationWrapper">
+                  
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
 
         {{--Bar chart--}}
         <div class="col-md-4" id="weekdayChartBox">
           <div class="card" style = "height : 435px">
-            {{-- <div class="card-header d-flex justify-content-center">
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn bg-olive">
-                  <input type="radio" name="options" id="radioOption1" autocomplete="off" checked=""> {{ __('Weekday') }}
-                </label>
-                <label class="btn bg-olive active">
-                  <input type="radio" name="options" id="radioOption2" autocomplete="off"> Day's parts
-                </label>
-              </div>
-            </div> --}}
 
             <div class="card-header ui-sortable-handle" style="cursor: move;">
               <h3 class="card-title" id="barChartTitle">
@@ -315,7 +324,7 @@
     let splitedHystory = [];
     let sortedHistoryIndex = 0;
     let selectedMonitorId;
-    let areaChartDataSort = 'EveryPoint';
+    let areaChartDataGrouped = 'Minutes';
     let barChartType = 'weekDay'
 
     const weekday = new Array(7);
@@ -404,57 +413,32 @@
       }
     }
 
-    function customizeDataMonth(newData){
+    function getGroupData(groupingParameter){
+      const differenceLable = document.getElementById('differenceLable');
+      let groupedHystoryData = [];
 
-      let customizeHystory = [];
-
-      let elementCounter = [];
-
-      let i = -1;
-      let currentDate = 0;
-      for (const [key, value] of Object.entries(newData)) {
-        const stringDate = moment(value.clock*1000).format("YYYY-MM-DD");
-
-        if(stringDate == currentDate){
-          elementCounter[i] ++;
-          customizeHystory[i].value += parseFloat(value.value);
-        }else{
-          i++;
-          elementCounter[i] = 1;
-          customizeHystory[i] = {};
-          customizeHystory[i].clock = stringDate;
-          customizeHystory[i].value = parseFloat(value.value);
-          currentDate = stringDate;
-        };
-
+      if(groupingParameter == 'Minutes'){
+        groupedHystoryData = groupValueByDateFormat(currentHistory, "MM-DD HH:mm", ':00');
+        differenceLable.innerText = @json( __("Last minute difference"));
+      }else if(groupingParameter == 'Days'){
+        groupedHystoryData = groupValueByDateFormat(currentHistory, "YYYY-MM-DD", null);
+        differenceLable.innerText = @json( __("Last day difference"));
+      }else if(groupingParameter == 'Hours'){
+        groupedHystoryData = groupValueByDateFormat(currentHistory, "YYYY-MM-DD HH", ':00');
+        differenceLable.innerText = @json( __("Last hour difference"));
+      }else{
+        groupedHystoryData = groupValueByDateFormat(currentHistory, "YYYY-MM", null);
+        differenceLable.innerText = @json( __("Last month difference"));
       }
 
-      for (i = 0; i<customizeHystory.length; i++) {
-        customizeHystory[i].value /= elementCounter[i];
-        customizeHystory[i].value = customizeHystory[i].value;
-      }
-
-      return customizeHystory;
+      return groupedHystoryData;
     }
 
     $( "#dataGroupOption" ).change(function() {
-
-      if(this.value == 'EveryPoint'){
-        areaChartDataSort = this.value;
-
-        let newHystoryData = customizeDataAllPoints(currentHistory);
-        newHystoryData = spliteHistory(newHystoryData);
-
-        insertData(newHystoryData);
-      }else{
-        areaChartDataSort = this.value;
-
-        let newHystoryData = customizeDataMonth(currentHistory);
-        newHystoryData = spliteHistory(newHystoryData);
-
-        insertData(newHystoryData);
-      }
-
+      areaChartDataGrouped = this.value;
+      let groupedHystoryData = getGroupData(areaChartDataGrouped);
+      groupedHystoryData = spliteHistory(groupedHystoryData);
+      insertData(groupedHystoryData);
     });
 
     function disableMainSettings(){
@@ -486,6 +470,28 @@
 
     }
 
+    function checkStartEndTime(){
+      let permission = false;
+      let startHr = document.querySelectorAll('.hr')[0].value;
+      let endHr = document.querySelectorAll('.hr')[1].value;
+      let startMin = document.querySelectorAll('.min')[0].value;
+      let endMin = document.querySelectorAll('.min')[1].value;
+
+      const startTime = parseInt((startHr*60)) + parseInt(startMin);
+      const endTime = parseInt((endHr*60)) + parseInt(endMin);
+
+      if(startTime < endTime){
+        permission = true;
+        document.querySelector('.error-wrapper').style.display = 'none';
+        document.getElementById('timeSelectBox').style.height = '0';
+      }else{
+        document.querySelector('.error-wrapper').style.display = 'flex';
+        document.getElementById('timeSelectBox').style.height = 'auto';
+      }
+
+      return permission;
+    }
+
     function historyCountCheck(newHistoryValues, minCheckCount){
       let permission;
 
@@ -496,20 +502,6 @@
       }
 
       return permission;
-    }
-
-    function customizeDataAllPoints(newData){
-      let history = new Array();
-
-      for( const key in newData){
-        history[key] = {};
-        history[key].clock = newData[key].clock;
-        history[key].clock = moment(history[key].clock*1000).format("MM-DD HH:mm");
-
-        history[key].value = newData[key].value;
-      }
-
-      return history;
     }
 
     //Check that user have any monitor or data hystory
@@ -523,19 +515,9 @@
       const enoughData = historyCountCheck(newresponseTime,2);
 
       if(enoughData){
-        if(areaChartDataSort =='MonthDays'){
-          let newHystoryData = customizeDataMonth(currentHistory);
-
-          newHystoryData = spliteHistory(newHystoryData);
-
-          insertData(newHystoryData);
-        }else{
-          let newHystoryData = customizeDataAllPoints(currentHistory);
-
-          newHystoryData = spliteHistory(newHystoryData);
-
-          insertData(newHystoryData);
-        }
+        let groupedHystoryData = getGroupData(areaChartDataGrouped);
+        groupedHystoryData = spliteHistory(groupedHystoryData);
+        insertData(groupedHystoryData);
       }else{
         console.log('tiku te');
         $("#paginationWrapper").empty();
@@ -544,6 +526,40 @@
         hideBarChart();
       } 
     }
+
+    function groupValueByDateFormat(newData, dateFormat, stringToClock){
+    let groupedData = [];
+    let elementCounter = [];
+
+    let i = -1;
+    let currentDate = 0;
+    for (const [key, value] of Object.entries(newData)) {
+      let stringDate = moment(value.clock*1000).format(dateFormat);
+
+      if(stringToClock){
+        stringDate = stringDate + stringToClock;
+      }
+      if(stringDate == currentDate){
+        elementCounter[i] ++;
+        groupedData[i].value += parseFloat(value.value);
+      }else{
+        i++;
+        elementCounter[i] = 1;
+        groupedData[i] = {};
+        groupedData[i].clock = stringDate;
+        groupedData[i].value = parseFloat(value.value);
+        currentDate = stringDate;
+      };
+
+    }
+
+    for (i = 0; i<groupedData.length; i++) {
+      groupedData[i].value /= elementCounter[i];
+      groupedData[i].value = groupedData[i].value;
+    }
+
+    return groupedData;
+  }
 
     function spliteHistory(newData){
 
@@ -1412,8 +1428,9 @@
       }
 
       function callController(startDate,endDate,selectedItemId){
+        const permission = checkStartEndTime();
 
-        if(selectedItemId != null){
+        if(selectedItemId != null && permission){
           $.ajax( {
           type:'POST',
           header:{
@@ -1440,7 +1457,7 @@
             .fail(function() {
                 alert(@json( __("error")));
             });
-          }
+        }
       }
 
       //Insert new items to friendly name drop down form
@@ -1515,46 +1532,37 @@
         callController(startDate, endDate, selectedMonitorId );
       });
 
-    $('#timeButton').click(function() {
-      let content = document.getElementById('timeSelectBox');
+      function hideOrShowSelectTimeBox(){
+        let content = document.getElementById('timeSelectBox');
 
-      if (content.style.height == '0px' || content.style.height == ''){
-        content.style.height = 172 + 'px';
-      } else {
-        content.style.height = 0 + 'px';
-      } 
+        if (content.style.height == '0px' || content.style.height == ''){
+          content.style.height = 'auto';
+        } else {
+          content.style.height = 0 + 'px';
+        } 
+      }
+
+    $('#timeButton').click(function() {
+      hideOrShowSelectTimeBox();
     });
 
     $('#selectTime').click(function(){
-        //Get selected items id
-        const selectedItemId = $("#userMonitors option:selected").val();
+      let startHr = document.querySelectorAll('.hr')[0].value;
+      let endHr = document.querySelectorAll('.hr')[1].value;
+      let startMin = document.querySelectorAll('.min')[0].value;
+      let endMin = document.querySelectorAll('.min')[1].value;
 
-        callController(startDate,endDate,selectedItemId );
-    });
+      const startTime = parseInt((startHr*60)) + parseInt(startMin);
+      const endTime = parseInt((endHr*60)) + parseInt(endMin);
 
-    $('#radioOption1').click(function(){
-      currentChartType = 0;
-      let value = new Array();
-      let time = new Array();
-
-      for (const property in currentHistory) {
-        value[property] = Math.round((currentHistory[property]['value'] / 1000) * Math.pow(10, 2)) / Math.pow(10, 2);
-        time[property] = currentHistory[property]['clock'];
+      if(startTime < endTime){
+        document.querySelector('.error-wrapper').style.display = 'none';
+        hideOrShowSelectTimeBox();
+        const selectedDropDownOption = $("#userMonitors option:selected").val();
+        callController(startDate,endDate,selectedDropDownOption);
+      }else {
+        document.querySelector('.error-wrapper').style.display = 'flex';
       }
-
-      insertDataToWeekdayChart(value,time);
-    });
-
-    $('#radioOption2').click(function(){
-      currentChartType = 1;
-      let value = new Array();
-      let time = new Array();
-
-      for (const property in currentHistory) {
-        value[property] = Math.round((currentHistory[property]['value'] / 1000) * Math.pow(10, 2)) / Math.pow(10, 2);
-        time[property] = currentHistory[property]['clock'];
-      }
-      insertDataToDayPartChart(value,time);
     });
 
     //Resize response time chart and change resize button icon
