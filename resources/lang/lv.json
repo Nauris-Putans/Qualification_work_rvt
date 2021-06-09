@@ -404,6 +404,9 @@
     "Pay :amount": "Maksāt :amount",
     "You can change subscription plan in account settings": "Abonēšanas plānu var mainīt konta iestatījumos",
     "Powered by Stripe": "Darbina ar Stripe",
+    "Are you sure to cancel current plan - :planName": "Vai tiešām vēlaties atcelt pašreizējo plānu - :planName",
+    "Yes": "Jā",
+    "No": "Nē",
 
     "//////FAQ section":
     {},

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserTicketCreateRequest;
-use App\Mailers\AppMailer;
+use Illuminate\Mail\Mailer;
 use App\Models\Category;
 use App\Models\Ticket;
 use App\Role;
@@ -85,7 +85,6 @@ class TicketController extends Controller
      * Stores users ticket from contacts page to database
      *
      * @param UserTicketCreateRequest $request
-     * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
      */
     public function userStoreTicket(UserTicketCreateRequest $request)
@@ -187,7 +186,6 @@ class TicketController extends Controller
      * Closes ticket
      *
      * @param $ticket_id
-     * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
      */
     public function close($ticket_id)

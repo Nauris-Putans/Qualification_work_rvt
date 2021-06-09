@@ -563,7 +563,7 @@ eval("module.exports = function(module) {\n\tif (!module.webpackPolyfill) {\n\t\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/**\r\n * First we will load all of this project's JavaScript dependencies which\r\n * includes Vue and other libraries. It is a great starting point when\r\n * building robust, powerful web applications using Vue and Laravel.\r\n */\n__webpack_require__(/*! ./bootstrap */ \"./resources/js/bootstrap.js\");\n\nwindow.Vue = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.common.js\");\n/**\r\n * The following block of code may be used to automatically register your\r\n * Vue components. It will recursively scan this directory for the Vue\r\n * components and automatically register them with their \"basename\".\r\n *\r\n * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>\r\n */\n// const files = require.context('./', true, /\\.vue$/i)\n// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))\n\nVue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ \"./resources/js/components/ExampleComponent.vue\")[\"default\"]);\n/**\r\n * Next, we will create a fresh Vue application instance and attach it to\r\n * the page. Then, you may begin adding components to this application\r\n * or customize the JavaScript scaffolding to fit your unique needs.\r\n */\n\nvar app = new Vue({\n  el: '#app'\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvYXBwLmpzPzZkNDAiXSwibmFtZXMiOlsicmVxdWlyZSIsIndpbmRvdyIsIlZ1ZSIsImNvbXBvbmVudCIsImFwcCIsImVsIl0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7QUFNQUEsbUJBQU8sQ0FBQyxnREFBRCxDQUFQOztBQUVBQyxNQUFNLENBQUNDLEdBQVAsR0FBYUYsbUJBQU8sQ0FBQyxrREFBRCxDQUFwQjtBQUVBOzs7Ozs7O0FBUUE7QUFDQTs7QUFFQUUsR0FBRyxDQUFDQyxTQUFKLENBQWMsbUJBQWQsRUFBbUNILG1CQUFPLENBQUMseUZBQUQsQ0FBUCxXQUFuQztBQUVBOzs7Ozs7QUFNQSxJQUFNSSxHQUFHLEdBQUcsSUFBSUYsR0FBSixDQUFRO0FBQ2hCRyxJQUFFLEVBQUU7QUFEWSxDQUFSLENBQVoiLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvYXBwLmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXHJcbiAqIEZpcnN0IHdlIHdpbGwgbG9hZCBhbGwgb2YgdGhpcyBwcm9qZWN0J3MgSmF2YVNjcmlwdCBkZXBlbmRlbmNpZXMgd2hpY2hcclxuICogaW5jbHVkZXMgVnVlIGFuZCBvdGhlciBsaWJyYXJpZXMuIEl0IGlzIGEgZ3JlYXQgc3RhcnRpbmcgcG9pbnQgd2hlblxyXG4gKiBidWlsZGluZyByb2J1c3QsIHBvd2VyZnVsIHdlYiBhcHBsaWNhdGlvbnMgdXNpbmcgVnVlIGFuZCBMYXJhdmVsLlxyXG4gKi9cclxuXHJcbnJlcXVpcmUoJy4vYm9vdHN0cmFwJyk7XHJcblxyXG53aW5kb3cuVnVlID0gcmVxdWlyZSgndnVlJyk7XHJcblxyXG4vKipcclxuICogVGhlIGZvbGxvd2luZyBibG9jayBvZiBjb2RlIG1heSBiZSB1c2VkIHRvIGF1dG9tYXRpY2FsbHkgcmVnaXN0ZXIgeW91clxyXG4gKiBWdWUgY29tcG9uZW50cy4gSXQgd2lsbCByZWN1cnNpdmVseSBzY2FuIHRoaXMgZGlyZWN0b3J5IGZvciB0aGUgVnVlXHJcbiAqIGNvbXBvbmVudHMgYW5kIGF1dG9tYXRpY2FsbHkgcmVnaXN0ZXIgdGhlbSB3aXRoIHRoZWlyIFwiYmFzZW5hbWVcIi5cclxuICpcclxuICogRWcuIC4vY29tcG9uZW50cy9FeGFtcGxlQ29tcG9uZW50LnZ1ZSAtPiA8ZXhhbXBsZS1jb21wb25lbnQ+PC9leGFtcGxlLWNvbXBvbmVudD5cclxuICovXHJcblxyXG4vLyBjb25zdCBmaWxlcyA9IHJlcXVpcmUuY29udGV4dCgnLi8nLCB0cnVlLCAvXFwudnVlJC9pKVxyXG4vLyBmaWxlcy5rZXlzKCkubWFwKGtleSA9PiBWdWUuY29tcG9uZW50KGtleS5zcGxpdCgnLycpLnBvcCgpLnNwbGl0KCcuJylbMF0sIGZpbGVzKGtleSkuZGVmYXVsdCkpXHJcblxyXG5WdWUuY29tcG9uZW50KCdleGFtcGxlLWNvbXBvbmVudCcsIHJlcXVpcmUoJy4vY29tcG9uZW50cy9FeGFtcGxlQ29tcG9uZW50LnZ1ZScpLmRlZmF1bHQpO1xyXG5cclxuLyoqXHJcbiAqIE5leHQsIHdlIHdpbGwgY3JlYXRlIGEgZnJlc2ggVnVlIGFwcGxpY2F0aW9uIGluc3RhbmNlIGFuZCBhdHRhY2ggaXQgdG9cclxuICogdGhlIHBhZ2UuIFRoZW4sIHlvdSBtYXkgYmVnaW4gYWRkaW5nIGNvbXBvbmVudHMgdG8gdGhpcyBhcHBsaWNhdGlvblxyXG4gKiBvciBjdXN0b21pemUgdGhlIEphdmFTY3JpcHQgc2NhZmZvbGRpbmcgdG8gZml0IHlvdXIgdW5pcXVlIG5lZWRzLlxyXG4gKi9cclxuXHJcbmNvbnN0IGFwcCA9IG5ldyBWdWUoe1xyXG4gICAgZWw6ICcjYXBwJyxcclxufSk7XHJcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
+eval("/**\n * First we will load all of this project's JavaScript dependencies which\n * includes Vue and other libraries. It is a great starting point when\n * building robust, powerful web applications using Vue and Laravel.\n */\n__webpack_require__(/*! ./bootstrap */ \"./resources/js/bootstrap.js\");\n\nwindow.Vue = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.common.js\");\n/**\n * The following block of code may be used to automatically register your\n * Vue components. It will recursively scan this directory for the Vue\n * components and automatically register them with their \"basename\".\n *\n * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>\n */\n// const files = require.context('./', true, /\\.vue$/i)\n// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))\n\nVue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ \"./resources/js/components/ExampleComponent.vue\")[\"default\"]);\n/**\n * Next, we will create a fresh Vue application instance and attach it to\n * the page. Then, you may begin adding components to this application\n * or customize the JavaScript scaffolding to fit your unique needs.\n */\n\nvar app = new Vue({\n  el: '#app'\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvYXBwLmpzPzZkNDAiXSwibmFtZXMiOlsicmVxdWlyZSIsIndpbmRvdyIsIlZ1ZSIsImNvbXBvbmVudCIsImFwcCIsImVsIl0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7QUFNQ0EsbUJBQU8sQ0FBQyxnREFBRCxDQUFQOztBQUVBQyxNQUFNLENBQUNDLEdBQVAsR0FBYUYsbUJBQU8sQ0FBQyxrREFBRCxDQUFwQjtBQUVBOzs7Ozs7O0FBUUE7QUFDQTs7QUFFQUUsR0FBRyxDQUFDQyxTQUFKLENBQWMsbUJBQWQsRUFBbUNILG1CQUFPLENBQUMseUZBQUQsQ0FBUCxXQUFuQztBQUVBOzs7Ozs7QUFNQSxJQUFNSSxHQUFHLEdBQUcsSUFBSUYsR0FBSixDQUFRO0FBQ2hCRyxJQUFFLEVBQUU7QUFEWSxDQUFSLENBQVoiLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvYXBwLmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBGaXJzdCB3ZSB3aWxsIGxvYWQgYWxsIG9mIHRoaXMgcHJvamVjdCdzIEphdmFTY3JpcHQgZGVwZW5kZW5jaWVzIHdoaWNoXG4gKiBpbmNsdWRlcyBWdWUgYW5kIG90aGVyIGxpYnJhcmllcy4gSXQgaXMgYSBncmVhdCBzdGFydGluZyBwb2ludCB3aGVuXG4gKiBidWlsZGluZyByb2J1c3QsIHBvd2VyZnVsIHdlYiBhcHBsaWNhdGlvbnMgdXNpbmcgVnVlIGFuZCBMYXJhdmVsLlxuICovXG5cbiByZXF1aXJlKCcuL2Jvb3RzdHJhcCcpO1xuXG4gd2luZG93LlZ1ZSA9IHJlcXVpcmUoJ3Z1ZScpO1xuXG4gLyoqXG4gICogVGhlIGZvbGxvd2luZyBibG9jayBvZiBjb2RlIG1heSBiZSB1c2VkIHRvIGF1dG9tYXRpY2FsbHkgcmVnaXN0ZXIgeW91clxuICAqIFZ1ZSBjb21wb25lbnRzLiBJdCB3aWxsIHJlY3Vyc2l2ZWx5IHNjYW4gdGhpcyBkaXJlY3RvcnkgZm9yIHRoZSBWdWVcbiAgKiBjb21wb25lbnRzIGFuZCBhdXRvbWF0aWNhbGx5IHJlZ2lzdGVyIHRoZW0gd2l0aCB0aGVpciBcImJhc2VuYW1lXCIuXG4gICpcbiAgKiBFZy4gLi9jb21wb25lbnRzL0V4YW1wbGVDb21wb25lbnQudnVlIC0+IDxleGFtcGxlLWNvbXBvbmVudD48L2V4YW1wbGUtY29tcG9uZW50PlxuICAqL1xuXG4gLy8gY29uc3QgZmlsZXMgPSByZXF1aXJlLmNvbnRleHQoJy4vJywgdHJ1ZSwgL1xcLnZ1ZSQvaSlcbiAvLyBmaWxlcy5rZXlzKCkubWFwKGtleSA9PiBWdWUuY29tcG9uZW50KGtleS5zcGxpdCgnLycpLnBvcCgpLnNwbGl0KCcuJylbMF0sIGZpbGVzKGtleSkuZGVmYXVsdCkpXG5cbiBWdWUuY29tcG9uZW50KCdleGFtcGxlLWNvbXBvbmVudCcsIHJlcXVpcmUoJy4vY29tcG9uZW50cy9FeGFtcGxlQ29tcG9uZW50LnZ1ZScpLmRlZmF1bHQpO1xuXG4gLyoqXG4gICogTmV4dCwgd2Ugd2lsbCBjcmVhdGUgYSBmcmVzaCBWdWUgYXBwbGljYXRpb24gaW5zdGFuY2UgYW5kIGF0dGFjaCBpdCB0b1xuICAqIHRoZSBwYWdlLiBUaGVuLCB5b3UgbWF5IGJlZ2luIGFkZGluZyBjb21wb25lbnRzIHRvIHRoaXMgYXBwbGljYXRpb25cbiAgKiBvciBjdXN0b21pemUgdGhlIEphdmFTY3JpcHQgc2NhZmZvbGRpbmcgdG8gZml0IHlvdXIgdW5pcXVlIG5lZWRzLlxuICAqL1xuXG4gY29uc3QgYXBwID0gbmV3IFZ1ZSh7XG4gICAgIGVsOiAnI2FwcCcsXG4gfSk7XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
 
 /***/ }),
 
@@ -676,7 +676,7 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9hZG1pbmx0ZS91c2VyX2FkbWluL3VzZXJHcm91cC5zY3NzPzU0YTkiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9hZG1pbmx0ZS91c2VyX2FkbWluL3VzZXJHcm91cC5zY3NzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVtb3ZlZCBieSBleHRyYWN0LXRleHQtd2VicGFjay1wbHVnaW4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/sass/adminlte/user_admin/userGroup.scss\n");
 
 /***/ }),
 
@@ -687,7 +687,7 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9hZG1pbmx0ZS91c2VyX2FkbWluL3VzZXJHcm91cENvbnRyb2wuc2Nzcz9lMjllIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL3Nhc3MvYWRtaW5sdGUvdXNlcl9hZG1pbi91c2VyR3JvdXBDb250cm9sLnNjc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyByZW1vdmVkIGJ5IGV4dHJhY3QtdGV4dC13ZWJwYWNrLXBsdWdpbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/adminlte/user_admin/userGroupControl.scss\n");
 
 /***/ }),
 
@@ -709,7 +709,7 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9jb250YWN0cy5ibGFkZS5zY3NzPzZhMTEiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9jb250YWN0cy5ibGFkZS5zY3NzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVtb3ZlZCBieSBleHRyYWN0LXRleHQtd2VicGFjay1wbHVnaW4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/sass/sections/contacts.blade.scss\n");
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9jb250YWN0cy5ibGFkZS5zY3NzPzNkNjgiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9jb250YWN0cy5ibGFkZS5zY3NzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVtb3ZlZCBieSBleHRyYWN0LXRleHQtd2VicGFjay1wbHVnaW4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/sass/sections/contacts.blade.scss\n");
 
 /***/ }),
 
@@ -720,7 +720,7 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9mYXEuYmxhZGUuc2Nzcz83YzI2Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL3Nhc3Mvc2VjdGlvbnMvZmFxLmJsYWRlLnNjc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyByZW1vdmVkIGJ5IGV4dHJhY3QtdGV4dC13ZWJwYWNrLXBsdWdpbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/sections/faq.blade.scss\n");
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9mYXEuYmxhZGUuc2Nzcz80OWZhIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL3Nhc3Mvc2VjdGlvbnMvZmFxLmJsYWRlLnNjc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyByZW1vdmVkIGJ5IGV4dHJhY3QtdGV4dC13ZWJwYWNrLXBsdWdpbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/sections/faq.blade.scss\n");
 
 /***/ }),
 
@@ -731,7 +731,7 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9mZWF0dXJlcy5ibGFkZS5zY3NzPzJhYmEiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9mZWF0dXJlcy5ibGFkZS5zY3NzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVtb3ZlZCBieSBleHRyYWN0LXRleHQtd2VicGFjay1wbHVnaW4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/sass/sections/features.blade.scss\n");
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9mZWF0dXJlcy5ibGFkZS5zY3NzP2ExY2MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9mZWF0dXJlcy5ibGFkZS5zY3NzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVtb3ZlZCBieSBleHRyYWN0LXRleHQtd2VicGFjay1wbHVnaW4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/sass/sections/features.blade.scss\n");
 
 /***/ }),
 
@@ -742,7 +742,7 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9mb290ZXIuc2Nzcz9lM2IyIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL3Nhc3Mvc2VjdGlvbnMvZm9vdGVyLnNjc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyByZW1vdmVkIGJ5IGV4dHJhY3QtdGV4dC13ZWJwYWNrLXBsdWdpbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/sections/footer.scss\n");
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9mb290ZXIuc2Nzcz9lYWQ1Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL3Nhc3Mvc2VjdGlvbnMvZm9vdGVyLnNjc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyByZW1vdmVkIGJ5IGV4dHJhY3QtdGV4dC13ZWJwYWNrLXBsdWdpbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/sections/footer.scss\n");
 
 /***/ }),
 
@@ -753,7 +753,7 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9oZWFkZXIuc2Nzcz9iNjU3Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL3Nhc3Mvc2VjdGlvbnMvaGVhZGVyLnNjc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyByZW1vdmVkIGJ5IGV4dHJhY3QtdGV4dC13ZWJwYWNrLXBsdWdpbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/sections/header.scss\n");
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9oZWFkZXIuc2Nzcz9iZTU5Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL3Nhc3Mvc2VjdGlvbnMvaGVhZGVyLnNjc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyByZW1vdmVkIGJ5IGV4dHJhY3QtdGV4dC13ZWJwYWNrLXBsdWdpbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/sections/header.scss\n");
 
 /***/ }),
 
@@ -764,7 +764,7 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9ob21lLmJsYWRlLnNjc3M/YTBhYyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiIuL3Jlc291cmNlcy9zYXNzL3NlY3Rpb25zL2hvbWUuYmxhZGUuc2Nzcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIHJlbW92ZWQgYnkgZXh0cmFjdC10ZXh0LXdlYnBhY2stcGx1Z2luIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/sass/sections/home.blade.scss\n");
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9ob21lLmJsYWRlLnNjc3M/MjAzYSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiIuL3Jlc291cmNlcy9zYXNzL3NlY3Rpb25zL2hvbWUuYmxhZGUuc2Nzcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIHJlbW92ZWQgYnkgZXh0cmFjdC10ZXh0LXdlYnBhY2stcGx1Z2luIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/sass/sections/home.blade.scss\n");
 
 /***/ }),
 
@@ -775,7 +775,7 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9sb2dpbi5ibGFkZS5zY3NzP2RmODciXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9sb2dpbi5ibGFkZS5zY3NzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVtb3ZlZCBieSBleHRyYWN0LXRleHQtd2VicGFjay1wbHVnaW4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/sass/sections/login.blade.scss\n");
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9sb2dpbi5ibGFkZS5zY3NzPzIyYTciXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9sb2dpbi5ibGFkZS5zY3NzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVtb3ZlZCBieSBleHRyYWN0LXRleHQtd2VicGFjay1wbHVnaW4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/sass/sections/login.blade.scss\n");
 
 /***/ }),
 
@@ -786,7 +786,7 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9wcmljaW5nLnNjc3M/NTEzMSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiIuL3Jlc291cmNlcy9zYXNzL3NlY3Rpb25zL3ByaWNpbmcuc2Nzcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIHJlbW92ZWQgYnkgZXh0cmFjdC10ZXh0LXdlYnBhY2stcGx1Z2luIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/sass/sections/pricing.scss\n");
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zZWN0aW9ucy9wcmljaW5nLnNjc3M/MjdiMiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiIuL3Jlc291cmNlcy9zYXNzL3NlY3Rpb25zL3ByaWNpbmcuc2Nzcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIHJlbW92ZWQgYnkgZXh0cmFjdC10ZXh0LXdlYnBhY2stcGx1Z2luIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/sass/sections/pricing.scss\n");
 
 /***/ }),
 
@@ -797,25 +797,6 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\monitorAdd.scss */"./resources/sass/adminlte/user_admin/monitorAdd.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\monitorList.scss */"./resources/sass/adminlte/user_admin/monitorList.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\uptime.scss */"./resources/sass/adminlte/user_admin/uptime.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\statistic.scss */"./resources/sass/adminlte/user_admin/statistic.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\dashboard.scss */"./resources/sass/adminlte/user_admin/dashboard.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\userGroup.scss */"./resources/sass/adminlte/user_admin/userGroup.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\adminlte\user_admin\userGroupControl.scss */"./resources/sass/adminlte/user_admin/userGroupControl.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\footer.scss */"./resources/sass/sections/footer.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\header.scss */"./resources/sass/sections/header.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\home.blade.scss */"./resources/sass/sections/home.blade.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\pricing.scss */"./resources/sass/sections/pricing.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\features.blade.scss */"./resources/sass/sections/features.blade.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\faq.blade.scss */"./resources/sass/sections/faq.blade.scss");
-__webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\contacts.blade.scss */"./resources/sass/sections/contacts.blade.scss");
-module.exports = __webpack_require__(/*! C:\Users\rolan\OneDrive\Desktop\Full project\monitoring_project\resources\sass\sections\login.blade.scss */"./resources/sass/sections/login.blade.scss");
-=======
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\app.scss */"./resources/sass/app.scss");
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\adminlte\user_admin\monitorAdd.scss */"./resources/sass/adminlte/user_admin/monitorAdd.scss");
@@ -823,6 +804,8 @@ __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\r
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\adminlte\user_admin\uptime.scss */"./resources/sass/adminlte/user_admin/uptime.scss");
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\adminlte\user_admin\statistic.scss */"./resources/sass/adminlte/user_admin/statistic.scss");
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\adminlte\user_admin\dashboard.scss */"./resources/sass/adminlte/user_admin/dashboard.scss");
+__webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\adminlte\user_admin\userGroup.scss */"./resources/sass/adminlte/user_admin/userGroup.scss");
+__webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\adminlte\user_admin\userGroupControl.scss */"./resources/sass/adminlte/user_admin/userGroupControl.scss");
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\sections\footer.scss */"./resources/sass/sections/footer.scss");
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\sections\header.scss */"./resources/sass/sections/header.scss");
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\sections\home.blade.scss */"./resources/sass/sections/home.blade.scss");
@@ -831,7 +814,6 @@ __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\r
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\sections\faq.blade.scss */"./resources/sass/sections/faq.blade.scss");
 __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\sections\contacts.blade.scss */"./resources/sass/sections/contacts.blade.scss");
 module.exports = __webpack_require__(/*! E:\Backup\Vajag atstat\Vajag atstat\monitoring_project\resources\sass\sections\login.blade.scss */"./resources/sass/sections/login.blade.scss");
->>>>>>> 14c4f4a7cbbe562f17ce1d79a1e0d8221d529884
 
 
 /***/ })
