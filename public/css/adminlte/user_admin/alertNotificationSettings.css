@@ -1,0 +1,90 @@
+.alertNotificationSettings {
+  margin-top: 30px;
+}
+
+.alertNotificationSettings .card-body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.alertNotificationSettings .card-body .flexWrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.alertNotificationSettings .card-body .flexWrapper .options {
+  display: flex;
+  justify-content: left;
+  gap: 5px;
+  flex-wrap: wrap;
+  height: auto;
+  margin-top: 10px;
+}
+
+.alertNotificationSettings .card-body .flexWrapper .options-spaceAround {
+  justify-content: space-around;
+  gap: 0;
+}
+
+.alertNotificationSettings .card-body .flexWrapper .options:first-child {
+  margin-top: 0;
+}
+
+.alertNotificationSettings .card-body .flexWrapper .options .alertDay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  width: 45%;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.alertNotificationSettings .card-body .flexWrapper .options .alertDay-last {
+  width: 95%;
+}
+
+.alertNotificationSettings .card-body .flexWrapper .options .alertDay i {
+  margin-bottom: 5px;
+}
+
+.alertNotificationSettings .card-body .flexWrapper .options .alertDay:hover {
+  color: #fd7e14;
+  border-color: #fd7e14;
+}
+
+.alertNotificationSettings .card-body .flexWrapper .options .alertDay.selected {
+  color: white;
+  background-color: #fd7e14;
+  border-color: #fd7e14;
+}
+
+.alertNotificationSettings .card-body .flexWrapper .options .dayTime {
+  padding: 5px;
+  border: 1px solid #b8b8b8;
+  text-align: center;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  min-width: 90px;
+  cursor: pointer;
+}
+
+.alertNotificationSettings .card-body .flexWrapper .options .dayTime:hover {
+  border-color: #fd7e14;
+}
+
+.alertNotificationSettings .card-body .flexWrapper .options .dayTime.selected {
+  color: white;
+  background-color: #fd7e14;
+  border-color: #fd7e14;
+}
+

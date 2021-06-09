@@ -16,6 +16,9 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js').sourceMaps();
 mix.sass('resources/sass/app.scss', 'public/css');
 
+//user group
+mix.sass('resources/sass/notifications.scss', 'public/css/');
+
 //USER SIDE
 mix
     //monitor add style
@@ -31,7 +34,9 @@ mix
     //user group
     .sass('resources/sass/adminlte/user_admin/userGroup.scss', 'public/css/adminlte/user_admin')
     //user group
-    .sass('resources/sass/adminlte/user_admin/userGroupControl.scss', 'public/css/adminlte/user_admin');
+    .sass('resources/sass/adminlte/user_admin/userGroupControl.scss', 'public/css/adminlte/user_admin')
+    //alert notification settings
+    .sass('resources/sass/adminlte/user_admin/alertNotificationSettings.scss', 'public/css/adminlte/user_admin');
 
 
 //ADMIN SIDE STYLES

@@ -348,10 +348,10 @@
             let upInPercent = roundNumber((value.up * 100)/checkSum, 2);
             let downInPercent = 100 - upInPercent;
 
-            if(upInPercent > 61){
+            if(upInPercent > 97){
                 element.classList.remove('gray');
                 element.classList.add('green');
-            }else if(upInPercent > 49){
+            }else if(upInPercent > 93){
                 element.classList.remove('gray');
                 element.classList.add('yellow');
             }else{
@@ -377,9 +377,9 @@
             let contentCardBody = document.createElement('div');
             contentCardBody.classList.add('uptimeChart-boxContentCardBody');
 
-            if(upInPercent > 60) {
+            if(upInPercent > 97) {
                 contentCardBody.style.borderBottom = "5px solid rgba(0, 128, 0, 0.81)";
-            }else if(upInPercent > 49) {
+            }else if(upInPercent > 93) {
                 contentCardBody.style.borderBottom = "5px solid rgba(255, 255, 0, 0.81)";
             }else {
                 contentCardBody.style.borderBottom = "5px solid rgba(173, 5, 5, 0.81)";

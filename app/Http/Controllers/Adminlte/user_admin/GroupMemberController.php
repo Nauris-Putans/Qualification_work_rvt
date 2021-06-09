@@ -19,7 +19,7 @@ class GroupMemberController extends Controller
         $users = DB::table('users')
             ->join('monitoring_group_members', 'monitoring_group_members.group_member','=','users.id')
             ->join('group_member_permission', 'group_member_permission.permission_id','=','monitoring_group_members.group_member_permission')
-            ->join('countries', 'countries.id', '=', 'users.country')
+            ->leftjoin('countries', 'countries.id', '=', 'users.country')
             ->where('group_id', $groupId)
             ->get(['group_member', 'group_id', 'permission_name as permission', 'phone_number', 'users.name', 'gender', 'email', 'profile_image', 'countries.name as country', 'city']);
 
@@ -43,7 +43,6 @@ class GroupMemberController extends Controller
         $group = $request->group;
 
         $users = DB::table('users')
-            ->join('countries', 'countries.id', '=', 'users.country')
             ->where('email', 'like', $emailLike)
             ->get(['phone_number', 'users.name', 'gender', 'email', 'profile_image', 'users.id']);
         
@@ -99,11 +98,17 @@ class GroupMemberController extends Controller
         //Get group id in which user is invited
         $group = $request->group;
 
+        //Get current user ID
+        $currentUserID = $request
+            ->session()
+            ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
+
         date_default_timezone_set("Europe/Riga");
 
         //Add request to database
         DB::table('user_group_request')->insert([
             'recipient' => $selectedUser,
+            'requestor' => $currentUserID,
             'group' => $group,
             'status' => 1,
             'created_at'=> date('Y-m-d H:i:s')

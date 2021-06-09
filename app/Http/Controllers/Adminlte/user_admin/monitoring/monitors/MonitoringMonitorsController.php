@@ -94,6 +94,8 @@ class MonitoringMonitorsController extends Controller
         //Check interval
         $checkInterval = $request->checkInterval;
 
+        $friendlyName = $request->friendlyName ?? substr($checkAddress, 0, 20);
+
         if($checkInterval > 0){
             $checkInterval = $checkInterval.'m';
         }else{
@@ -316,7 +318,7 @@ class MonitoringMonitorsController extends Controller
                 //Fill out monitoring_monitors table
                 DB::table('monitoring_monitors')->insert(
                     [
-                        'friendly_name' => $request->friendlyName ?? $url,
+                        'friendly_name' => $friendlyName,
                         'user_input' => $checkAddress,
                         'user_group' => $usergroupID,
                         'user_id' => $currentUserID,
@@ -447,7 +449,7 @@ class MonitoringMonitorsController extends Controller
                 //Fill out monitoring_monitors table
                 DB::table('monitoring_monitors')->insert(
                     [
-                        'friendly_name' => $request->friendlyName ?? $ip,
+                        'friendly_name' => $friendlyName,
                         'user_input' => $checkAddress,
                         'user_group' => $usergroupID,
                         'user_id' => $currentUserID,
@@ -614,6 +616,16 @@ class MonitoringMonitorsController extends Controller
             );
 
         }
+
+        //Add current user activity(create monitor) to log file
+        DB::table('user_activity_log')->insert([
+            'userID' => $currentUserID,
+            'groupID' => $usergroupID ,
+            'function' => 'created monitor',
+            'decription' => $friendlyName,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
         
         return response()->json(['message' => __('Monitor has been created!')]);
     }

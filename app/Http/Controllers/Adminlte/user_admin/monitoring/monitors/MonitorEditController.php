@@ -301,19 +301,19 @@ class MonitorEditController extends Controller
         return $actionID;
     }
 
-    private function updateMonitor($data){
+    private function updateMonitor(Request $request){
 
-        $hostId = $data->monitor['host'];
-        $checkInterval = $data->checkInterval;
+        $hostId = $request->monitor['host'];
+        $checkInterval = $request->checkInterval;
 
         if($checkInterval > 0){
             $checkInterval = $checkInterval.'m';
         }else{
             $checkInterval = '30s';
         }
-        $friendlyName = $data->friendlyName;
-        $monitorType = $data->monitor['monitor_type'];
-        $emailLanguage = $data->email;
+        $friendlyName = $request->friendlyName;
+        $monitorType = $request->monitor['monitor_type'];
+        $emailLanguage = $request->email;
         $meadiaTypes = (object)[
             'english' => 1,
             'latvian' => 4,
@@ -333,7 +333,7 @@ class MonitorEditController extends Controller
             ->where('host',$hostId)
             ->update(['check_interval' => $checkInterval, 'friendly_name' =>  $friendlyName ]); 
 
-        $alertPersons = $data->personsToAlert;
+        $alertPersons = $request->personsToAlert;
         $zabbixUserId = $this->getZabbixUserIdFromUserId($alertPersons);
 
         $zabbixActionId = DB::table('monitoring_zabbix_triggers')
@@ -424,6 +424,24 @@ class MonitorEditController extends Controller
             $zabbixActionId = $zabbixActionId->zabbix_action_id;
             $this->removeZabbixAction($zabbixActionId);
         }
+
+        //Get current user ID;
+        $currentUserID = $request
+        ->session()
+        ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
+
+        //Get current user's group id
+        $usergroupID = $request->session()->get('groupId');
+
+        //Add current user activity(create monitor) to log file
+        DB::table('user_activity_log')->insert([
+            'userID' => $currentUserID,
+            'groupID' => $usergroupID ,
+            'function' => 'edited monitor',
+            'decription' => $friendlyName,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
         
         return response()->json(['message' => __('Monitor has been updated!')]);
     }

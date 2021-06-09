@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserGroupRequestTable extends Migration
+class CreateLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,16 @@ class CreateUserGroupRequestTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_group_request', function (Blueprint $table) {
+        Schema::create('user_activity_log', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('userID');
+            $table->string('groupID')->nullable();
+            $table->string('function');
+            $table->string('decription')->nullable();
             $table->timestamps();
         });
+
+        
     }
 
     /**
@@ -26,6 +32,6 @@ class CreateUserGroupRequestTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_group_request');
+        Schema::dropIfExists('logs');
     }
 }

@@ -22,11 +22,32 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+//Database
 use Illuminate\Support\Facades\DB;
+//Zabbix
+use Becker\Zabbix\ZabbixApi;
+use Becker\Zabbix\ZabbixException;
 
 class SettingController extends Controller
 {
     use UploadTrait;
+
+    /**
+     * The ZabbixApi instance.
+     *
+     * @var ZabbixApi
+     */
+    protected $zabbix;
+
+    /**
+     * Create a new Zabbix API instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->zabbix = app('zabbix');
+    }
 
     /**
      * Display a listing of the resource.
@@ -46,12 +67,14 @@ class SettingController extends Controller
         // Finds users id by Auth model
         $id = Auth::id();
 
+        // Get user group
         $activeUserGroup = $request->session()->get("groupId");
 
-        $groups = DB::table('monitoring_group_members')
-            ->join('monitoring_users_groups','monitoring_users_groups.group_id','monitoring_group_members.group_id')
-            ->where('group_member',$id)
-            ->get(['monitoring_group_members.group_id','group_name']);
+        //Get user alertPeriod
+        $alertPeriod = DB::table('monitoring_zabbix_users')
+            ->where('user_id', '=', $id)
+            ->get('alert-period as period')
+            ->first()->period;
 
         // Finds user by $id
         $user = User::find($id);
@@ -90,7 +113,7 @@ class SettingController extends Controller
         // Sets locale for all data types (php)
         setlocale(LC_ALL, $locale . '_' . strtoupper($locale), $locale);
 
-        return view('adminlte.user_admin.settings', compact('countries', 'hashids', 'user', 'countryName', 'groups', 'activeUserGroup', 'timestamp', 'planName', 'invoices'));
+        return view('adminlte.user_admin.settings', compact('countries', 'hashids', 'user', 'alertPeriod', 'countryName', 'activeUserGroup', 'timestamp', 'planName', 'invoices'));
     }
 
     /**
@@ -202,42 +225,6 @@ class SettingController extends Controller
     }
 
     /**
-     * Updates password security in account settings section
-     *
-     * @param $groupid
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function changeGroup(Request $request, $groupid)
-    {
-
-        // get user id
-        $userId = $request
-            ->session()
-            ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
-
-        $userIsMember = DB::table('monitoring_group_members')
-            ->where('group_member',$userId)
-            ->where('group_id',$groupid)
-            ->get()->first();
-
-        if($userIsMember){
-            //Set new group to user to global variable (groupId)
-            session(['groupId' => $groupid]);
-
-            $hostGroupID = DB::table('monitoring_hosts_groups')
-                ->where('user_group',$groupid)
-                ->get('host_group_id')->first()->host_group_id;
-
-            //Set current user host group's id to global variable
-            session(['hostGroup' => $hostGroupID]);
-
-        }
-
-
-        return redirect()->back();
-    }
-
-    /**
      * Updates user profile image in account settings section
      *
      * @param ProfileImageRequest $request
@@ -285,5 +272,64 @@ class SettingController extends Controller
         $user->save();
 
         return redirect()->back()->with('message', __(':attribute - :action', ['attribute' => __("Profile image"), 'action' => __("has been updated!")]));
+    }
+
+    /**
+     * Change user alert period
+     *
+     * @param ProfileImageRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function alertNotificationUpdate(Request $request)
+    {
+        //Get current user ID;
+        $currentUserID = $request->session()
+            ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
+
+        $period = $request->alertPeriod;
+
+        $userInfo = DB::table('monitoring_zabbix_users')
+            ->join('users', 'id', 'user_id')
+            ->where('user_id', '=', $currentUserID)
+            ->get(['zabbix_user_id', 'email'])
+            ->first();
+
+        $zabbixUserId = $userInfo->zabbix_user_id;
+        $email = $userInfo->email;
+
+         $this->zabbix->userUpdate([
+            "userid" => $zabbixUserId,
+            "user_medias"=> [
+                [
+                    "mediatypeid"=> "1", //e-mail EN
+                    "sendto"=> [
+                        $email
+                    ],
+                    "period" => $period
+                ],
+                [
+                    "mediatypeid"=> "4", //e-mail LV
+                    "sendto"=> [
+                        $email
+                    ],
+                    "period" => $period
+                ],
+                [
+                    "mediatypeid"=> "22", //e-mail RU
+                    "sendto"=> [
+                        $email
+                    ],
+                    "period" => $period
+                ]
+            ]
+        ]);
+        
+        DB::table('monitoring_zabbix_users')
+        ->where('zabbix_user_id', $zabbixUserId)
+        ->update([
+            'alert-period' => $period,
+        ]);
+        
+        return 1;
     }
 }

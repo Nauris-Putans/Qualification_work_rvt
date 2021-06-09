@@ -84,6 +84,12 @@ class MonitoringPageSpeedController extends Controller
             'itemids' => $firtsItem,
         ]);
 
+        //Convert history values in seconds to milliseconds
+        foreach ($histories as $key => $history) {
+            $value = $history->value;
+            $histories[$key]->value = $value * 1000;
+        }
+
         return view('adminlte.user_admin.monitoring.page-speed', compact(['histories','itemsFriendlyName','itemsIds']));
     }
 
@@ -139,6 +145,14 @@ class MonitoringPageSpeedController extends Controller
             'sortorder' => 'DESC',
             'itemids' => $selectedId,
         ]);
+
+        $measurement = $request->measurement;
+        if($measurement == 'ms'){
+            foreach ($histories as $key => $history) {
+                $value = $history->value;
+                $histories[$key]->value = $value * 1000;
+            }
+        }
 
         return compact(['histories','itemsFriendlyName','itemsIds','selectedId']);
     }

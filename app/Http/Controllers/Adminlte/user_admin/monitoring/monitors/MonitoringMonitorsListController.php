@@ -146,6 +146,17 @@ class MonitoringMonitorsListController extends Controller
      */
     public function deleteMonitor($monitorId, Request $request)
     {
+        //Get user group id
+        $usergroupID = $request->session()->get("groupId");
+
+        //Get current user ID
+        $currentUserID = $request
+        ->session()
+        ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
+
+        $check_address = DB::table('monitoring_hosts')
+            ->where('host_id', $monitorId)
+            ->get(['check_address'])->first()->check_address;
 
         $hostAplicationWebScenario = DB::table('host_has_application_webscenario')
             ->where('host_id', $monitorId)
@@ -184,6 +195,16 @@ class MonitoringMonitorsListController extends Controller
         DB::delete('delete from monitoring_applications where application_id = ?',[$application]);
         DB::delete('delete from monitoring_zabbix_triggers where zabbix_triger_id = ?',[$trigger]);
         DB::delete('delete from monitoring_hosts where host_id = ?',[$monitorId]);
+
+        //Add current user activity(create monitor) to log file
+        DB::table('user_activity_log')->insert([
+            'userID' => $currentUserID,
+            'groupID' => $usergroupID ,
+            'function' => 'delited monitor',
+            'decription' => $check_address,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
         
         return redirect()->back()->with('message', __("The monitor #") . __("has been deleted."));
     }
@@ -199,6 +220,10 @@ class MonitoringMonitorsListController extends Controller
         $monitor = DB::table('monitoring_monitors')
             ->where('host', $hostId)
             ->get(['status','id'])->first();
+        
+        $check_address = DB::table('monitoring_hosts')
+            ->where('host_id', $hostId)
+            ->get(['check_address'])->first()->check_address;
 
         $action = DB::table('monitoring_zabbix_triggers')
             ->join('monitoring_zabbix_actions','monitoring_zabbix_actions.zabbix_trigger','monitoring_zabbix_triggers.zabbix_triger_id')
@@ -223,6 +248,26 @@ class MonitoringMonitorsListController extends Controller
             $actionStatus = 0;
             $currentStatus = 1;
         }
+
+        //Add to log file
+        
+        //Get user group id
+        $usergroupID = $request->session()->get("groupId");
+
+        //Get current user ID
+        $currentUserID = $request
+        ->session()
+        ->get("login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d");
+
+        //Add current user activity(status changed) to log file
+        DB::table('user_activity_log')->insert([
+            'userID' => $currentUserID,
+            'groupID' => $usergroupID ,
+            'function' => 'status changed',
+            'decription' => $check_address,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
 
         //Change monitor status
         $monitors = DB::table('monitoring_monitors')

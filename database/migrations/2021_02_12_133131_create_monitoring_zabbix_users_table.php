@@ -16,6 +16,7 @@ class CreateMonitoringZabbixUsersTable extends Migration
         Schema::create('monitoring_zabbix_users', function (Blueprint $table) {
             $table->unsignedBigInteger('zabbix_user_id');
             $table->unsignedBigInteger("user_id");
+            $table->string("alert-period");
 
             $table->primary("zabbix_user_id");
 

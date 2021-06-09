@@ -135,10 +135,12 @@ class MonitoringSeeder extends Seeder
             [
                 "zabbix_user_id" => "33",
                 "user_id" => "32",
+                "alert-period" => "1-7,00:00-24:00"
             ],
             [
                 "zabbix_user_id" => "34",
                 "user_id" => "33",
+                "alert-period" => "1-7,00:00-24:00"
             ],
         ];
         DB::table('monitoring_zabbix_users')->insert($zabbixUser);
@@ -165,12 +167,12 @@ class MonitoringSeeder extends Seeder
                 "group_name" => 'admin group'
             ],
             [
-                "group_id" => "G32",
+                "group_id" => "20",
                 "group_admin_id" => "32",
                 "group_name" => 'Rolands Bidzans group'
             ],
             [
-                "group_id" => "G33",
+                "group_id" => "21",
                 "group_admin_id" => "33",
                 "group_name" => 'Rolandš ишвяфты group'
             ],
@@ -218,17 +220,17 @@ class MonitoringSeeder extends Seeder
                 "group_member_permission" => 1
             ],
             [
-                "group_id" => "G32",
+                "group_id" => "20",
                 "group_member" => "32",
                 "group_member_permission" => 1
             ],
             [
-                "group_id" => "G32",
+                "group_id" => "20",
                 "group_member" => "33",
                 "group_member_permission" => 3
             ],
             [
-                "group_id" => "G33",
+                "group_id" => "21",
                 "group_member" => "33",
                 "group_member_permission" => 1
             ],
@@ -253,7 +255,8 @@ class MonitoringSeeder extends Seeder
         $groupRequests = [
             [
                 'recipient' => '33',
-                'group' => 'G32',
+                'requestor' => 32,
+                'group' => '20',
                 'status' => 3,
                 'created_at' => "2021-03-01 17:32:03"
             ]
@@ -268,19 +271,19 @@ class MonitoringSeeder extends Seeder
             [
                 "host_group_id" => "102",
                 "host_group_name" => "G32-Hosts",
-                "user_group" => 'G32'
+                "user_group" => '20'
             ],
             [
                 "host_group_id" => "103",
                 "host_group_name" => "G33-Hosts",
-                "user_group" => 'G33'
+                "user_group" => '21'
             ],
         ];
 
         $monitoringHosts = [
             [
                 "host_id" => "10723",
-                "host_name" => "G32 nytimes.com 2021-03-09 16-03-52",
+                "host_name" => "20 nytimes.com 2021-03-09 16-03-52",
                 "check_address" => 'https://nytimes.com',
                 "host_group" => '102'
             ],
@@ -318,7 +321,7 @@ class MonitoringSeeder extends Seeder
                 "id" => "72",
                 "friendly_name" => "Ntymes",
                 "user_input" => 'www.nytimes.com',
-                "user_group" => "G32",
+                "user_group" => "20",
                 'monitor_type' => '2',
                 'check_interval' => '30s',
                 "user_id" => "32",

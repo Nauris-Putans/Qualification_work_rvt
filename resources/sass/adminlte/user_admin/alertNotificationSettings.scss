@@ -1,0 +1,81 @@
+.alertNotificationSettings{
+    margin-top: 30px;
+    .card{
+        &-body{
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            .flexWrapper{
+                position: relative;
+                width:100%;
+                height: auto;
+                 // Week part select styles
+                .options{
+                    display: flex;
+                    justify-content: left;
+                    gap: 5px;
+                    flex-wrap: wrap;
+                    height: auto;
+                    margin-top: 10px;
+                    &-spaceAround{
+                        justify-content: space-around;
+                        gap: 0;
+                    }
+                    &:first-child{
+                        margin-top: 0;
+                    }
+                    .alertDay{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        outline: none;
+                        border: none;
+                        width: 45%;
+                        padding: 10px;
+                        background-color: white;
+                        border: 1px solid rgb(218, 218, 218);
+                        border-radius: 5px;
+                        flex-direction: column;
+                        cursor: pointer;
+                        &-last{
+                            width: 95%;
+                        }
+                        i{
+                            margin-bottom: 5px;
+                        }
+                        &:hover{
+                            color: #fd7e14;
+                            border-color: #fd7e14;
+                        }
+                    }
+                    .alertDay.selected{
+                        color: white;
+                        background-color: #fd7e14;
+                        border-color: #fd7e14;
+                    }
+
+                    // Day time select styles
+                    .dayTime{
+                        padding: 5px;
+                        border: 1px solid #b8b8b8;
+                        text-align: center;
+                        outline: none;
+                        border: none;
+                        border-radius: 5px;
+                        min-width: 90px;
+                        cursor: pointer;
+                        &:hover{
+                            border-color: #fd7e14;
+                        }
+                    }
+                    .dayTime.selected{
+                        color: white;
+                        background-color: #fd7e14;
+                        border-color: #fd7e14;
+                    }
+                }
+            }
+        }
+    }
+}
