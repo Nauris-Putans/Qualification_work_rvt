@@ -27,17 +27,25 @@
                             <div class="card-body">
                                 <h4 class="card-title text-muted" style="float: none;">{{ __('Next billing date') }}</h4>
 
+
+
                                 @if ($timestamp === null)
                                     <h5 class="card-text"><strong>{{ __('None') }}</strong></h5>
                                 @else
-                                    @if (Config::get('app.locale') !== 'ru')
+                                    @if (Config::get('app.locale') === 'lv')
                                         <h5 class="card-text">
-                                            <strong>{{ strftime("%B %e, %Y", strtotime($timestamp)) }}</strong>
+                                            <strong>{{ strftime("%d.%m.%Y.", strtotime($timestamp)) }}</strong>
                                         </h5>
                                     @else
-                                        <h5 class="card-text">
-                                            <strong>{{ iconv('windows-1251', 'utf-8', strftime("%B %e, %Y", strtotime($timestamp))) }}</strong>
-                                        </h5>
+                                        @if (Config::get('app.locale') !== 'ru')
+                                            <h5 class="card-text">
+                                                <strong>{{ strftime("%B %e, %Y", strtotime($timestamp)) }}</strong>
+                                            </h5>
+                                        @else
+                                            <h5 class="card-text">
+                                                <strong>{{ iconv('windows-1251', 'utf-8', strftime("%B %e, %Y", strtotime($timestamp))) }}</strong>
+                                            </h5>
+                                        @endif
                                     @endif
                                 @endif
 
@@ -83,10 +91,14 @@
                                                     @foreach ($invoices as $invoice)
                                                         <div class="time-label">
                                                             <span class="bg-green">
-                                                                @if (Config::get('app.locale') !== 'ru')
-                                                                    {{ strftime("%d %b", strtotime($invoice->date()->setTimezone(new DateTimeZone('Europe/Riga')))) }}
+                                                                @if (Config::get('app.locale') === 'lv')
+                                                                    {{ strftime("%d.%m.%Y.", strtotime($invoice->date()->setTimezone(new DateTimeZone('Europe/Riga')))) }}
                                                                 @else
-                                                                    {{ iconv('windows-1251', 'utf-8', strftime("%d %b", strtotime($invoice->date()->setTimezone(new DateTimeZone('Europe/Riga'))))) }}
+                                                                    @if (Config::get('app.locale') !== 'ru')
+                                                                        {{ strftime("%d %b", strtotime($invoice->date()->setTimezone(new DateTimeZone('Europe/Riga')))) }}
+                                                                    @else
+                                                                        {{ iconv('windows-1251', 'utf-8', strftime("%d %b", strtotime($invoice->date()->setTimezone(new DateTimeZone('Europe/Riga'))))) }}
+                                                                    @endif
                                                                 @endif
                                                                 <input name="stop" type="hidden" value="stop">
                                                             </span>

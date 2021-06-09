@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCommentCreateRequest;
-use App\Mailers\AppMailer;
 use App\Models\Comment;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\Auth;
