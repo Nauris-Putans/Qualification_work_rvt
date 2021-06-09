@@ -404,6 +404,9 @@
     "Pay :amount": "Платить :amount",
     "You can change subscription plan in account settings": "Вы можете изменить тарифный план в настройках аккаунта",
     "Powered by Stripe": "При поддержке Stripe",
+    "Are you sure to cancel current plan - :planName": "Вы уверены, что отмените текущий тариф - :planName",
+    "Yes": "Да",
+    "No": "Нет",
 
     "//////FAQ section":
     {},

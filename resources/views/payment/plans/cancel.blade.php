@@ -53,7 +53,7 @@
             </div>
 
             <div class="mb-3" style="text-align: center;">
-                {{ __('Are you sure to cancel current plan - :planName', ['planName' => $planName . "?"]) }}
+                {{ __("Are you sure to cancel current plan - :planName", ['planName' => $planName . "?"]) }}
             </div>
 
             <div class="row justify-content-center">

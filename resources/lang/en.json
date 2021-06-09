@@ -404,6 +404,9 @@
     "Pay :amount": "Pay :amount",
     "You can change subscription plan in account settings": "You can change subscription plan in account settings",
     "Powered by Stripe": "Powered by Stripe",
+    "Are you sure to cancel current plan - :planName": "Are you sure to cancel current plan - :planName",
+    "Yes": "Yes",
+    "No": "No",
 
     "//////FAQ section":
     {},

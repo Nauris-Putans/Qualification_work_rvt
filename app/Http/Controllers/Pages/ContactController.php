@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Pages;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MailController;
 use App\Http\Requests\ContactCreateRequest;
-use App\Mailers\AppMailer;
+use Illuminate\Mail\Mailer;
 use App\Models\Adminlte\admin\Ticket;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -33,7 +33,7 @@ class ContactController extends Controller
      * @param ContactCreateRequest $request
      * @return RedirectResponse
      */
-    public function store(ContactCreateRequest $request, AppMailer $mailer)
+    public function store(ContactCreateRequest $request, Mailer $mailer)
     {
         // Priorities based on category
         switch ($request->category)
