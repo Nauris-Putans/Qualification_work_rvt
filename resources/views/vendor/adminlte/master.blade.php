@@ -28,7 +28,8 @@
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
-
+        <link rel="stylesheet" href="/css/notifications.css">
+        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.css">
 
         {{-- Configured Stylesheets --}}
@@ -184,9 +185,222 @@
                 // Renders calendar
                 calendar.render();
             });
-            const not = document.getElementById('notification');
-            not.style.backgroundColor = 'red';
-            console.log(not);
+
+            //Notifications Managment
+            $(function () {  
+
+                function startLookingForNotifications(){
+                    const url = "{{ URL::route('notifications.getNotifications') }}";
+                    ajaxRequest(url, null);
+                    setTimeout( startLookingForNotifications, 30000 ); //repear function after 30 secounds
+                }
+                startLookingForNotifications()
+
+                function addGroupInvitationRequests(invitations){
+                    const notificationWrapper = document.getElementById('invitationWrapper');
+
+                    //Insert new notifications to dropdown element
+                    for (i = 0; i < invitations.length; i++) {
+                        const requestID = invitations[i].requestID;
+                        const groupName = invitations[i].group_name;
+                        const requestorName = invitations[i].name;
+
+                        const elementHtlm = `
+                            <div class="dropdown-item" id="invitation${requestID}">
+                                <i class="fas fa-users mr-2"></i>
+                                <div class="item-body">
+                                    <div class="item-title">${groupName}</div>
+                                    <div class="item-decr">{{ __('Invited by') }} <span>${requestorName}</span></div>
+                                </div>
+                                <div class="item-buttons">
+                                    <button class="button button-join" id="join${requestID}">{{ __('Join')}}</button>
+                                    <button class="button button-decline" id="decline${requestID}">{{ __('Decline')}}</button>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider" id="divider${requestID}"></div>
+                            `
+
+                        const position = "beforeend";
+                        notificationWrapper.insertAdjacentHTML(position, elementHtlm);
+
+                        //Add event listener to decline button
+                        const declineBtn = document.getElementById('decline'+requestID);
+                        declineBtn.addEventListener('click', () =>{
+                            declineInvitation(requestID);
+                        })
+
+                        //Add event listener to join button
+                        const acceptBtn = document.getElementById('join'+requestID);
+                        acceptBtn.addEventListener('click', () =>{
+                            acceptInvitation(requestID);
+                        })
+                    } 
+                }
+
+                function getRequestRefusedHtml(requestID, groupName, recipientName){
+                    const elementHtlm = `
+                        <div class="dropdown-item" id="invitation${requestID}">
+                            <i class="far fa-times-circle"></i>
+                            <div class="item-body">
+                                <div class="item-decr">{{ __('User') }} <span> ${recipientName}</span></div>
+                                <div class="item-decr">{{ __('decline your request to') }} </div>
+                                <div class="item-decr">{{ __('join the group:') }} <span>${groupName}</span></div>
+                            </div>
+                            <div class="item-buttons">
+                                <button class="button button-join" id="informed${requestID}">{{ __('OK')}}</button>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider" id="divider${requestID}"></div>
+                        `
+
+                    return elementHtlm;
+                }
+
+                function getRequestComfirmedHtml(requestID, groupName, recipientName){
+                    const elementHtlm = `
+                        <div class="dropdown-item" id="invitation${requestID}">
+                            <i class="far fa-check-circle"></i>
+                            <div class="item-body">
+                                <div class="item-decr">{{ __('User') }} <span> ${recipientName}</span></div>
+                                <div class="item-decr">{{ __('accepted your request to') }} </div>
+                                <div class="item-decr">{{ __('join the group:') }} <span>${groupName}</span></div>
+                            </div>
+                            <div class="item-buttons">
+                                <button class="button button-join" id="informed${requestID}">{{ __('OK')}}</button>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider" id="divider${requestID}"></div>
+                        `
+
+                    return elementHtlm;
+                }
+
+                function addRequestResponseItems(requestResponse){
+                    //Insert requestRespones to dropdown element
+                    for (i = 0; i < requestResponse.length; i++) {
+                        const requestID = requestResponse[i].requestID;
+                        const groupName = requestResponse[i].group_name;
+                        const recipientName = requestResponse[i].name;
+                        const requestResponseStatus = requestResponse[i].status;
+
+                        let requestResponseHtml = '';
+
+                        if(requestResponseStatus == 2) {
+                            requestResponseHtml = getRequestRefusedHtml(requestID, groupName, recipientName)
+                        }else {
+                            requestResponseHtml = getRequestComfirmedHtml(requestID, groupName, recipientName)
+                        }
+
+                        const notificationWrapper = document.getElementById('invitationWrapper');
+                        const position = "beforeend";
+                        notificationWrapper.insertAdjacentHTML(position, requestResponseHtml);
+
+                        const informedBtn = document.getElementById('informed'+requestID);
+                        informedBtn.addEventListener('click', () =>{
+                            removeInvitation(requestID);
+                        })
+                    } 
+                }
+
+                function displayNotifications(invitations, requestResponse){
+
+                    let notificationCount = 0;
+                    //Remove all old notifications
+                    const notificationWrapper = document.getElementById('invitationWrapper');
+                    notificationWrapper.innerHTML = "";
+
+                    //Add new Notifications
+                    if(Array.isArray(invitations) && invitations.length > 0){
+                        addGroupInvitationRequests(invitations);
+
+                        notificationCount += invitations.length;
+                    }
+
+                    //Add new request responses
+                    if(Array.isArray(requestResponse) && requestResponse.length > 0){
+                        addRequestResponseItems(requestResponse);
+
+                        notificationCount += requestResponse.length;
+                    }
+
+                    //Display how many notifications this user has
+                    const notificationCountLable = document.getElementById('notificationCountLable');
+
+                    if(notificationCount > 0){
+                        notificationCountLable.style.display = 'inline-block'
+                    }else{
+                        notificationCountLable.style.display = 'none'
+                    }
+
+                    notificationCountLable.innerText = notificationCount;
+                }
+
+                //Removes notification item
+                function removeNotificationitem(itemId){
+                    document.getElementById('invitation'+itemId).remove();
+                    document.getElementById('divider'+itemId).remove();
+
+                    let label = document.getElementById('notificationCountLable');
+                    let currentNotificationCount = parseInt(label.textContent);
+
+                    if(currentNotificationCount-1 > 0){
+                        label.style.display = 'inline-block'
+                        label.innerText = currentNotificationCount-1;
+                    }else{
+                        label.style.display = 'none'
+                        label.innerText = currentNotificationCount-1;
+                    }
+
+                    label.innerText = currentNotificationCount-1;
+                }
+
+                function declineInvitation(requestID){
+                    const url = "{{ URL::route('invitation.decline') }}";
+                    ajaxRequest(url, requestID);
+                }
+
+                function acceptInvitation(requestID){
+                    const url = "{{ URL::route('invitation.accept') }}";
+                    ajaxRequest(url, requestID);
+                }
+
+                function removeInvitation(requestID){
+                    const url = "{{ URL::route('invitation.removeRequest') }}";
+                    ajaxRequest(url, requestID);
+                }
+
+                //Ajax request
+                function ajaxRequest(url, data){
+
+                    $.ajax( {
+                    type:'POST',
+                    header:{
+                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: url,
+                    data:{
+                    _token: "{{ csrf_token() }}",
+                    dataType: 'json', 
+                    contentType:'application/json',
+                    //My passed data 
+                    data: data
+                    }
+
+
+                    })
+                    .done(function(data) {
+                        if(data[0] === 'getNotifications'){
+                            displayNotifications(data[1], data[2])
+                        }else if(data[0] === 'requestResponded'){
+                            removeNotificationitem(data[1])
+                        }
+
+                    })
+                    .fail(function(error) {
+        
+                    });
+                }
+            })
 
         </script>
 

@@ -74,79 +74,18 @@
 
             <div class="col-md-8">
                 <div class="card">
-                  <div class="card-header p-2">
-                    <ul class="nav nav-pills">
-                      <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Timeline</a></li>
-                    </ul>
-                  </div><!-- /.card-header -->
+                  <div class="card-header bg-info">
+                    <h1 class="card-title">{{ __('Timeline')}}</h1>
+                  </div>
                   <div class="card-body" style="overflow-y: auto; height: 550px;">
                     <div class="tab-content">
                       <div class="tab-pane active" id="timeline">
                         <!-- The timeline -->
-                        <div class="timeline timeline-inverse">
-                          <!-- timeline item -->
-                          <div>
-                            <i class="fas fa-envelope bg-primary"></i>
-
-                            <div class="timeline-item">
-                              <span class="time"><i class="far fa-clock"></i> 12:05</span>
-
-                              <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                              <div class="timeline-body">
-                                Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                quora plaxo ideeli hulu weebly balihoo...
-                              </div>
-                              <div class="timeline-footer">
-                                <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- END timeline item -->
-                          <!-- timeline item -->
-                          <div>
-                            <i class="fas fa-user bg-info"></i>
-
-                            <div class="timeline-item">
-                              <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-
-                              <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request
-                              </h3>
-                            </div>
-                          </div>
-                          <!-- END timeline item -->
-                          <!-- timeline item -->
-                          <div>
-                            <i class="fas fa-comments bg-warning"></i>
-
-                            <div class="timeline-item">
-                              <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                              <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                              <div class="timeline-body">
-                                Take me to your leader!
-                                Switzerland is small and neutral!
-                                We are more like Germany, ambitious and misunderstood!
-                              </div>
-                              <div class="timeline-footer">
-                                <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- END timeline item -->
-
-                          <div>
-                            <i class="far fa-clock bg-gray"></i>
-                          </div>
+                        <div class="timeline timeline-inverse" id="timeline_wrapper">
+                          {{-- Automaticaly created logs --}}
                         </div>
                       </div>
                       <!-- /.tab-pane -->
-
-
                     </div>
                     <!-- /.tab-content -->
                   </div><!-- /.card-body -->
@@ -158,9 +97,66 @@
 @stop
 
 @section('css')
-<link href="/css/userAdmin.css" rel="stylesheet">
+{{-- <link href="/css/userAdmin.css" rel="stylesheet"> --}}
 @stop
 
 @section('js')
+    <script>
+      $(function(){
 
+        function getLogEvent(logStatus){
+          let event = 0;
+          if(logStatus == "created monitor"){
+            event = 0;
+          }else if(logStatus == "edited monitor"){
+            event = 1;
+          }else if(logStatus == "deleted monitor"){
+            event = 2;
+          }else{
+            event = 3;
+          }
+
+          return event;
+        }
+
+        const logsGroupedByDate = <?php echo json_encode($logsGroupedByDate); ?>;
+        const logContainer = document.getElementById('timeline_wrapper');
+        const icons = ['fa-plus bg-info', 'fa-pen-alt bg-warning', 'fa-trash-alt bg-red', 'fa-info bg-purple']
+        const titles  = new Array(4);
+          titles[0] = @json( __("Created monitor")  );
+          titles[1] = @json( __("Edited monitor")  );
+          titles[2] = @json( __("Deleted monitor")  );
+          titles[3] = @json( __("Status has been changed for monitor")  );
+        const position = "beforeend";
+
+        for (const [key, groupedLogs] of Object.entries(logsGroupedByDate)) {
+          const timeSeparator = `
+              <div class="time-label">
+                <span class="bg-red">${key}</span>
+              </div>
+              `
+          logContainer.insertAdjacentHTML(position,timeSeparator);
+
+          for(let i=0; i<groupedLogs.length; i++){
+            const event = getLogEvent(groupedLogs[i].function);
+            const element = `
+                <div>
+                  <i class="fas ${icons[event]}"></i>
+
+                  <div class="timeline-item">
+                    <span class="time"><i class="far fa-clock"></i> ${groupedLogs[i].time}</span>
+
+                    <h3 class="timeline-header">
+                      ${titles[event]} 
+                      <span style="font-weight: 550">${groupedLogs[i].decription}</span>
+                    </h3>
+                  </div>
+                </div>
+                `
+            logContainer.insertAdjacentHTML(position,element);
+          }
+
+        }
+      });
+    </script>
 @stop

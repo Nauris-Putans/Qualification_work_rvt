@@ -23,11 +23,14 @@ class CreateUserGroupTable extends Migration
         Schema::create('user_group_request', function (Blueprint $table) {
             $table->id('requestID');
             $table->unsignedBigInteger('recipient');
+            $table->unsignedBigInteger('requestor');
             $table->string('group');
             $table->unsignedBigInteger('status');
             $table->timestamp('created_at')->nullable();
 
             $table->foreign('recipient')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('requestor')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('group')->references('group_id')->on('monitoring_users_groups')
                 ->onUpdate('cascade')->onDelete('cascade');

@@ -5,10 +5,31 @@
     .card-header{
         background-color: white;
         border: none;
-        border-top: 2px solid blue;
-
+        border-top: 2px solid #0000ff;
         .card-title{
             margin: 0;
+        }
+    }
+
+    .card-body{
+        position: relative;
+        height: 340px;
+    }
+
+    .card-footer{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        border: none;
+        &:before{
+            content: '';
+            position: absolute;
+            background-color: #0000ff;
+            width: 80%;
+            height: 1px;
+            top: 0;
+            left: 10%;
         }
     }
 
@@ -17,12 +38,18 @@
         height: calc(1.6em + 0.75rem + 2px);
         width: 80px;
         margin: 0;
-        background-color: rgba(0, 0, 255, 0.719);
-        color: white;
+        background-color: rgba(255, 255, 255, 0.719);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        color:black;
         z-index: 2;
         &:hover{
-            background-color: blue;
-            color: white;
+            // background-color: rgb(184, 184, 255);
+            box-shadow: 0 4px 13px 0 rgba(1, 10, 97, 0.2), 0 6px 20px 0 rgba(1, 10, 97, 0.19);
+            color: rgb(9, 0, 139);
+        }
+        &:focus{
+            background-color: rgb(206, 206, 255);
+            color: rgb(9, 0, 139);
         }
     }
     
@@ -32,14 +59,37 @@
         height: 0;
         border: none;
         border-radius: 5px;
-        background-color: #f1f1f1;
+        background-color: white;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         transition: height 1s ease;
         overflow: hidden;
-        top: 38px;
+        top: 110%;
         z-index: 8;
+        .error-wrapper{
+            display: none;
+            text-align: center;
+            margin-bottom: 12px;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+            color: #cb1224;
+        }
     }
-
+    .btn-selectTime{
+        outline: none;
+        border: none;
+        height: calc(1.6em + 0.75rem + 2px);
+        min-width: 80px;
+        width: auto;
+        border-radius: 5px;
+        margin-bottom: 8px !important;
+        background: transparent;
+        color: black; 
+        box-shadow: 0 4px 8px 0 rgba(0, 50, 97, 0.2), 0 6px 20px 0 rgba(0, 90, 102, 0.19);
+        &:hover{
+            color: rgb(9, 0, 139);
+        }
+    }
     .select-time{
         display: flex;
         width: auto;
@@ -53,6 +103,25 @@
             text-align: center;
         }
     }
+
+    .btn-group-toggle-measurement{
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+        border-radius: 5px;
+    }
+    .btn-measurement{
+        position: relative;
+        height: calc(1.6em + 0.75rem + 2px);
+        width: auto;
+        margin: 0;
+        background-color: rgba(255, 255, 255, 0.719);
+        color: black;
+        z-index: 2;
+    }
+    .btn-measurement.active{
+        background-color: rgb(206, 206, 255);
+        color: rgb(9, 0, 139);
+    }
+
 
     //Costumize time picker
 
@@ -85,6 +154,12 @@
         font-weight: 700;
 
         user-select: none;
+    }
+
+    .time-picker .separator{
+        padding-bottom: 5px;
+        font-size: 25px;
+        border-radius: none;
     }
 
     .time-picker .hour,
@@ -154,11 +229,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 50%; 
+        border: none;
+        border-bottom: 1px solid gray;
         height: 29px;
         width: 29px;
         margin-left: 5px;
         margin-right: 5px;
+    }
+    .page-item.active{
+        background-color: white;
+        color: black;
+    }
+
+    .page-item.active .page-link{
+        border-radius: 5px;
     }
 
 

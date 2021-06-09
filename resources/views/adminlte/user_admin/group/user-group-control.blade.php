@@ -235,7 +235,7 @@
                 }
             }
 
-            //Find user
+            //Send group request
             function inviteUser(userId){
                 if(userId){
                     $.ajax( {

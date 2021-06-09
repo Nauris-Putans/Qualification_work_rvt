@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/css/notifications.css": "/css/notifications.css",
     "/css/adminlte/user_admin/monitorAdd.css": "/css/adminlte/user_admin/monitorAdd.css",
     "/css/adminlte/user_admin/monitorList.css": "/css/adminlte/user_admin/monitorList.css",
     "/css/adminlte/user_admin/uptime.css": "/css/adminlte/user_admin/uptime.css",
@@ -8,6 +9,7 @@
     "/css/adminlte/user_admin/dashboard.css": "/css/adminlte/user_admin/dashboard.css",
     "/css/adminlte/user_admin/userGroup.css": "/css/adminlte/user_admin/userGroup.css",
     "/css/adminlte/user_admin/userGroupControl.css": "/css/adminlte/user_admin/userGroupControl.css",
+    "/css/adminlte/user_admin/alertNotificationSettings.css": "/css/adminlte/user_admin/alertNotificationSettings.css",
     "/css/sections/footer.css": "/css/sections/footer.css",
     "/css/sections/header.css": "/css/sections/header.css",
     "/css/sections/home.blade.css": "/css/sections/home.blade.css",
