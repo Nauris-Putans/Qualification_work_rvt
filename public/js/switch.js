@@ -1,3 +1,4 @@
+//chande toogle login/signup page
 $(document).ready(function() 
 {
     const signUpButton = document.getElementById('signUp');

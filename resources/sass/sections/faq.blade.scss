@@ -1,5 +1,5 @@
 .Faq
-{
+{   
     a:hover {
         color: white;
         background-color: #a75900;
@@ -33,7 +33,7 @@
     .active, .collapsible:hover {
         background-color: #a45b06;
     }
-
+    // answers design
     .content {
 
         padding: 0 18px;
@@ -46,14 +46,14 @@
         -o-transition: all 0.5s ;
         -moz-transition: all 0.5s ;
     }
-
+    //Header 1 design
     h1{
         color:white;
         padding-bottom: 15px;
         padding-top: 15px;
         text-align: center;
     }
-
+    //paragraph design
     p{
         padding-top: 15px;
     }

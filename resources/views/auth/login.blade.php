@@ -27,6 +27,7 @@
     <link href="{{ asset('css/sections/login.blade.css') }}" rel="stylesheet">
 </head>
 <body>
+    {{-- Background for the page --}}
     <div style="background-image: url({{ URL::asset('/images/background.jpg') }}); background-repeat: no-repeat; background-size: cover; position: relative; overflow: auto; height: 100vh; display: flex; justify-content: center; align-items: center;">
         <section class="LoginForm col-lg-8 col-md-12 col-sm-12">
             <div>
@@ -35,13 +36,14 @@
 
             <div class="container" id="container">
                 <div class="form-container sign-up-container">
+                    {{-- Register form --}}
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <h1>
                             {{ __('Sign up') }}
                         </h1>
-
+                        {{-- Field that need data and Different types of errors for sign up function (Name, email, password, password confirm) --}}
                         <input id="signup_name" type="text" class="form-control mt-3 @error('signup_name') is-invalid @enderror" name="signup_name" value="{{ old('signup_name') }}" required autocomplete="signup_name" autofocus placeholder="{{ __('Full Name') }}">
 
                         <input id="signup_email" type="email" class="form-control @error('signup_email') is-invalid @enderror" name="signup_email" value="{{ old('signup_email') }}" required autocomplete="signup_email" placeholder="{{ __('E-Mail Address') }}">
@@ -56,34 +58,20 @@
                     </form>
                 </div>
 
-                <div class="form-container sign-in-container">
+                {{-- Login form --}}
+            <div class="form-container sign-in-container">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <h1>
                             {{ __('Sign in') }}
                         </h1>
-
+                        {{-- Field that need data and Different types of errors for login function (email, password) --}}
                         <input id="login_email" type="email" class="form-control @error('login_email') is-invalid @enderror mt-3" name="login_email" value="{{ old('login_email') }}" required autocomplete="login_email" autofocus placeholder="{{ __('E-Mail Address') }}">
 
                         <input id="login_password" type="password" class="form-control @error('login_password') is-invalid @enderror" name="login_password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
-
-                        <div class="row mt-1 mb-3" style="margin-right: 0; margin-left: 0">
-                            <div class="col-6" style="padding: 0">
-                                @if (Route::has('password.request'))
-                                    <a class="ml-2" href="{{ route('password.request') }}" style="font-size: 12px">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-
-                            <div class="col-6 LoginCheckBox" style="padding: 0; text-align: end;">
-                                <label class="mr-2" style="font-size: 12px">{{ __('Remember Me') }}</label>
-                                <input class="mr-2" type="checkbox" id="myCheck" onclick="myFunction()">
-                            </div>
-                        </div>
-
-                        {{-- <div class="remember me mt-3 mb-3">
+                        {{-- Forgot your password link --}}
+                        <div class="remember me mt-3 mb-3">
                             <div class="float-right col-lg-6">
                                 @if (Route::has('password.request'))
                                     <a href="{{ route('password.request') }}">
@@ -91,23 +79,23 @@
                                     </a>
                                 @endif
                             </div>
-
+                            {{-- Rememder me checbox --}}
                             <div class="float-right col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group" style="display:flex; flex-direction: row; justify-content: right;float: left; align-items: center;">
-                                    <label class="form-check-label mr-5" for="remember" style="font-size: 11px;">
+                                    <label class="form-check-label mr-5" for="remember" style="font-size: 10px;">
                                         {{ __('Remember Me') }}
                                     </label>
                                     <input class="form-check-input RememberCheckbox" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                 </div>
                             </div>
-                        </div> --}}
-
+                        </div>
+                        {{-- Button which will login user into the system --}}
                         <button type="submit">
                             {{ __('Log in') }}
                         </button>
                     </form>
                 </div>
-
+                {{-- Information text --}}
                 <div class="overlay-container">
                     <div class="overlay">
                         <div class="overlay-panel overlay-left">
@@ -118,12 +106,12 @@
                             <p>
                                 {{ __("Easily sign in here and continue your monitoring's journey!") }}
                             </p>
-
+                            {{--  --}}
                             <button class="ghost" id="signIn">
                                 {{ __('Sign in') }}
                             </button>
                         </div>
-
+                        {{-- Information text --}}
                         <div class="overlay-panel overlay-right">
                             <h1>
                                 {{ __('Hello, Visitor!') }}
@@ -132,7 +120,7 @@
                             <p>
                                 {{ __("You still don't have an account? Easily sign up and start your journey in monitoring world!") }}
                             </p>
-
+                            {{-- Button which will login register a new user --}}
                             <button class="ghost" id="signUp">
                                 {{ __('Sign up') }}
                             </button>
@@ -141,8 +129,6 @@
                 </div>
             </div>
         </section>
-
-        {{-- <div class="background-shadow" style="background-color: #4c5e7f; opacity: .75; position: absolute;"></div> --}}
     </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/*Scroll to top when arrow up clicked BEGIN*/
+//Scroll to top when arrow up clicked BEGIN
 $(window).scroll(function() {
     var height = $(window).scrollTop();
     if (height > 100) {
@@ -15,4 +15,4 @@ $(document).ready(function() {
     });
 
 });
-/*Scroll to top when arrow up clicked END*/
+//Scroll to top when arrow up clicked END
