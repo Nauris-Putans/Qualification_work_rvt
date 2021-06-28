@@ -27,8 +27,6 @@
                             <div class="card-body">
                                 <h4 class="card-title text-muted" style="float: none;">{{ __('Next billing date') }}</h4>
 
-
-
                                 @if ($timestamp === null)
                                     <h5 class="card-text"><strong>{{ __('None') }}</strong></h5>
                                 @else

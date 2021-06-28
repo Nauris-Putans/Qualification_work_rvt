@@ -90,10 +90,15 @@
                                             @foreach ($invoices as $invoice)
                                                 <div class="time-label">
                                                     <span class="bg-green">
-                                                        @if (Config::get('app.locale') !== 'ru')
-                                                            {{ strftime("%d %b", strtotime($invoice->date())) }}
+
+                                                        @if (Config::get('app.locale') === 'lv')
+                                                            {{ strftime("%d.%m.%Y.", strtotime($invoice->date())) }}
                                                         @else
-                                                            {{ iconv('windows-1251', 'utf-8', strftime("%d %B", strtotime($invoice->date()))) }}
+                                                            @if (Config::get('app.locale') !== 'ru')
+                                                                {{ strftime("%d %b", strtotime($invoice->date())) }}
+                                                            @else
+                                                                {{ iconv('windows-1251', 'utf-8', strftime("%d %B", strtotime($invoice->date()))) }}
+                                                            @endif
                                                         @endif
 
                                                         <input name="stop" type="hidden" value="stop">

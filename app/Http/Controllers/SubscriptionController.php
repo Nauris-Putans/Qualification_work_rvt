@@ -173,7 +173,7 @@ class SubscriptionController extends Controller
 
         // Updates default payment method
         $request->user()
-            ->updateDefaultPaymentMethodFromStripe($paymentMethod);
+            ->updateDefaultPaymentMethod($paymentMethod);
 
         // Checks if user is already subscribed to any plan
         if ($request->user()->subscribed('default'))

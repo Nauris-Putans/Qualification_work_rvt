@@ -61,13 +61,13 @@
                                     <strong>{{ __('Closed by: ') }}</strong> {{ __('Unknown') }}
                                 </p>
                             @else
-                                @if ($user_closedBy[$ticket->closed_by - 1]->id === $ticket->user_id)
+                                @if ($ticket->closed_by === auth()->user()->id)
                                     <p class="ml-2 mb-4">
                                         <strong>{{ __('Closed by: ') }}</strong> {{ __("You") }}
                                     </p>
                                 @else
                                     <p class="ml-2 mb-4">
-                                        <strong>{{ __('Closed by: ') }}</strong> {{ __($user_closedBy[$ticket->closed_by - 1]->roles[0]->display_name) }}
+                                        <strong>{{ __('Closed by: ') }}</strong> {{ __($user->name) }}
                                     </p>
                                 @endif
                             @endif

@@ -83,12 +83,12 @@
                             <li>
 
                                 @if(file_exists(public_path() . $user->profile_image) && $user->profile_image != '')
-                                    <img src="{{ asset($user->profile_image) }}" alt="latest users image">
+                                    <img src="{{ asset($user->profile_image) }}" alt="latest users image" style="width: 250px; height: 100px; max-width: 100%;">
                                 @else
                                     @if($user->gender == 'Male')
-                                        <img src="{{ asset('images/256x256/256_1.png') }}" alt="latest users image">
+                                        <img src="{{ asset('images/256x256/256_1.png') }}" alt="latest users image" style="width: 250px; height: 100px; max-width: 100%;">
                                     @else
-                                        <img src="{{ asset('images/256x256/256_12.png') }}" alt="latest users image">
+                                        <img src="{{ asset('images/256x256/256_12.png') }}" alt="latest users image" style="width: 250px; height: 100px; max-width: 100%;">
                                     @endif
                                 @endif
 
