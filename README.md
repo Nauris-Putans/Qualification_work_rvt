@@ -1,5 +1,4 @@
 # Tīmekļa vietnes uzraudzības pakalpojums “WEBcheck”
-*Lasīt šo informāciju citās valodās: [🇬🇧](README.eng.md)* 
 
 ## Projekta apraksts
 PIKC “Rīgas Valsts tehnikums” Kvalifikācijas darba repozitorijs. Uzraudzības pakalpojums, kas ļauj pārbaudīt
@@ -7,9 +6,13 @@ jūsu tīmekļa vietnes statistiku, ka piemēram: pingu, atbildes laiku, SSL ser
 Lietotāja/administratora/viesa autentifikācija un pārvaldības sistēma.
 
 ## Ko esmu paveicis šaja projektā
- - ...
- - ...
- - ...
+ - Projekta pamatus – noklusējuma kontrolierus, modeļus un migrācijas
+ - Valodas (angļu, latviešu un krievu)
+ - Kontaktu sadaļu (viesu pusē)
+ - Navigācijas un kājenes joslas (viesu, lietotāja administratora un administratora pusē)
+ - Visu administratora pusi
+ - Iespēju apmaksāt/mainīt/atcelt abonementa plānus izmantojot "Stripe payment"
+ - E-pasta izsutīšana pēc noteiktām darbībām
 
 ## Saturs
  - [Versijas](#versijas)
@@ -232,7 +235,5 @@ Laravel development server started: http://127.0.0.1:8000
 - Faker
     - https://github.com/fzaninotto/Faker
     - https://laravel-news.com/changes-coming-to-php-faker
-## Mani izmantotie avoti
-...
-...
-...
+    
+## Manus izmantotos avotus var redzēt dokumentācijas mapē
